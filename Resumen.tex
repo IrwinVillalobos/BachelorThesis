@@ -149,7 +149,7 @@ Sea $X$ un conjunto no vacío. Una \textit{topología} $\tau$ de $X$ es una famili
 \item \textbf{iii)} Si $\{ A_\alpha \}_{\alpha \in \Lambda}$ es una familia de elementos de $\tau$, entonces $\bigcup_{\alpha \in\Lambda} A_\alpha \in \tau$.
 \end{itemize}
 
-En este caso la pareja $(X, \tau)$ es un \textit{espacio topológico} y a los elementos de $\tau$ los llamamos \textit{abiertos} o \textit{vecindades abiertas}. \\
+En este caso la pareja $(X, \tau)$ es un \textit{espacio topológico} y a los elementos de $\tau$ los llamamos \textit{abiertos}. \\
 
 Sea $X$ un conjunto no vacío, una \textit{base} $\B$ es una familia de subconjuntos de $X$ que cumple que
 \begin{itemize}
@@ -157,14 +157,14 @@ Sea $X$ un conjunto no vacío, una \textit{base} $\B$ es una familia de subconjun
 \item \textbf{ii)} Para $B_1, B_2 \in \B$ y $x \in B_1 \cap B_2$ existe $B_3 \in \B$ con $x \in B_3 \subseteq B_1 \cap B_2$. 
 \end{itemize}
 
-Una base determina la topología $\tau(\B)$ definida por (¿demostrar que en efecto es una topología?)
-$$\tau(\B) := \left\{ \bigcup_{\alpha \in \Lambda} B_\alpha : B_\alpha \in \B \mbox{ y } \Lambda \mbox{ cualquiera } \right\}.$$
+Una base determina la topología $\tau(\B)$ definida por 
+$$\tau(\B) := \left\{ \bigcup_{\alpha \in \Lambda} B_\alpha : B_\alpha \in \B \mbox{ y } \Lambda \mbox{ cualquier conjunto } \right\}.$$
 
 \begin{Def}
 Sea $X$ un espacio topológico.
 \begin{itemize}
 \item \textbf{i)} Un subconjunto $V$ de $X$ es una \textit{vecindad} o \textit{entorno} de $x \in X$ si existe un abierto $U$ tal que $x \in U \subseteq V$. (¿Mencionar que los abiertos y las vecindades abiertas coinciden?)
-\item \textbf{ii)} Dado $A$ un subconjunto de $X$. La \textit{cerradura} de $A$ es el conjunto $\ov{A} \subseteq X$ de puntos $x \in X$ que cumplen que para toda vecindad abierta $U$ de $x$ se satisface que $U \cap A \neq \emptyset$.
+\item \textbf{ii)} Dado $A$ un subconjunto de $X$, su \textit{cerradura} es el conjunto $\ov{A} \subseteq X$ de puntos $x \in X$ que cumplen que para toda vecindad abierta $U$ de $x$ se satisface que $U \cap A \neq \emptyset$.
 \item \textbf{iii)} $X$ es de \textit{Hausdorff} si para todos $x, y \in X$ existen abiertos $U, V$ tales que $x \in V$, $y \in U$ y $U\cap V = \emptyset$.
 \end{itemize}
 \end{Def}
@@ -176,7 +176,7 @@ Un subconjunto $K$ de un espacio topológico $X$ es \textit{compacto} si para cua
 \begin{Def}
 Sean $X$ y $Y$ dos espacios topológicos y $f: X \to Y$.
 \begin{itemize}
-\item \textbf{ii)} Si $f^{-1}(U)$ es abierto en $X$ para todo abierto $U$ en $Y$, entonces $f$ es \textit{continua}. 
+\item \textbf{ii)} $f$ es \textit{continua} si $f^{-1}(U)$ es abierto en $X$ para todo abierto $U$ en $Y$. 
 \item \textbf{i)} Dado un punto $x \in X$, $f$ es \textit{continua} en $x$ si para toda vecindad abierta $V$ de $f(x)$ existe una vecindad abierta $U$ de $x$ tal que $f(U) \subseteq V$.
 \end{itemize}
 \end{Def}
@@ -200,13 +200,18 @@ Sean $X$ y $Y$ dos espacios topológicos. En $X \times Y$ consideramos la \textit
 
 Para un abierto $U$ en $X$ se tiene que $\pi_X^{-1}(U) = U \times Y$, que es abierto en $X \times Y$, por lo que $\pi_X$ es continua. De manera análoga, $\pi_Y$ también es continua. \\
 
-Por otro lado, dados $x_0 \in X$ y $y_0 \in Y$, podemos considerar los \textit{encajes} de $X$ y $Y$ en $X\times Y$
-\Ecu{
-e_{y_0} : X  & \to X \times Y \hspace*{1cm} \mbox{ y } \hspace*{1cm} e_{x_0} :  Y  \to X \times Y \\
-x &\mapsto (x, y_0) \hspace*{3.65cm} y \mapsto (x_0, y). 
-}
+La siguiente proposición indica que la continuidad de una función valuada en un espacio producto equivale a la continuidad de sus componentes.
 
-Si $U$ es abierto en $X \times Y$ y tomamos $x \in e_{y_0}^{-1}(U)$, entonces $(x, y_0) \in U$. Por lo que existe un básico $U_1 \times U_2$ de $X \times Y$ tal que $U_1$ es abierto en $X$, $U_2$ abierto en $Y$ y $(x, y_0) \in U_1 \times U_2 \subseteq U$. Así que $y_0 \in U_2$ y $e_{y_0}(U_1) \subseteq U_1 \times U_2$. Así que $x \in U_1 \subseteq e_{y_0}^{-1}(U)$. Por lo tanto $e_{y_0}^{-1}(U)$ es abierto y $e_{y_0}$ es continua. Análogamente $e_{x_0}$ también es continua.\\
+\begin{Prop} \label{Prop:ContinuidadPorComponentes}
+Sean $E, X$ y $Y$ espacios vectoriales y $f: E \to X \times Y$. Entonces $f$ es continua si y sólo si $\pi_X \circ f$ y $\pi_Y \circ f$.
+\end{Prop}
+
+\begin{proof}
+Si $f$ es continua, entonces $\pi_X \circ f$ y $\pi_Y \circ f$ también lo son ya que $\pi_X$ y $\pi_Y$ lo son y composición de funciones continuas es continua. \\
+
+Supongamos ahora que $\pi_X \circ f$ y $\pi_Y \circ f$ son continuas. Sea $U \times V$ un abierto básico de $X \times Y$ de manera que $U$ es abierto en $X$ y $V$ es abierto en $Y$. Entonces $(\pi_X \circ f)^{-1}(U)$ y $(\pi_Y \circ f)^{-1}(V)$ son abiertos en $E$ por lo que también lo es  
+$$f^{-1}(U \times V) = (\pi_X \circ f)^{-1}(U) \bigcap (\pi_Y \circ f)^{-1}(V).$$
+\end{proof} 
 
 Supongamos que $\tau$ es una topología de un espacio vectorial $X$ sobre $\K$ tal que:
 \begin{itemize}
@@ -241,7 +246,19 @@ Sean $X$ un espacio vectorial topológico, $x \in X$ y $\lambda \neq 0$, entonces
 \end{Prop}
 
 \begin{proof}
-Claramente $T_{-x} = T_x^{-1}$ y $D_{\lambda^{-1}} = D_\lambda^{-1}$, de manera que $T_x$ y $D_\lambda$ son biyectivas. Además  $e_{x}: X\times X \to X$, $y \mapsto (x, y)$ y $e_{\lambda} : \K \times X \to X$, $ y \mapsto (\lambda, x)$ son encajes y por lo tanto son continuos. De manera que $T_x = + \circ e_x$ es continua al igual que $D_\lambda = \cdot \circ e_\lambda$. Como $e_{-x}$ y $e_{\lambda^{-1}}$ también son encajes, también son continuos. Así que $T_{-x}$ y $D_{\lambda^{-1}}$ son continuos también y por tanto $T_x$ y $D_\lambda$ son abiertas y por tanto homeomorfismos.
+Claramente $T_{-x} = T_x^{-1}$ y $D_{\lambda^{-1}} = D_\lambda^{-1}$, de manera que $T_x$ y $D_\lambda$ son biyectivas. Para $x_0 \in X$ definamos 
+\Ecu{
+e_{x_0} : X &\to X \times X  \\
+y &\mapsto (x_0, y)
+} 
+Notemos que para $y \in X$ se tiene que $(\pi_X \circ e_{x_0})(y) = x_0$ y $(\pi_Y \circ e_{x_0})(y) = y$. Esto indica que $\pi_X \circ e_{x_0}$ es constante y $\pi_Y \circ e_{x_0}$ es la identidad en $X$ y por lo tanto ambas son continuas. Por la proposición~\ref{Prop:ContinuidadPorComponentes} se tiene que $e_{x_0}$ es continua.  De manera que $T_x = + \circ e_x$ es continua al igual que $T_{-x} = + \circ e_{-x}$. \\
+
+De manera similar para $\lambda_0$ definimos 
+\Ecu{
+e_{\lambda_0} : X &\to \K \times X  \\
+y &\mapsto (\lambda_0, y)
+} 
+Notemos que para $y \in X$ se tiene que $(\pi_X \circ e_{\lambda_0})(y) = \lambda_0$ y $(\pi_Y \circ e_{\lambda_0})(y) = y$. Esto indica que $\pi_X \circ e_{\lambda_0}$ es constante y $\pi_Y \circ e_{\lambda_0}$ es la identidad en $X$ y por lo tanto ambas son continuas. Por la proposición~\ref{Prop:ContinuidadPorComponentes} se tiene que $e_{\lambda_0}$ es continua.  De manera que $D_\lambda = \cdot \circ e_\lambda$ es continua al igual que $D_{\lambda^{-1}} = \cdot \circ e_{\lambda^{-1}}$. (¿En este último párrafo es mejor decir que es análogo al primero?)
 \end{proof}
 
 \begin{Obs}
@@ -255,39 +272,6 @@ Sean $X, Y$ espacios vectoriales topológicos. Si $T:X \to Y$ es lineal y continu
 \begin{proof}
 Sea $x \in X$. Veremos que $T$ es continua en $x$. Sea $U$ una vecindad abierta de $Tx$ de manera que $Tx \in U$. Entonces $U_0 := U - Tx$ es abierto en $Y$ y además $0 \in U_0$. Como $T$ es continua en $0$, existe un abierto $V_0$ del cero tal que $Ty \in U_0$ si $y \in V_0$. Así que $x \in V_0 +x$ y $ V_0 + x$ es una vecindad abierta de $x$. Si $y \in V_0 + x$, entonces $y-x \in V_0$, de manera que $Ty -Tx = T(y-x) \in U_0 = U - Tx$, de donde $Ty \in U$. Así que $T$ es continua en $x$. 
 \end{proof}
-
-\section{Resultados del Capitulo I de Diestel.}
-El teorema 1 lo demostramos con la equivalencia de las normas en $\K^n$. A mi parecer, aunque el segundo corolario es usado para demostrar el teorema~\ref{Tma:DimensionFinitaCerradoAcotadoCompacto}, los primeros tres resultados los hemos visto ya de resultados de análisis 1 y 2. Siento que los podemos dar por hecho o demostrarlos si se necesitara.  \\
-
-Por otro lado, los últimos tres resultados me resultan más interesantes, pues ya tratan con el caso en el que $X$ no necesariamente es de dimensión finita. Y a simple vista creo que el teorema~\ref{Tma:CompactoSucesionEnvolventeConvexa} puede ser usado para demostrar que la bola cerrada unitaria no es compacta en espacios de dimensión infinita. Esto último nos interesa, pues alguna vez usted mencionó que el objetivo de trabajar con las topologías débiles es que tienen más compactos (como lo muestra el Teorema de Banach-Anaoglu). 
-
-
-
-\begin{Tma}
-Si $X$ y $Y$ son espacios normados de dimensión finita y de la misma dimensión, entonces son isomorfos.
-\end{Tma}
-
-\begin{Cor}
-Los espacios normados de dimensión finita son completos.
-\end{Cor}
-
-\begin{Cor}
-Si $Y$ es un subespacio de dimensión finita de un espacio normado $X$, entonces $Y$ es cerrado.
-\end{Cor}
-
-\begin{Lema} \textbf{(de Riez)}
-Sean $Y$ un subespacio propio y cerrado de un espacio normado $X$ y $\theta \in (0, 1)$, entonces existe $x_\theta \in S_X$ para el cual $\Norm{x- y} > \theta$ para todo $y \in Y$. 
-\end{Lema}
-
-\begin{Tma} \label{Tma:DimensionFinitaCerradoAcotadoCompacto}
-Sea $X$ un espacio normado. Entonces $X$ es de dimensión finita si, y sólo si todo subespacio cerrado y acotado es compacto.
-\end{Tma}
-
-\begin{Tma} \label{Tma:CompactoSucesionEnvolventeConvexa}
-Si $K$ es un subconjunto compacto del espacio normado $X$, entonces hay una sucesión $(x_n)_{n\in\N}$ en $X$ tal que $\Norm{x_n} \to 0$ y $K$ está contenido en la envolvente convexa cerrada de $\{x_n : n \in\N \}$.
-\end{Tma}
-
-Sobre los ejercicios de este capítulo, no los trabajé lo suficiente. Pero a simple vista, el primer ejercicio que pide probar el teorema de Mazur llamo mi atención, pues no sé que relación tenga la convexidad (que al parecer se relacionan con las seminormas) con la compacidad. 
 
 \section{Redes.}
 
@@ -513,9 +497,9 @@ Tomemos $x \in \bigcap_{\alpha \in \Lambda} C_\alpha$. Veamos que $x$ es un punt
 Supongamos ahora que $X$ no es compacto. Existe entonces una cubierta abierta $\{ V_i \}_{i \in I}$ de $X$ tal que  no tiene  una subcubierta finita. Sea $\Lambda$ la colección de subconjuntos finitos de $I$ con el orden de inclusión. Para cada $F \in \Lambda$ la subcolección finita $\{ V_i : i \in F \}$ no cubre a $X$. Por lo que $\bigcup_{i\in F} V_i \neq X$. Así que existe $x_F \in X$ tal que $x_F \notin V_i$ para todo $i \in F$. Consideremos la red $(x_F)_{F \in \Lambda}$. Demostremos que esta red no tiene subredes que converjan. Por el lema~\ref{Lema:limitesubred} esto último equivale a demostrar que $(x_F)_{F \in \Lambda}$ no tiene puntos de acumulación. Sea $x \in X$. Entonces $x \in V_{i_0}$ para algún $i_0 \in I$. Además, para $F \in \Lambda$ tal que $\{ i_0 \} \subseteq F$ se tiene que $x_F \notin V_{i_0}$. Esto indica que $x$ no es punto de acumulación de $(x_F)_{F \in \Lambda}$. 
 \end{proof}
 
-\begin{Tma}
+\begin{Lema}
 \textbf{(del sándwich)} Sean $X$ un espacio topológico y $f, g $ y $h$ funciones real-valuadas en $X$ tales que $g(x) \leq f(x) \leq h(x)$ para todo $x \in X$. Supongamos que para una red $(x_\alpha)_{\alpha \in \Lambda}$ en $X$ se cumple que $\displaystyle\lim_{\alpha \in \Lambda} g(x_\alpha) = \lim_{\alpha \in \Lambda} h(x_\alpha) = L.$ Entonces $\displaystyle  \lim_{\alpha \in \Lambda} f(x_\alpha) = L$.
-\end{Tma}
+\end{Lema}
 
 \begin{proof}
 Sea $U$ una vecindad abierta de $L$. Tomemos $\varepsilon > 0$ tal que $(L- \varepsilon, L + \varepsilon) \subseteq U$. Como este intervalo es una vecindad abierta de $L$, por hipótesis existen $\alpha_1, \alpha_2 \in \Lambda$ tales que 
@@ -530,6 +514,44 @@ $$L- \varepsilon < g(x_\alpha) \leq f(x_\alpha) \leq h(x_\alpha) < L + \varepsil
 
 Por lo tanto $f(x_\alpha) \in (L- \varepsilon, L + \varepsilon) \subseteq U$, si $\alpha \geq \alpha_0$. 
 \end{proof}
+
+\section{Resultados del Capitulo I de Diestel.}
+El teorema 1 lo demostramos con la equivalencia de las normas en $\K^n$. A mi parecer, aunque el segundo corolario es usado para demostrar el teorema~\ref{Tma:DimensionFinitaCerradoAcotadoCompacto}, los primeros tres resultados los hemos visto ya de resultados de análisis 1 y 2. Siento que los podemos dar por hecho o demostrarlos si se necesitara.  \\
+
+Por otro lado, los últimos tres resultados me resultan más interesantes, pues ya tratan con el caso en el que $X$ no necesariamente es de dimensión finita. Y a simple vista creo que el teorema~\ref{Tma:CompactoSucesionEnvolventeConvexa} puede ser usado para demostrar que la bola cerrada unitaria no es compacta en espacios de dimensión infinita. Esto último nos interesa, pues alguna vez usted mencionó que el objetivo de trabajar con las topologías débiles es que tienen más compactos (como lo muestra el teorema de Banach-Anaoglu). 
+
+
+
+\begin{Tma}
+Si $X$ y $Y$ son espacios normados de dimensión finita y de la misma dimensión, entonces son isomorfos.
+\end{Tma}
+
+\begin{Cor}
+Los espacios normados de dimensión finita son completos.
+\end{Cor}
+
+\begin{Cor}
+Si $Y$ es un subespacio de dimensión finita de un espacio normado $X$, entonces $Y$ es cerrado.
+\end{Cor}
+
+\begin{Lema} \textbf{(de Riesz)}
+Sean $Y$ un subespacio propio y cerrado de un espacio normado $X$ y $\theta \in (0, 1)$, entonces existe $x_\theta \in S_X$ para el cual $\Norm{x- y} > \theta$ para todo $y \in Y$. 
+\end{Lema}
+
+\begin{Tma} \label{Tma:DimensionFinitaCerradoAcotadoCompacto}
+Sea $X$ un espacio normado. Los siguiente es equivalente:
+\begin{itemize}
+\item \textbf{i)} $X$ es de dimensión finita.
+\item \textbf{ii)} Todo subespacio cerrado y acotado es compacto.
+\item \textbf{iii)} La bola unitaria cerrada $B_X$ es compacta. 
+\end{itemize}
+\end{Tma}
+
+\begin{Tma} \label{Tma:CompactoSucesionEnvolventeConvexa}
+Si $K$ es un subconjunto compacto del espacio normado $X$, entonces hay una sucesión $(x_n)_{n\in\N}$ en $X$ tal que $\Norm{x_n} \to 0$ y $K$ está contenido en la envolvente convexa cerrada de $\{x_n : n \in\N \}$.
+\end{Tma}
+
+Sobre los ejercicios de este capítulo, no los trabajé lo suficiente. Pero a simple vista, el primer ejercicio que pide probar el teorema de Mazur llamo mi atención, pues no sé que relación tenga la convexidad (que al parecer se relacionan con las seminormas) con la compacidad. 
 
 \section{Topologías débil y débil*.}
 
@@ -570,7 +592,7 @@ Sean $X$ un espacio vectorial y $p$ una seminorma. Entonces
 \end{proof}
 
 \begin{Def}
-Sean $X$ un espacio vectorial sobre $\K$ y $ \mathcal{F}$ una familia no vacía de seminormas en $X$. Diremos que $\mathcal{F}$ \textit{separa puntos} si para cada $x \in X \setminus \{ 0 \}$  existe $p \in \mathcal{F}$ tal que $p(x) \neq 0$.  
+Sean $X$ un espacio vectorial sobre $\K$ y $ \mathcal{F}$ una familia no vacía de seminormas en $X$. Diremos que $\mathcal{F}$ \textit{separa puntos} en $X$ si para cada $x \in X \setminus \{ 0 \}$  existe $p \in \mathcal{F}$ tal que $p(x) \neq 0$.  
 \end{Def}
 
 Sea $\mathcal{T}$ la colección de topologías de un espacio vectorial $X$ en las que toda seminorma en $\mathcal{F}$ es continua. Claramente, la topología discreta de $X$ está en $\mathcal{T}$ y así esta colección es no-vacía y entonces la intersección de todas las topologías en $\mathcal{T}$ vuelve a ser una topología de $X$. 
@@ -651,7 +673,7 @@ Sean $X$ un espacio vectorial, $\F$ una familia de seminormas, $(x_n)_{n \in \N}
 \end{Cor}
  
 \begin{Tma} \label{Tma:SeminormasInducenEVT}
-Si $X$ es un espacio vectorial y $\F$ una familia de seminormas que separa puntos, entonces $X$ con la topología inducida por $\F$ es un espacio vectorial topológico.
+Si $X$ es un espacio vectorial y $\F$ una familia de seminormas que separa puntos en $X$, entonces $X$ con la topología inducida por $\F$ es un espacio vectorial topológico.
 \end{Tma}
 
 \begin{proof}
@@ -670,7 +692,7 @@ $$0 \leq p(x_\alpha + y_\alpha - x- y) \leq p(x_\alpha - x) + p(y_\alpha - y).$$
 
 Por la proposición~\ref{Prop:LimiteDeSuma} y puesto que $\R$ es un e.v.t. se sigue que $$ \displaystyle\lim_{\alpha\in \Lambda} [ p(x_\alpha - x) +  p(y_\alpha - y)] = \lim_{\alpha\in \Lambda} p(x_\alpha - x) +  \lim_{\alpha\in \Lambda} p(y_\alpha - y) = 0.$$
 
-Entonces, por el teorema del sándwich tenemos que $\displaystyle\lim_{\alpha\in \Lambda} p(x_\alpha + y_\alpha - x - y) = 0$ para toda $p \in \F$. \\
+Entonces, por el lema del sándwich tenemos que $\displaystyle\lim_{\alpha\in \Lambda} p(x_\alpha + y_\alpha - x - y) = 0$ para toda $p \in \F$. \\
 
 Por la proposición~\ref{Prop:CaracterizacionConvergenciaDebil} obtenemos que 
 $$\sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} \sigma(x_\alpha, y_\alpha) = \sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} (x_\alpha + y_\alpha) = x+y = \sigma(x, y).$$ 
@@ -680,7 +702,7 @@ Así que $\sigma$ es continua. \\
 Consideremos ahora $\pi: \K \times X \to X$ la función producto por un escalar. Es decir, $\pi(\lambda, x) = \lambda x$ para $(\lambda, x) \in \K\times X$. Veamos que esta es continua. Tomemos una red $(\lambda_\alpha, x_\alpha)_{\alpha\in \Lambda}$  en $\K\times X$ y $(\lambda, x) \in \K \times X$ tal que $(\lambda_\alpha, x_\alpha) \to (\lambda, x)$. La proposición~\ref{Prop:ConvergenciaPorComponentes} indica que $\lambda_\alpha \to \lambda$ y $\sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} x_\alpha = x$. Por la proposición~\ref{Prop:CaracterizacionConvergenciaDebil} tenemos que para toda $p \in \F$ se tiene que $p(x_\alpha - x) \to 0$. Por la subaditividad de $p$ se sigue que
 $$0 \leq p(x_\alpha) \leq p(x_\alpha - x) + p(x).$$
 
-Por el teorema del sándwich y  la proposición~\ref{Prop:LimiteDeSuma} se tiene que  
+Por el lema del sándwich y  la proposición~\ref{Prop:LimiteDeSuma} se tiene que  
 $$0 = \lim_{\alpha\in \Lambda}0 \leq \lim_{\alpha\in \Lambda} p(x_\alpha) \leq \lim_{\alpha\in \Lambda}[p(x_\alpha - x) + p(x)] = \lim_{\alpha\in \Lambda}p(x_\alpha - x) + \lim_{\alpha\in \Lambda} p(x) = p(x)$$.
 
 Además, por la subaditividad de $p$ tenemos que 
@@ -696,28 +718,19 @@ Por la proposición~\ref{Prop:LimiteDeSuma} se tiene que
 &\leq \left( 0 \right)  p(x) +  \abs{\lambda} 0  = 0 \\
 }
 
-Por el teorema del sándwich se tiene entonces que $\lim_{\alpha\in \Lambda} p(\lambda_\alpha x_\alpha - \lambda x) = 0$ para toda $p \in \F$. Por la proposición~\ref{Prop:CaracterizacionConvergenciaDebil} obtenemos que 
+Por el lema del sándwich se tiene entonces que $\lim_{\alpha\in \Lambda} p(\lambda_\alpha x_\alpha - \lambda x) = 0$ para toda $p \in \F$. Por la proposición~\ref{Prop:CaracterizacionConvergenciaDebil} obtenemos que 
 $$\sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} \pi(\lambda_\alpha, x_\alpha) = \sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} \lambda_\alpha x_\alpha = \lambda x = \pi(\lambda, x).$$ 
 
 Así que $\pi$ es continua.
 \end{proof}
 
-La siguiente proposición indica que los abiertos de la topología inducida por una familia de seminormas en espacios de dimensión infinita son ``grandes'', pues cada básico de  uno de ellos contiene una traslación de un subespacio no trivial. 
-
-\begin{Prop}
-Sea $X$ un espacio vectorial de dimensión infinita y $\F$ una familia no vacía de seminormas en $X$. Si $U$ es un abierto básico de $\sigma(X, \F)$, entonces existe $V$ subespacio no trivial de $X$ y $x \in X$ tal que $V+x \subseteq U$.
-\end{Prop}
-
-\begin{proof}
-\textbf{Esta proposición es falsa}. Basta considerar $X = \ell_2$, $x = 0$, $p = \Norm{\cdot}_2$, $\varepsilon = 1$ y el abierto básico $U = U_{x, p, \varepsilon}$. Entonces no hay ningún subespacio no trivial contenido en $U$.
-\end{proof}
 
 %/////////////////////////////////////////////////////////////////////////
 %/////////////////////////Topologia Débil/////////////////////////////////
 %/////////////////////////////////////////////////////////////////////////
 \subsection{Topología débil.}
 
-Sean $X$ un espacio normado y $X^*$ su espacio dual. Notemos que para cada $\varphi \in X^*$ se tiene que $\abs{\varphi}$ es una seminorma. Además por el teorema de Hahn-Banach para cada $x \neq 0$ existe un funcional lineal $\varphi \in X^*$ tal que $\varphi(x) \neq 0$. De manera que $\abs{\varphi(x)} \neq 0$. Por tanto $$\F_X := \{ \abs{\varphi} : \varphi \in X^* \}$$ es una familia de seminormas en $X$ que separa puntos. \\
+Sean $X$ un espacio normado y $X^*$ su espacio dual. Notemos que para cada $\varphi \in X^*$ se tiene que $\abs{\varphi}$ es una seminorma. Además por el teorema de Hahn-Banach para cada $x \neq 0$ existe un funcional lineal $\varphi \in X^*$ tal que $\varphi(x) \neq 0$. De manera que $\abs{\varphi(x)} \neq 0$. Por tanto $$\F_X := \{ \abs{\varphi} : \varphi \in X^* \}$$ es una familia de seminormas en $X$ que separa puntos en $X$. \\
 
 
 \begin{Def}
@@ -727,17 +740,17 @@ Sea $X$ un espacio normado. La \textit{topología débil} de $X$ es $\sigma(X, \F_
 Como consecuencia del teorema~\ref{Tma:SeminormasInducenEVT} tenemos el siguiente corolario.
 
 \begin{Cor}
-Sea $X$ un espacio normado. Entonces la topología débil en $X$ es una topología vectorial.
+Si $X$ un espacio normado, entonces $X_\mathrm{w}$ es un espacio vectorial topológico.
 \end{Cor}
 
-Sea $X$ un espacio normado. A la topología inducida por la norma se le suele denominar topología original y la denotaremos en ocasiones por $\tau_{\Norm{\cdot}}$. Notemos que cada seminorma en $\F_X$ es continua si consideramos la topología original en el dominio de cada funcional. Esto indica que $\tau_\mathrm{w} \subseteq \tau$. Esta contención es propia cuando $X$ es de dimensión infinita, como se muestra en la siguiente proposición.
+Sea $X$ un espacio normado. A la topología inducida por la norma se le suele denominar topología original y la denotaremos en ocasiones por $\tau_{\Norm{\cdot}}$. Notemos que cada seminorma en $\F_X$ es continua si consideramos la topología original en el dominio de cada funcional. Esto indica que $\tau_\mathrm{w} \subseteq \tau$. Esta contención es propia cuando $X$ es de dimensión infinita, como se muestra en la siguiente proposición. La idea de la demostración radica en que los abiertos de la topología débil en espacios de dimensión infinita siempre son ``grandes'', pues cada uno de ellos contiene una traslación de un subespacio no trivial.
 
 \begin{Prop} \label{Prop:ContencionPropiaTopologiaDebil}
 Sea $X$ un espacio normado de dimensión infinita. Entonces $\tau_\mathrm{w} \subsetneq \tau$.
 \end{Prop}
 
 \begin{proof}
-En la observación anterior notamos que $\tau_\mathrm{w} \subseteq \tau$. Demostraremos que todos los abiertos básicos de la topología débil no son acotados bajo la norma. Esto es suficiente ya que algunos abiertos de la topología original sí son acotados. \\
+En la observación anterior notamos que $\tau_\mathrm{w} \subseteq \tau$. Demostraremos que todos los abiertos básicos de la topología débil no son acotados bajo la norma. Esto es suficiente para obtener la conclusión ya que algunos abiertos de la topología original sí son acotados. \\
 
 Sea $U_{x, \varphi_1, \ldots, \varphi_k, \varepsilon}$ un abierto básico de $\tau_{\mathrm{w}}$, para algunos $x \in X, k \in \N, \varphi_1,\ldots, \varphi_k \in X^*$ y $\varepsilon > 0$. Consideremos $F: X \to \K^k$ definida por $F(y) = (\varphi_1(y), \ldots, \varphi_k(y))$ y observemos que es lineal. De esta manera notemos que $$\Ker \, F = \bigcap_{i=1}^k \Ker\, \varphi_i.$$
 Si $\Ker \, F$ fuese trivial, entonces $F$ sería inyectiva. Lo cual es falso, pues su dominio es de dimensión infinita y su codominio de dimensión finita. Por lo tanto $\bigcap_{i=1}^k \Ker\, \varphi_i \neq \{ 0 \}$ y existe $y \in X  \setminus \{ 0 \}$ tal que $\varphi_i(y) = 0$ para toda $i \in  \{1, \ldots, k\}$. Ahora tomemos $M > 0$. Notemos que 
@@ -749,7 +762,7 @@ $$\abs{\varphi_i(\lambda y + x) - \varphi(x)} = \abs{\varphi_i(y)} = 0 < \vareps
 \end{proof}
 
 
-En un espacio normado $X$ denotamos que la red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ converge a $x \in X$ por $\wlim_{\alpha \in \Lambda} x_\alpha$ o también por $x_\alpha \stackrel{\mathrm{w}}{\longrightarrow} x$. En el caso particular de una sucesión $(x_n)_{n \in \N}$ denotaremos el límite de la sucesión por $\wlim_{n \to \infty} x_n$. 
+En un espacio normado $X$ denotamos que la red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ converge  a $x \in X$ bajo la topología débil, por $\wlim_{\alpha \in \Lambda} x_\alpha$ o también por $x_\alpha \stackrel{\mathrm{w}}{\longrightarrow} x$. En el caso particular de una sucesión $(x_n)_{n \in \N}$ denotaremos el límite de la sucesión por $\wlim_{n \to \infty} x_n$. 
 
 \begin{Cor}
 Sean $X$ un espacio normado y $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ una red y $x \in X$. Entonces $x_\alpha \stackrel{\mathrm{w}}{\longrightarrow} x$ si, y sólo si, $\varphi(x_\alpha) \to \varphi(x)$ para todo $\varphi \in X^*$. \\
@@ -773,24 +786,7 @@ Ahora tomemos $\varphi_\mathrm{w}: X_{\mathrm{w}} \to \K \in (X, \tau_{\mathrm{w
 %/////////////////////////////////////////////////////////////////////////
 \subsection{Topología débil*.}
 
-De manera dual desarrollaremos ahora la topología débil*. Para cada $x \in X$ introduzcamos la seminorma 
-\Ecu{
-p_x: X^* &\to X \\
-\varphi &\mapsto \abs{\varphi(x)}
-}
-
-Dado $\varphi \in X^*$ distinto de cero, existe $x \neq 0$ con $\varphi(x) \neq 0$. Así que $p_x(\varphi) \neq 0$. Es decir, $$\F_{X^*} := \{ p_x : x\in X\}$$ es una familia de seminormas en $X^*$ que separa puntos. 
-
-\begin{Def}
-Sea $X$ un espacio normado. La \textit{topología débil*} de $X^*$ es $\sigma(X^*, \F_{X^*})$ y se denotará por $\sigma(X^*, X)$ o simplemente por $\tau_{\mathrm{w}^*}$. Cuando trabajemos con la topología débil de $X^*$, al espacio vectorial topológico correspondiente lo denotaremos por $X^*_{\mathrm{w}^*}$
-\end{Def}
-
-De igual manera que con la topología débil del teorema~\ref{Tma:SeminormasInducenEVT}  se deduce el siguiente corolario.
-
-\begin{Cor}
-Sea $X$ un espacio normado. Entonces la topología débil* en $X^*$ es una topología vectorial.
-\end{Cor}
-
+Sea $X$ un espacio normado. Hemos construido entonces su topología débil. De manera dual desarrollaremos ahora la topología débil* del espacio $X^*$. En el caso de la topología débil, los funcionales lineales continuos en $X$ jugaron un papel importante, pues a través de ellos construimos la familia de seminormas de la que se derivo la topología débil. Así que consideraremos ahora una familia de funcionales lineales continuos en $X^*$. \\
 
 \begin{Prop} \label{Prop:DeltaContinua}
 Sean $X$ un espacio normado y $x \in X$. En $X^*$ definimos el funcional lineal $\delta_x : X^*_{\mathrm{w}^*} \to \K$  por $\delta_x(\varphi) = \varphi(x)$ para toda $\varphi \in X^*$. Entonces $\delta_x$ es continuo. 
@@ -799,6 +795,27 @@ Sean $X$ un espacio normado y $x \in X$. En $X^*$ definimos el funcional lineal 
 \begin{proof}
 (Pendiente).
 \end{proof}
+
+
+Para cada $x \in X$ introduzcamos la seminorma 
+\Ecu{
+p_x: X^* &\to X \\
+\varphi &\mapsto \abs{\varphi(x)}
+}
+
+Dado $\varphi \in X^*$ distinto de cero, existe $x \neq 0$ con $\varphi(x) \neq 0$. Así que $p_x(\varphi) \neq 0$. Es decir, $$\F_{X^*} := \{ p_x : x\in X\}$$ es una familia de seminormas en $X^*$ que separa puntos de $X$. 
+
+\begin{Def}
+Sea $X$ un espacio normado. La \textit{topología débil*} de $X^*$ es $\sigma(X^*, \F_{X^*})$ y se denotará por $\sigma(X^*, X)$ o simplemente por $\tau_{\mathrm{w}^*}$. Cuando trabajemos con la topología débil de $X^*$, al espacio vectorial topológico correspondiente lo denotaremos por $X^*_{\mathrm{w}^*}$
+\end{Def}
+
+Aplicando el teorema~\ref{Tma:SeminormasInducenEVT}  se deduce el siguiente corolario.
+
+\begin{Cor}
+Sea $X$ un espacio normado. Entonces $X^*_{\mathrm{w}^*}$ es un espacio vectorial topológico.
+\end{Cor}
+
+
 
 Consideremos la \textit{identificación canónica} del espacio normado $X$ en $X^{**}$
 \Ecu{
