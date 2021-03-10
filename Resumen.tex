@@ -125,6 +125,10 @@
 
 A lo largo de este trabajo denotaremos por $\K$ el campo de los números reales o de los números complejos. Recordemos que $(X, \Norm{\cdot})$ es un \textit{espacio normado} si $X$ es un espacio vectorial sobre $\K$ y $\Norm{\cdot}$ es una norma en $X$. Si además $X$ es completo bajo esta norma, decimos que $X$ es un \textit{espacio de Banach}. Esto significa que en un espacio de Banach las sucesiones de Cauchy convergen. El contexto en el que estaremos trabajando es el de espacios de Banach. \\
 
+\begin{Ejem}
+Dado $n \in \N$, el espacio $\K^n$ con la norma $$\Norm{(x_1, \ldots, x_2)}_2 = \left(\sum_{i=1}^n x_i^2\right)^{\frac{1}{2}}$$ es un espacio normado al cual denotamos $\ell^n_2$.
+\end{Ejem}
+
 Un aspecto muy importante de los espacios normados es su topología, así que recordemos algunos conceptos referentes a esta. \\
 
 Sea $X$ un conjunto no vacío. Una \textit{topología} $\tau$ de $X$ es una familia de subconjuntos de $X$ que cumple las siguientes propiedades:
@@ -187,7 +191,6 @@ Sea $V$ abierto en $Y$. Entonces existen un conjunto $\Lambda$ y algunos $B_\alp
 $$f^{-1}(V) = f^{-1}\left( \bigcup_{\alpha \in \Lambda} B_\alpha \right) = \bigcup_{\alpha \in \Lambda} f^{-1}(B_\alpha).$$ 
 \end{proof}
 
-
 \begin{Def}
 Sea $X$ un espacio topológico.
 \begin{itemize}
@@ -197,10 +200,13 @@ Sea $X$ un espacio topológico.
 \end{itemize}
 \end{Def}
 
+\begin{Obs}
+En un espacio topológico $U$ es una vecindad abierta de $x$ si, y sólo si $U$ es un abierto que contiene a $x$.
+\end{Obs}
+
 \begin{Def}
 Un subconjunto $K$ de un espacio topológico $X$ es \textit{compacto} si para cualquier colección $\{ U_\alpha \}_{\alpha \in \Lambda}$ de abiertos tales que $$K \subseteq \bigcup_{\alpha \in \Lambda} U_\alpha$$ existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ tales que $$K \subseteq \bigcup_{i=1}^n U_{\alpha_i}.$$
 \end{Def}
-
 
 Sean $X$ y $Y$ dos espacios topológicos. En $X \times Y$ consideramos la \textit{topología producto}, que es la generada por la base $\{ U\times V : U \mbox{ abierto  en } X \mbox{ y } V \mbox{ abierto en } Y \}$. Consideremos las \textit{proyecciones} en $X$ y $Y$
 \Ecu{
@@ -552,15 +558,46 @@ Por lo tanto $f(x_\alpha) \in (L- \varepsilon, L + \varepsilon) \subseteq U$, si
 \end{proof}
 
 \section{Compacidad de $B_X$ en un espacio normado.}
-El teorema 1 lo demostramos con la equivalencia de las normas en $\K^n$. A mi parecer, aunque el segundo corolario es usado para demostrar el teorema~\ref{Tma:DimensionFinitaCerradoAcotadoCompacto}, los primeros tres resultados los hemos visto ya de resultados de análisis 1 y 2. Siento que los podemos dar por hecho o demostrarlos si se necesitara.  \\
+El objetivo de esta sección es demostrar que la compacidad de la bola unitaria en un espacio normado depende de si este es de dimensión finita o no.
 
-Por otro lado, los últimos tres resultados me resultan más interesantes, pues ya tratan con el caso en el que $X$ no necesariamente es de dimensión finita. Y a simple vista creo que el teorema~\ref{Tma:CompactoSucesionEnvolventeConvexa} puede ser usado para demostrar que la bola cerrada unitaria no es compacta en espacios de dimensión infinita. Esto último nos interesa, pues alguna vez usted mencionó que el objetivo de trabajar con las topologías débiles es que tienen más compactos (como lo muestra el teorema de Banach-Anaoglu). 
+\begin{Def}
+Sea $X$ un espacio normado, la \textit{distancia} de $x \in X$ a $A \subseteq X$ es $$d(x, A) := \inf \{ \Norm{x - y} : y \in A \}$$.
+\end{Def}
 
+\begin{Prop}
+Sean $X$ un espacio normado, $A \subseteq X$ cerrado y $x \in X \setminus A$. Entonces $d(x, A) > 0$. 
+\end{Prop}
 
+\begin{proof}
+Supongamos que $d(x, A) = 0$. Tomemos $U$ un abierto que contiene a $x$. Como $ \{ V_r(y) : y \in X, r > 0 \}$ es una base de entornos (¿Convienen definir base de entornos y demostrar que los$V_r(y)$ son una base de entornos de los espacios normados? ¿o es mejor demostrar que en espacios normados en cualquier abierto $U$ y punto $x$ en él existe un radio $r$ tal que $V_r(x) \subseteq U$ ?), existe $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y dado que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$. Por lo que $U \cap A \neq \emptyset$. Por lo tanto $x \in \ov{A}$. Como $A$ es cerrado, entonces $A = \ov{A}$ (¿lo demuestro?) y así $x \in A$. Lo cual es una contradicción.
+\end{proof}
+
+\begin{Def} 
+\hfill
+\begin{itemize}
+\item \textbf{i)} Sean $X$ y $Y$ espacios vectoriales. Se dice que $X$ y $Y$
+son \textit{isomorfos} como espacios vectoriales si existe $T :  X \to Y$ biyectiva y lineal y a $T$ se la llama \textit{isomorfismo} de espacios vectoriales.
+\item \textbf{ii)} Sean $X$ y $Y$ espacios normados. Se dice que $X$ y $Y$ son \textit{isomorfos} como espacios normados si existe un isomorfismo de espacios vectoriales $T: X \to Y$ tal que $T$ es un homeomorfismo. 
+\end{itemize}
+\end{Def}
 
 \begin{Tma}
 Si $X$ y $Y$ son espacios normados de dimensión finita y de la misma dimensión, entonces son isomorfos.
 \end{Tma}
+
+\begin{Prop}
+Sean $X$ y $Y$ espacios normados. Si $T: X \to Y$ es un isomorfismo de espacios normados, entonces manda cerrados a cerrados, compactos a compactos y conjuntos acotados a conjuntos acotados.
+\end{Prop}
+
+\begin{proof}
+Sea $A$ un conjunto cerrado. Como $T^{-1}$ es continua, $(T^{-1})^{-1}(A) = T(A)$ es cerrado. \\
+
+Sea $K$ un conjunto compacto y $(U_{\alpha})_{\alpha \in \Lambda}$ una cubierta abierta de $T(K)$, entonces $(T^{-1}(U_\alpha))_{\alpha \in \Lambda}$ es una cubierta abierta de $K$ por ser $T$ continua. Por lo que existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ con $$K \subseteq\bigcup_{i=1}^n T^{-1} (U_\alpha).$$
+
+De donde $(U_{\alpha_i})_{i=1}^n$ es una cubierta finita de $T(K)$ y así este es compacto.\\
+
+Por último, si $B \subseteq X$ es acotado entonces existe $M > 0$ tal que $\Norm{x} < M $ para todo $x \in B$. Como $T$ es continua, existe $N >0$ tal que $\Norm{T(x)} < N \Norm{x}$. Así pues si $T(x) \in T(B)$ se sigue que $\Norm{T(x)} < MN.$ Por lo que $T(B)$ es acotado.
+\end{proof}
 
 \begin{Cor}
 Los espacios normados de dimensión finita son completos.
@@ -571,7 +608,7 @@ Si $Y$ es un subespacio de dimensión finita de un espacio normado $X$, entonces 
 \end{Cor}
 
 \begin{Lema} \textbf{(de Riesz)}
-Sean $Y$ un subespacio propio y cerrado de un espacio normado $X$ y $\theta \in (0, 1)$, entonces existe $x_\theta X$ con $\Norm{x_\theta} = 1$ para el cual $\Norm{x_\theta - y} > \theta$ para todo $y \in Y$. 
+Sean $Y$ un subespacio propio y cerrado de un espacio normado $X$ y $\theta \in (0, 1)$, entonces existe $x_\theta \in X$ con $\Norm{x_\theta} = 1$ para el cual $\Norm{x_\theta - y} > \theta$ para todo $y \in Y$. 
 \end{Lema}
 
 \begin{proof}
@@ -616,7 +653,6 @@ Así pues, queda construida la sucesión $(x_n)_{n\in\N}$. Si tomamos $n, m \in \N
 Si $K$ es un subconjunto compacto del espacio normado $X$, entonces hay una sucesión $(x_n)_{n\in\N}$ en $X$ tal que $\Norm{x_n} \to 0$ y $K$ está contenido en la envolvente convexa cerrada de $\{x_n : n \in\N \}$.
 \end{Tma}
 
-Sobre los ejercicios de este capítulo, no los trabajé lo suficiente. Pero a simple vista, el primer ejercicio que pide probar el teorema de Mazur llamo mi atención, pues no sé que relación tenga la convexidad (que al parecer se relacionan con las seminormas) con la compacidad. 
 
 \section{Topologías débil y débil*.}
 
@@ -876,7 +912,7 @@ Para todo $\varphi \in X^*$ se tiene que
 Por lo que $\delta_x$ es continuo y además $$\Norm{\delta_x} \leq \Norm{x}.$$
 \end{proof}
 
-Consideremos la \textit{identificación canónica} del espacio normado $X$ en $X^{**}$
+Al ser $\delta_x$ un funcional lineal continuo en $X^*$, este pertenece al espacio dual de $X^*$, el cual denotamos por $X^{**}$. Consideremos la \textit{identificación canónica} del espacio normado $X$ en $X^{**}$
 \Ecu{
 J : X & \mapsto X^{**} \\
 x &\mapsto \delta_x : X^* \to \K \\
@@ -932,6 +968,13 @@ $$\sigma(X^*, X) \subseteq \sigma(X^*, X^{**}) \subseteq \tau_{\Norm{\cdot}}.$$
 
 La primera contención es igualdad si el espacio $X$ es reflexivo. \\
 
+\begin{Prop} \label{Prop:ReflexivoIdentifiacionCanonicaDebilContinua}
+Sea $X$ un espacio reflexivo. Entonces $J :  X_\mathrm{w} \to X^**_{\mathrm{w}^*}$ es abierta. (¿Es mejor demostrar que es homeomorfismo? )
+\end{Prop}
+
+\begin{proof}
+(Pendiente.)
+\end{proof}
 
 En el espacio dual $X^*$ de un espacio normado $X$ la convergencia en la topología débil* de una red $(\varphi_\alpha)_{\alpha \in \Lambda} \subseteq X^*$ a $\varphi \in X^*$ se denotará por $\wslim_{\alpha \in \Lambda} \varphi_\alpha = \varphi$ o también por $\varphi_\alpha \stackrel{\mathrm{w_*}}{\longrightarrow} \varphi$.
 
@@ -993,16 +1036,16 @@ Por lo tanto $(d_x)_{x\in X} \in F(B_{X^*})$ y así $F(B_{X^*})$ es cerrado. Como
 \end{proof}
 
 \begin{Cor} 
-Si $X$ es reflexivo, entonces  $B_{X^*}$ es compacta bajo la topología débil en $X^*$.
+Si $X$ es un espacio normado reflexivo, entonces  $B_{X^*}$ es compacta bajo la topología débil en $X^*$.
 \end{Cor}
 
 \begin{Tma}
 Si un espacio normado $X$ es reflexivo, entonces $B_X$ 
-es débilmente compacta.
+es débilmente compacta. (Estuve investigando y resulta que el resultado es un si y sólo si. ¿Demuestro también el regreso?)
 \end{Tma}
 
 \begin{proof}
-(Pendiente).
+El teorema de Banach-Alaoglu indica que $B_{X^{**}}$ es $\sigma(X^{**}, X^{*})$-compacto. La proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es abierta y por lo tanto $B_X = J^{-1}(B_X^{**})$ (¿demuestro esta igualdad?) es compacto.
 \end{proof}
 
 \section{Medibilidad.}
@@ -1106,6 +1149,7 @@ Esto indica que en un espacio de Banach la convergencia débil de subseries impli
 \item Diestel. Sequences and Series in Banach Spaces.
 \item Megginson. An Introduction to Banach Space Theory.
 \item Galaz Fontes. Elementos de Análisis Funcional. 
+\item Marian Fabian. Funcitonal Analysis and Infinite-Dimensional Geometry.
 \end{itemize}
 
 
