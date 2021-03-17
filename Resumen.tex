@@ -121,7 +121,7 @@
 
 %\inicio{Seminario de Tesis}{3}{Irwin Enrique Villalobos López}{Dr. Fernando Galaz Fontes}{irwin.villalobos@cimat.mx}
 
-\section{Topología y espacio vectorial topológico..}
+\section{Topología y espacio vectorial topológico.}
 
 A lo largo de este trabajo denotaremos por $\K$ el campo de los números reales o de los números complejos. Recordemos que $(X, \Norm{\cdot})$ es un \textit{espacio normado} si $X$ es un espacio vectorial sobre $\K$ y $\Norm{\cdot}$ es una norma en $X$. Si además $X$ es completo bajo esta norma, decimos que $X$ es un \textit{espacio de Banach}. Esto significa que en un espacio de Banach las sucesiones de Cauchy convergen. El contexto en el que estaremos trabajando es el de espacios de Banach. \\
 
@@ -161,21 +161,23 @@ Ahora supongamos que $f^{-1}(V)$ es abierto en $X$ para todo abierto $V$ en $Y$ 
 \begin{Ejem}
 Sean $X, Y$ espacios topológicos y $y_0 \in Y$.
 \begin{itemize}
-\item La función constante $f: X \to Y$ dada por $f(x) = y_0$ es continua, pues para todo abierto $V$ en $Y$ se tiene que 
+\item \textbf{i)} La función constante $f: X \to Y$ dada por $f(x) = y_0$ es continua, pues para todo abierto $V$ en $Y$ se tiene que 
 $$f^{-1}(V) = \begin{cases}
 X, \;\;\;\mbox{ si } f(X)\cap V \neq \emptyset; \\
 \emptyset \;\;\;\mbox{ si } f(X)\cap V = \emptyset.
 \end{cases}$$
 es abierto en $X$.
-\item Consideremos ahora la identidad $Id_X : X \to X$. Para cualquier abierto $U$ de $X$, se tiene que $Id_X^{-1}(U) = U$ es abierto. Así que $Id_X$ es continua.
+\item \textbf{ii)} Consideremos ahora la identidad $Id_X : X \to X$. Para cualquier abierto $U$ de $X$, se tiene que $Id_X^{-1}(U) = U$ es abierto. Así que $Id_X$ es continua.
 \end{itemize}
 \end{Ejem}
 
+\begin{Def}
 Sea $X$ un conjunto no vacío. Una \textit{base} $\B$ es una familia de subconjuntos de $X$ tal que:
 \begin{itemize}
 \item \textbf{i)} Es una \textit{cubierta} de $X$, es decir, $\displaystyle \bigcup_{B \in \B} B = X$.
 \item \textbf{ii)} Para $B_1, B_2 \in \B$ y $x \in B_1 \cap B_2$ existe $B_3 \in \B$ con $x \in B_3 \subseteq B_1 \cap B_2$. 
 \end{itemize}
+\end{Def}
 
 Una base determina la topología $\tau(\B)$ definida por 
 $$\tau(\B) := \left\{ \bigcup_{\alpha \in \Lambda} B_\alpha : B_\alpha \in \B \mbox{ y } \Lambda \mbox{ cualquier conjunto } \right\}.$$
