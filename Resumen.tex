@@ -178,6 +178,26 @@ es abierto en $X$.
 \end{Ejem}
 
 \begin{Def}
+Sean $X$ y $Y$ espacios topológicos. Un \textit{homeomorfismo} entre $X$ y $Y$ es una función $f:X \to Y$ biyectiva, continua y de inversa continua.
+\end{Def}
+
+\begin{Obs}
+El que la inversa de un homeomorfismo sea continua indica que el homeomorfismo preserva abiertos. Esto es, la imagen de cualquier abierto en $X$ es abierto en $Y$.
+\end{Obs}
+
+\begin{Prop} \label{Prop:HomeomorfismoPreservaCompactosYCerrados}
+Sean $X$ y $Y$ espacios topológicos. Si $T: X \to Y$ es un homeomorfismo de espacios normados, entonces manda cerrados a cerrados y compactos a compactos.
+\end{Prop}
+
+\begin{proof}
+Sea $A$ un conjunto cerrado. Entonces $X \setminus A$ es abierto. Como $T$ preserva abiertos $T(X \setminus A) = Y \setminus T(A)$ es abierto y así $T(A)$ es cerrado. \\
+
+Sea $K$ un conjunto compacto y $(U_{\alpha})_{\alpha \in \Lambda}$ una cubierta abierta de $T(K)$, entonces $(T^{-1}(U_\alpha))_{\alpha \in \Lambda}$ es una cubierta abierta de $K$ por ser $T$ continua. Por lo que existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ con $$K \subseteq\bigcup_{i=1}^n T^{-1} (U_\alpha).$$
+
+De donde $(U_{\alpha_i})_{i=1}^n$ es una cubierta finita de $T(K)$ y así este es compacto.\\
+\end{proof}
+
+\begin{Def}
 Sea $X$ un conjunto no vacío. Una \textit{base} $\B$ de $X$ es una familia de subconjuntos de $X$ tal que:
 \begin{itemize}
 \item \textbf{i)} Es una \textit{cubierta} de $X$, es decir, $\displaystyle \bigcup_{B \in \B} B = X$.
@@ -291,7 +311,17 @@ $$V_r(y) = \{ x \in X : \Norm{x-y} < r \}.$$
 y la \textit{bola cerrada} de centro $y \in X$ y radio $r > 0$ por
 $$B_r(y) = \{ x \in X : \Norm{x-y} \leq r \}.$$
 
-El caso particular de la \textit{bola unitaria cerrada} se denotará por $B_X$.\\
+El caso particular de la \textit{bola unitaria cerrada} se denotará por $B_X$. \\
+
+La siguiente proposición indica que en un espacio normado $X$ las bolas abiertas centradas en un punto son lo que se le conoce como una base de entornos de $X$.
+
+\begin{Prop} \label{Prop:BaseDeEntonrnosEspaciosNormados}
+Si $U$ es un abierto de un espacio normado $X$ y $x \in U$ entonces existe $r > 0$ tal que $V_r(x) \subseteq U$.
+\end{Prop}
+
+\begin{proof}
+Como $\{ V_r(y): y \in X, r > 0 \}$ es una base de $X$, existen $s > 0$ y $y \in X$ tal que $x \in V_s(y) \subseteq U$. Consideremos $r = s - \Norm{x-y}$. Así pues si $z \in V_r(x)$, entonces $\Norm{z-x} < r = s -\Norm{x-y} $. Por la desigualdad del triángulo $\Norm{y-z} \leq \Norm{z-x} + \Norm{x-y}  < s$. Así que $z \in V_s(y)$ y $V_r(x) \subseteq V_s(y) \subseteq U$. 
+\end{proof}
 
 No todo operador lineal $T:X\to Y$ entre los espacios normados $X$ e $Y$ resulta ser continuo. En este trabajo nos interesan los que sí son continuos. Una caracterización de un operador lineal continuo es que sea un \textit{operador lineal acotado}, esto es, aquel para el cual existe $K > 0$ tal que $\Norm{Tx} \leq K \Norm{x}$ para todo $x \in X$. \\
 
@@ -310,10 +340,16 @@ Sea $X$ un espacio normado y $V \subseteq X$ un subespacio vectorial. Si $f \in 
 
 
 \begin{Def}
-Sea $X$ un espacio vectorial. Dado $A$ un subconjunto de $X$, su \textit{cerradura} es el conjunto $\ov{A} \subseteq X$ de puntos $x \in X$ que cumplen que para toda vecindad abierta $U$ de $x$ se satisface que $U \cap A \neq \emptyset$.
+Sea $X$ un espacio topológico. Dado $A$ un subconjunto de $X$, su \textit{cerradura} es el conjunto $\ov{A} \subseteq X$ de puntos $x \in X$ que cumplen que para toda vecindad abierta $U$ de $x$ se satisface que $U \cap A \neq \emptyset$.
 \end{Def}
 
+\begin{Prop}
+Sea $X$ un espacio topológico. Entonces $A \subseteq X$ es cerrado si y sólo si $A = \ov{A}$.  
+\end{Prop}
 
+\begin{proof}
+(Pendiente.)
+\end{proof}
 
 \begin{Def}
 Un subconjunto $K$ de un espacio topológico $X$ es \textit{compacto} si para cualquier colección $\{ U_\alpha \}_{\alpha \in \Lambda}$ de abiertos tales que $$K \subseteq \bigcup_{\alpha \in \Lambda} U_\alpha$$ existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ tales que $$K \subseteq \bigcup_{i=1}^n U_{\alpha_i}.$$
@@ -573,7 +609,7 @@ Sean $X$ un espacio normado, $A \subseteq X$ cerrado y $x \in X \setminus A$. En
 \end{Prop}
 
 \begin{proof}
-Supongamos que $d(x, A) = 0$. Tomemos $U$ un abierto que incluye a $x$. Como $ \{ V_r(y) : y \in X, r > 0 \}$ es una base de entornos, existe $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y dado que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$. Por lo que $U \cap A \neq \emptyset$. Por lo tanto $x \in \ov{A}$. Como $A$ es cerrado, entonces $A = \ov{A}$ y así $x \in A$. Lo cual es una contradicción.
+Supongamos que $d(x, A) = 0$. Tomemos $U$ un abierto que incluye a $x$. La proposición~\ref{Prop:BaseDeEntonrnosEspaciosNormados} indica que existe $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$. Por lo que $U \cap A \neq \emptyset$. Por lo tanto $x \in \ov{A}$. Como $A$ es cerrado, entonces $A = \ov{A}$ y así $x \in A$. Lo cual es una contradicción.
 \end{proof}
 
 \begin{Def} 
@@ -585,31 +621,37 @@ son \textit{isomorfos} como espacios vectoriales si existe $T :  X \to Y$ biyect
 \end{itemize}
 \end{Def}
 
+\begin{Prop} \label{Prop:IsomorfismoPreservaConjuntosAcotados}
+Sean $X$ y $Y$ espacios normados. Si $T:X \to Y$ es un isomorfismo de espacios normados, entonces la $T$ manda conjuntos acotados a conjuntos acotados.
+\end{Prop}
+
+\begin{proof}
+Si $B \subseteq X$ es acotado entonces existe $M > 0$ tal que $\Norm{x} < M $ para todo $x \in B$. Como $T$ es continua, existe $N >0$ tal que $\Norm{T(x)} < N \Norm{x}$. Así pues si $T(x) \in T(B)$ se sigue que $\Norm{T(x)} < MN.$ Por lo que $T(B)$ es acotado.
+\end{proof}
+
 \begin{Tma}
 Si $X$ y $Y$ son espacios normados de dimensión finita y de la misma dimensión, entonces son isomorfos como espacios normados.
 \end{Tma}
 
-\begin{Prop}
-Sean $X$ y $Y$ espacios normados. Si $T: X \to Y$ es un isomorfismo de espacios normados, entonces manda cerrados a cerrados, compactos a compactos y conjuntos acotados a conjuntos acotados.
-\end{Prop}
-
 \begin{proof}
-Sea $A$ un conjunto cerrado. Como $T^{-1}$ es continua, $(T^{-1})^{-1}(A) = T(A)$ es cerrado. \\
-
-Sea $K$ un conjunto compacto y $(U_{\alpha})_{\alpha \in \Lambda}$ una cubierta abierta de $T(K)$, entonces $(T^{-1}(U_\alpha))_{\alpha \in \Lambda}$ es una cubierta abierta de $K$ por ser $T$ continua. Por lo que existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ con $$K \subseteq\bigcup_{i=1}^n T^{-1} (U_\alpha).$$
-
-De donde $(U_{\alpha_i})_{i=1}^n$ es una cubierta finita de $T(K)$ y así este es compacto.\\
-
-Por último, si $B \subseteq X$ es acotado entonces existe $M > 0$ tal que $\Norm{x} < M $ para todo $x \in B$. Como $T$ es continua, existe $N >0$ tal que $\Norm{T(x)} < N \Norm{x}$. Así pues si $T(x) \in T(B)$ se sigue que $\Norm{T(x)} < MN.$ Por lo que $T(B)$ es acotado.
+(Pendiente.)
 \end{proof}
 
 \begin{Cor}
 Los espacios normados de dimensión finita son completos.
 \end{Cor}
 
+\begin{proof}
+(Pendiente.)
+\end{proof}
+
 \begin{Cor} \label{Cor:SubespacioDimensionFinitaCerrado}
 Si $Y$ es un subespacio de dimensión finita de un espacio normado $X$, entonces $Y$ es cerrado.
 \end{Cor}
+
+\begin{proof}
+Sea $(x_n)_{n\in\N}$ una sucesión (¿debería de usar redes y la proposición 2.1?) en $Y$ que converge a algún $x \in X$. Como la sucesión converge, entonces es de Cauchy. Por el corolario anterior, $Y$ es completo y así $x_n \to x \in Y$. Esto indica que $Y$ es cerrado.
+\end{proof}
 
 \begin{Lema} \textbf{(de Riesz)}
 Sean $Y$ un subespacio propio y cerrado de un espacio normado $X$ y $\theta \in (0, 1)$, entonces existe $x_\theta \in X$ con $\Norm{x_\theta} = 1$ para el cual $\Norm{x_\theta - y} > \theta$ para todo $y \in Y$. 
@@ -652,10 +694,6 @@ $$\Norm{x_{n+1} - \sum_{i=1}^{n} \alpha_i x_i } \geq \frac{1}{2}.$$
 
 Así pues, queda construida la sucesión $(x_n)_{n\in\N}$. Si tomamos $n, m \in \N$ con $n > m$ entonces al tomar $\alpha_1 = 1$ y $\alpha_i = 0$ para $1 \leq i \leq  n-1$ e $i \neq m$, de $(\ref{Eq:1})$ obtenemos que $\Norm{x_n - x_m} \geq \frac{1}{2}$. Esto indica que cualquier subsucesión de $(x_n)_{n\in\N}$ no es de Cauchy y por lo tanto no converge. Por la proposición~\ref{Tma:CompacidadPorConvergenciaDeSubredes} concluimos que $B_X$ no es compacto.
 \end{proof}
-
-\begin{Tma} \label{Tma:CompactoSucesionEnvolventeConvexa}
-Si $K$ es un subconjunto compacto del espacio normado $X$, entonces hay una sucesión $(x_n)_{n\in\N}$ en $X$ tal que $\Norm{x_n} \to 0$ y $K$ está contenido en la envolvente convexa cerrada de $\{x_n : n \in\N \}$.
-\end{Tma}
 
 
 \section{Topologías débil y débil*.}
@@ -991,11 +1029,15 @@ En particular, si $(\varphi_n)_{n \in \N} \subseteq X^*$ es una sucesión en $X^*
 Observemos pues que la convergencia debil* de funcionales es precisamente la convergencia puntual. \\
 
 \begin{Prop}
-Sea $X$ un espacio normado. Entonces $X$ es de dimensión finita si y sólo si $X^*$ lo es.
+Sea $X$ un espacio normado. Entonces $X$ es de dimensión infinita si y sólo si $X^*$ lo es.
 \end{Prop}
 
 \begin{proof}
-(Pendiente.)
+Supongamos que $X$ es de dimensión infinita. Entonces para todo $n \in \N$ existe $\{ x_1, \ldots, x_n \} \subseteq X$ linealmente independiente. Sea $V = \mbox{span} \{ x_1, \ldots, x_n \}$, de manera que $\{ x_1, \ldots, x_n \}$ es una base de $V$. Para $i \in \{1, \ldots, n \}$ definamos el funcional lineal $\varphi_i : V \to \K$ dado por $\varphi_i(x_j) = \delta_{ij}$ que es continuo (¿demostrar que en espacios de dimensión finita los funcioneles lineales son continuos?). Por $Hahn-Banach$ existe $F_i \in X^*$ tal que $F_i = f_i$ en $V$. Veamos que $\{F_1, \ldots, F_n\}$ es linealmente indenpendiente en $X^*$. Sean $a_1, \ldots, a_n \in K$ tales que $$\sum_{j=1}^n a_i F_i = 0.$$ Al evaluar en $x_i$ obtenemos que $a_i = 0$. Esto muestra que para toda $n \in \N$ existen $n$ funcionales linealmente independientes. Por lo que $X^*$ es de dimensión infinita. \\
+
+Supongamos que $X$ es de dimensión finita $n \in \N$. Existe entonces una base $\{x_1, \ldots, x_n \}$ de $X$. Para $1 \leq i \leq n$ definimos $f_i :X \to \K $ linealmente de tal manera que $f_i(x_j) = \delta_{ij}$, como $X$ es de dimensión finita, cada $f_i$ es continuo. Veamos que $\{ f_1, \ldots, f_n \}$ generan a $X^*$. Tomamos entonces $f \in X^*$ y supongamos que $f(x_i) = a_i \in \K$ para cada $i \in \{1, \ldots, n\}$. Dado $i \in \{1, \ldots, n \}$ se tiene que
+$$\left( \sum_{j=1}^n a_j f_j \right)(x_i) = a_i = f(x_i).$$
+Por lo tanto $f = \sum_{j=1}^n a_j f_j$. Esto dice que existe un conjunto finito generador en $X^*$, por lo que $X^*$ es de dimensión finita.
 \end{proof}
 
 Si $X$ es un espacio de dimensión infinita, la proposición anterior muestra que $X^*$ es de dimensión infinita, por lo que resulta que $B_{X^*}$ no es compacta respecto a la topología original. El siguiente teorema muestra que bajo la topología débil* sí lo es.
@@ -1052,7 +1094,7 @@ Si $X$ es un espacio normado reflexivo, entonces  $B_{X^*}$ es compacta bajo la 
 \end{Cor}
 
 \begin{proof}
-(Pendiente.)
+Habíamos notado anteriormente que en espacios reflexivos $\sigma(X^*, X) = \sigma(X^*, X^{**})$. Por lo que la compacidad con la topología débil y débil* de $B_{X^*}$ son equivalentes. Por el teorema de Banach-Alaoglu resulta entonces que $B_{X^*}$ es débil*-compacta y débil-compacta.
 \end{proof}
 
 \begin{Tma}
@@ -1167,8 +1209,6 @@ Esto indica que en un espacio de Banach la convergencia débil de subseries impli
 \item Galaz Fontes. Elementos de Análisis Funcional. 
 \item Marian Fabian. Functional Analysis and Infinite-Dimensional Geometry.
 \end{itemize}
-
-
 
 
 \label{ultimapagina}
