@@ -123,13 +123,7 @@
 
 \section{Topología y espacio vectorial topológico.}
 
-A lo largo de este trabajo denotaremos por $\K$ el campo de los números reales o de los números complejos. Recordemos que $(X, \Norm{\cdot})$ es un \textit{espacio normado} si $X$ es un espacio vectorial sobre $\K$ y $\Norm{\cdot}$ es una norma en $X$. Si además $X$ es completo bajo esta norma, decimos que $X$ es un \textit{espacio de Banach}. Esto significa que en un espacio de Banach las sucesiones de Cauchy convergen. El contexto en el que estaremos trabajando es el de espacios de Banach. \\
-
-\begin{Ejem}
-Dado $n \in \N$, el espacio $\K^n$ con la norma $$\Norm{(x_1, \ldots, x_2)}_2 = \left(\sum_{i=1}^n x_i^2\right)^{\frac{1}{2}}$$ es un espacio normado al cual denotamos $\ell^n_2$.
-\end{Ejem}
-
-Un aspecto muy importante de los espacios normados es su topología, así que recordemos algunos de sus conceptos principales. \\
+A lo largo de este trabajo denotaremos por $\K$ el campo de los números reales o de los números complejos. Un aspecto muy importante de los espacios normados, sobre los cuales estaremos enfocándonos, es su topología, así que recordemos algunos de sus conceptos principales. \\
 
 Sea $X$ un conjunto no vacío. Una \textit{topología} $\tau$ de $X$ es una familia de subconjuntos de $X$ que cumple las siguientes propiedades:
 \begin{itemize}
@@ -142,9 +136,8 @@ En este caso la pareja $(X, \tau)$ es un \textit{espacio topológico}, a los elem
 
 Un subconjunto $V$ de $X$ es una \textit{vecindad} o \textit{entorno} de $x \in X$, si existe un abierto $U$ tal que $$x \in U \subseteq V.$$ 
 
-\begin{Obs}
-En un espacio topológico $U$ es una vecindad abierta de $x$ si, y sólo si $U$ es un abierto que contiene a $x$.
-\end{Obs}
+Si además de ser una vecindad de $x \in X$, $V$ es abierto, diremos que $V$ es una \textit{vecindad abierta} de $x$. Notemos que $V$ es una vecindad abierta de $x$ si, y sólo si $V$ es un abierto que contiene a $x$.
+
 
 \begin{Def}
 Sean $X$ y $Y$ dos espacios topológicos y $f: X \to Y$.
@@ -154,7 +147,7 @@ Sean $X$ y $Y$ dos espacios topológicos y $f: X \to Y$.
 \end{itemize}
 \end{Def}
 
-\begin{Prop}
+\begin{Prop} \label{Prop:CaracterizacionContinuidadPorPreimagenesDeAbiertos}
 Sean $X$ y $Y$ dos espacios topológicos y $f: X \to Y$. Entonces $f$ es continua si, y sólo si $f^{-1}(V)$ es abierto en $X$, para todo abierto $V$ en $Y$.
 \end{Prop}
 
@@ -178,24 +171,8 @@ es abierto en $X$.
 \end{Ejem}
 
 \begin{Def}
-Sean $X$ y $Y$ espacios topológicos. Un \textit{homeomorfismo} entre $X$ y $Y$ es una función $f:X \to Y$ biyectiva, continua y de inversa continua.
+Sean $X$ y $Y$ espacios topológicos. Un \textit{homeomorfismo} entre $X$ y $Y$ es una función $f:X \to Y$ que es biyectiva, continua y de inversa continua.
 \end{Def}
-
-\begin{Obs}
-El que la inversa de un homeomorfismo sea continua indica que el homeomorfismo preserva abiertos. Esto es, la imagen de cualquier abierto en $X$ es abierto en $Y$.
-\end{Obs}
-
-\begin{Prop} \label{Prop:HomeomorfismoPreservaCompactosYCerrados}
-Sean $X$ y $Y$ espacios topológicos. Si $T: X \to Y$ es un homeomorfismo de espacios normados, entonces manda cerrados a cerrados y compactos a compactos.
-\end{Prop}
-
-\begin{proof}
-Sea $A$ un conjunto cerrado. Entonces $X \setminus A$ es abierto. Como $T$ preserva abiertos $T(X \setminus A) = Y \setminus T(A)$ es abierto y así $T(A)$ es cerrado. \\
-
-Sea $K$ un conjunto compacto y $(U_{\alpha})_{\alpha \in \Lambda}$ una cubierta abierta de $T(K)$, entonces $(T^{-1}(U_\alpha))_{\alpha \in \Lambda}$ es una cubierta abierta de $K$ por ser $T$ continua. Por lo que existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ con $$K \subseteq\bigcup_{i=1}^n T^{-1} (U_\alpha).$$
-
-De donde $(U_{\alpha_i})_{i=1}^n$ es una cubierta finita de $T(K)$ y así este es compacto.\\
-\end{proof}
 
 \begin{Def}
 Sea $X$ un conjunto no vacío. Una \textit{base} $\B$ de $X$ es una familia de subconjuntos de $X$ tal que:
@@ -210,6 +187,14 @@ $$\tau(\B) := \left\{ \bigcup_{\alpha \in \Lambda} B_\alpha : B_\alpha \in \B \m
 
 Si $X$ es un espacio topológico, $\mathcal{B}$ es una base y $\tau (\mathcal{B})$ es la topología de $X$, diremos simplemente que $\mathcal{B}$ es una base de $X$. \\
 
+\begin{Prop} \label{Prop:CaracterizacionDeBase}
+Sea $\mathcal{B}$ una familia de abiertos de un espacio topológico $X$. Entonces $\mathcal{B}$ es una base de $X$ si, y sólo si para todo abierto $U$ en $X$ y $x \in U$ existe $B \in \mathcal{B}$ tal que $x \in B \subseteq U$.
+\end{Prop}
+
+\begin{proof}
+(¿Lo demuestro? Esta proposición se una para verificar que $\{ V_r(x) \}_{r>0; x \in X}$ es una base de $X$ y podría adaptarse en la demostración de la base de la topología débil.)
+\end{proof}
+
 Cuando sea necesario probar que una función es continua, si se cuenta con una base en el codominio, entonces basta probar que la preimagen de cualquier conjunto básico es abierto, como indica la siguiente proposición.
 
 \begin{Prop} \label{Prop:ContinuidadPorBasicos}
@@ -221,7 +206,7 @@ Sea $V$ abierto en $Y$. Entonces existen un conjunto $\Lambda$ y algunos $B_\alp
 $$\bigcup_{\alpha \in \Lambda} f^{-1}(B_\alpha) = f^{-1}\left( \bigcup_{\alpha \in \Lambda} B_\alpha \right) = f^{-1}(V) .$$ 
 \end{proof}
 
-Sean $X$ y $Y$ dos espacios topológicos. En $X \times Y$ consideramos la \textit{topología producto}, que es la generada por la base $\{ U\times V : U \mbox{ abierto  en } X \mbox{ y } V \mbox{ abierto en } Y \}$. Consideremos las \textit{proyecciones} en $X$ y $Y$
+Sean $X$ y $Y$ dos espacios topológicos. En $X \times Y$ trabajamos con la \textit{topología producto}, que es la generada por la base $\{ U\times V : U \mbox{ abierto  en } X \mbox{ y } V \mbox{ abierto en } Y \}$. Consideremos las \textit{proyecciones} en $X$ y $Y$
 \Ecu{
 \pi_X : X \times Y & \to X \hspace*{1cm} \mbox{ y } \hspace*{1cm} \pi_Y : X \times Y  \to X \\
 (x,y) &\mapsto x \hspace*{3.75cm} (x,y) \mapsto y. 
@@ -232,7 +217,7 @@ Para un abierto $U$ en $X$ se tiene que $\pi_X^{-1}(U) = U \times Y$, que es abi
 La siguiente proposición indica que la continuidad de una función con valores en un espacio producto equivale a la continuidad de sus componentes.
 
 \begin{Prop} \label{Prop:ContinuidadPorComponentes}
-Sean $E, X$ y $Y$ espacios vectoriales y $f: E \to X \times Y$. Entonces $f$ es continua si y sólo si $\pi_X \circ f$ y $\pi_Y \circ f$.
+Sean $E, X$ y $Y$ espacios topológicos y $f: E \to X \times Y$. Entonces $f$ es continua si y sólo si $\pi_X \circ f$ y $\pi_Y \circ f$.
 \end{Prop}
 
 \begin{proof}
@@ -242,9 +227,52 @@ Supongamos ahora que $\pi_X \circ f$ y $\pi_Y \circ f$ son continuas. Sea $U \ti
 $$f^{-1}(U \times V) = (\pi_X \circ f)^{-1}(U) \bigcap (\pi_Y \circ f)^{-1}(V).$$
 \end{proof} 
 
+\begin{Def}
+Sea $X$ un espacio topológico. Dado $A$ un subconjunto de $X$, su \textit{cerradura} es el conjunto $\ov{A} \subseteq X$ de puntos $x \in X$ que cumplen que para toda vecindad abierta $U$ de $x$ se satisface que $U \cap A \neq \emptyset$.
+\end{Def}
+
+\begin{Prop}
+Sea $X$ un espacio topológico. Entonces $A \subseteq X$ es cerrado si y sólo si $A = \ov{A}$.  
+\end{Prop}
+
+\begin{proof}
+(Pendiente.)
+\end{proof}
+
+\begin{Def}
+Un subconjunto $K$ de un espacio topológico $X$ es \textit{compacto} si para cualquier colección $\{ U_\alpha \}_{\alpha \in \Lambda}$ de abiertos tales que $$K \subseteq \bigcup_{\alpha \in \Lambda} U_\alpha$$ existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ tales que $$K \subseteq \bigcup_{i=1}^n U_{\alpha_i}.$$
+\end{Def}
+
+\begin{Prop} \label{Prop:HomeomorfismoPreservaCompactosYCerrados}
+Sean $X$ y $Y$ espacios topológicos y $T: X \to Y$. 
+\begin{itemize}
+\item \textbf{i)} Si $T$ es homeomorfismo, entonces $T$ preserva abiertos.
+\item \textbf{ii)} Si $T$ es homeomorfismo, entonces $T$ preserva cerrados.
+\item \textbf{iii)} Si $T$ es continua, entonces $T$ preserva compactos.
+\end{itemize} 
+\end{Prop}
+
+\begin{proof}
+\hfill
+\begin{itemize}
+\item \textbf{i)} Se sigue de inmediato del hecho de que $T^{-1}$ es continua y de la proposición~\ref{Prop:CaracterizacionContinuidadPorPreimagenesDeAbiertos}.
+
+\item \textbf{ii)} Sea $A$ un conjunto cerrado. Entonces $X \setminus A$ es abierto. Como $T$ preserva abiertos $T(X \setminus A) = Y \setminus T(A)$ es abierto y así $T(A)$ es cerrado. \\
+
+\item \textbf{iii)} Sea $K$ un conjunto compacto y $(U_{\alpha})_{\alpha \in \Lambda}$ una cubierta abierta de $T(K)$, entonces $(T^{-1}(U_\alpha))_{\alpha \in \Lambda}$ es una cubierta abierta de $K$ por ser $T$ continua. Por lo que existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ con $$K \subseteq\bigcup_{i=1}^n T^{-1} (U_\alpha).$$
+
+De donde $(U_{\alpha_i})_{i=1}^n$ es una cubierta finita de $T(K)$ y así este es compacto.\\
+\end{itemize}
+\end{proof}
+
+
+\begin{Def}
+Sea $X$ un espacio topológico. Diremos que $X$ es \textit{Hausdorff} si para todos $x, y \in X$ existen abiertos $U, V$ tales que $x \in V$, $y \in U$ y $U\cap V = \emptyset$.
+\end{Def}
+
 Supongamos que $\tau$ es una topología de un espacio vectorial $X$ sobre $\K$ tal que:
 \begin{itemize}
-\item \textbf{a)} $\tau$ es Hausdorff, es decir, para todos $x, y \in X$ existen abiertos $U, V$ tales que $x \in V$, $y \in U$ y $U\cap V = \emptyset$.
+\item \textbf{a)} $X$ es Hausdorff.
 \item \textbf{b)} Las operaciones de espacio vectorial $+ : X\times X \to X$ y $\cdot: \K \times X \to X$ son continuas. Naturalmente, en $X\times X$ y en $\K \times X$ consideramos las correspondientes topologías producto. 
 \end{itemize}
 
@@ -284,7 +312,7 @@ De manera similar definimos
 e_{\lambda} : X &\to \K \times X  \\
 y &\mapsto (\lambda, y)
 } 
-Notemos que para $y \in X$ se tiene que $(\pi_X \circ e_{\lambda})(y) = \lambda$ y $(\pi_Y \circ e_{\lambda})(y) = y$. Esto indica que $\pi_X \circ e_{\lambda}$ es constante y $\pi_Y \circ e_{\lambda}$ es la identidad en $X$ y por lo tanto ambas son continuas. Por la proposición~\ref{Prop:ContinuidadPorComponentes} se tiene que $e_{\lambda}$ es continua.  De manera que $D_\lambda = \cdot \circ e_\lambda$ es continua. Como la $x$ fue arbitraria, entonces $D_{\lambda^{-1}}$ también es continua. 
+Notemos que para $y \in X$ se tiene que $(\pi_X \circ e_{\lambda})(y) = \lambda$ y $(\pi_Y \circ e_{\lambda})(y) = y$. Esto indica que $\pi_X \circ e_{\lambda}$ es constante y $\pi_Y \circ e_{\lambda}$ es la identidad en $X$ y por lo tanto ambas son continuas. Por la proposición~\ref{Prop:ContinuidadPorComponentes} se tiene que $e_{\lambda}$ es continua.  De manera que $D_\lambda = \cdot \circ e_\lambda$ es continua. Como la $\lambda$ fue arbitraria, entonces $D_{\lambda^{-1}}$ también es continua. 
 \end{proof}
 
 \begin{Obs}
@@ -301,8 +329,12 @@ Sean $X, Y$ espacios vectoriales topológicos. Si $T:X \to Y$ es lineal y continu
 Sea $x \in X$. Veremos que $T$ es continua en $x$. Sea $U$ una vecindad abierta de $Tx$ de manera que $Tx \in U$. Entonces $U_0 := U - Tx$ es abierto en $Y$ y además $0 \in U_0$. Como $T$ es continua en $0$, existe un abierto $V_0$ del cero tal que $Ty \in U_0$ si $y \in V_0$. Así que $x \in V_0 +x$ y $ V_0 + x$ es una vecindad abierta de $x$. Si $y \in V_0 + x$, entonces $y-x \in V_0$, de manera que $Ty -Tx = T(y-x) \in U_0 = U - Tx$, de donde $Ty \in U$. Así que $T$ es continua en $x$. 
 \end{proof}
 
-\begin{Ejem} \label{Ejem:TopologiaOriginal}
-Consideremos un espacio normado $X$. La norma de $X$ induce una topología la cual tiene por base al conjunto de bolas abiertas de centro y radio arbitrarios. Tal topología resulta ser una topología vectorial.
+\subsection{Espacios normados.}
+
+Recordemos que $(X, \Norm{\cdot})$ es un \textit{espacio normado} si $X$ es un espacio vectorial sobre $\K$ y $\Norm{\cdot}$ es una norma en $X$. Si además $X$ es completo bajo esta norma, decimos que $X$ es un \textit{espacio de Banach}. Esto significa que en un espacio de Banach las sucesiones de Cauchy convergen. El contexto en el que estaremos trabajando es el de espacios de Banach. \\
+
+\begin{Ejem}
+Dado $n \in \N$, el espacio $\K^n$ con la norma $$\Norm{(x_1, \ldots, x_2)}_2 := \left(\sum_{i=1}^n x_i^2\right)^{\frac{1}{2}}$$ es un espacio normado al cual denotamos $\ell^n_2$.
 \end{Ejem}
 
 En un espacio normado $X$ denotamos a la \textit{bola abierta} de centro $y \in X$ y radio $r > 0$ por
@@ -313,24 +345,48 @@ $$B_r(y) = \{ x \in X : \Norm{x-y} \leq r \}.$$
 
 El caso particular de la \textit{bola unitaria cerrada} se denotará por $B_X$. \\
 
-La siguiente proposición indica que en un espacio normado $X$ las bolas abiertas centradas en un punto son lo que se le conoce como una base de entornos de $X$.
+\begin{Def}
+En el espacio normado $X$ definimos la \textit{topología original} de $X$ de manera que $U$ es un abierto de $X$ si, y sólo si para todo $x \in U$ existe $r > 0$ tal que $V_r(x) \subseteq U$.
+\end{Def}
+
+
+La siguiente proposición indica que en un espacio normado $X$ las bolas abiertas forman una base de la topología original de $X$.
 
 \begin{Prop} \label{Prop:BaseDeEntonrnosEspaciosNormados}
-Si $U$ es un abierto de un espacio normado $X$ y $x \in U$ entonces existe $r > 0$ tal que $V_r(x) \subseteq U$.
+Sea $X$ un espacio normado. El conjunto $$\mathcal{B} := \{ V_r(x) : r > 0, x \in X \}$$ es una base de $X$.
 \end{Prop}
 
 \begin{proof}
-Como $\{ V_r(y): y \in X, r > 0 \}$ es una base de $X$, existen $s > 0$ y $y \in X$ tal que $x \in V_s(y) \subseteq U$. Consideremos $r = s - \Norm{x-y}$. Así pues si $z \in V_r(x)$, entonces $\Norm{z-x} < r = s -\Norm{x-y} $. Por la desigualdad del triángulo $\Norm{y-z} \leq \Norm{z-x} + \Norm{x-y}  < s$. Así que $z \in V_s(y)$ y $V_r(x) \subseteq V_s(y) \subseteq U$. 
+Tomemos $V_r(x) \in \mathcal{B}$ para algunos $r > 0$ y $x \in X$. Verifiquemos que $V_r(x)$ es abierto en $X$. Tomemos $y \in V_r(x)$.  Consideremos $s = r - \Norm{x-y}$. Así pues si $z \in V_s(y)$, entonces $\Norm{z-y} < s = r -\Norm{x-y} $. Por la desigualdad del triángulo $\Norm{x-z} \leq \Norm{z-y} + \Norm{x-y}  < r$. Así que $z \in V_r(x)$ y $V_s(y) \subseteq V_r(x)$ y $V_r(x)$ es abierto. \\
+
+Si $U$ es abierto de $X$ y $x \in U$, por definición existe $r > 0$ tal que $x \in V_r(x) \subseteq U$. La proposición~\ref{Prop:CaracterizacionDeBase} indica que $\mathcal{B}$ es una base de $X$. 
 \end{proof}
+
+\begin{Prop} \label{Prop:TopologiaOriginalEsEVT}
+Sea $X$ un espacio normado. Entonces $X$ con la topología original es un espacio vectorial topológico. 
+\end{Prop}
+
+\begin{proof}
+(Pendiente.)
+\end{proof}
+
 
 No todo operador lineal $T:X\to Y$ entre los espacios normados $X$ e $Y$ resulta ser continuo. En este trabajo nos interesan los que sí son continuos. Una caracterización de un operador lineal continuo es que sea un \textit{operador lineal acotado}, esto es, aquel para el cual existe $K > 0$ tal que $\Norm{Tx} \leq K \Norm{x}$ para todo $x \in X$. \\
 
-Sean $X$ y $Y$ espacios normados. Al espacio de los operadores lineales continuos $T: X \to Y$, y por tanto acotados lo denotamos por $\mathcal{L}(X, Y)$. En este espacio definimos la función
+\begin{Prop} \label{Prop:IsomorfismoPreservaConjuntosAcotados}
+Sean $X$ y $Y$ espacios normados. Si $T:X \to Y$ es un operador lineal acotado, entonces $T$ preserva conjuntos acotados.
+\end{Prop}
+
+\begin{proof}
+Sea $B \subseteq X$ un conjunto acotado. Entonces existe $M > 0$ tal que $\Norm{x} < M $ para todo $x \in B$. Como $T$ es continua, existe $N >0$ tal que $\Norm{T(x)} < N \Norm{x}$. Así pues si $T(x) \in T(B)$ se sigue que $\Norm{T(x)} < MN.$ Por lo que $T(B)$ es acotado.
+\end{proof}
+
+Sean $X$ y $Y$ espacios normados. Al espacio de los operadores lineales continuos $T: X \to Y$, y por tanto acotados, lo denotamos por $\mathcal{L}(X, Y)$. En este espacio definimos la función
 $$\Norm{T} := \inf\{ K > 0 : \Norm{Tx} \leq K\Norm{x}, \, \forall x \in X\}.$$
 
 Esta resulta ser una norma y así $\mathcal{L}(X, Y)$ es un espacio normado. Si además $Y$ es un espacio de Banach, entonces $\mathcal{L}(X, Y)$ también es un espacio de Banach. \\
 
-Sea $X$ un espacio vectorial topológico, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \tau)^*$. Cuando la topología sea la inducida por la norma, se denotará por $(X, \Norm{\cdot})$ o simplemente $X^*$.  A los elementos de este espacio dual los llamamos \textit{funcionales lineales continuos}. Como $\K$ es completo, por lo mencionado en el párrafo anterior resulta que $X^*$ es un espacio de Banach. \\ 
+Sea $X$ un espacio vectorial topológico, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \tau)^*$. Cuando la topología sea la inducida por la norma, se denotará por $(X, \Norm{\cdot})^*$ o simplemente $X^*$.  A los elementos de este espacio dual los llamamos \textit{funcionales lineales continuos}. Como $\K$ es completo, por lo mencionado en el párrafo anterior resulta que $X^*$ es un espacio de Banach. \\ 
 
 Los teoremas de Hahn-Banach muestran que en $X^*$ existen suficientes funcionales que permiten hacer rica la teoría referente al espacio dual.
 
@@ -338,21 +394,13 @@ Los teoremas de Hahn-Banach muestran que en $X^*$ existen suficientes funcionale
 Sea $X$ un espacio normado y $V \subseteq X$ un subespacio vectorial. Si $f \in V^*$ entonces existe $F \in X^*$ tal que $F = f$ en $V$ y $\Norm{f} = \Norm{F}$.
 \end{Tma}
 
-
-\begin{Def}
-Sea $X$ un espacio topológico. Dado $A$ un subconjunto de $X$, su \textit{cerradura} es el conjunto $\ov{A} \subseteq X$ de puntos $x \in X$ que cumplen que para toda vecindad abierta $U$ de $x$ se satisface que $U \cap A \neq \emptyset$.
-\end{Def}
-
-\begin{Prop}
-Sea $X$ un espacio topológico. Entonces $A \subseteq X$ es cerrado si y sólo si $A = \ov{A}$.  
-\end{Prop}
-
-\begin{proof}
-(Pendiente.)
-\end{proof}
-
-\begin{Def}
-Un subconjunto $K$ de un espacio topológico $X$ es \textit{compacto} si para cualquier colección $\{ U_\alpha \}_{\alpha \in \Lambda}$ de abiertos tales que $$K \subseteq \bigcup_{\alpha \in \Lambda} U_\alpha$$ existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ tales que $$K \subseteq \bigcup_{i=1}^n U_{\alpha_i}.$$
+\begin{Def} 
+\hfill
+\begin{itemize}
+\item \textbf{i)} Sean $X$ y $Y$ espacios vectoriales. Se dice que $X$ y $Y$
+son \textit{isomorfos} como espacios vectoriales si existe $T :  X \to Y$ biyectiva y lineal. En este caso a $T$ se la llama \textit{isomorfismo} de espacios vectoriales.
+\item \textbf{ii)} Sean $X$ y $Y$ espacios normados. Se dice que $X$ y $Y$ son \textit{isomorfos} como espacios normados, si existe un isomorfismo de espacios vectoriales $T: X \to Y$ que también es un homeomorfismo. 
+\end{itemize}
 \end{Def}
 
 \section{Redes.}
@@ -609,24 +657,7 @@ Sean $X$ un espacio normado, $A \subseteq X$ cerrado y $x \in X \setminus A$. En
 \end{Prop}
 
 \begin{proof}
-Supongamos que $d(x, A) = 0$. Tomemos $U$ un abierto que incluye a $x$. La proposición~\ref{Prop:BaseDeEntonrnosEspaciosNormados} indica que existe $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$. Por lo que $U \cap A \neq \emptyset$. Por lo tanto $x \in \ov{A}$. Como $A$ es cerrado, entonces $A = \ov{A}$ y así $x \in A$. Lo cual es una contradicción.
-\end{proof}
-
-\begin{Def} 
-\hfill
-\begin{itemize}
-\item \textbf{i)} Sean $X$ y $Y$ espacios vectoriales. Se dice que $X$ y $Y$
-son \textit{isomorfos} como espacios vectoriales si existe $T :  X \to Y$ biyectiva y lineal. En este caso a $T$ se la llama \textit{isomorfismo} de espacios vectoriales.
-\item \textbf{ii)} Sean $X$ y $Y$ espacios normados. Se dice que $X$ y $Y$ son \textit{isomorfos} como espacios normados, si existe un isomorfismo de espacios vectoriales $T: X \to Y$ que también es un homeomorfismo. 
-\end{itemize}
-\end{Def}
-
-\begin{Prop} \label{Prop:IsomorfismoPreservaConjuntosAcotados}
-Sean $X$ y $Y$ espacios normados. Si $T:X \to Y$ es un isomorfismo de espacios normados, entonces la $T$ manda conjuntos acotados a conjuntos acotados.
-\end{Prop}
-
-\begin{proof}
-Si $B \subseteq X$ es acotado entonces existe $M > 0$ tal que $\Norm{x} < M $ para todo $x \in B$. Como $T$ es continua, existe $N >0$ tal que $\Norm{T(x)} < N \Norm{x}$. Así pues si $T(x) \in T(B)$ se sigue que $\Norm{T(x)} < MN.$ Por lo que $T(B)$ es acotado.
+Supongamos que $d(x, A) = 0$. Tomemos $U$ un abierto que incluye a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$. Por lo que $U \cap A \neq \emptyset$. Por lo tanto $x \in \ov{A}$. Como $A$ es cerrado, entonces $A = \ov{A}$ y así $x \in A$. Lo cual es una contradicción.
 \end{proof}
 
 \begin{Tma}
@@ -650,7 +681,7 @@ Si $Y$ es un subespacio de dimensión finita de un espacio normado $X$, entonces 
 \end{Cor}
 
 \begin{proof}
-Sea $(x_n)_{n\in\N}$ una sucesión (¿debería de usar redes y la proposición 2.1?) en $Y$ que converge a algún $x \in X$. Como la sucesión converge, entonces es de Cauchy. Por el corolario anterior, $Y$ es completo y así $x_n \to x \in Y$. Esto indica que $Y$ es cerrado.
+Sea $(y_n)_{n\in\N}$ una sucesión en $Y$ que converge a algún $x \in X$. Como la sucesión converge, entonces es de Cauchy. Por el corolario anterior, $Y$ es completo y así $y_n \to y \in Y$. Como $X$ es Hausdorff, el límite es único y así $x = y$. Esto indica que $Y$ es cerrado.
 \end{proof}
 
 \begin{Lema} \textbf{(de Riesz)}
@@ -669,7 +700,7 @@ Así que existe $z \in Y$ tal que $0 < \Norm{x - z} < \dfrac{d(x, Y)}{\theta}$. D
 \end{proof}
 
 \begin{Tma} \label{Tma:DimensionFinitaCerradoAcotadoCompacto}
-Sea $X$ un espacio normado. Las siguientes afirmaciones son equivalente:
+Sea $X$ un espacio normado. Las siguientes afirmaciones son equivalentes:
 \begin{itemize}
 \item \textbf{i)} $X$ es de dimensión finita.
 \item \textbf{ii)} Todo subconjunto cerrado y acotado de $X$ es compacto.
@@ -698,7 +729,7 @@ Así pues, queda construida la sucesión $(x_n)_{n\in\N}$. Si tomamos $n, m \in \N
 
 \section{Topologías débil y débil*.}
 
-Hemos visto que la bola unitaria de un espacio normado de dimensión infinita no es compacta. Podemos interpretar esto en el sentido de  que la topología usual de tal espacio normado $X$ tiene muchos abiertos. Esto motiva el propósito de construir en $X$ topologías más débiles, esto es, con menos abiertos. Una de estas es la topología débil, la cual se construye a partir de los funcionales lineales continuos de $X$. De manera similar podemos definir la topología débil* en $X^*$. \\
+Hemos visto que la bola unitaria de un espacio normado de dimensión infinita no es compacta. Podemos interpretar esto en el sentido de  que la topología usual de tal espacio normado $X$ tiene demasiados abiertos. Esto motiva el propósito de construir en $X$ topologías más débiles, esto es, con menos abiertos. Una de estas es la topología débil, la cual se construye a partir de los funcionales lineales continuos de $X$. De manera similar podemos definir la topología débil* en $X^*$. \\
 
 Para desarrollar la teoría detrás de la topología débil de un espacio de Banach $X$ y la topología débil* en $X^*$ introduciremos el concepto de la topología generada por una familia de seminormas. \\
 
@@ -873,7 +904,7 @@ Así que $\pi$ es continua.
 %/////////////////////////////////////////////////////////////////////////
 \subsection{Topología débil.}
 
-Sean $X$ un espacio normado y $X^*$ su espacio dual. Notemos que para cada $\varphi \in X^*$ se tiene que la función $\abs{\varphi}$ es una seminorma. Además por el teorema de Hahn-Banach, para cada $x \neq 0$ existe un funcional lineal $\varphi \in X^*$ tal que $\varphi(x) \neq 0$. De manera que $\abs{\varphi(x)} \neq 0$. Por tanto $$\F_X := \{ \abs{\varphi} : \varphi \in X^* \}$$ es una familia de seminormas en $X$ que separa puntos en $X$. \\
+Sean $X$ un espacio normado y $X^*$ su espacio dual. Notemos que para cada $\varphi \in X^*$ la función $\abs{\varphi}$ es una seminorma. Además por el teorema de Hahn-Banach, para cada $x \neq 0$ existe un funcional lineal $\varphi \in X^*$ tal que $\varphi(x) \neq 0$. De manera que $\abs{\varphi(x)} \neq 0$. Por tanto $$\F_X := \{ \abs{\varphi} : \varphi \in X^* \}$$ es una familia de seminormas en $X$ que separa puntos en $X$. \\
 
 
 \begin{Def}
@@ -918,9 +949,9 @@ Si $X$ es un espacio normado, entonces $X^* = X_\mathrm{w}^*$.
 \end{Prop}
 
 \begin{proof}
-Tomemos $\varphi \in X^*$. Por definición la seminorma $\abs{\varphi} : X_\mathrm{w} \to \K$ es continua, en particular es continua en el cero. Sea $V$ un entorno del cero en $\K$ existe una bola abierta $V_r(0)$ con $r>0$ tal que $V_r(0) \subseteq V$. Como $\abs{\varphi}$ es continua, existe un  abierto $W$ en $\tau_\mathrm{w}$ del cero en $X$ tal que $\abs{\varphi}(W) \subseteq [0, r)$. Pero esto implica que $\varphi(W) \subseteq V_r(0) \subseteq V$. Así que $\varphi$ es continua en el cero y como también es lineal por la proposición~\ref{Prop:ContinuidadEnCero} podemos concluir que es continua. Esto muestra que $X^* \subseteq X_\mathrm{w}^*$. \\
+Tomemos $\varphi \in X^*$. Por definición la seminorma $\abs{\varphi} : X_\mathrm{w} \to \K$ es continua, en particular es continua en el cero. Sea $V$ un entorno del cero en $\K$ y escojamos una bola abierta $V_r(0)$ con $r>0$ tal que $V_r(0) \subseteq V$. Como $\abs{\varphi}$ es continua, existe un  abierto $W$ en $\tau_\mathrm{w}$ del cero en $X$ tal que $\abs{\varphi}(W) \subseteq [0, r)$. Pero esto implica que $\varphi(W) \subseteq V_r(0) \subseteq V$. Así que $\varphi$ es continua en el cero y como también es lineal por la proposición~\ref{Prop:ContinuidadEnCero} podemos concluir que es continua. Esto muestra que $X^* \subseteq X_\mathrm{w}^*$. \\
 
-Por otro lado, la proposición~\ref{Prop:ContencionPropiaTopologiaDebil} indica que $\tau_\mathrm{w} \subseteq \tau$. Por lo que todo funcional lineal y continuo con la topología $\tau_\mathrm{w}$ también será continuo con la topología $\tau$ (¿lo detallo más a fondo?). Es decir, $X_\mathrm{w}^* \subseteq X^*$.
+Por otro lado, la proposición~\ref{Prop:ContencionPropiaTopologiaDebil} indica que $\tau_\mathrm{w} \subseteq \tau$. Por lo que todo funcional lineal y continuo con la topología $\tau_\mathrm{w}$ también será continuo con la topología $\tau$. Es decir, $X_\mathrm{w}^* \subseteq X^*$.
 \end{proof}
 
 %/////////////////////////////////////////////////////////////////////////
@@ -928,14 +959,14 @@ Por otro lado, la proposición~\ref{Prop:ContencionPropiaTopologiaDebil} indica q
 %/////////////////////////////////////////////////////////////////////////
 \subsection{Topología débil*.}
 
-Dado cualquier espacio normado $X$,  hemos construido entonces su topología débil. Usando esta construcción con $X^*$  y a partir de $X^{**}$ obtenemos la correspondiente topología débil  en $X^*$. Sin embargo, en $X^{**}$ aparece otro espacio de funcionales que permite construir otra topología que, en muchos casos, es todavía más débil que la topología débil de $X^{*}$.  Lo describiremos a continuación. \\
+Dado cualquier espacio normado $X$,  hemos construido entonces su topología débil. Usando esta construcción con $X^*$  y a partir de $X^{**}$ obtenemos la correspondiente topología débil  en $X^*$. Sin embargo, en $X^{**}$ aparece otro espacio de funcionales que permite construir otra topología en $X^*$ que, en muchos casos, es todavía más débil que la topología débil de $X^{*}$.  Lo describiremos a continuación. \\
 
-Sea $X$ un espacio normado, para cada $x \in X$ en $X^*$ definimos la función \textit{evaluación} en $x$ 
+Sea $X$ un espacio normado. Para cada $x \in X$ en $X^*$ definimos la función \textit{evaluación} en $x$ 
 \Ecu{
 \delta_x : X^* &\to \K \\
 \varphi & \mapsto \varphi(x),
 }
-que de acuerdo a la siguiente proposición es un funcional lineal continuo de $X^*$.
+que de acuerdo a la siguiente proposición es un funcional lineal continuo en $X^*$.
 
 \begin{Prop} \label{Prop:DeltaContinua}
 Sean $X$ un espacio normado y $x \in X$. Entonces $\delta_x$ es un funcional lineal continuo con $\Norm{\delta_x} \leq \Norm{x}$. 
@@ -1006,12 +1037,12 @@ Para $\varphi \in X^*$, $k \in \N$, $x_1,\ldots, x_k \in X$ y $\varepsilon > 0$,
 $$U_{\varphi, x_1,\ldots, x_k, \varepsilon} = U_{\varphi, J(x_1),\ldots, J(x_k), \varepsilon}.$$
 
 Donde el primero es un abierto de $X^*_{\mathrm{w}^*}$ y el segundo es un abierto de $X^*_{\mathrm{w}}$.  Así pues, todo abierto en $X^*_{\mathrm{w}^*}$ es abierto  en $X^*_{\mathrm{w}}$. Por esto y por la proposición~\ref{Prop:ContencionPropiaTopologiaDebil} se tiene que 
-$$\sigma(X^*, X) \subseteq \sigma(X^*, X^{**}) \subseteq \tau_{\Norm{\cdot}}.$$
+$$\sigma(X^*, X) \subseteq \sigma(X^*, X^{**}) \subseteq \tau_{\Norm{\cdot}_{X^*}}.$$
 
 La primera contención es igualdad si el espacio $X$ es reflexivo. \\
 
 \begin{Prop} \label{Prop:ReflexivoIdentifiacionCanonicaDebilContinua}
-Sea $X$ un espacio reflexivo. Entonces $J :  X_\mathrm{w} \to X^**_{\mathrm{w}^*}$ es abierta. (¿Es mejor demostrar que es homeomorfismo? )
+Sea $X$ un espacio reflexivo. Entonces $J :  X_\mathrm{w} \to X^**_{\mathrm{w}^*}$ es abierta.
 \end{Prop}
 
 \begin{proof}
@@ -1033,7 +1064,7 @@ Sea $X$ un espacio normado. Entonces $X$ es de dimensión infinita si y sólo si $
 \end{Prop}
 
 \begin{proof}
-Supongamos que $X$ es de dimensión infinita. Entonces para todo $n \in \N$ existe $\{ x_1, \ldots, x_n \} \subseteq X$ linealmente independiente. Sea $V = \mbox{span} \{ x_1, \ldots, x_n \}$, de manera que $\{ x_1, \ldots, x_n \}$ es una base de $V$. Para $i \in \{1, \ldots, n \}$ definamos el funcional lineal $\varphi_i : V \to \K$ dado por $\varphi_i(x_j) = \delta_{ij}$ que es continuo (¿demostrar que en espacios de dimensión finita los funcioneles lineales son continuos?). Por $Hahn-Banach$ existe $F_i \in X^*$ tal que $F_i = f_i$ en $V$. Veamos que $\{F_1, \ldots, F_n\}$ es linealmente indenpendiente en $X^*$. Sean $a_1, \ldots, a_n \in K$ tales que $$\sum_{j=1}^n a_i F_i = 0.$$ Al evaluar en $x_i$ obtenemos que $a_i = 0$. Esto muestra que para toda $n \in \N$ existen $n$ funcionales linealmente independientes. Por lo que $X^*$ es de dimensión infinita. \\
+Supongamos que $X$ es de dimensión infinita. Entonces para todo $n \in \N$ existe $\{ x_1, \ldots, x_n \} \subseteq X$ linealmente independiente. Sea $V = \mbox{span} \{ x_1, \ldots, x_n \}$, de manera que $\{ x_1, \ldots, x_n \}$ es una base de $V$. Para $i \in \{1, \ldots, n \}$ definamos el funcional lineal $\varphi_i : V \to \K$ dado por $\varphi_i(x_j) = \delta_{ij}$ que es continuo. Por el teorema de Hahn-Banach existe $F_i \in X^*$ tal que $F_i = f_i$ en $V$. Veamos que $\{F_1, \ldots, F_n\}$ es linealmente indenpendiente en $X^*$. Sean $a_1, \ldots, a_n \in K$ tales que $$\sum_{j=1}^n a_i F_i = 0.$$ Al evaluar en $x_i$ obtenemos que $a_i = 0$. Esto muestra que para toda $n \in \N$ existen $n$ funcionales linealmente independientes. Por lo que $X^*$ es de dimensión infinita. \\
 
 Supongamos que $X$ es de dimensión finita $n \in \N$. Existe entonces una base $\{x_1, \ldots, x_n \}$ de $X$. Para $1 \leq i \leq n$ definimos $f_i :X \to \K $ linealmente de tal manera que $f_i(x_j) = \delta_{ij}$, como $X$ es de dimensión finita, cada $f_i$ es continuo. Veamos que $\{ f_1, \ldots, f_n \}$ generan a $X^*$. Tomamos entonces $f \in X^*$ y supongamos que $f(x_i) = a_i \in \K$ para cada $i \in \{1, \ldots, n\}$. Dado $i \in \{1, \ldots, n \}$ se tiene que
 $$\left( \sum_{j=1}^n a_j f_j \right)(x_i) = a_i = f(x_i).$$
@@ -1103,7 +1134,7 @@ es débilmente compacta. (Estuve investigando y resulta que el resultado es un si
 \end{Tma}
 
 \begin{proof}
-El teorema de Banach-Alaoglu indica que $B_{X^{**}}$ es $\sigma(X^{**}, X^{*})$-compacto. La proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es abierta y por lo tanto $B_X = J^{-1}(B_X^{**})$ (¿demuestro esta igualdad?) es compacto.
+El teorema de Banach-Alaoglu indica que $B_{X^{**}}$ es $\sigma(X^{**}, X^{*})$-compacto. La proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es abierta y por lo tanto $B_X = J^{-1}(B_X^{**})$ es compacto.
 \end{proof}
 
 \section{Medibilidad.}
@@ -1208,6 +1239,7 @@ Esto indica que en un espacio de Banach la convergencia débil de subseries impli
 \item Megginson. An Introduction to Banach Space Theory.
 \item Galaz Fontes. Elementos de Análisis Funcional. 
 \item Marian Fabian. Functional Analysis and Infinite-Dimensional Geometry.
+\item Francisco J. Diáz. Curso de Topología General.
 \end{itemize}
 
 
