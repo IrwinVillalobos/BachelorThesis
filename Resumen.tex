@@ -206,7 +206,7 @@ Sea $V$ abierto en $Y$. Entonces existen un conjunto $\Lambda$ y algunos $B_\alp
 $$\bigcup_{\alpha \in \Lambda} f^{-1}(B_\alpha) = f^{-1}\left( \bigcup_{\alpha \in \Lambda} B_\alpha \right) = f^{-1}(V) .$$ 
 \end{proof}
 
-Sean $X$ y $Y$ dos espacios topológicos. En $X \times Y$ trabajamos con la \textit{topología producto}, que es la generada por la base $\{ U\times V : U \mbox{ abierto  en } X \mbox{ y } V \mbox{ abierto en } Y \}$. Consideremos las \textit{proyecciones} en $X$ y $Y$
+Sean $X$ y $Y$ dos espacios topológicos. En $X \times Y$ trabajamos con la \textit{topología producto}, que es la generada por la base $\{ U\times V : U \mbox{ abierto  en } X \mbox{ y } V \mbox{ abierto en } Y \}$. Consideremos las \textit{proyecciones canónicas} en $X$ y $Y$
 \Ecu{
 \pi_X : X \times Y & \to X \hspace*{1cm} \mbox{ y } \hspace*{1cm} \pi_Y : X \times Y  \to X \\
 (x,y) &\mapsto x \hspace*{3.75cm} (x,y) \mapsto y. 
@@ -226,6 +226,22 @@ Si $f$ es continua, entonces $\pi_X \circ f$ y $\pi_Y \circ f$ también lo son, y
 Supongamos ahora que $\pi_X \circ f$ y $\pi_Y \circ f$ son continuas. Sea $U \times V$ un abierto básico de $X \times Y$, de manera que $U$ es abierto en $X$ y $V$ es abierto en $Y$. Entonces $(\pi_X \circ f)^{-1}(U)$ y $(\pi_Y \circ f)^{-1}(V)$ son abiertos en $E$ por lo que según la proposición~\ref{Prop:ContinuidadPorBasicos} también lo es  
 $$f^{-1}(U \times V) = (\pi_X \circ f)^{-1}(U) \bigcap (\pi_Y \circ f)^{-1}(V).$$
 \end{proof} 
+
+Esta construcción de la topología producto es fácil de extender para el producto de una cantidad finita de espacios topológicos. Sin embargo, al momento de definir el producto de una cantidad arbitraria de espacios, hay un detalle que se debe considerar para definir su topología. \\
+
+Sean $I$ un conjunto no vacío y $X_i$ espacios topológicos para cada $i \in I$. Para $j \in I$ la $j$-ésima \textit{proyección canónica} es 
+\Ecu{
+\pi_j : \prod_{i\in I} X_i \to X_j \\
+(x_i)_{i \in I} \mapsto x_j.
+}
+
+\begin{Def}
+Sea $I$ un conjunto no vacío y $X_i$ espacios topológicos para cada $i \in I$. La \textit{topología producto} de $\prod_{i\in I} X_i$ es la generada por la base $$\left\{ \bigcap_{j=1}^k \pi_{i_j}^{-1}(U_j) : k \in \N, \, i_1, \ldots, i_k \in I \mbox{ y } U_j \mbox{ es abierto en } X_{i_j} \mbox{ para cada } 1\leq j \leq k\right\}.$$
+\end{Def}
+
+Notemos que con esta definición de topología producto las proyecciones son continuas. Fijemos $i \in I$ y tomemos cualquier abierto $U_i$ en $X_i$. Entonces $\pi_i^{-1}(U_i)$ es un básico de $\prod_{i\in I} X_i$ y por tanto es abierto. Esto indica que $\pi_i$ es continua. \\
+
+En la demostración de la proposición~\ref{Prop:ConvergenciaPorComponentesEnProductoArbitrario} se puede observar por qué es indispensable definir la topología producto de esta manera y no simplemente como la generada por el producto de abiertos. 
 
 \begin{Def}
 Sea $X$ un espacio topológico. Dado $A$ un subconjunto de $X$, su \textit{cerradura} es el conjunto $\ov{A} \subseteq X$ de puntos $x \in X$ que cumplen que para toda vecindad abierta $U$ de $x$ se satisface que $U \cap A \neq \emptyset$.
@@ -534,6 +550,24 @@ Sean $X$ y $Y$ espacios topológicos y consideremos en $X \times Y$ la topología 
 Primero supongamos que $(x_\alpha, y_\alpha)\to (x, y)$. Sea $\pi_X : X \times Y \to X$ la proyección, es decir, $\pi_X(x, y) = x$ para toda $(x, y) \in X \times Y$. Como esta proyección es continua, por el corolario~\ref{Cor:ContinuidadporRedes} tenemos que $\pi_X(x_\alpha, y_\alpha) \to \pi_X(x, y)$. Entonces $x_\alpha \to x$. Análogamente, $y_\alpha \to y$. \\
 
 Ahora supongamos que $x_\alpha \to x$ y $y_\alpha \to y$. Sea $W$ una vecindad abierta básica de $(x,y)$. Entonces existen $U$ abierto de $X$ y $V$ abierto de $Y$ con $W = U \times V$. Como $(x, y) \in U \times V$ resulta que $U$ es una vecindad abierta de $x$ y $V$ es una vecindad abierta de $y$. De esto que existen $\alpha_1, \alpha_2 \in \Lambda$ tal que $x_\alpha \in U$ para $\alpha\geq \alpha_1$ y $y_\alpha \in V$ para $\alpha \geq \alpha_2$. Tomemos $\widehat{\alpha} \in\Lambda$ tal que  $\widehat{\alpha} \geq \alpha_1$ y $\widehat{\alpha} \geq \alpha_2$. Así que para $\alpha \geq \widehat{\alpha}$ se tiene que $x_\alpha \in U$ y $y_\alpha \in V$, de donde $(x_\alpha, y_\alpha) \in U \times V = W$. Concluimos de esto que $(x_\alpha, y_\alpha) \to (x, y)$.
+\end{proof}
+
+El resultado anterior se puede extender a el producto arbitrario de espacios topológicos como lo indica la siguiente proposición.  
+
+\begin{Prop} \label{Prop:ConvergenciaPorComponentesEnProductoArbitrario}
+Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$. Sean $((x_{\alpha, i})_{i \in I})_{\alpha\in \Lambda}$ una red en $\prod_{i\in I} X_i$ y $(x_i)_{i\in I} \in \prod_{i\in I} X_i$, entonces $(x_{\alpha, i})_{i \in I} \to (x_i)_{i\in I}$ en $\prod_{i\in I} X_i$ si, y sólo si $x_{\alpha, j} \to x_j$ en $X_j$ para toda $j \in I$.
+\end{Prop}
+
+\begin{proof}
+Supongamos primero que $(x_{\alpha, i})_{i \in I} \to (x_i)_{i\in I}$ en $\prod_{i\in I} X_i$. Tomemos $j \in I$. Como $\pi_j$ es continua se tiene que  $\pi_j((x_{\alpha, i})_{i \in I}) \to \pi_j((x_i)_{i\in I})$ en $X_j$. Esto es $x_{\alpha, j} \to x_j$. \\
+
+Ahora supongamos que $x_{\alpha, j} \to x_j$ en $X_j$ para toda $j \in I$. Sea $U$ un abierto básico de $(x_i)_{i\in I}$. Entonces existen $k \in \K$, $i_1, \ldots, i_k \in I$ y $U_1, \ldots, U_k$ abiertos en $X_{i_1}, \ldots, X_{i_k}$ respectivamente tales que $$U = \bigcap_{j=1}^k \pi_{i_j}^{-1}(U_j).$$
+
+Fijemos $j \in \{1, \ldots, k\}$ por un momento. Como $(x_i)_{i\in I} \in U$, entonces $(x_i)_{i\in I} \in \pi_{i_j}^{-1}(U_j)$, de donde $x_{i_j} =  \pi_{i_j}((x_i)_{i\in I}) \in U_j$. Esto dice que $U_j$ es una vecindad abierta de $x_{i_j}$. Como $x_{\alpha, i_j} \to x_{i_j}$ en $X_{i_j}$, entonces existe $\alpha_j \in \Lambda$ tal que si $\alpha \geq \alpha_j$ entonces $x_{\alpha, i_j} \in U_j$, o bien, $$(x_{\alpha, i})_{i\in I} \in \pi_{i_j}^{-1}(x_{\alpha, i_j}) \subseteq \pi_{i_j}^{-1}(U_j).$$
+
+Tomemos $\widehat{\alpha} \in \Lambda$ de tal manera que $\widehat{\alpha} \geq \alpha_j$ para toda $j \in \{1, \ldots, k\}$. De esta forma $$(x_{\alpha, i})_{i\in I} \in \bigcap_{j=1}^k \pi_{i_j}^{-1}(U_j) = U.$$
+
+Concluimos de esto que $(x_{\alpha, i})_{i\in I} \to (x_i)_{i\in I}$.
 \end{proof}
 
 \begin{Obs}
@@ -1016,8 +1050,6 @@ La evaluación de un funcional $x^* \in X^*$ en un vector $x \in X$ se denota por
 
 Esto induce un mapeo $\ang{\cdot, \cdot}: X \times X^* \to \K$, llamado \textit{apareamiento dual}. \\
 
-
-
 Para cada $x \in X$ resulta que $\abs{\delta_x}$ es una seminorma. Dado $\varphi \in X^*$ distinto de cero, existe $x \neq 0$ con $\varphi(x) \neq 0$. Así que $\delta_x(\varphi) \neq 0$. Es decir, $$\F_{X^*} := \{ \abs{\delta_x} : x\in X\}$$ es una familia de seminormas en $X^*$ que separa puntos de $X$. 
 
 \begin{Def}
@@ -1042,7 +1074,7 @@ $$\sigma(X^*, X) \subseteq \sigma(X^*, X^{**}) \subseteq \tau_{\Norm{\cdot}_{X^*
 La primera contención es igualdad si el espacio $X$ es reflexivo. \\
 
 \begin{Prop} \label{Prop:ReflexivoIdentifiacionCanonicaDebilContinua}
-Sea $X$ un espacio reflexivo. Entonces $J :  X_\mathrm{w} \to X^**_{\mathrm{w}^*}$ es abierta.
+Sea $X$ un espacio reflexivo. Entonces $J :  X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es abierta.
 \end{Prop}
 
 \begin{proof}
@@ -1051,7 +1083,7 @@ Sea $X$ un espacio reflexivo. Entonces $J :  X_\mathrm{w} \to X^**_{\mathrm{w}^*
 
 En el espacio dual $X^*$ de un espacio normado $X$ la convergencia en la topología débil* de una red $(\varphi_\alpha)_{\alpha \in \Lambda} \subseteq X^*$ a $\varphi \in X^*$ se denotará por $\wslim_{\alpha \in \Lambda} \varphi_\alpha = \varphi$ o también por $\varphi_\alpha \stackrel{\mathrm{w_*}}{\longrightarrow} \varphi$.
 
-\begin{Cor}
+\begin{Cor} \label{Cor:CaracterizacionConvergenciaDebilEstrella}
 Sea $X$ un espacio normado. Para una red $(\varphi_\alpha)_{\alpha \in \Lambda} \subseteq X^*$ y $\varphi \in X^*$ se satisface que $\varphi_\alpha \stackrel{\mathrm{w_*}}{\longrightarrow} \varphi$ si, y sólo si $\varphi_\alpha(x) \to \varphi(x)$ para todo $x \in X$.\\
 
 En particular, si $(\varphi_n)_{n \in \N} \subseteq X^*$ es una sucesión en $X^*$ y $\varphi \in X^*$, tenemos entonces que $\displaystyle\wslim_{n \to \infty} \varphi_n = \varphi$ si, y sólo si $\displaystyle\lim_{n \to \infty} \varphi_n(x) = \varphi(x)$  para cualquier $x \in X$.
@@ -1060,7 +1092,7 @@ En particular, si $(\varphi_n)_{n \in \N} \subseteq X^*$ es una sucesión en $X^*
 Observemos pues que la convergencia debil* de funcionales es precisamente la convergencia puntual. \\
 
 \begin{Prop}
-Sea $X$ un espacio normado. Entonces $X$ es de dimensión infinita si y sólo si $X^*$ lo es.
+Sea $X$ un espacio normado. Entonces $X$ es de dimensión infinita si y sólo si $X^*$ también lo es.
 \end{Prop}
 
 \begin{proof}
@@ -1094,15 +1126,7 @@ Veamos que está bien definida. Tomemos $\varphi \in B_{X^*}$ de manera que $\Nor
 
 Demostremos que $F$ es inyectiva. Dados $\varphi, \psi \in B_{X^*}$ con $F(\varphi) = F(\psi)$ se tiene que $(\varphi(x))_{x \in X} = (\psi(x))_{x \in X}$. De donde $\varphi(x) = \psi(x)$ para todo $x \in X$. Así que $\varphi = \psi$ y $F$ es inyectiva. \\
 
-Notemos que $F$ es continua. Para demostrar esto tomemos un abierto $\prod_{x \in X} V_x$ en $\mathcal{D}$, de manera que $V_x$ es abierto en $D_x$ para cada $x \in X$ y existen $x_1, \ldots, x_k \in X$ y $k \in \N$ tales que $V_{x_i} \subsetneq D_{x_i}$ para $i \in \{1, \ldots, k \}$ y $V_x = D_x$ si $x\notin \{x_1, \ldots, x_k \}$. Así pues tenemos que
-\Ecu{
-F^{-1}\left(\prod_{x\in X}V_x\right) &= \left\{ \varphi \in B_{X^*} : F(\varphi) \in \left(\prod_{x\in X}V_x\right) \right\} \\
-&= \left\{ \varphi \in B_{X^*} : \varphi(x) \in V_x \, \forall \, x \in X \right\} = \left\{ \varphi \in B_{X^*} : \varphi(x_i) \in V_{x_i}, i = 1, \ldots, k \right\} \\
-&= \bigcap_{i=1}^k \left\{ \varphi \in B_{X^*} : \varphi(x_i) \in V_{x_i} \right\}
-} 
-La proposición~\ref{Prop:DeltaContinua} indica que para cada $i \in \{1, \ldots, k\}$, la función $\delta_{x_i} : X^* \to \K$ que mapea $\varphi$ en $\varphi(x_i)$ es continua tomando en cuenta la topología débil* en su dominio. Así que cada conjunto $$\left\{ \varphi \in B_{X^*} : \varphi(x_i) \in V_{x_i} \right\} = \delta_{x_i}^{-1} (V_{x_i})$$ es abierto en la topología débil*. Así que $F^{-1}\left(\prod_{x\in X}V_x\right)$ también lo es y $F$ es continua. \\
-
-(Falta ver que $F$ es abierta.) \\
+Consideremos una red $(\varphi_\alpha)_{\alpha \in \Lambda}$ en $B_{X^*}$ y $\varphi \in B_{X^*}$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebilEstrella} indica que $\varphi_\alpha \stackrel{\mathrm{w_*}}{\longrightarrow} \varphi$ si, y sólo si $\varphi_\alpha(x) \to \varphi(x)$ en $D_x$ para todo $x \in X$. La proposición~\ref{Prop:ConvergenciaPorComponentesEnProductoArbitrario} indica que esto último se da si, y sólo si $(\varphi_\alpha(x))_{x \in X} \to (\varphi(x))_{x \in X}$ en $\mathcal{D}$. O bien, si, y  sólo si $F(\varphi_\alpha) \to F(\varphi)$. Esto indica que $F$ es continua y al ser inyectiva se concluye que también preserva abiertos. \\
 
 Por último, veamos que el rango de $F$ es cerrado. Tomemos $(G_\alpha)_{\alpha \in \Lambda}  \in F(B_{X^*})$ una red convergente. Sea $(d_x)_{x \in X} \in \mathcal{D}$ su límite. Existe entonces una red $(f_\alpha)_\alpha$ en $B_{X^*}$ tal que $F(f_\alpha) = G_\alpha$. Así,
 $$\lim_{\alpha\in \Lambda} F(f_\alpha) = \lim_{\alpha\in\Lambda} (f_\alpha(x))_{x\in X} = (d_x)_{x \in X}.$$ 
