@@ -14,6 +14,8 @@
 \usepackage{multirow}
 \usepackage[all]{xy}
 \usepackage{color}
+\usepackage[bookmarksopen=true]{hyperref}
+\usepackage{bookmark}
 \newcommand\Ccancel[2][black]{\renewcommand\CancelColor{\color{#1}}\cancel{#2}}
 \renewcommand{\qedsymbol}{$\blacksquare$}
 
@@ -44,6 +46,16 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\C}{\mathbb{C}}
 
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    bookmarksopen=true,
+}
+
+\urlstyle{same}
+
 
 \newtheorem{Tma}{Teorema}[section]
 \newtheorem{Prop}{Proposición}[section]
@@ -71,7 +83,6 @@
 \fancyfoot[LO, RE]{#3, #4.} 
 \fancyfoot[Co, CE]{\empty}
 \fancyfoot[RO, LE]{P\'agina \thepage\;de \pageref{ultimapagina}}
-
 
 
 \renewcommand{\headrulewidth}{0.4pt}
@@ -121,6 +132,7 @@
 
 
 %\inicio{Seminario de Tesis}{3}{Irwin Enrique Villalobos López}{Dr. Fernando Galaz Fontes}{irwin.villalobos@cimat.mx}
+
 
 \section{Topología y espacio vectorial topológico.}
 
