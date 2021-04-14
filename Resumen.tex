@@ -147,13 +147,14 @@ Sea $X$ un conjunto no vacío. Una \textit{topología} $\tau$ de $X$ es una famili
 
 En este caso la pareja $(X, \tau)$ es un \textit{espacio topológico}, a los elementos de $\tau$ los llamamos \textit{abiertos} y a sus complementos \textit{cerrados}. \\
 
-Un subconjunto $V$ de $X$ es una \textit{vecindad} o \textit{entorno} de $x \in X$, si existe un abierto $U$ tal que $$x \in U \subseteq V.$$ 
+Un subconjunto $V$ de $X$ es una \textit{vecindad} de $x \in X$, si existe un abierto $U$ tal que $$x \in U \subseteq V.$$ 
+En este caso decimos que $x$ es un punto interior de $V$. Al conjunto de puntos interiores de $V$ en $X$ lo denotamos por $V^0$. Claramente, $V^0 \subseteq V$. \\
 
-Si además de ser una vecindad de $x \in X$, $V$ es abierto, diremos que $V$ es una \textit{vecindad abierta} de $x$. Notemos que $V$ es una vecindad abierta de $x$ si, y sólo si $V$ es un abierto que contiene a $x$.
+Si además de ser una vecindad de $x \in X$, $V$ es abierto, diremos que $V$ es una \textit{vecindad abierta} de $x$. En otras palabras, $V$ es una vecindad abierta de $x$ si, y sólo si $V$ es un abierto que contiene a $x$.
 
-\begin{Prop} \label{Prop:CaracterizacionAbierto}
-Sea $X$ un espacio topológico y $V \subseteq X$. Entonces $V$ es abierto si, y sólo si $V$ es un vecindad de $x$ para todo $x \in V$.
-\end{Prop}
+\begin{Lema} \label{Lema:CaracterizacionAbierto}
+Sea $X$ un espacio topológico y $V \subseteq X$. Entonces $V$ es abierto si, y sólo si $V$ es un vecindad de $x$ para todo $x \in V$. En otras palabras, $V$ es abierto si, y sólo si $V = V^0$. 
+\end{Lema}
 
 \begin{proof}
 Supongamos primero que $V$ es abierto y sea $x \in V$. Entonces $V$ es una vecindad de $x$. \\
@@ -193,10 +194,6 @@ es abierto en $X$.
 \end{Ejem}
 
 \begin{Def}
-Sean $X$ y $Y$ espacios topológicos. Un \textit{homeomorfismo} entre $X$ y $Y$ es una función $f:X \to Y$ que es biyectiva, continua y de inversa continua.
-\end{Def}
-
-\begin{Def}
 Sea $X$ un conjunto no vacío. Una \textit{base} $\B$ de $X$ es una familia de subconjuntos de $X$ tal que:
 \begin{itemize}
 \item \textbf{i)} Es una \textit{cubierta} de $X$, es decir, $\displaystyle \bigcup_{B \in \B} B = X$.
@@ -222,7 +219,7 @@ De manera que existe $\alpha \in\Lambda$ tal que $x \in B_\alpha \subseteq U$. \
 Ahora supongamos que para cada abierto $U$ y $x \in U$ existe $B \in \mathcal{B}$ tal que $x \in B \subseteq U$. Entonces:
 \begin{itemize}
 \item \textbf{i)} Dado $x \in X$, como $X$ es abierto, existe $B_x \in \mathcal{B}$ tal que $x \in B_x$. Así que $$X = \bigcup_{x \in X} B_x \subseteq \bigcup_{B \in \mathcal{B}} B.$$
-\item \textbf{ii)} Sean $B_1$, $B_2 \in \mathcal{B}$ y $x \in B_1 \cap B_2$. Como $B_1$ y $B_2$ son abiertos, entonces $B_1 \cap B_2$ es abierto. Por  hipótesis $B_3 \in \mathcal{B}$ tal que $$x \in B_3 \subseteq B_1 \cap B_2.$$ 
+\item \textbf{ii)} Sean $B_1$, $B_2 \in \mathcal{B}$ y $x \in B_1 \cap B_2$. Como $B_1$ y $B_2$ son abiertos, entonces $B_1 \cap B_2$ es abierto. Por  hipótesis existe $B_3 \in \mathcal{B}$ tal que $$x \in B_3 \subseteq B_1 \cap B_2.$$ 
 \end{itemize}
 Por definición \textbf{i)} y \textbf{ii)} indican que $\mathcal{B}$ es una base. Veamos que es una base de $X$. Sea $\tau_X$ la topología de $X$. Como $\mathcal{B} \subseteq \tau_X$, entonces las uniones arbitrarias de elementos en $\mathcal{B}$ son abiertos. Así pues $\tau(\mathcal{B}) \subseteq \tau_X$. Ahora, al tomar $U \in \tau$ para cada $x \in U$ por hipótesis existe $B_x \in \mathcal{B}$ tal que $x \in B_x \subseteq U$. De donde $$U = \bigcup_{x \in U} B_x$$ y así $U \in \tau(\mathcal{B})$. Es decir, $\tau_X = \tau(\mathcal{B})$.
 \end{proof}
@@ -237,43 +234,6 @@ Sean $X, Y$ espacios topológicos y $f: X \to Y$. Si $\B$ es una base de $Y$ y $f
 Sea $V$ abierto en $Y$. Entonces existen un conjunto $\Lambda$ y algunos $B_\alpha \in \B$, $\alpha \in \Lambda$ tales que $V = \bigcup_{\alpha \in \Lambda} B_\alpha$. Por hipótesis  $f^{-1}(B_\alpha)$ es abierto en $X$ para toda $\alpha \in \Lambda$, por lo que también lo es
 $$\bigcup_{\alpha \in \Lambda} f^{-1}(B_\alpha) = f^{-1}\left( \bigcup_{\alpha \in \Lambda} B_\alpha \right) = f^{-1}(V) .$$ 
 \end{proof}
-
-Sean $X$ y $Y$ dos espacios topológicos. En $X \times Y$ trabajamos con la \textit{topología producto}, que es la generada por la base $\{ U\times V : U \mbox{ abierto  en } X \mbox{ y } V \mbox{ abierto en } Y \}$. Consideremos las \textit{proyecciones canónicas} en $X$ y $Y$
-\Ecu{
-\pi_X : X \times Y & \to X \hspace*{1cm} \mbox{ y } \hspace*{1cm} \pi_Y : X \times Y  \to X \\
-(x,y) &\mapsto x \hspace*{3.75cm} (x,y) \mapsto y. 
-} 
-
-Para un abierto $U$ en $X$ se tiene que $\pi_X^{-1}(U) = U \times Y$, que es abierto en $X \times Y$, por lo que $\pi_X$ es continua. De manera análoga, $\pi_Y$ también es continua. \\
-
-La siguiente proposición indica que la continuidad de una función con valores en un espacio producto equivale a la continuidad de sus componentes.
-
-\begin{Prop} \label{Prop:ContinuidadPorComponentes}
-Sean $E, X$ y $Y$ espacios topológicos y $f: E \to X \times Y$. Entonces $f$ es continua si y sólo si $\pi_X \circ f$ y $\pi_Y \circ f$.
-\end{Prop}
-
-\begin{proof}
-Si $f$ es continua, entonces $\pi_X \circ f$ y $\pi_Y \circ f$ también lo son, ya que $\pi_X$ y $\pi_Y$ lo son y la composición de funciones continuas es continua. \\
-
-Supongamos ahora que $\pi_X \circ f$ y $\pi_Y \circ f$ son continuas. Sea $U \times V$ un abierto básico de $X \times Y$, de manera que $U$ es abierto en $X$ y $V$ es abierto en $Y$. Entonces $(\pi_X \circ f)^{-1}(U)$ y $(\pi_Y \circ f)^{-1}(V)$ son abiertos en $E$ por lo que según la proposición~\ref{Prop:ContinuidadPorBasicos} también lo es  
-$$f^{-1}(U \times V) = (\pi_X \circ f)^{-1}(U) \bigcap (\pi_Y \circ f)^{-1}(V).$$
-\end{proof} 
-
-Esta construcción de la topología producto es fácil de extender para el producto de una cantidad finita de espacios topológicos. Sin embargo, al momento de definir el producto de una cantidad arbitraria de espacios, hay un detalle que se debe considerar para definir su topología. \\
-
-Sean $I$ un conjunto no vacío y $X_i$ espacios topológicos para cada $i \in I$. Para $j \in I$ la $j$-ésima \textit{proyección canónica} es 
-\Ecu{
-\pi_j : \prod_{i\in I} X_i \to X_j \\
-(x_i)_{i \in I} \mapsto x_j.
-}
-
-\begin{Def}
-Sea $I$ un conjunto no vacío y $X_i$ espacios topológicos para cada $i \in I$. La \textit{topología producto} de $\prod_{i\in I} X_i$ es la generada por la base $$\left\{ \bigcap_{j=1}^k \pi_{i_j}^{-1}(U_j) : k \in \N, \, i_1, \ldots, i_k \in I \mbox{ y } U_j \mbox{ es abierto en } X_{i_j} \mbox{ para cada } 1\leq j \leq k\right\}.$$
-\end{Def}
-
-Notemos que con esta definición de topología producto las proyecciones son continuas. Fijemos $i \in I$ y tomemos cualquier abierto $U_i$ en $X_i$. Entonces $\pi_i^{-1}(U_i)$ es un básico de $\prod_{i\in I} X_i$ y por tanto es abierto. Esto indica que $\pi_i$ es continua. \\
-
-En la demostración de la proposición~\ref{Prop:ConvergenciaPorComponentesEnProductoArbitrario} se puede observar por qué es indispensable definir la topología producto de esta manera y no simplemente como la generada por el producto de abiertos. 
 
 \begin{Def}
 Sea $X$ un espacio topológico. Dado $A$ un subconjunto de $X$, su \textit{cerradura} es el conjunto $\ov{A} \subseteq X$ de puntos $x \in X$ que cumplen que para toda vecindad abierta $U$ de $x$ se satisface que $U \cap A \neq \emptyset$.
@@ -291,38 +251,61 @@ Sea $X$ un espacio topológico. Entonces
 \begin{proof}
 \hfill
 \begin{itemize}
-\item \textbf{i)} Demostremos que $\ov{A}^{\,\mathsf{c}}$ es abierto. Sea $x \in \ov{A}^{\,\mathsf{c}}$ de manera que $x \notin \ov{A}$. Así que existe $U$ vecindad abierta de $x$ tal que $U \cap A = \emptyset$. Supongamos que $U \cap \ov{A} \neq \emptyset$. Entonces existe $y \in U \cap \ov{A}$. Como $y \in \ov{A}$ y $U$ es vecindad abierta de $y$ se tiene que $U\cap A \neq \emptyset$ lo cual es una contradicción. Así que $U \cap \ov{A} = \emptyset$. Es decir $x \in U \subseteq \ov{A}^{\,\mathsf{c}}$. Es decir, $\ov{A}^{\,\mathsf{c}}$ es una vecindad de todos sus puntos. La proposición~\ref{Prop:CaracterizacionAbierto} implica que $\ov{A}^{\,\mathsf{c}}$ es abierto.
-\item \textbf{ii)} Dado $x \in A$ y $U$ vecindad abierta de $x$, se tiene entonces que $x \in A \cap U$, por lo que $A \cap U \neq \emptyset$ y así $x \in \ov{A}$.  
-\item \textbf{iii)} Sea $A$ un conjunto cerrado en $X$ y sea $x \in \ov{A}$. Supongamos que $x \notin A$ de manera que $x \in A^\mathsf{c}$. Como $A$ es cerrado entonces $A^\mathsf{c}$ es abierto, de manera que $A^\mathsf{c}$ es una vecindad abierta de $x$. Dado que $x \in \ov{A}$, se tiene que $A \cap A^\mathsf{c} \neq \emptyset$, lo cual es una contradicción. Así que $x \in A$ y $\ov{A} \subseteq A$. Junto con \textbf{ii)} se concluye que $A = \ov{A}$. \\
+\item \textbf{i)} Demostremos que $\ov{A}^{\,\mathsf{c}}$ es abierto. Sea $x \in \ov{A}^{\,\mathsf{c}}$, de manera que $x \notin \ov{A}$. Así que existe $U$ vecindad abierta de $x$ tal que $U \cap A = \emptyset$. Dado $y \in U$ se tiene que $U$ es una vecindad de $y$ que no intersecta a $A$, por lo que $y \notin \ov{A}$ y así $x \in U \subseteq \ov{A}^{\,\mathsf{c}}$. Es decir, $\ov{A}^{\,\mathsf{c}}$ es una vecindad de todos sus puntos. El lema~\ref{Lema:CaracterizacionAbierto} implica que $\ov{A}^{\,\mathsf{c}}$ es abierto.
+\item \textbf{ii)} Dados $x \in A$ y $U$ vecindad abierta de $x$, se tiene entonces que $x \in A \cap U$, por lo que $A \cap U \neq \emptyset$ y así $x \in \ov{A}$.  
+\item \textbf{iii)} Sea $A$ un conjunto cerrado en $X$ y sea $x \in \ov{A}$. Supongamos que $x \notin A$, de manera que $x \in A^\mathsf{c}$. Como $A$ es cerrado entonces  $A^\mathsf{c}$ es una vecindad abierta de $x$. Dado que $x \in \ov{A}$, se tiene que $A \cap A^\mathsf{c} \neq \emptyset$, lo cual es una contradicción. Así que $x \in A$ y $\ov{A} \subseteq A$. Junto con \textbf{ii)} se concluye que $A = \ov{A}$. 
 
 Si por otro lado suponemos que  $A = \ov{A}$, entonces \textbf{i)} indica que $A$ es cerrado.
 \end{itemize}
 \end{proof}
 
-\begin{Def}
-Un subconjunto $K$ de un espacio topológico $X$ es \textit{compacto} si para cualquier colección $\{ U_\alpha \}_{\alpha \in \Lambda}$ de abiertos tales que $$K \subseteq \bigcup_{\alpha \in \Lambda} U_\alpha$$ existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ tales que $$K \subseteq \bigcup_{i=1}^n U_{\alpha_i}.$$
-\end{Def}
+Sean $X$ y $Y$ dos espacios topológicos. En $X \times Y$ trabajamos con la \textit{topología producto}, que es la generada por la base $\{ U\times V : U \mbox{ abierto  en } X \mbox{ y } V \mbox{ abierto en } Y \}$. Consideremos las \textit{proyecciones canónicas} en $X$ y $Y$
+\Ecu{
+\pi_X : X \times Y & \to X \hspace*{1cm} \mbox{ y } \hspace*{1cm} \pi_Y : X \times Y  \to X \\
+(x,y) &\mapsto x \hspace*{3.75cm} (x,y) \mapsto y. 
+} 
 
-\begin{Prop} \label{Prop:HomeomorfismoPreservaCompactosYCerrados}
-Sean $X$ y $Y$ espacios topológicos y $T: X \to Y$. 
-\begin{itemize}
-\item \textbf{i)} Si $T$ es homeomorfismo, entonces $T$ preserva abiertos.
-\item \textbf{ii)} Si $T$ es homeomorfismo, entonces $T$ preserva cerrados.
-\item \textbf{iii)} Si $T$ es continua, entonces $T$ preserva compactos.
-\end{itemize} 
+Para un abierto $U$ en $X$ se tiene que $\pi_X^{-1}(U) = U \times Y$, que es abierto en $X \times Y$, por lo que $\pi_X$ es continua. De manera análoga, $\pi_Y$ también es continua. \\
+
+La siguiente proposición indica que la continuidad de una función con valores en un espacio producto equivale a la continuidad de sus componentes.
+
+\begin{Prop} \label{Prop:ContinuidadPorComponentes}
+Sean $E, X$ y $Y$ espacios topológicos y $f: E \to X \times Y$. Entonces $f$ es continua si y sólo si $\pi_X \circ f$ y $\pi_Y \circ f$ lo son.
 \end{Prop}
 
 \begin{proof}
-\hfill
-\begin{itemize}
-\item \textbf{i)} Se sigue de inmediato del hecho de que $T^{-1}$ es continua y de la proposición~\ref{Prop:CaracterizacionContinuidadPorPreimagenesDeAbiertos}.
+Si $f$ es continua, entonces $\pi_X \circ f$ y $\pi_Y \circ f$ también lo son, ya que $\pi_X$ y $\pi_Y$ lo son y la composición de funciones continuas es continua. \\
 
-\item \textbf{ii)} Sea $A$ un conjunto cerrado. Entonces $X \setminus A$ es abierto. Como $T$ preserva abiertos $T(X \setminus A) = Y \setminus T(A)$ es abierto y así $T(A)$ es cerrado. \\
+Supongamos ahora que $\pi_X \circ f$ y $\pi_Y \circ f$ son continuas. Sea $U \times V$ un abierto básico de $X \times Y$, de manera que $U$ es abierto en $X$ y $V$ es abierto en $Y$. Entonces $(\pi_X \circ f)^{-1}(U)$ y $(\pi_Y \circ f)^{-1}(V)$ son abiertos en $E$ por lo que según la proposición~\ref{Prop:ContinuidadPorBasicos} también lo es  
+$$f^{-1}(U \times V) = (\pi_X \circ f)^{-1}(U) \bigcap (\pi_Y \circ f)^{-1}(V).$$
+\end{proof} 
 
-\item \textbf{iii)} Sea $K$ un conjunto compacto y $(U_{\alpha})_{\alpha \in \Lambda}$ una cubierta abierta de $T(K)$, entonces $(T^{-1}(U_\alpha))_{\alpha \in \Lambda}$ es una cubierta abierta de $K$ por ser $T$ continua. Por lo que existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ con $$K \subseteq\bigcup_{i=1}^n T^{-1} (U_\alpha).$$
+La construcción anterior de la topología producto es fácil de extender para el producto de una cantidad finita de espacios topológicos. Sin embargo, al momento de definir el producto de una cantidad arbitraria de espacios, hay un detalle que se debe considerar para definir su topología. \\
 
-De donde $(U_{\alpha_i})_{i=1}^n$ es una cubierta finita de $T(K)$ y así este es compacto.\\
-\end{itemize}
+Sean $I$ un conjunto no vacío y $X_i$ espacios topológicos para cada $i \in I$. Para $j \in I$ la $j$-ésima \textit{proyección canónica} es 
+\Ecu{
+\pi_j : \prod_{i\in I} X_i \to X_j \\
+(x_i)_{i \in I} \mapsto x_j.
+}
+
+\begin{Def}
+Sea $I$ un conjunto no vacío y $X_i$ espacios topológicos para cada $i \in I$. La \textit{topología producto} de $\prod_{i\in I} X_i$ es la generada por la base $$\left\{ \bigcap_{j=1}^k \pi_{i_j}^{-1}(U_j) : k \in \N, \, i_1, \ldots, i_k \in I \mbox{ y } U_j \mbox{ es abierto en } X_{i_j} \mbox{ para cada } 1\leq j \leq k\right\}.$$
+\end{Def}
+
+Veamos que con esta definición de topología producto las proyecciones son continuas. Fijemos $i \in I$ y tomemos cualquier abierto $U_i$ en $X_i$. Entonces $\pi_i^{-1}(U_i)$ es un básico de $\prod_{i\in I} X_i$ y por tanto es abierto. Esto indica que $\pi_i$ es continua. \\ 
+
+\begin{Def}
+Sean $X$ y $Y$ espacios topológicos. Un \textit{homeomorfismo} entre $X$ y $Y$ es una función $f:X \to Y$ que es biyectiva, continua y de inversa continua.
+\end{Def}
+
+\begin{Prop} \label{Prop:HomeomorfismoPreservaCerrados}
+Sean $X$ y $Y$ espacios topológicos y $f: X \to Y$ un homeomorfismo. Entonces $f$ preserva abiertos y cerrados.
+\end{Prop}
+
+\begin{proof}
+El que $f$ preserve abiertos se sigue de inmediato del hecho de que $f^{-1}$ es continua y de la proposición~\ref{Prop:CaracterizacionContinuidadPorPreimagenesDeAbiertos}. \\
+
+Sea $A$ un conjunto cerrado. Entonces $X \setminus A$ es abierto. Como $f$ preserva abiertos $f(X \setminus A) = Y \setminus f(A)$ es abierto y así $f(A)$ es cerrado. 
 \end{proof}
 
 
@@ -372,7 +355,7 @@ De manera similar definimos
 e_{\lambda} : X &\to \K \times X  \\
 y &\mapsto (\lambda, y)
 } 
-Notemos que para $y \in X$ se tiene que $(\pi_X \circ e_{\lambda})(y) = \lambda$ y $(\pi_Y \circ e_{\lambda})(y) = y$. Esto indica que $\pi_X \circ e_{\lambda}$ es constante y $\pi_Y \circ e_{\lambda}$ es la identidad en $X$ y por lo tanto ambas son continuas. Por la proposición~\ref{Prop:ContinuidadPorComponentes} se tiene que $e_{\lambda}$ es continua.  De manera que $D_\lambda = \cdot \circ e_\lambda$ es continua. Como la $\lambda$ fue arbitraria, entonces $D_{\lambda^{-1}}$ también es continua. 
+Notemos que para $y \in X$ se tiene que $(\pi_X \circ e_{\lambda})(y) = \lambda$ y $(\pi_Y \circ e_{\lambda})(y) = y$. Esto indica que $\pi_X \circ e_{\lambda}$ es constante y $\pi_Y \circ e_{\lambda}$ es la identidad en $X$ y por lo tanto ambas son continuas. Por la proposición~\ref{Prop:ContinuidadPorComponentes} se tiene que $e_{\lambda}$ es continua.  De manera que $D_\lambda = \cdot \circ e_\lambda$ es continua. Como $\lambda$ fue arbitraria, entonces $D_{\lambda^{-1}}$ también es continua. 
 \end{proof}
 
 \begin{Obs}
@@ -389,12 +372,27 @@ Sean $X, Y$ espacios vectoriales topológicos. Si $T:X \to Y$ es lineal y continu
 Sea $x \in X$. Veremos que $T$ es continua en $x$. Sea $U$ una vecindad abierta de $Tx$ de manera que $Tx \in U$. Entonces $U_0 := U - Tx$ es abierto en $Y$ y además $0 \in U_0$. Como $T$ es continua en $0$, existe un abierto $V_0$ del cero tal que $Ty \in U_0$ si $y \in V_0$. Así que $x \in V_0 +x$ y $ V_0 + x$ es una vecindad abierta de $x$. Si $y \in V_0 + x$, entonces $y-x \in V_0$, de manera que $Ty -Tx = T(y-x) \in U_0 = U - Tx$, de donde $Ty \in U$. Así que $T$ es continua en $x$. 
 \end{proof}
 
+\begin{Def}
+Un subconjunto $K$ de un espacio topológico $X$ es \textit{compacto} si para cualquier colección $\{ U_\alpha \}_{\alpha \in \Lambda}$ de abiertos tales que $$K \subseteq \bigcup_{\alpha \in \Lambda} U_\alpha$$ existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ tales que $$K \subseteq \bigcup_{i=1}^n U_{\alpha_i}.$$
+\end{Def}
+
+
+\begin{Prop} \label{Prop:HomeomorfismoPreservaCompactos}
+Sean $X$ y $Y$ espacios topológicos y $f:X \to Y$ una función continua. Entonces $f$ preserva compactos.
+\end{Prop}
+
+\begin{proof}
+Sea $K$ un conjunto compacto y $(U_{\alpha})_{\alpha \in \Lambda}$ una cubierta abierta de $f(K)$, entonces $(f^{-1}(U_\alpha))_{\alpha \in \Lambda}$ es una cubierta abierta de $K$ por ser $f$ continua. Por lo que existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ con $$K \subseteq\bigcup_{i=1}^n f^{-1} (U_\alpha).$$
+
+De donde $(U_{\alpha_i})_{i=1}^n$ es una cubierta finita de $f(K)$ y así este es un conjunto compacto.
+\end{proof}
+
 \subsection{Espacios normados.}
 
-Recordemos que $(X, \Norm{\cdot})$ es un \textit{espacio normado} si $X$ es un espacio vectorial sobre $\K$ y $\Norm{\cdot}$ es una norma en $X$. Si además $X$ es completo bajo esta norma, decimos que $X$ es un \textit{espacio de Banach}. Esto significa que en un espacio de Banach las sucesiones de Cauchy convergen. El contexto en el que estaremos trabajando es el de espacios de Banach. \\
+Recordemos que $(X, \Norm{\cdot})$ es un \textit{espacio normado} si $X$ es un espacio vectorial sobre $\K$ y $\Norm{\cdot}$ es una norma en $X$. Si además $X$ es completo bajo esta norma, decimos que $X$ es un \textit{espacio de Banach}. Esto significa que en un espacio de Banach las sucesiones de Cauchy convergen. \\
 
 \begin{Ejem}
-Dado $n \in \N$, el espacio $\K^n$ con la norma $$\Norm{(x_1, \ldots, x_n)}_p := \left(\sum_{i=1}^n x_i^p\right)^{\frac{1}{p}}$$ es un espacio normado al cual denotamos $\ell^n_p$.
+Dados $n \in \N$ y $p \geq 1$, el espacio $\K^n$ con la norma $$\Norm{(x_1, \ldots, x_n)}_p := \left(\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}}$$ es un espacio normado al cual denotamos $\ell^n_p$.
 \end{Ejem}
 
 En un espacio normado $X$ denotamos a la \textit{bola abierta} de centro $y \in X$ y radio $r > 0$ por
@@ -423,7 +421,7 @@ Si $U$ es abierto de $X$ y $x \in U$, por definición existe $r > 0$ tal que $x \
 \end{proof}
 
 \begin{Prop} \label{Prop:TopologiaOriginalEsEVT}
-Sea $X$ un espacio normado. Entonces $X$ con la topología original es un espacio vectorial topológico. 
+Sea $X$ un espacio normado. Entonces $X$, con la topología original, es un espacio vectorial topológico. 
 \end{Prop}
 
 \begin{proof}
@@ -431,22 +429,28 @@ Sea $X$ un espacio normado. Entonces $X$ con la topología original es un espacio
 \end{proof}
 
 
-No todo operador lineal $T:X\to Y$ entre los espacios normados $X$ e $Y$ resulta ser continuo. En este trabajo nos interesan los que sí son continuos. Una caracterización de un operador lineal continuo es que sea un \textit{operador lineal acotado}, esto es, aquel para el cual existe $K > 0$ tal que $\Norm{Tx} \leq K \Norm{x}$ para todo $x \in X$. \\
+No todo operador lineal $T:X\to Y$ entre los espacios normados $X$ e $Y$ resulta ser continuo. En este trabajo nos interesan los que sí son continuos. Una caracterización de un operador lineal continuo es que sea un \textit{operador lineal acotado}, esto es, aquel para el cual existe $K > 0$ tal que $$\Norm{Tx} \leq K \Norm{x} \mbox{ para todo } x \in X.$$ \\
+
+\begin{Def}
+Sea $X$ un espacio normado. Decimos que $A \subseteq X$ es un conjunto \textit{acotado} si existe $M > 0$ tal que $\Norm{x} \leq M$ para todo $x \in A$.
+\end{Def}
 
 \begin{Prop} \label{Prop:IsomorfismoPreservaConjuntosAcotados}
 Sean $X$ y $Y$ espacios normados. Si $T:X \to Y$ es un operador lineal acotado, entonces $T$ preserva conjuntos acotados.
 \end{Prop}
 
 \begin{proof}
-Sea $B \subseteq X$ un conjunto acotado. Entonces existe $M > 0$ tal que $\Norm{x} < M $ para todo $x \in B$. Como $T$ es continua, existe $N >0$ tal que $\Norm{T(x)} < N \Norm{x}$. Así pues si $T(x) \in T(B)$ se sigue que $\Norm{T(x)} < MN.$ Por lo que $T(B)$ es acotado.
+Sea $A \subseteq X$ un conjunto acotado. Entonces existe $M > 0$ tal que $\Norm{x} < M $ para todo $x \in A$. Como $T$ es continua, existe $N >0$ tal que $\Norm{T(x)} < N \Norm{x}$. Así pues si $T(x) \in T(B)$ se sigue que $\Norm{T(x)} < MN.$ Por lo que $T(A)$ es acotado.
 \end{proof}
 
 Sean $X$ y $Y$ espacios normados. Al espacio de los operadores lineales continuos $T: X \to Y$, y por tanto acotados, lo denotamos por $\mathcal{L}(X, Y)$. En este espacio definimos la función
-$$\Norm{T} := \inf\{ K > 0 : \Norm{Tx} \leq K\Norm{x}, \, \forall x \in X\}.$$
+$$\Norm{T} := \sup\{ \Norm{Tx}  :  x \in B_X\}.$$
 
 Esta resulta ser una norma y así $\mathcal{L}(X, Y)$ es un espacio normado. Si además $Y$ es un espacio de Banach, entonces $\mathcal{L}(X, Y)$ también es un espacio de Banach. \\
 
-Sea $X$ un espacio vectorial topológico, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \tau)^*$. Cuando la topología sea la inducida por la norma, se denotará por $(X, \Norm{\cdot})^*$ o simplemente $X^*$.  A los elementos de este espacio dual los llamamos \textit{funcionales lineales continuos}. Como $\K$ es completo, por lo mencionado en el párrafo anterior resulta que $X^*$ es un espacio de Banach. \\ 
+Dado un espacio vectorial topológico $X$, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \tau)^*$. \\
+
+Cuando $X$ sea un espacio normado, se denotará por $(X, \Norm{\cdot})^*$ o simplemente $X^*$.  A los elementos de este espacio dual los llamamos \textit{funcionales lineales continuos}. Como $\K$ es completo,  resulta que $X^* = \mathcal{L}(X, \K)$ es un espacio de Banach. \\ 
 
 Los teoremas de Hahn-Banach muestran que en $X^*$ existen suficientes funcionales que permiten hacer rica la teoría referente al espacio dual.
 
@@ -454,14 +458,18 @@ Los teoremas de Hahn-Banach muestran que en $X^*$ existen suficientes funcionale
 Sea $X$ un espacio normado y $V \subseteq X$ un subespacio vectorial. Si $f \in V^*$ entonces existe $F \in X^*$ tal que $F = f$ en $V$ y $\Norm{f} = \Norm{F}$.
 \end{Tma}
 
-\begin{Def} 
-\hfill
-\begin{itemize}
-\item \textbf{i)} Sean $X$ y $Y$ espacios vectoriales. Se dice que $X$ y $Y$
-son \textit{isomorfos} como espacios vectoriales si existe $T :  X \to Y$ biyectiva y lineal. En este caso a $T$ se la llama \textit{isomorfismo} de espacios vectoriales.
-\item \textbf{ii)} Sean $X$ y $Y$ espacios normados. Se dice que $X$ y $Y$ son \textit{isomorfos} como espacios normados, si existe un isomorfismo de espacios vectoriales $T: X \to Y$ que también es un homeomorfismo. 
-\end{itemize}
-\end{Def}
+
+\begin{Prop}
+Sea $X$ un espacio normado. Entonces $X$ es de dimensión infinita si y sólo si $X^*$ también lo es. 
+\end{Prop}
+
+\begin{proof}
+Supongamos que $X$ es de dimensión infinita. Entonces para todo $n \in \N$ existen $x_1, \ldots, x_n \in X$ linealmente independiente. Sea $V = \mbox{span} \{ x_1, \ldots, x_n \}$, de manera que $\{ x_1, \ldots, x_n \}$ es una base de $V$. Para $i \in \{1, \ldots, n \}$ definamos el funcional lineal $\varphi_i : V \to \K$ dado por $\varphi_i(x_j) = \delta_{ij}$ que es continuo. Por el teorema de Hahn-Banach existe $F_i \in X^*$ tal que $F_i = f_i$ en $V$. Veamos que $\{F_1, \ldots, F_n\}$ es linealmente independiente en $X^*$. Sean $a_1, \ldots, a_n \in K$ tales que $$\sum_{j=1}^n a_i F_i = 0.$$ Al evaluar en $x_i$ obtenemos que $a_i = 0$. Esto muestra que para toda $n \in \N$ existen $n$ funcionales linealmente independientes. Por lo que $X^*$ es de dimensión infinita. \\
+
+Supongamos que $X$ es de dimensión finita $n \in \N$. Existe entonces una base $\{x_1, \ldots, x_n \}$ de $X$. Para $1 \leq i \leq n$ definimos $f_i :X \to \K $ linealmente de tal manera que $f_i(x_j) = \delta_{ij}$. Como $X$ es de dimensión finita el corolario~\ref{Cor:FuncionalesLinealesContinuosEspaciosFinitos} indica que cada $f_i$ es continuo. Veamos que $\{ f_1, \ldots, f_n \}$ generan a $X^*$. Tomamos entonces $f \in X^*$ y supongamos que $f(x_i) = a_i \in \K$ para cada $i \in \{1, \ldots, n\}$. Así, para cada $1 \leq i \leq n$
+$$\left( \sum_{j=1}^n a_j f_j \right)(x_i) = a_i = f(x_i).$$
+Por lo tanto $f = \sum_{j=1}^n a_j f_j$. Esto dice que existe un conjunto finito generador en $X^*$, por lo que $X^*$ es de dimensión finita.
+\end{proof}
 
 \section{Redes.}
 
@@ -608,7 +616,7 @@ Primero supongamos que $(x_\alpha, y_\alpha)\to (x, y)$. Sea $\pi_X : X \times Y
 Ahora supongamos que $x_\alpha \to x$ y $y_\alpha \to y$. Sea $W$ una vecindad abierta básica de $(x,y)$. Entonces existen $U$ abierto de $X$ y $V$ abierto de $Y$ con $W = U \times V$. Como $(x, y) \in U \times V$ resulta que $U$ es una vecindad abierta de $x$ y $V$ es una vecindad abierta de $y$. De esto que existen $\alpha_1, \alpha_2 \in \Lambda$ tal que $x_\alpha \in U$ para $\alpha\geq \alpha_1$ y $y_\alpha \in V$ para $\alpha \geq \alpha_2$. Tomemos $\widehat{\alpha} \in\Lambda$ tal que  $\widehat{\alpha} \geq \alpha_1$ y $\widehat{\alpha} \geq \alpha_2$. Así que para $\alpha \geq \widehat{\alpha}$ se tiene que $x_\alpha \in U$ y $y_\alpha \in V$, de donde $(x_\alpha, y_\alpha) \in U \times V = W$. Concluimos de esto que $(x_\alpha, y_\alpha) \to (x, y)$.
 \end{proof}
 
-El resultado anterior se puede extender a el producto arbitrario de espacios topológicos como lo indica la siguiente proposición.  
+El resultado anterior se puede extender al producto arbitrario de espacios topológicos como lo indica la siguiente proposición.  
 
 \begin{Prop} \label{Prop:ConvergenciaPorComponentesEnProductoArbitrario}
 Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$. Sean $((x_{\alpha, i})_{i \in I})_{\alpha\in \Lambda}$ una red en $\prod_{i\in I} X_i$ y $(x_i)_{i\in I} \in \prod_{i\in I} X_i$, entonces $(x_{\alpha, i})_{i \in I} \to (x_i)_{i\in I}$ en $\prod_{i\in I} X_i$ si, y sólo si $x_{\alpha, j} \to x_j$ en $X_j$ para toda $j \in I$.
@@ -625,6 +633,8 @@ Tomemos $\widehat{\alpha} \in \Lambda$ de tal manera que $\widehat{\alpha} \geq 
 
 Concluimos de esto que $(x_{\alpha, i})_{i\in I} \to (x_i)_{i\in I}$.
 \end{proof}
+
+En la demostración de la proposición anterior se puede observar por qué es indispensable definir la topología producto como se definió y no simplemente como la generada por el producto de abiertos. Pues de lo contrario tal proposición sería falsa.
 
 \begin{Obs}
 Sea $X$ un espacio vectorial. El espacio $\mathcal{F}(\Lambda, X)$ de funciones de $\Lambda$ en $X$ es un espacio vectorial con la suma y producto por escalares definidas puntualmente. De esto podemos considerar la suma de $\Lambda$-redes $(x_\alpha)_{\alpha \in \Lambda}$ y $(y_\alpha)_{\alpha \in \Lambda}$ en $X$ como  
@@ -724,9 +734,8 @@ Supongamos ahora que $X$ no es compacto. Existe entonces una cubierta abierta $\
 \begin{proof}
 Sea $U$ una vecindad abierta de $L$. Tomemos $\varepsilon > 0$ tal que $(L- \varepsilon, L + \varepsilon) \subseteq U$. Como este intervalo es una vecindad abierta de $L$, por hipótesis existen $\alpha_1, \alpha_2 \in \Lambda$ tales que 
 \Ecu{
-g(x_\alpha) \in (L-\varepsilon, &L+\varepsilon)\mbox{ si }\alpha \geq \alpha_1 \\
-&\mbox{ y } \\
-h(x_\alpha) \in (L-\varepsilon, &L+\varepsilon)\mbox{ si }\alpha \geq \alpha_2. 
+g(x_\alpha) \in &(L-\varepsilon, L+\varepsilon)\mbox{ si }\alpha \geq \alpha_1 \mbox{ y }\\
+ h(x_\alpha) \in &(L-\varepsilon, L+\varepsilon)\mbox{ si }\alpha \geq \alpha_2. 
 }
 
 Al tomar $\alpha_0 \in \Lambda$ tal que $\alpha_0 \geq \alpha_1$ y $\alpha_0 \geq \alpha_2$, se cumple que $g(x_\alpha), h(x_\alpha) \in (L- \varepsilon, L + \varepsilon)$, de donde
@@ -747,8 +756,18 @@ Sean $X$ un espacio normado, $A \subseteq X$ cerrado y $x \in X \setminus A$. En
 \end{Prop}
 
 \begin{proof}
-Supongamos que $d(x, A) = 0$. Tomemos $U$ un abierto que incluye a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$. Por lo que $U \cap A \neq \emptyset$. Por lo tanto $x \in \ov{A}$. Como $A$ es cerrado, entonces $A = \ov{A}$ y así $x \in A$. Lo cual es una contradicción.
+Supongamos que $d(x, A) = 0$. Tomemos un abierto $U$ que incluya a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$. Por lo que $U \cap A \neq \emptyset$. Por lo tanto $x \in \ov{A}$. Como $A$ es cerrado, entonces  $x \in A$. Lo cual es una contradicción.
 \end{proof}
+
+
+\begin{Def} 
+\hfill
+\begin{itemize}
+\item \textbf{i)} Sean $X$ y $Y$ espacios vectoriales. Se dice que $X$ y $Y$
+son \textit{isomorfos} como espacios vectoriales si existe $T :  X \to Y$ biyectiva y lineal. En este caso a $T$ se la llama \textit{isomorfismo} de espacios vectoriales.
+\item \textbf{ii)} Sean $X$ y $Y$ espacios normados. Se dice que $X$ y $Y$ son \textit{isomorfos} como espacios normados, si existe un isomorfismo de espacios vectoriales $T: X \to Y$ que también es un homeomorfismo. 
+\end{itemize}
+\end{Def}
 
 \begin{Tma}
 Si $X$ y $Y$ son espacios normados de dimensión finita y de la misma dimensión, entonces son isomorfos como espacios normados.
@@ -779,6 +798,10 @@ De donde $\Norm{I^{-1}(x)} \leq \frac{1}{m} \Norm{x}.$ Así que $I^{-1}$ es un co
 
 Ahora, como $\dim \, Y =  \dim \,  X  = n$, entonces $Y$ y $\ell^n_1$ son también isomorfos como espacios normados y como esta es una relación de equivalencia, entonces $X$ y $Y$ son isomorfos como espacios normados. 
 \end{proof}
+
+\begin{Cor}
+Sea $X$ un espacio normado de dimensión finita. Entonces todas las normas en $X$ son equivalentes entre sí.
+\end{Cor}
 
 \begin{Cor} \label{Cor:FuncionalesLinealesContinuosEspaciosFinitos}
 Sea $X$ un espacio normado de dimensión finita y  $\varphi : X \to \K$ un funcional lineal. Entonces $\varphi$ es continuo. (¿Es mejor poner este corolario en la subsección de topología débil*?)
@@ -1155,6 +1178,9 @@ Aplicando el teorema~\ref{Tma:SeminormasInducenEVT}  se deduce el siguiente coro
 Sea $X$ un espacio normado. Entonces $X^*_{\mathrm{w}^*}$ es un espacio vectorial topológico.
 \end{Cor}
 
+En el espacio dual $X^*$ de un espacio normado $X$ la convergencia en la topología débil* de una red $(\varphi_\alpha)_{\alpha \in \Lambda} \subseteq X^*$ a $\varphi \in X^*$ se denotará por $\wslim_{\alpha \in \Lambda} \varphi_\alpha = \varphi$ o también por $\varphi_\alpha \stackrel{\mathrm{w_*}}{\longrightarrow} \varphi$.
+
+
 \begin{Cor} \label{Cor:CaracterizacionConvergenciaDebilEstrella}
 Sea $X$ un espacio normado. Para una red $(\varphi_\alpha)_{\alpha \in \Lambda} \subseteq X^*$ y $\varphi \in X^*$ se satisface que $\varphi_\alpha \stackrel{\mathrm{w_*}}{\longrightarrow} \varphi$ si, y sólo si $\varphi_\alpha(x) \to \varphi(x)$ para todo $x \in X$.\\
 
@@ -1174,26 +1200,14 @@ $$\sigma(X^*, X) \subseteq \sigma(X^*, X^{**}) \subseteq \tau_{\Norm{\cdot}_{X^*
 La primera contención es igualdad si el espacio $X$ es reflexivo. \\
 
 \begin{Prop} \label{Prop:ReflexivoIdentifiacionCanonicaDebilContinua}
-Sea $X$ un espacio reflexivo. Entonces $J :  X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es un homeomorfismo.
+Si $X$ es un espacio reflexivo, entonces $J :  X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es un homeomorfismo.
 \end{Prop}
 
 \begin{proof}
-Ya sabemos que $J$ es un isomorfismo de espacios vectoriales. Falta verificar que $J$ es abierta y continua. Para eso tomemos una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X_\mathrm{w}$ y $x \in X_\mathrm{w}$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebil} dice que que $x_\alpha \weakarrow x$ si, y sólo si $\varphi(x_\alpha) \to \varphi(x)$ para toda $\varphi \in X^*$. Esto último equivale a que $\delta_{x_\alpha}(\varphi) \to \delta_{x}(\varphi)$ para toda $\varphi \in X^*$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebilEstrella} indica que esto es lo mismo que $\delta_{x_\alpha} \weakstararrow \delta_x$, o bien, $J(x_\alpha) \weakstararrow J(x)$. Por lo que $J$ es continua al igual que $J^{-1}$.
+Dado que $J$ es un isomorfismo de espacios vectoriales, ya sólo falta verificar que $J$ es abierta y continua. Para eso tomemos una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X_\mathrm{w}$ y $x \in X_\mathrm{w}$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebil} dice que que $x_\alpha \weakarrow x$ si, y sólo si $\varphi(x_\alpha) \to \varphi(x)$ para toda $\varphi \in X^*$. Esto último equivale a que $\delta_{x_\alpha}(\varphi) \to \delta_{x}(\varphi)$ para toda $\varphi \in X^*$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebilEstrella} indica que esto es lo mismo que $\delta_{x_\alpha} \weakstararrow \delta_x$, o bien, $J(x_\alpha) \weakstararrow J(x)$. Por lo que $J$ es continua al igual que $J^{-1}$.
 \end{proof}
 
-En el espacio dual $X^*$ de un espacio normado $X$ la convergencia en la topología débil* de una red $(\varphi_\alpha)_{\alpha \in \Lambda} \subseteq X^*$ a $\varphi \in X^*$ se denotará por $\wslim_{\alpha \in \Lambda} \varphi_\alpha = \varphi$ o también por $\varphi_\alpha \stackrel{\mathrm{w_*}}{\longrightarrow} \varphi$.
-
-\begin{Prop}
-Sea $X$ un espacio normado. Entonces $X$ es de dimensión infinita si y sólo si $X^*$ también lo es. (¿Mover mejor a la sección dos donde tratamos asuntos relacionados a dimensión finita?)
-\end{Prop}
-
-\begin{proof}
-Supongamos que $X$ es de dimensión infinita. Entonces para todo $n \in \N$ existe $\{ x_1, \ldots, x_n \} \subseteq X$ linealmente independiente. Sea $V = \mbox{span} \{ x_1, \ldots, x_n \}$, de manera que $\{ x_1, \ldots, x_n \}$ es una base de $V$. Para $i \in \{1, \ldots, n \}$ definamos el funcional lineal $\varphi_i : V \to \K$ dado por $\varphi_i(x_j) = \delta_{ij}$ que es continuo. Por el teorema de Hahn-Banach existe $F_i \in X^*$ tal que $F_i = f_i$ en $V$. Veamos que $\{F_1, \ldots, F_n\}$ es linealmente indenpendiente en $X^*$. Sean $a_1, \ldots, a_n \in K$ tales que $$\sum_{j=1}^n a_i F_i = 0.$$ Al evaluar en $x_i$ obtenemos que $a_i = 0$. Esto muestra que para toda $n \in \N$ existen $n$ funcionales linealmente independientes. Por lo que $X^*$ es de dimensión infinita. \\
-
-Supongamos que $X$ es de dimensión finita $n \in \N$. Existe entonces una base $\{x_1, \ldots, x_n \}$ de $X$. Para $1 \leq i \leq n$ definimos $f_i :X \to \K $ linealmente de tal manera que $f_i(x_j) = \delta_{ij}$. Como $X$ es de dimensión finita el corolario~\ref{Cor:FuncionalesLinealesContinuosEspaciosFinitos} indica que cada $f_i$ es continuo. Veamos que $\{ f_1, \ldots, f_n \}$ generan a $X^*$. Tomamos entonces $f \in X^*$ y supongamos que $f(x_i) = a_i \in \K$ para cada $i \in \{1, \ldots, n\}$. Así, para cada $1 \leq i \leq n$
-$$\left( \sum_{j=1}^n a_j f_j \right)(x_i) = a_i = f(x_i).$$
-Por lo tanto $f = \sum_{j=1}^n a_j f_j$. Esto dice que existe un conjunto finito generador en $X^*$, por lo que $X^*$ es de dimensión finita.
-\end{proof}
+% jajajaja
 
 Si $X$ es un espacio de dimensión infinita, la proposición anterior muestra que $X^*$ es de dimensión infinita, por lo que resulta que $B_{X^*}$ no es compacta respecto a la topología original. El siguiente teorema muestra que bajo la topología débil* sí lo es.
 
@@ -1237,7 +1251,7 @@ Por lo tanto $(d_x)_{x\in X} \in F(B_{X^*})$ y así $F(B_{X^*})$ es cerrado. Como
 \end{proof}
 
 \begin{Cor} 
-Si $X$ es un espacio normado reflexivo, entonces  $B_{X^*}$ es compacta bajo la topología débil en $X^*$.
+Si $X$ es un espacio normado reflexivo, entonces  $B_{X^*}$ es $\mathrm{w}$-compacta.
 \end{Cor}
 
 \begin{proof}
@@ -1250,7 +1264,7 @@ es débilmente compacta.
 \end{Tma}
 
 \begin{proof}
-Supongamos primero que $X$ es reflexivo. Así que $J^{-1}(B_{X^{**}}) = B_X$ (¿lo demuestro?). El teorema de Banach-Alaoglu indica que $B_{X^{**}}$ es $\sigma(X^{**}, X^{*})$-compacto. La proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es abierta y por lo tanto $J^{-1}(B_{X^{**}})$ es $\sigma(X, X^*)$-compacto.
+Supongamos primero que $X$ es reflexivo. Así que $J^{-1}(B_{X^{**}}) = B_X$. El teorema de Banach-Alaoglu indica que $B_{X^{**}}$ es $\sigma(X^{**}, X^{*})$-compacto. La proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es abierta y por lo tanto $J^{-1}(B_{X^{**}})$ es $\sigma(X, X^*)$-compacto.
 \end{proof}
 
 \section{Medibilidad.}
