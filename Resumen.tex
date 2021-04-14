@@ -77,53 +77,12 @@
 \let\emptyset\varnothing
 
 
-\newcommand{\inicio}[6]{
-\fancyhead[LO, RE]{#1. Tarea #2.}
-\fancyhead[RO, LE]{DEMAT.}
-\fancyfoot[LO, RE]{#3, #4.} 
-\fancyfoot[Co, CE]{\empty}
-\fancyfoot[RO, LE]{P\'agina \thepage\;de \pageref{ultimapagina}}
 
 
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\headheight}{15.71667pt}
-\renewcommand{\footrulewidth}{0.4pt}
-\fancyheadoffset{0cm} 
-\fancypagestyle{plain}{
-\fancyhf{}
-\cfoot{\empty}
-\rfoot{P\'agina \thepage\;de \pageref{ultimapagina}}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\headheight}{15.71667pt}
-\renewcommand{\footrulewidth}{0.4pt}
-\fancyheadoffset{0cm} 
-}
-\noindent \fbox{
-\begin{minipage}[c]{18.07cm}
-\begin{center}
-\bigskip
-\begin{LARGE}
-\textbf{Capítulo IV: El Teorema de Orlicz-Pettis}\\
-
-\end{LARGE}
-\begin{large}
-\begin{equation*}
-\begin{split}
-\textbf{Materia: }& \textrm {#1}.\\
-\textbf{Alumno: }& \textrm{#3}.\\
-\textbf{Correo: }& \textrm{#5} \\
-\textbf{Profesor: }& \textrm{#4}.\\
-\end{split}
-\end{equation*}
-
-\end{large}
-\end{center}
-\end{minipage}
-}}
-
+\usepackage[margin=2cm,top=2.5cm,headheight=16pt,headsep=0.1in,heightrounded]{geometry}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=2cm]{geometry}
+%\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=2cm]{geometry}
 \author{Irwin Hetmmet}
 \title{Hetmmet, Tareas}
 
@@ -394,6 +353,11 @@ Recordemos que $(X, \Norm{\cdot})$ es un \textit{espacio normado} si $X$ es un e
 \begin{Ejem}
 Dados $n \in \N$ y $p \geq 1$, el espacio $\K^n$ con la norma $$\Norm{(x_1, \ldots, x_n)}_p := \left(\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}}$$ es un espacio normado al cual denotamos $\ell^n_p$.
 \end{Ejem}
+
+\begin{proof}
+Aquí encontré dos opciones. La primera es desarrollar de la misma manera que usted lo hace en su libro utilizando exponentes conjugados y la desigualdad de Hölder. La segunda opción es la demostración de Terrence Tao que encontré \href{https://math.stackexchange.com/questions/447747/how-to-prove-triangle-inequality-for-p-norm}{aquí}. Sólo habría que demostrar el detalle de que $z \to z^p$ es convexa.
+¿Prefiere alguna de estas dos más que la otra?
+\end{proof}
 
 En un espacio normado $X$ denotamos a la \textit{bola abierta} de centro $y \in X$ y radio $r > 0$ por
 $$V_r(y) = \{ x \in X : \Norm{x-y} < r \}.$$
@@ -774,9 +738,9 @@ Si $X$ y $Y$ son espacios normados de dimensión finita y de la misma dimensión, 
 \end{Tma}
 
 \begin{proof}
-Supongamos que $\dim \, X = n \in \N$ y sea $\{ x_1, \ldots, x_n \}$ Demostraremos que $X$ es isomorfo como espacio normado a $\ell_1^n$ por medio de la función 
+Supongamos que $\dim \, X = n \in \N$ y sea $\{ x_1, \ldots, x_n \}$ Demostraremos que $X$ es isomorfo como espacio normado a $\ell_2^n$ por medio de la función 
 \Ecu{
-I: \ell_1^n & \to X \\
+I: \ell_2^n & \to X \\
 (a_1, \ldots, a_n) & \mapsto \sum_{i=1}^n a_i x_i. 
 }
 Si $a = (a_1, \ldots, a_n), b = (b_1, \ldots, b_n) \in \ell_1^n$ cumplen que $I(a) = I(b)$, entonces $\sum_{i=1}^n (a_i - b_i)x_i = 0$. Como $\{x_1, \ldots, x_n \}$ es linealmente independiente, entonces $a_1 - b_1 = \ldots = a_n - b_n = 0$. Así que $a = b$ y $I$ es inyectiva. \\
@@ -788,15 +752,21 @@ Veamos que $I$ es lineal. Dados $(a_1, \ldots, a_n), (b_1, \ldots, b_n) \in \ell
 I((a_1, \ldots, a_n) + \lambda (b_1, \ldots, b_n)) &= I((a_1 + \lambda b_1, \ldots, a_n + \lambda b_n)) = \sum_{i=1}^n (a_i + \lambda b_i) x_i \\
 &= \sum_{i=1}^n a_i  x_i +  \lambda\sum_{i=1}^n  b_i x_i = I(a_1, \ldots, a_n) + \lambda I(b_1, \ldots, b_n).
 }
-Ahora, tomemos $(a_1, \ldots, a_n) \in \ell_1^n$. Por la desigualdad del triángulo tenemos que $$\Norm{I(a_1, \ldots, a_n)} = \Norm{\sum_{i=1}^n a_i x_i} \leq \sum_{i=1}^n \abs{a_i} \Norm{x_i} \leq \left( \max_{1\leq i \leq n} \Norm{x_i} \right) \sum_{i=1}^n \abs{a_i} = \left( \max_{1\leq i \leq n} \Norm{x_i} \right) \Norm{(a_1, \ldots, a_n)}_1. $$
+Ahora, tomemos $(a_1, \ldots, a_n) \in \ell_1^n$. Por la desigualdad del triángulo y la desigualdad de Schwarz 
+\Ecu{
+\Norm{I(a_1, \ldots, a_n)} & = \Norm{\sum_{i=1}^n a_i x_i} \leq \sum_{i=1}^n \abs{a_i} \Norm{x_i} \\
+&\leq \left( \sum_{i=1}^n \Norm{x_i}^2 \right)^{\frac{1}{2}} \left( \sum_{i=1}^n \Norm{a_i}^2 \right)^{\frac{1}{2}} \\
+&= \left( \sum_{i=1}^n \Norm{x_i}^2 \right)^{\frac{1}{2}} \Norm{(a_1, \ldots, a_n)}_2.
+}
+
 Esto indica que $I$ es un operador lineal acotado y por lo tanto continuo. \\
 
-Ahora consideremos la función $f = \Norm \circ I$. Como la norma es una función continua (¿lo demuestro en el capítulo anterior?) y $I$ es continua, entonces $f$ es continua. Dado que $S_{\ell_1^n} := \{ (a_1, \ldots, a_n) \in \K^n  : \Norm{(a_1, \ldots, a_n)}_1 = 1 \}$  es compacto en $\ell_1^n$ (¿lo demuestro?) se sigue que $f$ alcanza un valor mínimo $m \in \K$ en $S_{\ell_1^n}$. Como $f \geq 0$, entonces $m \geq 0$. Supongamos que $m = 0$. Entonces existe $(a_1, \ldots, a_n) \in S_{\ell_1^n}$ tal que $$ \Norm{\sum_{i=1}^n a_i x_i} = f(a_1, \ldots, a_n) = 0.$$
-Por lo que $\sum_{i=1}^n a_i x_i = 0$ y esto indica que $a_1 = \ldots = a_n = 0$. Lo cual es una contradicción, pues  entonces $\Norm{(a_1, \ldots, a_n)} = 0$. Así que $m > 0$ y $\frac{1}{m} > 0$. Para todo $x \in X$ con $x \neq 0$ se cumple que $I^{-1}(x) \neq 0$, $\frac{I^{-1}(x)}{\Norm{I^{-1}(x)}} \in S_{\ell_1^n}$ y 
+Ahora consideremos la función $f = \Norm{\cdot} \circ I$. Como la norma es una función continua (¿lo demuestro en el capítulo anterior?) y $I$ es continua, entonces $f$ es continua. Dado que $S_{\ell_2^n} := \{ (a_1, \ldots, a_n) \in \K^n  : \Norm{(a_1, \ldots, a_n)}_2 = 1 \}$  es compacto en $\ell_2^n$  se sigue que $f$ alcanza un valor mínimo $m \in \K$ en $S_{\ell_2^n}$. Como $f \geq 0$, entonces $m \geq 0$. Supongamos que $m = 0$. Entonces existe $(a_1, \ldots, a_n) \in S_{\ell_2^n}$ tal que $$ \Norm{\sum_{i=1}^n a_i x_i} = f(a_1, \ldots, a_n) = 0.$$
+Por lo que $\sum_{i=1}^n a_i x_i = 0$ y esto indica que $a_1 = \ldots = a_n = 0$. Lo cual es una contradicción, pues  entonces $\Norm{(a_1, \ldots, a_n)} = 0$. Así que $m > 0$ y $\frac{1}{m} > 0$. Para todo $x \in X$ con $x \neq 0$ se cumple que $I^{-1}(x) \neq 0$, $\frac{I^{-1}(x)}{\Norm{I^{-1}(x)}} \in S_{\ell_2^n}$ y 
 $$\frac{\Norm{x}}{\Norm{I^{-1}(x)}} = \Norm{I\left(\frac{I^{-1}(x)}{\Norm{I^{-1}(x)}}\right)} = f\left(\frac{I^{-1}(x)}{\Norm{I^{-1}(x)}}\right) \geq m. $$
-De donde $\Norm{I^{-1}(x)} \leq \frac{1}{m} \Norm{x}.$ Así que $I^{-1}$ es un continua y $I$ es un isomorfismo de espacios normados.
+De donde $\Norm{I^{-1}(x)} \leq \frac{1}{m} \Norm{x}$, $I^{-1}$ es un continua y $I$ es un isomorfismo de espacios normados. \\
 
-Ahora, como $\dim \, Y =  \dim \,  X  = n$, entonces $Y$ y $\ell^n_1$ son también isomorfos como espacios normados y como esta es una relación de equivalencia, entonces $X$ y $Y$ son isomorfos como espacios normados. 
+Ahora, como $\dim \, Y =  \dim \,  X  = n$, entonces $Y$ y $\ell^n_2$ son también isomorfos como espacios normados y como esta es una relación de equivalencia, entonces $X$ y $Y$ son isomorfos como espacios normados. 
 \end{proof}
 
 \begin{Cor}
@@ -804,15 +774,15 @@ Sea $X$ un espacio normado de dimensión finita. Entonces todas las normas en $X$
 \end{Cor}
 
 \begin{Cor} \label{Cor:FuncionalesLinealesContinuosEspaciosFinitos}
-Sea $X$ un espacio normado de dimensión finita y  $\varphi : X \to \K$ un funcional lineal. Entonces $\varphi$ es continuo. (¿Es mejor poner este corolario en la subsección de topología débil*?)
+Sea $X$ un espacio normado de dimensión finita y  $\varphi : X \to \K$ un funcional lineal. Entonces $\varphi$ es continuo. 
 \end{Cor}
 
 \begin{proof}
 Sea $\dim \, X = n \in \N$ y $\{ x_1, \ldots, x_n \} \subseteq X$ una base de $X$. Sean $I$ y $m$ como en la demostración de la proposición anterior. Tomemos $x \in X$ y $(a_1, \ldots, a_n) = I^{-1}(x)$. Entonces 
 \Ecu{
 \Norm{\varphi(x)} &= \Norm{\varphi\left(\sum_{i=1}^n a_i x_i \right)} = \Norm{\sum_{i=1}^n a_i \varphi (x_i) } \\
-& \leq \sum_{i=1}^n \abs{a_i} \Norm{\varphi(x_i)} \leq \left( \max_{1 \leq i \leq n} \Norm{\varphi(x_i)} \right) \sum_{i=1}^n \abs{a_i} \\
-& \leq \left( \max_{1 \leq i \leq n} \Norm{\varphi(x_i)} \right) \Norm{a_1, \ldots, a_n}_1 \leq  \left( \max_{1 \leq i \leq n} \Norm{\varphi(x_i)} \right) \frac{1}{m} \Norm{x}.
+& \leq \sum_{i=1}^n \abs{a_i} \Norm{\varphi(x_i)} \leq \left( \sum_{i=1}^n \Norm{\varphi(x_i)}^2  \right)^{\frac{1}{2}} \left( \sum_{i=1}^n \abs{a_i}^2  \right)^{\frac{1}{2}} \\
+& \leq \left( \sum_{i=1}^n \Norm{\varphi(x_i)}^2  \right)^{\frac{1}{2}} \Norm{a_1, \ldots, a_n}_2   \leq  \left( \sum_{i=1}^n \Norm{\varphi(x_i)}^2  \right)^{\frac{1}{2}} \frac{1}{m} \Norm{x}.
 } 
 Así que $\varphi$ es un operador lineal acotado y por tanto continuo. 
 \end{proof}
