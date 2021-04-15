@@ -75,7 +75,7 @@
 \newcommand{\Ze}[1]{\Z / #1 \Z}
 \let\oldemptyset\emptyset
 \let\emptyset\varnothing
-
+\setlength{\parskip}{0.4em}
 
 
 
@@ -95,7 +95,7 @@
 
 \section{Topología y espacio vectorial topológico.}
 
-A lo largo de este trabajo denotaremos por $\K$ el campo de los números reales o de los números complejos. Un aspecto muy importante de los espacios normados, sobre los cuales estaremos enfocándonos, es su topología, así que recordemos algunos de sus conceptos principales. \\
+Un aspecto muy importante de los espacios normados, sobre los cuales estaremos enfocándonos, es su topología, así que recordemos algunos de sus conceptos principales. \\
 
 Sea $X$ un conjunto no vacío. Una \textit{topología} $\tau$ de $X$ es una familia de subconjuntos de $X$ que cumple las siguientes propiedades:
 \begin{itemize}
@@ -106,17 +106,19 @@ Sea $X$ un conjunto no vacío. Una \textit{topología} $\tau$ de $X$ es una famili
 
 En este caso la pareja $(X, \tau)$ es un \textit{espacio topológico}, a los elementos de $\tau$ los llamamos \textit{abiertos} y a sus complementos \textit{cerrados}. \\
 
+\setlength{\parskip}{0em}
 Un subconjunto $V$ de $X$ es una \textit{vecindad} de $x \in X$, si existe un abierto $U$ tal que $$x \in U \subseteq V.$$ 
-En este caso decimos que $x$ es un punto interior de $V$. Al conjunto de puntos interiores de $V$ en $X$ lo denotamos por $V^0$. Claramente, $V^0 \subseteq V$. \\
 
-Si además de ser una vecindad de $x \in X$, $V$ es abierto, diremos que $V$ es una \textit{vecindad abierta} de $x$. En otras palabras, $V$ es una vecindad abierta de $x$ si, y sólo si $V$ es un abierto que contiene a $x$.
+En este caso también decimos que $x$ es un \textit{punto interior} de $V$. Al conjunto de puntos interiores de $V$ en $X$ lo denotamos por $V^0$. Claramente, $V^0 \subseteq V$. \setlength{\parskip}{0.4em}
+
+Si además de ser una vecindad de $x \in X$, $V$ es abierto, diremos que $V$ es una \textit{vecindad abierta} de $x$. En otras palabras, $V$ es una vecindad abierta de $x$ si, y sólo si $V$ es un abierto que lo contiene.
 
 \begin{Lema} \label{Lema:CaracterizacionAbierto}
 Sea $X$ un espacio topológico y $V \subseteq X$. Entonces $V$ es abierto si, y sólo si $V$ es un vecindad de $x$ para todo $x \in V$. En otras palabras, $V$ es abierto si, y sólo si $V = V^0$. 
 \end{Lema}
 
 \begin{proof}
-Supongamos primero que $V$ es abierto y sea $x \in V$. Entonces $V$ es una vecindad de $x$. \\
+Supongamos que $V$ es abierto y sea $x \in V$. Entonces $V$ es una vecindad de $x$. 
 
 Supongamos ahora que $V$ es una vecindad de $x$ para todo $x \in V$. Así, para cada $x \in V$ existe un abierto $U_x$ tal que $x \in U_x \subseteq V$. De donde $$V = \bigcup_{x \in V} U_x$$ es abierto.
 \end{proof}
@@ -134,7 +136,7 @@ Sean $X$ y $Y$ dos espacios topológicos y $f: X \to Y$. Entonces $f$ es continua
 \end{Prop}
 
 \begin{proof}
-Supongamos que $f$ es continua. Sea $V$ un abierto en $Y$. Para cada $x \in f^{-1}(V)$, $V$ es vecindad abierta de $f(x)$, por lo que existe $U_x$ vecindad abierta de $x$ tal que $f(U_x) \subseteq V$ y por lo tanto $U_x \subseteq f^{-1}(V)$. De esto se puede concluir que  $$f^{-1}(V) = \bigcup_{x \in f^{-1}(V)} U_x$$ es abierto. \\
+Supongamos que $f$ es continua. Sea $V$ un abierto en $Y$. Para cada $x \in f^{-1}(V)$, $V$ es vecindad abierta de $f(x)$, por lo que existe $U_x$ vecindad abierta de $x$ tal que $f(U_x) \subseteq V$ y por lo tanto $U_x \subseteq f^{-1}(V)$. De esto se puede concluir que  $$f^{-1}(V) = \bigcup_{x \in f^{-1}(V)} U_x$$ es abierto. 
 
 Ahora supongamos que $f^{-1}(V)$ es abierto en $X$ para todo abierto $V$ en $Y$ y tomemos $x \in X$. Sea $V$ una vecindad abierta de $f(x)$. Entonces $f^{-1}(V)$ es abierto en $X$. Como $f(x) \in V$, entonces $x \in f^{-1}(V)$ y por lo tanto $f^{-1}(V)$ es una vecindad abierta de $x$. Además $f(f^{-1}(V)) \subseteq V.$
 \end{proof}
@@ -173,7 +175,7 @@ Sea $\mathcal{B}$ una familia de abiertos de un espacio topológico $X$. Entonces
 Supongamos primero que $\mathcal{B}$ es una base de $X$. Sea $U$ abierto en $X$ y $x \in U$. Como $U$ es abierto, existen un conjunto $\Lambda$ y $B_\alpha \in \mathcal{B}$ para cada $\alpha \in \Lambda$ tales que 
 $$U = \bigcup_{\alpha \in \Lambda} B_\alpha.$$
 
-De manera que existe $\alpha \in\Lambda$ tal que $x \in B_\alpha \subseteq U$. \\
+De manera que existe $\alpha \in\Lambda$ tal que $x \in B_\alpha \subseteq U$. 
 
 Ahora supongamos que para cada abierto $U$ y $x \in U$ existe $B \in \mathcal{B}$ tal que $x \in B \subseteq U$. Entonces:
 \begin{itemize}
@@ -218,6 +220,35 @@ Si por otro lado suponemos que  $A = \ov{A}$, entonces \textbf{i)} indica que $A
 \end{itemize}
 \end{proof}
 
+\begin{Def}
+Sean $X$ y $Y$ espacios topológicos. Un \textit{homeomorfismo} entre $X$ y $Y$ es una función $f:X \to Y$ que es biyectiva, continua y de inversa continua.
+\end{Def}
+
+\begin{Prop} \label{Prop:HomeomorfismoPreservaCerrados}
+Sean $X$ y $Y$ espacios topológicos y $f: X \to Y$ un homeomorfismo. Entonces $f$ preserva abiertos y cerrados.
+\end{Prop}
+
+\begin{proof}
+El que $f$ preserve abiertos se sigue de inmediato del hecho de que $f^{-1}$ es continua y de la proposición~\ref{Prop:CaracterizacionContinuidadPorPreimagenesDeAbiertos}. \\
+
+Sea $A$ un conjunto cerrado. Entonces $X \setminus A$ es abierto. Como $f$ preserva abiertos $f(X \setminus A) = Y \setminus f(A)$ es abierto y así $f(A)$ es cerrado. 
+\end{proof}
+
+\begin{Def}
+Un subconjunto $K$ de un espacio topológico $X$ es \textit{compacto} si para cualquier colección $\{ U_\alpha \}_{\alpha \in \Lambda}$ de abiertos tales que $$K \subseteq \bigcup_{\alpha \in \Lambda} U_\alpha$$ existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ tales que $$K \subseteq \bigcup_{i=1}^n U_{\alpha_i}.$$
+\end{Def}
+
+
+\begin{Prop} \label{Prop:HomeomorfismoPreservaCompactos}
+Sean $X$ y $Y$ espacios topológicos y $f:X \to Y$ una función continua. Entonces $f$ preserva compactos.
+\end{Prop}
+
+\begin{proof}
+Sea $K$ un conjunto compacto y $(U_{\alpha})_{\alpha \in \Lambda}$ una cubierta abierta de $f(K)$, entonces $(f^{-1}(U_\alpha))_{\alpha \in \Lambda}$ es una cubierta abierta de $K$ por ser $f$ continua. Por lo que existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ con $$K \subseteq\bigcup_{i=1}^n f^{-1} (U_\alpha).$$
+
+De donde $(U_{\alpha_i})_{i=1}^n$ es una cubierta finita de $f(K)$ y así este es un conjunto compacto.
+\end{proof}
+
 Sean $X$ y $Y$ dos espacios topológicos. En $X \times Y$ trabajamos con la \textit{topología producto}, que es la generada por la base $\{ U\times V : U \mbox{ abierto  en } X \mbox{ y } V \mbox{ abierto en } Y \}$. Consideremos las \textit{proyecciones canónicas} en $X$ y $Y$
 \Ecu{
 \pi_X : X \times Y & \to X \hspace*{1cm} \mbox{ y } \hspace*{1cm} \pi_Y : X \times Y  \to X \\
@@ -233,7 +264,7 @@ Sean $E, X$ y $Y$ espacios topológicos y $f: E \to X \times Y$. Entonces $f$ es 
 \end{Prop}
 
 \begin{proof}
-Si $f$ es continua, entonces $\pi_X \circ f$ y $\pi_Y \circ f$ también lo son, ya que $\pi_X$ y $\pi_Y$ lo son y la composición de funciones continuas es continua. \\
+Si $f$ es continua, entonces $\pi_X \circ f$ y $\pi_Y \circ f$ también lo son, ya que $\pi_X$ y $\pi_Y$ lo son y la composición de funciones continuas es continua. 
 
 Supongamos ahora que $\pi_X \circ f$ y $\pi_Y \circ f$ son continuas. Sea $U \times V$ un abierto básico de $X \times Y$, de manera que $U$ es abierto en $X$ y $V$ es abierto en $Y$. Entonces $(\pi_X \circ f)^{-1}(U)$ y $(\pi_Y \circ f)^{-1}(V)$ son abiertos en $E$ por lo que según la proposición~\ref{Prop:ContinuidadPorBasicos} también lo es  
 $$f^{-1}(U \times V) = (\pi_X \circ f)^{-1}(U) \bigcap (\pi_Y \circ f)^{-1}(V).$$
@@ -254,23 +285,10 @@ Sea $I$ un conjunto no vacío y $X_i$ espacios topológicos para cada $i \in I$. L
 Veamos que con esta definición de topología producto las proyecciones son continuas. Fijemos $i \in I$ y tomemos cualquier abierto $U_i$ en $X_i$. Entonces $\pi_i^{-1}(U_i)$ es un básico de $\prod_{i\in I} X_i$ y por tanto es abierto. Esto indica que $\pi_i$ es continua. \\ 
 
 \begin{Def}
-Sean $X$ y $Y$ espacios topológicos. Un \textit{homeomorfismo} entre $X$ y $Y$ es una función $f:X \to Y$ que es biyectiva, continua y de inversa continua.
-\end{Def}
-
-\begin{Prop} \label{Prop:HomeomorfismoPreservaCerrados}
-Sean $X$ y $Y$ espacios topológicos y $f: X \to Y$ un homeomorfismo. Entonces $f$ preserva abiertos y cerrados.
-\end{Prop}
-
-\begin{proof}
-El que $f$ preserve abiertos se sigue de inmediato del hecho de que $f^{-1}$ es continua y de la proposición~\ref{Prop:CaracterizacionContinuidadPorPreimagenesDeAbiertos}. \\
-
-Sea $A$ un conjunto cerrado. Entonces $X \setminus A$ es abierto. Como $f$ preserva abiertos $f(X \setminus A) = Y \setminus f(A)$ es abierto y así $f(A)$ es cerrado. 
-\end{proof}
-
-
-\begin{Def}
 Sea $X$ un espacio topológico. Diremos que $X$ es \textit{Hausdorff} si para todos $x, y \in X$ existen abiertos $U, V$ tales que $x \in V$, $y \in U$ y $U\cap V = \emptyset$.
 \end{Def}
+
+A lo largo de este trabajo denotaremos por $\K$ el campo de los números reales o de los números complejos. \\
 
 Supongamos que $\tau$ es una topología de un espacio vectorial $X$ sobre $\K$ tal que:
 \begin{itemize}
@@ -307,7 +325,7 @@ Claramente $T_{-x} = T_x^{-1}$ y $D_{\lambda^{-1}} = D_\lambda^{-1}$, de manera 
 e_{x} : X &\to X \times X  \\
 y &\mapsto (x, y)
 } 
-Notemos que para $y \in X$ se tiene que $(\pi_X \circ e_{x})(y) = x$ y $(\pi_Y \circ e_{x})(y) = y$. Esto indica que $\pi_X \circ e_{x}$ es constante y $\pi_Y \circ e_{x}$ es la identidad en $X$ y por lo tanto ambas son continuas. Por la proposición~\ref{Prop:ContinuidadPorComponentes} se tiene que $e_{x}$ es continua.  De manera que $T_x = + \circ e_x$ es continua. Como la $x$ fue arbitraria, entonces $T_{-x}$ también es continua. \\
+Notemos que para $y \in X$ se tiene que $(\pi_X \circ e_{x})(y) = x$ y $(\pi_Y \circ e_{x})(y) = y$. Esto indica que $\pi_X \circ e_{x}$ es constante y $\pi_Y \circ e_{x}$ es la identidad en $X$ y por lo tanto ambas son continuas. Por la proposición~\ref{Prop:ContinuidadPorComponentes} se tiene que $e_{x}$ es continua. De manera que $T_x = + \circ e_x$ es continua. Como la $x$ fue arbitraria, entonces $T_{-x}$ también es continua. \\
 
 De manera similar definimos 
 \Ecu{
@@ -329,21 +347,6 @@ Sean $X, Y$ espacios vectoriales topológicos. Si $T:X \to Y$ es lineal y continu
 
 \begin{proof}
 Sea $x \in X$. Veremos que $T$ es continua en $x$. Sea $U$ una vecindad abierta de $Tx$ de manera que $Tx \in U$. Entonces $U_0 := U - Tx$ es abierto en $Y$ y además $0 \in U_0$. Como $T$ es continua en $0$, existe un abierto $V_0$ del cero tal que $Ty \in U_0$ si $y \in V_0$. Así que $x \in V_0 +x$ y $ V_0 + x$ es una vecindad abierta de $x$. Si $y \in V_0 + x$, entonces $y-x \in V_0$, de manera que $Ty -Tx = T(y-x) \in U_0 = U - Tx$, de donde $Ty \in U$. Así que $T$ es continua en $x$. 
-\end{proof}
-
-\begin{Def}
-Un subconjunto $K$ de un espacio topológico $X$ es \textit{compacto} si para cualquier colección $\{ U_\alpha \}_{\alpha \in \Lambda}$ de abiertos tales que $$K \subseteq \bigcup_{\alpha \in \Lambda} U_\alpha$$ existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ tales que $$K \subseteq \bigcup_{i=1}^n U_{\alpha_i}.$$
-\end{Def}
-
-
-\begin{Prop} \label{Prop:HomeomorfismoPreservaCompactos}
-Sean $X$ y $Y$ espacios topológicos y $f:X \to Y$ una función continua. Entonces $f$ preserva compactos.
-\end{Prop}
-
-\begin{proof}
-Sea $K$ un conjunto compacto y $(U_{\alpha})_{\alpha \in \Lambda}$ una cubierta abierta de $f(K)$, entonces $(f^{-1}(U_\alpha))_{\alpha \in \Lambda}$ es una cubierta abierta de $K$ por ser $f$ continua. Por lo que existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ con $$K \subseteq\bigcup_{i=1}^n f^{-1} (U_\alpha).$$
-
-De donde $(U_{\alpha_i})_{i=1}^n$ es una cubierta finita de $f(K)$ y así este es un conjunto compacto.
 \end{proof}
 
 \subsection{Espacios normados.}
