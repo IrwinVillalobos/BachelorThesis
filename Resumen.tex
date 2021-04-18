@@ -229,9 +229,9 @@ Sean $X$ y $Y$ espacios topológicos y $f: X \to Y$ un homeomorfismo. Entonces $f
 \end{Prop}
 
 \begin{proof}
-El que $f$ preserve abiertos se sigue de inmediato del hecho de que $f^{-1}$ es continua y de la proposición~\ref{Prop:CaracterizacionContinuidadPorPreimagenesDeAbiertos}. \\
+El que $f$ preserve abiertos se sigue de inmediato del hecho de que $f^{-1}$ es continua y de la proposición~\ref{Prop:CaracterizacionContinuidadPorPreimagenesDeAbiertos}. 
 
-Sea $A$ un conjunto cerrado. Entonces $X \setminus A$ es abierto. Como $f$ preserva abiertos $f(X \setminus A) = Y \setminus f(A)$ es abierto y así $f(A)$ es cerrado. 
+Sea $A$ un conjunto cerrado. Entonces $X \setminus A$ es abierto. Como $f$ preserva abiertos $f(X \setminus A)$ es abierto. Dado que $f$ es biyectiva se tiene que $Y \setminus f(A) = f(X \setminus A)$ es abierto y así $f(A)$ es cerrado. 
 \end{proof}
 
 \begin{Def}
@@ -244,9 +244,9 @@ Sean $X$ y $Y$ espacios topológicos y $f:X \to Y$ una función continua. Entonces
 \end{Prop}
 
 \begin{proof}
-Sea $K$ un conjunto compacto y $(U_{\alpha})_{\alpha \in \Lambda}$ una cubierta abierta de $f(K)$, entonces $(f^{-1}(U_\alpha))_{\alpha \in \Lambda}$ es una cubierta abierta de $K$ por ser $f$ continua. Por lo que existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ con $$K \subseteq\bigcup_{i=1}^n f^{-1} (U_\alpha).$$
+Sea $K$ un conjunto compacto y $(U_{\alpha})_{\alpha \in \Lambda}$ una cubierta abierta de $f(K)$, entonces $(f^{-1}(U_\alpha))_{\alpha \in \Lambda}$ es una cubierta abierta de $K$ por ser $f$ continua. Por lo que existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ tales que $$K \subseteq\bigcup_{i=1}^n f^{-1} (U_\alpha).$$
 
-De donde $(U_{\alpha_i})_{i=1}^n$ es una cubierta finita de $f(K)$ y así este es un conjunto compacto.
+Luego, $(U_{\alpha_i})_{i=1}^n$ es una cubierta finita de $f(K)$ y así este es un conjunto compacto.
 \end{proof}
 
 Sean $X$ y $Y$ dos espacios topológicos. En $X \times Y$ trabajamos con la \textit{topología producto}, que es la generada por la base $\{ U\times V : U \mbox{ abierto  en } X \mbox{ y } V \mbox{ abierto en } Y \}$. Consideremos las \textit{proyecciones canónicas} en $X$ y $Y$
@@ -288,7 +288,7 @@ Veamos que con esta definición de topología producto las proyecciones son contin
 Sea $X$ un espacio topológico. Diremos que $X$ es \textit{Hausdorff} si para todos $x, y \in X$ existen abiertos $U, V$ tales que $x \in V$, $y \in U$ y $U\cap V = \emptyset$.
 \end{Def}
 
-A lo largo de este trabajo denotaremos por $\K$ el campo de los números reales o de los números complejos. \\
+A lo largo de este trabajo denotaremos por $\K$ el campo de los números reales o de los números complejos. 
 
 Supongamos que $\tau$ es una topología de un espacio vectorial $X$ sobre $\K$ tal que:
 \begin{itemize}
@@ -325,7 +325,7 @@ Claramente $T_{-x} = T_x^{-1}$ y $D_{\lambda^{-1}} = D_\lambda^{-1}$, de manera 
 e_{x} : X &\to X \times X  \\
 y &\mapsto (x, y)
 } 
-Notemos que para $y \in X$ se tiene que $(\pi_X \circ e_{x})(y) = x$ y $(\pi_Y \circ e_{x})(y) = y$. Esto indica que $\pi_X \circ e_{x}$ es constante y $\pi_Y \circ e_{x}$ es la identidad en $X$ y por lo tanto ambas son continuas. Por la proposición~\ref{Prop:ContinuidadPorComponentes} se tiene que $e_{x}$ es continua. De manera que $T_x = + \circ e_x$ es continua. Como la $x$ fue arbitraria, entonces $T_{-x}$ también es continua. \\
+Notemos que para $y \in X$ se tiene que $(\pi_X \circ e_{x})(y) = x$ y $(\pi_Y \circ e_{x})(y) = y$. Esto indica que $\pi_X \circ e_{x}$ es constante y $\pi_Y \circ e_{x}$ es la identidad en $X$ y por lo tanto ambas son continuas. Por la proposición~\ref{Prop:ContinuidadPorComponentes} se tiene que $e_{x}$ es continua. De manera que $T_x = + \circ e_x$ es continua. Como la $x$ fue arbitraria, entonces $T_{-x}$ también es continua. 
 
 De manera similar definimos 
 \Ecu{
@@ -349,94 +349,7 @@ Sean $X, Y$ espacios vectoriales topológicos. Si $T:X \to Y$ es lineal y continu
 Sea $x \in X$. Veremos que $T$ es continua en $x$. Sea $U$ una vecindad abierta de $Tx$ de manera que $Tx \in U$. Entonces $U_0 := U - Tx$ es abierto en $Y$ y además $0 \in U_0$. Como $T$ es continua en $0$, existe un abierto $V_0$ del cero tal que $Ty \in U_0$ si $y \in V_0$. Así que $x \in V_0 +x$ y $ V_0 + x$ es una vecindad abierta de $x$. Si $y \in V_0 + x$, entonces $y-x \in V_0$, de manera que $Ty -Tx = T(y-x) \in U_0 = U - Tx$, de donde $Ty \in U$. Así que $T$ es continua en $x$. 
 \end{proof}
 
-\subsection{Espacios normados.}
 
-Recordemos que $(X, \Norm{\cdot})$ es un \textit{espacio normado} si $X$ es un espacio vectorial sobre $\K$ y $\Norm{\cdot}$ es una norma en $X$. Si además $X$ es completo bajo esta norma, decimos que $X$ es un \textit{espacio de Banach}. Esto significa que en un espacio de Banach las sucesiones de Cauchy convergen. \\
-
-\begin{Ejem}
-Dados $n \in \N$ y $p \geq 1$, el espacio $\K^n$ con la norma $$\Norm{(x_1, \ldots, x_n)}_p := \left(\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}}$$ es un espacio normado al cual denotamos $\ell^n_p$.
-\end{Ejem}
-
-\begin{proof}
-Aquí encontré dos opciones. La primera es desarrollar de la misma manera que usted lo hace en su libro utilizando exponentes conjugados y la desigualdad de Hölder. La segunda opción es la demostración de Terrence Tao que encontré \href{https://math.stackexchange.com/questions/447747/how-to-prove-triangle-inequality-for-p-norm}{aquí}. Sólo habría que demostrar el detalle de que $z \to z^p$ es convexa.
-¿Prefiere alguna de estas dos más que la otra?
-\end{proof}
-
-En un espacio normado $X$ denotamos a la \textit{bola abierta} de centro $y \in X$ y radio $r > 0$ por
-$$V_r(y) = \{ x \in X : \Norm{x-y} < r \}.$$
-
-y la \textit{bola cerrada} de centro $y \in X$ y radio $r > 0$ por
-$$B_r(y) = \{ x \in X : \Norm{x-y} \leq r \}.$$
-
-El caso particular de la \textit{bola unitaria cerrada} se denotará por $B_X$. \\
-
-\begin{Def}
-En el espacio normado $X$ definimos la \textit{topología original} de $X$ de manera que $U$ es un abierto de $X$ si, y sólo si para todo $x \in U$ existe $r > 0$ tal que $V_r(x) \subseteq U$.
-\end{Def}
-
-
-La siguiente proposición indica que en un espacio normado $X$ las bolas abiertas forman una base de la topología original de $X$.
-
-\begin{Prop} \label{Prop:BaseDeEntonrnosEspaciosNormados}
-Sea $X$ un espacio normado. El conjunto $$\mathcal{B} := \{ V_r(x) : r > 0, x \in X \}$$ es una base de $X$.
-\end{Prop}
-
-\begin{proof}
-Tomemos $V_r(x) \in \mathcal{B}$ para algunos $r > 0$ y $x \in X$. Verifiquemos que $V_r(x)$ es abierto en $X$. Tomemos $y \in V_r(x)$.  Consideremos $s = r - \Norm{x-y}$. Así pues si $z \in V_s(y)$, entonces $\Norm{z-y} < s = r -\Norm{x-y} $. Por la desigualdad del triángulo $\Norm{x-z} \leq \Norm{z-y} + \Norm{x-y}  < r$. Así que $z \in V_r(x)$ y $V_s(y) \subseteq V_r(x)$ y $V_r(x)$ es abierto. \\
-
-Si $U$ es abierto de $X$ y $x \in U$, por definición existe $r > 0$ tal que $x \in V_r(x) \subseteq U$. La proposición~\ref{Prop:CaracterizacionDeBase} indica que $\mathcal{B}$ es una base de $X$. 
-\end{proof}
-
-\begin{Prop} \label{Prop:TopologiaOriginalEsEVT}
-Sea $X$ un espacio normado. Entonces $X$, con la topología original, es un espacio vectorial topológico. 
-\end{Prop}
-
-\begin{proof}
-(Pendiente.)
-\end{proof}
-
-
-No todo operador lineal $T:X\to Y$ entre los espacios normados $X$ e $Y$ resulta ser continuo. En este trabajo nos interesan los que sí son continuos. Una caracterización de un operador lineal continuo es que sea un \textit{operador lineal acotado}, esto es, aquel para el cual existe $K > 0$ tal que $$\Norm{Tx} \leq K \Norm{x} \mbox{ para todo } x \in X.$$ \\
-
-\begin{Def}
-Sea $X$ un espacio normado. Decimos que $A \subseteq X$ es un conjunto \textit{acotado} si existe $M > 0$ tal que $\Norm{x} \leq M$ para todo $x \in A$.
-\end{Def}
-
-\begin{Prop} \label{Prop:IsomorfismoPreservaConjuntosAcotados}
-Sean $X$ y $Y$ espacios normados. Si $T:X \to Y$ es un operador lineal acotado, entonces $T$ preserva conjuntos acotados.
-\end{Prop}
-
-\begin{proof}
-Sea $A \subseteq X$ un conjunto acotado. Entonces existe $M > 0$ tal que $\Norm{x} < M $ para todo $x \in A$. Como $T$ es continua, existe $N >0$ tal que $\Norm{T(x)} < N \Norm{x}$. Así pues si $T(x) \in T(B)$ se sigue que $\Norm{T(x)} < MN.$ Por lo que $T(A)$ es acotado.
-\end{proof}
-
-Sean $X$ y $Y$ espacios normados. Al espacio de los operadores lineales continuos $T: X \to Y$, y por tanto acotados, lo denotamos por $\mathcal{L}(X, Y)$. En este espacio definimos la función
-$$\Norm{T} := \sup\{ \Norm{Tx}  :  x \in B_X\}.$$
-
-Esta resulta ser una norma y así $\mathcal{L}(X, Y)$ es un espacio normado. Si además $Y$ es un espacio de Banach, entonces $\mathcal{L}(X, Y)$ también es un espacio de Banach. \\
-
-Dado un espacio vectorial topológico $X$, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \tau)^*$. \\
-
-Cuando $X$ sea un espacio normado, se denotará por $(X, \Norm{\cdot})^*$ o simplemente $X^*$.  A los elementos de este espacio dual los llamamos \textit{funcionales lineales continuos}. Como $\K$ es completo,  resulta que $X^* = \mathcal{L}(X, \K)$ es un espacio de Banach. \\ 
-
-Los teoremas de Hahn-Banach muestran que en $X^*$ existen suficientes funcionales que permiten hacer rica la teoría referente al espacio dual.
-
-\begin{Tma} \textbf{(Hahn-Banach)}
-Sea $X$ un espacio normado y $V \subseteq X$ un subespacio vectorial. Si $f \in V^*$ entonces existe $F \in X^*$ tal que $F = f$ en $V$ y $\Norm{f} = \Norm{F}$.
-\end{Tma}
-
-
-\begin{Prop}
-Sea $X$ un espacio normado. Entonces $X$ es de dimensión infinita si y sólo si $X^*$ también lo es. 
-\end{Prop}
-
-\begin{proof}
-Supongamos que $X$ es de dimensión infinita. Entonces para todo $n \in \N$ existen $x_1, \ldots, x_n \in X$ linealmente independiente. Sea $V = \mbox{span} \{ x_1, \ldots, x_n \}$, de manera que $\{ x_1, \ldots, x_n \}$ es una base de $V$. Para $i \in \{1, \ldots, n \}$ definamos el funcional lineal $\varphi_i : V \to \K$ dado por $\varphi_i(x_j) = \delta_{ij}$ que es continuo. Por el teorema de Hahn-Banach existe $F_i \in X^*$ tal que $F_i = f_i$ en $V$. Veamos que $\{F_1, \ldots, F_n\}$ es linealmente independiente en $X^*$. Sean $a_1, \ldots, a_n \in K$ tales que $$\sum_{j=1}^n a_i F_i = 0.$$ Al evaluar en $x_i$ obtenemos que $a_i = 0$. Esto muestra que para toda $n \in \N$ existen $n$ funcionales linealmente independientes. Por lo que $X^*$ es de dimensión infinita. \\
-
-Supongamos que $X$ es de dimensión finita $n \in \N$. Existe entonces una base $\{x_1, \ldots, x_n \}$ de $X$. Para $1 \leq i \leq n$ definimos $f_i :X \to \K $ linealmente de tal manera que $f_i(x_j) = \delta_{ij}$. Como $X$ es de dimensión finita el corolario~\ref{Cor:FuncionalesLinealesContinuosEspaciosFinitos} indica que cada $f_i$ es continuo. Veamos que $\{ f_1, \ldots, f_n \}$ generan a $X^*$. Tomamos entonces $f \in X^*$ y supongamos que $f(x_i) = a_i \in \K$ para cada $i \in \{1, \ldots, n\}$. Así, para cada $1 \leq i \leq n$
-$$\left( \sum_{j=1}^n a_j f_j \right)(x_i) = a_i = f(x_i).$$
-Por lo tanto $f = \sum_{j=1}^n a_j f_j$. Esto dice que existe un conjunto finito generador en $X^*$, por lo que $X^*$ es de dimensión finita.
-\end{proof}
 
 \section{Redes.}
 
@@ -711,7 +624,103 @@ $$L- \varepsilon < g(x_\alpha) \leq f(x_\alpha) \leq h(x_\alpha) < L + \varepsil
 Por lo tanto $f(x_\alpha) \in (L- \varepsilon, L + \varepsilon) \subseteq U$, si $\alpha \geq \alpha_0$. 
 \end{proof}
 
-\section{Compacidad de $B_X$ en un espacio normado.}
+\section{Espacios normados.}
+
+Recordemos que $(X, \Norm{\cdot})$ es un \textit{espacio normado} si $X$ es un espacio vectorial sobre $\K$ y $\Norm{\cdot}$ es una norma en $X$. Si además $X$ es completo bajo esta norma, decimos que $X$ es un \textit{espacio de Banach}. Esto significa que en un espacio de Banach las sucesiones de Cauchy convergen. \\
+
+\begin{Ejem}
+Dados $n \in \N$ y $1 \leq p < \infty$, la función $\Norm{\cdot}_p:\K^n \to [0, \infty)$ dada por $$\Norm{(x_1, \ldots, x_n)}_p := \left(\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}}$$ es una norma. Lo que hace a $\K^n$ un espacio normado al cual denotamos $\ell^n_p$.
+\end{Ejem}
+
+\begin{Ejem}
+Consideremos ahora a $\K^n$ con la norma $\Norm{\cdot}_{\infty}: \K^n \to [0, \infty)$ dada por $$\Norm{(x_1, x_2, \ldots)}_\infty :=\max_{i \in \N} \,  \abs{x_i},$$ al cual denotamos por $\ell^n_p$
+
+\end{Ejem}
+
+\begin{proof}
+Aquí encontré dos opciones. La primera es desarrollar de la misma manera que usted lo hace en su libro utilizando exponentes conjugados y la desigualdad de Hölder. La segunda opción es la demostración de Terrence Tao que encontré \href{https://math.stackexchange.com/questions/447747/how-to-prove-triangle-inequality-for-p-norm}{aquí}. Sólo habría que demostrar el detalle de que $z \to z^p$ es convexa.
+¿Prefiere alguna de estas dos más que la otra?
+\end{proof}
+
+En un espacio normado $X$ denotamos a la \textit{bola abierta} de centro $y \in X$ y radio $r > 0$ por
+$$V_r(y) = \{ x \in X : \Norm{x-y} < r \}.$$
+
+y la \textit{bola cerrada} de centro $y \in X$ y radio $r > 0$ por
+$$B_r(y) = \{ x \in X : \Norm{x-y} \leq r \}.$$
+
+El caso particular de la \textit{bola unitaria cerrada} se denotará por $B_X$. \\
+
+\begin{Def}
+En el espacio normado $X$ definimos la \textit{topología original} de $X$ de manera que $U$ es un abierto de $X$ si, y sólo si para todo $x \in U$ existe $r > 0$ tal que $V_r(x) \subseteq U$.
+\end{Def}
+
+
+La siguiente proposición indica que en un espacio normado $X$ las bolas abiertas forman una base de la topología original de $X$.
+
+\begin{Prop} \label{Prop:BaseDeEntonrnosEspaciosNormados}
+Sea $X$ un espacio normado. El conjunto $$\mathcal{B} := \{ V_r(x) : r > 0, x \in X \}$$ es una base de $X$.
+\end{Prop}
+
+\begin{proof}
+Tomemos $V_r(x) \in \mathcal{B}$ para algunos $r > 0$ y $x \in X$. Verifiquemos que $V_r(x)$ es abierto en $X$. Tomemos $y \in V_r(x)$.  Consideremos $s = r - \Norm{x-y} > 0$. Así pues si $z \in V_s(y)$, entonces $\Norm{z-y} < s = r -\Norm{x-y} $. Por la desigualdad del triángulo $\Norm{x-z} \leq \Norm{z-y} + \Norm{x-y}  < r$. Así que $z \in V_r(x)$ y $V_s(y) \subseteq V_r(x)$ y concluimos que $V_r(x)$ es abierto. 
+
+Si $U$ es abierto de $X$ y $x \in U$, por definición existe $r > 0$ tal que $x \in V_r(x) \subseteq U$. La proposición~\ref{Prop:CaracterizacionDeBase} indica que $\mathcal{B}$ es una base de $X$. 
+\end{proof}
+
+\begin{Prop} \label{Prop:TopologiaOriginalEsEVT}
+Sea $X$ un espacio normado. Entonces $X$, con su topología original, es un espacio vectorial topológico. 
+\end{Prop}
+
+\begin{proof}
+(Pendiente.)
+\end{proof}
+
+
+No todo operador lineal $T:X\to Y$ entre los espacios normados $X$ e $Y$ resulta ser continuo. En este trabajo nos interesan los que sí son continuos. Una caracterización de un operador lineal continuo es que sea un \textit{operador lineal acotado}, esto es, que exista $K > 0$ tal que $$\Norm{Tx} \leq K \Norm{x} \mbox{ para todo } x \in X.$$ 
+
+\begin{Def}
+Sea $X$ un espacio normado. Decimos que $A \subseteq X$ es un conjunto \textit{acotado} si existe $M > 0$ tal que $\Norm{x} \leq M$ para todo $x \in A$.
+\end{Def}
+
+\begin{Prop} \label{Prop:IsomorfismoPreservaConjuntosAcotados}
+Sean $X$ y $Y$ espacios normados. Si $T:X \to Y$ es un operador lineal acotado, entonces $T$ preserva conjuntos acotados.
+\end{Prop}
+
+\begin{proof}
+Sea $A \subseteq X$ un conjunto acotado. Entonces existe $M > 0$ tal que $\Norm{x} < M $ para todo $x \in A$. Como $T$ es continua, existe $N >0$ tal que $\Norm{T(x)} < N \Norm{x}$. Así pues si $T(x) \in T(B)$ se sigue que $\Norm{T(x)} < MN.$ Por lo que $T(A)$ es acotado.
+\end{proof}
+
+Sean $X$ y $Y$ espacios normados. Al espacio de los operadores lineales continuos $T: X \to Y$, y por tanto acotados, lo denotamos por $\mathcal{L}(X, Y)$. En este espacio definimos la función
+$$\Norm{T} := \sup\{ \Norm{Tx}  :  x \in B_X\}.$$
+
+Esta resulta ser una norma y así $\mathcal{L}(X, Y)$ es un espacio normado. Si además $Y$ es un espacio de Banach, entonces $\mathcal{L}(X, Y)$ también es un espacio de Banach. \\
+
+Observemos que $$\Norm{Tx} \leq \Norm{T} \Norm{x}, \mbox{ para todo } x \in X.$$
+
+Dado un espacio vectorial topológico $X$, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \tau)^*$. 
+
+Cuando $X$ sea un espacio normado, su espacio dual se denotará por $(X, \Norm{\cdot})^*$ o simplemente $X^*$.  A los elementos de este espacio dual los llamamos \textit{funcionales lineales continuos}. Como $\K$ es completo,  resulta que $X^* = \mathcal{L}(X, \K)$ es un espacio de Banach. \\ 
+
+Los teoremas de Hahn-Banach muestran que en $X^*$ existen suficientes funcionales que permiten hacer rica la teoría referente al espacio dual.
+
+\begin{Tma} \textbf{(Hahn-Banach)}
+Sea $X$ un espacio normado y $V \subseteq X$ un subespacio vectorial. Si $f \in V^*$ entonces existe $F \in X^*$ tal que $F = f$ en $V$ y $\Norm{f} = \Norm{F}$.
+\end{Tma}
+
+
+\begin{Prop}
+Sea $X$ un espacio normado. Entonces $X$ es de dimensión infinita si y sólo si $X^*$ también lo es. 
+\end{Prop}
+
+\begin{proof}
+Supongamos que $X$ es de dimensión infinita. Entonces para todo $n \in \N$ existen $x_1, \ldots, x_n \in X$ linealmente independientes. Sea $V = \mbox{span} \{ x_1, \ldots, x_n \}$, de manera que $\{ x_1, \ldots, x_n \}$ es una base de $V$. Para $i \in \{1, \ldots, n \}$ definamos el funcional lineal $\varphi_i : V \to \K$ dado por $\varphi_i(x_j) = \delta_{ij}$ que es continuo por el corolario~\ref{Cor:FuncionalesLinealesContinuosEspaciosFinitos} . Por el teorema de Hahn-Banach existe $F_i \in X^*$ tal que $F_i = f_i$ en $V$. Veamos que $\{F_1, \ldots, F_n\}$ es linealmente independiente en $X^*$. Sean $a_1, \ldots, a_n \in K$ tales que $$\sum_{j=1}^n a_i F_i = 0.$$ Al evaluar en $x_i$ obtenemos que $a_i = 0$. Esto muestra que para toda $n \in \N$ existen $n$ funcionales linealmente independientes. Por lo que $X^*$ es de dimensión infinita. 
+
+Supongamos ahora que $X$ es de dimensión finita $n \in \N$. Existe entonces una base $\{x_1, \ldots, x_n \}$ de $X$. Para $1 \leq i \leq n$ definimos $f_i :X \to \K $ linealmente y de tal manera que $f_i(x_j) = \delta_{ij}$. Como $X$ es de dimensión finita el corolario~\ref{Cor:FuncionalesLinealesContinuosEspaciosFinitos} indica que cada $f_i$ es continuo. Veamos que $\{ f_1, \ldots, f_n \}$ generan a $X^*$. Tomamos entonces $f \in X^*$ y supongamos que $f(x_i) = a_i \in \K$ para cada $i \in \{1, \ldots, n\}$. Así, para cada $1 \leq i \leq n$
+$$\left( \sum_{j=1}^n a_j f_j \right)(x_i) = a_i = f(x_i).$$
+Por lo tanto $f = \sum_{j=1}^n a_j f_j$. Esto dice que existe un conjunto finito generador en $X^*$, por lo que $X^*$ es de dimensión finita.
+\end{proof}
+
+\subsection{Compacidad de $B_X$ en un espacio normado.}
 La compacidad es una propiedad muy importante que puede tener un subconjunto de un espacio topológico. El objetivo de esta sección es demostrar que la compacidad de la bola unitaria en un espacio normado depende de si este es de dimensión finita o no.
 
 \begin{Def}
@@ -745,7 +754,7 @@ Supongamos que $\dim \, X = n \in \N$ y sea $\{ x_1, \ldots, x_n \}$ Demostrarem
 \Ecu{
 I: \ell_2^n & \to X \\
 (a_1, \ldots, a_n) & \mapsto \sum_{i=1}^n a_i x_i. 
-}
+} 
 Si $a = (a_1, \ldots, a_n), b = (b_1, \ldots, b_n) \in \ell_1^n$ cumplen que $I(a) = I(b)$, entonces $\sum_{i=1}^n (a_i - b_i)x_i = 0$. Como $\{x_1, \ldots, x_n \}$ es linealmente independiente, entonces $a_1 - b_1 = \ldots = a_n - b_n = 0$. Así que $a = b$ y $I$ es inyectiva. \\
 
 Sea $x \in X$. Como $\{x_1, \ldots, x_n \}$ genera a $X$, existen $a_1, \ldots, a_n \in \K$ tales que $x = \sum_{i=1}^n a_i x_i = I(a_1, \ldots, a_n)$ y así $I$ es sobreyectiva. \\
