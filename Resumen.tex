@@ -48,7 +48,7 @@
 
 \hypersetup{
     colorlinks=true,
-    linkcolor=blue,
+    linkcolor=black,
     filecolor=magenta,      
     urlcolor=cyan,
     bookmarksopen=true,
@@ -435,19 +435,7 @@ Tomemos $x \in \overline{A}$. Dado $U \in N_x$, tenemos que $U \cap A \neq \empt
 Por otro lado tomemos $x \in X$ tal que existe una red $(x_\alpha)_{\alpha \in \Lambda}$ en $A$ con $x_\alpha \to x$. Sea $U \subseteq X$ una vecindad abierta de $x$. Entonces existe $\alpha_0 \in \Lambda$ tal que $x_\alpha \in U$ si $\alpha \geq \alpha_0$. En particular $x_{\alpha_0} \in U$. Además $x_{\alpha_0} \in A$. Por tanto $U \cap A \neq \emptyset$ y así $x \in \overline{A}$.   
 \end{proof}
 
-Cuando el espacio topológico cumple el primer axioma de contabilidad, se puede remplazar las redes por sucesiones en la proposición anterior. El siguiente corolario lo demuestra para el caso particular de espacios normados.
-
-\begin{Cor}\label{Cor:CerraduraLimiteSucesiones} 
-Sea $X$ un espacio normado y $A \subseteq X$. Entonces $\overline{A}$ es el conjunto de los puntos en $X$ que son el límite de alguna sucesión en $A$. (¿Es mejor escribir este corolario en la subsección de espacios normados y mencionar que la proposición~\ref{Prop:CerraduraLimiteRed} es una generalización de este resultado?)
-\end{Cor}
-
-\begin{proof}
-Tomemos $x \in \overline{A}$. Dado $n \in \N$, tenemos que $V_{\frac{1}{n}}(x)$ es una vecindad abierta de $x$ y por lo tanto $V_{\frac{1}{n}}(x) \cap A \neq \emptyset$. Así que existe algún $x_n \in V_{\frac{1}{n}}(x) \cap A$. Claramente, $(x_n)_{n\in \N}$ es una sucesión en $A$ tal que $x_n \to x$. \\
-
-El hecho de que toda sucesión es una red junto con la proposición~\ref{Prop:CerraduraLimiteRed} implica la contención restante.  
-\end{proof}
-
-En un principio, el límite de una red convergente no tiene por qué ser único. La siguiente proposición exhibe una condición suficiente sobre $X$ para que sí lo sea.
+En un principio, el límite de una red convergente no tiene por qué ser único. La siguiente proposición exhibe cuándo lo es.
 
 \begin{Prop}
 Sea $X$ un espacio topológico Hausdorff. Entonces $X$ es Hausdorff si, y sólo si el límite de toda red que converja es único.
@@ -614,8 +602,7 @@ Supongamos ahora que $X$ no es compacto. Existe entonces una cubierta abierta $\
 \begin{proof}
 Sea $U$ una vecindad abierta de $L$. Tomemos $\varepsilon > 0$ tal que $(L- \varepsilon, L + \varepsilon) \subseteq U$. Como este intervalo es una vecindad abierta de $L$, por hipótesis existen $\alpha_1, \alpha_2 \in \Lambda$ tales que 
 \Ecu{
-g(x_\alpha) \in &(L-\varepsilon, L+\varepsilon)\mbox{ si }\alpha \geq \alpha_1 \mbox{ y }\\
- h(x_\alpha) \in &(L-\varepsilon, L+\varepsilon)\mbox{ si }\alpha \geq \alpha_2. 
+g(x_\alpha) \in (L-\varepsilon, L+\varepsilon)\mbox{ si }\alpha \geq \alpha_1 \quad \mbox{ y } \quad h(x_\alpha) \in &(L-\varepsilon, L+\varepsilon)\mbox{ si }\alpha \geq \alpha_2. 
 }
 
 Al tomar $\alpha_0 \in \Lambda$ tal que $\alpha_0 \geq \alpha_1$ y $\alpha_0 \geq \alpha_2$, se cumple que $g(x_\alpha), h(x_\alpha) \in (L- \varepsilon, L + \varepsilon)$, de donde
@@ -675,6 +662,18 @@ Sea $X$ un espacio normado. Entonces $X$, con su topología original, es un espac
 (Pendiente.)
 \end{proof}
 
+Cuando un espacio topológico cumple el primer axioma de contabilidad, en la proposición~\ref{Prop:CerraduraLimiteRed} se puede remplazar las redes por sucesiones en la proposición anterior. El siguiente corolario lo demuestra para el caso particular de espacios normados.
+
+\begin{Cor}\label{Cor:CerraduraLimiteSucesiones} 
+Sea $X$ un espacio normado y $A \subseteq X$. Entonces $\overline{A}$ es el conjunto de los puntos en $X$ que son el límite de alguna sucesión en $A$.
+\end{Cor}
+
+\begin{proof}
+Tomemos $x \in \overline{A}$. Dado $n \in \N$, tenemos que $V_{\frac{1}{n}}(x)$ es una vecindad abierta de $x$ y por lo tanto $V_{\frac{1}{n}}(x) \cap A \neq \emptyset$. Así que existe algún $x_n \in V_{\frac{1}{n}}(x) \cap A$. Claramente, $(x_n)_{n\in \N}$ es una sucesión en $A$ tal que $x_n \to x$. \\
+
+El hecho de que toda sucesión es una red junto con la proposición~\ref{Prop:CerraduraLimiteRed} implica la contención restante.  
+\end{proof}
+
 
 No todo operador lineal $T:X\to Y$ entre los espacios normados $X$ e $Y$ resulta ser continuo. En este trabajo nos interesan los que sí son continuos. Una caracterización de un operador lineal continuo es que sea un \textit{operador lineal acotado}, esto es, que exista $K > 0$ tal que $$\Norm{Tx} \leq K \Norm{x} \mbox{ para todo } x \in X.$$ 
 
@@ -720,24 +719,8 @@ $$\left( \sum_{j=1}^n a_j f_j \right)(x_i) = a_i = f(x_i).$$
 Por lo tanto $f = \sum_{j=1}^n a_j f_j$. Esto dice que existe un conjunto finito generador en $X^*$, por lo que $X^*$ es de dimensión finita.
 \end{proof}
 
-\subsection{Compacidad de $B_X$ en un espacio normado.}
-La compacidad es una propiedad muy importante que puede tener un subconjunto de un espacio topológico. El objetivo de esta sección es demostrar que la compacidad de la bola unitaria en un espacio normado depende de si este es de dimensión finita o no.
 
-\begin{Def}
-Sea $X$ un espacio normado, la \textit{distancia} de $x \in X$ a $A \subseteq X$ es $$d(x, A) := \inf \{ \Norm{x - y} : y \in A \},$$ donde $\inf  \emptyset = \infty.$
-\end{Def}
-
-\begin{Prop}
-Sean $X$ un espacio normado, $A \subseteq X$ cerrado y $x \in X \setminus A$. Entonces $d(x, A) > 0$. 
-\end{Prop}
-
-\begin{proof}
-Supongamos que $d(x, A) = 0$. Tomemos un abierto $U$ que incluya a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$. Por lo que $U \cap A \neq \emptyset$. Por lo tanto $x \in \ov{A}$. Como $A$ es cerrado, entonces  $x \in A$. Lo cual es una contradicción.
-\end{proof}
-
-
-\begin{Def} 
-\hfill
+\begin{Def} ¿Se requiere que sean de dimensión finita los espacios para estás definiciones?
 \begin{itemize}
 \item \textbf{i)} Sean $X$ y $Y$ espacios vectoriales. Se dice que $X$ y $Y$
 son \textit{isomorfos} como espacios vectoriales si existe $T :  X \to Y$ biyectiva y lineal. En este caso a $T$ se la llama \textit{isomorfismo} de espacios vectoriales.
@@ -750,35 +733,35 @@ Si $X$ y $Y$ son espacios normados de dimensión finita y de la misma dimensión, 
 \end{Tma}
 
 \begin{proof}
-Supongamos que $\dim \, X = n \in \N$ y sea $\{ x_1, \ldots, x_n \}$ Demostraremos que $X$ es isomorfo como espacio normado a $\ell_2^n$ por medio de la función 
+Supongamos que $\dim \, X = n \in \N$ y sea $\{ x_1, \ldots, x_n \}$ una base. Demostraremos que $X$ es isomorfo como espacio normado a $\ell_2^n$ por medio de la función 
 \Ecu{
-I: \ell_2^n & \to X \\
+T: \ell_2^n & \to X \\
 (a_1, \ldots, a_n) & \mapsto \sum_{i=1}^n a_i x_i. 
 } 
-Si $a = (a_1, \ldots, a_n), b = (b_1, \ldots, b_n) \in \ell_1^n$ cumplen que $I(a) = I(b)$, entonces $\sum_{i=1}^n (a_i - b_i)x_i = 0$. Como $\{x_1, \ldots, x_n \}$ es linealmente independiente, entonces $a_1 - b_1 = \ldots = a_n - b_n = 0$. Así que $a = b$ y $I$ es inyectiva. \\
+Si $a = (a_1, \ldots, a_n), b = (b_1, \ldots, b_n) \in \ell_2^n$ cumplen que $T(a) = T(b)$, entonces $\sum_{i=1}^n (a_i - b_i)x_i = 0$. Como $\{x_1, \ldots, x_n \}$ es linealmente independiente, entonces $a_1 - b_1 = \ldots = a_n - b_n = 0$. Así que $a = b$ y $T$ es inyectiva. \\
 
-Sea $x \in X$. Como $\{x_1, \ldots, x_n \}$ genera a $X$, existen $a_1, \ldots, a_n \in \K$ tales que $x = \sum_{i=1}^n a_i x_i = I(a_1, \ldots, a_n)$ y así $I$ es sobreyectiva. \\
+Sea $x \in X$. Como $\{x_1, \ldots, x_n \}$ genera a $X$, existen $a_1, \ldots, a_n \in \K$ tales que $x = \sum_{i=1}^n a_i x_i = T(a_1, \ldots, a_n)$ y así $T$ es sobreyectiva. \\
 
-Veamos que $I$ es lineal. Dados $(a_1, \ldots, a_n), (b_1, \ldots, b_n) \in \ell_1^n$ y $\lambda \in \K$, se tiene que
+Veamos que $T$ es lineal. Dados $(a_1, \ldots, a_n), (b_1, \ldots, b_n) \in \ell_1^n$ y $\lambda \in \K$, se tiene que
 \Ecu{
-I((a_1, \ldots, a_n) + \lambda (b_1, \ldots, b_n)) &= I((a_1 + \lambda b_1, \ldots, a_n + \lambda b_n)) = \sum_{i=1}^n (a_i + \lambda b_i) x_i \\
-&= \sum_{i=1}^n a_i  x_i +  \lambda\sum_{i=1}^n  b_i x_i = I(a_1, \ldots, a_n) + \lambda I(b_1, \ldots, b_n).
+T((a_1, \ldots, a_n) + \lambda (b_1, \ldots, b_n)) &= T((a_1 + \lambda b_1, \ldots, a_n + \lambda b_n)) = \sum_{i=1}^n (a_i + \lambda b_i) x_i \\
+&= \sum_{i=1}^n a_i  x_i +  \lambda\sum_{i=1}^n  b_i x_i = T(a_1, \ldots, a_n) + \lambda T(b_1, \ldots, b_n).
 }
-Ahora, tomemos $(a_1, \ldots, a_n) \in \ell_1^n$. Por la desigualdad del triángulo y la desigualdad de Schwarz 
+Ahora, tomemos $(a_1, \ldots, a_n) \in \ell_2^n$. Por la desigualdad del triángulo y la desigualdad de Schwarz 
 \Ecu{
-\Norm{I(a_1, \ldots, a_n)} & = \Norm{\sum_{i=1}^n a_i x_i} \leq \sum_{i=1}^n \abs{a_i} \Norm{x_i} \\
-&\leq \left( \sum_{i=1}^n \Norm{x_i}^2 \right)^{\frac{1}{2}} \left( \sum_{i=1}^n \Norm{a_i}^2 \right)^{\frac{1}{2}} \\
+\Norm{T(a_1, \ldots, a_n)} & = \Norm{\sum_{i=1}^n a_i x_i} \leq \sum_{i=1}^n \abs{a_i} \Norm{x_i} \\
+&\leq \left( \sum_{i=1}^n \Norm{x_i}^2 \right)^{\frac{1}{2}} \left( \sum_{i=1}^n \abs{a_i}^2 \right)^{\frac{1}{2}} \\
 &= \left( \sum_{i=1}^n \Norm{x_i}^2 \right)^{\frac{1}{2}} \Norm{(a_1, \ldots, a_n)}_2.
 }
 
-Esto indica que $I$ es un operador lineal acotado y por lo tanto continuo. \\
+Esto indica que $T$ es un operador lineal acotado y por lo tanto continuo. \\
 
-Ahora consideremos la función $f = \Norm{\cdot} \circ I$. Como la norma es una función continua (¿lo demuestro en el capítulo anterior?) y $I$ es continua, entonces $f$ es continua. Dado que $S_{\ell_2^n} := \{ (a_1, \ldots, a_n) \in \K^n  : \Norm{(a_1, \ldots, a_n)}_2 = 1 \}$  es compacto en $\ell_2^n$  se sigue que $f$ alcanza un valor mínimo $m \in \K$ en $S_{\ell_2^n}$. Como $f \geq 0$, entonces $m \geq 0$. Supongamos que $m = 0$. Entonces existe $(a_1, \ldots, a_n) \in S_{\ell_2^n}$ tal que $$ \Norm{\sum_{i=1}^n a_i x_i} = f(a_1, \ldots, a_n) = 0.$$
-Por lo que $\sum_{i=1}^n a_i x_i = 0$ y esto indica que $a_1 = \ldots = a_n = 0$. Lo cual es una contradicción, pues  entonces $\Norm{(a_1, \ldots, a_n)} = 0$. Así que $m > 0$ y $\frac{1}{m} > 0$. Para todo $x \in X$ con $x \neq 0$ se cumple que $I^{-1}(x) \neq 0$, $\frac{I^{-1}(x)}{\Norm{I^{-1}(x)}} \in S_{\ell_2^n}$ y 
-$$\frac{\Norm{x}}{\Norm{I^{-1}(x)}} = \Norm{I\left(\frac{I^{-1}(x)}{\Norm{I^{-1}(x)}}\right)} = f\left(\frac{I^{-1}(x)}{\Norm{I^{-1}(x)}}\right) \geq m. $$
-De donde $\Norm{I^{-1}(x)} \leq \frac{1}{m} \Norm{x}$, $I^{-1}$ es un continua y $I$ es un isomorfismo de espacios normados. \\
+Ahora consideremos la función $f = \Norm{\cdot} \circ I$. Como la norma es una función continua y $T$ es continua, entonces $f$ es continua. Dado que $S_{\ell_2^n} := \{ (a_1, \ldots, a_n) \in \K^n  : \Norm{(a_1, \ldots, a_n)}_2 = 1 \}$  es compacto en $\ell_2^n$  se sigue que $f$ alcanza un valor mínimo $m \in \K$ en $S_{\ell_2^n}$. Como $f \geq 0$, entonces $m \geq 0$. Supongamos que $m = 0$. Entonces existe $(a_1, \ldots, a_n) \in S_{\ell_2^n}$ tal que $$ \Norm{\sum_{i=1}^n a_i x_i} = f(a_1, \ldots, a_n) = 0.$$
+Por lo que $\sum_{i=1}^n a_i x_i = 0$ y esto indica que $a_1 = \ldots = a_n = 0$. Lo cual es una contradicción, pues  entonces $\Norm{(a_1, \ldots, a_n)}_2 = 0$. Así que $m > 0$ y $\frac{1}{m} > 0$. Para todo $x \in X$ con $x \neq 0$ se cumple que $T^{-1}(x) \neq 0$, $\frac{T^{-1}(x)}{\Norm{T^{-1}(x)}} \in S_{\ell_2^n}$ y 
+$$\frac{\Norm{x}}{\Norm{T^{-1}(x)}} = \Norm{T\left(\frac{T^{-1}(x)}{\Norm{T^{-1}(x)}}\right)} = f\left(\frac{T^{-1}(x)}{\Norm{T^{-1}(x)}}\right) \geq m. $$
+De donde $\Norm{T^{-1}(x)} \leq \frac{1}{m} \Norm{x}$. Por lo cual $T^{-1}$ es continua y $T$ es un isomorfismo de espacios normados. \\
 
-Ahora, como $\dim \, Y =  \dim \,  X  = n$, entonces $Y$ y $\ell^n_2$ son también isomorfos como espacios normados y como esta es una relación de equivalencia, entonces $X$ y $Y$ son isomorfos como espacios normados. 
+Análogamente, como $\dim \, Y =  \dim \,  X  = n$, entonces existe $S: \ell^n_2 \to Y$  isomorfismo de espacios normados. Resulta entonces que $S\circ T^{-1} : X \to Y$ es un isomorfismo de espacios normados entre $X$ y $Y$.
 \end{proof}
 
 \begin{Cor}
@@ -790,11 +773,11 @@ Sea $X$ un espacio normado de dimensión finita y  $\varphi : X \to \K$ un funcio
 \end{Cor}
 
 \begin{proof}
-Sea $\dim \, X = n \in \N$ y $\{ x_1, \ldots, x_n \} \subseteq X$ una base de $X$. Sean $I$ y $m$ como en la demostración de la proposición anterior. Tomemos $x \in X$ y $(a_1, \ldots, a_n) = I^{-1}(x)$. Entonces 
+Sea $\dim \, X = n \in \N$ y $\{ x_1, \ldots, x_n \} \subseteq X$ una base de $X$. Sean $T$ y $m$ como en la demostración de la proposición anterior. Tomemos $x \in X$ y $(a_1, \ldots, a_n) = T^{-1}(x)$. Entonces 
 \Ecu{
 \Norm{\varphi(x)} &= \Norm{\varphi\left(\sum_{i=1}^n a_i x_i \right)} = \Norm{\sum_{i=1}^n a_i \varphi (x_i) } \\
 & \leq \sum_{i=1}^n \abs{a_i} \Norm{\varphi(x_i)} \leq \left( \sum_{i=1}^n \Norm{\varphi(x_i)}^2  \right)^{\frac{1}{2}} \left( \sum_{i=1}^n \abs{a_i}^2  \right)^{\frac{1}{2}} \\
-& \leq \left( \sum_{i=1}^n \Norm{\varphi(x_i)}^2  \right)^{\frac{1}{2}} \Norm{a_1, \ldots, a_n}_2   \leq  \left( \sum_{i=1}^n \Norm{\varphi(x_i)}^2  \right)^{\frac{1}{2}} \frac{1}{m} \Norm{x}.
+& = \left( \sum_{i=1}^n \Norm{\varphi(x_i)}^2  \right)^{\frac{1}{2}} \Norm{a_1, \ldots, a_n}_2   \leq  \left( \sum_{i=1}^n \Norm{\varphi(x_i)}^2  \right)^{\frac{1}{2}} \frac{1}{m} \Norm{x}.
 } 
 Así que $\varphi$ es un operador lineal acotado y por tanto continuo. 
 \end{proof}
@@ -812,8 +795,24 @@ Si $Y$ es un subespacio de dimensión finita de un espacio normado $X$, entonces 
 \end{Cor}
 
 \begin{proof}
-Sea $x \in \ov{Y}$. Por el corolario~\ref{Cor:CerraduraLimiteSucesiones}, existe $(y_n)_{n\in\N}$ una sucesión en $Y$ que converge a $x \in X$. Como la sucesión converge, entonces es de Cauchy. Por el corolario anterior, $Y$ es completo y así $y_n \to y \in Y$. Como $X$ es Hausdorff, el límite es único y así $x = y$. Por tanto $x \in Y$, lo cual indica que $\ov{Y} \subseteq Y$ y $Y$ es cerrado.
+Sea $x \in \ov{Y}$. Por el corolario~\ref{Cor:CerraduraLimiteSucesiones}, existe una sucesión $(y_n)_{n\in\N}$ en $Y$ que converge a $x \in X$. Como la sucesión converge, entonces es de Cauchy. El corolario anterior indica que  $Y$ es completo y así $y_n \to y \in Y$. Dado que $X$ es Hausdorff, el límite es único y así $x = y$. Luego $x \in Y$, lo cual indica que $\ov{Y} \subseteq Y$ y $Y$ es cerrado.
 \end{proof}
+
+\subsection{Compacidad de la bola cerrada en un espacio normado.}
+La compacidad es una propiedad muy importante que puede tener un subconjunto de un espacio topológico. El objetivo de esta sección es demostrar que la compacidad de la bola unitaria en un espacio normado depende simplemente de si este es de dimensión finita o no.
+
+\begin{Def}
+Sea $X$ un espacio normado, la \textit{distancia} de $x \in X$ a $A \subseteq X$ es $$d(x, A) := \inf \{ \Norm{x - y} : y \in A \},$$ donde $\inf  \emptyset = \infty.$
+\end{Def}
+
+\begin{Prop}
+Sean $X$ un espacio normado. Si $A \subseteq X$ es cerrado y $x \in X \setminus A$, entonces $d(x, A) > 0$. 
+\end{Prop}
+
+\begin{proof}
+Se demostrará por contrapositiva. Supongamos que $d(x, A) = 0$. Tomemos un abierto $U$ que incluya a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$. Por lo que $U \cap A \neq \emptyset$. Por lo tanto $x \in \ov{A}$. Si $A$ fuera cerrado, entonces  $x \in A$.
+\end{proof}
+
 
 \begin{Lema} \textbf{(de Riesz)}
 Sean $Y$ un subespacio propio y cerrado de un espacio normado $X$ y $\theta \in (0, 1)$, entonces existe $x_\theta \in X$ con $\Norm{x_\theta} = 1$ para el cual $\Norm{x_\theta - y} > \theta$ para todo $y \in Y$. 
@@ -1140,10 +1139,6 @@ $$\abs{Jx(\varphi)} = \abs{\varphi(x)} = \Norm{x}.$$
 Así pues $\Norm{Jx} \geq \Norm{x}$. La proposición~\ref{Prop:DeltaContinua} indica que $\Norm{Jx} = \Norm{\delta_x} \leq \Norm{x}$ y así se sigue que $\Norm{Jx} = \Norm{x}$ y $J$ es isometría.
 \end{proof}
 
-\begin{Def}
-Si $X$ es un espacio normado tal que $J(X) = X^{**}$ se dice que $X$ es \textit{reflexivo}. 
-\end{Def}
-
 La evaluación de un funcional $x^* \in X^*$ en un vector $x \in X$ se denota por $\ang{x, x^*}$, esto es, $$\ang{x, x^*} := x^*(x).$$ 
 
 Esto induce un mapeo $\ang{\cdot, \cdot}: X \times X^* \to \K$, llamado \textit{apareamiento dual}. \\
@@ -1151,7 +1146,7 @@ Esto induce un mapeo $\ang{\cdot, \cdot}: X \times X^* \to \K$, llamado \textit{
 Para cada $x \in X$ resulta que $\abs{\delta_x}$ es una seminorma. Dado $\varphi \in X^*$ distinto de cero, existe $x \neq 0$ con $\varphi(x) \neq 0$. Así que $\delta_x(\varphi) \neq 0$. Es decir, $$\F_{X^*} := \{ \abs{\delta_x} : x\in X\}$$ es una familia de seminormas en $X^*$ que separa puntos de $X$. 
 
 \begin{Def}
-Sea $X$ un espacio normado. La \textit{topología débil*} de $X^*$ es $\sigma(X^*, \F_{X^*})$ y se denotará por $\sigma(X^*, X)$ o simplemente por $\tau_{\mathrm{w}^*}$. Cuando trabajemos con la topología débil de $X^*$, al espacio vectorial topológico correspondiente lo denotaremos por $X^*_{\mathrm{w}^*}$
+Sea $X$ un espacio normado. La \textit{topología débil*} de $X^*$ es $\sigma(X^*, \F_{X^*})$ y se denotará por $\sigma(X^*, X)$ o simplemente por $\tau_{\mathrm{w}^*}$. Cuando trabajemos con la topología débil de $X^*$, al espacio vectorial topológico correspondiente lo denotaremos por $X^*_{\mathrm{w}^*}$.
 \end{Def}
 
 Aplicando el teorema~\ref{Tma:SeminormasInducenEVT}  se deduce el siguiente corolario.
@@ -1169,17 +1164,25 @@ Sea $X$ un espacio normado. Para una red $(\varphi_\alpha)_{\alpha \in \Lambda} 
 En particular, si $(\varphi_n)_{n \in \N} \subseteq X^*$ es una sucesión en $X^*$ y $\varphi \in X^*$, tenemos entonces que $\displaystyle\wslim_{n \to \infty} \varphi_n = \varphi$ si, y sólo si $\displaystyle\lim_{n \to \infty} \varphi_n(x) = \varphi(x)$  para cualquier $x \in X$.
 \end{Cor}
 
-Observemos pues que la convergencia debil* de funcionales es precisamente la convergencia puntual. \\
+Observemos que la convergencia debil* de funcionales es precisamente la convergencia puntual. \\
 
 En el espacio $X^*$ podemos considerar tres topologías: la topología original $\tau_{\Norm{\cdot}}$, la topología débil $\sigma(X^*, X^{**})$ y la topología débil* $\sigma(X^*, X)$. Establezcamos una relación entre ellas. \\
 
 Para $\varphi \in X^*$, $k \in \N$, $x_1,\ldots, x_k \in X$ y $\varepsilon > 0$, tenemos que 
-$$U_{\varphi, x_1,\ldots, x_k, \varepsilon} = U_{\varphi, J(x_1),\ldots, J(x_k), \varepsilon}. $$
+\begin{equation} \label{Eq:IgualdadBasicos}
+U_{\varphi, x_1,\ldots, x_k, \varepsilon} = U_{\varphi, J(x_1),\ldots, J(x_k), \varepsilon}.
+\end{equation}
 
 Donde el primero es un abierto de $X^*_{\mathrm{w}^*}$ y el segundo es un abierto de $X^*_{\mathrm{w}}$.  Así pues, todo abierto en $X^*_{\mathrm{w}^*}$ es abierto  en $X^*_{\mathrm{w}}$. Por esto y por la proposición~\ref{Prop:ContencionPropiaTopologiaDebil} se tiene que 
-$$\sigma(X^*, X) \subseteq \sigma(X^*, X^{**}) \subseteq \tau_{\Norm{\cdot}_{X^*}}.$$
+\begin{equation} \label{Eq:RelacionTopologias}
+\sigma(X^*, X) \subseteq \sigma(X^*, X^{**}) \subseteq \tau_{\Norm{\cdot}_{X^*}}.
+\end{equation}
 
-La primera contención es igualdad si el espacio $X$ es reflexivo. \\
+\begin{Def}
+Si $X$ es un espacio normado tal que $J(X) = X^{**}$ se dice que $X$ es \textit{reflexivo}. 
+\end{Def}
+
+Si $X$ es un espacio reflexivo, entonces la ecuación~(\ref{Eq:IgualdadBasicos}) indica que las bases de la topología débil* y la topología débil de $X^*$ coinciden. Por lo que la primera contención de la ecuación~(\ref{Eq:RelacionTopologias}) es una igualdad.
 
 \begin{Prop} \label{Prop:ReflexivoIdentifiacionCanonicaDebilContinua}
 Si $X$ es un espacio reflexivo, entonces $J :  X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es un homeomorfismo.
@@ -1188,8 +1191,6 @@ Si $X$ es un espacio reflexivo, entonces $J :  X_\mathrm{w} \to X^{**}_{\mathrm{
 \begin{proof}
 Dado que $J$ es un isomorfismo de espacios vectoriales, ya sólo falta verificar que $J$ es abierta y continua. Para eso tomemos una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X_\mathrm{w}$ y $x \in X_\mathrm{w}$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebil} dice que que $x_\alpha \weakarrow x$ si, y sólo si $\varphi(x_\alpha) \to \varphi(x)$ para toda $\varphi \in X^*$. Esto último equivale a que $\delta_{x_\alpha}(\varphi) \to \delta_{x}(\varphi)$ para toda $\varphi \in X^*$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebilEstrella} indica que esto es lo mismo que $\delta_{x_\alpha} \weakstararrow \delta_x$, o bien, $J(x_\alpha) \weakstararrow J(x)$. Por lo que $J$ es continua al igual que $J^{-1}$.
 \end{proof}
-
-% jajajaja
 
 Si $X$ es un espacio de dimensión infinita, la proposición anterior muestra que $X^*$ es de dimensión infinita, por lo que resulta que $B_{X^*}$ no es compacta respecto a la topología original. El siguiente teorema muestra que bajo la topología débil* sí lo es.
 
@@ -1242,11 +1243,11 @@ Habíamos notado anteriormente que en espacios reflexivos $\sigma(X^*, X) = \sigm
 
 \begin{Tma}
 Sea $X$  un espacio normado. Entonces  $X$ es reflexivo si y sólo si $B_X$ 
-es débilmente compacta. 
+es $\mathrm{w}$-compacta. 
 \end{Tma}
 
 \begin{proof}
-Supongamos primero que $X$ es reflexivo. Así que $J^{-1}(B_{X^{**}}) = B_X$. El teorema de Banach-Alaoglu indica que $B_{X^{**}}$ es $\sigma(X^{**}, X^{*})$-compacto. La proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es abierta y por lo tanto $J^{-1}(B_{X^{**}})$ es $\sigma(X, X^*)$-compacto.
+Supongamos primero que $X$ es reflexivo. El teorema de Banach-Alaoglu indica que $B_{X^{**}}$ es $\sigma(X^{**}, X^{*})$-compacto. La proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es abierta y como $J$ es reflexivo entonce $B_X = J^{-1}(B_{X^{**}})$ es $\sigma(X, X^*)$-compacto.
 \end{proof}
 
 \section{Medibilidad.}
