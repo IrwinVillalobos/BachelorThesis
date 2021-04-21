@@ -615,9 +615,65 @@ Por lo tanto $f(x_\alpha) \in (L- \varepsilon, L + \varepsilon) \subseteq U$, si
 
 Recordemos que $(X, \Norm{\cdot})$ es un \textit{espacio normado} si $X$ es un espacio vectorial sobre $\K$ y $\Norm{\cdot}$ es una norma en $X$. Si además $X$ es completo bajo esta norma, decimos que $X$ es un \textit{espacio de Banach}. Esto significa que en un espacio de Banach las sucesiones de Cauchy convergen. \\
 
-\begin{Ejem}
+Sea $X$ un $\K$-espacio vectorial  y $x_1, \ldots, x_n \in X$, $n \in \N$. Definimos $$\mbox{span} \{ x_1, \ldots, x_n \} : = \left\{ \sum_{i=1}^n a_i x_i : a_1, \ldots, a_n  \in \K \right\}.$$ 
+
+\begin{Ejem} \label{Ejem:EllePNormado}
 Dados $n \in \N$ y $1 \leq p < \infty$, la función $\Norm{\cdot}_p:\K^n \to [0, \infty)$ dada por $$\Norm{(x_1, \ldots, x_n)}_p := \left(\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}}$$ es una norma. Lo que hace a $\K^n$ un espacio normado al cual denotamos $\ell^n_p$.
 \end{Ejem}
+
+Las siguientes definiciones, ejemplos y lemas tienen el propósito de verificar que $\Norm{\cdot}_p$ en efecto es una norma.
+
+\begin{Def} Sea $X$ un espacio vectorial. Una función $f : X \to \R$ se dice convexa si para todos $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que $$f(\lambda x + (1-\lambda y))\leq \lambda f(x) + (1-\lambda) f(y).$$
+\end{Def}
+
+\begin{Ejem}
+La función $\abs{\cdot}:\R \to \R$ es convexa pues dados $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que
+$$\abs{\lambda x + (1-\lambda y)} \leq \abs{\lambda} \abs{x} + \abs{1-\lambda} \abs{y}  = \lambda \abs{x} + (1-\lambda) \abs{y}.$$
+\end{Ejem}
+
+\begin{Lema} \label{Lema:SegundaDerivadaPositivaConvexa}
+Sea $X$ un espacio normado, $U$ convexo y $f : U \to \R$ una función segundo diferenciable. Entonces $f$ es convexa siempre que para todo $f^{\prime\prime} \geq 0$ en $U$.
+\end{Lema}
+
+\begin{proof}
+(Pendiente).
+\end{proof}
+
+\begin{Ejem} \label{Ejem:XPConvexa}
+Fijemos $1 \leq p \leq \infty$ y consideremos $f: [0, \infty) \to[0, \infty)$ dada por $f(x) = x^p$ para toda $x \in \R$. Claramente $f$ es diferenciable y $f^\prime(x) = p x^{p-1}$. Además $f^\prime$ vuelve  a ser diferenciable y $f^{\prime\prime}(x) = p(p-1)x^{p-2} \geq 0$ para todo $x \geq 0$ y por el lema~\ref{Lema:SegundaDerivadaPositivaConvexa} resulta que $f$ es convexa.
+\end{Ejem}
+
+\begin{Prop}
+Sean $X$ un espacio normado, $f: \K \to \R$ convexa y creciente; y $g: \R \to \R$ convexa, entonces $g \circ f$ es convexa.
+\end{Prop}
+
+\begin{proof}
+(Pendiente.)
+\end{proof}
+
+\begin{Ejem}
+Sea $f$ como en el ejemplo~\ref{Ejem:XPConvexa} y $g = \Norm{\cdot}$. Entonces  la proposición indica que  $g \circ f : \K \to \R$, $z \mapsto \abs{z}^p$ es convexa.
+\end{Ejem}
+
+\begin{proof}
+(del ejemplo~\ref{Ejem:EllePNormado}) 
+\begin{itemize}
+\item \textbf{i)} Claramente $\Norm{x}_p \geq 0$ para cualquier $x \in \ell_p^n$, pues la suma de no negativos es no negativo y la función $z \mapsto z^{\frac{1}{p}}$ es creciente. Además tenemos que si $x = 0 \in \ell_p^n$, entonces $\Norm{x}_p= 0$. Es sencillo observar que si $\Norm{x}_p = 0$ para algún $x \in X$, entonces $x = 0$.
+\item \textbf{ii)} Sea $x = (x_1, \ldots, x_n) \in \ell_p^n$ y $\lambda \in \K$, entonces
+\Ecu{
+\Norm{\lambda x}_p &= \Norm{(\lambda x_1, \ldots, \lambda x_n)}_p \\
+&=  \left(\sum_{i=1}^n \abs{\lambda x_i}^p\right)^{\frac{1}{p}} = \left(\abs{\lambda}^p\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}} \\
+&= \abs{\lambda} \left(\sum_{i=1}^n \abs{ x_i}^p\right)^{\frac{1}{p}} = \abs{\lambda} \Norm{x}_p.
+}
+\item \textbf{iii)} Sean $x, y \in \ell_p^n$ y supongamos que $\Norm{x}_p + \Norm{y}_p  =0$. Entonces $x = y = 0$ y $\Norm{x+y}_p \leq \Norm{x}_p + \Norm{y}_p$. Supongamos ahora que $\Norm{x}_p + \Norm{y}_p > 0$. Si $x = 0$ o $y = 0$ es trivial concluir que $\Norm{x+y}_p \leq \Norm{x}_p + \Norm{y}_p$. Así que tomamos $x, y \neq 0$. Definamos 
+$$\widehat{x} := \frac{x}{\Norm{x}_p + \Norm{y}_p} \quad \mbox{  y } \quad \widehat{y} := \frac{y}{\Norm{x}_p + \Norm{y}_p}$$ de tal manera que 
+$\Norm{\widehat{x}} + \Norm{\widehat{y}} = 1$. 
+
+Definamos $\lambda = \Norm{\widehat{y}}_p \in (0, 1)$ y tomemos $X =\frac{x}{1-\lambda}$ y $X =\frac{y}{\lambda}$.
+
+Queda pendiente el resto de la demostración. 
+\end{itemize}
+\end{proof}
 
 \begin{Ejem}
 Consideremos ahora a $\K^n$ con la norma $\Norm{\cdot}_{\infty}: \K^n \to [0, \infty)$ dada por $$\Norm{(x_1, x_2, \ldots)}_\infty :=\max_{i \in \N} \,  \abs{x_i},$$ al cual denotamos por $\ell^n_p$
@@ -662,6 +718,14 @@ Sea $X$ un espacio normado. Entonces $X$, con su topología original, es un espac
 (Pendiente.)
 \end{proof}
 
+\begin{Prop}
+Sea $X$ un espacio normado. Entonces la norma $\Norm{\cdot}:X \to [0, \infty)$ es una función continua.
+\end{Prop}
+
+\begin{proof}
+Sea $(x_n)_{n\in\N}$ una sucesión (¿debería usar redes aquí o en su caso demostrar que en espacios normados basta usar sucesiones en lugar de redes?) en $X$ que converge a $x \in X$. Por definición esto indica que para todo $\varepsilon > 0$ existe $N \in \N$ tal que si $n \geq N$ entonces $\Norm{x_n - x} \leq \varepsilon$. Por la desigualdad del triángulo que $\abs{\Norm{x_n} - \Norm{x}} < \Norm{x_n - x}$. Esto implica que $\Norm{x_n}$ converge a $\Norm{x}$ y así $\Norm{\cdot}$ es continua.
+\end{proof}
+
 Cuando un espacio topológico cumple el primer axioma de contabilidad, en la proposición~\ref{Prop:CerraduraLimiteRed} se puede remplazar las redes por sucesiones en la proposición anterior. El siguiente corolario lo demuestra para el caso particular de espacios normados.
 
 \begin{Cor}\label{Cor:CerraduraLimiteSucesiones} 
@@ -694,7 +758,12 @@ $$\Norm{T} := \sup\{ \Norm{Tx}  :  x \in B_X\}.$$
 
 Esta resulta ser una norma y así $\mathcal{L}(X, Y)$ es un espacio normado. Si además $Y$ es un espacio de Banach, entonces $\mathcal{L}(X, Y)$ también es un espacio de Banach. \\
 
-Observemos que $$\Norm{Tx} \leq \Norm{T} \Norm{x}, \mbox{ para todo } x \in X.$$
+Demostremos que $$\Norm{Tx} \leq \Norm{T} \Norm{x}, \mbox{ para todo } x \in X.$$
+
+Empecemos tomando $x \in X$. Si $x = 0$, entonces $$\Norm{Tx} = \Norm{0} = 0 \leq  \Norm{T} \Norm{x}.$$ 
+
+Si por otro lado $x \neq 0$, entonces $y = \frac{x}{\Norm{x}} \in B_X$. Por lo que $\Norm{T} \geq \Norm{Ty}$. Esto es
+$$\Norm{T} \geq \Norm{T\left(\frac{x}{\Norm{x}}\right)} = \frac{\Norm{Tx}}{\Norm{x}}$$ y así $\Norm{Tx} \leq \Norm{T} \Norm{x}$. \\
 
 Dado un espacio vectorial topológico $X$, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \tau)^*$. 
 
@@ -1018,7 +1087,7 @@ Además, por la subaditividad de $p$ tenemos que
 
 Por la proposición~\ref{Prop:LimiteDeSuma} se tiene que 
 \Ecu{
-\lim_{\alpha\in \Lambda} [\abs{\lambda_\alpha - \lambda}p(x_\alpha) + \abs{\lambda} p(x_\alpha - x)] \\
+\lim_{\alpha\in \Lambda} [\abs{\lambda_\alpha - \lambda}p(x_\alpha) + \abs{\lambda} p(x_\alpha - x)] 
 &= \left( \lim_{\alpha\in \Lambda} \abs{\lambda_\alpha - \lambda} \right) \left( \lim_{\alpha\in \Lambda} p(x_\alpha)\right) + \left( \lim_{\alpha\in \Lambda} \abs{\lambda} p(x_\alpha - x)  \right) \\
 &\leq \left( 0 \right)  p(x) +  \abs{\lambda} 0  = 0 \\
 }
