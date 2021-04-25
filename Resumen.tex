@@ -430,7 +430,7 @@ Sea $X$ un espacio topológico y $A \subseteq X$. Entonces $\overline{A}$ es el c
 \end{Prop}
 
 \begin{proof}
-Tomemos $x \in \overline{A}$. Dado $U \in N_x$, tenemos que $U \cap A \neq \emptyset$. Así, existe $x_U \in U\cap A$. El ejemplo~\ref{Ejem:RedConvergeVecindadesDeUnPunto} muestra que la red $(x_U)_{U \in N_x}$ converge a $x$. \\
+Tomemos $x \in \overline{A}$. Dado $U \in N_x$, tenemos que $U \cap A \neq \emptyset$. Así, existe $x_U \in U\cap A$. El ejemplo~\ref{Ejem:RedConvergeVecindadesDeUnPunto} muestra que la red $(x_U)_{U \in N_x}$ converge a $x$. 
 
 Por otro lado tomemos $x \in X$ tal que existe una red $(x_\alpha)_{\alpha \in \Lambda}$ en $A$ con $x_\alpha \to x$. Sea $U \subseteq X$ una vecindad abierta de $x$. Entonces existe $\alpha_0 \in \Lambda$ tal que $x_\alpha \in U$ si $\alpha \geq \alpha_0$. En particular $x_{\alpha_0} \in U$. Además $x_{\alpha_0} \in A$. Por tanto $U \cap A \neq \emptyset$ y así $x \in \overline{A}$.   
 \end{proof}
@@ -442,7 +442,7 @@ Sea $X$ un espacio topológico Hausdorff. Entonces $X$ es Hausdorff si, y sólo si
 \end{Prop}
 
 \begin{proof}
-Sea $(x_\alpha)_{\alpha \in \Lambda}$ una red en $X$. Supongamos que $x_\alpha \to x$ y $x_\alpha \to y$, para algunos $x, y \in X$. Sean $V_x$ y $V_y$ vecindades abiertas de $x$ y $y$ respectivamente. Como $x_\alpha \to x$ y $x_\alpha \to y$, se sigue que existen $\alpha_x$ y $\alpha_y$ en $\Gamma$ tales que $x_\alpha \in V_x$ si $\alpha \geq \alpha_x$ y $x_\alpha \in V_y$ si $\alpha \geq \alpha_y$. Tomemos $\beta \in \Lambda$ con $\beta \geq \alpha_x$ y $\beta \geq \alpha_y$. Entonces $x_\beta \in V_x \cap V_y$, por lo que $V_x \cap V_y \neq \emptyset$ y dado que $X$ es Hausdorff se sigue que $x = y$. \\
+Sea $(x_\alpha)_{\alpha \in \Lambda}$ una red en $X$. Supongamos que $x_\alpha \to x$ y $x_\alpha \to y$, para algunos $x, y \in X$. Sean $V_x$ y $V_y$ vecindades abiertas de $x$ y $y$ respectivamente. Como $x_\alpha \to x$ y $x_\alpha \to y$, se sigue que existen $\alpha_x$ y $\alpha_y$ en $\Gamma$ tales que $x_\alpha \in V_x$ si $\alpha \geq \alpha_x$ y $x_\alpha \in V_y$ si $\alpha \geq \alpha_y$. Tomemos $\beta \in \Lambda$ con $\beta \geq \alpha_x$ y $\beta \geq \alpha_y$. Entonces $x_\beta \in V_x \cap V_y$, por lo que $V_x \cap V_y \neq \emptyset$ y dado que $X$ es Hausdorff se sigue que $x = y$. 
 
 Ahora supongamos que $X$ no es Hausdorff. Entonces existen $x, y \in X$ distintos tales que para toda $U \in N_x$ y toda $V \in N_y$ se tiene que $U \cap V \neq \emptyset$. Así que podemos tomar $x_{(U, V)} \in U \cap V$ para todo $(U, V) \in N_x \times N_y$. De esta manera la red $(x_{(U, V)})_{(U,V) \in N_x \times N_y}$ converge tanto a $x$ como a $y$. 
 \end{proof}
@@ -459,7 +459,7 @@ Sean $X, Y$ espacios topológicos, $f : X \to Y$ y $x \in X$. Son equivalentes:
 
 
 \begin{proof}
-Primero supongamos que $f$ es continua. Consideremos una red $(x_\alpha)_{\alpha \in \Lambda}$ tal que $x_\alpha \to x$. Sea $V$ una vecindad abierta de $f(x)$ en $Y$. Como $f$ es continua, el conjunto $f^{-1}(V)$ es una vecindad abierta de $x$ en $X$. Dado que $x_\alpha \to x$, existe $\alpha_0 \in \Lambda$ tal que $x_\alpha \in f^{-1}(V)$ para $\alpha \geq \alpha_0$. Así pues, si $\alpha \geq \alpha_0$ tenemos que $f(x_\alpha) \in f(f^{-1}(V)) \subseteq V$. Por tanto $f(x_\alpha) \to f(x)$. \\
+Primero supongamos que $f$ es continua. Consideremos una red $(x_\alpha)_{\alpha \in \Lambda}$ tal que $x_\alpha \to x$. Sea $V$ una vecindad abierta de $f(x)$ en $Y$. Como $f$ es continua, el conjunto $f^{-1}(V)$ es una vecindad abierta de $x$ en $X$. Dado que $x_\alpha \to x$, existe $\alpha_0 \in \Lambda$ tal que $x_\alpha \in f^{-1}(V)$ para $\alpha \geq \alpha_0$. Así pues, si $\alpha \geq \alpha_0$ tenemos que $f(x_\alpha) \in f(f^{-1}(V)) \subseteq V$. Por tanto $f(x_\alpha) \to f(x)$. 
 
 Ahora supongamos que $f$ no es continua en $x$, de manera que existe una vecindad abierta $V$ de $f(x)$ tal que para toda vecindad abierta $U \in N_x$ se tiene que $f(U) \subsetneq V$. Así pues, para cada $U \in N_x$ podemos tomar $x_U \in U$ de tal manera que $f(x_U) \notin V$. Consideremos la red $(x_U)_{U\in N_x}$. Por el ejemplo~\ref{Ejem:RedConvergeVecindadesDeUnPunto} se cumple que $x_U \rightarrow x$. Sin embargo, para todo $U \in N_x$ se tiene que $f(x_U) \notin V$, por lo que $f(x_U) \centernot\rightarrow f(x)$.
 \end{proof}
@@ -479,7 +479,7 @@ Sean $X$ y $Y$ espacios topológicos y consideremos en $X \times Y$ la topología 
 \end{Prop}
 
 \begin{proof}
-Primero supongamos que $(x_\alpha, y_\alpha)\to (x, y)$. Sea $\pi_X : X \times Y \to X$ la proyección, es decir, $\pi_X(x, y) = x$ para toda $(x, y) \in X \times Y$. Como esta proyección es continua, por el corolario~\ref{Cor:ContinuidadporRedes} tenemos que $\pi_X(x_\alpha, y_\alpha) \to \pi_X(x, y)$. Entonces $x_\alpha \to x$. Análogamente, $y_\alpha \to y$. \\
+Primero supongamos que $(x_\alpha, y_\alpha)\to (x, y)$. Sea $\pi_X : X \times Y \to X$ la proyección, es decir, $\pi_X(x, y) = x$ para toda $(x, y) \in X \times Y$. Como esta proyección es continua, por el corolario~\ref{Cor:ContinuidadporRedes} tenemos que $\pi_X(x_\alpha, y_\alpha) \to \pi_X(x, y)$. Entonces $x_\alpha \to x$. Análogamente, $y_\alpha \to y$. 
 
 Ahora supongamos que $x_\alpha \to x$ y $y_\alpha \to y$. Sea $W$ una vecindad abierta básica de $(x,y)$. Entonces existen $U$ abierto de $X$ y $V$ abierto de $Y$ con $W = U \times V$. Como $(x, y) \in U \times V$ resulta que $U$ es una vecindad abierta de $x$ y $V$ es una vecindad abierta de $y$. De esto que existen $\alpha_1, \alpha_2 \in \Lambda$ tal que $x_\alpha \in U$ para $\alpha\geq \alpha_1$ y $y_\alpha \in V$ para $\alpha \geq \alpha_2$. Tomemos $\widehat{\alpha} \in\Lambda$ tal que  $\widehat{\alpha} \geq \alpha_1$ y $\widehat{\alpha} \geq \alpha_2$. Así que para $\alpha \geq \widehat{\alpha}$ se tiene que $x_\alpha \in U$ y $y_\alpha \in V$, de donde $(x_\alpha, y_\alpha) \in U \times V = W$. Concluimos de esto que $(x_\alpha, y_\alpha) \to (x, y)$.
 \end{proof}
@@ -588,9 +588,9 @@ Sea $X$ un espacio topológico. Son equivalentes:
 \end{Tma}
 
 \begin{proof}
-Supongamos primero que $X$ es compacto y consideremos una red $(x_\alpha)_{\alpha \in \Lambda}$ en $X$. Para cada $\alpha \in \Lambda$ definamos el conjunto $C_\alpha = \ov{ \{x_\beta : \beta \geq \alpha\} }$. Supongamos que $\bigcap_{\alpha \in \Lambda} C_\alpha = \emptyset$. Entonces $\bigcup_{\alpha\in \Lambda} (X \setminus C_\alpha) = X$. Así pues, $\{ X \setminus C_\alpha \}_{\alpha \in \Lambda}$ es una cubierta abierta de $X$. Por ser $X$ compacto, existen $n \in \N$, $\alpha_1, \ldots, \alpha \in \Lambda$ con $X = \bigcup_{i=1}^n (X \setminus C_{\alpha_i})$. Así que $\bigcap_{i=1}^n C_{\alpha_i} = \emptyset$. Tomemos $\gamma \in \Lambda$ con $\gamma \geq \alpha_i$ para todo $1 \leq i \leq n$. De esto se sigue que $x_\gamma \in C_\gamma \subseteq C_{\alpha_i}$. Lo que indica que $x_\gamma \in \bigcap_{i=1}^n C_\alpha$. Esto es una contradicción, por lo que $\bigcap_{\alpha \in \Lambda} C_\alpha \neq \emptyset$. \\
+Supongamos primero que $X$ es compacto y consideremos una red $(x_\alpha)_{\alpha \in \Lambda}$ en $X$. Para cada $\alpha \in \Lambda$ definamos el conjunto $C_\alpha = \ov{ \{x_\beta : \beta \geq \alpha\} }$. Supongamos que $\bigcap_{\alpha \in \Lambda} C_\alpha = \emptyset$. Entonces $\bigcup_{\alpha\in \Lambda} (X \setminus C_\alpha) = X$. Así pues, $\{ X \setminus C_\alpha \}_{\alpha \in \Lambda}$ es una cubierta abierta de $X$. Por ser $X$ compacto, existen $n \in \N$, $\alpha_1, \ldots, \alpha \in \Lambda$ con $X = \bigcup_{i=1}^n (X \setminus C_{\alpha_i})$. Así que $\bigcap_{i=1}^n C_{\alpha_i} = \emptyset$. Tomemos $\gamma \in \Lambda$ con $\gamma \geq \alpha_i$ para todo $1 \leq i \leq n$. De esto se sigue que $x_\gamma \in C_\gamma \subseteq C_{\alpha_i}$. Lo que indica que $x_\gamma \in \bigcap_{i=1}^n C_\alpha$. Esto es una contradicción, por lo que $\bigcap_{\alpha \in \Lambda} C_\alpha \neq \emptyset$. 
 
-Tomemos $x \in \bigcap_{\alpha \in \Lambda} C_\alpha$. Veamos que $x$ es un punto de acumulación de $(x_\alpha)_{\alpha \in \Lambda}$. Sea $V$ una vecindad abierta de $x$ y $\alpha_0 \in \Lambda$. Como $x \in C_{\alpha_0}$, se tiene que $\{ x_\beta : \beta \geq \alpha_0 \} \cap V \neq \emptyset$. Por el lema~\ref{Lema:limitesubred} podemos afirmar que existe una subred de $(x_\alpha)_{\alpha\in\Lambda}$ que converge a $x$. \\
+Tomemos $x \in \bigcap_{\alpha \in \Lambda} C_\alpha$. Veamos que $x$ es un punto de acumulación de $(x_\alpha)_{\alpha \in \Lambda}$. Sea $V$ una vecindad abierta de $x$ y $\alpha_0 \in \Lambda$. Como $x \in C_{\alpha_0}$, se tiene que $\{ x_\beta : \beta \geq \alpha_0 \} \cap V \neq \emptyset$. Por el lema~\ref{Lema:limitesubred} podemos afirmar que existe una subred de $(x_\alpha)_{\alpha\in\Lambda}$ que converge a $x$. 
 
 Supongamos ahora que $X$ no es compacto. Existe entonces una cubierta abierta $\{ V_i \}_{i \in I}$ de $X$ tal que  no tiene  una subcubierta finita. Sea $\Lambda$ la colección de subconjuntos finitos de $I$ con el orden de inclusión. Para cada $F \in \Lambda$ la subcolección finita $\{ V_i : i \in F \}$ no cubre a $X$. Por lo que $\bigcup_{i\in F} V_i \neq X$. Así que existe $x_F \in X$ tal que $x_F \notin V_i$ para todo $i \in F$. Consideremos la red $(x_F)_{F \in \Lambda}$. Demostremos que esta red no tiene subredes que converjan. Por el lema~\ref{Lema:limitesubred} esto último equivale a demostrar que $(x_F)_{F \in \Lambda}$ no tiene puntos de acumulación. Sea $x \in X$. Entonces $x \in V_{i_0}$ para algún $i_0 \in I$. Además, para $F \in \Lambda$ tal que $\{ i_0 \} \subseteq F$ se tiene que $x_F \notin V_{i_0}$. Esto indica que $x$ no es punto de acumulación de $(x_F)_{F \in \Lambda}$. 
 \end{proof}
@@ -615,24 +615,25 @@ Por lo tanto $f(x_\alpha) \in (L- \varepsilon, L + \varepsilon) \subseteq U$, si
 
 Recordemos que $(X, \Norm{\cdot})$ es un \textit{espacio normado} si $X$ es un espacio vectorial sobre $\K$ y $\Norm{\cdot}$ es una norma en $X$. Si además $X$ es completo bajo esta norma, decimos que $X$ es un \textit{espacio de Banach}. Esto significa que en un espacio de Banach las sucesiones de Cauchy convergen. \\
 
-Sea $X$ un $\K$-espacio vectorial  y $x_1, \ldots, x_n \in X$, $n \in \N$. Definimos $$\mbox{span} \{ x_1, \ldots, x_n \} : = \left\{ \sum_{i=1}^n a_i x_i : a_1, \ldots, a_n  \in \K \right\}.$$ 
+Sea $X$ un espacio vectorial  y $x_1, \ldots, x_n \in X$, $n \in \N$. El espacio generado por un conjunto $A \subseteq X$ se denotará por $\mbox{span}\, A$ y está definido como  $$\mbox{span} \, A  : = \left\{ \sum_{i=1}^n a_i x_i : n\in \N,  a_1, \ldots, a_n  \in \K, x_1, \ldots, x_n \in A \right\}.$$ 
 
 \begin{Ejem} \label{Ejem:EllePNormado}
-Dados $n \in \N$ y $1 \leq p < \infty$, la función $\Norm{\cdot}_p:\K^n \to [0, \infty)$ dada por $$\Norm{(x_1, \ldots, x_n)}_p := \left(\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}}$$ es una norma. Lo que hace a $\K^n$ un espacio normado al cual denotamos $\ell^n_p$.
+Dados $n \in \N$ y $1 \leq p < \infty$, definamos la función $\Norm{\cdot}_p:\K^n \to [0, \infty)$ por $$\Norm{(x_1, \ldots, x_n)}_p := \left(\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}}.$$  
+
+Verificaremos a continuación que $\Norm{\cdot}_p$ en efecto es una norma.
 \end{Ejem}
 
-Las siguientes definiciones, ejemplos y lemas tienen el propósito de verificar que $\Norm{\cdot}_p$ en efecto es una norma.
 
-\begin{Def} Sea $X$ un espacio vectorial. Una función $f : X \to \R$ se dice convexa si para todos $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que $$f(\lambda x + (1-\lambda y))\leq \lambda f(x) + (1-\lambda) f(y).$$
+\begin{Def} Sea $X$ un espacio vectorial. Una función $f : X \to \R$ se dice \textit{convexa} si para todos $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que $$f(\lambda x + (1-\lambda y))\leq \lambda f(x) + (1-\lambda) f(y).$$
 \end{Def}
 
 \begin{Ejem}
-La función $\abs{\cdot}:\R \to \R$ es convexa pues dados $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que
-$$\abs{\lambda x + (1-\lambda y)} \leq \abs{\lambda} \abs{x} + \abs{1-\lambda} \abs{y}  = \lambda \abs{x} + (1-\lambda) \abs{y}.$$
+La función $\Norm{\cdot}:X \to \R$ es convexa pues dados $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que
+$$\Norm{\lambda x + (1-\lambda y)} \leq \abs{\lambda} \Norm{x} + \abs{1-\lambda} \Norm{y}  = \lambda \Norm{x} + (1-\lambda) \Norm{y}.$$
 \end{Ejem}
 
 \begin{Lema} \label{Lema:SegundaDerivadaPositivaConvexa}
-Sea $X$ un espacio normado, $U$ convexo y $f : U \to \R$ una función segundo diferenciable. Entonces $f$ es convexa siempre que para todo $f^{\prime\prime} \geq 0$ en $U$.
+Sean $(a, b) \subseteq \R$ un intervalo y $f : (a, b) \to \R$ una función dos veces diferenciable. Si $f^{\prime\prime} \geq 0$ en $(a, b)$, entonces $f$ es convexa.
 \end{Lema}
 
 \begin{proof}
@@ -643,9 +644,9 @@ Sea $X$ un espacio normado, $U$ convexo y $f : U \to \R$ una función segundo dif
 Fijemos $1 \leq p \leq \infty$ y consideremos $f: [0, \infty) \to[0, \infty)$ dada por $f(x) = x^p$ para toda $x \in \R$. Claramente $f$ es diferenciable y $f^\prime(x) = p x^{p-1}$. Además $f^\prime$ vuelve  a ser diferenciable y $f^{\prime\prime}(x) = p(p-1)x^{p-2} \geq 0$ para todo $x \geq 0$ y por el lema~\ref{Lema:SegundaDerivadaPositivaConvexa} resulta que $f$ es convexa.
 \end{Ejem}
 
-\begin{Prop}
+\begin{Lema}
 Sean $X$ un espacio normado, $f: \K \to \R$ convexa y creciente; y $g: \R \to \R$ convexa, entonces $g \circ f$ es convexa.
-\end{Prop}
+\end{Lema}
 
 \begin{proof}
 (Pendiente.)
@@ -658,31 +659,27 @@ Sea $f$ como en el ejemplo~\ref{Ejem:XPConvexa} y $g = \Norm{\cdot}$. Entonces  
 \begin{proof}
 (del ejemplo~\ref{Ejem:EllePNormado}) 
 \begin{itemize}
-\item \textbf{i)} Claramente $\Norm{x}_p \geq 0$ para cualquier $x \in \ell_p^n$, pues la suma de no negativos es no negativo y la función $z \mapsto z^{\frac{1}{p}}$ es creciente. Además tenemos que si $x = 0 \in \ell_p^n$, entonces $\Norm{x}_p= 0$. Es sencillo observar que si $\Norm{x}_p = 0$ para algún $x \in X$, entonces $x = 0$.
+\item \textbf{i)} Claramente, $\Norm{x}_p \geq 0$ para cualquier $x \in \ell_p^n$. Además, tenemos que si $x = 0 \in \ell_p^n$, entonces $\Norm{x}_p= 0$. Es sencillo observar que si $\Norm{x}_p = 0$ para algún $x \in X$, entonces $x = 0$.
 \item \textbf{ii)} Sea $x = (x_1, \ldots, x_n) \in \ell_p^n$ y $\lambda \in \K$, entonces
 \Ecu{
-\Norm{\lambda x}_p &= \Norm{(\lambda x_1, \ldots, \lambda x_n)}_p \\
-&=  \left(\sum_{i=1}^n \abs{\lambda x_i}^p\right)^{\frac{1}{p}} = \left(\abs{\lambda}^p\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}} \\
-&= \abs{\lambda} \left(\sum_{i=1}^n \abs{ x_i}^p\right)^{\frac{1}{p}} = \abs{\lambda} \Norm{x}_p.
+\Norm{\lambda x}_p &= \Norm{(\lambda x_1, \ldots, \lambda x_n)}_p =  \left(\sum_{i=1}^n \abs{\lambda x_i}^p\right)^{\frac{1}{p}} \\
+&= \left(\abs{\lambda}^p\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}} = \abs{\lambda} \left(\sum_{i=1}^n \abs{ x_i}^p\right)^{\frac{1}{p}} = \abs{\lambda} \Norm{x}_p.
 }
-\item \textbf{iii)} Sean $x, y \in \ell_p^n$ y supongamos que $\Norm{x}_p + \Norm{y}_p  =0$. Entonces $x = y = 0$ y $\Norm{x+y}_p \leq \Norm{x}_p + \Norm{y}_p$. Supongamos ahora que $\Norm{x}_p + \Norm{y}_p > 0$. Si $x = 0$ o $y = 0$ es trivial concluir que $\Norm{x+y}_p \leq \Norm{x}_p + \Norm{y}_p$. Así que tomamos $x, y \neq 0$. Definamos 
-$$\widehat{x} := \frac{x}{\Norm{x}_p + \Norm{y}_p} \quad \mbox{  y } \quad \widehat{y} := \frac{y}{\Norm{x}_p + \Norm{y}_p}$$ de tal manera que 
-$\Norm{\widehat{x}} + \Norm{\widehat{y}} = 1$. 
-
-Definamos $\lambda = \Norm{\widehat{y}}_p \in (0, 1)$ y tomemos $X =\frac{x}{1-\lambda}$ y $X =\frac{y}{\lambda}$.
+\item \textbf{iii)} Sean $x, y \in \ell_p^n$ y supongamos que $\Norm{x}_p + \Norm{y}_p  =0$. Entonces $x = y = 0$ y $\Norm{x+y}_p \leq \Norm{x}_p + \Norm{y}_p$. Supongamos ahora que $\Norm{x}_p + \Norm{y}_p > 0$. Si $x = 0$ o $y = 0$, claramente $\Norm{x+y}_p \leq \Norm{x}_p + \Norm{y}_p$. Así que tomamos $x, y \neq 0$. Definamos 
+$$\widehat{x} := \frac{x}{\Norm{x}_p + \Norm{y}_p} \quad \mbox{  y } \quad \widehat{y} := \frac{y}{\Norm{x}_p + \Norm{y}_p},$$ de tal manera que 
+$\Norm{\widehat{x}} + \Norm{\widehat{y}} = 1$. Definamos $\lambda := \Norm{\widehat{y}}_p \in (0, 1)$ y tomemos $$X =\frac{x}{1-\lambda} \quad
+ \mbox{ y } \quad Y = \frac{y}{\lambda}.$$
 
 Queda pendiente el resto de la demostración. 
 \end{itemize}
 \end{proof}
 
 \begin{Ejem}
-Consideremos ahora a $\K^n$ con la norma $\Norm{\cdot}_{\infty}: \K^n \to [0, \infty)$ dada por $$\Norm{(x_1, x_2, \ldots)}_\infty :=\max_{i \in \N} \,  \abs{x_i},$$ al cual denotamos por $\ell^n_p$
-
+Consideremos ahora a $\K^n$ con la norma $\Norm{\cdot}_{\infty}: \K^n \to [0, \infty)$ dada por $$\Norm{(x_1, x_2, \ldots)}_\infty :=\max_{i \in \N} \,  \abs{x_i},$$ al cual denotamos por $\ell^n_\infty$
 \end{Ejem}
 
 \begin{proof}
-Aquí encontré dos opciones. La primera es desarrollar de la misma manera que usted lo hace en su libro utilizando exponentes conjugados y la desigualdad de Hölder. La segunda opción es la demostración de Terrence Tao que encontré \href{https://math.stackexchange.com/questions/447747/how-to-prove-triangle-inequality-for-p-norm}{aquí}. Sólo habría que demostrar el detalle de que $z \to z^p$ es convexa.
-¿Prefiere alguna de estas dos más que la otra?
+(Pendiente).
 \end{proof}
 
 En un espacio normado $X$ denotamos a la \textit{bola abierta} de centro $y \in X$ y radio $r > 0$ por
@@ -746,7 +743,7 @@ Sea $X$ un espacio normado. Decimos que $A \subseteq X$ es un conjunto \textit{a
 \end{Def}
 
 \begin{Prop} \label{Prop:IsomorfismoPreservaConjuntosAcotados}
-Sean $X$ y $Y$ espacios normados. Si $T:X \to Y$ es un operador lineal acotado, entonces $T$ preserva conjuntos acotados.
+Sean $X$ y $Y$ espacios normados y  $T:X \to Y$ un operador lineal. Entonces $T$ es acotado si, y sólo si $T$ preserva conjuntos acotados.
 \end{Prop}
 
 \begin{proof}
@@ -758,7 +755,7 @@ $$\Norm{T} := \sup\{ \Norm{Tx}  :  x \in B_X\}.$$
 
 Esta resulta ser una norma y así $\mathcal{L}(X, Y)$ es un espacio normado. Si además $Y$ es un espacio de Banach, entonces $\mathcal{L}(X, Y)$ también es un espacio de Banach. \\
 
-Demostremos que $$\Norm{Tx} \leq \Norm{T} \Norm{x}, \mbox{ para todo } x \in X.$$
+Veamos que $$\Norm{Tx} \leq \Norm{T} \Norm{x}, \mbox{ para todo } x \in X.$$
 
 Empecemos tomando $x \in X$. Si $x = 0$, entonces $$\Norm{Tx} = \Norm{0} = 0 \leq  \Norm{T} \Norm{x}.$$ 
 
@@ -789,7 +786,7 @@ Por lo tanto $f = \sum_{j=1}^n a_j f_j$. Esto dice que existe un conjunto finito
 \end{proof}
 
 
-\begin{Def} ¿Se requiere que sean de dimensión finita los espacios para estás definiciones?
+\begin{Def} \hfill
 \begin{itemize}
 \item \textbf{i)} Sean $X$ y $Y$ espacios vectoriales. Se dice que $X$ y $Y$
 son \textit{isomorfos} como espacios vectoriales si existe $T :  X \to Y$ biyectiva y lineal. En este caso a $T$ se la llama \textit{isomorfismo} de espacios vectoriales.
@@ -802,20 +799,21 @@ Si $X$ y $Y$ son espacios normados de dimensión finita y de la misma dimensión, 
 \end{Tma}
 
 \begin{proof}
-Supongamos que $\dim \, X = n \in \N$ y sea $\{ x_1, \ldots, x_n \}$ una base. Demostraremos que $X$ es isomorfo como espacio normado a $\ell_2^n$ por medio de la función 
+Supongamos que $\dim \, X = n \in \N$ y sea $\{ x_1, \ldots, x_n \}$ una base suya. Demostraremos que $X$ es isomorfo como espacio normado a $\ell_2^n$ por medio de la función 
 \Ecu{
 T: \ell_2^n & \to X \\
 (a_1, \ldots, a_n) & \mapsto \sum_{i=1}^n a_i x_i. 
 } 
-Si $a = (a_1, \ldots, a_n), b = (b_1, \ldots, b_n) \in \ell_2^n$ cumplen que $T(a) = T(b)$, entonces $\sum_{i=1}^n (a_i - b_i)x_i = 0$. Como $\{x_1, \ldots, x_n \}$ es linealmente independiente, entonces $a_1 - b_1 = \ldots = a_n - b_n = 0$. Así que $a = b$ y $T$ es inyectiva. \\
+Si $a = (a_1, \ldots, a_n), b = (b_1, \ldots, b_n) \in \ell_2^n$ cumplen que $T(a) = T(b)$, entonces $\sum_{i=1}^n (a_i - b_i)x_i = 0$. Como $\{x_1, \ldots, x_n \}$ es linealmente independiente, entonces $a_1 - b_1 = \ldots = a_n - b_n = 0$. Así que $a = b$ y $T$ es inyectiva. 
 
-Sea $x \in X$. Como $\{x_1, \ldots, x_n \}$ genera a $X$, existen $a_1, \ldots, a_n \in \K$ tales que $x = \sum_{i=1}^n a_i x_i = T(a_1, \ldots, a_n)$ y así $T$ es sobreyectiva. \\
+Sea $x \in X$. Como $\{x_1, \ldots, x_n \}$ genera a $X$, existen $a_1, \ldots, a_n \in \K$ tales que $x = \sum_{i=1}^n a_i x_i = T(a_1, \ldots, a_n)$ y así $T$ es sobreyectiva. 
 
 Veamos que $T$ es lineal. Dados $(a_1, \ldots, a_n), (b_1, \ldots, b_n) \in \ell_1^n$ y $\lambda \in \K$, se tiene que
 \Ecu{
 T((a_1, \ldots, a_n) + \lambda (b_1, \ldots, b_n)) &= T((a_1 + \lambda b_1, \ldots, a_n + \lambda b_n)) = \sum_{i=1}^n (a_i + \lambda b_i) x_i \\
 &= \sum_{i=1}^n a_i  x_i +  \lambda\sum_{i=1}^n  b_i x_i = T(a_1, \ldots, a_n) + \lambda T(b_1, \ldots, b_n).
 }
+
 Ahora, tomemos $(a_1, \ldots, a_n) \in \ell_2^n$. Por la desigualdad del triángulo y la desigualdad de Schwarz 
 \Ecu{
 \Norm{T(a_1, \ldots, a_n)} & = \Norm{\sum_{i=1}^n a_i x_i} \leq \sum_{i=1}^n \abs{a_i} \Norm{x_i} \\
@@ -823,12 +821,14 @@ Ahora, tomemos $(a_1, \ldots, a_n) \in \ell_2^n$. Por la desigualdad del triángu
 &= \left( \sum_{i=1}^n \Norm{x_i}^2 \right)^{\frac{1}{2}} \Norm{(a_1, \ldots, a_n)}_2.
 }
 
-Esto indica que $T$ es un operador lineal acotado y por lo tanto continuo. \\
+Esto indica que $T$ es un operador lineal acotado y por lo tanto continuo. 
 
-Ahora consideremos la función $f = \Norm{\cdot} \circ I$. Como la norma es una función continua y $T$ es continua, entonces $f$ es continua. Dado que $S_{\ell_2^n} := \{ (a_1, \ldots, a_n) \in \K^n  : \Norm{(a_1, \ldots, a_n)}_2 = 1 \}$  es compacto en $\ell_2^n$  se sigue que $f$ alcanza un valor mínimo $m \in \K$ en $S_{\ell_2^n}$. Como $f \geq 0$, entonces $m \geq 0$. Supongamos que $m = 0$. Entonces existe $(a_1, \ldots, a_n) \in S_{\ell_2^n}$ tal que $$ \Norm{\sum_{i=1}^n a_i x_i} = f(a_1, \ldots, a_n) = 0.$$
+Ahora consideremos la función $f = \Norm{\cdot} \circ T$. Como la norma es una función continua y $T$ es continua, entonces $f$ es continua. Dado que $S_{\ell_2^n} := \{ (a_1, \ldots, a_n) \in \K^n  : \Norm{(a_1, \ldots, a_n)}_2 = 1 \}$  es compacto en $\ell_2^n$  se sigue que $f$ alcanza un valor mínimo $m \in \K$ en $S_{\ell_2^n}$. Como $f \geq 0$, entonces $m \geq 0$. Supongamos que $m = 0$. Entonces existe $(a_1, \ldots, a_n) \in S_{\ell_2^n}$ tal que $$ \Norm{\sum_{i=1}^n a_i x_i} = f(a_1, \ldots, a_n) = 0.$$
+
 Por lo que $\sum_{i=1}^n a_i x_i = 0$ y esto indica que $a_1 = \ldots = a_n = 0$. Lo cual es una contradicción, pues  entonces $\Norm{(a_1, \ldots, a_n)}_2 = 0$. Así que $m > 0$ y $\frac{1}{m} > 0$. Para todo $x \in X$ con $x \neq 0$ se cumple que $T^{-1}(x) \neq 0$, $\frac{T^{-1}(x)}{\Norm{T^{-1}(x)}} \in S_{\ell_2^n}$ y 
 $$\frac{\Norm{x}}{\Norm{T^{-1}(x)}} = \Norm{T\left(\frac{T^{-1}(x)}{\Norm{T^{-1}(x)}}\right)} = f\left(\frac{T^{-1}(x)}{\Norm{T^{-1}(x)}}\right) \geq m. $$
-De donde $\Norm{T^{-1}(x)} \leq \frac{1}{m} \Norm{x}$. Por lo cual $T^{-1}$ es continua y $T$ es un isomorfismo de espacios normados. \\
+
+De donde $\Norm{T^{-1}(x)} \leq \frac{1}{m} \Norm{x}$. Por lo cual $T^{-1}$ es continua y $T$ es un isomorfismo de espacios normados. 
 
 Análogamente, como $\dim \, Y =  \dim \,  X  = n$, entonces existe $S: \ell^n_2 \to Y$  isomorfismo de espacios normados. Resulta entonces que $S\circ T^{-1} : X \to Y$ es un isomorfismo de espacios normados entre $X$ y $Y$.
 \end{proof}
@@ -836,6 +836,10 @@ Análogamente, como $\dim \, Y =  \dim \,  X  = n$, entonces existe $S: \ell^n_2 
 \begin{Cor}
 Sea $X$ un espacio normado de dimensión finita. Entonces todas las normas en $X$ son equivalentes entre sí.
 \end{Cor}
+
+\begin{proof}
+(Pendiente).
+\end{proof}
 
 \begin{Cor} \label{Cor:FuncionalesLinealesContinuosEspaciosFinitos}
 Sea $X$ un espacio normado de dimensión finita y  $\varphi : X \to \K$ un funcional lineal. Entonces $\varphi$ es continuo. 
@@ -864,7 +868,7 @@ Si $Y$ es un subespacio de dimensión finita de un espacio normado $X$, entonces 
 \end{Cor}
 
 \begin{proof}
-Sea $x \in \ov{Y}$. Por el corolario~\ref{Cor:CerraduraLimiteSucesiones}, existe una sucesión $(y_n)_{n\in\N}$ en $Y$ que converge a $x \in X$. Como la sucesión converge, entonces es de Cauchy. El corolario anterior indica que  $Y$ es completo y así $y_n \to y \in Y$. Dado que $X$ es Hausdorff, el límite es único y así $x = y$. Luego $x \in Y$, lo cual indica que $\ov{Y} \subseteq Y$ y $Y$ es cerrado.
+Sea $x \in \ov{Y}$. Por el corolario~\ref{Cor:CerraduraLimiteSucesiones}, existe una sucesión $(y_n)_{n\in\N}$ en $Y$ que converge a $x \in X$. Como la sucesión converge, entonces es de Cauchy. El corolario anterior indica que  $Y$ es completo y así $y_n \to y \in Y$. Dado que $X$ es Hausdorff, $x = y$. Luego $x \in Y$, lo cual indica que $\ov{Y} \subseteq Y$ y $Y$ es cerrado.
 \end{proof}
 
 \subsection{Compacidad de la bola cerrada en un espacio normado.}
