@@ -95,11 +95,11 @@
 
 \section{Topología y espacio vectorial topológico.}
 
-Un aspecto muy importante de los espacios normados, sobre los cuales estaremos enfocándonos, es su topología, así que recordemos algunos de sus conceptos principales. \\
+Un aspecto muy importante de los espacios normados, sobre los cuales estaremos enfocándonos, es su topología, así que empezaremos este trabajo recordando algunos de sus conceptos principales. \\
 
 Sea $X$ un conjunto no vacío. Una \textit{topología} $\tau$ de $X$ es una familia de subconjuntos de $X$ que cumple las siguientes propiedades:
 \begin{itemize}
-\item \textbf{i)} El conjunto vacío y $X$ pertenecen a $\tau$.
+\item \textbf{i)} El conjunto vacío $\emptyset$ y $X$ pertenecen a $\tau$.
 \item \textbf{ii)} Dados $A, B \in \tau$ se tiene que $A \cap B \in \tau$.
 \item \textbf{iii)} Si $\{ A_\alpha \}_{\alpha \in \Lambda}$ es una familia de elementos de $\tau$, entonces $\bigcup_{\alpha \in\Lambda} A_\alpha \in \tau$.
 \end{itemize}
@@ -131,9 +131,9 @@ Sean $X$ y $Y$ dos espacios topológicos y $f: X \to Y$.
 \end{itemize}
 \end{Def}
 
-\begin{Prop} \label{Prop:CaracterizacionContinuidadPorPreimagenesDeAbiertos}
+\begin{Lema} \label{Lema:CaracterizacionContinuidadPorPreimagenesDeAbiertos}
 Sean $X$ y $Y$ dos espacios topológicos y $f: X \to Y$. Entonces $f$ es continua si, y sólo si $f^{-1}(V)$ es abierto en $X$, para todo abierto $V$ en $Y$.
-\end{Prop}
+\end{Lema}
 
 \begin{proof}
 Supongamos que $f$ es continua. Sea $V$ un abierto en $Y$. Para cada $x \in f^{-1}(V)$, $V$ es vecindad abierta de $f(x)$, por lo que existe $U_x$ vecindad abierta de $x$ tal que $f(U_x) \subseteq V$ y por lo tanto $U_x \subseteq f^{-1}(V)$. De esto se puede concluir que  $$f^{-1}(V) = \bigcup_{x \in f^{-1}(V)} U_x$$ es abierto. 
@@ -229,7 +229,7 @@ Sean $X$ y $Y$ espacios topológicos y $f: X \to Y$ un homeomorfismo. Entonces $f
 \end{Prop}
 
 \begin{proof}
-El que $f$ preserve abiertos se sigue de inmediato del hecho de que $f^{-1}$ es continua y de la proposición~\ref{Prop:CaracterizacionContinuidadPorPreimagenesDeAbiertos}. 
+El que $f$ preserve abiertos se sigue de inmediato del hecho de que $f^{-1}$ es continua y de el lema~\ref{Lema:CaracterizacionContinuidadPorPreimagenesDeAbiertos}. 
 
 Sea $A$ un conjunto cerrado. Entonces $X \setminus A$ es abierto. Como $f$ preserva abiertos $f(X \setminus A)$ es abierto. Dado que $f$ es biyectiva se tiene que $Y \setminus f(A) = f(X \setminus A)$ es abierto y así $f(A)$ es cerrado. 
 \end{proof}
@@ -279,7 +279,7 @@ Sean $I$ un conjunto no vacío y $X_i$ espacios topológicos para cada $i \in I$. 
 }
 
 \begin{Def}
-Sea $I$ un conjunto no vacío y $X_i$ espacios topológicos para cada $i \in I$. La \textit{topología producto} de $\prod_{i\in I} X_i$ es la generada por la base $$\left\{ \bigcap_{j=1}^k \pi_{i_j}^{-1}(U_j) : k \in \N, \, i_1, \ldots, i_k \in I \mbox{ y } U_j \mbox{ es abierto en } X_{i_j} \mbox{ para cada } 1\leq j \leq k\right\}.$$
+Sean $I$ un conjunto no vacío y $X_i$ espacios topológicos para cada $i \in I$. La \textit{topología producto} de $\prod_{i\in I} X_i$ es la generada por la base $$\left\{ \bigcap_{j=1}^k \pi_{i_j}^{-1}(U_j) : k \in \N, \, i_1, \ldots, i_k \in I \mbox{ y } U_j \mbox{ es abierto en } X_{i_j} \mbox{ para cada } 1\leq j \leq k\right\}.$$
 \end{Def}
 
 Veamos que con esta definición de topología producto las proyecciones son continuas. Fijemos $i \in I$ y tomemos cualquier abierto $U_i$ en $X_i$. Entonces $\pi_i^{-1}(U_i)$ es un básico de $\prod_{i\in I} X_i$ y por tanto es abierto. Esto indica que $\pi_i$ es continua. \\ 
@@ -290,34 +290,70 @@ Sea $X$ un espacio topológico. Diremos que $X$ es \textit{Hausdorff} si para tod
 
 \section{Espacios métricos.}
 
-En un espacio normado $X$ denotamos a la \textit{bola abierta} de centro $y \in X$ y radio $r > 0$ por
-$$V_r(y) = \{ x \in X : \Norm{x-y} < r \}.$$
-
-y la \textit{bola cerrada} de centro $y \in X$ y radio $r > 0$ por
-$$B_r(y) = \{ x \in X : \Norm{x-y} \leq r \}.$$
-
-El caso particular de la \textit{bola unitaria cerrada} se denotará por $B_X$. \\
-
 \begin{Def}
-En el espacio normado $X$ definimos la \textit{topología original} de $X$ de manera que $U$ es un abierto de $X$ si, y sólo si para todo $x \in U$ existe $r > 0$ tal que $V_r(x) \subseteq U$.
+Un \textit{espacio métrico} es una pareja $(M, d)$ donde $M$ es un conjunto no vacío y $d: M \times M \to [0, \infty)$ es una \textit{distancia}. Esto es
+\begin{itemize}
+\item Para $x, y \in M$ se cumple que $d(x, y) = 0$ si y sólo si $x = y$. 
+\item Dados $x, y \in M$ $d(x, y) = d(y, x)$.
+\item Si $x, y, z \in M$, entonces $d(x, z) \leq d(x, y) + d(y, z)$.
+\end{itemize}
 \end{Def}
 
 
-La siguiente proposición indica que en un espacio normado $X$ las bolas abiertas forman una base de la topología original de $X$.
+En un espacio métrico $M$ denotamos a la \textit{bola abierta} de centro $y \in M$ y radio $r > 0$ por
+$$V_r(y) = \{ x \in M : \Norm{x-y} < r \}.$$
+
+y la \textit{bola cerrada} de centro $y \in M$ y radio $r > 0$ por
+$$B_r(y) = \{ x \in M : \Norm{x-y} \leq r \}.$$
+
+El caso particular de la \textit{bola unitaria cerrada} se denotará por $B_M$. \\
+
+\begin{Def}
+En el espacio métrico $M$ definimos la \textit{topología original} de $X$ de manera que $U$ es un abierto de $M$ si, y sólo si para todo $x \in U$ existe $r > 0$ tal que $V_r(x) \subseteq U$.
+\end{Def}
+
+
+La siguiente proposición indica que en un espacio métrico $M$ las bolas abiertas forman una base de la topología original de $M$.
 
 \begin{Prop} \label{Prop:BaseDeEntonrnosEspaciosNormados}
-Sea $X$ un espacio normado. El conjunto $$\mathcal{B} := \{ V_r(x) : r > 0, x \in X \}$$ es una base de $X$.
+Sea $M$ un espacio métrico. El conjunto $$\mathcal{B} := \{ V_r(x) : r > 0, x \in M \}$$ es una base de $M$.
 \end{Prop}
 
 \begin{proof}
-Tomemos $V_r(x) \in \mathcal{B}$ para algunos $r > 0$ y $x \in X$. Verifiquemos que $V_r(x)$ es abierto en $X$. Tomemos $y \in V_r(x)$.  Consideremos $s = r - \Norm{x-y} > 0$. Así pues si $z \in V_s(y)$, entonces $\Norm{z-y} < s = r -\Norm{x-y} $. Por la desigualdad del triángulo $\Norm{x-z} \leq \Norm{z-y} + \Norm{x-y}  < r$. Así que $z \in V_r(x)$ y $V_s(y) \subseteq V_r(x)$ y concluimos que $V_r(x)$ es abierto. 
+Tomemos $V_r(x) \in \mathcal{B}$ para algunos $r > 0$ y $x \in M$. Verifiquemos que $V_r(x)$ es abierto en $M$. Tomemos $y \in V_r(x)$.  Consideremos $s = r - \Norm{x-y} > 0$. Así pues si $z \in V_s(y)$, entonces $\Norm{z-y} < s = r -\Norm{x-y} $. Por la desigualdad del triángulo $\Norm{x-z} \leq \Norm{z-y} + \Norm{x-y}  < r$. Así que $z \in V_r(x)$ y $V_s(y) \subseteq V_r(x)$ y concluimos que $V_r(x)$ es abierto. 
 
-Si $U$ es abierto de $X$ y $x \in U$, por definición existe $r > 0$ tal que $x \in V_r(x) \subseteq U$. La proposición~\ref{Prop:CaracterizacionDeBase} indica que $\mathcal{B}$ es una base de $X$. 
+Si $U$ es abierto de $M$ y $x \in U$, por definición existe $r > 0$ tal que $x \in V_r(x) \subseteq U$. La proposición~\ref{Prop:CaracterizacionDeBase} indica que $\mathcal{B}$ es una base de $M$. 
+\end{proof}
+
+Las sucesiones tienen un papel relevante en los espacios métricos, pues a través de ellas podemos caracterizar algunos conceptos que previamente hemos presentado.
+
+\begin{Prop} \label{Prop:ContinuidadPorSucesiones}
+Sean $M_1$ y $M_2$ espacios métricos y $f :  M_1 \to M_2$. Son equivalentes: 
+\begin{itemize}
+\item $f$ es continua.
+\item Para toda sucesión $(x_n)_{n\in\N} \subseteq M_1$ tal que $x_n \to x \in M_1$ se cumple que $f(x_n) \to f(x)$. 
+\end{itemize} 
+\end{Prop}
+
+\begin{proof}
+(Pendiente).
+\end{proof}
+
+Cuando un espacio topológico cumple el primer axioma de contabilidad tenemos la siguiente caracterización para los conjuntos cerrados que se demostrará para el caso particular de espacios normados.
+
+\begin{Prop}\label{Cor:CerraduraLimiteSucesiones} 
+Sea $M$ un espacio métrico y $A \subseteq M$. Entonces $\overline{A}$ es el conjunto de los puntos en $M$ que son el límite de alguna sucesión en $A$.
+\end{Prop}
+
+\begin{proof}
+Tomemos $x \in \overline{A}$. Dado $n \in \N$, tenemos que $V_{\frac{1}{n}}(x)$ es una vecindad abierta de $x$ y por lo tanto $V_{\frac{1}{n}}(x) \cap A \neq \emptyset$. Así que existe algún $x_n \in V_{\frac{1}{n}}(x) \cap A$. Claramente, $(x_n)_{n\in \N}$ es una sucesión en $A$ tal que $x_n \to x$. 
+
+Ahora tomemos $x \in M$ tal que existe $(x_n)_{n\in\N} \subseteq A$ con $x_n \to x$. Sea $U$ una vecindad abierta de $x$. Entonces existe $N \in \N$ tal que $x_n \in U$ si $n \geq N$. En particular, $x_N \in U \cap A \neq \emptyset$ y así $x \in \ov{A}$. 
 \end{proof}
 
 \section{Redes.}
 
-El estudio de convergencia en espacios normados se puede realizar a través de sucesiones. Sin embargo, el concepto de redes, que generaliza a las sucesiones, resulta ser más adecuado en espacios vectoriales con una topología que no proviene de una norma. Por tanto, desarrollaremos un poco de teoría de redes antes de hablar de la convergencia en la topología débil correspondiente a un espacio normado. \\
+Hemos visto que el estudio de convergencia en espacios métricos se puede realizar a través de sucesiones. Sin embargo, el concepto de redes, que generaliza a las sucesiones, resulta ser más adecuado en espacios vectoriales con una topología que no proviene de una norma. Por tanto, desarrollaremos un poco de teoría de redes antes de hablar de la convergencia en la topología débil correspondiente a un espacio normado. \\
 
 \begin{Def}
 Un \textit{conjunto dirigido} es una pareja $(\Lambda, \leq)$, donde $\Lambda$ es un conjunto no-vacío y $\leq$ es una relación en $\Lambda$ tal que: 
@@ -369,7 +405,7 @@ La relación $\subseteq$ es reflexiva y transitiva, así que $\leq$ también lo es.
 Una \textit{red} en un conjunto $X$ es una función $\rho: \Lambda \to X$, donde $\Lambda$ es un conjunto dirigido. Usualmente representamos a la red $\rho$ por $(x_\alpha)_{\alpha \in \Lambda}$, donde $x_\alpha := f(\alpha)$ para toda $\alpha \in \Lambda$. Cuando sea necesario indicar que el dominio de una red es $\Lambda$, la llamaremos una $\Lambda$-\textit{red}.
 \end{Def}
 
-\begin{Ejem} \label{Ejem:sucesiones}
+\begin{Ejem} \label{Ejem:SucesionesSonRedes}
 Claramente, $\N$ es un conjunto dirigido con el orden usual. Ya que las sucesiones en $X$ son funciones de $\N$ en $X$, concluimos que las sucesiones son redes.
 \end{Ejem}
 
@@ -382,7 +418,7 @@ Sean $(x_\alpha)_{\alpha \in \Lambda}$ una red en un espacio topológico $X$ y $x
 \end{Def}
 
 \begin{Ejem}
-Sea $(x_n)_{n\in\N}$ una sucesión en un espacio topológico. El ejemplo~\ref{Ejem:sucesiones} indica que $(x_n)_{n\in\N}$ también es una red. Así pues, tenemos el concepto de convergencia de $(x_n)_{n\in\N}$ como sucesión y como red. Ambos conceptos resultan ser equivalentes. 
+Sea $(x_n)_{n\in\N}$ una sucesión en un espacio topológico. El ejemplo~\ref{Ejem:SucesionesSonRedes} indica que $(x_n)_{n\in\N}$ también es una red. Así pues, tenemos el concepto de convergencia de $(x_n)_{n\in\N}$ como sucesión y como red. Ambos conceptos resultan ser equivalentes. 
 \end{Ejem}
 
 \begin{Ejem} \label{Ejem:RedConvergeVecindadesDeUnPunto}
@@ -411,7 +447,7 @@ Sea $(x_\alpha)_{\alpha \in \Lambda}$ una red en $X$. Supongamos que $x_\alpha \
 Ahora supongamos que $X$ no es Hausdorff. Entonces existen $x, y \in X$ distintos tales que para toda $U \in N_x$ y toda $V \in N_y$ se tiene que $U \cap V \neq \emptyset$. Así que podemos tomar $x_{(U, V)} \in U \cap V$ para todo $(U, V) \in N_x \times N_y$. De esta manera la red $(x_{(U, V)})_{(U,V) \in N_x \times N_y}$ converge tanto a $x$ como a $y$. 
 \end{proof}
 
-La continuidad en un espacio topológico que no sea metrizable puede no coincidir con la continuidad por sucesiones. La siguiente proposición muestra que sí coincide con la continuidad por redes. 
+A diferencia de la proposición~\ref{Prop:ContinuidadPorSucesiones}, la continuidad en un espacio topológico que no sea metrizable puede no coincidir con la continuidad por sucesiones. La siguiente proposición muestra que sí coincide con la continuidad por redes. 
 
 \begin{Prop} \label{Prop:ContinuidadporRedes}
 Sean $X, Y$ espacios topológicos, $f : X \to Y$ y $x \in X$. Son equivalentes:
@@ -491,7 +527,7 @@ Una red $(y_\beta)_{\beta \in \Gamma}$ en $X$ es \textit{subred} de la red $(x_\
 \end{Def}
 
 \begin{Ejem}
-En el ejemplo~\ref{Ejem:sucesiones} se mencionó que las sucesiones son redes. Notemos que toda subsucesión de una sucesión también es una subred. Sin embargo, como veremos a continuación, las subredes de las sucesiones vistas como redes no coinciden con sus subsucesiones. \\
+En el ejemplo~\ref{Ejem:SucesionesSonRedes} se mencionó que las sucesiones son redes. Notemos que toda subsucesión de una sucesión también es una subred. Sin embargo, como veremos a continuación, las subredes de las sucesiones vistas como redes no coinciden con sus subsucesiones. \\
 
 Consideremos la sucesión $x_n = n$ para $n \in \N$. Tomamos $\varphi: \N \to \N$ con 
 \Ecu{
@@ -641,11 +677,11 @@ $$\lim_{\alpha \in \Lambda} (\lambda_\alpha x_\alpha) = \left(\lim_{\alpha \in \
 
 
 \begin{Def}
-Sea $X$ un espacio vectorial topológico. Una \textit{red de Cauchy} es una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ tal que para toda vecindad $U$ del cero existe $N \in \N$ tal que $x_n - x_m \in U$ siempre que $n, m \geq N$. 
+Sea $X$ un espacio vectorial topológico. Una \textit{red de Cauchy} en $X$ es una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ tal que para toda vecindad $U$ del cero existe $\alpha \in \Lambda$ tal que $x_{\alpha_1} - x_{\alpha_2} \in U$ siempre que $\alpha_1, \alpha_2 \geq \alpha$. 
 \end{Def}
 
 \begin{Prop}
-Sea $X$ un espacio vectorial topológico. Una red $(x_\alpha)_{\alpha\in \Lambda} \subseteq X$ convergente es de Cauchy.
+Sea $X$ un espacio vectorial topológico. Si una red es convergente, entonces es de Cauchy.
 \end{Prop}
 
 \begin{proof}
@@ -655,20 +691,20 @@ Sea $X$ un espacio vectorial topológico. Una red $(x_\alpha)_{\alpha\in \Lambda}
 Por otro lado, en general no se cumple que toda red de Cauchy sea convergente. Es por esto que tenemos la siguiente definición.
 
 \begin{Def}
-Un espacio vectorial topológico $X$ se dice \textit{completo} si toda red de Cauchy en él converge.
+Un espacio vectorial topológico $X$ es \textit{completo} si toda red de Cauchy en $X$ converge.
 \end{Def}
 
 \begin{Prop}
-Sea $E$ un espacio vectorial topológico y $F \subseteq E$ un subespacio vectorial topológico. Entonces $F$ es cerrado respecto a $E$.
+Sean $E$ un espacio vectorial topológico y $F \subseteq E$ un subespacio vectorial. Si $F$ es completo, entonces $F$ es cerrado respecto a $E$.
 \end{Prop}
 
 \begin{proof}
 (Pendiente).
 \end{proof}
 
-\begin{Prop}
+\begin{Tma}
 Si $E$ es un espacio vectorial topológico y $\dim\,E = n < \infty$, entonces $E$ es isomorficamente homeomorfo a $\R^n$
-\end{Prop}
+\end{Tma}
 
 \begin{proof}
 (Pendiente).
@@ -687,18 +723,18 @@ Recordemos que una \textit{norma} en un espacio vectorial $X$ es una función $\N
 
 Sea $X$ un espacio vectorial  y $x_1, \ldots, x_n \in X$, $n \in \N$. El espacio generado por un conjunto $A \subseteq X$ se denotará por $\mbox{span}\, A$ y está definido como  $$\mbox{span} \, A  : = \left\{ \sum_{i=1}^n a_i x_i : n\in \N,  a_1, \ldots, a_n  \in \K, x_1, \ldots, x_n \in A \right\}.$$ 
 
-\begin{Def} Sea $X$ un espacio vectorial. Una función $f : X \to \R$ se dice \textit{convexa} si para todos $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que $$f(\lambda x + (1-\lambda y))\leq \lambda f(x) + (1-\lambda) f(y).$$
+\begin{Def} Sea $X$ un espacio vectorial. Una función $f : X \to \R$ es \textit{convexa} si para todos $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que $$f(\lambda x + (1-\lambda y))\leq \lambda f(x) + (1-\lambda) f(y).$$
 \end{Def}
 
 \begin{Ejem}
-La función $\Norm{\cdot}:X \to \R$ es convexa pues dados $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que
+Una norma $\Norm{\cdot}:X \to \R$ es convexa pues dados $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que
 $$\Norm{\lambda x + (1-\lambda y)} \leq \abs{\lambda} \Norm{x} + \abs{1-\lambda} \Norm{y}  = \lambda \Norm{x} + (1-\lambda) \Norm{y}.$$
 \end{Ejem}
 
 \begin{Ejem} \label{Ejem:EllePNormado}
 Dados $n \in \N$ y $1 \leq p < \infty$, definamos la función $\Norm{\cdot}_p:\K^n \to [0, \infty)$ por $$\Norm{(x_1, \ldots, x_n)}_p := \left(\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}}.$$  
 
-Verificaremos a continuación que $\Norm{\cdot}_p$ en efecto es una norma.
+Para verificar a continuación que $\Norm{\cdot}_p$ es una norma recurriremos a los siguientes lemas y proposiciones.
 \end{Ejem}
 
 \begin{Lema} \label{Lema:SegundaDerivadaPositivaConvexa}
@@ -744,7 +780,7 @@ Queda pendiente el resto de la demostración.
 \end{proof}
 
 \begin{Ejem}
-Consideremos ahora a $\K^n$ con la norma $\Norm{\cdot}_{\infty}: \K^n \to [0, \infty)$ dada por $$\Norm{(x_1, x_2, \ldots)}_\infty :=\max_{i \in \N} \,  \abs{x_i},$$ al cual denotamos por $\ell^n_\infty$
+Consideremos ahora en $\K^n$ la función $\Norm{\cdot}_{\infty}: \K^n \to [0, \infty)$ dada por $$\Norm{(x_1, x_2, \ldots)}_\infty :=\max_{i \in \N} \,  \abs{x_i}.$$ Demostremos que $\Norm{\cdot}_\infty$ es una norma. 
 \end{Ejem}
 
 \begin{proof}
@@ -760,7 +796,7 @@ Sea $X$ un espacio normado. Entonces $X$, con su topología original, es un espac
 \end{proof}
 
 \begin{Cor}
-Sea $X$ un espacio de Banach, entonces es un espacio vectorial topológico completo.
+Si $X$ es un espacio de Banach, entonces es un espacio vectorial topológico completo.
 \end{Cor}
 
 \begin{Prop}
@@ -770,19 +806,6 @@ Sea $X$ un espacio normado. Entonces la norma $\Norm{\cdot}:X \to [0, \infty)$ e
 \begin{proof}
 Sea $(x_n)_{n\in\N}$ una sucesión en $X$ que converge a $x \in X$. Por definición esto indica que para todo $\varepsilon > 0$ existe $N \in \N$ tal que si $n \geq N$ entonces $\Norm{x_n - x} \leq \varepsilon$. Por la desigualdad del triángulo que $\abs{\Norm{x_n} - \Norm{x}} < \Norm{x_n - x}$. Esto implica que $\Norm{x_n}$ converge a $\Norm{x}$ y así $\Norm{\cdot}$ es continua.
 \end{proof}
-
-Cuando un espacio topológico cumple el primer axioma de contabilidad, en la proposición~\ref{Prop:CerraduraLimiteRed} se puede remplazar las redes por sucesiones en la proposición anterior. El siguiente corolario lo demuestra para el caso particular de espacios normados.
-
-\begin{Cor}\label{Cor:CerraduraLimiteSucesiones} 
-Sea $X$ un espacio normado y $A \subseteq X$. Entonces $\overline{A}$ es el conjunto de los puntos en $X$ que son el límite de alguna sucesión en $A$.
-\end{Cor}
-
-\begin{proof}
-Tomemos $x \in \overline{A}$. Dado $n \in \N$, tenemos que $V_{\frac{1}{n}}(x)$ es una vecindad abierta de $x$ y por lo tanto $V_{\frac{1}{n}}(x) \cap A \neq \emptyset$. Así que existe algún $x_n \in V_{\frac{1}{n}}(x) \cap A$. Claramente, $(x_n)_{n\in \N}$ es una sucesión en $A$ tal que $x_n \to x$. \\
-
-El hecho de que toda sucesión es una red junto con la proposición~\ref{Prop:CerraduraLimiteRed} implica la contención restante.  
-\end{proof}
-
 
 No todo operador lineal $T:X\to Y$ entre los espacios normados $X$ e $Y$ resulta ser continuo. En este trabajo nos interesan los que sí son continuos. Una caracterización de un operador lineal continuo es que sea un \textit{operador lineal acotado}, esto es, que exista $K > 0$ tal que $$\Norm{Tx} \leq K \Norm{x} \mbox{ para todo } x \in X.$$ 
 
