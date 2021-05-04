@@ -93,7 +93,7 @@
 %\inicio{Seminario de Tesis}{3}{Irwin Enrique Villalobos López}{Dr. Fernando Galaz Fontes}{irwin.villalobos@cimat.mx}
 
 
-\section{Topología y espacio vectorial topológico.}
+\section{Topología.}
 
 Un aspecto muy importante de los espacios normados, sobre los cuales estaremos enfocándonos, es su topología, así que empezaremos este trabajo recordando algunos de sus conceptos principales. \\
 
@@ -339,7 +339,7 @@ Sean $M_1$ y $M_2$ espacios métricos y $f :  M_1 \to M_2$. Son equivalentes:
 (Pendiente).
 \end{proof}
 
-Cuando un espacio topológico cumple el primer axioma de contabilidad tenemos la siguiente caracterización para los conjuntos cerrados que se demostrará para el caso particular de espacios normados.
+Un espacio topológico se dice que cumple el \textit{primer axioma de contabilidad} si para cada punto existe una base de entornos numerable (¿defino base de entornos?). Cuando un espacio topológico cumple el primer axioma de contabilidad tenemos la siguiente caracterización para los conjuntos cerrados que se demostrará para el caso particular de espacios normados.
 
 \begin{Prop}\label{Cor:CerraduraLimiteSucesiones} 
 Sea $M$ un espacio métrico y $A \subseteq M$. Entonces $\overline{A}$ es el conjunto de los puntos en $M$ que son el límite de alguna sucesión en $A$.
@@ -611,6 +611,7 @@ Supongamos que $\tau$ es una topología de un espacio vectorial $X$ sobre $\K$ ta
 
 En este caso decimos que $\tau$ es una \textit{topología vectorial} y que $X$ es un \textit{espacio vectorial topológico}. \\
 
+Sea $X$ un espacio vectorial  y $x_1, \ldots, x_n \in X$, $n \in \N$. El espacio generado por un conjunto $A \subseteq X$ se denotará por $\mbox{span}\, A$ y está definido como  $$\mbox{span} \, A  : = \left\{ \sum_{i=1}^n a_i x_i : n\in \N,  a_1, \ldots, a_n  \in \K, x_1, \ldots, x_n \in A \right\}.$$
 
 \begin{Def}
 Sea $X$ un espacio vectorial. 
@@ -710,19 +711,202 @@ Si $E$ es un espacio vectorial topológico y $\dim\,E = n < \infty$, entonces $E$
 (Pendiente).
 \end{proof}
 
+\begin{Cor}
+Los espacios vectoriales topológicos de dimensión finita son completos.
+\end{Cor}
+
+\begin{proof}
+(Pendiente.)
+\end{proof}
+
+\begin{Cor} \label{Cor:SubespacioDimensionFinitaCerrado}
+Si $Y$ es un subespacio de dimensión finita de un espacio vectorial topológico $X$, entonces $Y$ es cerrado.
+\end{Cor}
+
+\begin{proof}
+Sea $x \in \ov{Y}$. Por el corolario~\ref{Cor:CerraduraLimiteSucesiones}, existe una sucesión $(y_n)_{n\in\N}$ en $Y$ que converge a $x \in X$. Como la sucesión converge, entonces es de Cauchy. El corolario anterior indica que  $Y$ es completo y así $y_n \to y \in Y$. Dado que $X$ es Hausdorff, $x = y$. Luego $x \in Y$, lo cual indica que $\ov{Y} \subseteq Y$ y $Y$ es cerrado.
+\end{proof}
+
+
+Dado un espacio vectorial topológico $X$, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \tau)^*$ o simplemente por $X^*$.  A los elementos de este espacio dual los llamamos \textit{funcionales lineales continuos}.
+
+\subsection{Topología generada por una familia de seminormas.}
+
+Para desarrollar la teoría detrás de la topología débil de un espacio de normado $X$ y la topología débil* en $X^*$ introduciremos el concepto de la topología generada por una familia de seminormas en un espacio vectorial topológico. 
+
+\begin{Def}
+Sea $X$ un espacio vectorial sobre $\K$. Una \textit{seminorma} es una función $p: X \to [0, \infty)$ tal que:
+\begin{itemize}
+\item \textbf{i)} Es \textit{subaditiva}, es decir, para todas $x, y \in X$ se cumple $p(x+y) \leq p(x) +p (y)$.
+\item \textbf{ii)} Para $\lambda \in \K$ y $x \in X$ se satisface que
+$p(\lambda x) = \abs{\lambda}p(x)$.
+\end{itemize}
+\end{Def}
+
+\begin{Ejem} \label{Ejem:SeminormaParaTopologiaDebil}
+Sea $X$ un espacio vectorial y $\varphi : X \to \K$ un funcional lineal. Entonces  $p = \abs{\varphi}$ es una seminorma, pues $p(x) = \abs{\varphi(x)} \geq 0$ para toda $x \in X$ y
+\begin{itemize}
+\item Si $x, y \in X$, entonces $p(x+y) = \abs{\varphi(x+y)} = \abs{\varphi(x)+\varphi(y)} \leq \abs{\varphi(x)} + \abs{\varphi(y)} = p(x) + p(y)$.
+\item Si $\lambda \in \K$ y $x \in X$, entonces $p(\lambda x) = \abs{\varphi(\lambda)x} = \abs{\lambda\varphi(x)} = \abs{\lambda} \abs{\varphi(x)} = \abs{\lambda} p(x).$
+\end{itemize} 
+\end{Ejem}
+
+\begin{Prop} \label{Prop:Seminorma}
+Sean $X$ un espacio vectorial y $p$ una seminorma. Entonces
+\begin{itemize}
+\item \textbf{a)} $p(0) = 0$.
+\item \textbf{b)} Para $x, y \in X$ se tiene que $\abs{p(x)-p(y)} \leq p(x-y)$.
+\end{itemize}
+\end{Prop}
+
+\begin{proof} \hfill \begin{itemize} 
+\item \textbf{a)} Observemos que $p(0) = p(0\cdot 0) = \abs{0}p(0) = 0$.
+\item \textbf{b)} Por la subaditividad de $p$ tenemos que $p(x) = p(x-y+y) \leq p(x-y) + p(y)$. De esto resulta que $p(x)-p(y) \leq p(x-y)$. Análogamente, $p(y)-p(x) \leq p(y-x) = p(x-y)$ y entonces $\abs{p(x)-p(y)} \leq p(x-y)$.
+\end{itemize}
+\end{proof}
+
+\begin{Def}
+Sean $X$ un espacio vectorial sobre $\K$ y $ \mathcal{F}$ una familia no vacía de seminormas en $X$. Diremos que $\mathcal{F}$ \textit{separa puntos} en $X$, si para cada $x \in X \setminus \{ 0 \}$  existe $p \in \mathcal{F}$ tal que $p(x) \neq 0$.  
+\end{Def}
+
+Sea $\mathcal{T}$ la colección de topologías de un espacio vectorial $X$ en las que toda seminorma en $\mathcal{F}$ es continua. Claramente, la topología discreta de $X$ está en $\mathcal{T}$ y así esta colección es no-vacía y entonces la intersección de todas las topologías en $\mathcal{T}$ vuelve a ser una topología de $X$. 
+
+\begin{Def} Sea $\mathcal{F}$ una familia no vacía de seminormas en $X$. La \textit{topología} inducida por $\mathcal{F}$ en $X$ es $$\displaystyle\sigma(X, \mathcal{F}) : = \bigcap_{\tau \in \mathcal{T}} \tau.$$
+\end{Def}
+
+Al considerar una topología resulta útil trabajar con ella a través de una base. La siguiente proposición propone una base de la topología débil. 
+
+\begin{Prop} 
+Sea $\mathcal{F}$ una familia no vacía de seminormas en un espacio vectorial $X$. La familia de conjuntos
+$$U_{x, p_1, p_2, \ldots, p_k, \varepsilon} := \bigcap_{i=1}^k \{ y \in X : p_i (x-y) < \varepsilon  \}, \; x \in X, k\in  \N, p_1, p_2, \ldots , p_k \in \mathcal{F} \mbox{ y } \varepsilon > 0;$$
+forma una base de la topología débil $\sigma(X, \mathcal{F})$.
+\end{Prop}
+
+
+\begin{proof}
+Sea $\mathcal{B}$ la colección de conjuntos de la forma $U_{x, p_1, \ldots, p_k, \varepsilon}$, para algunos $x \in X$, $k\in \N$, $p_1, \ldots, p_k \in \mathcal{F}$, $\varepsilon > 0$. Veamos que $\mathcal{B}$ es una base. 
+
+Dado $x \in X$, tomemos cualquier $p \in \mathcal{F}$. Entonces $x \in U_{x, p, 1}$. Por lo tanto $\mathcal{B}$ es una cubierta de $X$. 
+
+Tomemos $U_{x, p_1, \ldots, p_k, \varepsilon}$, $U_{y, s_1, \ldots, s_l, \delta} \in \mathcal{B}$ para algunos $x, y \in X$, $k, l\in \N$, $p_1, \ldots, p_k, s_1, \ldots, s_l \in \mathcal{F}$ y algunos $\varepsilon, \delta > 0$. Sea $z_0 \in U_{x, p_1, \ldots, p_k, \varepsilon} \cap U_{y, s_1, \ldots, s_l, \delta}$. Definamos 
+\Ecu{
+\varepsilon_i &:= \varepsilon - p_i(x-z_0)  > 0 \mbox{ para } i = 1, \ldots, k; \\
+\delta_j &:= \delta - s_j(y-z_0) > 0 \mbox{ para } j = 1, \ldots, l.
+} 
+
+Consideremos $r = \min \{\varepsilon_1, \ldots, \varepsilon_k, \delta_1, \ldots, \delta_l \} > 0$ y tomemos $U_{z_0, p_1, \ldots, p_k, s_1, \ldots, s_l, r} \in \mathcal{B}$ y $z$ dentro de este conjunto. Dado $1\leq i\leq k$, se tiene
+$$p_i(z_0-z) < r \leq \varepsilon_i = \varepsilon - p_i(x-z_0).$$ 
+
+Por la subaditividad de $p_i$ se tiene que 
+$$p_i(x-z) = p_i((x-z_0) +(z_0-z)) \leq  p_i(x-z_0) + p_i(z_0-z) < \varepsilon.$$ 
+
+Así que $z \in U_{x, p_i, \varepsilon}$. De manera análoga tenemos que $z \in U_{y, s_j, \delta}$ para $1\leq j\leq l$, por lo que
+$$z_0 \in U_{z_0, p_1, \ldots, p_k, s_1, \ldots, s_l, r} \subseteq U_{x, p_1, \ldots, p_k, \varepsilon} \cap U_{y, s_1, \ldots, s_l, \delta}.$$
+
+Esto demuestra que $\mathcal{B}$ es una base. Denotemos por $\tau(\mathcal{B})$ la topología generada por $\mathcal{B}$. Falta probar que $\tau(\mathcal{B})$ coincide con $\sigma(X, \mathcal{F})$. 
+
+Tomemos $U_{x, p_1, \ldots, p_k, \varepsilon} \in \mathcal{B}$ para algunos $x \in X$, $k\in \N$, $p_1, \ldots, p_k \in \mathcal{F}$, $\varepsilon > 0$. Sea $1\leq i\leq k$, tenemos que $V_\varepsilon(p_i(x)) := \{ \lambda \in \R: \abs{\lambda - p_i(x)} <\varepsilon \}$ es un abierto en $\K$. Como $p_i: X \to \R$ es continua bajo la topología $\sigma(X, \mathcal{F})$ en su dominio y $t: X \to X$ con $t(y) = x-y$ también es continua, se sigue que $p_i \circ t$ también es continua, al igual que la función $f_i: X \to \R$ definida por $$f_i(y) = p_i(x) - p_i(x-y).$$ 
+
+Así que 
+\Ecu{
+f_i^{-1}(V_\varepsilon(p_i(x))) &= \{ y\in X : f_i(y) \in V_\varepsilon(p_i(x)) \}\\
+&= \{y \in X : \abs{f_i(y)-p_i(x)} < \varepsilon \} \\
+&= \{y \in X : \abs{p_i(x) - p_i(x-y) - p_i(x)} < \varepsilon \} \\
+&= \{y \in X : p_i(x-y) < \varepsilon \} = U_{x, p_i, \varepsilon}
+}
+ es abierto en $\sigma(X, \mathcal{F})$. Por lo tanto $U_{x, p_1, \ldots, p_k, \varepsilon} = \bigcap_{i=1}^k U_{x, p_i, \varepsilon}$ es abierto en $\sigma(X, \mathcal{F})$. Esto indica que $\mathcal{B} \subseteq \sigma(X, \mathcal{F})$, por lo que $\tau(\mathcal{B}) \subseteq \sigma(X, \mathcal{F})$. 
+
+Demostremos que con la topología $\tau(\mathcal{B})$ en $X$, todas las seminormas $p:X \to \R$ en $\mathcal{F}$ son continuas. Así pues, tomemos $p \in \mathcal{F}$. Sea $x \in X$ cualquiera y $V_\varepsilon(p(x))$ una vecindad de $p(x)$ en $\R$. Notemos que $U_{x, p, \varepsilon}$ es una vecindad abierta de $x$ y además, si $y \in U_{x, p, \varepsilon}$, entonces $p(x-y) <\varepsilon$. Por la proposición~\ref{Prop:Seminorma} se sigue que $\abs{p(x)-p(y)} < \varepsilon$ y así $p(U_{x, p, \varepsilon}) \subseteq V_{\varepsilon}(p(x))$. Como $U_{x, p, \varepsilon}$ es abierto en $\sigma(X, \mathcal{F})$, se sigue que $p$ es continua.
+
+Esto indica que $\tau(\mathcal{B}) \in \mathcal{T}$. Por la minimalidad de $\sigma(X, \mathcal{F})$ y dado que $\tau(\mathcal{B}) \subseteq \sigma(X, \mathcal{F})$ se concluye que $\tau(\mathcal{B}) = \sigma(X, \mathcal{F})$ y así $\mathcal{B}$ es base de $\sigma(X, \F)$.
+\end{proof}
+
+En un espacio vectorial $X$ la topología inducida por una familia de seminormas $\F$ de $X$ induce el concepto de convergencia en $X$. Si la red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ converge en tal topología, su límite lo denotamos por $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} x_\alpha$. En el caso particular de una sucesión $(x_n)_{n \in \N}$ denotamos el límite de la sucesión por $\sigma(X, \F)$-$\lim_{n \to \infty} x_n$. La siguiente proposición indica una caracterización de las sucesiones  convergentes bajo la topología $\sigma(X, \F)$.
+
+\begin{Prop} \label{Prop:CaracterizacionConvergenciaDebilSeminorma}
+Sean $X$ un espacio vectorial, $\F$ una familia no vacía de seminormas, $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ una red en $X$ y $x \in X$. Tenemos entonces que $\sigma(X, \F)$-$\displaystyle\lim_{\alpha \in \Lambda} x_\alpha = x$ si, y sólo si $\displaystyle\lim_{\alpha \in \Lambda} p(x_\alpha -x) = 0$ para toda $p \in \F$.
+\end{Prop} 
+ 
+\begin{proof}
+Primero supongamos que $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} x_\alpha = x$. Sea $p \in \F$ y $\varepsilon > 0$. Dado que $U_{x, p, \varepsilon}$ es una vecindad abierta de $x$, existe $\alpha_0 \in \Lambda$ tal que $x_\alpha \in U_{x, p, \varepsilon}$ para cualquier $\alpha \geq \alpha_0$. Así pues, suponiendo $\alpha \geq \alpha_0$ tendríamos que $0 \leq p(x_\alpha - x) < \varepsilon$. Es decir, $p(x_\alpha -x)\to 0$. 
+
+Ahora supongamos que para toda $p \in \F$ se tiene que $p(x_\alpha -x) \to 0$. Sea $U_{y, p_1, \ldots, p_k, \varepsilon}$ un básico de la topología débil que contiene a $x$ para algunos $k \in \N, p_1, \ldots, p_k \in \F$ y $\varepsilon > 0$. 
+
+Fijemos $1 \leq i \leq k$ por un momento. Tenemos que $p_i(x-y) < \varepsilon$, de manera que podemos definir $\varepsilon_i := \varepsilon - p_i(x-y) >0$. Como $p_i(x_\alpha -x) \to 0$, podemos tomar $\alpha_i \in \Lambda$ de tal manera que si $\alpha \geq \alpha_i$, entonces $p_i(x_\alpha - x) < \varepsilon_i$. 
+
+Definamos ahora $\widehat{\alpha}$ de tal manera que $\widehat{\alpha} \geq \alpha_i$ para todo $1 \leq i \leq k$. Así tendríamos que si $\alpha \geq \widehat{\alpha}$, entonces para $1 \leq i \leq k$ se tiene que $p_i(x_\alpha -x) < \varepsilon_i = \varepsilon - p_i(x-y)$, de donde
+\Ecu{
+p_i(x_\alpha - y) \leq p_i(x_\alpha - x) + p_i(x - y)  <\varepsilon.
+}
+Esto indica que para todo $\alpha \geq \widehat{\alpha}$ se tiene que $x_\alpha \in U_{y, p_1, \ldots, p_k, \varepsilon}$ y así $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} x_\alpha = x$.
+\end{proof}
+
+\begin{Cor} \label{Cor:CaracterizacionConvergenciaDebilSeminorma}
+Sean $X$ un espacio vectorial, $\F$ una familia de seminormas, $(x_n)_{n \in \N} \subseteq X$ una sucesión en $X$ y $x \in X$. Entonces  $\sigma(X, \F)$-$\displaystyle\lim_{n \to \infty} x_n = x$ si, y sólo si $\displaystyle\lim_{n \to \infty} p(x_n -x) = 0$ para toda $p \in \F$.
+\end{Cor}
+
+ 
+\begin{Tma} \label{Tma:SeminormasInducenEVT}
+Si $X$ es un espacio vectorial y $\F$ una familia de seminormas que separa puntos en $X$, entonces $X$ con la topología inducida por $\F$ es un espacio vectorial topológico.
+\end{Tma}
+
+\begin{proof}
+
+Sean $x_1, x_2 \in X$ distintos. Como $x_1 - x_2 \neq 0$ y $\F$ separa puntos de $X$, existe $p \in \F$ tal que $p(x_1-x_2) \neq 0$. Sea $\varepsilon = \frac{p(x_1 - x_2)}{2}$ y definamos los abiertos en $X$
+$$V := U_{x_1, p, \varepsilon} \mbox{ y } W := U_{x_2, p. \varepsilon}.$$
+
+Claramente, $x_1 \in V$ y $x_2 \in W$. Además al suponer que existe $z \in V \cap W$, llegamos a que $p(x_1-z) < \varepsilon$ y $p(x_2-z) < \varepsilon$, de donde
+$$p(x_1-x_2) \leq p(x_1-z) + p(z-x_2) < 2 \varepsilon = p(x_1-x_2).$$
+
+Lo cual es una contradicción. Así que $V \cap W = \emptyset$ y $\sigma(X, \F)$ es Hausdorff. 
+
+Sean $\sigma: X \times X \to X$ la función suma. Es decir, $\sigma(x, y) = x+y$ para $(x, y) \in X\times X$. Probaremos la continuidad de $\sigma$ usando el corolario~\ref{Cor:ContinuidadporRedes}. Tomemos una red $(x_\alpha, y_\alpha)_{\alpha\in \Lambda}$  en $X\times X$ y $(x, y) \in X \times X$ tal que $(x_\alpha, y_\alpha) \to (x, y)$. La proposición~\ref{Prop:ConvergenciaPorComponentes} indica que $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} x_\alpha = x$ y $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} y_\alpha = y$. Por la proposición~\ref{Prop:CaracterizacionConvergenciaDebilSeminorma} tenemos que para toda $p \in \F$ se tiene que $p(x_\alpha -x) \to 0$ y $p(y_\alpha - y) \to  0$. Por la subaditividad de $p$ tenemos que 
+$$0 \leq p(x_\alpha + y_\alpha - x- y) \leq p(x_\alpha - x) + p(y_\alpha - y).$$
+
+Por la proposición~\ref{Prop:LimiteDeSuma} y puesto que $\R$ es un e.v.t. se sigue que $$ \displaystyle\lim_{\alpha\in \Lambda} [ p(x_\alpha - x) +  p(y_\alpha - y)] = \lim_{\alpha\in \Lambda} p(x_\alpha - x) +  \lim_{\alpha\in \Lambda} p(y_\alpha - y) = 0.$$
+Entonces, por el lema del sándwich tenemos que $\displaystyle\lim_{\alpha\in \Lambda} p(x_\alpha + y_\alpha - x - y) = 0$ para toda $p \in \F$. \\
+
+Por la proposición~\ref{Prop:CaracterizacionConvergenciaDebilSeminorma} obtenemos que 
+$$\sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} \sigma(x_\alpha, y_\alpha) = \sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} (x_\alpha + y_\alpha) = x+y = \sigma(x, y).$$ 
+
+Así que $\sigma$ es continua. \\
+
+Consideremos ahora $\pi: \K \times X \to X$ la función producto por un escalar. Es decir, $\pi(\lambda, x) = \lambda x$ para $(\lambda, x) \in \K\times X$. Veamos que esta es continua. Tomemos una red $(\lambda_\alpha, x_\alpha)_{\alpha\in \Lambda}$  en $\K\times X$ y $(\lambda, x) \in \K \times X$ tal que $(\lambda_\alpha, x_\alpha) \to (\lambda, x)$. La proposición~\ref{Prop:ConvergenciaPorComponentes} indica que $\lambda_\alpha \to \lambda$ y $\sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} x_\alpha = x$. Por la proposición~\ref{Prop:CaracterizacionConvergenciaDebilSeminorma} tenemos que para toda $p \in \F$ se tiene que $p(x_\alpha - x) \to 0$. Por la subaditividad de $p$ se sigue que
+$$0 \leq p(x_\alpha) \leq p(x_\alpha - x) + p(x).$$
+
+Por el lema del sándwich y  la proposición~\ref{Prop:LimiteDeSuma} se tiene que  
+$$0 = \lim_{\alpha\in \Lambda}0 \leq \lim_{\alpha\in \Lambda} p(x_\alpha) \leq \lim_{\alpha\in \Lambda}[p(x_\alpha - x) + p(x)] = \lim_{\alpha\in \Lambda}p(x_\alpha - x) + \lim_{\alpha\in \Lambda} p(x) = p(x)$$.
+
+Además, por la subaditividad de $p$ tenemos que 
+\Ecu{
+0 &\leq p(\lambda_\alpha x_\alpha - \lambda x) \leq p(\lambda_\alpha x_\alpha - \lambda x_\alpha) + p(\lambda x_\alpha -  \lambda x) \\
+&= p((\lambda_\alpha - \lambda) x_\alpha) + p(\lambda (x_\alpha -   x)) = \abs{\lambda_\alpha - \lambda}p(x_\alpha) + \abs{\lambda} p(x_\alpha - x).
+}
+
+Por la proposición~\ref{Prop:LimiteDeSuma} se tiene que 
+\Ecu{
+\lim_{\alpha\in \Lambda} [\abs{\lambda_\alpha - \lambda}p(x_\alpha) + \abs{\lambda} p(x_\alpha - x)] 
+&= \left( \lim_{\alpha\in \Lambda} \abs{\lambda_\alpha - \lambda} \right) \left( \lim_{\alpha\in \Lambda} p(x_\alpha)\right) + \left( \lim_{\alpha\in \Lambda} \abs{\lambda} p(x_\alpha - x)  \right) \\
+&\leq \left( 0 \right)  p(x) +  \abs{\lambda} 0  = 0 \\
+}
+
+Por el lema del sándwich se tiene entonces que $\lim_{\alpha\in \Lambda} p(\lambda_\alpha x_\alpha - \lambda x) = 0$ para toda $p \in \F$. Por la proposición~\ref{Prop:CaracterizacionConvergenciaDebilSeminorma} obtenemos que 
+$$\sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} \pi(\lambda_\alpha, x_\alpha) = \sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} \lambda_\alpha x_\alpha = \lambda x = \pi(\lambda, x).$$ 
+
+Así que $\pi$ es continua.
+\end{proof}
+
 \section{Espacios normados.}
 
 Recordemos que $(X, \Norm{\cdot})$ es un \textit{espacio normado} si $X$ es un espacio vectorial sobre $\K$ y $\Norm{\cdot}$ es una norma en $X$. Si además $X$ es completo bajo esta norma, decimos que $X$ es un \textit{espacio de Banach}. Esto significa que en un espacio de Banach las sucesiones de Cauchy convergen. \\
 
-Recordemos que una \textit{norma} en un espacio vectorial $X$ es una función $\Norm{\cdot}: X \to (0, \infty)$ tal que
+Recordemos que una \textit{norma} en un espacio vectorial $X$ es una función $\Norm{\cdot}: X \to [0, \infty)$ tal que
 \begin{itemize}
 \item \textbf{i)} Es \textit{definida positiva}, es decir, para cada $x \in X$, $\Norm{x} = 0$ si, y sólo si $x = 0$.
 \item \textbf{ii)} Es \textit{absolutamente homogénea}, es decir, si $x \in X$ y $\lambda \in \K$, entonces $\abs{\lambda} \Norm{x} = \Norm{\lambda x}$.
 \item \textbf{iii)} Es \textit{subaditiva}, es decir, para $x, y\in X$ se cumple que $\Norm{x + y } \leq \Norm{x} + \Norm{y}$.
 \end{itemize}
-
-Sea $X$ un espacio vectorial  y $x_1, \ldots, x_n \in X$, $n \in \N$. El espacio generado por un conjunto $A \subseteq X$ se denotará por $\mbox{span}\, A$ y está definido como  $$\mbox{span} \, A  : = \left\{ \sum_{i=1}^n a_i x_i : n\in \N,  a_1, \ldots, a_n  \in \K, x_1, \ldots, x_n \in A \right\}.$$ 
-
+ 
 \begin{Def} Sea $X$ un espacio vectorial. Una función $f : X \to \R$ es \textit{convexa} si para todos $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que $$f(\lambda x + (1-\lambda y))\leq \lambda f(x) + (1-\lambda) f(y).$$
 \end{Def}
 
@@ -745,24 +929,21 @@ Sean $(a, b) \subseteq \R$ un intervalo y $f : (a, b) \to \R$ una función dos ve
 (Pendiente).
 \end{proof}
 
-\begin{Ejem} \label{Ejem:XPConvexa}
-Fijemos $1 \leq p \leq \infty$ y consideremos $f: [0, \infty) \to[0, \infty)$ dada por $f(x) = x^p$ para toda $x \in \R$. Claramente $f$ es diferenciable y $f^\prime(x) = p x^{p-1}$. Además $f^\prime$ vuelve  a ser diferenciable y $f^{\prime\prime}(x) = p(p-1)x^{p-2} \geq 0$ para todo $x \geq 0$ y por el lema~\ref{Lema:SegundaDerivadaPositivaConvexa} resulta que $f$ es convexa.
-\end{Ejem}
-
-\begin{Lema}
-Sean $X$ un espacio normado, $f: \K \to \R$ convexa y creciente; y $g: \R \to \R$ convexa, entonces $g \circ f$ es convexa.
+\begin{Lema} \label{Lema:ComposcionConvexa}
+Sean $X$ un espacio normado, $f: \K \to \R$ convexa y creciente; y $g: \R \to \R$ convexa, entonces $g \circ f$ es convexa. 
 \end{Lema}
 
 \begin{proof}
 (Pendiente.)
 \end{proof}
 
-\begin{Ejem}
-Sea $f$ como en el ejemplo~\ref{Ejem:XPConvexa} y $g = \Norm{\cdot}$. Entonces  la proposición indica que  $g \circ f : \K \to \R$, $z \mapsto \abs{z}^p$ es convexa.
+\begin{Ejem} \label{Ejem:XPConvexa}
+Fijemos $1 \leq p \leq \infty$ y consideremos $f: [0, \infty) \to[0, \infty)$ dada por $f(x) = x^p$ para toda $x \in \R$. Claramente $f$ es diferenciable y $f^\prime(x) = p x^{p-1}$. Además $f^\prime$ vuelve  a ser diferenciable y $f^{\prime\prime}(x) = p(p-1)x^{p-2} \geq 0$ para todo $x \geq 0$ y por el lema~\ref{Lema:SegundaDerivadaPositivaConvexa} resulta que $f$ es convexa.
+Al tomar $g = \Norm{\cdot}$, el lema~\ref{Lema:ComposcionConvexa} indica que  $g \circ f : \K \to \R$, $z \mapsto \abs{z}^p$ es convexa.
 \end{Ejem}
 
 \begin{proof}
-(del ejemplo~\ref{Ejem:EllePNormado}) 
+($\Norm{\cdot}_\infty$ es una norma) 
 \begin{itemize}
 \item \textbf{i)} Claramente, $\Norm{x}_p \geq 0$ para cualquier $x \in \ell_p^n$. Además, tenemos que si $x = 0 \in \ell_p^n$, entonces $\Norm{x}_p= 0$. Es sencillo observar que si $\Norm{x}_p = 0$ para algún $x \in X$, entonces $x = 0$.
 \item \textbf{ii)} Sea $x = (x_1, \ldots, x_n) \in \ell_p^n$ y $\lambda \in \K$, entonces
@@ -787,15 +968,17 @@ Consideremos ahora en $\K^n$ la función $\Norm{\cdot}_{\infty}: \K^n \to [0, \in
 (Pendiente).
 \end{proof}
 
+En un espacio normado $X$ resulta que $d: X \times X \to [0, \infty)$ dada por $d(x, y) = \Norm{x-y}$ es una métrica. Por lo que $X$ es un espacio métrico y entonces podemos considerar la topología inducida por la métrica, la cual se denomina topología original. 
+
 \begin{Prop} \label{Prop:TopologiaOriginalEsEVT}
-Sea $X$ un espacio normado. Entonces $X$, con su topología original, es un espacio vectorial topológico. 
+Sea $X$ un espacio normado. Entonces $X$, con su topología original, es un espacio vectorial topológico. (La última vez me comento que moviera esta proposición antes del corolario~\ref{Cor:EspacioBanachEsEVTCompleto} pero ya lo estaba.)
 \end{Prop}
 
 \begin{proof}
 (Pendiente.)
 \end{proof}
 
-\begin{Cor}
+\begin{Cor} \label{Cor:EspacioBanachEsEVTCompleto}
 Si $X$ es un espacio de Banach, entonces es un espacio vectorial topológico completo.
 \end{Cor}
 
@@ -819,6 +1002,9 @@ Sean $X$ y $Y$ espacios normados y  $T:X \to Y$ un operador lineal. Entonces $T$
 
 \begin{proof}
 Sea $A \subseteq X$ un conjunto acotado. Entonces existe $M > 0$ tal que $\Norm{x} < M $ para todo $x \in A$. Como $T$ es continua, existe $N >0$ tal que $\Norm{T(x)} < N \Norm{x}$. Así pues si $T(x) \in T(B)$ se sigue que $\Norm{T(x)} < MN.$ Por lo que $T(A)$ es acotado.
+
+Ahora supongamos que $T$ preserva conjuntos acotados. Como $B_X$ es un conjunto acotado, entonces $T(B)$ es un conjunto acotado por algún $K > 0$. Sea $x \in X$. Si $x = 0$, entonces $\Norm{Tx} = \Norm{0} = 0 \leq K \Norm{x}$. Supongamos entonces que $x \neq 0$, de manera que $\frac{x}{\Norm{x}} \in B_X$ y por lo tanto $T\left( \frac{x}{\Norm{x}} \right) \in T(B_X)$ y por lo tanto $\Norm{T\left( \frac{x}{\Norm{x}} \right)}  \leq K$ y así
+$$\Norm{T(x)} \leq K \Norm{x}.$$
 \end{proof}
 
 Sean $X$ y $Y$ espacios normados. Al espacio de los operadores lineales continuos $T: X \to Y$, y por tanto acotados, lo denotamos por $\mathcal{L}(X, Y)$. En este espacio definimos la función
@@ -833,11 +1019,9 @@ Empecemos tomando $x \in X$. Si $x = 0$, entonces $$\Norm{Tx} = \Norm{0} = 0 \le
 Si por otro lado $x \neq 0$, entonces $y = \frac{x}{\Norm{x}} \in B_X$. Por lo que $\Norm{T} \geq \Norm{Ty}$. Esto es
 $$\Norm{T} \geq \Norm{T\left(\frac{x}{\Norm{x}}\right)} = \frac{\Norm{Tx}}{\Norm{x}}$$ y así $\Norm{Tx} \leq \Norm{T} \Norm{x}$. \\
 
-Dado un espacio vectorial topológico $X$, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \tau)^*$. 
+Cuando $X$ sea un espacio normado, su espacio dual se denotará por $(X, \Norm{\cdot})^*$ o simplemente por $X^*$.  Como $\K$ es completo, resulta que $X^* = \mathcal{L}(X, \K)$ es un espacio de Banach.  
 
-Cuando $X$ sea un espacio normado, su espacio dual se denotará por $(X, \Norm{\cdot})^*$ o simplemente $X^*$.  A los elementos de este espacio dual los llamamos \textit{funcionales lineales continuos}. Como $\K$ es completo,  resulta que $X^* = \mathcal{L}(X, \K)$ es un espacio de Banach. \\ 
-
-Los teoremas de Hahn-Banach muestran que en $X^*$ existen suficientes funcionales que permiten hacer rica la teoría referente al espacio dual.
+Los teoremas de Hahn-Banach muestran que, cuando $X$ es un espacio normado, en $X^*$ existen suficientes funcionales que permiten hacer rica la teoría referente al espacio dual.
 
 \begin{Tma} \textbf{(Hahn-Banach)}
 Sea $X$ un espacio normado y $V \subseteq X$ un subespacio vectorial. Si $f \in V^*$ entonces existe $F \in X^*$ tal que $F = f$ en $V$ y $\Norm{f} = \Norm{F}$.
@@ -926,21 +1110,6 @@ Sea $\dim \, X = n \in \N$ y $\{ x_1, \ldots, x_n \} \subseteq X$ una base de $X
 Así que $\varphi$ es un operador lineal acotado y por tanto continuo. 
 \end{proof}
 
-\begin{Cor}
-Los espacios normados de dimensión finita son completos.
-\end{Cor}
-
-\begin{proof}
-(Pendiente.)
-\end{proof}
-
-\begin{Cor} \label{Cor:SubespacioDimensionFinitaCerrado}
-Si $Y$ es un subespacio de dimensión finita de un espacio normado $X$, entonces $Y$ es cerrado.
-\end{Cor}
-
-\begin{proof}
-Sea $x \in \ov{Y}$. Por el corolario~\ref{Cor:CerraduraLimiteSucesiones}, existe una sucesión $(y_n)_{n\in\N}$ en $Y$ que converge a $x \in X$. Como la sucesión converge, entonces es de Cauchy. El corolario anterior indica que  $Y$ es completo y así $y_n \to y \in Y$. Dado que $X$ es Hausdorff, $x = y$. Luego $x \in Y$, lo cual indica que $\ov{Y} \subseteq Y$ y $Y$ es cerrado.
-\end{proof}
 
 \subsection{Compacidad de la bola cerrada en un espacio normado.}
 La compacidad es una propiedad muy importante que puede tener un subconjunto de un espacio topológico. El objetivo de esta sección es demostrar que la compacidad de la bola unitaria en un espacio normado depende simplemente de si este es de dimensión finita o no.
@@ -1003,176 +1172,7 @@ Así pues, queda construida la sucesión $(x_n)_{n\in\N}$. Si tomamos $n, m \in \N
 
 \section{Topologías débil y débil*.}
 
-Hemos visto que la bola unitaria de un espacio normado de dimensión infinita no es compacta. Podemos interpretar esto en el sentido de  que la topología usual de tal espacio normado $X$ tiene demasiados abiertos. Esto motiva el propósito de construir en $X$ topologías más débiles, esto es, con menos abiertos. Una de estas es la topología débil, la cual se construye a partir de los funcionales lineales continuos de $X$. De manera similar podemos definir la topología débil* en $X^*$. \\
-
-Para desarrollar la teoría detrás de la topología débil de un espacio de Banach $X$ y la topología débil* en $X^*$ introduciremos el concepto de la topología generada por una familia de seminormas. \\
-
-\begin{Def}
-Sea $X$ un espacio vectorial sobre $\K$. Una \textit{seminorma} es una función $p: X \to [0, \infty)$ tal que:
-\begin{itemize}
-\item \textbf{i)} Es \textit{subaditiva}, es decir, para todas $x, y \in X$ se cumple $p(x+y) \leq p(x) +p (y)$.
-\item \textbf{ii)} Para $\lambda \in \K$ y $x \in X$ se satisface que
-$p(\lambda x) = \abs{\lambda}p(x)$.
-\end{itemize}
-\end{Def}
-
-\begin{Ejem} \label{Ejem:SeminormaParaTopologiaDebil}
-Sea $X$ un espacio vectorial y $\varphi : X \to \K$ un funcional lineal. Entonces  $p = \abs{\varphi}$ es una seminorma, pues $p(x) = \abs{\varphi(x)} \geq 0$ para toda $x \in X$ y
-\begin{itemize}
-\item Si $x, y \in X$, entonces $p(x+y) = \abs{\varphi(x+y)} = \abs{\varphi(x)+\varphi(y)} \leq \abs{\varphi(x)} + \abs{\varphi(y)} = p(x) + p(y)$.
-\item Si $\lambda \in \K$ y $x \in X$, entonces $p(\lambda x) = \abs{\varphi(\lambda)x} = \abs{\lambda\varphi(x)} = \abs{\lambda} \abs{\varphi(x)} = \abs{\lambda} p(x).$
-\end{itemize} 
-\end{Ejem}
-
-\begin{Prop} \label{Prop:Seminorma}
-Sean $X$ un espacio vectorial y $p$ una seminorma. Entonces
-\begin{itemize}
-\item \textbf{a)} $p(0) = 0$.
-\item \textbf{b)} Para $x, y \in X$ se tiene que $\abs{p(x)-p(y)} \leq p(x-y)$.
-\end{itemize}
-\end{Prop}
-
-\begin{proof} .
-\begin{itemize}
-\item \textbf{a)} Observemos que $p(0) = p(0\cdot 0) = \abs{0}p(0) = 0$.
-\item \textbf{b)} Por la subaditividad de $p$ tenemos que $p(x) = p(x-y+y) \leq p(x-y) + p(y)$. De esto resulta que $p(x)-p(y) \leq p(x-y)$. Análogamente, $p(y)-p(x) \leq p(y-x) = p(x-y)$ y entonces $\abs{p(x)-p(y)} \leq p(x-y)$.
-\end{itemize}
-\end{proof}
-
-\begin{Def}
-Sean $X$ un espacio vectorial sobre $\K$ y $ \mathcal{F}$ una familia no vacía de seminormas en $X$. Diremos que $\mathcal{F}$ \textit{separa puntos} en $X$, si para cada $x \in X \setminus \{ 0 \}$  existe $p \in \mathcal{F}$ tal que $p(x) \neq 0$.  
-\end{Def}
-
-Sea $\mathcal{T}$ la colección de topologías de un espacio vectorial $X$ en las que toda seminorma en $\mathcal{F}$ es continua. Claramente, la topología discreta de $X$ está en $\mathcal{T}$ y así esta colección es no-vacía y entonces la intersección de todas las topologías en $\mathcal{T}$ vuelve a ser una topología de $X$. 
-
-\begin{Def} Sea $\mathcal{F}$ una familia no vacía de seminormas en $X$. La \textit{topología} inducida por $\mathcal{F}$ en $X$ es $$\displaystyle\sigma(X, \mathcal{F}) : = \bigcap_{\tau \in \mathcal{T}} \tau.$$
-\end{Def}
-
-Al considerar una topología resulta útil trabajar con ella a través de una base. La siguiente proposición propone una base de la topología débil. 
-
-\begin{Prop} 
-Sea $\mathcal{F}$ una familia no vacía de seminormas en un espacio vectorial $X$. La familia de conjuntos
-$$U_{x, p_1, p_2, \ldots, p_k, \varepsilon} := \bigcap_{i=1}^k \{ y \in X : p_i (x-y) < \varepsilon  \}, \; x \in X, k\in  \N, p_1, p_2, \ldots , p_k \in \mathcal{F} \mbox{ y } \varepsilon > 0;$$
-forma una base de la topología débil $\sigma(X, \mathcal{F})$.
-\end{Prop}
-
-
-\begin{proof}
-Sea $\mathcal{B}$ la colección de conjuntos de la forma $U_{x, p_1, \ldots, p_k, \varepsilon}$, para algunos $x \in X$, $k\in \N$, $p_1, \ldots, p_k \in \mathcal{F}$, $\varepsilon > 0$. Veamos que $\mathcal{B}$ es una base. \\
-
-Dado $x \in X$, tomemos cualquier $p \in \mathcal{F}$. Entonces $x \in U_{x, p, 1}$. Por lo tanto $\mathcal{B}$ es una cubierta de $X$. \\
-
-Tomemos $U_{x, p_1, \ldots, p_k, \varepsilon}$, $U_{y, s_1, \ldots, s_l, \delta} \in \mathcal{B}$ para algunos $x, y \in X$, $k, l\in \N$, $p_1, \ldots, p_k, s_1, \ldots, s_l \in \mathcal{F}$ y algunos $\varepsilon, \delta > 0$. Sea $z_0 \in U_{x, p_1, \ldots, p_k, \varepsilon} \cap U_{y, s_1, \ldots, s_l, \delta}$. Definamos 
-\Ecu{
-\varepsilon_i &:= \varepsilon - p_i(x-z_0)  > 0 \mbox{ para } i = 1, \ldots, k; \\
-\delta_j &:= \delta - s_j(y-z_0) > 0 \mbox{ para } j = 1, \ldots, l.
-} 
-
-Consideremos $r = \min \{\varepsilon_1, \ldots, \varepsilon_k, \delta_1, \ldots, \delta_l \} > 0$ y tomemos $U_{z_0, p_1, \ldots, p_k, s_1, \ldots, s_l, r} \in \mathcal{B}$ y $z$ dentro de este conjunto. Dado $1\leq i\leq k$, se tiene
-$$p_i(z_0-z) < r \leq \varepsilon_i = \varepsilon - p_i(x-z_0).$$ 
-
-Por la subaditividad de $p_i$ se tiene que 
-$$p_i(x-z) = p_i((x-z_0) +(z_0-z)) \leq  p_i(x-z_0) + p_i(z_0-z) < \varepsilon.$$ 
-
-Así que $z \in U_{x, p_i, \varepsilon}$. De manera análoga tenemos que $z \in U_{y, s_j, \delta}$ para $1\leq j\leq l$, por lo que
-$$z_0 \in U_{z_0, p_1, \ldots, p_k, s_1, \ldots, s_l, r} \subseteq U_{x, p_1, \ldots, p_k, \varepsilon} \cap U_{y, s_1, \ldots, s_l, \delta}.$$
-
-Esto demuestra que $\mathcal{B}$ es una base. Denotemos por $\tau(\mathcal{B})$ la topología generada por $\mathcal{B}$. Falta probar que $\tau(\mathcal{B})$ coincide con $\sigma(X, \mathcal{F})$. \\
-
-Tomemos $U_{x, p_1, \ldots, p_k, \varepsilon} \in \mathcal{B}$ para algunos $x \in X$, $k\in \N$, $p_1, \ldots, p_k \in \mathcal{F}$, $\varepsilon > 0$. Sea $1\leq i\leq k$, tenemos que $V_\varepsilon(p_i(x)) := \{ \lambda \in \R: \abs{\lambda - p_i(x)} <\varepsilon \}$ es un abierto en $\K$. Como $p_i: X \to \R$ es continua bajo la topología $\sigma(X, \mathcal{F})$ en su dominio y $t: X \to X$ con $t(y) = x-y$ también es continua, se sigue que $p_i \circ t$ también es continua, al igual que la función $f_i: X \to \R$ definida por $$f_i(y) = p_i(x) - p_i(x-y).$$ 
-
-Así que 
-\Ecu{
-f_i^{-1}(V_\varepsilon(p_i(x))) &= \{ y\in X : f_i(y) \in V_\varepsilon(p_i(x)) \}\\
-&= \{y \in X : \abs{f_i(y)-p_i(x)} < \varepsilon \} \\
-&= \{y \in X : \abs{p_i(x) - p_i(x-y) - p_i(x)} < \varepsilon \} \\
-&= \{y \in X : p_i(x-y) < \varepsilon \} = U_{x, p_i, \varepsilon}
-}
- es abierto en $\sigma(X, \mathcal{F})$. Por lo tanto $U_{x, p_1, \ldots, p_k, \varepsilon} = \bigcap_{i=1}^k U_{x, p_i, \varepsilon}$ es abierto en $\sigma(X, \mathcal{F})$. Esto indica que $\mathcal{B} \subseteq \sigma(X, \mathcal{F})$, por lo que $\tau(\mathcal{B}) \subseteq \sigma(X, \mathcal{F})$. \\
-
-Demostremos que con la topología $\tau(\mathcal{B})$ en $X$, todas las seminormas $p:X \to \R$ en $\mathcal{F}$ son continuas. Así pues, tomemos $p \in \mathcal{F}$. Sea $x \in X$ cualquiera y $V_\varepsilon(p(x))$ una vecindad de $p(x)$ en $\R$. Notemos que $U_{x, p, \varepsilon}$ es una vecindad abierta de $x$ y además, si $y \in U_{x, p, \varepsilon}$, entonces $p(x-y) <\varepsilon$. Por la proposición~\ref{Prop:Seminorma} se sigue que $\abs{p(x)-p(y)} < \varepsilon$ y así $p(U_{x, p, \varepsilon}) \subseteq V_{\varepsilon}(p(x))$. Como $U_{x, p, \varepsilon}$ es abierto en $\sigma(X, \mathcal{F})$, se sigue que $p$ es continua.\\
-
-Esto indica que $\tau(\mathcal{B}) \in \mathcal{T}$. Por la minimalidad de $\sigma(X, \mathcal{F})$ y dado que $\tau(\mathcal{B}) \subseteq \sigma(X, \mathcal{F})$ se concluye que $\tau(\mathcal{B}) = \sigma(X, \mathcal{F})$ y así $\mathcal{B}$ es base de $\sigma(X, \F)$.
-\end{proof}
-
-En un espacio vectorial $X$ la topología inducida por una familia de seminormas $\F$ de $X$ induce el concepto de convergencia en $X$. Si la red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ converge en tal topología, su límite lo denotamos por $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} x_\alpha$. En el caso particular de una sucesión $(x_n)_{n \in \N}$ denotamos el límite de la sucesión por $\sigma(X, \F)$-$\lim_{n \to \infty} x_n$. La siguiente proposición indica una caracterización de las sucesiones  convergentes bajo la topología $\sigma(X, \F)$.
-
-\begin{Prop} \label{Prop:CaracterizacionConvergenciaDebilSeminorma}
-Sean $X$ un espacio vectorial, $\F$ una familia no vacía de seminormas, $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ una red en $X$ y $x \in X$. Tenemos entonces que $\sigma(X, \F)$-$\displaystyle\lim_{\alpha \in \Lambda} x_\alpha = x$ si, y sólo si $\displaystyle\lim_{\alpha \in \Lambda} p(x_\alpha -x) = 0$ para toda $p \in \F$.
-\end{Prop} 
- 
-\begin{proof}
-Primero supongamos que $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} x_\alpha = x$. Sea $p \in \F$ y $\varepsilon > 0$. Dado que $U_{x, p, \varepsilon}$ es una vecindad abierta de $x$, existe $\alpha_0 \in \Lambda$ tal que $x_\alpha \in U_{x, p, \varepsilon}$ para cualquier $\alpha \geq \alpha_0$. Así pues, suponiendo $\alpha \geq \alpha_0$ tendríamos que $0 \leq p(x_\alpha - x) < \varepsilon$. Es decir, $p(x_\alpha -x)\to 0$. \\
-
-Ahora supongamos que para toda $p \in \F$ se tiene que $p(x_\alpha -x) \to 0$. Sea $U_{y, p_1, \ldots, p_k, \varepsilon}$ un básico de la topología débil que contiene a $x$ para algunos $k \in \N, p_1, \ldots, p_k \in \F$ y $\varepsilon > 0$. \\
-
-Fijemos $1 \leq i \leq k$ por un momento. Tenemos que $p_i(x-y) < \varepsilon$, de manera que podemos definir $\varepsilon_i := \varepsilon - p_i(x-y) >0$. Como $p_i(x_\alpha -x) \to 0$, podemos tomar $\alpha_i \in \Lambda$ de tal manera que si $\alpha \geq \alpha_i$, entonces $p_i(x_\alpha - x) < \varepsilon_i$. \\
-
-Definamos ahora $\widehat{\alpha}$ de tal manera que $\widehat{\alpha} \geq \alpha_i$ para todo $1 \leq i \leq k$. Así tendríamos que si $\alpha \geq \widehat{\alpha}$, entonces para $1 \leq i \leq k$ se tiene que $p_i(x_\alpha -x) < \varepsilon_i = \varepsilon - p_i(x-y)$, de donde
-\Ecu{
-p_i(x_\alpha - y) \leq p_i(x_\alpha - x) + p_i(x - y)  <\varepsilon.
-}
-
-Esto indica que para todo $\alpha \geq \widehat{\alpha}$ se tiene que $x_\alpha \in U_{y, p_1, \ldots, p_k, \varepsilon}$ y así $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} x_\alpha = x$.
-\end{proof}
-
-\begin{Cor} \label{Cor:CaracterizacionConvergenciaDebilSeminorma}
-Sean $X$ un espacio vectorial, $\F$ una familia de seminormas, $(x_n)_{n \in \N} \subseteq X$ una sucesión en $X$ y $x \in X$. Entonces  $\sigma(X, \F)$-$\displaystyle\lim_{n \to \infty} x_n = x$ si, y sólo si $\displaystyle\lim_{n \to \infty} p(x_n -x) = 0$ para toda $p \in \F$.
-\end{Cor}
-
- 
-\begin{Tma} \label{Tma:SeminormasInducenEVT}
-Si $X$ es un espacio vectorial y $\F$ una familia de seminormas que separa puntos en $X$, entonces $X$ con la topología inducida por $\F$ es un espacio vectorial topológico.
-\end{Tma}
-
-\begin{proof}
-
-Sean $x_1, x_2 \in X$ distintos. Como $x_1 - x_2 \neq 0$ y $\F$ separa puntos de $X$, existe $p \in \F$ tal que $p(x_1-x_2) \neq 0$. Sea $\varepsilon = \frac{p(x_1 - x_2)}{2}$ y definamos los abiertos en $X$
-$$V := U_{x_1, p, \varepsilon} \mbox{ y } W := U_{x_2, p. \varepsilon}.$$
-
-Claramente, $x_1 \in V$ y $x_2 \in W$. Además al suponer que existe $z \in V \cap W$, llegamos a que $p(x_1-z) < \varepsilon$ y $p(x_2-z) < \varepsilon$, de donde
-$$p(x_1-x_2) \leq p(x_1-z) + p(z-x_2) < 2 \varepsilon = p(x_1-x_2).$$
-
-Lo cual es una contradicción. Así que $V \cap W = \emptyset$ y $\sigma(X, \F)$ es Hausdorff. \\
-
-
-Sean $\sigma: X \times X \to X$ la función suma. Es decir, $\sigma(x, y) = x+y$ para $(x, y) \in X\times X$. Probaremos la continuidad de $\sigma$ usando el corolario~\ref{Cor:ContinuidadporRedes}. Tomemos una red $(x_\alpha, y_\alpha)_{\alpha\in \Lambda}$  en $X\times X$ y $(x, y) \in X \times X$ tal que $(x_\alpha, y_\alpha) \to (x, y)$. La proposición~\ref{Prop:ConvergenciaPorComponentes} indica que $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} x_\alpha = x$ y $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} y_\alpha = y$. Por la proposición~\ref{Prop:CaracterizacionConvergenciaDebilSeminorma} tenemos que para toda $p \in \F$ se tiene que $p(x_\alpha -x) \to 0$ y $p(y_\alpha - y) \to  0$. Por la subaditividad de $p$ tenemos que 
-$$0 \leq p(x_\alpha + y_\alpha - x- y) \leq p(x_\alpha - x) + p(y_\alpha - y).$$
-
-Por la proposición~\ref{Prop:LimiteDeSuma} y puesto que $\R$ es un e.v.t. se sigue que $$ \displaystyle\lim_{\alpha\in \Lambda} [ p(x_\alpha - x) +  p(y_\alpha - y)] = \lim_{\alpha\in \Lambda} p(x_\alpha - x) +  \lim_{\alpha\in \Lambda} p(y_\alpha - y) = 0.$$
-
-Entonces, por el lema del sándwich tenemos que $\displaystyle\lim_{\alpha\in \Lambda} p(x_\alpha + y_\alpha - x - y) = 0$ para toda $p \in \F$. \\
-
-Por la proposición~\ref{Prop:CaracterizacionConvergenciaDebilSeminorma} obtenemos que 
-$$\sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} \sigma(x_\alpha, y_\alpha) = \sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} (x_\alpha + y_\alpha) = x+y = \sigma(x, y).$$ 
-
-Así que $\sigma$ es continua. \\
-
-Consideremos ahora $\pi: \K \times X \to X$ la función producto por un escalar. Es decir, $\pi(\lambda, x) = \lambda x$ para $(\lambda, x) \in \K\times X$. Veamos que esta es continua. Tomemos una red $(\lambda_\alpha, x_\alpha)_{\alpha\in \Lambda}$  en $\K\times X$ y $(\lambda, x) \in \K \times X$ tal que $(\lambda_\alpha, x_\alpha) \to (\lambda, x)$. La proposición~\ref{Prop:ConvergenciaPorComponentes} indica que $\lambda_\alpha \to \lambda$ y $\sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} x_\alpha = x$. Por la proposición~\ref{Prop:CaracterizacionConvergenciaDebilSeminorma} tenemos que para toda $p \in \F$ se tiene que $p(x_\alpha - x) \to 0$. Por la subaditividad de $p$ se sigue que
-$$0 \leq p(x_\alpha) \leq p(x_\alpha - x) + p(x).$$
-
-Por el lema del sándwich y  la proposición~\ref{Prop:LimiteDeSuma} se tiene que  
-$$0 = \lim_{\alpha\in \Lambda}0 \leq \lim_{\alpha\in \Lambda} p(x_\alpha) \leq \lim_{\alpha\in \Lambda}[p(x_\alpha - x) + p(x)] = \lim_{\alpha\in \Lambda}p(x_\alpha - x) + \lim_{\alpha\in \Lambda} p(x) = p(x)$$.
-
-Además, por la subaditividad de $p$ tenemos que 
-\Ecu{
-0 &\leq p(\lambda_\alpha x_\alpha - \lambda x) \leq p(\lambda_\alpha x_\alpha - \lambda x_\alpha) + p(\lambda x_\alpha -  \lambda x) \\
-&= p((\lambda_\alpha - \lambda) x_\alpha) + p(\lambda (x_\alpha -   x)) = \abs{\lambda_\alpha - \lambda}p(x_\alpha) + \abs{\lambda} p(x_\alpha - x).
-}
-
-Por la proposición~\ref{Prop:LimiteDeSuma} se tiene que 
-\Ecu{
-\lim_{\alpha\in \Lambda} [\abs{\lambda_\alpha - \lambda}p(x_\alpha) + \abs{\lambda} p(x_\alpha - x)] 
-&= \left( \lim_{\alpha\in \Lambda} \abs{\lambda_\alpha - \lambda} \right) \left( \lim_{\alpha\in \Lambda} p(x_\alpha)\right) + \left( \lim_{\alpha\in \Lambda} \abs{\lambda} p(x_\alpha - x)  \right) \\
-&\leq \left( 0 \right)  p(x) +  \abs{\lambda} 0  = 0 \\
-}
-
-Por el lema del sándwich se tiene entonces que $\lim_{\alpha\in \Lambda} p(\lambda_\alpha x_\alpha - \lambda x) = 0$ para toda $p \in \F$. Por la proposición~\ref{Prop:CaracterizacionConvergenciaDebilSeminorma} obtenemos que 
-$$\sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} \pi(\lambda_\alpha, x_\alpha) = \sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} \lambda_\alpha x_\alpha = \lambda x = \pi(\lambda, x).$$ 
-
-Así que $\pi$ es continua.
-\end{proof}
-
+Hemos visto que la bola unitaria de un espacio normado de dimensión infinita no es compacta. Podemos interpretar esto en el sentido de  que la topología usual de tal espacio normado $X$ tiene demasiados abiertos. Esto motiva el propósito de construir en $X$ topologías más débiles, esto es, con menos abiertos. Una de estas es la topología débil, la cual se construye a partir de los funcionales lineales continuos de $X$. De manera similar podemos definir la topología débil* en $X^*$. 
 
 %/////////////////////////////////////////////////////////////////////////
 %/////////////////////////Topologia Débil/////////////////////////////////
@@ -1199,7 +1199,7 @@ Sea $X$ un espacio normado de dimensión infinita. Entonces $\tau_\mathrm{w} \sub
 \end{Prop}
 
 \begin{proof}
-En la observación anterior notamos que $\tau_\mathrm{w} \subseteq \tau$. Demostraremos que ningún abierto básico de la topología débil es acotado bajo la norma. Esto es suficiente para obtener la conclusión ya que algunos abiertos de la topología original sí son acotados. \\
+En la observación anterior notamos que $\tau_\mathrm{w} \subseteq \tau$. Demostraremos que ningún abierto básico de la topología débil es acotado bajo la norma. Esto es suficiente para obtener la conclusión ya que algunos abiertos de la topología original sí son acotados. 
 
 Sea $U_{x, \varphi_1, \ldots, \varphi_k, \varepsilon}$ un abierto básico de $\tau_{\mathrm{w}}$, para algunos $x \in X, k \in \N, \varphi_1,\ldots, \varphi_k \in X^*$ y $\varepsilon > 0$. Consideremos $F: X \to \K^k$ definida por $F(y) = (\varphi_1(y), \ldots, \varphi_k(y))$ y observemos que es lineal. De esta manera notemos que $$\Ker \, F = \bigcap_{i=1}^k \Ker\, \varphi_i.$$
 Si $\Ker \, F$ fuese trivial, entonces $F$ sería inyectiva. Lo cual es falso, pues su dominio es de dimensión infinita y su codominio de dimensión finita. Por lo tanto $\bigcap_{i=1}^k \Ker\, \varphi_i \neq \{ 0 \}$ y existe $y \in X  \setminus \{ 0 \}$ tal que $\varphi_i(y) = 0$ para toda $i \in  \{1, \ldots, k\}$. Ahora tomemos $M > 0$. Notemos que 
@@ -1224,7 +1224,7 @@ Si $X$ es un espacio normado, entonces $X^* = X_\mathrm{w}^*$.
 \end{Prop}
 
 \begin{proof}
-Tomemos $\varphi \in X^*$. Por definición la seminorma $\abs{\varphi} : X_\mathrm{w} \to \K$ es continua, en particular es continua en el cero. Sea $V$ un entorno del cero en $\K$ y escojamos una bola abierta $V_r(0)$ con $r>0$ tal que $V_r(0) \subseteq V$. Como $\abs{\varphi}$ es continua, existe un  abierto $W$ en $\tau_\mathrm{w}$ del cero en $X$ tal que $\abs{\varphi}(W) \subseteq [0, r)$. Pero esto implica que $\varphi(W) \subseteq V_r(0) \subseteq V$. Así que $\varphi$ es continua en el cero y como también es lineal por la proposición~\ref{Prop:ContinuidadEnCero} podemos concluir que es continua. Esto muestra que $X^* \subseteq X_\mathrm{w}^*$. \\
+Tomemos $\varphi \in X^*$. Por definición la seminorma $\abs{\varphi} : X_\mathrm{w} \to \K$ es continua, en particular es continua en el cero. Sea $V$ un entorno del cero en $\K$ y escojamos una bola abierta $V_r(0)$ con $r>0$ tal que $V_r(0) \subseteq V$. Como $\abs{\varphi}$ es continua, existe un  abierto $W$ en $\tau_\mathrm{w}$ del cero en $X$ tal que $\abs{\varphi}(W) \subseteq [0, r)$. Pero esto implica que $\varphi(W) \subseteq V_r(0) \subseteq V$. Así que $\varphi$ es continua en el cero y como también es lineal por la proposición~\ref{Prop:ContinuidadEnCero} podemos concluir que es continua. Esto muestra que $X^* \subseteq X_\mathrm{w}^*$. 
 
 Por otro lado, la proposición~\ref{Prop:ContencionPropiaTopologiaDebil} indica que $\tau_\mathrm{w} \subseteq \tau$. Por lo que todo funcional lineal y continuo con la topología $\tau_\mathrm{w}$ también será continuo con la topología $\tau$. Es decir, $X_\mathrm{w}^* \subseteq X^*$.
 \end{proof}
@@ -1261,6 +1261,10 @@ Por lo que $\delta_x$ es continuo y además $$\Norm{\delta_x} \leq \Norm{x}.$$
 
 Al ser $\delta_x$ un funcional lineal continuo en $X^*$, este pertenece al espacio dual de $X^*$, el cual denotamos por $X^{**}$. Al espacio $X^{**}$ lo llamaremos \textit{bidual} de $X$. \\
 
+La evaluación de un funcional $x^* \in X^*$ en un vector $x \in X$ se denota por $\ang{x, x^*}$, esto es, $$\ang{x, x^*} := x^*(x).$$ 
+
+Esto induce un mapeo $\ang{\cdot, \cdot}: X \times X^* \to \K$, llamado \textit{apareamiento dual}. \\
+
 Definimos la \textit{identificación canónica} del espacio normado $X$ en $X^{**}$ como
 \Ecu{
 J : X & \mapsto X^{**} \\
@@ -1276,16 +1280,12 @@ Sea $X$ un espacio normado. Entonces $J$ es una isometría.
 \begin{proof}
 Veamos que $J$ es lineal. Tomemos entonces $x, y \in X$ y $\lambda \in \K$. Para $\varphi \in X^*$ se tiene que 
 $$J(x+\lambda y)(\varphi) = \varphi(x+\lambda y) = \varphi(x) + \lambda \varphi(y) = Jx(\varphi) + \lambda Jy(\varphi).$$
-De donde $J(x+ \lambda y) = Jx + \lambda Jy$. \\
+De donde $J(x+ \lambda y) = Jx + \lambda Jy$. 
 
 Si $x = 0$ entonces $\Norm{Jx} = 0 = \Norm{x}$. Si en cambio $x \neq 0$, el teorema de Hahn-Banach nos permite tomar $\varphi \in S_{X^*}$  tal que $\varphi(\frac{x}{\Norm{x}}) = 1$. De esto que 
 $$\abs{Jx(\varphi)} = \abs{\varphi(x)} = \Norm{x}.$$
 Así pues $\Norm{Jx} \geq \Norm{x}$. La proposición~\ref{Prop:DeltaContinua} indica que $\Norm{Jx} = \Norm{\delta_x} \leq \Norm{x}$ y así se sigue que $\Norm{Jx} = \Norm{x}$ y $J$ es isometría.
 \end{proof}
-
-La evaluación de un funcional $x^* \in X^*$ en un vector $x \in X$ se denota por $\ang{x, x^*}$, esto es, $$\ang{x, x^*} := x^*(x).$$ 
-
-Esto induce un mapeo $\ang{\cdot, \cdot}: X \times X^* \to \K$, llamado \textit{apareamiento dual}. \\
 
 Para cada $x \in X$ resulta que $\abs{\delta_x}$ es una seminorma. Dado $\varphi \in X^*$ distinto de cero, existe $x \neq 0$ con $\varphi(x) \neq 0$. Así que $\delta_x(\varphi) \neq 0$. Es decir, $$\F_{X^*} := \{ \abs{\delta_x} : x\in X\}$$ es una familia de seminormas en $X^*$ que separa puntos de $X$. 
 
@@ -1310,7 +1310,7 @@ En particular, si $(\varphi_n)_{n \in \N} \subseteq X^*$ es una sucesión en $X^*
 
 Observemos que la convergencia debil* de funcionales es precisamente la convergencia puntual. \\
 
-En el espacio $X^*$ podemos considerar tres topologías: la topología original $\tau_{\Norm{\cdot}}$, la topología débil $\sigma(X^*, X^{**})$ y la topología débil* $\sigma(X^*, X)$. Establezcamos una relación entre ellas. \\
+En el espacio $X^*$ podemos considerar tres topologías: la topología original $\tau_{\Norm{\cdot}}$, la topología débil $\sigma(X^*, X^{**})$ y la topología débil* $\sigma(X^*, X)$. Establezcamos una relación entre ellas. 
 
 Para $\varphi \in X^*$, $k \in \N$, $x_1,\ldots, x_k \in X$ y $\varepsilon > 0$, tenemos que 
 \begin{equation} \label{Eq:IgualdadBasicos}
@@ -1347,7 +1347,7 @@ Sea $X$ un espacio normado. Entonces la bola unitaria cerrada de $X^*$ es compac
 Para cada $x \in X$ definamos el conjunto 
 $$D_x : = \{ \lambda \in \K : \abs{\lambda} \leq \Norm{x} \}.$$
 
-Cada uno de estos conjuntos es un disco compacto en $\K$. El teorema de Tychonoff indica que $$\mathcal{D} := \prod_{x\in X}{D_x}$$ es un espacio compacto con la topología producto.\\
+Cada uno de estos conjuntos es un disco compacto en $\K$. El teorema de Tychonoff indica que $$\mathcal{D} := \prod_{x\in X}{D_x}$$ es un espacio compacto con la topología producto.
 
 Consideremos ahora la función
 \Ecu{
@@ -1355,7 +1355,7 @@ F : B_{X^*} &\to \mathcal{D} \\
 \varphi & \mapsto (\varphi(x))_{x \in X}.
 }
 
-Veamos que está bien definida. Tomemos $\varphi \in B_{X^*}$ de manera que $\Norm{\varphi} \leq 1$. Dado $x \in X$, cada $\abs{\varphi(x)} \leq \Norm{x} \cdot \Norm{x} \leq \Norm{x}$. Así que $\abs{\varphi(x)} \in D_x$ y así $F(\varphi) \in \mathcal{D}$. \\
+Veamos que está bien definida. Tomemos $\varphi \in B_{X^*}$ de manera que $\Norm{\varphi} \leq 1$. Dado $x \in X$, cada $\abs{\varphi(x)} \leq \Norm{x} \cdot \Norm{x} \leq \Norm{x}$. Así que $\abs{\varphi(x)} \in D_x$ y así $F(\varphi) \in \mathcal{D}$. 
 
 Demostremos que $F$ es inyectiva. Dados $\varphi, \psi \in B_{X^*}$ con $F(\varphi) = F(\psi)$ se tiene que $(\varphi(x))_{x \in X} = (\psi(x))_{x \in X}$. De donde $\varphi(x) = \psi(x)$ para todo $x \in X$. Así que $\varphi = \psi$ y $F$ es inyectiva. \\
 
@@ -1372,6 +1372,7 @@ g(x + \lambda y) &= d_{x+\lambda y} = \lim_{\alpha\in\Lambda} f_\alpha(x+ \lambd
 
 Además, si $x \in X$ es tal que $\Norm{x} \leq 1$, dado que $\lambda_x \in D_x$ se tiene que 
 $$\abs{g(x)} \leq \abs{d_x} \leq \Norm{x} \leq 1.$$
+
 Esto indica que $\Norm{g} \leq 1$, por lo que $g \in B_{X^*}$ y $$F(g) = (g(x))_{x\in X} = (d_x)_{x\in X}.$$
 
 Por lo tanto $(d_x)_{x\in X} \in F(B_{X^*})$ y así $F(B_{X^*})$ es cerrado. Como $\mathcal{D}$ es compacto y $F(B_{X^*})$ es cerrado, entonces también es compacto. Además $F$ es un homeomorfismo entre $F(B_{X^*})$ y $B_{X^*}$. Por lo que $B_{X^*}$ es compacto con la topología débil*.
