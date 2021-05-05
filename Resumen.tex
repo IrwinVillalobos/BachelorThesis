@@ -613,6 +613,14 @@ En este caso decimos que $\tau$ es una \textit{topología vectorial} y que $X$ es
 
 Sea $X$ un espacio vectorial  y $x_1, \ldots, x_n \in X$, $n \in \N$. El espacio generado por un conjunto $A \subseteq X$ se denotará por $\mbox{span}\, A$ y está definido como  $$\mbox{span} \, A  : = \left\{ \sum_{i=1}^n a_i x_i : n\in \N,  a_1, \ldots, a_n  \in \K, x_1, \ldots, x_n \in A \right\}.$$
 
+\begin{Prop} \label{Prop:VecindadesAbiertasAditivasEVT}
+Sea $X$ un espacio vectorial topológico. Para cada vecindad abierta $U$ del $0$, existe una vecindad abierta $V$ del cero con $$V + V \subseteq U.$$ 
+\end{Prop}
+
+\begin{proof}
+(Pendiente).
+\end{proof}
+
 \begin{Def}
 Sea $X$ un espacio vectorial. 
 \begin{itemize}
@@ -678,15 +686,34 @@ $$\lim_{\alpha \in \Lambda} (\lambda_\alpha x_\alpha) = \left(\lim_{\alpha \in \
 
 
 \begin{Def}
-Sea $X$ un espacio vectorial topológico. Una \textit{red de Cauchy} en $X$ es una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ tal que para toda vecindad $U$ del cero existe $\alpha \in \Lambda$ tal que $x_{\alpha_1} - x_{\alpha_2} \in U$ siempre que $\alpha_1, \alpha_2 \geq \alpha$. 
+Sea $X$ un espacio vectorial topológico. Una \textit{red de Cauchy} en $X$ es una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ tal que para toda vecindad abierta $U$ del cero existe $\alpha \in \Lambda$ tal que $x_{\alpha_1} - x_{\alpha_2} \in U$ siempre que $\alpha_1, \alpha_2 \geq \alpha$. 
 \end{Def}
 
-\begin{Prop}
-Sea $X$ un espacio vectorial topológico. Si una red es convergente, entonces es de Cauchy.
+\begin{Prop} \label{Prop:RedConvergenteEsCauchy}
+Sea $X$ un espacio vectorial topológico. Si una red en $X$ es convergente, entonces es de Cauchy.
 \end{Prop}
 
 \begin{proof}
-(Pendiente).
+Sea $(x_\alpha)_{\alpha\in\Lambda}$ una red en $X$ tal que converge a $x \in X$. Sea $U$ una vecindad abierta del cero. Por la proposición~\ref{Prop:VecindadesAbiertasAditivasEVT} existe una vecindad abierta $V$ del cero tal que $V + V \subseteq U$. Como $V$ es vecindad abierta del cero, entonces $V + x$ es vecindad abierta de $x$ y por tanto existe $\beta_1\in \Lambda$ tal que  
+\begin{equation} \label{Eq:xBeta1} 
+x_\beta \in  V + x, \mbox{ si } \beta \geq \beta_1. 
+\end{equation}
+
+Por otro lado, $-V$ también es una vecindad abierta del $0$. Así que $-V+x$ es una vecindad abierta de $x$ y así existe $\beta_2 \in \Lambda$ tal que
+\begin{equation} \label{Eq:xBeta2} 
+x_\beta \in  -V + x, \mbox{ si } \beta \geq \beta_2. 
+\end{equation}
+
+Al tomar $\alpha \in \Lambda$ con $\alpha \geq \beta_1$ y $\alpha \geq \beta_2$, junto con (\ref{Eq:xBeta1}) y (\ref{Eq:xBeta2}) se tiene que si $\alpha_1$ y $\alpha_2 \in \Lambda$ cumplen que $\alpha_1 \geq \alpha$ y $\alpha_2 \geq \alpha$, entonces
+\Ecu{
+x_{\alpha_1} \in  V + x \quad\mbox{ y }\quad x_{\alpha_2} \in -V + x,
+}
+de donde 
+\Ecu{
+x_{\alpha_1} - x \in  V \quad\mbox{ y }\quad x_{\alpha_2} -x \in -V,
+}
+y así 
+$$x_{\alpha_1} - x_{\alpha_2} = (x_{\alpha_1} - x)+ (x -x_{\alpha_2}) \in V + V \subseteq U.$$
 \end{proof}
 
 Por otro lado, en general no se cumple que toda red de Cauchy sea convergente. Es por esto que tenemos la siguiente definición.
@@ -700,11 +727,11 @@ Sean $E$ un espacio vectorial topológico y $F \subseteq E$ un subespacio vectori
 \end{Prop}
 
 \begin{proof}
-(Pendiente).
+Sea $x \in \ov{F}$. La proposición~\ref{Prop:CerraduraLimiteRed} establece que existe una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq F$ tal que $x_\alpha \to x$. Como $(x_\alpha)_{\alpha \in \Lambda}$ es convergente, la proposición~\ref{Prop:RedConvergenteEsCauchy} indica que $(x_\alpha)_{\alpha \in \Lambda}$ es de Cauchy y al ser $F$ completo, se sigue que la red converge en $F$. Al ser $E$ Haussdorf, se sigue que $x \in F$ y así $F$ es cerrado. 
 \end{proof}
 
 \begin{Tma}
-Si $E$ es un espacio vectorial topológico y $\dim\,E = n < \infty$, entonces $E$ es isomorficamente homeomorfo a $\R^n$
+Si $E$ es un espacio vectorial topológico y $\dim\,E = n < \infty$, entonces $E$ es isomorficamente homeomorfo a $\K^n$ con la topología euclidiana.
 \end{Tma}
 
 \begin{proof}
@@ -716,7 +743,7 @@ Los espacios vectoriales topológicos de dimensión finita son completos.
 \end{Cor}
 
 \begin{proof}
-(Pendiente.)
+Sea $X$ un espacio vectorial topológico de dimensión finita $n \in \N$. Dado que $\K^n$ con la topología euclidiana es completo, y $X$ es isomorficamente homeomorfo a $\K^n$, resulta que $X$ también es completo, pues los isomorfimos de espacios vectoriales topológicos preservan redes de Cauchy (¿lo demuestro?).
 \end{proof}
 
 \begin{Cor} \label{Cor:SubespacioDimensionFinitaCerrado}
@@ -750,6 +777,14 @@ Sea $X$ un espacio vectorial y $\varphi : X \to \K$ un funcional lineal. Entonce
 \item Si $\lambda \in \K$ y $x \in X$, entonces $p(\lambda x) = \abs{\varphi(\lambda)x} = \abs{\lambda\varphi(x)} = \abs{\lambda} \abs{\varphi(x)} = \abs{\lambda} p(x).$
 \end{itemize} 
 \end{Ejem}
+
+\begin{Def}
+Una \textit{norma} en un espacio vectorial $X$ es una función $\Norm{\cdot}: X \to [0, \infty)$ tal que
+\begin{itemize}
+\item \textbf{i)} Es \textit{definida positiva}, es decir, para cada $x \in X$, $\Norm{x} = 0$ si, y sólo si $x = 0$.
+\item \textbf{ii)} Es una seminorma.
+\end{itemize}
+\end{Def}
 
 \begin{Prop} \label{Prop:Seminorma}
 Sean $X$ un espacio vectorial y $p$ una seminorma. Entonces
@@ -898,14 +933,7 @@ Así que $\pi$ es continua.
 
 \section{Espacios normados.}
 
-Recordemos que $(X, \Norm{\cdot})$ es un \textit{espacio normado} si $X$ es un espacio vectorial sobre $\K$ y $\Norm{\cdot}$ es una norma en $X$. Si además $X$ es completo bajo esta norma, decimos que $X$ es un \textit{espacio de Banach}. Esto significa que en un espacio de Banach las sucesiones de Cauchy convergen. \\
-
-Recordemos que una \textit{norma} en un espacio vectorial $X$ es una función $\Norm{\cdot}: X \to [0, \infty)$ tal que
-\begin{itemize}
-\item \textbf{i)} Es \textit{definida positiva}, es decir, para cada $x \in X$, $\Norm{x} = 0$ si, y sólo si $x = 0$.
-\item \textbf{ii)} Es \textit{absolutamente homogénea}, es decir, si $x \in X$ y $\lambda \in \K$, entonces $\abs{\lambda} \Norm{x} = \Norm{\lambda x}$.
-\item \textbf{iii)} Es \textit{subaditiva}, es decir, para $x, y\in X$ se cumple que $\Norm{x + y } \leq \Norm{x} + \Norm{y}$.
-\end{itemize}
+Recordemos que $(X, \Norm{\cdot})$ es un \textit{espacio normado} si $X$ es un espacio vectorial sobre $\K$ y $\Norm{\cdot}$ es una norma en $X$. Si además $X$ es completo bajo esta norma, decimos que $X$ es un \textit{espacio de Banach}. Esto significa que en un espacio de Banach las sucesiones de Cauchy convergen. 
  
 \begin{Def} Sea $X$ un espacio vectorial. Una función $f : X \to \R$ es \textit{convexa} si para todos $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que $$f(\lambda x + (1-\lambda y))\leq \lambda f(x) + (1-\lambda) f(y).$$
 \end{Def}
@@ -961,11 +989,24 @@ Queda pendiente el resto de la demostración.
 \end{proof}
 
 \begin{Ejem}
-Consideremos ahora en $\K^n$ la función $\Norm{\cdot}_{\infty}: \K^n \to [0, \infty)$ dada por $$\Norm{(x_1, x_2, \ldots)}_\infty :=\max_{i \in \N} \,  \abs{x_i}.$$ Demostremos que $\Norm{\cdot}_\infty$ es una norma. 
+Consideremos ahora en $\K^n$ la función $\Norm{\cdot}_{\infty}: \K^n \to [0, \infty)$ dada por $$\Norm{(x_1, \ldots, x_n)}_\infty :=\max_{1 \leq i \leq n} \,  \abs{x_i}.$$ Demostremos que $\Norm{\cdot}_\infty$ es una norma. 
 \end{Ejem}
 
 \begin{proof}
-(Pendiente).
+Notemos que
+\begin{itemize}
+\item \textbf{i)} Sea $x = (x_1, \ldots, x_n) \in \K^n$. Si $x = 0$, entonces $\Norm{x}_\infty = \max_{i \in \N} \,  0 = 0.$ Si por otro lado $\Norm{x}_\infty = 0$, entonces $\abs{x_i} = 0$ para todo $1 \leq i \leq n$, y así $x_i = 0$, por lo que $x = 0$.
+\item \textbf{ii)} Sea $x = (x_1, \ldots, x_n) \in \K^n$ y $\lambda \in\K$. Entonces
+\Ecu{
+\Norm{\lambda x}_\infty = \Norm{(\lambda x_1, \ldots, \lambda x_n)}_\infty = \max_{1 \leq i \leq n} \,  \abs{ \lambda x_i} = \max_{1 \leq i \leq n} \,  \abs{\lambda}\abs{x_i} = \abs{\lambda} \max_{1 \leq i \leq n} \,  \abs{x_i} = \abs{\lambda} \Norm{x}_\infty.
+}
+\item \textbf{iii)} Sean $x = (x_1, \ldots, x_n), y = (y_1, \ldots, y_n) \in \K^n$, entonces 
+\Ecu{
+\Norm{x+y}_\infty &= \Norm{(x_1 + y_1, \ldots, x_n + y_n)}_\infty = \max_{1 \leq i \leq n} \,  \abs{x_i + y_i} \\
+& \leq \max_{1 \leq i \leq n} \,  (\abs{x_i} + \abs{x_i}) \leq \max_{1 \leq i \leq n} \,  \abs{x_i} + \max_{1 \leq i \leq n} \,  \abs{y_i} \\
+& = \Norm{x}_\infty + \Norm{y}_\infty.
+}
+\end{itemize}
 \end{proof}
 
 En un espacio normado $X$ resulta que $d: X \times X \to [0, \infty)$ dada por $d(x, y) = \Norm{x-y}$ es una métrica. Por lo que $X$ es un espacio métrico y entonces podemos considerar la topología inducida por la métrica, la cual se denomina topología original. 
