@@ -11,6 +11,7 @@
 \usepackage{graphicx}
 \usepackage{centernot}
 \usepackage{fancybox}
+\usepackage{enumitem}
 \usepackage{multirow}
 \usepackage[all]{xy}
 \usepackage{color}
@@ -85,6 +86,8 @@
 %\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=2cm]{geometry}
 \author{Irwin Hetmmet}
 \title{Hetmmet, Tareas}
+
+\setlist[itemize]{itemsep=2pt plus 1pt minus 0.5pt, topsep=0pt}
 
 \begin{document}
 \thispagestyle{plain}
@@ -162,7 +165,7 @@ Sea $X$ un conjunto no vacío. Una \textit{base} $\B$ de $X$ es una familia de su
 \end{itemize}
 \end{Def}
 
-Una base determina la topología $\tau(\B)$ definida por 
+Una base $\mathcal{B}$ determina la topología $\tau(\B)$ definida por 
 $$\tau(\B) := \left\{ \bigcup_{\alpha \in \Lambda} B_\alpha : B_\alpha \in \B \mbox{ y } \Lambda \mbox{ cualquier conjunto } \right\}.$$
 
 Si $X$ es un espacio topológico, $\mathcal{B}$ es una base y $\tau (\mathcal{B})$ es la topología de $X$, diremos simplemente que $\mathcal{B}$ es una base de $X$. \\
@@ -177,10 +180,10 @@ $$U = \bigcup_{\alpha \in \Lambda} B_\alpha.$$
 
 De manera que existe $\alpha \in\Lambda$ tal que $x \in B_\alpha \subseteq U$. 
 
-Ahora supongamos que para cada abierto $U$ y $x \in U$ existe $B \in \mathcal{B}$ tal que $x \in B \subseteq U$. Entonces:
+Ahora supongamos que para cada abierto $U$ y $x \in U$ existe $B \in \mathcal{B}$ para el cual se cumple que $x \in B \subseteq U$. Entonces: 
 \begin{itemize}
-\item \textbf{i)} Dado $x \in X$, como $X$ es abierto, existe $B_x \in \mathcal{B}$ tal que $x \in B_x$. Así que $$X = \bigcup_{x \in X} B_x \subseteq \bigcup_{B \in \mathcal{B}} B.$$
-\item \textbf{ii)} Sean $B_1$, $B_2 \in \mathcal{B}$ y $x \in B_1 \cap B_2$. Como $B_1$ y $B_2$ son abiertos, entonces $B_1 \cap B_2$ es abierto. Por  hipótesis existe $B_3 \in \mathcal{B}$ tal que $$x \in B_3 \subseteq B_1 \cap B_2.$$ 
+\item[\textbf{i)}] Dado $x \in X$, como $X$ es abierto, existe $B_x \in \mathcal{B}$ tal que $x \in B_x$. Así que $$X = \bigcup_{x \in X} B_x \subseteq \bigcup_{B \in \mathcal{B}} B.$$
+\item[\textbf{ii)}] Sean $B_1$, $B_2 \in \mathcal{B}$ y $x \in B_1 \cap B_2$. Como $B_1$ y $B_2$ son abiertos, entonces $B_1 \cap B_2$ es abierto. Por  hipótesis existe $B_3 \in \mathcal{B}$ tal que $$x \in B_3 \subseteq B_1 \cap B_2.$$ 
 \end{itemize}
 Por definición \textbf{i)} y \textbf{ii)} indican que $\mathcal{B}$ es una base. Veamos que es una base de $X$. Sea $\tau_X$ la topología de $X$. Como $\mathcal{B} \subseteq \tau_X$, entonces las uniones arbitrarias de elementos en $\mathcal{B}$ son abiertos. Así pues $\tau(\mathcal{B}) \subseteq \tau_X$. Ahora, al tomar $U \in \tau$ para cada $x \in U$ por hipótesis existe $B_x \in \mathcal{B}$ tal que $x \in B_x \subseteq U$. De donde $$U = \bigcup_{x \in U} B_x$$ y así $U \in \tau(\mathcal{B})$. Es decir, $\tau_X = \tau(\mathcal{B})$.
 \end{proof}
@@ -212,9 +215,9 @@ Sea $X$ un espacio topológico. Entonces
 \begin{proof}
 \hfill
 \begin{itemize}
-\item \textbf{i)} Demostremos que $\ov{A}^{\,\mathsf{c}}$ es abierto. Sea $x \in \ov{A}^{\,\mathsf{c}}$, de manera que $x \notin \ov{A}$. Así que existe $U$ vecindad abierta de $x$ tal que $U \cap A = \emptyset$. Dado $y \in U$ se tiene que $U$ es una vecindad de $y$ que no intersecta a $A$, por lo que $y \notin \ov{A}$ y así $x \in U \subseteq \ov{A}^{\,\mathsf{c}}$. Es decir, $\ov{A}^{\,\mathsf{c}}$ es una vecindad de todos sus puntos. El lema~\ref{Lema:CaracterizacionAbierto} implica que $\ov{A}^{\,\mathsf{c}}$ es abierto.
-\item \textbf{ii)} Dados $x \in A$ y $U$ vecindad abierta de $x$, se tiene entonces que $x \in A \cap U$, por lo que $A \cap U \neq \emptyset$ y así $x \in \ov{A}$.  
-\item \textbf{iii)} Sea $A$ un conjunto cerrado en $X$ y sea $x \in \ov{A}$. Supongamos que $x \notin A$, de manera que $x \in A^\mathsf{c}$. Como $A$ es cerrado entonces  $A^\mathsf{c}$ es una vecindad abierta de $x$. Dado que $x \in \ov{A}$, se tiene que $A \cap A^\mathsf{c} \neq \emptyset$, lo cual es una contradicción. Así que $x \in A$ y $\ov{A} \subseteq A$. Junto con \textbf{ii)} se concluye que $A = \ov{A}$. 
+\item[\textbf{i)}] Demostremos que $\ov{A}^{\,\mathsf{c}}$ es abierto. Sea $x \in \ov{A}^{\,\mathsf{c}}$, de manera que $x \notin \ov{A}$. Así que existe $U$ vecindad abierta de $x$ tal que $U \cap A = \emptyset$. Dado $y \in U$ se tiene que $U$ es una vecindad de $y$ que no intersecta a $A$, por lo que $y \notin \ov{A}$ y así $x \in U \subseteq \ov{A}^{\,\mathsf{c}}$. Es decir, $\ov{A}^{\,\mathsf{c}}$ es una vecindad de todos sus puntos. El lema~\ref{Lema:CaracterizacionAbierto} implica que $\ov{A}^{\,\mathsf{c}}$ es abierto.
+\item[\textbf{ii)}] Dados $x \in A$ y $U$ vecindad abierta de $x$, se tiene entonces que $x \in A \cap U$, por lo que $A \cap U \neq \emptyset$ y así $x \in \ov{A}$.  
+\item[\textbf{iii)}] Sea $A$ un conjunto cerrado en $X$ y sea $x \in \ov{A}$. Supongamos que $x \notin A$, de manera que $x \in A^\mathsf{c}$. Como $A$ es cerrado entonces  $A^\mathsf{c}$ es una vecindad abierta de $x$. Dado que $x \in \ov{A}$, se tiene que $A \cap A^\mathsf{c} \neq \emptyset$, lo cual es una contradicción. Así que $x \in A$ y $\ov{A} \subseteq A$. Junto con \textbf{ii)} se concluye que $A = \ov{A}$. 
 
 Si por otro lado suponemos que  $A = \ov{A}$, entonces \textbf{i)} indica que $A$ es cerrado.
 \end{itemize}
@@ -291,25 +294,23 @@ Sea $X$ un espacio topológico. Diremos que $X$ es \textit{Hausdorff} si para tod
 \section{Espacios métricos.}
 
 \begin{Def}
-Un \textit{espacio métrico} es una pareja $(M, d)$ donde $M$ es un conjunto no vacío y $d: M \times M \to [0, \infty)$ es una \textit{distancia}. Esto es
+Un \textit{espacio métrico} es una pareja $(M, d)$ donde $M$ es un conjunto no vacío y $d: M \times M \to [0, \infty)$ es una función llamada \textit{métrica} que cumple:
 \begin{itemize}
-\item Para $x, y \in M$ se cumple que $d(x, y) = 0$ si y sólo si $x = y$. 
-\item Dados $x, y \in M$ $d(x, y) = d(y, x)$.
-\item Si $x, y, z \in M$, entonces $d(x, z) \leq d(x, y) + d(y, z)$.
+\item \textbf{i)} Es \textit{definida positiva}, es decir, para $x, y \in M$ se cumple que $d(x, y) = 0$ si y sólo si $x = y$. 
+\item \textbf{ii)} Es \textit{simétrica}, es decir, dados $x, y \in M$ $d(x, y) = d(y, x)$.
+\item \textbf{iii)} Cumple la \textit{desigualdad del triángulo}, es decir, si $x, y, z \in M$, entonces $d(x, z) \leq d(x, y) + d(y, z)$.
 \end{itemize}
 \end{Def}
 
 
-En un espacio métrico $M$ denotamos a la \textit{bola abierta} de centro $y \in M$ y radio $r > 0$ por
-$$V_r(y) = \{ x \in M : \Norm{x-y} < r \}.$$
+En un espacio métrico $M$, la \textit{bola abierta} de centro $y \in M$ y radio $r > 0$ es
+$$V_r(y) = \{ x \in M : d(x, y) < r \}.$$
 
-y la \textit{bola cerrada} de centro $y \in M$ y radio $r > 0$ por
-$$B_r(y) = \{ x \in M : \Norm{x-y} \leq r \}.$$
-
-El caso particular de la \textit{bola unitaria cerrada} se denotará por $B_M$. \\
+y la \textit{bola cerrada} de centro $y \in M$ y radio $r > 0$ se define por
+$$B_r(y) = \{ x \in M : d(x, y) \leq r \}.$$
 
 \begin{Def}
-En el espacio métrico $M$ definimos la \textit{topología original} de $X$ de manera que $U$ es un abierto de $M$ si, y sólo si para todo $x \in U$ existe $r > 0$ tal que $V_r(x) \subseteq U$.
+En un espacio métrico $M$ consideramos la \textit{topología original} definida por $$\tau_M :=\{ U \subseteq M : \mbox{ para todo }x \in U \mbox{ existe } r > 0 \mbox{ tal que }V_r(x) \subseteq U\}.$$
 \end{Def}
 
 
@@ -339,10 +340,8 @@ Sean $M_1$ y $M_2$ espacios métricos y $f :  M_1 \to M_2$. Son equivalentes:
 (Pendiente).
 \end{proof}
 
-Un espacio topológico se dice que cumple el \textit{primer axioma de contabilidad} si para cada punto existe una base de entornos numerable (¿defino base de entornos?). Cuando un espacio topológico cumple el primer axioma de contabilidad tenemos la siguiente caracterización para los conjuntos cerrados que se demostrará para el caso particular de espacios normados.
-
 \begin{Prop}\label{Cor:CerraduraLimiteSucesiones} 
-Sea $M$ un espacio métrico y $A \subseteq M$. Entonces $\overline{A}$ es el conjunto de los puntos en $M$ que son el límite de alguna sucesión en $A$.
+Sean $M$ un espacio métrico y $A \subseteq M$. Entonces $\overline{A}$ es el conjunto de los puntos en $M$ que son el límite de alguna sucesión en $A$.
 \end{Prop}
 
 \begin{proof}
@@ -351,9 +350,21 @@ Tomemos $x \in \overline{A}$. Dado $n \in \N$, tenemos que $V_{\frac{1}{n}}(x)$ 
 Ahora tomemos $x \in M$ tal que existe $(x_n)_{n\in\N} \subseteq A$ con $x_n \to x$. Sea $U$ una vecindad abierta de $x$. Entonces existe $N \in \N$ tal que $x_n \in U$ si $n \geq N$. En particular, $x_N \in U \cap A \neq \emptyset$ y así $x \in \ov{A}$. 
 \end{proof}
 
+\begin{Prop}
+Sean $M$ un espacio métrico y $K \subseteq M$. Son equivalentes:
+\begin{itemize}
+\item \textbf{i)} $K$ es compacto.
+\item \textbf{ii)} Toda sucesión en $K$ contiene una subsuceción convergente.
+\end{itemize}
+\end{Prop}
+
+\begin{proof}
+(Pendiente.)
+\end{proof}
+
 \section{Redes.}
 
-Hemos visto que el estudio de convergencia en espacios métricos se puede realizar a través de sucesiones. Sin embargo, el concepto de redes, que generaliza a las sucesiones, resulta ser más adecuado en espacios vectoriales con una topología que no proviene de una norma. Por tanto, desarrollaremos un poco de teoría de redes antes de hablar de la convergencia en la topología débil correspondiente a un espacio normado. \\
+Hemos visto que el estudio de continuidad y compacidad en espacios métricos se puede realizar a través de sucesiones. Sin embargo, el concepto de redes, que generaliza a las sucesiones, resulta ser más adecuado en espacios vectoriales con una topología que no proviene de una norma. Por tanto, desarrollaremos un poco de teoría de redes antes de hablar de la convergencia en la topología débil correspondiente a un espacio normado. \\
 
 \begin{Def}
 Un \textit{conjunto dirigido} es una pareja $(\Lambda, \leq)$, donde $\Lambda$ es un conjunto no-vacío y $\leq$ es una relación en $\Lambda$ tal que: 
@@ -386,9 +397,9 @@ $$(\alpha_1, \beta_1) \leq (\alpha_2, \beta_2) \mbox{ si, y sólo si } \alpha_1 \
 
 Como $\Gamma$ y $\Lambda$ son no vacíos, entonces $\Lambda \times \Gamma \neq \emptyset$. Notemos también que:
 \begin{itemize}
-\item \textbf{i)} Dado $(\alpha, \beta) \in \Lambda \times \Gamma$, se cumple que $\alpha \leq \alpha$ y $\beta \leq \beta$, por lo que $(\alpha, \beta) \leq  (\alpha, \beta)$.
-\item \textbf{ii)} Para cualesquiera $(\alpha_1, \beta_1), (\alpha_2, \beta_2)$ y $(\alpha_3, \beta_3) \in \Lambda \times \Gamma$ con $(\alpha_1, \beta_1) \leq (\alpha_2, \beta_2)$ y $(\alpha_2, \beta_2) \leq (\alpha_3, \beta_3)$ se cumple que $\alpha_1 \leq \alpha_2$, $\alpha_2 \leq \alpha_3$, $\beta_1 \leq \beta_2$ y $\beta_2 \leq \beta_3$. Por lo que $\alpha_1 \leq \alpha_3$, $\beta_1 \leq \beta_3$ y entonces se tiene que $(\alpha_1, \beta_1) \leq  (\alpha_3, \beta_3)$. 
-\item \textbf{iii)} Sean $(\alpha_1, \beta_1), (\alpha_2, \beta_2) \in \Lambda \times \Gamma$. Entonces existen $\alpha_3 \in \Lambda$, $\beta_3\in\Gamma$ con $\alpha_1 \leq \alpha_3$, $\alpha_2 \leq \alpha_3$, $\beta_1 \leq \beta_3$ y $\beta_2 \leq \beta_3$. Así pues $(\alpha_1, \beta_1)\leq (\alpha_3, \beta_3)$ y $(\alpha_2, \beta_2)\leq (\alpha_3, \beta_3)$.
+\item[\textbf{i)}] Dado $(\alpha, \beta) \in \Lambda \times \Gamma$, se cumple que $\alpha \leq \alpha$ y $\beta \leq \beta$, por lo que $(\alpha, \beta) \leq  (\alpha, \beta)$.
+\item[\textbf{ii)}] Para cualesquiera $(\alpha_1, \beta_1), (\alpha_2, \beta_2)$ y $(\alpha_3, \beta_3) \in \Lambda \times \Gamma$ con $(\alpha_1, \beta_1) \leq (\alpha_2, \beta_2)$ y $(\alpha_2, \beta_2) \leq (\alpha_3, \beta_3)$ se cumple que $\alpha_1 \leq \alpha_2$, $\alpha_2 \leq \alpha_3$, $\beta_1 \leq \beta_2$ y $\beta_2 \leq \beta_3$. Por lo que $\alpha_1 \leq \alpha_3$, $\beta_1 \leq \beta_3$ y entonces se tiene que $(\alpha_1, \beta_1) \leq  (\alpha_3, \beta_3)$. 
+\item[\textbf{iii)}] Sean $(\alpha_1, \beta_1), (\alpha_2, \beta_2) \in \Lambda \times \Gamma$. Entonces existen $\alpha_3 \in \Lambda$, $\beta_3\in\Gamma$ con $\alpha_1 \leq \alpha_3$, $\alpha_2 \leq \alpha_3$, $\beta_1 \leq \beta_3$ y $\beta_2 \leq \beta_3$. Así pues $(\alpha_1, \beta_1)\leq (\alpha_3, \beta_3)$ y $(\alpha_2, \beta_2)\leq (\alpha_3, \beta_3)$.
 \end{itemize}
 
 Así pues, esta relación hace de $\Lambda \times \Gamma$ un conjunto dirigido y se le llama \textit{orden producto}.
@@ -438,7 +449,7 @@ Por otro lado tomemos $x \in X$ tal que existe una red $(x_\alpha)_{\alpha \in \
 En un principio, el límite de una red convergente no tiene por qué ser único. La siguiente proposición exhibe cuándo lo es.
 
 \begin{Prop}
-Sea $X$ un espacio topológico Hausdorff. Entonces $X$ es Hausdorff si, y sólo si el límite de toda red que converja es único.
+Sea $X$ un espacio topológico. Entonces $X$ es Hausdorff si, y sólo si el límite de toda red que converja es único.
 \end{Prop}
 
 \begin{proof}
@@ -491,7 +502,7 @@ Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$.
 \end{Prop}
 
 \begin{proof}
-Supongamos primero que $(x_{\alpha, i})_{i \in I} \to (x_i)_{i\in I}$ en $\prod_{i\in I} X_i$. Tomemos $j \in I$. Como $\pi_j$ es continua se tiene que  $\pi_j((x_{\alpha, i})_{i \in I}) \to \pi_j((x_i)_{i\in I})$ en $X_j$. Esto es $x_{\alpha, j} \to x_j$. \\
+Supongamos primero que $(x_{\alpha, i})_{i \in I} \to (x_i)_{i\in I}$ en $\prod_{i\in I} X_i$. Tomemos $j \in I$. Como $\pi_j$ es continua se tiene que  $\pi_j((x_{\alpha, i})_{i \in I}) \to \pi_j((x_i)_{i\in I})$ en $X_j$. Esto es $x_{\alpha, j} \to x_j$. 
 
 Ahora supongamos que $x_{\alpha, j} \to x_j$ en $X_j$ para toda $j \in I$. Sea $U$ un abierto básico de $(x_i)_{i\in I}$. Entonces existen $k \in \K$, $i_1, \ldots, i_k \in I$ y $U_1, \ldots, U_k$ abiertos en $X_{i_1}, \ldots, X_{i_k}$ respectivamente tales que $$U = \bigcap_{j=1}^k \pi_{i_j}^{-1}(U_j).$$
 
@@ -549,14 +560,14 @@ Si $X$ es un espacio topológico, entonces el conjunto de los puntos de acumulaci
 \end{Lema}
 
 \begin{proof}
-Primero supongamos que $x\in X$ es el límite de alguna subred $(y_\beta)_{\beta\in \Gamma}$ de $(x_\alpha)_{\alpha \in \Lambda}$. Entonces existe $\varphi : \Gamma \to \Lambda$ monótona y final con $y_\beta = x_{\varphi(\beta)}$. Sea $V$ un abierto de $x$ y $\alpha \in \Lambda$. Como $y_\beta \to x$, existe $\beta_0 \in \Gamma$ tal que $y_\beta \in V$ para $\beta \geq \beta_0$. Como $\varphi$ es final existe $\beta_1 \in \Gamma$ con $\alpha \leq \varphi(\beta_1)$. Debido a que $\beta_0$ y $\beta_1$ son fijos, existe $\beta \in \Gamma$ tal que $\beta \geq \beta_0$ y $\beta \geq \beta_1$. Tenemos que $x_{\varphi(\beta)} = y_\beta \in V$ pues $\beta \geq \beta_0$. Dado que $\varphi$ es monótona, se sigue que $\alpha \leq \varphi(\beta_1) \leq \varphi(\beta)$. Así que $x$ es un punto de acumulación de $(x_\alpha)_{\alpha \in \Lambda}$. \\
+Primero supongamos que $x\in X$ es el límite de alguna subred $(y_\beta)_{\beta\in \Gamma}$ de $(x_\alpha)_{\alpha \in \Lambda}$. Entonces existe $\varphi : \Gamma \to \Lambda$ monótona y final con $y_\beta = x_{\varphi(\beta)}$. Sea $V$ un abierto de $x$ y $\alpha \in \Lambda$. Como $y_\beta \to x$, existe $\beta_0 \in \Gamma$ tal que $y_\beta \in V$ para $\beta \geq \beta_0$. Como $\varphi$ es final existe $\beta_1 \in \Gamma$ con $\alpha \leq \varphi(\beta_1)$. Debido a que $\beta_0$ y $\beta_1$ son fijos, existe $\beta \in \Gamma$ tal que $\beta \geq \beta_0$ y $\beta \geq \beta_1$. Tenemos que $x_{\varphi(\beta)} = y_\beta \in V$ pues $\beta \geq \beta_0$. Dado que $\varphi$ es monótona, se sigue que $\alpha \leq \varphi(\beta_1) \leq \varphi(\beta)$. Así que $x$ es un punto de acumulación de $(x_\alpha)_{\alpha \in \Lambda}$. 
 
 Ahora supongamos que $x$ es un punto de acumulación de $(x_\alpha)_{\alpha_\in \Lambda}$. Sea $N_x$ la colección de  vecindades abiertas de $x$. Definamos el   conjunto 
 $$B = \{ (V, \alpha) : V \in N_x, x_\alpha \in V \} \subseteq N_x \times \Lambda.$$
 
-Consideremos el orden producto de $N_x \times \Lambda$. Al restringir ese orden a $B$ claramente seguirá siendo reflexivo y transitivo. Tomemos $(V,\alpha_0), (U, \beta_0) \in B$. Notemos que $V \cap U \in N_x$. Consideremos $\gamma_0 \in \Lambda$ con $\gamma_0 \geq \alpha_0$ y $\gamma_0 \geq \beta_0$. Como $x$ es punto de acumulación de $(x_\alpha)_{\alpha\in \Lambda}$ existe $\gamma \geq \gamma_0$ con $x_\gamma \in V \cap U$. Así que $(V\cap U, \gamma) \geq (V, \alpha), (V\cap U, \gamma) \geq (U, \beta)$ con $(V\cap U, \gamma) \in B$. Es decir, $B$ es un conjunto dirigido con este orden. \\
+Consideremos el orden producto de $N_x \times \Lambda$. Al restringir ese orden a $B$ claramente seguirá siendo reflexivo y transitivo. Tomemos $(V,\alpha_0), (U, \beta_0) \in B$. Notemos que $V \cap U \in N_x$. Consideremos $\gamma_0 \in \Lambda$ con $\gamma_0 \geq \alpha_0$ y $\gamma_0 \geq \beta_0$. Como $x$ es punto de acumulación de $(x_\alpha)_{\alpha\in \Lambda}$ existe $\gamma \geq \gamma_0$ con $x_\gamma \in V \cap U$. Así que $(V\cap U, \gamma) \geq (V, \alpha), (V\cap U, \gamma) \geq (U, \beta)$ con $(V\cap U, \gamma) \in B$. Es decir, $B$ es un conjunto dirigido con este orden. 
 
-Introduzcamos $\varphi : B \to \Lambda$ tal que $\varphi(V, \alpha) = \alpha$ para $(V, \alpha) \in B$. Veamos que $\varphi$ es monótona y final:
+Introduzcamos $\varphi : B \to \Lambda$ de tal manera que $\varphi(V, \alpha) = \alpha$ para $(V, \alpha) \in B$. Veamos que $\varphi$ es monótona y final:
 \begin{itemize}
 \item Sean $(V, \alpha) \leq (U, \beta)$ en $B$. Entonces $\alpha \leq \beta$ por lo que $\varphi(V, \alpha) \leq \varphi(U, \beta)$.
 \item Sea $\alpha \in \Lambda$. Como $X \in N_x$ y $x_\alpha \in X$, se tiene que $(X, \alpha) \in B$ y $\varphi(X, \alpha) \geq \alpha$. 
@@ -613,9 +624,9 @@ En este caso decimos que $\tau$ es una \textit{topología vectorial} y que $X$ es
 
 Sea $X$ un espacio vectorial  y $x_1, \ldots, x_n \in X$, $n \in \N$. El espacio generado por un conjunto $A \subseteq X$ se denotará por $\mbox{span}\, A$ y está definido como  $$\mbox{span} \, A  : = \left\{ \sum_{i=1}^n a_i x_i : n\in \N,  a_1, \ldots, a_n  \in \K, x_1, \ldots, x_n \in A \right\}.$$
 
-\begin{Prop} \label{Prop:VecindadesAbiertasAditivasEVT}
+\begin{Lema} \label{Lema:VecindadesAbiertasAditivasEVT}
 Sea $X$ un espacio vectorial topológico. Para cada vecindad abierta $U$ del $0$, existe una vecindad abierta $V$ del cero con $$V + V \subseteq U.$$ 
-\end{Prop}
+\end{Lema}
 
 \begin{proof}
 (Pendiente).
@@ -689,12 +700,12 @@ $$\lim_{\alpha \in \Lambda} (\lambda_\alpha x_\alpha) = \left(\lim_{\alpha \in \
 Sea $X$ un espacio vectorial topológico. Una \textit{red de Cauchy} en $X$ es una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ tal que para toda vecindad abierta $U$ del cero existe $\alpha \in \Lambda$ tal que $x_{\alpha_1} - x_{\alpha_2} \in U$ siempre que $\alpha_1, \alpha_2 \geq \alpha$. 
 \end{Def}
 
-\begin{Prop} \label{Prop:RedConvergenteEsCauchy}
+\begin{Lema} \label{Lema:RedConvergenteEsCauchy}
 Sea $X$ un espacio vectorial topológico. Si una red en $X$ es convergente, entonces es de Cauchy.
-\end{Prop}
+\end{Lema}
 
 \begin{proof}
-Sea $(x_\alpha)_{\alpha\in\Lambda}$ una red en $X$ tal que converge a $x \in X$. Sea $U$ una vecindad abierta del cero. Por la proposición~\ref{Prop:VecindadesAbiertasAditivasEVT} existe una vecindad abierta $V$ del cero tal que $V + V \subseteq U$. Como $V$ es vecindad abierta del cero, entonces $V + x$ es vecindad abierta de $x$ y por tanto existe $\beta_1\in \Lambda$ tal que  
+Sea $(x_\alpha)_{\alpha\in\Lambda}$ una red en $X$ tal que converge a $x \in X$. Sea $U$ una vecindad abierta del cero. Por el lema~\ref{Lema:VecindadesAbiertasAditivasEVT} existe una vecindad abierta $V$ del cero tal que $V + V \subseteq U$. Como $V$ es vecindad abierta del cero, entonces $V + x$ es vecindad abierta de $x$ y por tanto existe $\beta_1\in \Lambda$ tal que  
 \begin{equation} \label{Eq:xBeta1} 
 x_\beta \in  V + x, \mbox{ si } \beta \geq \beta_1. 
 \end{equation}
@@ -704,15 +715,7 @@ Por otro lado, $-V$ también es una vecindad abierta del $0$. Así que $-V+x$ es u
 x_\beta \in  -V + x, \mbox{ si } \beta \geq \beta_2. 
 \end{equation}
 
-Al tomar $\alpha \in \Lambda$ con $\alpha \geq \beta_1$ y $\alpha \geq \beta_2$, junto con (\ref{Eq:xBeta1}) y (\ref{Eq:xBeta2}) se tiene que si $\alpha_1$ y $\alpha_2 \in \Lambda$ cumplen que $\alpha_1 \geq \alpha$ y $\alpha_2 \geq \alpha$, entonces
-\Ecu{
-x_{\alpha_1} \in  V + x \quad\mbox{ y }\quad x_{\alpha_2} \in -V + x,
-}
-de donde 
-\Ecu{
-x_{\alpha_1} - x \in  V \quad\mbox{ y }\quad x_{\alpha_2} -x \in -V,
-}
-y así 
+Al tomar $\alpha \in \Lambda$ con $\alpha \geq \beta_1$ y $\alpha \geq \beta_2$, junto con (\ref{Eq:xBeta1}) y (\ref{Eq:xBeta2}) se tiene que si $\alpha_1$ y $\alpha_2 \in \Lambda$ cumplen que $\alpha_1 \geq \alpha$ y $\alpha_2 \geq \alpha$, entonces $x_{\alpha_1} \in  V + x$ y $x_{\alpha_2} \in -V + x$. De esto que $x_{\alpha_1} - x \in  V$  y $x_{\alpha_2} -x \in -V$ y así 
 $$x_{\alpha_1} - x_{\alpha_2} = (x_{\alpha_1} - x)+ (x -x_{\alpha_2}) \in V + V \subseteq U.$$
 \end{proof}
 
@@ -727,7 +730,7 @@ Sean $E$ un espacio vectorial topológico y $F \subseteq E$ un subespacio vectori
 \end{Prop}
 
 \begin{proof}
-Sea $x \in \ov{F}$. La proposición~\ref{Prop:CerraduraLimiteRed} establece que existe una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq F$ tal que $x_\alpha \to x$. Como $(x_\alpha)_{\alpha \in \Lambda}$ es convergente, la proposición~\ref{Prop:RedConvergenteEsCauchy} indica que $(x_\alpha)_{\alpha \in \Lambda}$ es de Cauchy y al ser $F$ completo, se sigue que la red converge en $F$. Al ser $E$ Haussdorf, se sigue que $x \in F$ y así $F$ es cerrado. 
+Sea $x \in \ov{F}$. La proposición~\ref{Prop:CerraduraLimiteRed} establece que existe una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq F$ tal que $x_\alpha \to x$. Como $(x_\alpha)_{\alpha \in \Lambda}$ es convergente, el lema~\ref{Lema:RedConvergenteEsCauchy} indica que $(x_\alpha)_{\alpha \in \Lambda}$ es de Cauchy y al ser $F$ completo, se sigue que la red converge en $F$. Al ser $E$ Haussdorf, se sigue que $x \in F$ y así $F$ es cerrado. 
 \end{proof}
 
 \begin{Tma}
@@ -1182,6 +1185,8 @@ Así que existe $z \in Y$ tal que $0 < \Norm{x - z} < \dfrac{d(x, Y)}{\theta}$. D
 &> \frac{\theta}{d(x, Y)} \cdot d(x, Y) = \theta.
 }
 \end{proof}
+
+En un espacio normado $X$, denotamos a la bola unitaria centrada en el cero por $B_X$. Con el siguiente teorema resolvemos el objetivo que planteamos al inicio de esta subsección.
 
 \begin{Tma} \label{Tma:DimensionFinitaCerradoAcotadoCompacto}
 Sea $X$ un espacio normado. Las siguientes afirmaciones son equivalentes:
