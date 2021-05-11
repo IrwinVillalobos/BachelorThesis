@@ -331,8 +331,8 @@ Las sucesiones tienen un papel relevante en los espacios métricos, pues a través
 \begin{Prop} \label{Prop:ContinuidadPorSucesiones}
 Sean $M_1$ y $M_2$ espacios métricos y $f :  M_1 \to M_2$. Son equivalentes: 
 \begin{itemize}
-\item $f$ es continua.
-\item Para toda sucesión $(x_n)_{n\in\N} \subseteq M_1$ tal que $x_n \to x \in M_1$ se cumple que $f(x_n) \to f(x)$. 
+\item \textbf{i)} $f$ es continua.
+\item \textbf{ii)} Para toda sucesión $(x_n)_{n\in\N} \subseteq M_1$ tal que $x_n \to x \in M_1$ se cumple que $f(x_n) \to f(x)$. 
 \end{itemize} 
 \end{Prop}
 
@@ -719,7 +719,7 @@ Al tomar $\alpha \in \Lambda$ con $\alpha \geq \beta_1$ y $\alpha \geq \beta_2$,
 $$x_{\alpha_1} - x_{\alpha_2} = (x_{\alpha_1} - x)+ (x -x_{\alpha_2}) \in V + V \subseteq U.$$
 \end{proof}
 
-Por otro lado, en general no se cumple que toda red de Cauchy sea convergente. Es por esto que tenemos la siguiente definición.
+Por otro lado, en cualquier espacio vectorial topológico no se cumple que toda red de Cauchy sea convergente. Es por esto que tenemos la siguiente definición.
 
 \begin{Def}
 Un espacio vectorial topológico $X$ es \textit{completo} si toda red de Cauchy en $X$ converge.
@@ -730,7 +730,7 @@ Sean $E$ un espacio vectorial topológico y $F \subseteq E$ un subespacio vectori
 \end{Prop}
 
 \begin{proof}
-Sea $x \in \ov{F}$. La proposición~\ref{Prop:CerraduraLimiteRed} establece que existe una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq F$ tal que $x_\alpha \to x$. Como $(x_\alpha)_{\alpha \in \Lambda}$ es convergente, el lema~\ref{Lema:RedConvergenteEsCauchy} indica que $(x_\alpha)_{\alpha \in \Lambda}$ es de Cauchy y al ser $F$ completo, se sigue que la red converge en $F$. Al ser $E$ Haussdorf, se sigue que $x \in F$ y así $F$ es cerrado. 
+Sea $x \in \ov{F}$. La proposición~\ref{Prop:CerraduraLimiteRed} establece que existe una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq F$ tal que $x_\alpha \to x$. Como $(x_\alpha)_{\alpha \in \Lambda}$ es convergente, el lema~\ref{Lema:RedConvergenteEsCauchy} indica que $(x_\alpha)_{\alpha \in \Lambda}$ es de Cauchy y al ser $F$ completo, se sigue que la red converge en $F$. Al ser $E$ Hausdorff, se sigue que $x \in F$ y así $F$ es cerrado. 
 \end{proof}
 
 \begin{Tma}
@@ -741,12 +741,20 @@ Si $E$ es un espacio vectorial topológico y $\dim\,E = n < \infty$, entonces $E$
 (Pendiente).
 \end{proof}
 
+\begin{Prop} \label{Prop:HomeomorfismoLinealPreservaCompletitud}
+Sean $E$ y $F$ espacios vectoriales topológicos. Si existe un homeomorfismo lineal $T : E \to F$ y $E$ es completo, entonces $F$ es completo.
+\end{Prop}
+
+\begin{proof}
+(Pendiente).
+\end{proof}
+
 \begin{Cor}
 Los espacios vectoriales topológicos de dimensión finita son completos.
 \end{Cor}
 
 \begin{proof}
-Sea $X$ un espacio vectorial topológico de dimensión finita $n \in \N$. Dado que $\K^n$ con la topología euclidiana es completo, y $X$ es isomorficamente homeomorfo a $\K^n$, resulta que $X$ también es completo, pues los isomorfimos de espacios vectoriales topológicos preservan redes de Cauchy (¿lo demuestro?).
+Sea $X$ un espacio vectorial topológico de dimensión finita $n \in \N$. Dado que $\K^n$ con la topología euclidiana es completo, y $X$ es isomorficamente homeomorfo a $\K^n$, resulta por la proposición~\ref{Prop:HomeomorfismoLinealPreservaCompletitud} que $X$ también es completo.
 \end{proof}
 
 \begin{Cor} \label{Cor:SubespacioDimensionFinitaCerrado}
@@ -754,15 +762,16 @@ Si $Y$ es un subespacio de dimensión finita de un espacio vectorial topológico $
 \end{Cor}
 
 \begin{proof}
-Sea $x \in \ov{Y}$. Por el corolario~\ref{Cor:CerraduraLimiteSucesiones}, existe una sucesión $(y_n)_{n\in\N}$ en $Y$ que converge a $x \in X$. Como la sucesión converge, entonces es de Cauchy. El corolario anterior indica que  $Y$ es completo y así $y_n \to y \in Y$. Dado que $X$ es Hausdorff, $x = y$. Luego $x \in Y$, lo cual indica que $\ov{Y} \subseteq Y$ y $Y$ es cerrado.
+Sea $x \in \ov{Y}$. Por la proposición~\ref{Prop:CerraduraLimiteRed}, existe una red $(y_n)_{n\in\N}$ en $Y$ que converge a $x \in X$. Como la sucesión converge, entonces es de Cauchy. El corolario anterior indica que  $Y$ es completo y así $y_n \to y \in Y$. Dado que $X$ es Hausdorff, $x = y$. Luego $x \in Y$, lo cual indica que $\ov{Y} \subseteq Y$ y $Y$ es cerrado.
 \end{proof}
 
 
 Dado un espacio vectorial topológico $X$, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \tau)^*$ o simplemente por $X^*$.  A los elementos de este espacio dual los llamamos \textit{funcionales lineales continuos}.
 
-\subsection{Topología generada por una familia de seminormas.}
+\subsection[Espacio vectorial topológico generado por una familia de seminormas.]{Espacio vectorial topológico generado por una familia de seminormas. \subsectionmark{E.V.T. generado por seminormas.}}
+\subsectionmark{E.V.T. generado por seminormas.}
 
-Para desarrollar la teoría detrás de la topología débil de un espacio de normado $X$ y la topología débil* en $X^*$ introduciremos el concepto de la topología generada por una familia de seminormas en un espacio vectorial topológico. 
+Un método para construir espacios vectoriales topológicos y desarrollar la teoría detrás de la topología débil de un espacio de normado $X$ y la topología débil* en $X^*$ es utilizar el concepto de la topología generada por una familia de seminormas en un espacio vectorial. 
 
 \begin{Def}
 Sea $X$ un espacio vectorial sobre $\K$. Una \textit{seminorma} es una función $p: X \to [0, \infty)$ tal que:
@@ -776,18 +785,10 @@ $p(\lambda x) = \abs{\lambda}p(x)$.
 \begin{Ejem} \label{Ejem:SeminormaParaTopologiaDebil}
 Sea $X$ un espacio vectorial y $\varphi : X \to \K$ un funcional lineal. Entonces  $p = \abs{\varphi}$ es una seminorma, pues $p(x) = \abs{\varphi(x)} \geq 0$ para toda $x \in X$ y
 \begin{itemize}
-\item Si $x, y \in X$, entonces $p(x+y) = \abs{\varphi(x+y)} = \abs{\varphi(x)+\varphi(y)} \leq \abs{\varphi(x)} + \abs{\varphi(y)} = p(x) + p(y)$.
-\item Si $\lambda \in \K$ y $x \in X$, entonces $p(\lambda x) = \abs{\varphi(\lambda)x} = \abs{\lambda\varphi(x)} = \abs{\lambda} \abs{\varphi(x)} = \abs{\lambda} p(x).$
+\item[\textbullet] Si $x, y \in X$, entonces $p(x+y) = \abs{\varphi(x+y)} = \abs{\varphi(x)+\varphi(y)} \leq \abs{\varphi(x)} + \abs{\varphi(y)} = p(x) + p(y)$.
+\item[\textbullet] Si $\lambda \in \K$ y $x \in X$, entonces $p(\lambda x) = \abs{\varphi(\lambda)x} = \abs{\lambda\varphi(x)} = \abs{\lambda} \abs{\varphi(x)} = \abs{\lambda} p(x).$
 \end{itemize} 
 \end{Ejem}
-
-\begin{Def}
-Una \textit{norma} en un espacio vectorial $X$ es una función $\Norm{\cdot}: X \to [0, \infty)$ tal que
-\begin{itemize}
-\item \textbf{i)} Es \textit{definida positiva}, es decir, para cada $x \in X$, $\Norm{x} = 0$ si, y sólo si $x = 0$.
-\item \textbf{ii)} Es una seminorma.
-\end{itemize}
-\end{Def}
 
 \begin{Prop} \label{Prop:Seminorma}
 Sean $X$ un espacio vectorial y $p$ una seminorma. Entonces
@@ -798,8 +799,8 @@ Sean $X$ un espacio vectorial y $p$ una seminorma. Entonces
 \end{Prop}
 
 \begin{proof} \hfill \begin{itemize} 
-\item \textbf{a)} Observemos que $p(0) = p(0\cdot 0) = \abs{0}p(0) = 0$.
-\item \textbf{b)} Por la subaditividad de $p$ tenemos que $p(x) = p(x-y+y) \leq p(x-y) + p(y)$. De esto resulta que $p(x)-p(y) \leq p(x-y)$. Análogamente, $p(y)-p(x) \leq p(y-x) = p(x-y)$ y entonces $\abs{p(x)-p(y)} \leq p(x-y)$.
+\item[\textbf{a)}] Observemos que $p(0) = p(0\cdot 0) = \abs{0}p(0) = 0$.
+\item[\textbf{b)}] Por la subaditividad de $p$ tenemos que $p(x) = p(x-y+y) \leq p(x-y) + p(y)$. De esto resulta que $p(x)-p(y) \leq p(x-y)$. Análogamente, $p(y)-p(x) \leq p(y-x) = p(x-y)$ y entonces $\abs{p(x)-p(y)} \leq p(x-y)$.
 \end{itemize}
 \end{proof}
 
@@ -812,12 +813,12 @@ Sea $\mathcal{T}$ la colección de topologías de un espacio vectorial $X$ en las 
 \begin{Def} Sea $\mathcal{F}$ una familia no vacía de seminormas en $X$. La \textit{topología} inducida por $\mathcal{F}$ en $X$ es $$\displaystyle\sigma(X, \mathcal{F}) : = \bigcap_{\tau \in \mathcal{T}} \tau.$$
 \end{Def}
 
-Al considerar una topología resulta útil trabajar con ella a través de una base. La siguiente proposición propone una base de la topología débil. 
+La siguiente proposición propone una base de la topología $\sigma(X, \mathcal{F})$. 
 
 \begin{Prop} 
 Sea $\mathcal{F}$ una familia no vacía de seminormas en un espacio vectorial $X$. La familia de conjuntos
 $$U_{x, p_1, p_2, \ldots, p_k, \varepsilon} := \bigcap_{i=1}^k \{ y \in X : p_i (x-y) < \varepsilon  \}, \; x \in X, k\in  \N, p_1, p_2, \ldots , p_k \in \mathcal{F} \mbox{ y } \varepsilon > 0;$$
-forma una base de la topología débil $\sigma(X, \mathcal{F})$.
+forma una base de la topología $\sigma(X, \mathcal{F})$.
 \end{Prop}
 
 
@@ -859,10 +860,10 @@ Demostremos que con la topología $\tau(\mathcal{B})$ en $X$, todas las seminorma
 Esto indica que $\tau(\mathcal{B}) \in \mathcal{T}$. Por la minimalidad de $\sigma(X, \mathcal{F})$ y dado que $\tau(\mathcal{B}) \subseteq \sigma(X, \mathcal{F})$ se concluye que $\tau(\mathcal{B}) = \sigma(X, \mathcal{F})$ y así $\mathcal{B}$ es base de $\sigma(X, \F)$.
 \end{proof}
 
-En un espacio vectorial $X$ la topología inducida por una familia de seminormas $\F$ de $X$ induce el concepto de convergencia en $X$. Si la red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ converge en tal topología, su límite lo denotamos por $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} x_\alpha$. En el caso particular de una sucesión $(x_n)_{n \in \N}$ denotamos el límite de la sucesión por $\sigma(X, \F)$-$\lim_{n \to \infty} x_n$. La siguiente proposición indica una caracterización de las sucesiones  convergentes bajo la topología $\sigma(X, \F)$.
+Si la red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ converge en la topología $\sigma(X, \F)$, su límite lo denotamos por $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} x_\alpha$. En el caso particular de una sucesión $(x_n)_{n \in \N}$ denotamos el límite de la sucesión por $\sigma(X, \F)$-$\lim_{n \to \infty} x_n$. La siguiente proposición indica una caracterización de las sucesiones  convergentes bajo la topología $\sigma(X, \F)$.
 
 \begin{Prop} \label{Prop:CaracterizacionConvergenciaDebilSeminorma}
-Sean $X$ un espacio vectorial, $\F$ una familia no vacía de seminormas, $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ una red en $X$ y $x \in X$. Tenemos entonces que $\sigma(X, \F)$-$\displaystyle\lim_{\alpha \in \Lambda} x_\alpha = x$ si, y sólo si $\displaystyle\lim_{\alpha \in \Lambda} p(x_\alpha -x) = 0$ para toda $p \in \F$.
+Sean $X$ un espacio vectorial, $\F$ una familia no vacía de seminormas, $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ una red en $X$ y $x \in X$. Entonces que $\sigma(X, \F)$-$\displaystyle\lim_{\alpha \in \Lambda} x_\alpha = x$ si, y sólo si $\displaystyle\lim_{\alpha \in \Lambda} p(x_\alpha -x) = 0$ para toda $p \in \F$.
 \end{Prop} 
  
 \begin{proof}
@@ -902,18 +903,19 @@ Sean $\sigma: X \times X \to X$ la función suma. Es decir, $\sigma(x, y) = x+y$ 
 $$0 \leq p(x_\alpha + y_\alpha - x- y) \leq p(x_\alpha - x) + p(y_\alpha - y).$$
 
 Por la proposición~\ref{Prop:LimiteDeSuma} y puesto que $\R$ es un e.v.t. se sigue que $$ \displaystyle\lim_{\alpha\in \Lambda} [ p(x_\alpha - x) +  p(y_\alpha - y)] = \lim_{\alpha\in \Lambda} p(x_\alpha - x) +  \lim_{\alpha\in \Lambda} p(y_\alpha - y) = 0.$$
-Entonces, por el lema del sándwich tenemos que $\displaystyle\lim_{\alpha\in \Lambda} p(x_\alpha + y_\alpha - x - y) = 0$ para toda $p \in \F$. \\
+
+Entonces, por el lema del sándwich tenemos que $\displaystyle\lim_{\alpha\in \Lambda} p(x_\alpha + y_\alpha - x - y) = 0$ para toda $p \in \F$. 
 
 Por la proposición~\ref{Prop:CaracterizacionConvergenciaDebilSeminorma} obtenemos que 
 $$\sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} \sigma(x_\alpha, y_\alpha) = \sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} (x_\alpha + y_\alpha) = x+y = \sigma(x, y).$$ 
 
-Así que $\sigma$ es continua. \\
+Así que $\sigma$ es continua.
 
-Consideremos ahora $\pi: \K \times X \to X$ la función producto por un escalar. Es decir, $\pi(\lambda, x) = \lambda x$ para $(\lambda, x) \in \K\times X$. Veamos que esta es continua. Tomemos una red $(\lambda_\alpha, x_\alpha)_{\alpha\in \Lambda}$  en $\K\times X$ y $(\lambda, x) \in \K \times X$ tal que $(\lambda_\alpha, x_\alpha) \to (\lambda, x)$. La proposición~\ref{Prop:ConvergenciaPorComponentes} indica que $\lambda_\alpha \to \lambda$ y $\sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} x_\alpha = x$. Por la proposición~\ref{Prop:CaracterizacionConvergenciaDebilSeminorma} tenemos que para toda $p \in \F$ se tiene que $p(x_\alpha - x) \to 0$. Por la subaditividad de $p$ se sigue que
+Consideremos ahora la función producto por un escalar $\pi: \K \times X \to X$. Es decir, $\pi(\lambda, x) = \lambda x$ para $(\lambda, x) \in \K\times X$. Veamos que esta es continua. Tomemos una red $(\lambda_\alpha, x_\alpha)_{\alpha\in \Lambda}$  en $\K\times X$ y $(\lambda, x) \in \K \times X$ tal que $(\lambda_\alpha, x_\alpha) \to (\lambda, x)$. La proposición~\ref{Prop:ConvergenciaPorComponentes} indica que $\lambda_\alpha \to \lambda$ y $\sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} x_\alpha = x$. Por la proposición~\ref{Prop:CaracterizacionConvergenciaDebilSeminorma} tenemos que para toda $p \in \F$ se tiene que $p(x_\alpha - x) \to 0$. Por la subaditividad de $p$ se sigue que
 $$0 \leq p(x_\alpha) \leq p(x_\alpha - x) + p(x).$$
 
 Por el lema del sándwich y  la proposición~\ref{Prop:LimiteDeSuma} se tiene que  
-$$0 = \lim_{\alpha\in \Lambda}0 \leq \lim_{\alpha\in \Lambda} p(x_\alpha) \leq \lim_{\alpha\in \Lambda}[p(x_\alpha - x) + p(x)] = \lim_{\alpha\in \Lambda}p(x_\alpha - x) + \lim_{\alpha\in \Lambda} p(x) = p(x)$$.
+$$0 = \lim_{\alpha\in \Lambda}0 \leq \lim_{\alpha\in \Lambda} p(x_\alpha) \leq \lim_{\alpha\in \Lambda}[p(x_\alpha - x) + p(x)] = \lim_{\alpha\in \Lambda}p(x_\alpha - x) + \lim_{\alpha\in \Lambda} p(x) = p(x).$$
 
 Además, por la subaditividad de $p$ tenemos que 
 \Ecu{
@@ -925,7 +927,7 @@ Por la proposición~\ref{Prop:LimiteDeSuma} se tiene que
 \Ecu{
 \lim_{\alpha\in \Lambda} [\abs{\lambda_\alpha - \lambda}p(x_\alpha) + \abs{\lambda} p(x_\alpha - x)] 
 &= \left( \lim_{\alpha\in \Lambda} \abs{\lambda_\alpha - \lambda} \right) \left( \lim_{\alpha\in \Lambda} p(x_\alpha)\right) + \left( \lim_{\alpha\in \Lambda} \abs{\lambda} p(x_\alpha - x)  \right) \\
-&\leq \left( 0 \right)  p(x) +  \abs{\lambda} 0  = 0 \\
+&\leq \left( 0 \right)  p(x) +  \abs{\lambda} 0  = 0. 
 }
 
 Por el lema del sándwich se tiene entonces que $\lim_{\alpha\in \Lambda} p(\lambda_\alpha x_\alpha - \lambda x) = 0$ para toda $p \in \F$. Por la proposición~\ref{Prop:CaracterizacionConvergenciaDebilSeminorma} obtenemos que 
@@ -936,7 +938,11 @@ Así que $\pi$ es continua.
 
 \section{Espacios normados.}
 
-Recordemos que $(X, \Norm{\cdot})$ es un \textit{espacio normado} si $X$ es un espacio vectorial sobre $\K$ y $\Norm{\cdot}$ es una norma en $X$. Si además $X$ es completo bajo esta norma, decimos que $X$ es un \textit{espacio de Banach}. Esto significa que en un espacio de Banach las sucesiones de Cauchy convergen. 
+Recordemos que $(X, \Norm{\cdot})$ es un \textit{espacio normado} si $X$ es un espacio vectorial sobre $\K$ y $\Norm{\cdot}$ es una norma en $X$. 
+
+\begin{Def}
+Una \textit{norma} en un espacio vectorial $X$ es una seminorma $\Norm{\cdot}: X \to [0, \infty)$ tal que es \textit{definida positiva}, esto es para cada $x \in X$, $\Norm{x} = 0$ si, y sólo si $x = 0$.
+\end{Def}
  
 \begin{Def} Sea $X$ un espacio vectorial. Una función $f : X \to \R$ es \textit{convexa} si para todos $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que $$f(\lambda x + (1-\lambda y))\leq \lambda f(x) + (1-\lambda) f(y).$$
 \end{Def}
@@ -946,73 +952,7 @@ Una norma $\Norm{\cdot}:X \to \R$ es convexa pues dados $x, y \in X$ y $\lambda 
 $$\Norm{\lambda x + (1-\lambda y)} \leq \abs{\lambda} \Norm{x} + \abs{1-\lambda} \Norm{y}  = \lambda \Norm{x} + (1-\lambda) \Norm{y}.$$
 \end{Ejem}
 
-\begin{Ejem} \label{Ejem:EllePNormado}
-Dados $n \in \N$ y $1 \leq p < \infty$, definamos la función $\Norm{\cdot}_p:\K^n \to [0, \infty)$ por $$\Norm{(x_1, \ldots, x_n)}_p := \left(\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}}.$$  
-
-Para verificar a continuación que $\Norm{\cdot}_p$ es una norma recurriremos a los siguientes lemas y proposiciones.
-\end{Ejem}
-
-\begin{Lema} \label{Lema:SegundaDerivadaPositivaConvexa}
-Sean $(a, b) \subseteq \R$ un intervalo y $f : (a, b) \to \R$ una función dos veces diferenciable. Si $f^{\prime\prime} \geq 0$ en $(a, b)$, entonces $f$ es convexa.
-\end{Lema}
-
-\begin{proof}
-(Pendiente).
-\end{proof}
-
-\begin{Lema} \label{Lema:ComposcionConvexa}
-Sean $X$ un espacio normado, $f: \K \to \R$ convexa y creciente; y $g: \R \to \R$ convexa, entonces $g \circ f$ es convexa. 
-\end{Lema}
-
-\begin{proof}
-(Pendiente.)
-\end{proof}
-
-\begin{Ejem} \label{Ejem:XPConvexa}
-Fijemos $1 \leq p \leq \infty$ y consideremos $f: [0, \infty) \to[0, \infty)$ dada por $f(x) = x^p$ para toda $x \in \R$. Claramente $f$ es diferenciable y $f^\prime(x) = p x^{p-1}$. Además $f^\prime$ vuelve  a ser diferenciable y $f^{\prime\prime}(x) = p(p-1)x^{p-2} \geq 0$ para todo $x \geq 0$ y por el lema~\ref{Lema:SegundaDerivadaPositivaConvexa} resulta que $f$ es convexa.
-Al tomar $g = \Norm{\cdot}$, el lema~\ref{Lema:ComposcionConvexa} indica que  $g \circ f : \K \to \R$, $z \mapsto \abs{z}^p$ es convexa.
-\end{Ejem}
-
-\begin{proof}
-($\Norm{\cdot}_\infty$ es una norma) 
-\begin{itemize}
-\item \textbf{i)} Claramente, $\Norm{x}_p \geq 0$ para cualquier $x \in \ell_p^n$. Además, tenemos que si $x = 0 \in \ell_p^n$, entonces $\Norm{x}_p= 0$. Es sencillo observar que si $\Norm{x}_p = 0$ para algún $x \in X$, entonces $x = 0$.
-\item \textbf{ii)} Sea $x = (x_1, \ldots, x_n) \in \ell_p^n$ y $\lambda \in \K$, entonces
-\Ecu{
-\Norm{\lambda x}_p &= \Norm{(\lambda x_1, \ldots, \lambda x_n)}_p =  \left(\sum_{i=1}^n \abs{\lambda x_i}^p\right)^{\frac{1}{p}} \\
-&= \left(\abs{\lambda}^p\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}} = \abs{\lambda} \left(\sum_{i=1}^n \abs{ x_i}^p\right)^{\frac{1}{p}} = \abs{\lambda} \Norm{x}_p.
-}
-\item \textbf{iii)} Sean $x, y \in \ell_p^n$ y supongamos que $\Norm{x}_p + \Norm{y}_p  =0$. Entonces $x = y = 0$ y $\Norm{x+y}_p \leq \Norm{x}_p + \Norm{y}_p$. Supongamos ahora que $\Norm{x}_p + \Norm{y}_p > 0$. Si $x = 0$ o $y = 0$, claramente $\Norm{x+y}_p \leq \Norm{x}_p + \Norm{y}_p$. Así que tomamos $x, y \neq 0$. Definamos 
-$$\widehat{x} := \frac{x}{\Norm{x}_p + \Norm{y}_p} \quad \mbox{  y } \quad \widehat{y} := \frac{y}{\Norm{x}_p + \Norm{y}_p},$$ de tal manera que 
-$\Norm{\widehat{x}} + \Norm{\widehat{y}} = 1$. Definamos $\lambda := \Norm{\widehat{y}}_p \in (0, 1)$ y tomemos $$X =\frac{x}{1-\lambda} \quad
- \mbox{ y } \quad Y = \frac{y}{\lambda}.$$
-
-Queda pendiente el resto de la demostración. 
-\end{itemize}
-\end{proof}
-
-\begin{Ejem}
-Consideremos ahora en $\K^n$ la función $\Norm{\cdot}_{\infty}: \K^n \to [0, \infty)$ dada por $$\Norm{(x_1, \ldots, x_n)}_\infty :=\max_{1 \leq i \leq n} \,  \abs{x_i}.$$ Demostremos que $\Norm{\cdot}_\infty$ es una norma. 
-\end{Ejem}
-
-\begin{proof}
-Notemos que
-\begin{itemize}
-\item \textbf{i)} Sea $x = (x_1, \ldots, x_n) \in \K^n$. Si $x = 0$, entonces $\Norm{x}_\infty = \max_{i \in \N} \,  0 = 0.$ Si por otro lado $\Norm{x}_\infty = 0$, entonces $\abs{x_i} = 0$ para todo $1 \leq i \leq n$, y así $x_i = 0$, por lo que $x = 0$.
-\item \textbf{ii)} Sea $x = (x_1, \ldots, x_n) \in \K^n$ y $\lambda \in\K$. Entonces
-\Ecu{
-\Norm{\lambda x}_\infty = \Norm{(\lambda x_1, \ldots, \lambda x_n)}_\infty = \max_{1 \leq i \leq n} \,  \abs{ \lambda x_i} = \max_{1 \leq i \leq n} \,  \abs{\lambda}\abs{x_i} = \abs{\lambda} \max_{1 \leq i \leq n} \,  \abs{x_i} = \abs{\lambda} \Norm{x}_\infty.
-}
-\item \textbf{iii)} Sean $x = (x_1, \ldots, x_n), y = (y_1, \ldots, y_n) \in \K^n$, entonces 
-\Ecu{
-\Norm{x+y}_\infty &= \Norm{(x_1 + y_1, \ldots, x_n + y_n)}_\infty = \max_{1 \leq i \leq n} \,  \abs{x_i + y_i} \\
-& \leq \max_{1 \leq i \leq n} \,  (\abs{x_i} + \abs{x_i}) \leq \max_{1 \leq i \leq n} \,  \abs{x_i} + \max_{1 \leq i \leq n} \,  \abs{y_i} \\
-& = \Norm{x}_\infty + \Norm{y}_\infty.
-}
-\end{itemize}
-\end{proof}
-
-En un espacio normado $X$ resulta que $d: X \times X \to [0, \infty)$ dada por $d(x, y) = \Norm{x-y}$ es una métrica. Por lo que $X$ es un espacio métrico y entonces podemos considerar la topología inducida por la métrica, la cual se denomina topología original. 
+En un espacio normado $X$ resulta que $d: X \times X \to [0, \infty)$ dada por $$d(x, y) := \Norm{x-y}$$ es una métrica. Por lo que $X$ es un espacio métrico y entonces podemos considerar la topología inducida por la métrica, la cual se denomina topología original de $X$. 
 
 \begin{Prop} \label{Prop:TopologiaOriginalEsEVT}
 Sea $X$ un espacio normado. Entonces $X$, con su topología original, es un espacio vectorial topológico. (La última vez me comento que moviera esta proposición antes del corolario~\ref{Cor:EspacioBanachEsEVTCompleto} pero ya lo estaba.)
@@ -1022,13 +962,25 @@ Sea $X$ un espacio normado. Entonces $X$, con su topología original, es un espac
 (Pendiente.)
 \end{proof}
 
+\begin{Def}
+Un espacio normado $X$ es \textit{completo} si es completo como espacio vectorial topológico. En este caso decimos que $X$ es un \textit{espacio de Banach}.  
+\end{Def}
+
+\begin{Prop}
+Sea $X$ un espacio normado tal que toda sucesión de Cauchy en $X$ converge en $X$, entonces $X$ es un espacio de Banach.
+\end{Prop}
+
+\begin{proof}
+(Pendiente).
+\end{proof}
+
 \begin{Cor} \label{Cor:EspacioBanachEsEVTCompleto}
 Si $X$ es un espacio de Banach, entonces es un espacio vectorial topológico completo.
 \end{Cor}
 
-\begin{Prop}
+\begin{Lema} \label{Lema:NormaContinua}
 Sea $X$ un espacio normado. Entonces la norma $\Norm{\cdot}:X \to [0, \infty)$ es una función continua.
-\end{Prop}
+\end{Lema}
 
 \begin{proof}
 Sea $(x_n)_{n\in\N}$ una sucesión en $X$ que converge a $x \in X$. Por definición esto indica que para todo $\varepsilon > 0$ existe $N \in \N$ tal que si $n \geq N$ entonces $\Norm{x_n - x} \leq \varepsilon$. Por la desigualdad del triángulo que $\abs{\Norm{x_n} - \Norm{x}} < \Norm{x_n - x}$. Esto implica que $\Norm{x_n}$ converge a $\Norm{x}$ y así $\Norm{\cdot}$ es continua.
@@ -1047,8 +999,7 @@ Sean $X$ y $Y$ espacios normados y  $T:X \to Y$ un operador lineal. Entonces $T$
 \begin{proof}
 Sea $A \subseteq X$ un conjunto acotado. Entonces existe $M > 0$ tal que $\Norm{x} < M $ para todo $x \in A$. Como $T$ es continua, existe $N >0$ tal que $\Norm{T(x)} < N \Norm{x}$. Así pues si $T(x) \in T(B)$ se sigue que $\Norm{T(x)} < MN.$ Por lo que $T(A)$ es acotado.
 
-Ahora supongamos que $T$ preserva conjuntos acotados. Como $B_X$ es un conjunto acotado, entonces $T(B)$ es un conjunto acotado por algún $K > 0$. Sea $x \in X$. Si $x = 0$, entonces $\Norm{Tx} = \Norm{0} = 0 \leq K \Norm{x}$. Supongamos entonces que $x \neq 0$, de manera que $\frac{x}{\Norm{x}} \in B_X$ y por lo tanto $T\left( \frac{x}{\Norm{x}} \right) \in T(B_X)$ y por lo tanto $\Norm{T\left( \frac{x}{\Norm{x}} \right)}  \leq K$ y así
-$$\Norm{T(x)} \leq K \Norm{x}.$$
+Ahora supongamos que $T$ preserva conjuntos acotados. Como $B_X$ es un conjunto acotado, entonces $T(B)$ es un conjunto acotado por algún $K > 0$. Sea $x \in X$. Si $x = 0$, entonces $\Norm{Tx} = \Norm{0} = 0 \leq K \Norm{x}$. Supongamos entonces que $x \neq 0$, de manera que $\frac{x}{\Norm{x}} \in B_X$ y por lo tanto $T\left( \frac{x}{\Norm{x}} \right) \in T(B_X)$ y por lo tanto $\Norm{T\left( \frac{x}{\Norm{x}} \right)}  \leq K$ y así $\Norm{T(x)} \leq K \Norm{x}.$
 \end{proof}
 
 Sean $X$ y $Y$ espacios normados. Al espacio de los operadores lineales continuos $T: X \to Y$, y por tanto acotados, lo denotamos por $\mathcal{L}(X, Y)$. En este espacio definimos la función
@@ -1093,9 +1044,9 @@ son \textit{isomorfos} como espacios vectoriales si existe $T :  X \to Y$ biyect
 \end{itemize}
 \end{Def}
 
-\begin{Tma}
+\begin{Cor}
 Si $X$ y $Y$ son espacios normados de dimensión finita y de la misma dimensión, entonces son isomorfos como espacios normados.
-\end{Tma}
+\end{Cor}
 
 \begin{proof}
 Supongamos que $\dim \, X = n \in \N$ y sea $\{ x_1, \ldots, x_n \}$ una base suya. Demostraremos que $X$ es isomorfo como espacio normado a $\ell_2^n$ por medio de la función 
@@ -1155,6 +1106,91 @@ Así que $\varphi$ es un operador lineal acotado y por tanto continuo.
 \end{proof}
 
 
+
+\subsection{Ejemplos de espacios normados.}
+En $\K^n $ la norma euclidiana resulta ser el caso $p=2$ de una familia de normas en $\K^n$ llamadas $p$-normas. En esta subsección introduciremos estas normas y desarrollaremos la teoría detrás para verificar que en efecto son normas en $\K^n$. Además, agregaremos otros ejemplos de espacios normados de dimensión infinita.      
+
+\begin{Ejem} \label{Ejem:EllePNormado}
+Dados $n \in \N$ y $1 \leq p < \infty$, definamos la función $\Norm{\cdot}_p:\K^n \to [0, \infty)$ por $$\Norm{(x_1, \ldots, x_n)}_p := \left(\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}}.$$  
+
+Para el caso $p = \infty$, definimos la función $\Norm{\cdot}_{\infty}: \K^n \to [0, \infty)$ dada por $$\Norm{(x_1, \ldots, x_n)}_\infty :=\max_{1 \leq i \leq n} \,  \abs{x_i}.$$
+Para verificar a continuación que $\Norm{\cdot}_p$ es una norma recurriremos a los siguientes lemas y ejemplos.
+\end{Ejem}
+
+\begin{Lema} \label{Lema:SegundaDerivadaPositivaConvexa}
+Sean $(a, b) \subseteq \R$ un intervalo y $f : (a, b) \to \R$ una función dos veces diferenciable. Si $f^{\prime\prime} \geq 0$ en $(a, b)$, entonces $f$ es convexa.
+\end{Lema}
+
+\begin{proof}
+(Pendiente).
+\end{proof}
+
+\begin{Lema} \label{Lema:ComposcionConvexa}
+Sean $X$ un espacio normado, $f: \K \to \R$ convexa y creciente; y $g: \R \to \R$ convexa, entonces $g \circ f$ es convexa. 
+\end{Lema}
+
+\begin{proof}
+(Pendiente.)
+\end{proof}
+
+\begin{Ejem} \label{Ejem:XPConvexa}
+Fijemos $1 \leq p < \infty$ y consideremos $f: [0, \infty) \to[0, \infty)$ dada por $f(x) = x^p$ para toda $x \in \R$. Claramente $f$ es diferenciable y $f^\prime(x) = p x^{p-1}$. Además $f^\prime$ vuelve  a ser diferenciable y $f^{\prime\prime}(x) = p(p-1)x^{p-2} \geq 0$ para todo $x \geq 0$ y por el lema~\ref{Lema:SegundaDerivadaPositivaConvexa} resulta que $f$ es convexa.
+Al tomar $g = \Norm{\cdot}$, el lema~\ref{Lema:ComposcionConvexa} indica que  $g \circ f : \K \to \R$, $z \mapsto \abs{z}^p$ es convexa.
+\end{Ejem}
+
+\begin{proof}
+($\Norm{\cdot}_p$ es una norma en $\K^n$.) 
+\begin{itemize}
+\item[\textbf{i)}] Claramente, $\Norm{x}_p \geq 0$ para cualquier $x \in \K^n$. Además, tenemos que si $x = 0 \in \K^n$, entonces $\Norm{x}_p= 0$. Es sencillo observar que si $\Norm{x}_p = 0$ para algún $x \in \K^n$, entonces $x = 0$.
+\item[\textbf{ii)}] Sea $x = (x_1, \ldots, x_n) \in \K^n$ y $\lambda \in \K$, entonces
+\Ecu{
+\Norm{\lambda x}_p &= \Norm{(\lambda x_1, \ldots, \lambda x_n)}_p =  \left(\sum_{i=1}^n \abs{\lambda x_i}^p\right)^{\frac{1}{p}} \\
+&= \left(\abs{\lambda}^p\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}} = \abs{\lambda} \left(\sum_{i=1}^n \abs{ x_i}^p\right)^{\frac{1}{p}} = \abs{\lambda} \Norm{x}_p.
+}
+\item[\textbf{iii)}] Sean $x, y \in \K^n$. Si $x = 0$ ó $y = 0$, claramente $\Norm{x+y}_p \leq \Norm{x}_p + \Norm{y}_p$. Así que tomamos $x, y \neq 0$. Definamos 
+$$\widehat{x} := \frac{x}{\Norm{x}_p + \Norm{y}_p} \quad \mbox{  y } \quad \widehat{y} := \frac{y}{\Norm{x}_p + \Norm{y}_p},$$ de tal manera que 
+$\Norm{\widehat{x}} + \Norm{\widehat{y}} = 1$. Definamos $\lambda := \Norm{\widehat{y}}_p \in (0, 1)$ y tomemos $$x_0 :=\frac{x}{1-\lambda} \quad
+ \mbox{ y } \quad y_0 := \frac{y}{\lambda}.$$
+
+Queda pendiente el resto de la demostración. 
+\end{itemize}
+\end{proof}
+
+\begin{proof}
+($\Norm{\cdot}_\infty$ es una norma en $\K^n$.)
+Notemos que
+\begin{itemize}
+\item[\textbf{i)}] Sea $x = (x_1, \ldots, x_n) \in \K^n$. Si $x = 0$, entonces $\Norm{x}_\infty = \max_{i \in \N} \,  0 = 0.$ Si por otro lado $\Norm{x}_\infty = 0$, entonces $\abs{x_i} = 0$ para todo $1 \leq i \leq n$, y así $x_i = 0$, por lo que $x = 0$.
+\item[\textbf{ii)}] Sea $x = (x_1, \ldots, x_n) \in \K^n$ y $\lambda \in\K$. Entonces
+\Ecu{
+\Norm{\lambda x}_\infty = \Norm{(\lambda x_1, \ldots, \lambda x_n)}_\infty = \max_{1 \leq i \leq n} \,  \abs{ \lambda x_i} = \max_{1 \leq i \leq n} \,  \abs{\lambda}\abs{x_i} = \abs{\lambda} \max_{1 \leq i \leq n} \,  \abs{x_i} = \abs{\lambda} \Norm{x}_\infty.
+}
+\item[\textbf{iii)}] Sean $x = (x_1, \ldots, x_n), y = (y_1, \ldots, y_n) \in \K^n$, entonces 
+\Ecu{
+\Norm{x+y}_\infty &= \Norm{(x_1 + y_1, \ldots, x_n + y_n)}_\infty = \max_{1 \leq i \leq n} \,  \abs{x_i + y_i} \\
+& \leq \max_{1 \leq i \leq n} \,  (\abs{x_i} + \abs{x_i}) \leq \max_{1 \leq i \leq n} \,  \abs{x_i} + \max_{1 \leq i \leq n} \,  \abs{y_i} \\
+& = \Norm{x}_\infty + \Norm{y}_\infty.
+}
+\end{itemize}
+\end{proof}
+
+Cuando trabajemos en $\K^n$ con la norma $\Norm{\cdot}_p$ para $1\leq p \leq \infty$, denotaremos a este por $\ell_p^n$.  
+
+\begin{Ejem}
+Denotemos por $\K^\N$ al espacio de sucesiones en $\K$. Definamos para $1 \leq p \leq \infty$ la función $\Norm{\cdot}_p : \K^\N \to [0, \infty]$ dada por $$\Norm{(x_1, x_2, \ldots )}_p := \lim_{n\to \infty} \Norm{(x_1, \ldots, x_n)}_p. $$
+
+Resulta que para $x = (x_1, x_2, \ldots) \in \K^\N$ y $1 \leq p  < \infty$ se tiene que
+$$\Norm{x}_p = \lim_{n\to \infty} \left(\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}} \mbox{  y  } \Norm{x}_\infty = \lim_{n\to\infty} \left( \max_{1 \leq i \leq n} \,  \abs{x_i} \right).$$
+
+Así pues, para $1\leq p\leq \infty$ definimos $\ell_p \subseteq \K^n$ como el espacio de sucesiones $x \in \K^\N$ para las cuales $\Norm{x}_p < \infty$. De esta manera, tenemos que
+$$\Norm{x}_p = \left(  \sum_{i=1}^\infty \abs{x_i}^p \right)^{\frac{1}{p}} \mbox{  y  } \Norm{x}_\infty = \sup_{i \in \N} \,  \abs{x_i}.$$
+\end{Ejem}
+
+\begin{proof}
+($\Norm{\cdot}_p$ es una norma en $\ell^p$.) \\
+(Pendiente).
+\end{proof}
+
 \subsection{Compacidad de la bola cerrada en un espacio normado.}
 La compacidad es una propiedad muy importante que puede tener un subconjunto de un espacio topológico. El objetivo de esta sección es demostrar que la compacidad de la bola unitaria en un espacio normado depende simplemente de si este es de dimensión finita o no.
 
@@ -1180,9 +1216,7 @@ Tomemos $x \in X \setminus Y$. Como $Y$ es cerrado la distancia $d(x, Y)$ es pos
 $$0 < d(x, Y) = \inf \{ \Norm{x-z} : z \in Y \} < \frac{d(x, Y)}{\theta}.$$
 Así que existe $z \in Y$ tal que $0 < \Norm{x - z} < \dfrac{d(x, Y)}{\theta}$. Definamos $x_\theta = \dfrac{x-z}{\Norm{x-z}}$. Claramente $\Norm{x_\theta} = 1$. Además, para $y \in Y$ se tiene que $z+ \Norm{x-z} y \in Y$. Por lo que
 \Ecu{
-\Norm{x_\theta - y} & = \Norm{\dfrac{x-z}{\Norm{x-z}} - y} \\
-&= \frac{1}{\Norm{x-z}} \Norm{x - (z+ \Norm{x-z} y)} \\
-&> \frac{\theta}{d(x, Y)} \cdot d(x, Y) = \theta.
+\Norm{x_\theta - y} = \Norm{\dfrac{x-z}{\Norm{x-z}} - y} = \frac{1}{\Norm{x-z}} \cdot \Norm{x - (z+ \Norm{x-z} y)}  > \frac{\theta}{d(x, Y)} \cdot d(x, Y) = \theta.
 }
 \end{proof}
 
@@ -1198,11 +1232,11 @@ Sea $X$ un espacio normado. Las siguientes afirmaciones son equivalentes:
 \end{Tma}
 
 \begin{proof}
-Demostraremos que \textbf{i)} implica \textbf{ii)}, que \textbf{ii)} implica \textbf{iii)} y que \textbf{iii)} implica \textbf{i)}. \\
+Demostraremos que \textbf{i)} implica \textbf{ii)}, que \textbf{ii)} implica \textbf{iii)} y que \textbf{iii)} implica \textbf{i)}. 
 
-Supongamos que $X$ es de dimensión finita $n$. Entonces existe un isomorfismo de espacios normados $T: X \to \ell^n_2$. Sea $A$ un conjunto cerrado y acotado en $X$. Por ser $T$ isomorfismo se sigue que $T(A)$ también es cerrado y acotado. El teorema de Heine-Borel indica que $T(A)$ es compacto en  $\ell^n_2$. Por lo tanto $A = T^{-1}(T(A))$ también lo es. \\
+Supongamos que $X$ es de dimensión finita $n$. Entonces existe un isomorfismo de espacios normados $T: X \to \ell^n_2$. Sea $A$ un conjunto cerrado y acotado en $X$. Por ser $T$ isomorfismo se sigue que $T(A)$ también es cerrado y acotado. El teorema de Heine-Borel indica que $T(A)$ es compacto en  $\ell^n_2$. Por lo tanto $A = T^{-1}(T(A))$ también lo es. 
 
-Supongamos ahora que todo subespacio cerrado y acotado de $X$ es compacto. Entonces $B_X$ es compacta, pues es cerrada y acotada. \\
+Supongamos ahora que todo subespacio cerrado y acotado de $X$ es compacto. Entonces $B_X$ es compacta, pues es cerrada y acotada. 
 
 En lugar de demostrar que si $B_X$ es compacta entonces $X$ es de dimensión finita, demostraremos su contrapuesta. Así que suponemos que $X$ es de dimensión infinita. Construiremos una sucesión $(x_n)_{n \in \N}$ en $B_X$ sin subsucesiones convergentes. Tomemos $x_1 \in B_x$  con $\Norm{x_1} = 1$. Supongamos que tenemos definidos a $x_1, \ldots, x_n$ para algún $n \in \N$ de tal forma que si $1 < k \leq n$ entonces para cualesquiera $\alpha_1, \ldots, \alpha_{k-1} \in \K$ 
 \begin{equation} \label{Eq:1}
@@ -1218,7 +1252,7 @@ Así pues, queda construida la sucesión $(x_n)_{n\in\N}$. Si tomamos $n, m \in \N
 
 \section{Topologías débil y débil*.}
 
-Hemos visto que la bola unitaria de un espacio normado de dimensión infinita no es compacta. Podemos interpretar esto en el sentido de  que la topología usual de tal espacio normado $X$ tiene demasiados abiertos. Esto motiva el propósito de construir en $X$ topologías más débiles, esto es, con menos abiertos. Una de estas es la topología débil, la cual se construye a partir de los funcionales lineales continuos de $X$. De manera similar podemos definir la topología débil* en $X^*$. 
+Hemos visto que la bola unitaria de un espacio normado de dimensión infinita no es compacta. Podemos interpretar esto en el sentido de  que la topología usual de tal espacio normado $X$ tiene demasiados abiertos. Esto motiva el propósito de construir en $X$ topologías más débiles que su topología original, esto es, con menos abiertos. Una de estas es la topología débil, la cual se construye a partir de los funcionales lineales continuos de $X$. De manera similar definiremos la topología débil* en $X^*$. 
 
 %/////////////////////////////////////////////////////////////////////////
 %/////////////////////////Topologia Débil/////////////////////////////////
@@ -1238,7 +1272,7 @@ Como consecuencia del teorema~\ref{Tma:SeminormasInducenEVT} tenemos el siguient
 Si $X$ es un espacio normado, entonces $X_\mathrm{w}$ es un espacio vectorial topológico.
 \end{Cor}
 
-Sea $X$ un espacio normado. A la topología inducida por la norma se le suele denominar topología original y la denotaremos en ocasiones por $\tau_{\Norm{\cdot}}$. Notemos que cada seminorma en $\F_X$ es continua si consideramos la topología original en el dominio de cada funcional. Esto indica que $\tau_\mathrm{w} \subseteq \tau$. Esta contención es propia cuando $X$ es de dimensión infinita, como se muestra en la siguiente proposición. La idea de la demostración radica en que los abiertos de la topología débil en espacios de dimensión infinita siempre son ``grandes'', pues cada uno de ellos contiene una traslación de un subespacio no trivial.
+Sea $X$ un espacio normado. La topología original de $X$ se denotará por $\tau$. Notemos que cada seminorma en $\F_X$ es continua si consideramos la topología original en el dominio de cada funcional. Esto indica que $\tau_\mathrm{w} \subseteq \tau$. Esta contención es propia cuando $X$ es de dimensión infinita, como se muestra en la siguiente proposición. La idea de la demostración radica en que los abiertos de la topología débil en espacios de dimensión infinita siempre son ``grandes'', pues cada uno de ellos contiene una traslación de un subespacio no trivial.
 
 \begin{Prop} \label{Prop:ContencionPropiaTopologiaDebil}
 Sea $X$ un espacio normado de dimensión infinita. Entonces $\tau_\mathrm{w} \subsetneq \tau$.
@@ -1260,7 +1294,7 @@ $$\abs{\varphi_i(\lambda y + x) - \varphi(x)} = \abs{\varphi_i(y)} = 0 < \vareps
 En un espacio normado $X$ denotamos que la red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ converge  a $x \in X$ bajo la topología débil, por $\wlim_{\alpha \in \Lambda} x_\alpha$ o también por $x_\alpha \stackrel{\mathrm{w}}{\longrightarrow} x$. En el caso particular de una sucesión $(x_n)_{n \in \N}$ denotaremos el límite de la sucesión por $\wlim_{n \to \infty} x_n$. 
 
 \begin{Cor} \label{Cor:CaracterizacionConvergenciaDebil}
-Sean $X$ un espacio normado y $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ una red y $x \in X$. Entonces $x_\alpha \stackrel{\mathrm{w}}{\longrightarrow} x$ si, y sólo si, $\varphi(x_\alpha) \to \varphi(x)$ para todo $\varphi \in X^*$. \\
+Sean $X$ un espacio normado y $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ una red y $x \in X$. Entonces $x_\alpha \stackrel{\mathrm{w}}{\longrightarrow} x$ si, y sólo si, $\varphi(x_\alpha) \to \varphi(x)$ para todo $\varphi \in X^*$. 
 
 En particular, si $(x_n)_{n \in \N} \subseteq X$ es una sucesión en $X$ y $x \in X$. Tenemos entonces que $\displaystyle\wlim_{n \to \infty} x_n = x$ si, y sólo si $\displaystyle\lim_{n \to \infty} \varphi(x_n) = \varphi(x)$  para cualquier $\varphi \in X^*$.
 \end{Cor}
@@ -1289,9 +1323,9 @@ Sea $X$ un espacio normado. Para cada $x \in X$ en $X^*$ definimos la función \t
 }
 que de acuerdo a la siguiente proposición es un funcional lineal continuo en $X^*$.
 
-\begin{Prop} \label{Prop:DeltaContinua}
+\begin{Lema} \label{Lema:DeltaContinua}
 Sean $X$ un espacio normado y $x \in X$. Entonces $\delta_x$ es un funcional lineal continuo con $\Norm{\delta_x} \leq \Norm{x}$. 
-\end{Prop}
+\end{Lema}
 
 \begin{proof}
 Sean $\varphi, \psi \in X^*$ y $\lambda \in \K$, entonces
@@ -1320,7 +1354,7 @@ x &\mapsto \delta_x
 Estableceremos en seguida que la identificación canónica es una isometría entre $X$ y $X^{**}$. Esto nos indica que podemos pensar a $X$ como un subespacio de $X^{**}$.
 
 \begin{Prop}
-Sea $X$ un espacio normado. Entonces $J$ es una isometría.
+Sea $X$ un espacio normado. Entonces la identificación canónica $J$ es una isometría.
 \end{Prop}
 
 \begin{proof}
@@ -1330,7 +1364,7 @@ De donde $J(x+ \lambda y) = Jx + \lambda Jy$.
 
 Si $x = 0$ entonces $\Norm{Jx} = 0 = \Norm{x}$. Si en cambio $x \neq 0$, el teorema de Hahn-Banach nos permite tomar $\varphi \in S_{X^*}$  tal que $\varphi(\frac{x}{\Norm{x}}) = 1$. De esto que 
 $$\abs{Jx(\varphi)} = \abs{\varphi(x)} = \Norm{x}.$$
-Así pues $\Norm{Jx} \geq \Norm{x}$. La proposición~\ref{Prop:DeltaContinua} indica que $\Norm{Jx} = \Norm{\delta_x} \leq \Norm{x}$ y así se sigue que $\Norm{Jx} = \Norm{x}$ y $J$ es isometría.
+Así pues $\Norm{Jx} \geq \Norm{x}$. El lema~\ref{Lema:DeltaContinua} indica que $\Norm{Jx} = \Norm{\delta_x} \leq \Norm{x}$ y así se sigue que $\Norm{Jx} = \Norm{x}$ y $J$ es isometría.
 \end{proof}
 
 Para cada $x \in X$ resulta que $\abs{\delta_x}$ es una seminorma. Dado $\varphi \in X^*$ distinto de cero, existe $x \neq 0$ con $\varphi(x) \neq 0$. Así que $\delta_x(\varphi) \neq 0$. Es decir, $$\F_{X^*} := \{ \abs{\delta_x} : x\in X\}$$ es una familia de seminormas en $X^*$ que separa puntos de $X$. 
@@ -1403,9 +1437,9 @@ F : B_{X^*} &\to \mathcal{D} \\
 
 Veamos que está bien definida. Tomemos $\varphi \in B_{X^*}$ de manera que $\Norm{\varphi} \leq 1$. Dado $x \in X$, cada $\abs{\varphi(x)} \leq \Norm{x} \cdot \Norm{x} \leq \Norm{x}$. Así que $\abs{\varphi(x)} \in D_x$ y así $F(\varphi) \in \mathcal{D}$. 
 
-Demostremos que $F$ es inyectiva. Dados $\varphi, \psi \in B_{X^*}$ con $F(\varphi) = F(\psi)$ se tiene que $(\varphi(x))_{x \in X} = (\psi(x))_{x \in X}$. De donde $\varphi(x) = \psi(x)$ para todo $x \in X$. Así que $\varphi = \psi$ y $F$ es inyectiva. \\
+Demostremos que $F$ es inyectiva. Dados $\varphi, \psi \in B_{X^*}$ con $F(\varphi) = F(\psi)$ se tiene que $(\varphi(x))_{x \in X} = (\psi(x))_{x \in X}$. De donde $\varphi(x) = \psi(x)$ para todo $x \in X$. Así que $\varphi = \psi$ y $F$ es inyectiva. 
 
-Consideremos una red $(\varphi_\alpha)_{\alpha \in \Lambda}$ en $B_{X^*}$ y $\varphi \in B_{X^*}$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebilEstrella} indica que $\varphi_\alpha \stackrel{\mathrm{w_*}}{\longrightarrow} \varphi$ si, y sólo si $\varphi_\alpha(x) \to \varphi(x)$ en $D_x$ para todo $x \in X$. La proposición~\ref{Prop:ConvergenciaPorComponentesEnProductoArbitrario} indica que esto último se da si, y sólo si $(\varphi_\alpha(x))_{x \in X} \to (\varphi(x))_{x \in X}$ en $\mathcal{D}$. O bien, si, y  sólo si $F(\varphi_\alpha) \to F(\varphi)$. Esto indica que $F$ es continua y al ser inyectiva se concluye que también preserva abiertos. \\
+Consideremos una red $(\varphi_\alpha)_{\alpha \in \Lambda}$ en $B_{X^*}$ y $\varphi \in B_{X^*}$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebilEstrella} indica que $\varphi_\alpha \stackrel{\mathrm{w_*}}{\longrightarrow} \varphi$ si, y sólo si $\varphi_\alpha(x) \to \varphi(x)$ en $D_x$ para todo $x \in X$. La proposición~\ref{Prop:ConvergenciaPorComponentesEnProductoArbitrario} indica que esto último se da si, y sólo si $(\varphi_\alpha(x))_{x \in X} \to (\varphi(x))_{x \in X}$ en $\mathcal{D}$. O bien, si, y  sólo si $F(\varphi_\alpha) \to F(\varphi)$. Esto indica que $F$ es continua y al ser inyectiva se concluye que también preserva abiertos. 
 
 Por último, veamos que el rango de $F$ es cerrado. Tomemos $(G_\alpha)_{\alpha \in \Lambda}  \in F(B_{X^*})$ una red convergente. Sea $(d_x)_{x \in X} \in \mathcal{D}$ su límite. Existe entonces una red $(f_\alpha)_\alpha$ en $B_{X^*}$ tal que $F(f_\alpha) = G_\alpha$. Así,
 $$\lim_{\alpha\in \Lambda} F(f_\alpha) = \lim_{\alpha\in\Lambda} (f_\alpha(x))_{x\in X} = (d_x)_{x \in X}.$$ 
