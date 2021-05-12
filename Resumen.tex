@@ -15,6 +15,7 @@
 \usepackage{multirow}
 \usepackage[all]{xy}
 \usepackage{color}
+\usepackage{thmtools}
 \usepackage[bookmarksopen=true]{hyperref}
 \usepackage{bookmark}
 \newcommand\Ccancel[2][black]{\renewcommand\CancelColor{\color{#1}}\cancel{#2}}
@@ -66,6 +67,16 @@
 \newtheorem{Obs}{Observación}[section]
 \newtheorem{Def}{Definición}[section]
 \newtheorem{Ejem}{Ejemplo}[section]
+
+\declaretheoremstyle[%
+  spaceabove=-2pt,%
+  spacebelow=6pt,%
+  headfont=\normalfont\itshape,%
+  postheadspace=1em,%
+  qed=\qedsymbol%
+]{mystyle} 
+\declaretheorem[name={Demostración},style=mystyle,unnumbered,
+]{Dem}
 
 %\newcommand{\wlim}{\mathop{\mathrm{w-lim}}
 %\DeclareMathOperator\wlim{w-lím}
@@ -120,11 +131,11 @@ Si además de ser una vecindad de $x \in X$, $V$ es abierto, diremos que $V$ es u
 Sea $X$ un espacio topológico y $V \subseteq X$. Entonces $V$ es abierto si, y sólo si $V$ es un vecindad de $x$ para todo $x \in V$. En otras palabras, $V$ es abierto si, y sólo si $V = V^0$. 
 \end{Lema}
 
-\begin{proof}
+\begin{Dem}
 Supongamos que $V$ es abierto y sea $x \in V$. Entonces $V$ es una vecindad de $x$. 
 
 Supongamos ahora que $V$ es una vecindad de $x$ para todo $x \in V$. Así, para cada $x \in V$ existe un abierto $U_x$ tal que $x \in U_x \subseteq V$. De donde $$V = \bigcup_{x \in V} U_x$$ es abierto.
-\end{proof}
+\end{Dem}
 
 \begin{Def}
 Sean $X$ y $Y$ dos espacios topológicos y $f: X \to Y$.
@@ -138,11 +149,11 @@ Sean $X$ y $Y$ dos espacios topológicos y $f: X \to Y$.
 Sean $X$ y $Y$ dos espacios topológicos y $f: X \to Y$. Entonces $f$ es continua si, y sólo si $f^{-1}(V)$ es abierto en $X$, para todo abierto $V$ en $Y$.
 \end{Lema}
 
-\begin{proof}
+\begin{Dem}
 Supongamos que $f$ es continua. Sea $V$ un abierto en $Y$. Para cada $x \in f^{-1}(V)$, $V$ es vecindad abierta de $f(x)$, por lo que existe $U_x$ vecindad abierta de $x$ tal que $f(U_x) \subseteq V$ y por lo tanto $U_x \subseteq f^{-1}(V)$. De esto se puede concluir que  $$f^{-1}(V) = \bigcup_{x \in f^{-1}(V)} U_x$$ es abierto. 
 
 Ahora supongamos que $f^{-1}(V)$ es abierto en $X$ para todo abierto $V$ en $Y$ y tomemos $x \in X$. Sea $V$ una vecindad abierta de $f(x)$. Entonces $f^{-1}(V)$ es abierto en $X$. Como $f(x) \in V$, entonces $x \in f^{-1}(V)$ y por lo tanto $f^{-1}(V)$ es una vecindad abierta de $x$. Además $f(f^{-1}(V)) \subseteq V.$
-\end{proof}
+\end{Dem}
 
 \begin{Ejem}
 Sean $X, Y$ espacios topológicos y $y_0 \in Y$.
@@ -174,7 +185,7 @@ Si $X$ es un espacio topológico, $\mathcal{B}$ es una base y $\tau (\mathcal{B})
 Sea $\mathcal{B}$ una familia de abiertos de un espacio topológico $X$. Entonces $\mathcal{B}$ es una base de $X$ si, y sólo si para todo abierto $U$ en $X$ y $x \in U$ existe $B \in \mathcal{B}$ tal que $x \in B \subseteq U$.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Supongamos primero que $\mathcal{B}$ es una base de $X$. Sea $U$ abierto en $X$ y $x \in U$. Como $U$ es abierto, existen un conjunto $\Lambda$ y $B_\alpha \in \mathcal{B}$ para cada $\alpha \in \Lambda$ tales que 
 $$U = \bigcup_{\alpha \in \Lambda} B_\alpha.$$
 
@@ -186,7 +197,7 @@ Ahora supongamos que para cada abierto $U$ y $x \in U$ existe $B \in \mathcal{B}
 \item[\textbf{ii)}] Sean $B_1$, $B_2 \in \mathcal{B}$ y $x \in B_1 \cap B_2$. Como $B_1$ y $B_2$ son abiertos, entonces $B_1 \cap B_2$ es abierto. Por  hipótesis existe $B_3 \in \mathcal{B}$ tal que $$x \in B_3 \subseteq B_1 \cap B_2.$$ 
 \end{itemize}
 Por definición \textbf{i)} y \textbf{ii)} indican que $\mathcal{B}$ es una base. Veamos que es una base de $X$. Sea $\tau_X$ la topología de $X$. Como $\mathcal{B} \subseteq \tau_X$, entonces las uniones arbitrarias de elementos en $\mathcal{B}$ son abiertos. Así pues $\tau(\mathcal{B}) \subseteq \tau_X$. Ahora, al tomar $U \in \tau$ para cada $x \in U$ por hipótesis existe $B_x \in \mathcal{B}$ tal que $x \in B_x \subseteq U$. De donde $$U = \bigcup_{x \in U} B_x$$ y así $U \in \tau(\mathcal{B})$. Es decir, $\tau_X = \tau(\mathcal{B})$.
-\end{proof}
+\end{Dem}
 
 Cuando sea necesario probar que una función es continua, si se cuenta con una base en el codominio, entonces basta probar que la preimagen de cualquier conjunto básico es abierto, como indica la siguiente proposición.
 
@@ -194,10 +205,10 @@ Cuando sea necesario probar que una función es continua, si se cuenta con una ba
 Sean $X, Y$ espacios topológicos y $f: X \to Y$. Si $\B$ es una base de $Y$ y $f^{-1}(B)$ es abierto en $X$ para todo $B \in \B$, entonces $f$ es continua. 
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Sea $V$ abierto en $Y$. Entonces existen un conjunto $\Lambda$ y algunos $B_\alpha \in \B$, $\alpha \in \Lambda$ tales que $V = \bigcup_{\alpha \in \Lambda} B_\alpha$. Por hipótesis  $f^{-1}(B_\alpha)$ es abierto en $X$ para toda $\alpha \in \Lambda$, por lo que también lo es
 $$\bigcup_{\alpha \in \Lambda} f^{-1}(B_\alpha) = f^{-1}\left( \bigcup_{\alpha \in \Lambda} B_\alpha \right) = f^{-1}(V) .$$ 
-\end{proof}
+\end{Dem}
 
 \begin{Def}
 Sea $X$ un espacio topológico. Dado $A$ un subconjunto de $X$, su \textit{cerradura} es el conjunto $\ov{A} \subseteq X$ de puntos $x \in X$ que cumplen que para toda vecindad abierta $U$ de $x$ se satisface que $U \cap A \neq \emptyset$.
@@ -212,7 +223,7 @@ Sea $X$ un espacio topológico. Entonces
 \end{itemize}  
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 \hfill
 \begin{itemize}
 \item[\textbf{i)}] Demostremos que $\ov{A}^{\,\mathsf{c}}$ es abierto. Sea $x \in \ov{A}^{\,\mathsf{c}}$, de manera que $x \notin \ov{A}$. Así que existe $U$ vecindad abierta de $x$ tal que $U \cap A = \emptyset$. Dado $y \in U$ se tiene que $U$ es una vecindad de $y$ que no intersecta a $A$, por lo que $y \notin \ov{A}$ y así $x \in U \subseteq \ov{A}^{\,\mathsf{c}}$. Es decir, $\ov{A}^{\,\mathsf{c}}$ es una vecindad de todos sus puntos. El lema~\ref{Lema:CaracterizacionAbierto} implica que $\ov{A}^{\,\mathsf{c}}$ es abierto.
@@ -221,7 +232,7 @@ Sea $X$ un espacio topológico. Entonces
 
 Si por otro lado suponemos que  $A = \ov{A}$, entonces \textbf{i)} indica que $A$ es cerrado.
 \end{itemize}
-\end{proof}
+\end{Dem}
 
 \begin{Def}
 Sean $X$ y $Y$ espacios topológicos. Un \textit{homeomorfismo} entre $X$ y $Y$ es una función $f:X \to Y$ que es biyectiva, continua y de inversa continua.
@@ -231,11 +242,11 @@ Sean $X$ y $Y$ espacios topológicos. Un \textit{homeomorfismo} entre $X$ y $Y$ e
 Sean $X$ y $Y$ espacios topológicos y $f: X \to Y$ un homeomorfismo. Entonces $f$ preserva abiertos y cerrados.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 El que $f$ preserve abiertos se sigue de inmediato del hecho de que $f^{-1}$ es continua y de el lema~\ref{Lema:CaracterizacionContinuidadPorPreimagenesDeAbiertos}. 
 
 Sea $A$ un conjunto cerrado. Entonces $X \setminus A$ es abierto. Como $f$ preserva abiertos $f(X \setminus A)$ es abierto. Dado que $f$ es biyectiva se tiene que $Y \setminus f(A) = f(X \setminus A)$ es abierto y así $f(A)$ es cerrado. 
-\end{proof}
+\end{Dem}
 
 \begin{Def}
 Un subconjunto $K$ de un espacio topológico $X$ es \textit{compacto} si para cualquier colección $\{ U_\alpha \}_{\alpha \in \Lambda}$ de abiertos tales que $$K \subseteq \bigcup_{\alpha \in \Lambda} U_\alpha$$ existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ tales que $$K \subseteq \bigcup_{i=1}^n U_{\alpha_i}.$$
@@ -246,11 +257,11 @@ Un subconjunto $K$ de un espacio topológico $X$ es \textit{compacto} si para cua
 Sean $X$ y $Y$ espacios topológicos y $f:X \to Y$ una función continua. Entonces $f$ preserva compactos.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Sea $K$ un conjunto compacto y $(U_{\alpha})_{\alpha \in \Lambda}$ una cubierta abierta de $f(K)$, entonces $(f^{-1}(U_\alpha))_{\alpha \in \Lambda}$ es una cubierta abierta de $K$ por ser $f$ continua. Por lo que existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ tales que $$K \subseteq\bigcup_{i=1}^n f^{-1} (U_\alpha).$$
 
 Luego, $(U_{\alpha_i})_{i=1}^n$ es una cubierta finita de $f(K)$ y así este es un conjunto compacto.
-\end{proof}
+\end{Dem}
 
 Sean $X$ y $Y$ dos espacios topológicos. En $X \times Y$ trabajamos con la \textit{topología producto}, que es la generada por la base $\{ U\times V : U \mbox{ abierto  en } X \mbox{ y } V \mbox{ abierto en } Y \}$. Consideremos las \textit{proyecciones canónicas} en $X$ y $Y$
 \Ecu{
@@ -266,12 +277,12 @@ La siguiente proposición indica que la continuidad de una función con valores en
 Sean $E, X$ y $Y$ espacios topológicos y $f: E \to X \times Y$. Entonces $f$ es continua si y sólo si $\pi_X \circ f$ y $\pi_Y \circ f$ lo son.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Si $f$ es continua, entonces $\pi_X \circ f$ y $\pi_Y \circ f$ también lo son, ya que $\pi_X$ y $\pi_Y$ lo son y la composición de funciones continuas es continua. 
 
 Supongamos ahora que $\pi_X \circ f$ y $\pi_Y \circ f$ son continuas. Sea $U \times V$ un abierto básico de $X \times Y$, de manera que $U$ es abierto en $X$ y $V$ es abierto en $Y$. Entonces $(\pi_X \circ f)^{-1}(U)$ y $(\pi_Y \circ f)^{-1}(V)$ son abiertos en $E$ por lo que según la proposición~\ref{Prop:ContinuidadPorBasicos} también lo es  
 $$f^{-1}(U \times V) = (\pi_X \circ f)^{-1}(U) \bigcap (\pi_Y \circ f)^{-1}(V).$$
-\end{proof} 
+\end{Dem} 
 
 La construcción anterior de la topología producto es fácil de extender para el producto de una cantidad finita de espacios topológicos. Sin embargo, al momento de definir el producto de una cantidad arbitraria de espacios, hay un detalle que se debe considerar para definir su topología. \\
 
@@ -320,11 +331,11 @@ La siguiente proposición indica que en un espacio métrico $M$ las bolas abiertas
 Sea $M$ un espacio métrico. El conjunto $$\mathcal{B} := \{ V_r(x) : r > 0, x \in M \}$$ es una base de $M$.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Tomemos $V_r(x) \in \mathcal{B}$ para algunos $r > 0$ y $x \in M$. Verifiquemos que $V_r(x)$ es abierto en $M$. Tomemos $y \in V_r(x)$.  Consideremos $s = r - \Norm{x-y} > 0$. Así pues si $z \in V_s(y)$, entonces $\Norm{z-y} < s = r -\Norm{x-y} $. Por la desigualdad del triángulo $\Norm{x-z} \leq \Norm{z-y} + \Norm{x-y}  < r$. Así que $z \in V_r(x)$ y $V_s(y) \subseteq V_r(x)$ y concluimos que $V_r(x)$ es abierto. 
 
 Si $U$ es abierto de $M$ y $x \in U$, por definición existe $r > 0$ tal que $x \in V_r(x) \subseteq U$. La proposición~\ref{Prop:CaracterizacionDeBase} indica que $\mathcal{B}$ es una base de $M$. 
-\end{proof}
+\end{Dem}
 
 Las sucesiones tienen un papel relevante en los espacios métricos, pues a través de ellas podemos caracterizar algunos conceptos que previamente hemos presentado.
 
@@ -336,19 +347,19 @@ Sean $M_1$ y $M_2$ espacios métricos y $f :  M_1 \to M_2$. Son equivalentes:
 \end{itemize} 
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 (Pendiente).
-\end{proof}
+\end{Dem}
 
 \begin{Prop}\label{Cor:CerraduraLimiteSucesiones} 
 Sean $M$ un espacio métrico y $A \subseteq M$. Entonces $\overline{A}$ es el conjunto de los puntos en $M$ que son el límite de alguna sucesión en $A$.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Tomemos $x \in \overline{A}$. Dado $n \in \N$, tenemos que $V_{\frac{1}{n}}(x)$ es una vecindad abierta de $x$ y por lo tanto $V_{\frac{1}{n}}(x) \cap A \neq \emptyset$. Así que existe algún $x_n \in V_{\frac{1}{n}}(x) \cap A$. Claramente, $(x_n)_{n\in \N}$ es una sucesión en $A$ tal que $x_n \to x$. 
 
 Ahora tomemos $x \in M$ tal que existe $(x_n)_{n\in\N} \subseteq A$ con $x_n \to x$. Sea $U$ una vecindad abierta de $x$. Entonces existe $N \in \N$ tal que $x_n \in U$ si $n \geq N$. En particular, $x_N \in U \cap A \neq \emptyset$ y así $x \in \ov{A}$. 
-\end{proof}
+\end{Dem}
 
 \begin{Prop}
 Sean $M$ un espacio métrico y $K \subseteq M$. Son equivalentes:
@@ -358,9 +369,9 @@ Sean $M$ un espacio métrico y $K \subseteq M$. Son equivalentes:
 \end{itemize}
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 (Pendiente.)
-\end{proof}
+\end{Dem}
 
 \section{Redes.}
 
@@ -440,11 +451,11 @@ Sean $X$ un espacio topológico, $x \in X$ y $N_x$ el conjunto dirigido de vecind
 Sea $X$ un espacio topológico y $A \subseteq X$. Entonces $\overline{A}$ es el conjunto de los puntos en $X$ que son el límite de alguna red en $A$. 
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Tomemos $x \in \overline{A}$. Dado $U \in N_x$, tenemos que $U \cap A \neq \emptyset$. Así, existe $x_U \in U\cap A$. El ejemplo~\ref{Ejem:RedConvergeVecindadesDeUnPunto} muestra que la red $(x_U)_{U \in N_x}$ converge a $x$. 
 
 Por otro lado tomemos $x \in X$ tal que existe una red $(x_\alpha)_{\alpha \in \Lambda}$ en $A$ con $x_\alpha \to x$. Sea $U \subseteq X$ una vecindad abierta de $x$. Entonces existe $\alpha_0 \in \Lambda$ tal que $x_\alpha \in U$ si $\alpha \geq \alpha_0$. En particular $x_{\alpha_0} \in U$. Además $x_{\alpha_0} \in A$. Por tanto $U \cap A \neq \emptyset$ y así $x \in \overline{A}$.   
-\end{proof}
+\end{Dem}
 
 En un principio, el límite de una red convergente no tiene por qué ser único. La siguiente proposición exhibe cuándo lo es.
 
@@ -452,11 +463,11 @@ En un principio, el límite de una red convergente no tiene por qué ser único. La
 Sea $X$ un espacio topológico. Entonces $X$ es Hausdorff si, y sólo si el límite de toda red que converja es único.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Sea $(x_\alpha)_{\alpha \in \Lambda}$ una red en $X$. Supongamos que $x_\alpha \to x$ y $x_\alpha \to y$, para algunos $x, y \in X$. Sean $V_x$ y $V_y$ vecindades abiertas de $x$ y $y$ respectivamente. Como $x_\alpha \to x$ y $x_\alpha \to y$, se sigue que existen $\alpha_x$ y $\alpha_y$ en $\Gamma$ tales que $x_\alpha \in V_x$ si $\alpha \geq \alpha_x$ y $x_\alpha \in V_y$ si $\alpha \geq \alpha_y$. Tomemos $\beta \in \Lambda$ con $\beta \geq \alpha_x$ y $\beta \geq \alpha_y$. Entonces $x_\beta \in V_x \cap V_y$, por lo que $V_x \cap V_y \neq \emptyset$ y dado que $X$ es Hausdorff se sigue que $x = y$. 
 
 Ahora supongamos que $X$ no es Hausdorff. Entonces existen $x, y \in X$ distintos tales que para toda $U \in N_x$ y toda $V \in N_y$ se tiene que $U \cap V \neq \emptyset$. Así que podemos tomar $x_{(U, V)} \in U \cap V$ para todo $(U, V) \in N_x \times N_y$. De esta manera la red $(x_{(U, V)})_{(U,V) \in N_x \times N_y}$ converge tanto a $x$ como a $y$. 
-\end{proof}
+\end{Dem}
 
 A diferencia de la proposición~\ref{Prop:ContinuidadPorSucesiones}, la continuidad en un espacio topológico que no sea metrizable puede no coincidir con la continuidad por sucesiones. La siguiente proposición muestra que sí coincide con la continuidad por redes. 
 
@@ -469,11 +480,11 @@ Sean $X, Y$ espacios topológicos, $f : X \to Y$ y $x \in X$. Son equivalentes:
 \end{Prop}
 
 
-\begin{proof}
+\begin{Dem}
 Primero supongamos que $f$ es continua. Consideremos una red $(x_\alpha)_{\alpha \in \Lambda}$ tal que $x_\alpha \to x$. Sea $V$ una vecindad abierta de $f(x)$ en $Y$. Como $f$ es continua, el conjunto $f^{-1}(V)$ es una vecindad abierta de $x$ en $X$. Dado que $x_\alpha \to x$, existe $\alpha_0 \in \Lambda$ tal que $x_\alpha \in f^{-1}(V)$ para $\alpha \geq \alpha_0$. Así pues, si $\alpha \geq \alpha_0$ tenemos que $f(x_\alpha) \in f(f^{-1}(V)) \subseteq V$. Por tanto $f(x_\alpha) \to f(x)$. 
 
 Ahora supongamos que $f$ no es continua en $x$, de manera que existe una vecindad abierta $V$ de $f(x)$ tal que para toda vecindad abierta $U \in N_x$ se tiene que $f(U) \subsetneq V$. Así pues, para cada $U \in N_x$ podemos tomar $x_U \in U$ de tal manera que $f(x_U) \notin V$. Consideremos la red $(x_U)_{U\in N_x}$. Por el ejemplo~\ref{Ejem:RedConvergeVecindadesDeUnPunto} se cumple que $x_U \rightarrow x$. Sin embargo, para todo $U \in N_x$ se tiene que $f(x_U) \notin V$, por lo que $f(x_U) \centernot\rightarrow f(x)$.
-\end{proof}
+\end{Dem}
 
 Como consecuencia tenemos el siguiente corolario.
 
@@ -489,11 +500,11 @@ Sean $X, Y$ espacios topológicos, $f : X \to Y$. Son equivalentes:
 Sean $X$ y $Y$ espacios topológicos y consideremos en $X \times Y$ la topología producto. Sean $(x_\alpha, y_\alpha)_{\alpha\in \Lambda}$ una red en $X \times Y$ y $(x, y) \in X \times Y$, entonces $(x_\alpha, y_\alpha)\to (x, y)$ si, y sólo si $x_\alpha \to x$ y $y_\alpha\to y$.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Primero supongamos que $(x_\alpha, y_\alpha)\to (x, y)$. Sea $\pi_X : X \times Y \to X$ la proyección, es decir, $\pi_X(x, y) = x$ para toda $(x, y) \in X \times Y$. Como esta proyección es continua, por el corolario~\ref{Cor:ContinuidadporRedes} tenemos que $\pi_X(x_\alpha, y_\alpha) \to \pi_X(x, y)$. Entonces $x_\alpha \to x$. Análogamente, $y_\alpha \to y$. 
 
 Ahora supongamos que $x_\alpha \to x$ y $y_\alpha \to y$. Sea $W$ una vecindad abierta básica de $(x,y)$. Entonces existen $U$ abierto de $X$ y $V$ abierto de $Y$ con $W = U \times V$. Como $(x, y) \in U \times V$ resulta que $U$ es una vecindad abierta de $x$ y $V$ es una vecindad abierta de $y$. De esto que existen $\alpha_1, \alpha_2 \in \Lambda$ tal que $x_\alpha \in U$ para $\alpha\geq \alpha_1$ y $y_\alpha \in V$ para $\alpha \geq \alpha_2$. Tomemos $\widehat{\alpha} \in\Lambda$ tal que  $\widehat{\alpha} \geq \alpha_1$ y $\widehat{\alpha} \geq \alpha_2$. Así que para $\alpha \geq \widehat{\alpha}$ se tiene que $x_\alpha \in U$ y $y_\alpha \in V$, de donde $(x_\alpha, y_\alpha) \in U \times V = W$. Concluimos de esto que $(x_\alpha, y_\alpha) \to (x, y)$.
-\end{proof}
+\end{Dem}
 
 El resultado anterior se puede extender al producto arbitrario de espacios topológicos como lo indica la siguiente proposición.  
 
@@ -501,7 +512,7 @@ El resultado anterior se puede extender al producto arbitrario de espacios topol
 Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$. Sean $((x_{\alpha, i})_{i \in I})_{\alpha\in \Lambda}$ una red en $\prod_{i\in I} X_i$ y $(x_i)_{i\in I} \in \prod_{i\in I} X_i$, entonces $(x_{\alpha, i})_{i \in I} \to (x_i)_{i\in I}$ en $\prod_{i\in I} X_i$ si, y sólo si $x_{\alpha, j} \to x_j$ en $X_j$ para toda $j \in I$.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Supongamos primero que $(x_{\alpha, i})_{i \in I} \to (x_i)_{i\in I}$ en $\prod_{i\in I} X_i$. Tomemos $j \in I$. Como $\pi_j$ es continua se tiene que  $\pi_j((x_{\alpha, i})_{i \in I}) \to \pi_j((x_i)_{i\in I})$ en $X_j$. Esto es $x_{\alpha, j} \to x_j$. 
 
 Ahora supongamos que $x_{\alpha, j} \to x_j$ en $X_j$ para toda $j \in I$. Sea $U$ un abierto básico de $(x_i)_{i\in I}$. Entonces existen $k \in \K$, $i_1, \ldots, i_k \in I$ y $U_1, \ldots, U_k$ abiertos en $X_{i_1}, \ldots, X_{i_k}$ respectivamente tales que $$U = \bigcap_{j=1}^k \pi_{i_j}^{-1}(U_j).$$
@@ -511,7 +522,7 @@ Fijemos $j \in \{1, \ldots, k\}$ por un momento. Como $(x_i)_{i\in I} \in U$, en
 Tomemos $\widehat{\alpha} \in \Lambda$ de tal manera que $\widehat{\alpha} \geq \alpha_j$ para toda $j \in \{1, \ldots, k\}$. De esta forma $$(x_{\alpha, i})_{i\in I} \in \bigcap_{j=1}^k \pi_{i_j}^{-1}(U_j) = U.$$
 
 Concluimos de esto que $(x_{\alpha, i})_{i\in I} \to (x_i)_{i\in I}$.
-\end{proof}
+\end{Dem}
 
 En la demostración de la proposición anterior se puede observar por qué es indispensable definir la topología producto como se definió y no simplemente como la generada por el producto de abiertos. Pues de lo contrario tal proposición sería falsa.
 
@@ -559,7 +570,7 @@ Sean $X$ un espacio topológico y $(x_\alpha)_{\alpha \in \Lambda}$ una red en $X
 Si $X$ es un espacio topológico, entonces el conjunto de los puntos de acumulación de una red $(x_\alpha)_{\alpha\in\Lambda}$ en $X$ coincide con el conjunto de los límites de sus subredes. 
 \end{Lema}
 
-\begin{proof}
+\begin{Dem}
 Primero supongamos que $x\in X$ es el límite de alguna subred $(y_\beta)_{\beta\in \Gamma}$ de $(x_\alpha)_{\alpha \in \Lambda}$. Entonces existe $\varphi : \Gamma \to \Lambda$ monótona y final con $y_\beta = x_{\varphi(\beta)}$. Sea $V$ un abierto de $x$ y $\alpha \in \Lambda$. Como $y_\beta \to x$, existe $\beta_0 \in \Gamma$ tal que $y_\beta \in V$ para $\beta \geq \beta_0$. Como $\varphi$ es final existe $\beta_1 \in \Gamma$ con $\alpha \leq \varphi(\beta_1)$. Debido a que $\beta_0$ y $\beta_1$ son fijos, existe $\beta \in \Gamma$ tal que $\beta \geq \beta_0$ y $\beta \geq \beta_1$. Tenemos que $x_{\varphi(\beta)} = y_\beta \in V$ pues $\beta \geq \beta_0$. Dado que $\varphi$ es monótona, se sigue que $\alpha \leq \varphi(\beta_1) \leq \varphi(\beta)$. Así que $x$ es un punto de acumulación de $(x_\alpha)_{\alpha \in \Lambda}$. 
 
 Ahora supongamos que $x$ es un punto de acumulación de $(x_\alpha)_{\alpha_\in \Lambda}$. Sea $N_x$ la colección de  vecindades abiertas de $x$. Definamos el   conjunto 
@@ -573,7 +584,7 @@ Introduzcamos $\varphi : B \to \Lambda$ de tal manera que $\varphi(V, \alpha) = 
 \item Sea $\alpha \in \Lambda$. Como $X \in N_x$ y $x_\alpha \in X$, se tiene que $(X, \alpha) \in B$ y $\varphi(X, \alpha) \geq \alpha$. 
 \end{itemize}  
 Lo anterior indica que $(x_{\varphi(V,\alpha)})_{(V,\alpha)\in B}$ es una subred de $(x_\alpha)_{\alpha \in \Lambda}$. Demostremos que su limite es $x$. Sea $U$ una vecindad abierta de $x$ y fijemos $\alpha_0 \in \Lambda$. Consideremos $(V, \alpha) \in B$ con $(V, \alpha) \geq (U, \alpha_0)$. Entonces $x_{\varphi(V, \alpha)} x_\alpha \in V \subseteq U$. Es decir, $x_{\varphi(V, \alpha)} \to x$.   
-\end{proof}
+\end{Dem}
 
 En espacios métricos la compacidad coincide con la compacidad por sucesiones. Esto no es cierto cuando trabajamos con espacios topológicos. Sin embargo, la siguiente proposición muestra que en este caso la compacidad sí coincide con la compacidad por redes. 
 
@@ -585,19 +596,19 @@ Sea $X$ un espacio topológico. Son equivalentes:
 \end{itemize}
 \end{Tma}
 
-\begin{proof}
+\begin{Dem}
 Supongamos primero que $X$ es compacto y consideremos una red $(x_\alpha)_{\alpha \in \Lambda}$ en $X$. Para cada $\alpha \in \Lambda$ definamos el conjunto $C_\alpha = \ov{ \{x_\beta : \beta \geq \alpha\} }$. Supongamos que $\bigcap_{\alpha \in \Lambda} C_\alpha = \emptyset$. Entonces $\bigcup_{\alpha\in \Lambda} (X \setminus C_\alpha) = X$. Así pues, $\{ X \setminus C_\alpha \}_{\alpha \in \Lambda}$ es una cubierta abierta de $X$. Por ser $X$ compacto, existen $n \in \N$, $\alpha_1, \ldots, \alpha \in \Lambda$ con $X = \bigcup_{i=1}^n (X \setminus C_{\alpha_i})$. Así que $\bigcap_{i=1}^n C_{\alpha_i} = \emptyset$. Tomemos $\gamma \in \Lambda$ con $\gamma \geq \alpha_i$ para todo $1 \leq i \leq n$. De esto se sigue que $x_\gamma \in C_\gamma \subseteq C_{\alpha_i}$. Lo que indica que $x_\gamma \in \bigcap_{i=1}^n C_\alpha$. Esto es una contradicción, por lo que $\bigcap_{\alpha \in \Lambda} C_\alpha \neq \emptyset$. 
 
 Tomemos $x \in \bigcap_{\alpha \in \Lambda} C_\alpha$. Veamos que $x$ es un punto de acumulación de $(x_\alpha)_{\alpha \in \Lambda}$. Sea $V$ una vecindad abierta de $x$ y $\alpha_0 \in \Lambda$. Como $x \in C_{\alpha_0}$, se tiene que $\{ x_\beta : \beta \geq \alpha_0 \} \cap V \neq \emptyset$. Por el lema~\ref{Lema:limitesubred} podemos afirmar que existe una subred de $(x_\alpha)_{\alpha\in\Lambda}$ que converge a $x$. 
 
 Supongamos ahora que $X$ no es compacto. Existe entonces una cubierta abierta $\{ V_i \}_{i \in I}$ de $X$ tal que  no tiene  una subcubierta finita. Sea $\Lambda$ la colección de subconjuntos finitos de $I$ con el orden de inclusión. Para cada $F \in \Lambda$ la subcolección finita $\{ V_i : i \in F \}$ no cubre a $X$. Por lo que $\bigcup_{i\in F} V_i \neq X$. Así que existe $x_F \in X$ tal que $x_F \notin V_i$ para todo $i \in F$. Consideremos la red $(x_F)_{F \in \Lambda}$. Demostremos que esta red no tiene subredes que converjan. Por el lema~\ref{Lema:limitesubred} esto último equivale a demostrar que $(x_F)_{F \in \Lambda}$ no tiene puntos de acumulación. Sea $x \in X$. Entonces $x \in V_{i_0}$ para algún $i_0 \in I$. Además, para $F \in \Lambda$ tal que $\{ i_0 \} \subseteq F$ se tiene que $x_F \notin V_{i_0}$. Esto indica que $x$ no es punto de acumulación de $(x_F)_{F \in \Lambda}$. 
-\end{proof}
+\end{Dem}
 
 \begin{Lema}
 \textbf{(del sándwich)} Sean $X$ un espacio topológico y $f, g $ y $h$ funciones reales definidas en $X$ tales que $g(x) \leq f(x) \leq h(x)$ para todo $x \in X$. Si para una red $(x_\alpha)_{\alpha \in \Lambda}$ en $X$ se satisface que $$\displaystyle\lim_{\alpha \in \Lambda} g(x_\alpha) = \lim_{\alpha \in \Lambda} h(x_\alpha) = L,$$ entonces $\displaystyle  \lim_{\alpha \in \Lambda} f(x_\alpha) = L$.
 \end{Lema}
 
-\begin{proof}
+\begin{Dem}
 Sea $U$ una vecindad abierta de $L$. Tomemos $\varepsilon > 0$ tal que $(L- \varepsilon, L + \varepsilon) \subseteq U$. Como este intervalo es una vecindad abierta de $L$, por hipótesis existen $\alpha_1, \alpha_2 \in \Lambda$ tales que 
 \Ecu{
 g(x_\alpha) \in (L-\varepsilon, L+\varepsilon)\mbox{ si }\alpha \geq \alpha_1 \quad \mbox{ y } \quad h(x_\alpha) \in &(L-\varepsilon, L+\varepsilon)\mbox{ si }\alpha \geq \alpha_2. 
@@ -607,7 +618,7 @@ Al tomar $\alpha_0 \in \Lambda$ tal que $\alpha_0 \geq \alpha_1$ y $\alpha_0 \ge
 $$L- \varepsilon < g(x_\alpha) \leq f(x_\alpha) \leq h(x_\alpha) < L + \varepsilon, \mbox{ si } \alpha \geq \alpha_0.$$
 
 Por lo tanto $f(x_\alpha) \in (L- \varepsilon, L + \varepsilon) \subseteq U$, si $\alpha \geq \alpha_0$. 
-\end{proof}
+\end{Dem}
 
 
 \section{Espacios vectoriales topológicos.}
@@ -628,9 +639,9 @@ Sea $X$ un espacio vectorial  y $x_1, \ldots, x_n \in X$, $n \in \N$. El espacio
 Sea $X$ un espacio vectorial topológico. Para cada vecindad abierta $U$ del $0$, existe una vecindad abierta $V$ del cero con $$V + V \subseteq U.$$ 
 \end{Lema}
 
-\begin{proof}
+\begin{Dem}
 (Pendiente).
-\end{proof}
+\end{Dem}
 
 \begin{Def}
 Sea $X$ un espacio vectorial. 
@@ -652,7 +663,7 @@ y & \mapsto \lambda y.
 Sean $X$ un espacio vectorial topológico, $x \in X$ y $\lambda \neq 0$. Entonces $T_x$ y $D_\lambda$ son homeomorfismos.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Claramente $T_{-x} = T_x^{-1}$ y $D_{\lambda^{-1}} = D_\lambda^{-1}$, de manera que $T_x$ y $D_\lambda$ son biyectivas. Definamos 
 \Ecu{
 e_{x} : X &\to X \times X  \\
@@ -666,7 +677,7 @@ e_{\lambda} : X &\to \K \times X  \\
 y &\mapsto (\lambda, y)
 } 
 Notemos que para $y \in X$ se tiene que $(\pi_X \circ e_{\lambda})(y) = \lambda$ y $(\pi_Y \circ e_{\lambda})(y) = y$. Esto indica que $\pi_X \circ e_{\lambda}$ es constante y $\pi_Y \circ e_{\lambda}$ es la identidad en $X$ y por lo tanto ambas son continuas. Por la proposición~\ref{Prop:ContinuidadPorComponentes} se tiene que $e_{\lambda}$ es continua.  De manera que $D_\lambda = \cdot \circ e_\lambda$ es continua. Como $\lambda$ fue arbitraria, entonces $D_{\lambda^{-1}}$ también es continua. 
-\end{proof}
+\end{Dem}
 
 \begin{Obs}
 Como consecuencia de la proposición anterior, si $U$ es un abierto en un espacio vectorial topológico $X$ y $x \in X$, entonces 
@@ -678,22 +689,22 @@ también es abierto.
 Sean $X, Y$ espacios vectoriales topológicos. Si $T:X \to Y$ es lineal y continua en el cero, entonces $T$ es continua.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Sea $x \in X$. Veremos que $T$ es continua en $x$. Sea $U$ una vecindad abierta de $Tx$ de manera que $Tx \in U$. Entonces $U_0 := U - Tx$ es abierto en $Y$ y además $0 \in U_0$. Como $T$ es continua en $0$, existe un abierto $V_0$ del cero tal que $Ty \in U_0$ si $y \in V_0$. Así que $x \in V_0 +x$ y $ V_0 + x$ es una vecindad abierta de $x$. Si $y \in V_0 + x$, entonces $y-x \in V_0$, de manera que $Ty -Tx = T(y-x) \in U_0 = U - Tx$, de donde $Ty \in U$. Así que $T$ es continua en $x$. 
-\end{proof}
+\end{Dem}
 
 \begin{Prop} \label{Prop:LimiteDeSuma}
 Sean $X$ un espacio vectorial topológico, $(\lambda_\alpha)_{\alpha\in\Lambda} \in \K$ una red que converge en $\K$; y $(x_\alpha)_{\alpha \in \Lambda}$ y $(y_\alpha)_{\alpha \in \Lambda}$ redes que convergen en $X$. Entonces $(\lambda_\alpha x_\alpha + y_\alpha)_{\alpha\in\Lambda}$ converge y 
 $$\lim_{\alpha \in \Lambda} (\lambda_\alpha x_\alpha + y_\alpha) = \left(\lim_{\alpha \in \Lambda} \lambda_\alpha\right) \left(\lim_{\alpha \in \Lambda} x_\alpha\right) + \left(\lim_{\alpha \in \Lambda} y_\alpha\right).$$ 
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Sea $\sigma: X\times X \to X$ la función suma, es decir, $\sigma(x, y) = x+y$ para toda $(x, y) \in X\times X$. Supongamos que $x_\alpha \to x$ y $y_\alpha \to y$ para algunos $x, y \in X$. De esto y por la proposición~\ref{Prop:ConvergenciaPorComponentes} se sigue que $(x_\alpha, y_\alpha) \to (x, y)$. Como $\sigma$ es continua, por el corolario~\ref{Cor:ContinuidadporRedes} tenemos que $\sigma(x_\alpha, y_\alpha) \to \sigma(x, y)$. Es decir,
 $$\lim_{\alpha \in \Lambda} (x_\alpha + y_\alpha) = \left(\lim_{\alpha \in \Lambda} x_\alpha\right) + \left(\lim_{\alpha \in \Lambda} y_\alpha\right).$$ 
 
 Consideremos ahora $\pi: \K \times X \to X$ la función producto por un escalar, es decir $\pi(\lambda, x) = \lambda x$ para toda $(\lambda, x) \in \K\times X$. Supongamos que $x_\alpha \to x$ y $\lambda_\alpha \to \lambda$ para algunos $x \in X, \lambda \in \K$. Por la proposición~\ref{Prop:ConvergenciaPorComponentes} tenemos que $(\lambda_\alpha, x_\alpha) \to (\lambda, x)$. Como $\pi$ es continua, por el corolario~\ref{Cor:ContinuidadporRedes} tenemos que $\pi(\lambda_\alpha, x_\alpha) \to \sigma(\lambda, x)$. Es decir,
 $$\lim_{\alpha \in \Lambda} (\lambda_\alpha x_\alpha) = \left(\lim_{\alpha \in \Lambda} \lambda\alpha \right) \left( \lim_{\alpha \in \Lambda} x_\alpha \right).$$ 
-\end{proof}
+\end{Dem}
 
 
 \begin{Def}
@@ -704,7 +715,7 @@ Sea $X$ un espacio vectorial topológico. Una \textit{red de Cauchy} en $X$ es un
 Sea $X$ un espacio vectorial topológico. Si una red en $X$ es convergente, entonces es de Cauchy.
 \end{Lema}
 
-\begin{proof}
+\begin{Dem}
 Sea $(x_\alpha)_{\alpha\in\Lambda}$ una red en $X$ tal que converge a $x \in X$. Sea $U$ una vecindad abierta del cero. Por el lema~\ref{Lema:VecindadesAbiertasAditivasEVT} existe una vecindad abierta $V$ del cero tal que $V + V \subseteq U$. Como $V$ es vecindad abierta del cero, entonces $V + x$ es vecindad abierta de $x$ y por tanto existe $\beta_1\in \Lambda$ tal que  
 \begin{equation} \label{Eq:xBeta1} 
 x_\beta \in  V + x, \mbox{ si } \beta \geq \beta_1. 
@@ -717,7 +728,7 @@ x_\beta \in  -V + x, \mbox{ si } \beta \geq \beta_2.
 
 Al tomar $\alpha \in \Lambda$ con $\alpha \geq \beta_1$ y $\alpha \geq \beta_2$, junto con (\ref{Eq:xBeta1}) y (\ref{Eq:xBeta2}) se tiene que si $\alpha_1$ y $\alpha_2 \in \Lambda$ cumplen que $\alpha_1 \geq \alpha$ y $\alpha_2 \geq \alpha$, entonces $x_{\alpha_1} \in  V + x$ y $x_{\alpha_2} \in -V + x$. De esto que $x_{\alpha_1} - x \in  V$  y $x_{\alpha_2} -x \in -V$ y así 
 $$x_{\alpha_1} - x_{\alpha_2} = (x_{\alpha_1} - x)+ (x -x_{\alpha_2}) \in V + V \subseteq U.$$
-\end{proof}
+\end{Dem}
 
 Por otro lado, en cualquier espacio vectorial topológico no se cumple que toda red de Cauchy sea convergente. Es por esto que tenemos la siguiente definición.
 
@@ -729,41 +740,41 @@ Un espacio vectorial topológico $X$ es \textit{completo} si toda red de Cauchy e
 Sean $E$ un espacio vectorial topológico y $F \subseteq E$ un subespacio vectorial. Si $F$ es completo, entonces $F$ es cerrado respecto a $E$.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Sea $x \in \ov{F}$. La proposición~\ref{Prop:CerraduraLimiteRed} establece que existe una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq F$ tal que $x_\alpha \to x$. Como $(x_\alpha)_{\alpha \in \Lambda}$ es convergente, el lema~\ref{Lema:RedConvergenteEsCauchy} indica que $(x_\alpha)_{\alpha \in \Lambda}$ es de Cauchy y al ser $F$ completo, se sigue que la red converge en $F$. Al ser $E$ Hausdorff, se sigue que $x \in F$ y así $F$ es cerrado. 
-\end{proof}
+\end{Dem}
 
 \begin{Tma}
 Si $E$ es un espacio vectorial topológico y $\dim\,E = n < \infty$, entonces $E$ es isomorficamente homeomorfo a $\K^n$ con la topología euclidiana.
 \end{Tma}
 
-\begin{proof}
+\begin{Dem}
 (Pendiente).
-\end{proof}
+\end{Dem}
 
 \begin{Prop} \label{Prop:HomeomorfismoLinealPreservaCompletitud}
 Sean $E$ y $F$ espacios vectoriales topológicos. Si existe un homeomorfismo lineal $T : E \to F$ y $E$ es completo, entonces $F$ es completo.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 (Pendiente).
-\end{proof}
+\end{Dem}
 
 \begin{Cor}
 Los espacios vectoriales topológicos de dimensión finita son completos.
 \end{Cor}
 
-\begin{proof}
+\begin{Dem}
 Sea $X$ un espacio vectorial topológico de dimensión finita $n \in \N$. Dado que $\K^n$ con la topología euclidiana es completo, y $X$ es isomorficamente homeomorfo a $\K^n$, resulta por la proposición~\ref{Prop:HomeomorfismoLinealPreservaCompletitud} que $X$ también es completo.
-\end{proof}
+\end{Dem}
 
 \begin{Cor} \label{Cor:SubespacioDimensionFinitaCerrado}
 Si $Y$ es un subespacio de dimensión finita de un espacio vectorial topológico $X$, entonces $Y$ es cerrado.
 \end{Cor}
 
-\begin{proof}
+\begin{Dem}
 Sea $x \in \ov{Y}$. Por la proposición~\ref{Prop:CerraduraLimiteRed}, existe una red $(y_n)_{n\in\N}$ en $Y$ que converge a $x \in X$. Como la sucesión converge, entonces es de Cauchy. El corolario anterior indica que  $Y$ es completo y así $y_n \to y \in Y$. Dado que $X$ es Hausdorff, $x = y$. Luego $x \in Y$, lo cual indica que $\ov{Y} \subseteq Y$ y $Y$ es cerrado.
-\end{proof}
+\end{Dem}
 
 
 Dado un espacio vectorial topológico $X$, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \tau)^*$ o simplemente por $X^*$.  A los elementos de este espacio dual los llamamos \textit{funcionales lineales continuos}.
@@ -798,11 +809,11 @@ Sean $X$ un espacio vectorial y $p$ una seminorma. Entonces
 \end{itemize}
 \end{Prop}
 
-\begin{proof} \hfill \begin{itemize} 
+\begin{Dem} \hfill \begin{itemize} 
 \item[\textbf{a)}] Observemos que $p(0) = p(0\cdot 0) = \abs{0}p(0) = 0$.
 \item[\textbf{b)}] Por la subaditividad de $p$ tenemos que $p(x) = p(x-y+y) \leq p(x-y) + p(y)$. De esto resulta que $p(x)-p(y) \leq p(x-y)$. Análogamente, $p(y)-p(x) \leq p(y-x) = p(x-y)$ y entonces $\abs{p(x)-p(y)} \leq p(x-y)$.
 \end{itemize}
-\end{proof}
+\end{Dem}
 
 \begin{Def}
 Sean $X$ un espacio vectorial sobre $\K$ y $ \mathcal{F}$ una familia no vacía de seminormas en $X$. Diremos que $\mathcal{F}$ \textit{separa puntos} en $X$, si para cada $x \in X \setminus \{ 0 \}$  existe $p \in \mathcal{F}$ tal que $p(x) \neq 0$.  
@@ -822,7 +833,7 @@ forma una base de la topología $\sigma(X, \mathcal{F})$.
 \end{Prop}
 
 
-\begin{proof}
+\begin{Dem}
 Sea $\mathcal{B}$ la colección de conjuntos de la forma $U_{x, p_1, \ldots, p_k, \varepsilon}$, para algunos $x \in X$, $k\in \N$, $p_1, \ldots, p_k \in \mathcal{F}$, $\varepsilon > 0$. Veamos que $\mathcal{B}$ es una base. 
 
 Dado $x \in X$, tomemos cualquier $p \in \mathcal{F}$. Entonces $x \in U_{x, p, 1}$. Por lo tanto $\mathcal{B}$ es una cubierta de $X$. 
@@ -858,7 +869,7 @@ f_i^{-1}(V_\varepsilon(p_i(x))) &= \{ y\in X : f_i(y) \in V_\varepsilon(p_i(x)) 
 Demostremos que con la topología $\tau(\mathcal{B})$ en $X$, todas las seminormas $p:X \to \R$ en $\mathcal{F}$ son continuas. Así pues, tomemos $p \in \mathcal{F}$. Sea $x \in X$ cualquiera y $V_\varepsilon(p(x))$ una vecindad de $p(x)$ en $\R$. Notemos que $U_{x, p, \varepsilon}$ es una vecindad abierta de $x$ y además, si $y \in U_{x, p, \varepsilon}$, entonces $p(x-y) <\varepsilon$. Por la proposición~\ref{Prop:Seminorma} se sigue que $\abs{p(x)-p(y)} < \varepsilon$ y así $p(U_{x, p, \varepsilon}) \subseteq V_{\varepsilon}(p(x))$. Como $U_{x, p, \varepsilon}$ es abierto en $\sigma(X, \mathcal{F})$, se sigue que $p$ es continua.
 
 Esto indica que $\tau(\mathcal{B}) \in \mathcal{T}$. Por la minimalidad de $\sigma(X, \mathcal{F})$ y dado que $\tau(\mathcal{B}) \subseteq \sigma(X, \mathcal{F})$ se concluye que $\tau(\mathcal{B}) = \sigma(X, \mathcal{F})$ y así $\mathcal{B}$ es base de $\sigma(X, \F)$.
-\end{proof}
+\end{Dem}
 
 Si la red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ converge en la topología $\sigma(X, \F)$, su límite lo denotamos por $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} x_\alpha$. En el caso particular de una sucesión $(x_n)_{n \in \N}$ denotamos el límite de la sucesión por $\sigma(X, \F)$-$\lim_{n \to \infty} x_n$. La siguiente proposición indica una caracterización de las sucesiones  convergentes bajo la topología $\sigma(X, \F)$.
 
@@ -866,7 +877,7 @@ Si la red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ converge en la topología
 Sean $X$ un espacio vectorial, $\F$ una familia no vacía de seminormas, $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ una red en $X$ y $x \in X$. Entonces que $\sigma(X, \F)$-$\displaystyle\lim_{\alpha \in \Lambda} x_\alpha = x$ si, y sólo si $\displaystyle\lim_{\alpha \in \Lambda} p(x_\alpha -x) = 0$ para toda $p \in \F$.
 \end{Prop} 
  
-\begin{proof}
+\begin{Dem}
 Primero supongamos que $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} x_\alpha = x$. Sea $p \in \F$ y $\varepsilon > 0$. Dado que $U_{x, p, \varepsilon}$ es una vecindad abierta de $x$, existe $\alpha_0 \in \Lambda$ tal que $x_\alpha \in U_{x, p, \varepsilon}$ para cualquier $\alpha \geq \alpha_0$. Así pues, suponiendo $\alpha \geq \alpha_0$ tendríamos que $0 \leq p(x_\alpha - x) < \varepsilon$. Es decir, $p(x_\alpha -x)\to 0$. 
 
 Ahora supongamos que para toda $p \in \F$ se tiene que $p(x_\alpha -x) \to 0$. Sea $U_{y, p_1, \ldots, p_k, \varepsilon}$ un básico de la topología débil que contiene a $x$ para algunos $k \in \N, p_1, \ldots, p_k \in \F$ y $\varepsilon > 0$. 
@@ -878,7 +889,7 @@ Definamos ahora $\widehat{\alpha}$ de tal manera que $\widehat{\alpha} \geq \alp
 p_i(x_\alpha - y) \leq p_i(x_\alpha - x) + p_i(x - y)  <\varepsilon.
 }
 Esto indica que para todo $\alpha \geq \widehat{\alpha}$ se tiene que $x_\alpha \in U_{y, p_1, \ldots, p_k, \varepsilon}$ y así $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} x_\alpha = x$.
-\end{proof}
+\end{Dem}
 
 \begin{Cor} \label{Cor:CaracterizacionConvergenciaDebilSeminorma}
 Sean $X$ un espacio vectorial, $\F$ una familia de seminormas, $(x_n)_{n \in \N} \subseteq X$ una sucesión en $X$ y $x \in X$. Entonces  $\sigma(X, \F)$-$\displaystyle\lim_{n \to \infty} x_n = x$ si, y sólo si $\displaystyle\lim_{n \to \infty} p(x_n -x) = 0$ para toda $p \in \F$.
@@ -889,7 +900,7 @@ Sean $X$ un espacio vectorial, $\F$ una familia de seminormas, $(x_n)_{n \in \N}
 Si $X$ es un espacio vectorial y $\F$ una familia de seminormas que separa puntos en $X$, entonces $X$ con la topología inducida por $\F$ es un espacio vectorial topológico.
 \end{Tma}
 
-\begin{proof}
+\begin{Dem}
 
 Sean $x_1, x_2 \in X$ distintos. Como $x_1 - x_2 \neq 0$ y $\F$ separa puntos de $X$, existe $p \in \F$ tal que $p(x_1-x_2) \neq 0$. Sea $\varepsilon = \frac{p(x_1 - x_2)}{2}$ y definamos los abiertos en $X$
 $$V := U_{x_1, p, \varepsilon} \mbox{ y } W := U_{x_2, p. \varepsilon}.$$
@@ -934,7 +945,7 @@ Por el lema del sándwich se tiene entonces que $\lim_{\alpha\in \Lambda} p(\lamb
 $$\sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} \pi(\lambda_\alpha, x_\alpha) = \sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} \lambda_\alpha x_\alpha = \lambda x = \pi(\lambda, x).$$ 
 
 Así que $\pi$ es continua.
-\end{proof}
+\end{Dem}
 
 \section{Espacios normados.}
 
@@ -958,9 +969,9 @@ En un espacio normado $X$ resulta que $d: X \times X \to [0, \infty)$ dada por $
 Sea $X$ un espacio normado. Entonces $X$, con su topología original, es un espacio vectorial topológico. (La última vez me comento que moviera esta proposición antes del corolario~\ref{Cor:EspacioBanachEsEVTCompleto} pero ya lo estaba.)
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 (Pendiente.)
-\end{proof}
+\end{Dem}
 
 \begin{Def}
 Un espacio normado $X$ es \textit{completo} si es completo como espacio vectorial topológico. En este caso decimos que $X$ es un \textit{espacio de Banach}.  
@@ -970,9 +981,9 @@ Un espacio normado $X$ es \textit{completo} si es completo como espacio vectoria
 Sea $X$ un espacio normado tal que toda sucesión de Cauchy en $X$ converge en $X$, entonces $X$ es un espacio de Banach.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 (Pendiente).
-\end{proof}
+\end{Dem}
 
 \begin{Cor} \label{Cor:EspacioBanachEsEVTCompleto}
 Si $X$ es un espacio de Banach, entonces es un espacio vectorial topológico completo.
@@ -982,9 +993,9 @@ Si $X$ es un espacio de Banach, entonces es un espacio vectorial topológico comp
 Sea $X$ un espacio normado. Entonces la norma $\Norm{\cdot}:X \to [0, \infty)$ es una función continua.
 \end{Lema}
 
-\begin{proof}
+\begin{Dem}
 Sea $(x_n)_{n\in\N}$ una sucesión en $X$ que converge a $x \in X$. Por definición esto indica que para todo $\varepsilon > 0$ existe $N \in \N$ tal que si $n \geq N$ entonces $\Norm{x_n - x} \leq \varepsilon$. Por la desigualdad del triángulo que $\abs{\Norm{x_n} - \Norm{x}} < \Norm{x_n - x}$. Esto implica que $\Norm{x_n}$ converge a $\Norm{x}$ y así $\Norm{\cdot}$ es continua.
-\end{proof}
+\end{Dem}
 
 No todo operador lineal $T:X\to Y$ entre los espacios normados $X$ e $Y$ resulta ser continuo. En este trabajo nos interesan los que sí son continuos. Una caracterización de un operador lineal continuo es que sea un \textit{operador lineal acotado}, esto es, que exista $K > 0$ tal que $$\Norm{Tx} \leq K \Norm{x} \mbox{ para todo } x \in X.$$ 
 
@@ -996,11 +1007,11 @@ Sea $X$ un espacio normado. Decimos que $A \subseteq X$ es un conjunto \textit{a
 Sean $X$ y $Y$ espacios normados y  $T:X \to Y$ un operador lineal. Entonces $T$ es acotado si, y sólo si $T$ preserva conjuntos acotados.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Sea $A \subseteq X$ un conjunto acotado. Entonces existe $M > 0$ tal que $\Norm{x} < M $ para todo $x \in A$. Como $T$ es continua, existe $N >0$ tal que $\Norm{T(x)} < N \Norm{x}$. Así pues si $T(x) \in T(B)$ se sigue que $\Norm{T(x)} < MN.$ Por lo que $T(A)$ es acotado.
 
 Ahora supongamos que $T$ preserva conjuntos acotados. Como $B_X$ es un conjunto acotado, entonces $T(B)$ es un conjunto acotado por algún $K > 0$. Sea $x \in X$. Si $x = 0$, entonces $\Norm{Tx} = \Norm{0} = 0 \leq K \Norm{x}$. Supongamos entonces que $x \neq 0$, de manera que $\frac{x}{\Norm{x}} \in B_X$ y por lo tanto $T\left( \frac{x}{\Norm{x}} \right) \in T(B_X)$ y por lo tanto $\Norm{T\left( \frac{x}{\Norm{x}} \right)}  \leq K$ y así $\Norm{T(x)} \leq K \Norm{x}.$
-\end{proof}
+\end{Dem}
 
 Sean $X$ y $Y$ espacios normados. Al espacio de los operadores lineales continuos $T: X \to Y$, y por tanto acotados, lo denotamos por $\mathcal{L}(X, Y)$. En este espacio definimos la función
 $$\Norm{T} := \sup\{ \Norm{Tx}  :  x \in B_X\}.$$
@@ -1027,13 +1038,13 @@ Sea $X$ un espacio normado y $V \subseteq X$ un subespacio vectorial. Si $f \in 
 Sea $X$ un espacio normado. Entonces $X$ es de dimensión infinita si y sólo si $X^*$ también lo es. 
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Supongamos que $X$ es de dimensión infinita. Entonces para todo $n \in \N$ existen $x_1, \ldots, x_n \in X$ linealmente independientes. Sea $V = \mbox{span} \{ x_1, \ldots, x_n \}$, de manera que $\{ x_1, \ldots, x_n \}$ es una base de $V$. Para $i \in \{1, \ldots, n \}$ definamos el funcional lineal $\varphi_i : V \to \K$ dado por $\varphi_i(x_j) = \delta_{ij}$ que es continuo por el corolario~\ref{Cor:FuncionalesLinealesContinuosEspaciosFinitos} . Por el teorema de Hahn-Banach existe $F_i \in X^*$ tal que $F_i = f_i$ en $V$. Veamos que $\{F_1, \ldots, F_n\}$ es linealmente independiente en $X^*$. Sean $a_1, \ldots, a_n \in K$ tales que $$\sum_{j=1}^n a_i F_i = 0.$$ Al evaluar en $x_i$ obtenemos que $a_i = 0$. Esto muestra que para toda $n \in \N$ existen $n$ funcionales linealmente independientes. Por lo que $X^*$ es de dimensión infinita. 
 
 Supongamos ahora que $X$ es de dimensión finita $n \in \N$. Existe entonces una base $\{x_1, \ldots, x_n \}$ de $X$. Para $1 \leq i \leq n$ definimos $f_i :X \to \K $ linealmente y de tal manera que $f_i(x_j) = \delta_{ij}$. Como $X$ es de dimensión finita el corolario~\ref{Cor:FuncionalesLinealesContinuosEspaciosFinitos} indica que cada $f_i$ es continuo. Veamos que $\{ f_1, \ldots, f_n \}$ generan a $X^*$. Tomamos entonces $f \in X^*$ y supongamos que $f(x_i) = a_i \in \K$ para cada $i \in \{1, \ldots, n\}$. Así, para cada $1 \leq i \leq n$
 $$\left( \sum_{j=1}^n a_j f_j \right)(x_i) = a_i = f(x_i).$$
 Por lo tanto $f = \sum_{j=1}^n a_j f_j$. Esto dice que existe un conjunto finito generador en $X^*$, por lo que $X^*$ es de dimensión finita.
-\end{proof}
+\end{Dem}
 
 
 \begin{Def} \hfill
@@ -1048,7 +1059,7 @@ son \textit{isomorfos} como espacios vectoriales si existe $T :  X \to Y$ biyect
 Si $X$ y $Y$ son espacios normados de dimensión finita y de la misma dimensión, entonces son isomorfos como espacios normados.
 \end{Cor}
 
-\begin{proof}
+\begin{Dem}
 Supongamos que $\dim \, X = n \in \N$ y sea $\{ x_1, \ldots, x_n \}$ una base suya. Demostraremos que $X$ es isomorfo como espacio normado a $\ell_2^n$ por medio de la función 
 \Ecu{
 T: \ell_2^n & \to X \\
@@ -1081,21 +1092,21 @@ $$\frac{\Norm{x}}{\Norm{T^{-1}(x)}} = \Norm{T\left(\frac{T^{-1}(x)}{\Norm{T^{-1}
 De donde $\Norm{T^{-1}(x)} \leq \frac{1}{m} \Norm{x}$. Por lo cual $T^{-1}$ es continua y $T$ es un isomorfismo de espacios normados. 
 
 Análogamente, como $\dim \, Y =  \dim \,  X  = n$, entonces existe $S: \ell^n_2 \to Y$  isomorfismo de espacios normados. Resulta entonces que $S\circ T^{-1} : X \to Y$ es un isomorfismo de espacios normados entre $X$ y $Y$.
-\end{proof}
+\end{Dem}
 
 \begin{Cor}
 Sea $X$ un espacio normado de dimensión finita. Entonces todas las normas en $X$ son equivalentes entre sí.
 \end{Cor}
 
-\begin{proof}
+\begin{Dem}
 (Pendiente).
-\end{proof}
+\end{Dem}
 
 \begin{Cor} \label{Cor:FuncionalesLinealesContinuosEspaciosFinitos}
 Sea $X$ un espacio normado de dimensión finita y  $\varphi : X \to \K$ un funcional lineal. Entonces $\varphi$ es continuo. 
 \end{Cor}
 
-\begin{proof}
+\begin{Dem}
 Sea $\dim \, X = n \in \N$ y $\{ x_1, \ldots, x_n \} \subseteq X$ una base de $X$. Sean $T$ y $m$ como en la demostración de la proposición anterior. Tomemos $x \in X$ y $(a_1, \ldots, a_n) = T^{-1}(x)$. Entonces 
 \Ecu{
 \Norm{\varphi(x)} &= \Norm{\varphi\left(\sum_{i=1}^n a_i x_i \right)} = \Norm{\sum_{i=1}^n a_i \varphi (x_i) } \\
@@ -1103,7 +1114,7 @@ Sea $\dim \, X = n \in \N$ y $\{ x_1, \ldots, x_n \} \subseteq X$ una base de $X
 & = \left( \sum_{i=1}^n \Norm{\varphi(x_i)}^2  \right)^{\frac{1}{2}} \Norm{a_1, \ldots, a_n}_2   \leq  \left( \sum_{i=1}^n \Norm{\varphi(x_i)}^2  \right)^{\frac{1}{2}} \frac{1}{m} \Norm{x}.
 } 
 Así que $\varphi$ es un operador lineal acotado y por tanto continuo. 
-\end{proof}
+\end{Dem}
 
 
 
@@ -1121,24 +1132,24 @@ Para verificar a continuación que $\Norm{\cdot}_p$ es una norma recurriremos a l
 Sean $(a, b) \subseteq \R$ un intervalo y $f : (a, b) \to \R$ una función dos veces diferenciable. Si $f^{\prime\prime} \geq 0$ en $(a, b)$, entonces $f$ es convexa.
 \end{Lema}
 
-\begin{proof}
+\begin{Dem}
 (Pendiente).
-\end{proof}
+\end{Dem}
 
 \begin{Lema} \label{Lema:ComposcionConvexa}
 Sean $X$ un espacio normado, $f: \K \to \R$ convexa y creciente; y $g: \R \to \R$ convexa, entonces $g \circ f$ es convexa. 
 \end{Lema}
 
-\begin{proof}
+\begin{Dem}
 (Pendiente.)
-\end{proof}
+\end{Dem}
 
 \begin{Ejem} \label{Ejem:XPConvexa}
 Fijemos $1 \leq p < \infty$ y consideremos $f: [0, \infty) \to[0, \infty)$ dada por $f(x) = x^p$ para toda $x \in \R$. Claramente $f$ es diferenciable y $f^\prime(x) = p x^{p-1}$. Además $f^\prime$ vuelve  a ser diferenciable y $f^{\prime\prime}(x) = p(p-1)x^{p-2} \geq 0$ para todo $x \geq 0$ y por el lema~\ref{Lema:SegundaDerivadaPositivaConvexa} resulta que $f$ es convexa.
 Al tomar $g = \Norm{\cdot}$, el lema~\ref{Lema:ComposcionConvexa} indica que  $g \circ f : \K \to \R$, $z \mapsto \abs{z}^p$ es convexa.
 \end{Ejem}
 
-\begin{proof}
+\begin{Dem}
 ($\Norm{\cdot}_p$ es una norma en $\K^n$.) 
 \begin{itemize}
 \item[\textbf{i)}] Claramente, $\Norm{x}_p \geq 0$ para cualquier $x \in \K^n$. Además, tenemos que si $x = 0 \in \K^n$, entonces $\Norm{x}_p= 0$. Es sencillo observar que si $\Norm{x}_p = 0$ para algún $x \in \K^n$, entonces $x = 0$.
@@ -1154,9 +1165,9 @@ $\Norm{\widehat{x}} + \Norm{\widehat{y}} = 1$. Definamos $\lambda := \Norm{\wide
 
 Queda pendiente el resto de la demostración. 
 \end{itemize}
-\end{proof}
+\end{Dem}
 
-\begin{proof}
+\begin{Dem}
 ($\Norm{\cdot}_\infty$ es una norma en $\K^n$.)
 Notemos que
 \begin{itemize}
@@ -1172,7 +1183,7 @@ Notemos que
 & = \Norm{x}_\infty + \Norm{y}_\infty.
 }
 \end{itemize}
-\end{proof}
+\end{Dem}
 
 Cuando trabajemos en $\K^n$ con la norma $\Norm{\cdot}_p$ para $1\leq p \leq \infty$, denotaremos a este por $\ell_p^n$.  
 
@@ -1186,10 +1197,10 @@ Así pues, para $1\leq p\leq \infty$ definimos $\ell_p \subseteq \K^n$ como el es
 $$\Norm{x}_p = \left(  \sum_{i=1}^\infty \abs{x_i}^p \right)^{\frac{1}{p}} \mbox{  y  } \Norm{x}_\infty = \sup_{i \in \N} \,  \abs{x_i}.$$
 \end{Ejem}
 
-\begin{proof}
+\begin{Dem}
 ($\Norm{\cdot}_p$ es una norma en $\ell^p$.) \\
 (Pendiente).
-\end{proof}
+\end{Dem}
 
 \subsection{Compacidad de la bola cerrada en un espacio normado.}
 La compacidad es una propiedad muy importante que puede tener un subconjunto de un espacio topológico. El objetivo de esta sección es demostrar que la compacidad de la bola unitaria en un espacio normado depende simplemente de si este es de dimensión finita o no.
@@ -1202,23 +1213,23 @@ Sea $X$ un espacio normado, la \textit{distancia} de $x \in X$ a $A \subseteq X$
 Sean $X$ un espacio normado. Si $A \subseteq X$ es cerrado y $x \in X \setminus A$, entonces $d(x, A) > 0$. 
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Se demostrará por contrapositiva. Supongamos que $d(x, A) = 0$. Tomemos un abierto $U$ que incluya a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$. Por lo que $U \cap A \neq \emptyset$. Por lo tanto $x \in \ov{A}$. Si $A$ fuera cerrado, entonces  $x \in A$.
-\end{proof}
+\end{Dem}
 
 
 \begin{Lema} \textbf{(de Riesz)}
 Sean $Y$ un subespacio propio y cerrado de un espacio normado $X$ y $\theta \in (0, 1)$, entonces existe $x_\theta \in X$ con $\Norm{x_\theta} = 1$ para el cual $\Norm{x_\theta - y} > \theta$ para todo $y \in Y$. 
 \end{Lema}
 
-\begin{proof}
+\begin{Dem}
 Tomemos $x \in X \setminus Y$. Como $Y$ es cerrado la distancia $d(x, Y)$ es positiva y $0 < \theta <1$ tenemos que 
 $$0 < d(x, Y) = \inf \{ \Norm{x-z} : z \in Y \} < \frac{d(x, Y)}{\theta}.$$
 Así que existe $z \in Y$ tal que $0 < \Norm{x - z} < \dfrac{d(x, Y)}{\theta}$. Definamos $x_\theta = \dfrac{x-z}{\Norm{x-z}}$. Claramente $\Norm{x_\theta} = 1$. Además, para $y \in Y$ se tiene que $z+ \Norm{x-z} y \in Y$. Por lo que
 \Ecu{
 \Norm{x_\theta - y} = \Norm{\dfrac{x-z}{\Norm{x-z}} - y} = \frac{1}{\Norm{x-z}} \cdot \Norm{x - (z+ \Norm{x-z} y)}  > \frac{\theta}{d(x, Y)} \cdot d(x, Y) = \theta.
 }
-\end{proof}
+\end{Dem}
 
 En un espacio normado $X$, denotamos a la bola unitaria centrada en el cero por $B_X$. Con el siguiente teorema resolvemos el objetivo que planteamos al inicio de esta subsección.
 
@@ -1231,7 +1242,7 @@ Sea $X$ un espacio normado. Las siguientes afirmaciones son equivalentes:
 \end{itemize}
 \end{Tma}
 
-\begin{proof}
+\begin{Dem}
 Demostraremos que \textbf{i)} implica \textbf{ii)}, que \textbf{ii)} implica \textbf{iii)} y que \textbf{iii)} implica \textbf{i)}. 
 
 Supongamos que $X$ es de dimensión finita $n$. Entonces existe un isomorfismo de espacios normados $T: X \to \ell^n_2$. Sea $A$ un conjunto cerrado y acotado en $X$. Por ser $T$ isomorfismo se sigue que $T(A)$ también es cerrado y acotado. El teorema de Heine-Borel indica que $T(A)$ es compacto en  $\ell^n_2$. Por lo tanto $A = T^{-1}(T(A))$ también lo es. 
@@ -1247,7 +1258,7 @@ Como $X$ es de dimensión infinita, el subespacio $\mbox{span}\{x_1, \ldots, x_n 
 $$\Norm{x_{n+1} - \sum_{i=1}^{n} \alpha_i x_i } \geq \frac{1}{2}.$$
 
 Así pues, queda construida la sucesión $(x_n)_{n\in\N}$. Si tomamos $n, m \in \N$ con $n > m$ entonces al tomar $\alpha_1 = 1$ y $\alpha_i = 0$ para $1 \leq i \leq  n-1$ e $i \neq m$, de $(\ref{Eq:1})$ obtenemos que $\Norm{x_n - x_m} \geq \frac{1}{2}$. Esto indica que cualquier subsucesión de $(x_n)_{n\in\N}$ no es de Cauchy y por lo tanto no converge. Por la proposición~\ref{Tma:CompacidadPorConvergenciaDeSubredes} concluimos que $B_X$ no es compacto.
-\end{proof}
+\end{Dem}
 
 
 \section{Topologías débil y débil*.}
@@ -1278,7 +1289,7 @@ Sea $X$ un espacio normado. La topología original de $X$ se denotará por $\tau$.
 Sea $X$ un espacio normado de dimensión infinita. Entonces $\tau_\mathrm{w} \subsetneq \tau$.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 En la observación anterior notamos que $\tau_\mathrm{w} \subseteq \tau$. Demostraremos que ningún abierto básico de la topología débil es acotado bajo la norma. Esto es suficiente para obtener la conclusión ya que algunos abiertos de la topología original sí son acotados. 
 
 Sea $U_{x, \varphi_1, \ldots, \varphi_k, \varepsilon}$ un abierto básico de $\tau_{\mathrm{w}}$, para algunos $x \in X, k \in \N, \varphi_1,\ldots, \varphi_k \in X^*$ y $\varepsilon > 0$. Consideremos $F: X \to \K^k$ definida por $F(y) = (\varphi_1(y), \ldots, \varphi_k(y))$ y observemos que es lineal. De esta manera notemos que $$\Ker \, F = \bigcap_{i=1}^k \Ker\, \varphi_i.$$
@@ -1288,7 +1299,7 @@ Por lo que podemos tomar $\lambda > 0$ tal que
 $$\Norm{\lambda y + x} \geq \abs{ \lambda \Norm{y} - \Norm{x}} > M.$$
 Además,
 $$\abs{\varphi_i(\lambda y + x) - \varphi(x)} = \abs{\varphi_i(y)} = 0 < \varepsilon,$$ para toda $i \in \{ 1, \ldots, k\}$ y así $\lambda y + x \in U_{x, \varphi_1, \ldots, \varphi_k, \varepsilon}$.
-\end{proof}
+\end{Dem}
 
 
 En un espacio normado $X$ denotamos que la red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ converge  a $x \in X$ bajo la topología débil, por $\wlim_{\alpha \in \Lambda} x_\alpha$ o también por $x_\alpha \stackrel{\mathrm{w}}{\longrightarrow} x$. En el caso particular de una sucesión $(x_n)_{n \in \N}$ denotaremos el límite de la sucesión por $\wlim_{n \to \infty} x_n$. 
@@ -1303,11 +1314,11 @@ En particular, si $(x_n)_{n \in \N} \subseteq X$ es una sucesión en $X$ y $x \in
 Si $X$ es un espacio normado, entonces $X^* = X_\mathrm{w}^*$.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Tomemos $\varphi \in X^*$. Por definición la seminorma $\abs{\varphi} : X_\mathrm{w} \to \K$ es continua, en particular es continua en el cero. Sea $V$ un entorno del cero en $\K$ y escojamos una bola abierta $V_r(0)$ con $r>0$ tal que $V_r(0) \subseteq V$. Como $\abs{\varphi}$ es continua, existe un  abierto $W$ en $\tau_\mathrm{w}$ del cero en $X$ tal que $\abs{\varphi}(W) \subseteq [0, r)$. Pero esto implica que $\varphi(W) \subseteq V_r(0) \subseteq V$. Así que $\varphi$ es continua en el cero y como también es lineal por la proposición~\ref{Prop:ContinuidadEnCero} podemos concluir que es continua. Esto muestra que $X^* \subseteq X_\mathrm{w}^*$. 
 
 Por otro lado, la proposición~\ref{Prop:ContencionPropiaTopologiaDebil} indica que $\tau_\mathrm{w} \subseteq \tau$. Por lo que todo funcional lineal y continuo con la topología $\tau_\mathrm{w}$ también será continuo con la topología $\tau$. Es decir, $X_\mathrm{w}^* \subseteq X^*$.
-\end{proof}
+\end{Dem}
 
 %/////////////////////////////////////////////////////////////////////////
 %/////////////////////////Topologia Débil*////////////////////////////////
@@ -1327,7 +1338,7 @@ que de acuerdo a la siguiente proposición es un funcional lineal continuo en $X^
 Sean $X$ un espacio normado y $x \in X$. Entonces $\delta_x$ es un funcional lineal continuo con $\Norm{\delta_x} \leq \Norm{x}$. 
 \end{Lema}
 
-\begin{proof}
+\begin{Dem}
 Sean $\varphi, \psi \in X^*$ y $\lambda \in \K$, entonces
 $$\delta_x(\varphi + \lambda \psi) = (\varphi + \lambda \psi)(x) = \varphi(x) + \lambda \psi(x) = \delta_x(\varphi) + \lambda \delta_x(\psi).$$
 
@@ -1337,7 +1348,7 @@ Para todo $\varphi \in X^*$ se tiene que
 \end{equation*}
 
 Por lo que $\delta_x$ es continuo y además $$\Norm{\delta_x} \leq \Norm{x}.$$
-\end{proof}
+\end{Dem}
 
 Al ser $\delta_x$ un funcional lineal continuo en $X^*$, este pertenece al espacio dual de $X^*$, el cual denotamos por $X^{**}$. Al espacio $X^{**}$ lo llamaremos \textit{bidual} de $X$. \\
 
@@ -1357,7 +1368,7 @@ Estableceremos en seguida que la identificación canónica es una isometría entre 
 Sea $X$ un espacio normado. Entonces la identificación canónica $J$ es una isometría.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Veamos que $J$ es lineal. Tomemos entonces $x, y \in X$ y $\lambda \in \K$. Para $\varphi \in X^*$ se tiene que 
 $$J(x+\lambda y)(\varphi) = \varphi(x+\lambda y) = \varphi(x) + \lambda \varphi(y) = Jx(\varphi) + \lambda Jy(\varphi).$$
 De donde $J(x+ \lambda y) = Jx + \lambda Jy$. 
@@ -1365,7 +1376,7 @@ De donde $J(x+ \lambda y) = Jx + \lambda Jy$.
 Si $x = 0$ entonces $\Norm{Jx} = 0 = \Norm{x}$. Si en cambio $x \neq 0$, el teorema de Hahn-Banach nos permite tomar $\varphi \in S_{X^*}$  tal que $\varphi(\frac{x}{\Norm{x}}) = 1$. De esto que 
 $$\abs{Jx(\varphi)} = \abs{\varphi(x)} = \Norm{x}.$$
 Así pues $\Norm{Jx} \geq \Norm{x}$. El lema~\ref{Lema:DeltaContinua} indica que $\Norm{Jx} = \Norm{\delta_x} \leq \Norm{x}$ y así se sigue que $\Norm{Jx} = \Norm{x}$ y $J$ es isometría.
-\end{proof}
+\end{Dem}
 
 Para cada $x \in X$ resulta que $\abs{\delta_x}$ es una seminorma. Dado $\varphi \in X^*$ distinto de cero, existe $x \neq 0$ con $\varphi(x) \neq 0$. Así que $\delta_x(\varphi) \neq 0$. Es decir, $$\F_{X^*} := \{ \abs{\delta_x} : x\in X\}$$ es una familia de seminormas en $X^*$ que separa puntos de $X$. 
 
@@ -1412,9 +1423,9 @@ Si $X$ es un espacio reflexivo, entonces la ecuación~(\ref{Eq:IgualdadBasicos}) 
 Si $X$ es un espacio reflexivo, entonces $J :  X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es un homeomorfismo.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Dado que $J$ es un isomorfismo de espacios vectoriales, ya sólo falta verificar que $J$ es abierta y continua. Para eso tomemos una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X_\mathrm{w}$ y $x \in X_\mathrm{w}$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebil} dice que que $x_\alpha \weakarrow x$ si, y sólo si $\varphi(x_\alpha) \to \varphi(x)$ para toda $\varphi \in X^*$. Esto último equivale a que $\delta_{x_\alpha}(\varphi) \to \delta_{x}(\varphi)$ para toda $\varphi \in X^*$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebilEstrella} indica que esto es lo mismo que $\delta_{x_\alpha} \weakstararrow \delta_x$, o bien, $J(x_\alpha) \weakstararrow J(x)$. Por lo que $J$ es continua al igual que $J^{-1}$.
-\end{proof}
+\end{Dem}
 
 Si $X$ es un espacio de dimensión infinita, la proposición anterior muestra que $X^*$ es de dimensión infinita, por lo que resulta que $B_{X^*}$ no es compacta respecto a la topología original. El siguiente teorema muestra que bajo la topología débil* sí lo es.
 
@@ -1423,7 +1434,7 @@ Si $X$ es un espacio de dimensión infinita, la proposición anterior muestra que 
 Sea $X$ un espacio normado. Entonces la bola unitaria cerrada de $X^*$ es compacta en la topología débil*.
 \end{Tma}
 
-\begin{proof}
+\begin{Dem}
 Para cada $x \in X$ definamos el conjunto 
 $$D_x : = \{ \lambda \in \K : \abs{\lambda} \leq \Norm{x} \}.$$
 
@@ -1456,26 +1467,26 @@ $$\abs{g(x)} \leq \abs{d_x} \leq \Norm{x} \leq 1.$$
 Esto indica que $\Norm{g} \leq 1$, por lo que $g \in B_{X^*}$ y $$F(g) = (g(x))_{x\in X} = (d_x)_{x\in X}.$$
 
 Por lo tanto $(d_x)_{x\in X} \in F(B_{X^*})$ y así $F(B_{X^*})$ es cerrado. Como $\mathcal{D}$ es compacto y $F(B_{X^*})$ es cerrado, entonces también es compacto. Además $F$ es un homeomorfismo entre $F(B_{X^*})$ y $B_{X^*}$. Por lo que $B_{X^*}$ es compacto con la topología débil*.
-\end{proof}
+\end{Dem}
 
 \begin{Cor} 
 Si $X$ es un espacio normado reflexivo, entonces  $B_{X^*}$ es $\mathrm{w}$-compacta.
 \end{Cor}
 
-\begin{proof}
+\begin{Dem}
 Habíamos notado anteriormente que en espacios reflexivos $\sigma(X^*, X) = \sigma(X^*, X^{**})$. Por lo que la compacidad con la topología débil y débil* de $B_{X^*}$ son equivalentes. Por el teorema de Banach-Alaoglu resulta entonces que $B_{X^*}$ es débil*-compacta y débil-compacta.
-\end{proof}
+\end{Dem}
 
 \begin{Tma}
 Sea $X$  un espacio normado. Entonces  $X$ es reflexivo si y sólo si $B_X$ 
 es $\mathrm{w}$-compacta. 
 \end{Tma}
 
-\begin{proof}
+\begin{Dem}
 Supongamos primero que $X$ es reflexivo. El teorema de Banach-Alaoglu indica que $B_{X^{**}}$ es $\sigma(X^{**}, X^{*})$-compacto. La proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es abierta y como $J$ es reflexivo entonce $B_X = J^{-1}(B_{X^{**}})$ es $\sigma(X, X^*)$-compacto.
 
 Ahora supongamos que $B_X$ es $\mathrm{w}$-compacta. (Pendiente).
-\end{proof}
+\end{Dem}
 
 \section{Medibilidad.}
 
@@ -1498,20 +1509,20 @@ Una función $f: \Omega \to X$ es \textit{medible} si para todo $V$ abierto de $X
 Si $f: \Omega \to X$ es simple, entonces es medible.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
  Sea $f: \Omega \to X$ simple. Entonces existen $n \in \N$, $E_1, \ldots, E_n \in \Sigma$ disjuntos y $x_1, \ldots, x_n \in X$ tales que $f$ cumple (\ref{Eq:FuncionSsimple}). Definamos $x_0 = 0$ y $E_0 = X - \bigcup_{i=1}^n E_i$. De manera que $E_0 \in \Sigma$. \\
  
 Consideremos $V$ un abierto en $X$ y sea $\{ x_{k_1}, ..., x_{k_s} \} = \{x_0, x_1, \ldots, x_n\} \cap V$ para algún $s \in \N$ y algunos $0 \leq k_1, \ldots, k_s \leq n$. Entonces
  $$f^{-1}(V) = f^{-1}(\{x_{k_1}, ..., x_{k_s}\}) = \bigcup_{i=1}^{s}E_i \in \Sigma.$$
-\end{proof}
+\end{Dem}
 
 \begin{Prop} \label{Prop:MedibilidadConvergenciaBanach}
 Sean $f_n: \Omega \to X$ medibles y $f : \Omega \to X$ tal que $f_n \to f$. Entonces $f$ es medible. Trataremos de ver a partir de esto que $f^{-1}(V_r(x))$ es medible.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Consideremos un abierto básico de $X$, es decir, la bola $V_r(x)$ para algún $r > 0$ y $x\in X$. Como cada $f_n$ es medible, entonces $f_n^{-1}(V_r(x))$ es medible. (Pendiente)
-\end{proof}
+\end{Dem}
 
 \begin{Def} 
 Una función $f: \Omega \to X$ es $\mu$-\textit{medible} si existe $g: \Omega \to X$ medible tal que $f = g$ $\mu$-c.t.p. 
@@ -1521,7 +1532,7 @@ Una función $f: \Omega \to X$ es $\mu$-\textit{medible} si existe $g: \Omega \to
 Sean $f_n: \Omega \to X$ simples, $n\in \N$; y $f: \Omega \to X$ tal que $f_n$ converge puntualmente $\mu$-c.t.p. a $f$, entonces $f$ es $\mu$-medible.
 \end{Prop}
 
-\begin{proof}
+\begin{Dem}
 Como cada $f_n$ es simple, entonces es medible. Sea $A \in \Sigma$ tal que $\mu(\Omega - A) = 0$ y $f_n(\omega) \to f(\omega)$ para todo $\omega \in A$. Para cada $n \in\N$ definamos $g_n: \Omega \to X$ por
 \Ecu{
 g_n(\omega) = \begin{cases} f_n(\omega) \; \mbox{ si } \omega \in A, \\
@@ -1530,16 +1541,16 @@ g_n(\omega) = \begin{cases} f_n(\omega) \; \mbox{ si } \omega \in A, \\
 }
 
 Notemos que $g_n(\omega)$ converge para todo $\omega \in G$ a la función $g : \Omega \to X$ tal que $g = f$ en $A$. Por la proposición~\ref{Prop:SimpleMedible}, $g$ es medible. Así que $f$ es $\mu$-medible. 
-\end{proof}
+\end{Dem}
 
 Recordemos que un espacio de Banach $X$ es \textit{separable} si existe un conjunto $A \subseteq X$ numerable y denso en $X$.\\
 
 \begin{Tma} \textbf{(Egorov)} Supongamos que $X$ es un espacio de Banach separable. Sean $f_n: \Omega \to X$ funciones medibles y supongamos que existe $A \subseteq \Omega$ con $\mu$-medida finita tal que $(f_n)_n$ converge $\mu$-c.t.p. a una función límite $f: \Omega \to X$. Entonces para cada $\varepsilon > 0$ existe $B \subseteq A$ medible con $\mu(B) < \varepsilon$ y tal que $f_n$ converge uniformemente a $f$ en $B$. 
 \end{Tma}
 
-\begin{proof}
+\begin{Dem}
  (Pendiente)
-\end{proof}
+\end{Dem}
 
 A la propiedad que se concluye del teorema de Egorov se le llama \textit{convergencia casi uniforme}.
 
@@ -1556,9 +1567,9 @@ Una función $f: \Omega \to X$ se dice \textit{escalarmente} $\mu$\textit{-medibl
  \textbf{(de Medibilidad de Pettis)} Una función $f: \Omega \to X$ es $\mu$-medible si, y sólo si $f$ es escalarmente $\mu$-medible y existe $E \in \Sigma$ con $\mu(E) = 0$ tal que $f(\Omega \setminus E)$ es un conjunto separable de $X$.
 \end{Tma}
 
-\begin{proof}
+\begin{Dem}
 (Pendiente)
-\end{proof}
+\end{Dem}
 
 \section{El teorema de Orlicz-Pettis.}
 
