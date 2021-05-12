@@ -304,6 +304,8 @@ Sea $X$ un espacio topológico. Diremos que $X$ es \textit{Hausdorff} si para tod
 
 \section{Espacios métricos.}
 
+La topología usual de $\R^n$ que nos es bastante familiar tiene por base a los conjuntos que son bolas de radio y centro arbitrarios. Se puede generalizar el concepto de distancia a otros espacios de tal manera que esta induce una topología en tales espacios de manera similar a como se hace con el caso de la distancia euclidiana. En esta sección desarrollaremos algunos conceptos de los espacios métricos y sus respectivas topologías. 		 
+
 \begin{Def}
 Un \textit{espacio métrico} es una pareja $(M, d)$ donde $M$ es un conjunto no vacío y $d: M \times M \to [0, \infty)$ es una función llamada \textit{métrica} que cumple:
 \begin{itemize}
@@ -636,11 +638,11 @@ En este caso decimos que $\tau$ es una \textit{topología vectorial} y que $X$ es
 Sea $X$ un espacio vectorial  y $x_1, \ldots, x_n \in X$, $n \in \N$. El espacio generado por un conjunto $A \subseteq X$ se denotará por $\mbox{span}\, A$ y está definido como  $$\mbox{span} \, A  : = \left\{ \sum_{i=1}^n a_i x_i : n\in \N,  a_1, \ldots, a_n  \in \K, x_1, \ldots, x_n \in A \right\}.$$
 
 \begin{Lema} \label{Lema:VecindadesAbiertasAditivasEVT}
-Sea $X$ un espacio vectorial topológico. Para cada vecindad abierta $U$ del $0$, existe una vecindad abierta $V$ del cero con $$V + V \subseteq U.$$ 
+Sea $X$ un espacio vectorial topológico. Para cada vecindad abierta $U$ del $0$, existe una vecindad abierta $V$ de $0$ con $$V + V \subseteq U.$$ 
 \end{Lema}
 
 \begin{Dem}
-(Pendiente).
+Sea $U$ una vecindad abierta del 0. Como $X$ es un espacio vectorial topológico, la función $+ : X \times X \to X, (x, y) \mapsto x+y$ es continua. En particular es continua en el $(0, 0)$. Esto nos dice que para $U$, existe una vecindad abierta $W$ del $(0, 0)$ tal que $+(W) \subseteq U$. Existe entonces un básico $V_1 \times V_2$ en $X \times X$ con $V_1, V_2$ vecindades abiertas del $0$ tal que $V_1 \times V_2 \subseteq W$. Entonces $V := V_1 \cap V_2$ es una vecindad abierta del $0$ que cumple que $V \times V \subseteq W$. De esto que $$V + V = +(V \times V) \subseteq +(W) \subseteq U.$$
 \end{Dem}
 
 \begin{Def}
@@ -966,11 +968,25 @@ $$\Norm{\lambda x + (1-\lambda y)} \leq \abs{\lambda} \Norm{x} + \abs{1-\lambda}
 En un espacio normado $X$ resulta que $d: X \times X \to [0, \infty)$ dada por $$d(x, y) := \Norm{x-y}$$ es una métrica. Por lo que $X$ es un espacio métrico y entonces podemos considerar la topología inducida por la métrica, la cual se denomina topología original de $X$. 
 
 \begin{Prop} \label{Prop:TopologiaOriginalEsEVT}
-Sea $X$ un espacio normado. Entonces $X$, con su topología original, es un espacio vectorial topológico. (La última vez me comento que moviera esta proposición antes del corolario~\ref{Cor:EspacioBanachEsEVTCompleto} pero ya lo estaba.)
+Sea $X$ un espacio normado. Entonces $X$, con su topología original, es un espacio vectorial topológico. 
 \end{Prop}
 
 \begin{Dem}
-(Pendiente.)
+Denotemos por $\tau$ la topología original de $X$. Por definición, $\Norm{\cdot}$ es una seminorma en $X$. Demostraremos que $\tau = \sigma(X, \{ \Norm{\cdot} \})$. Dado que el teorema~\ref{Tma:SeminormasInducenEVT} indica que $X$ es un espacio vectorial topológico con la topología $\sigma(X, \{ \Norm{\cdot} \})$, esto implicaría que la topología original es una topología vectorial.
+
+Así pues, para mostrar que $\tau = \sigma(X, \{ \Norm{\cdot} \})$ mostraremos que tienen una base común. Sea $\mathcal{B}_1$ la base de la topología original. Esto es 
+$$\mathcal{B}_1 = \{V_r(x) : r > 0, x \in X \}.$$
+
+Denotemos por $\mathcal{B}_2$ la base de la topología $\sigma(X, \{ \Norm{\cdot} \})$, es decir, 
+$$\mathcal{B}_2 = \{U_{x, \Norm{\cdot}, \varepsilon} : \varepsilon > 0, x \in X \}.$$
+
+Notemos que el hecho de que
+\Ecu{
+U_{x, \Norm{\cdot}, \varepsilon} &= \{ y \in X : \Norm{\cdot}(x-y) < \varepsilon \} \\
+&= \{ y \in X : \Norm{x - y} < \varepsilon \}  \\
+&= V_\varepsilon(x);
+}
+indica que $\mathcal{B}_1 = \mathcal{B}_2$.
 \end{Dem}
 
 \begin{Def}
@@ -1128,26 +1144,50 @@ Para el caso $p = \infty$, definimos la función $\Norm{\cdot}_{\infty}: \K^n \to
 Para verificar a continuación que $\Norm{\cdot}_p$ es una norma recurriremos a los siguientes lemas y ejemplos.
 \end{Ejem}
 
+\begin{Lema} \label{Lema:PrimeraDerivadaConvexidad}
+Sean $(a, b) \subseteq \R$ un intervalo y $f : (a, b) \to \R$ una función diferenciable. Si $$f(y) \geq f(x) + f^\prime(x) (y-x)$$  para todos $x,y \in (a, b)$, entonces $f$ es convexa.
+\end{Lema}
+
+\begin{Dem}
+Tomemos $x, y \in X$ y $0 \leq \lambda \leq 1$. Los casos $x = y$ y $\lambda \in \{ 0, 1 \}$ son claros, así que supongamos que $x \neq y$ y $\lambda \in (0, 1)$. Sea $c = \lambda x + (1-\lambda) y$. Sin perdida de generalidad supongamos que $x < y$, de manera que $x < c < y$. Por hipótesis tenemos que $$ f(x) \geq f(c) + f^\prime(c) (x-c) \;\;\mbox{ y }\;\; f(y) \geq f(c) + f^\prime(c) (y-c).$$ 
+
+De donde  $$\frac{f(x) - f(c)}{x-c} \leq  f^\prime(c) \leq \frac{f(y) - f(c)}{y-c}.$$ 
+
+Esto implica que $$(f(x) - f(c))(y-c) \geq  (f(y) - f(c))(x-c).$$
+
+O bien $$f(x)y - f(x)c - f(c)y + f(c)c \geq  f(y)x - f(y)c - f(c)x + f(c)c.$$
+
+Entonces \begin{equation} \label{Eq:RelacionFuncionConvexa} 
+f(c) \leq f(x)\cdot \frac{y-c}{x-y} + f(y)\cdot\frac{x-c}{x-y}.
+\end{equation} 
+
+Como $$\frac{y-c}{x-y} = \lambda \;\;\mbox{ y }\;\; \frac{x-c}{x-y} = 1- \lambda, $$ se sigue de (\ref{Eq:RelacionFuncionConvexa}) que $$f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1- \lambda)f(y).$$
+\end{Dem}
+
 \begin{Lema} \label{Lema:SegundaDerivadaPositivaConvexa}
 Sean $(a, b) \subseteq \R$ un intervalo y $f : (a, b) \to \R$ una función dos veces diferenciable. Si $f^{\prime\prime} \geq 0$ en $(a, b)$, entonces $f$ es convexa.
 \end{Lema}
 
 \begin{Dem}
-(Pendiente).
-\end{Dem}
+Sean $x, y \in (a, b)$. Para el caso $x = y$ es claro notar que $$f(y) \geq f(x) + f^\prime(x) (y-x).$$ 
 
-\begin{Lema} \label{Lema:ComposcionConvexa}
-Sean $X$ un espacio normado, $f: \K \to \R$ convexa y creciente; y $g: \R \to \R$ convexa, entonces $g \circ f$ es convexa. 
-\end{Lema}
-
-\begin{Dem}
-(Pendiente.)
+Así que podemos suponer que $x \neq y$. Sin perdida de generalidad  tomemos  $x < y$ (en realidad si se pierde algo de generalidad, pero el caso $y < x$ sólo se intercambian un $\leq$ y un $\geq$. ¿Hago ambos casos o sí puedo suponer que no hay ``perdida de generalidad''). El teorema del valor medio indica que existe $x < c < y$ tal que $$f^\prime(c) = \frac{f(y)-f(x)}{y-x}.$$
+Como $f^{\prime\prime} \geq 0$, se tiene que $f^\prime$ es creciente, de donde $f^\prime(x) \leq f^\prime(c)$ y así $$f^\prime(x) \leq \frac{f(y)-f(x)}{y-x}.$$
+Por lo tanto $f(y) \geq f(x) + f^\prime(x)(y-x)$ y el lema~\ref{Lema:PrimeraDerivadaConvexidad} indica que $f$ es convexa.
 \end{Dem}
 
 \begin{Ejem} \label{Ejem:XPConvexa}
-Fijemos $1 \leq p < \infty$ y consideremos $f: [0, \infty) \to[0, \infty)$ dada por $f(x) = x^p$ para toda $x \in \R$. Claramente $f$ es diferenciable y $f^\prime(x) = p x^{p-1}$. Además $f^\prime$ vuelve  a ser diferenciable y $f^{\prime\prime}(x) = p(p-1)x^{p-2} \geq 0$ para todo $x \geq 0$ y por el lema~\ref{Lema:SegundaDerivadaPositivaConvexa} resulta que $f$ es convexa.
-Al tomar $g = \Norm{\cdot}$, el lema~\ref{Lema:ComposcionConvexa} indica que  $g \circ f : \K \to \R$, $z \mapsto \abs{z}^p$ es convexa.
+Fijemos $1 \leq p < \infty$ y consideremos $f: [0, \infty) \to[0, \infty)$ dada por $f(x) = x^p$ para toda $x \in \R$. Claramente $f$ es diferenciable y $f^\prime(x) = p x^{p-1}$. Además $f^\prime$ vuelve  a ser diferenciable y $f^{\prime\prime}(x) = p(p-1)x^{p-2} \geq 0$ para todo $x \geq 0$ y por el lema~\ref{Lema:SegundaDerivadaPositivaConvexa} resulta que $f$ es convexa. 
+
+Tomemos $g = \abs{\cdot}$, la cual claramente es convexa por ser una norma en $\K$. Sean $x, y \in \K$ y $\lambda \in [0, 1]$, como $g$ es convexa se tiene que $$g(\lambda x + (1-\lambda)y) \leq \lambda g(x) + (1-\lambda)g(y).$$
+
+Como $f$ es creciente y convexa resulta que
+$$f(g(\lambda x + (1-\lambda)y)) \leq f(\lambda g(x) + (1-\lambda)g(y)) \leq \lambda f(g(x)) + (1-\lambda)f(g(y)).$$
+
+Por lo que $f \circ g : \K \to \R$, $z \mapsto \abs{z}^p$ es convexa.
 \end{Ejem}
+
+\bigskip
 
 \begin{Dem}
 ($\Norm{\cdot}_p$ es una norma en $\K^n$.) 
@@ -1159,11 +1199,27 @@ Al tomar $g = \Norm{\cdot}$, el lema~\ref{Lema:ComposcionConvexa} indica que  $g
 &= \left(\abs{\lambda}^p\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}} = \abs{\lambda} \left(\sum_{i=1}^n \abs{ x_i}^p\right)^{\frac{1}{p}} = \abs{\lambda} \Norm{x}_p.
 }
 \item[\textbf{iii)}] Sean $x, y \in \K^n$. Si $x = 0$ ó $y = 0$, claramente $\Norm{x+y}_p \leq \Norm{x}_p + \Norm{y}_p$. Así que tomamos $x, y \neq 0$. Definamos 
-$$\widehat{x} := \frac{x}{\Norm{x}_p + \Norm{y}_p} \quad \mbox{  y } \quad \widehat{y} := \frac{y}{\Norm{x}_p + \Norm{y}_p},$$ de tal manera que 
-$\Norm{\widehat{x}} + \Norm{\widehat{y}} = 1$. Definamos $\lambda := \Norm{\widehat{y}}_p \in (0, 1)$ y tomemos $$x_0 :=\frac{x}{1-\lambda} \quad
- \mbox{ y } \quad y_0 := \frac{y}{\lambda}.$$
+$$x_0 := \frac{x}{\Norm{x}_p + \Norm{y}_p} \quad \mbox{  y } \quad y_0 := \frac{y}{\Norm{x}_p + \Norm{y}_p},$$ de tal manera que 
+$\Norm{x_0}_p + \Norm{y_0}_p = 1$. Definamos $\lambda := \Norm{y_0}_p \in (0, 1)$ y tomemos $$\widehat{x} :=\frac{x_0}{1-\lambda} \quad
+ \mbox{ y } \quad \widehat{y} := \frac{y_0}{\lambda}.$$
 
-Queda pendiente el resto de la demostración. 
+Notemos que $\Norm{\widehat{x}}_p = \Norm{\widehat{y}}_p = 1$ y expresemos $\widehat{x}=(\widehat{x_1}, \ldots \widehat{x_n})$ y $\widehat{y}= (\widehat{y_1}, \ldots \widehat{y_n})$. El ejemplo~\ref{Ejem:XPConvexa} muestra que el mapeo $z \mapsto \abs{z}^p$ es convexo para $1 \leq p < \infty$. Así que tenemos que para $1 \leq i \leq n$
+$$\abs{(1-\lambda)\widehat{x_i} + \lambda \widehat{y_i}}^p \leq (1-\lambda)\abs{\widehat{x_i}}^p + \lambda \abs{\widehat{y_i}}^p.$$
+ 
+Y al sumar $i$ de $1$ a $n$ obtenemos
+\Ecu{
+\Norm{x_0 + y_0}_p^p &= \Norm{(1-\lambda)\widehat{x} + \lambda \widehat{y}}_p^p \\
+&=  \sum_{i=1}^n\abs{(1-\lambda)\widehat{x_i} + \lambda \widehat{y_i}}^p \\
+&\leq (1-\lambda)\left(\sum_{i=1}^n \abs{\widehat{x_i}}^p \right) + \lambda \left( \sum_{i=1}^n\abs{\widehat{y_i}}^p \right) \\
+&= (1- \lambda) \Norm{\widehat{x}}_p^p + \lambda \Norm{\widehat{y}}_p^p = 1.
+}
+
+Como para $z \in [0, \infty)$ se tiene que $z^p \leq 1$ si, y sólo si $z \leq 1$, entonces $$\Norm{x_0 + y_0}_p \leq 1 = \Norm{x_0}_p + \Norm{y_0}_p.$$ 
+
+Entonces, $$\Norm{\frac{x+y}{\Norm{x}_p + \Norm{y}_p}}_p \leq \Norm{\frac{x}{\Norm{x}_p + \Norm{y}_p}}_p + \Norm{\frac{y}{\Norm{x}_p + \Norm{y}_p}}_p.$$
+
+Por lo tanto $$\Norm{x+y}_p \leq \Norm{x}_p + \Norm{y}_p.$$
+
 \end{itemize}
 \end{Dem}
 
