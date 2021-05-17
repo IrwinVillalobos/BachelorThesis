@@ -323,7 +323,8 @@ y la \textit{bola cerrada} de centro $y \in M$ y radio $r > 0$ se define por
 $$B_r(y) = \{ x \in M : d(x, y) \leq r \}.$$
 
 \begin{Def}
-En un espacio métrico $M$ consideramos la \textit{topología original} definida por $$\tau_M :=\{ U \subseteq M : \mbox{ para todo }x \in U \mbox{ existe } r > 0 \mbox{ tal que }V_r(x) \subseteq U\}.$$
+En un espacio métrico $M$ consideramos la familia de subconjuntos de $M$ $$\tau_M :=\{ U \subseteq M : \mbox{ para todo }x \in U \mbox{ existe } r > 0 \mbox{ tal que }V_r(x) \subseteq U\}.$$
+Esta resulta ser una topología en $M$ y la llamamos \textit{topología original} de $M$.
 \end{Def}
 
 
@@ -367,7 +368,7 @@ Ahora tomemos $x \in M$ tal que existe $(x_n)_{n\in\N} \subseteq A$ con $x_n \to
 Sean $M$ un espacio métrico y $K \subseteq M$. Son equivalentes:
 \begin{itemize}
 \item \textbf{i)} $K$ es compacto.
-\item \textbf{ii)} Toda sucesión en $K$ contiene una subsuceción convergente.
+\item \textbf{ii)} Toda sucesión en $K$ contiene una subsucesión convergente.
 \end{itemize}
 \end{Prop}
 
@@ -377,7 +378,7 @@ Sean $M$ un espacio métrico y $K \subseteq M$. Son equivalentes:
 
 \section{Redes.}
 
-Hemos visto que el estudio de continuidad y compacidad en espacios métricos se puede realizar a través de sucesiones. Sin embargo, el concepto de redes, que generaliza a las sucesiones, resulta ser más adecuado en espacios vectoriales con una topología que no proviene de una norma. Por tanto, desarrollaremos un poco de teoría de redes antes de hablar de la convergencia en la topología débil correspondiente a un espacio normado. \\
+Hemos visto que el estudio de continuidad y compacidad en espacios métricos se puede realizar a través de sucesiones. Sin embargo, el concepto de redes, que generaliza a las sucesiones, resulta ser más adecuado en espacios vectoriales con una topología que no proviene de una métrica. Por tanto, desarrollaremos un poco de teoría de redes antes de seguir adelante. \\
 
 \begin{Def}
 Un \textit{conjunto dirigido} es una pareja $(\Lambda, \leq)$, donde $\Lambda$ es un conjunto no-vacío y $\leq$ es una relación en $\Lambda$ tal que: 
@@ -396,9 +397,9 @@ Sean $X$ un espacio topológico y $x \in X$. Consideremos la colección $N_x$ de v
 $$U \leq V \mbox{ si, y sólo si } V \subseteq U.$$ 
 Notemos que $N_x \neq \emptyset$ pues $X \in N_x$. Además se cumple que:
 \begin{itemize}
-\item \textbf{i)} Para todo $U \in N_x$ se tiene que $U \subseteq U$. Así $U \leq U$. 
-\item \textbf{ii)} Si $U, V, W \in N_x$ cumplen que $U \leq V$ y $V \leq W$, entonces $V \subseteq U$ y $W \subseteq V$. Por tanto $W \subseteq U$ y $U \leq W$. 
-\item \textbf{iii)} Sean $U, V \in N_x$. Como $x \in U$ y $x \in V$ entonces $x \in U \cap V$. Además al ser $U$ y $V$ abiertos, también lo es $U \cap V$. Así $U \cap V \in N_x$. Dado que $U\cap V \subseteq U$ y $U \cap V \subseteq V$, se sigue que $U \leq U \cap V$ y $V \leq U \cap V$.  
+\item[\textbf{i)}] Para todo $U \in N_x$ se tiene que $U \subseteq U$. Así $U \leq U$. 
+\item[\textbf{ii)}] Si $U, V, W \in N_x$ cumplen que $U \leq V$ y $V \leq W$, entonces $V \subseteq U$ y $W \subseteq V$. Por tanto $W \subseteq U$ y $U \leq W$. 
+\item[\textbf{iii)}] Sean $U, V \in N_x$. Como $x \in U$ y $x \in V$ entonces $x \in U \cap V$. Además al ser $U$ y $V$ abiertos, también lo es $U \cap V$. Así $U \cap V \in N_x$. Dado que $U\cap V \subseteq U$ y $U \cap V \subseteq V$, se sigue que $U \leq U \cap V$ y $V \leq U \cap V$.  
 \end{itemize}
 
 Por lo anterior $N_x$ es un conjunto dirigido con esta relación. En adelante, al considerar $N_x$ como conjunto dirigido será con este orden.
@@ -582,8 +583,8 @@ Consideremos el orden producto de $N_x \times \Lambda$. Al restringir ese orden 
 
 Introduzcamos $\varphi : B \to \Lambda$ de tal manera que $\varphi(V, \alpha) = \alpha$ para $(V, \alpha) \in B$. Veamos que $\varphi$ es monótona y final:
 \begin{itemize}
-\item Sean $(V, \alpha) \leq (U, \beta)$ en $B$. Entonces $\alpha \leq \beta$ por lo que $\varphi(V, \alpha) \leq \varphi(U, \beta)$.
-\item Sea $\alpha \in \Lambda$. Como $X \in N_x$ y $x_\alpha \in X$, se tiene que $(X, \alpha) \in B$ y $\varphi(X, \alpha) \geq \alpha$. 
+\item[\textbf{i)}] Sean $(V, \alpha) \leq (U, \beta)$ en $B$. Entonces $\alpha \leq \beta$ por lo que $\varphi(V, \alpha) \leq \varphi(U, \beta)$.
+\item[\textbf{ii)}] Sea $\alpha \in \Lambda$. Como $X \in N_x$ y $x_\alpha \in X$, se tiene que $(X, \alpha) \in B$ y $\varphi(X, \alpha) \geq \alpha$. 
 \end{itemize}  
 Lo anterior indica que $(x_{\varphi(V,\alpha)})_{(V,\alpha)\in B}$ es una subred de $(x_\alpha)_{\alpha \in \Lambda}$. Demostremos que su limite es $x$. Sea $U$ una vecindad abierta de $x$ y fijemos $\alpha_0 \in \Lambda$. Consideremos $(V, \alpha) \in B$ con $(V, \alpha) \geq (U, \alpha_0)$. Entonces $x_{\varphi(V, \alpha)} x_\alpha \in V \subseteq U$. Es decir, $x_{\varphi(V, \alpha)} \to x$.   
 \end{Dem}
@@ -642,7 +643,7 @@ Sea $X$ un espacio vectorial topológico. Para cada vecindad abierta $U$ del $0$,
 \end{Lema}
 
 \begin{Dem}
-Sea $U$ una vecindad abierta del 0. Como $X$ es un espacio vectorial topológico, la función $+ : X \times X \to X, (x, y) \mapsto x+y$ es continua. En particular es continua en el $(0, 0)$. Esto nos dice que para $U$, existe una vecindad abierta $W$ del $(0, 0)$ tal que $+(W) \subseteq U$. Existe entonces un básico $V_1 \times V_2$ en $X \times X$ con $V_1, V_2$ vecindades abiertas del $0$ tal que $V_1 \times V_2 \subseteq W$. Entonces $V := V_1 \cap V_2$ es una vecindad abierta del $0$ que cumple que $V \times V \subseteq W$. De esto que $$V + V = +(V \times V) \subseteq +(W) \subseteq U.$$
+Sea $U$ una vecindad abierta del 0. Como $X$ es un espacio vectorial topológico, la función $+ : X \times X \to X, (x, y) \mapsto x+y$ es continua en el $(0, 0)$. Esto nos dice que para $U$, existe una vecindad abierta $W$ del $(0, 0)$ tal que $+(W) \subseteq U$. Existe entonces un básico $V_1 \times V_2$ en $X \times X$ con $V_1, V_2$ vecindades abiertas del $0$ tal que $V_1 \times V_2 \subseteq W$. Entonces $V := V_1 \cap V_2$ es una vecindad abierta del $0$ que cumple que $V \times V \subseteq W$. De esto se sigue que que $$V + V = +(V \times V) \subseteq +(W) \subseteq U.$$
 \end{Dem}
 
 \begin{Def}
@@ -738,9 +739,9 @@ Por otro lado, en cualquier espacio vectorial topológico no se cumple que toda r
 Un espacio vectorial topológico $X$ es \textit{completo} si toda red de Cauchy en $X$ converge.
 \end{Def}
 
-\begin{Prop}
+\begin{Lema} \label{Lema:EVTsDimensionIgualIsomorfos}
 Sean $E$ un espacio vectorial topológico y $F \subseteq E$ un subespacio vectorial. Si $F$ es completo, entonces $F$ es cerrado respecto a $E$.
-\end{Prop}
+\end{Lema}
 
 \begin{Dem}
 Sea $x \in \ov{F}$. La proposición~\ref{Prop:CerraduraLimiteRed} establece que existe una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq F$ tal que $x_\alpha \to x$. Como $(x_\alpha)_{\alpha \in \Lambda}$ es convergente, el lema~\ref{Lema:RedConvergenteEsCauchy} indica que $(x_\alpha)_{\alpha \in \Lambda}$ es de Cauchy y al ser $F$ completo, se sigue que la red converge en $F$. Al ser $E$ Hausdorff, se sigue que $x \in F$ y así $F$ es cerrado. 
@@ -784,7 +785,7 @@ Si $Y$ es un subespacio de dimensión finita de un espacio vectorial topológico $
 \end{Cor}
 
 \begin{Dem}
-Sea $x \in \ov{Y}$. Por la proposición~\ref{Prop:CerraduraLimiteRed}, existe una red $(y_n)_{n\in\N}$ en $Y$ que converge a $x \in X$. Como la sucesión converge, entonces es de Cauchy. El corolario anterior indica que  $Y$ es completo y así $y_n \to y \in Y$. Dado que $X$ es Hausdorff, $x = y$. Luego $x \in Y$, lo cual indica que $\ov{Y} \subseteq Y$ y $Y$ es cerrado.
+Sea $x \in \ov{Y}$. Por la proposición~\ref{Prop:CerraduraLimiteRed}, existe una red $(y_\alpha)_{\alpha\in\Lambda}$ en $Y$ que converge a $x \in X$. Como la red converge, entonces es de Cauchy. El corolario anterior indica que  $Y$ es completo y así $y_\alpha \to y \in Y$. Dado que $X$ es Hausdorff, $x = y$. Luego $x \in Y$, lo cual indica que $\ov{Y} \subseteq Y$ y $Y$ es cerrado.
 \end{Dem}
 
 
@@ -793,7 +794,7 @@ Dado un espacio vectorial topológico $X$, al espacio de operadores $\varphi : X 
 \subsection[Espacio vectorial topológico generado por una familia de seminormas.]{Espacio vectorial topológico generado por una familia de seminormas. \subsectionmark{E.V.T. generado por seminormas.}}
 \subsectionmark{E.V.T. generado por seminormas.}
 
-Un método para construir espacios vectoriales topológicos y desarrollar la teoría detrás de la topología débil de un espacio de normado $X$ y la topología débil* en $X^*$ es utilizar el concepto de la topología generada por una familia de seminormas en un espacio vectorial. 
+Un método para construir espacios vectoriales topológicos, el cual utilizaremos después para obtener la topología débil de un espacio de normado $X$ y la topología débil* en $X^*$, es utilizar el concepto de la topología generada por una familia de seminormas en un espacio vectorial. 
 
 \begin{Def}
 Sea $X$ un espacio vectorial sobre $\K$. Una \textit{seminorma} es una función $p: X \to [0, \infty)$ tal que:
@@ -807,8 +808,8 @@ $p(\lambda x) = \abs{\lambda}p(x)$.
 \begin{Ejem} \label{Ejem:SeminormaParaTopologiaDebil}
 Sea $X$ un espacio vectorial y $\varphi : X \to \K$ un funcional lineal. Entonces  $p = \abs{\varphi}$ es una seminorma, pues $p(x) = \abs{\varphi(x)} \geq 0$ para toda $x \in X$ y
 \begin{itemize}
-\item[\textbullet] Si $x, y \in X$, entonces $p(x+y) = \abs{\varphi(x+y)} = \abs{\varphi(x)+\varphi(y)} \leq \abs{\varphi(x)} + \abs{\varphi(y)} = p(x) + p(y)$.
-\item[\textbullet] Si $\lambda \in \K$ y $x \in X$, entonces $p(\lambda x) = \abs{\varphi(\lambda)x} = \abs{\lambda\varphi(x)} = \abs{\lambda} \abs{\varphi(x)} = \abs{\lambda} p(x).$
+\item[\textbf{i)}] Si $x, y \in X$, entonces $p(x+y) = \abs{\varphi(x+y)} = \abs{\varphi(x)+\varphi(y)} \leq \abs{\varphi(x)} + \abs{\varphi(y)} = p(x) + p(y)$.
+\item[\textbf{ii)}] Si $\lambda \in \K$ y $x \in X$, entonces $p(\lambda x) = \abs{\varphi(\lambda)x} = \abs{\lambda\varphi(x)} = \abs{\lambda} \abs{\varphi(x)} = \abs{\lambda} p(x).$
 \end{itemize} 
 \end{Ejem}
 
@@ -885,7 +886,7 @@ Esto indica que $\tau(\mathcal{B}) \in \mathcal{T}$. Por la minimalidad de $\sig
 Si la red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ converge en la topología $\sigma(X, \F)$, su límite lo denotamos por $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} x_\alpha$. En el caso particular de una sucesión $(x_n)_{n \in \N}$ denotamos el límite de la sucesión por $\sigma(X, \F)$-$\lim_{n \to \infty} x_n$. La siguiente proposición indica una caracterización de las sucesiones  convergentes bajo la topología $\sigma(X, \F)$.
 
 \begin{Prop} \label{Prop:CaracterizacionConvergenciaDebilSeminorma}
-Sean $X$ un espacio vectorial, $\F$ una familia no vacía de seminormas, $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ una red en $X$ y $x \in X$. Entonces que $\sigma(X, \F)$-$\displaystyle\lim_{\alpha \in \Lambda} x_\alpha = x$ si, y sólo si $\displaystyle\lim_{\alpha \in \Lambda} p(x_\alpha -x) = 0$ para toda $p \in \F$.
+Sean $X$ un espacio vectorial, $\F$ una familia no vacía de seminormas, $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ una red en $X$ y $x \in X$. Entonces $\sigma(X, \F)$-$\displaystyle\lim_{\alpha \in \Lambda} x_\alpha = x$ si, y sólo si $\displaystyle\lim_{\alpha \in \Lambda} p(x_\alpha -x) = 0$ para toda $p \in \F$.
 \end{Prop} 
  
 \begin{Dem}
@@ -974,10 +975,10 @@ Una norma $\Norm{\cdot}:X \to \R$ es convexa pues dados $x, y \in X$ y $\lambda 
 $$\Norm{\lambda x + (1-\lambda y)} \leq \abs{\lambda} \Norm{x} + \abs{1-\lambda} \Norm{y}  = \lambda \Norm{x} + (1-\lambda) \Norm{y}.$$
 \end{Ejem}
 
-En un espacio normado $X$ resulta que $d: X \times X \to [0, \infty)$ dada por $$d(x, y) := \Norm{x-y}$$ es una métrica. Por lo que $X$ es un espacio métrico y entonces podemos considerar la topología inducida por la métrica, la cual se denomina topología original de $X$. 
+En un espacio normado $X$ resulta que la función $d: X \times X \to [0, \infty)$ definida por $$d(x, y) := \Norm{x-y}$$ es una métrica. Por lo que $X$ es un espacio métrico y entonces podemos considerar la topología inducida por la métrica, la cual se denomina topología original de $X$. 
 
 \begin{Prop} \label{Prop:TopologiaOriginalEsEVT}
-Sea $X$ un espacio normado. Entonces $X$, con su topología original, es un espacio vectorial topológico. 
+Sea $X$ un espacio normado. Entonces $X$ es un espacio vectorial topológico. 
 \end{Prop}
 
 \begin{Dem}
@@ -989,13 +990,11 @@ $$\mathcal{B}_1 = \{V_r(x) : r > 0, x \in X \}.$$
 Denotemos por $\mathcal{B}_2$ la base de la topología $\sigma(X, \{ \Norm{\cdot} \})$, es decir, 
 $$\mathcal{B}_2 = \{U_{x, \Norm{\cdot}, \varepsilon} : \varepsilon > 0, x \in X \}.$$
 
-Notemos que el hecho de que
+Ya que
 \Ecu{
-U_{x, \Norm{\cdot}, \varepsilon} &= \{ y \in X : \Norm{\cdot}(x-y) < \varepsilon \} \\
-&= \{ y \in X : \Norm{x - y} < \varepsilon \}  \\
-&= V_\varepsilon(x);
+U_{x, \Norm{\cdot}, \varepsilon} &= \{ y \in X : \Norm{\cdot}(x-y) < \varepsilon \} = \{ y \in X : \Norm{x - y} < \varepsilon \}  = V_\varepsilon(x),
 }
-indica que $\mathcal{B}_1 = \mathcal{B}_2$.
+concluimos que $\mathcal{B}_1 = \mathcal{B}_2$.
 \end{Dem}
 
 \begin{Def}
@@ -1144,7 +1143,7 @@ Así que $\varphi$ es un operador lineal acotado y por tanto continuo.
 
 
 \subsection{Ejemplos de espacios normados.}
-En $\K^n $ la norma euclidiana resulta ser el caso $p=2$ de una familia de normas en $\K^n$ llamadas $p$-normas. En esta subsección introduciremos estas normas y desarrollaremos la teoría detrás para verificar que en efecto son normas en $\K^n$. Además, agregaremos otros ejemplos de espacios normados de dimensión infinita.      
+En $\K^n $ la norma euclidiana resulta ser el caso $p=2$ de una familia de normas en $\K^n$ llamadas $p$-normas. En esta subsección introduciremos estas funciones y verificaremos que en efecto son normas en $\K^n$. Además, agregaremos otros ejemplos de espacios normados de dimensión infinita.      
 
 \begin{Ejem} \label{Ejem:EllePNormado}
 Dados $n \in \N$ y $1 \leq p < \infty$, definamos la función $\Norm{\cdot}_p:\K^n \to [0, \infty)$ por $$\Norm{(x_1, \ldots, x_n)}_p := \left(\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}}.$$  
@@ -1186,22 +1185,24 @@ Por lo tanto $f(y) \geq f(x) + f^\prime(x)(y-x)$ y el lema~\ref{Lema:PrimeraDeri
 \end{Dem}
 
 \begin{Ejem} \label{Ejem:XPConvexa}
-Fijemos $1 \leq p < \infty$ y consideremos $f: [0, \infty) \to[0, \infty)$ dada por $f(x) = x^p$ para toda $x \in \R$. Claramente $f$ es diferenciable y $f^\prime(x) = p x^{p-1}$. Además $f^\prime$ vuelve  a ser diferenciable y $f^{\prime\prime}(x) = p(p-1)x^{p-2} \geq 0$ para todo $x \geq 0$ y por el lema~\ref{Lema:SegundaDerivadaPositivaConvexa} resulta que $f$ es convexa. 
+Fijemos $1 \leq p < \infty$ y consideremos $f: [0, \infty) \to[0, \infty)$ dada por $f(x) = x^p$. Claramente $f$ es diferenciable y $f^\prime(x) = p x^{p-1}$. Además $f^\prime$ vuelve  a ser diferenciable y $f^{\prime\prime}(x) = p(p-1)x^{p-2} \geq 0$ para todo $x \geq 0$ y por el lema~\ref{Lema:SegundaDerivadaPositivaConvexa} resulta que $f$ es convexa. 
 
-Tomemos $g = \abs{\cdot}$, la cual claramente es convexa por ser una norma en $\K$. Sean $x, y \in \K$ y $\lambda \in [0, 1]$, como $g$ es convexa se tiene que $$g(\lambda x + (1-\lambda)y) \leq \lambda g(x) + (1-\lambda)g(y).$$
+Tomemos $g = \abs{\cdot}$, la cual es convexa por ser una norma en $\K$. Sean $x, y \in \K$ y $\lambda \in [0, 1]$, como $g$ es convexa se tiene que $$g(\lambda x + (1-\lambda)y) \leq \lambda g(x) + (1-\lambda)g(y).$$
 
 Como $f$ es creciente y convexa resulta que
 $$f(g(\lambda x + (1-\lambda)y)) \leq f(\lambda g(x) + (1-\lambda)g(y)) \leq \lambda f(g(x)) + (1-\lambda)f(g(y)).$$
 
-Por lo que $f \circ g : \K \to \R$, $z \mapsto \abs{z}^p$ es convexa.
+Por lo tanto $f \circ g : \K \to \R$, $z \mapsto \abs{z}^p$ es convexa.
 \end{Ejem}
 
 \bigskip
 
 \begin{Dem}
 ($\Norm{\cdot}_p$ es una norma en $\K^n$.) 
+
+Sea $1 \leq p < \infty$.
 \begin{itemize}
-\item[\textbf{i)}] Claramente, $\Norm{x}_p \geq 0$ para cualquier $x \in \K^n$. Además, tenemos que si $x = 0 \in \K^n$, entonces $\Norm{x}_p= 0$. Es sencillo observar que si $\Norm{x}_p = 0$ para algún $x \in \K^n$, entonces $x = 0$.
+\item[\textbf{i)}] Claramente, $\Norm{x}_p \geq 0$ para cualquier $x \in \K^n$. Además, si $x = 0 \in \K^n$, entonces $\Norm{x}_p= 0$. Es sencillo observar que si $\Norm{x}_p = 0$ para algún $x \in \K^n$, entonces $x = 0$.
 \item[\textbf{ii)}] Sea $x = (x_1, \ldots, x_n) \in \K^n$ y $\lambda \in \K$, entonces
 \Ecu{
 \Norm{\lambda x}_p &= \Norm{(\lambda x_1, \ldots, \lambda x_n)}_p =  \left(\sum_{i=1}^n \abs{\lambda x_i}^p\right)^{\frac{1}{p}} \\
@@ -1212,7 +1213,7 @@ $$x_0 := \frac{x}{\Norm{x}_p + \Norm{y}_p} \quad \mbox{  y } \quad y_0 := \frac{
 $\Norm{x_0}_p + \Norm{y_0}_p = 1$. Definamos $\lambda := \Norm{y_0}_p \in (0, 1)$ y tomemos $$\widehat{x} :=\frac{x_0}{1-\lambda} \quad
  \mbox{ y } \quad \widehat{y} := \frac{y_0}{\lambda}.$$
 
-Notemos que $\Norm{\widehat{x}}_p = \Norm{\widehat{y}}_p = 1$ y expresemos $\widehat{x}=(\widehat{x_1}, \ldots \widehat{x_n})$ y $\widehat{y}= (\widehat{y_1}, \ldots \widehat{y_n})$. El ejemplo~\ref{Ejem:XPConvexa} muestra que el mapeo $z \mapsto \abs{z}^p$ es convexo para $1 \leq p < \infty$. Así que tenemos que para $1 \leq i \leq n$
+Notemos que $\Norm{\widehat{x}}_p = \Norm{\widehat{y}}_p = 1$ y expresemos $\widehat{x}=(\widehat{x_1}, \ldots \widehat{x_n})$ y $\widehat{y}= (\widehat{y_1}, \ldots \widehat{y_n})$. El ejemplo~\ref{Ejem:XPConvexa} muestra que la función $z \mapsto \abs{z}^p$ es convexa para $1 \leq p < \infty$. Así que tenemos que para $1 \leq i \leq n$
 $$\abs{(1-\lambda)\widehat{x_i} + \lambda \widehat{y_i}}^p \leq (1-\lambda)\abs{\widehat{x_i}}^p + \lambda \abs{\widehat{y_i}}^p.$$
  
 Y al sumar $i$ de $1$ a $n$ obtenemos
@@ -1225,16 +1226,14 @@ Y al sumar $i$ de $1$ a $n$ obtenemos
 
 Como para $z \in [0, \infty)$ se tiene que $z^p \leq 1$ si, y sólo si $z \leq 1$, entonces $$\Norm{x_0 + y_0}_p \leq 1 = \Norm{x_0}_p + \Norm{y_0}_p.$$ 
 
-Entonces, $$\Norm{\frac{x+y}{\Norm{x}_p + \Norm{y}_p}}_p \leq \Norm{\frac{x}{\Norm{x}_p + \Norm{y}_p}}_p + \Norm{\frac{y}{\Norm{x}_p + \Norm{y}_p}}_p.$$
+Esto es, $$\Norm{\frac{x+y}{\Norm{x}_p + \Norm{y}_p}}_p \leq \Norm{\frac{x}{\Norm{x}_p + \Norm{y}_p}}_p + \Norm{\frac{y}{\Norm{x}_p + \Norm{y}_p}}_p.$$
 
 Por lo tanto $$\Norm{x+y}_p \leq \Norm{x}_p + \Norm{y}_p.$$
 
 \end{itemize}
-\end{Dem}
 
-\begin{Dem}
-($\Norm{\cdot}_\infty$ es una norma en $\K^n$.)
-Notemos que
+
+Veamos ahora que $\Norm{\cdot}_\infty$ es una norma en $\K^n$. Para eso, notemos que
 \begin{itemize}
 \item[\textbf{i)}] Sea $x = (x_1, \ldots, x_n) \in \K^n$. Si $x = 0$, entonces $\Norm{x}_\infty = \max_{i \in \N} \,  0 = 0.$ Si por otro lado $\Norm{x}_\infty = 0$, entonces $\abs{x_i} = 0$ para todo $1 \leq i \leq n$, y así $x_i = 0$, por lo que $x = 0$.
 \item[\textbf{ii)}] Sea $x = (x_1, \ldots, x_n) \in \K^n$ y $\lambda \in\K$. Entonces
@@ -1250,7 +1249,7 @@ Notemos que
 \end{itemize}
 \end{Dem}
 
-Cuando trabajemos en $\K^n$ con la norma $\Norm{\cdot}_p$ para $1\leq p \leq \infty$, denotaremos a este por $\ell_p^n$.  
+En adelante, cuando trabajemos en $\K^n$ con la norma $\Norm{\cdot}_p$ para $1\leq p \leq \infty$, denotaremos a este por $\ell_p^n$.  
 
 \begin{Ejem}
 Denotemos por $\K^\N$ al espacio de sucesiones en $\K$. Definamos para $1 \leq p \leq \infty$ la función $\Norm{\cdot}_p : \K^\N \to [0, \infty]$ dada por $$\Norm{(x_1, x_2, \ldots )}_p := \lim_{n\to \infty} \Norm{(x_1, \ldots, x_n)}_p. $$
@@ -1351,7 +1350,7 @@ Si $X$ es un espacio normado, entonces $X_\mathrm{w}$ es un espacio vectorial to
 Sea $X$ un espacio normado. La topología original de $X$ se denotará por $\tau$. Notemos que cada seminorma en $\F_X$ es continua si consideramos la topología original en el dominio de cada funcional. Esto indica que $\tau_\mathrm{w} \subseteq \tau$. Esta contención es propia cuando $X$ es de dimensión infinita, como se muestra en la siguiente proposición. La idea de la demostración radica en que los abiertos de la topología débil en espacios de dimensión infinita siempre son ``grandes'', pues cada uno de ellos contiene una traslación de un subespacio no trivial.
 
 \begin{Prop} \label{Prop:ContencionPropiaTopologiaDebil}
-Sea $X$ un espacio normado de dimensión infinita. Entonces $\tau_\mathrm{w} \subsetneq \tau$.
+Si $X$ un espacio normado de dimensión infinita, entonces $\tau_\mathrm{w} \subsetneq \tau$.
 \end{Prop}
 
 \begin{Dem}
