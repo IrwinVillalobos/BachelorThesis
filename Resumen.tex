@@ -303,8 +303,7 @@ Sea $X$ un espacio topológico. Diremos que $X$ es \textit{Hausdorff} si para tod
 \end{Def}
 
 \section{Espacios métricos.}
-
-La topología usual de $\R^n$ que nos es bastante familiar tiene por base a los conjuntos que son bolas de radio y centro arbitrarios. Se puede generalizar el concepto de distancia a otros espacios de tal manera que esta induce una topología en tales espacios de manera similar a como se hace con el caso de la distancia euclidiana. En esta sección desarrollaremos algunos conceptos de los espacios métricos y sus respectivas topologías. 		 
+El marco de espacios topológicos es muy general, por lo que estudiaremos un caso particular de estos espacios que tienen mejores propiedades y donde las sucesiones juegan un papel muy importante. 
 
 \begin{Def}
 Un \textit{espacio métrico} es una pareja $(M, d)$ donde $M$ es un conjunto no vacío y $d: M \times M \to [0, \infty)$ es una función llamada \textit{métrica} que cumple:
@@ -831,6 +830,21 @@ Sean $X$ un espacio vectorial y $p$ una seminorma. Entonces
 Sean $X$ un espacio vectorial sobre $\K$ y $ \mathcal{F}$ una familia no vacía de seminormas en $X$. Diremos que $\mathcal{F}$ \textit{separa puntos} en $X$, si para cada $x \in X \setminus \{ 0 \}$  existe $p \in \mathcal{F}$ tal que $p(x) \neq 0$.  
 \end{Def}
 
+\begin{Ejem} \label{Ejem:EVTFamiliaFuncionales}
+Ejemplo 
+Sea $A$ un conjunto no-vacío. Resulta que $X := F(A,\K)$ es un espacio vectorial. Para cada $a \in A$, sea $\delta_a : X \to \K$ definido por $\delta_a(f) = f(a)$. 
+
+Fijemos $a \in A$, consideremos $\abs{\delta_a} \geq 0$  y notemos que 
+\begin{itemize}
+\item[\textbf{i)}] Sean $f, g \in X$, entonces 
+$$\abs{\delta_a(f+g)} = \abs{f(a) + g(a)} \leq \abs{f(a)} + \abs{g(a)} = \abs{\delta_a(f)} + \abs{\delta_a(g)}.$$
+\item[\textbf{ii)}] Sean $f \in X$, $\lambda \in \K$, entonces
+$$\abs{\delta_a(\lambda f)} = \abs{\lambda f(a)} = \abs{\lambda} \abs{f(a)} = \abs{\lambda} \abs{\delta_a(f)}.$$
+\item[\textbf{iii)}] Sea $f \in X$, $f \neq 0 $, entonces existe $a \in A$ con $\abs{\delta_a} = \abs{f(a)} \neq 0$.
+\end{itemize}
+Esto indica que $\mathcal{F} = \{ \abs{\delta_a}: a \in A \}$ es una familia de seminormas en $X$ que separa puntos.
+\end{Ejem}
+
 Sea $\mathcal{T}$ la colección de topologías de un espacio vectorial $X$ en las que toda seminorma en $\mathcal{F}$ es continua. Claramente, la topología discreta de $X$ está en $\mathcal{T}$ y así esta colección es no-vacía y entonces la intersección de todas las topologías en $\mathcal{T}$ vuelve a ser una topología de $X$. 
 
 \begin{Def} Sea $\mathcal{F}$ una familia no vacía de seminormas en $X$. La \textit{topología} inducida por $\mathcal{F}$ en $X$ es $$\displaystyle\sigma(X, \mathcal{F}) : = \bigcap_{\tau \in \mathcal{T}} \tau.$$
@@ -961,10 +975,10 @@ Así que $\pi$ es continua.
 
 \section{Espacios normados.}
 
-Recordemos que $(X, \Norm{\cdot})$ es un \textit{espacio normado} si $X$ es un espacio vectorial sobre $\K$ y $\Norm{\cdot}$ es una norma en $X$. 
-
 \begin{Def}
 Una \textit{norma} en un espacio vectorial $X$ es una seminorma $\Norm{\cdot}: X \to [0, \infty)$ tal que es \textit{definida positiva}, esto es para cada $x \in X$, $\Norm{x} = 0$ si, y sólo si $x = 0$.
+
+En este caso decimos que $(X, \Norm{\cdot})$ es un \textit{espacio normado}. 
 \end{Def}
  
 \begin{Def} Sea $X$ un espacio vectorial. Una función $f : X \to \R$ es \textit{convexa} si para todos $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que $$f(\lambda x + (1-\lambda y))\leq \lambda f(x) + (1-\lambda) f(y).$$
@@ -975,7 +989,15 @@ Una norma $\Norm{\cdot}:X \to \R$ es convexa pues dados $x, y \in X$ y $\lambda 
 $$\Norm{\lambda x + (1-\lambda y)} \leq \abs{\lambda} \Norm{x} + \abs{1-\lambda} \Norm{y}  = \lambda \Norm{x} + (1-\lambda) \Norm{y}.$$
 \end{Ejem}
 
-En un espacio normado $X$ resulta que la función $d: X \times X \to [0, \infty)$ definida por $$d(x, y) := \Norm{x-y}$$ es una métrica. Por lo que $X$ es un espacio métrico y entonces podemos considerar la topología inducida por la métrica, la cual se denomina topología original de $X$. 
+\begin{Lema} \label{Lema:NormaContinua}
+Sea $X$ un espacio normado. Entonces la norma $\Norm{\cdot}:X \to [0, \infty)$ es una función continua.
+\end{Lema}
+
+\begin{Dem}
+Sea $(x_n)_{n\in\N}$ una sucesión en $X$ que converge a $x \in X$. Por definición esto indica que para todo $\varepsilon > 0$ existe $N \in \N$ tal que si $n \geq N$ entonces $\Norm{x_n - x} \leq \varepsilon$. Por la desigualdad del triángulo que $\abs{\Norm{x_n} - \Norm{x}} < \Norm{x_n - x}$. Esto implica que $\Norm{x_n}$ converge a $\Norm{x}$ y así $\Norm{\cdot}$ es continua.
+\end{Dem}
+
+En un espacio normado $X$ resulta que la función $d: X \times X \to [0, \infty)$ definida por $$d(x, y) := \Norm{x-y}$$ es una métrica. Por lo que $X$ es un espacio métrico y entonces podemos considerar la topología inducida por la métrica, la cual se denomina topología original de $X$. A menos que se especifique otra cosa, cuando hablemos de un espacio normado como espacio topológico, consideraremos a este con la topología original.
 
 \begin{Prop} \label{Prop:TopologiaOriginalEsEVT}
 Sea $X$ un espacio normado. Entonces $X$ es un espacio vectorial topológico. 
@@ -998,28 +1020,130 @@ concluimos que $\mathcal{B}_1 = \mathcal{B}_2$.
 \end{Dem}
 
 \begin{Def}
-Un espacio normado $X$ es \textit{completo} si es completo como espacio vectorial topológico. En este caso decimos que $X$ es un \textit{espacio de Banach}.  
+Sea $X$ un espacio normado. Una sucesión $(x_n)_{n\in\N}$ es de \textit{Cauchy} si para todo $\varepsilon > 0$ existe $N \in\N$ tal que $\Norm{x_n - x_m} < \varepsilon$ para $n, m \geq N$. Decimos que $X$ es \textit{completo} si toda sucesión de Cauchy converge. En este caso decimos que $X$ es un \textit{espacio de Banach}.  
 \end{Def}
-
-\begin{Prop}
-Sea $X$ un espacio normado tal que toda sucesión de Cauchy en $X$ converge en $X$, entonces $X$ es un espacio de Banach.
-\end{Prop}
-
-\begin{Dem}
-(Pendiente).
-\end{Dem}
 
 \begin{Cor} \label{Cor:EspacioBanachEsEVTCompleto}
 Si $X$ es un espacio de Banach, entonces es un espacio vectorial topológico completo.
 \end{Cor}
 
-\begin{Lema} \label{Lema:NormaContinua}
-Sea $X$ un espacio normado. Entonces la norma $\Norm{\cdot}:X \to [0, \infty)$ es una función continua.
+\begin{Dem}
+(Pendiente).
+\end{Dem}
+
+\subsection{Ejemplos de espacios normados.}
+
+En $\K^n $ la norma euclidiana resulta ser el caso $p=2$ de una familia de normas en $\K^n$ llamadas $p$-normas. En esta subsección introduciremos estas funciones y verificaremos que en efecto son normas en $\K^n$. Además, agregaremos otros ejemplos de espacios normados de dimensión infinita.      
+
+\begin{Ejem} \label{Ejem:EllePNormado}
+Dados $n \in \N$ y $1 \leq p < \infty$, definamos la función $\Norm{\cdot}_p:\K^n \to [0, \infty)$ por $$\Norm{(x_1, \ldots, x_n)}_p := \left(\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}}.$$  
+
+Para el caso $p = \infty$, definimos la función $\Norm{\cdot}_{\infty}: \K^n \to [0, \infty)$ dada por $$\Norm{(x_1, \ldots, x_n)}_\infty :=\max_{1 \leq i \leq n} \,  \abs{x_i}.$$
+Para verificar a continuación que $\Norm{\cdot}_p$ es una norma recurriremos a los siguientes lemas y ejemplos.
+\end{Ejem}
+
+\begin{Lema} \label{Lema:SegundaDerivadaPositivaConvexa}
+Sean $(a, b) \subseteq \R$ un intervalo y $f : (a, b) \to \R$ una función dos veces diferenciable. Si $f^{\prime\prime} \geq 0$ en $(a, b)$, entonces $f$ es convexa.
 \end{Lema}
 
 \begin{Dem}
-Sea $(x_n)_{n\in\N}$ una sucesión en $X$ que converge a $x \in X$. Por definición esto indica que para todo $\varepsilon > 0$ existe $N \in \N$ tal que si $n \geq N$ entonces $\Norm{x_n - x} \leq \varepsilon$. Por la desigualdad del triángulo que $\abs{\Norm{x_n} - \Norm{x}} < \Norm{x_n - x}$. Esto implica que $\Norm{x_n}$ converge a $\Norm{x}$ y así $\Norm{\cdot}$ es continua.
+Tomemos $x, y \in X$ y $0 \leq \lambda \leq 1$. Los casos $x = y$ y $\lambda \in \{ 0, 1 \}$ son claros, así que supongamos que $x \neq y$ y $\lambda \in (0, 1)$. Sea $c = \lambda x + (1-\lambda) y$. Sin perdida de generalidad supongamos que $x < y$(en realidad si se pierde algo de generalidad, pero el caso $y < x$ sólo se intercambian un $\leq$ y un $\geq$. ¿Hago ambos casos o sí puedo suponer que no hay ``perdida de generalidad''?), de manera que $x < c < y$. El teorema del valor medio indica que existen $z_1, z_2 \in \R$ con $x < z_1 <  c < z_2 < y$ tales que $$f^\prime(z_1) = \frac{f(c)-f(x)}{c-x} \;\;\mbox{ y } \;\;f^\prime(z_2) = \frac{f(y)-f(c)}{y-c}.$$
+
+Dado que $f^{\prime\prime} \geq 0$, se tiene que $f^\prime$ es creciente, de donde $$\frac{f(c)-f(x)}{c-x} = f^\prime(z_1) \leq f^\prime(c) \leq f^\prime(z_2) = \frac{f(y)-f(c)}{y-c}.$$
+
+Esto implica que $$(f(x) - f(c))(y-c) \geq  (f(y) - f(c))(x-c).$$
+
+O bien $$f(x)y - f(x)c - f(c)y + f(c)c \geq  f(y)x - f(y)c - f(c)x + f(c)c.$$
+
+Entonces \begin{equation} \label{Eq:RelacionFuncionConvexa} 
+f(c) \leq f(x)\cdot \frac{y-c}{x-y} + f(y)\cdot\frac{x-c}{x-y}.
+\end{equation} 
+
+Como $$\frac{y-c}{x-y} = \lambda \;\;\mbox{ y }\;\; \frac{x-c}{x-y} = 1- \lambda, $$ se sigue de (\ref{Eq:RelacionFuncionConvexa}) que $$f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1- \lambda)f(y).$$
 \end{Dem}
+
+\begin{Ejem} \label{Ejem:XPConvexa}
+Fijemos $1 \leq p < \infty$ y consideremos $f: [0, \infty) \to[0, \infty)$ dada por $f(x) = x^p$. Claramente $f$ es diferenciable y $f^\prime(x) = p x^{p-1}$. Además $f^\prime$ vuelve  a ser diferenciable y $f^{\prime\prime}(x) = p(p-1)x^{p-2} \geq 0$ para todo $x \geq 0$ y por el lema~\ref{Lema:SegundaDerivadaPositivaConvexa} resulta que $f$ es convexa. 
+
+Tomemos $g = \abs{\cdot}$, la cual es convexa por ser una norma en $\K$. Sean $x, y \in \K$ y $\lambda \in [0, 1]$, como $g$ es convexa se tiene que $$g(\lambda x + (1-\lambda)y) \leq \lambda g(x) + (1-\lambda)g(y).$$
+
+Como $f$ es creciente y convexa resulta que
+$$f(g(\lambda x + (1-\lambda)y)) \leq f(\lambda g(x) + (1-\lambda)g(y)) \leq \lambda f(g(x)) + (1-\lambda)f(g(y)).$$
+
+Por lo tanto $f \circ g : \K \to \R$, $z \mapsto \abs{z}^p$ es convexa.
+\end{Ejem}
+
+\bigskip
+
+\begin{Dem}
+($\Norm{\cdot}_p$ es una norma en $\K^n$ y este es completo bajo esta norma.) 
+
+Sea $1 \leq p < \infty$.
+\begin{itemize}
+\item[\textbf{i)}] Claramente, $\Norm{x}_p \geq 0$ para cualquier $x \in \K^n$. Además, si $x = 0 \in \K^n$, entonces $\Norm{x}_p= 0$. Es sencillo observar que si $\Norm{x}_p = 0$ para algún $x \in \K^n$, entonces $x = 0$.
+\item[\textbf{ii)}] Sea $x = (x_1, \ldots, x_n) \in \K^n$ y $\lambda \in \K$, entonces
+\Ecu{
+\Norm{\lambda x}_p &= \Norm{(\lambda x_1, \ldots, \lambda x_n)}_p =  \left(\sum_{i=1}^n \abs{\lambda x_i}^p\right)^{\frac{1}{p}} \\
+&= \left(\abs{\lambda}^p\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}} = \abs{\lambda} \left(\sum_{i=1}^n \abs{ x_i}^p\right)^{\frac{1}{p}} = \abs{\lambda} \Norm{x}_p.
+}
+\item[\textbf{iii)}] Sean $x, y \in \K^n$. Si $x = 0$ ó $y = 0$, claramente $\Norm{x+y}_p \leq \Norm{x}_p + \Norm{y}_p$. Así que tomamos $x, y \neq 0$. Definamos 
+$$x_0 := \frac{x}{\Norm{x}_p + \Norm{y}_p} \quad \mbox{  y } \quad y_0 := \frac{y}{\Norm{x}_p + \Norm{y}_p},$$ de tal manera que 
+$\Norm{x_0}_p + \Norm{y_0}_p = 1$. Definamos $\lambda := \Norm{y_0}_p \in (0, 1)$ y tomemos $$\widehat{x} :=\frac{x_0}{1-\lambda} \quad
+ \mbox{ y } \quad \widehat{y} := \frac{y_0}{\lambda}.$$
+
+Notemos que $\Norm{\widehat{x}}_p = \Norm{\widehat{y}}_p = 1$ y expresemos $\widehat{x}=(\widehat{x_1}, \ldots \widehat{x_n})$ y $\widehat{y}= (\widehat{y_1}, \ldots \widehat{y_n})$. El ejemplo~\ref{Ejem:XPConvexa} muestra que la función $z \mapsto \abs{z}^p$ es convexa para $1 \leq p < \infty$. Así que tenemos que para $1 \leq i \leq n$
+$$\abs{(1-\lambda)\widehat{x_i} + \lambda \widehat{y_i}}^p \leq (1-\lambda)\abs{\widehat{x_i}}^p + \lambda \abs{\widehat{y_i}}^p.$$
+ 
+Y al sumar $i$ de $1$ a $n$ obtenemos
+\Ecu{
+\Norm{x_0 + y_0}_p^p &= \Norm{(1-\lambda)\widehat{x} + \lambda \widehat{y}}_p^p \\
+&=  \sum_{i=1}^n\abs{(1-\lambda)\widehat{x_i} + \lambda \widehat{y_i}}^p \\
+&\leq (1-\lambda)\left(\sum_{i=1}^n \abs{\widehat{x_i}}^p \right) + \lambda \left( \sum_{i=1}^n\abs{\widehat{y_i}}^p \right) \\
+&= (1- \lambda) \Norm{\widehat{x}}_p^p + \lambda \Norm{\widehat{y}}_p^p = 1.
+}
+
+Como para $z \in [0, \infty)$ se tiene que $z^p \leq 1$ si, y sólo si $z \leq 1$, entonces $$\Norm{x_0 + y_0}_p \leq 1 = \Norm{x_0}_p + \Norm{y_0}_p.$$ 
+
+Esto es, $$\Norm{\frac{x+y}{\Norm{x}_p + \Norm{y}_p}}_p \leq \Norm{\frac{x}{\Norm{x}_p + \Norm{y}_p}}_p + \Norm{\frac{y}{\Norm{x}_p + \Norm{y}_p}}_p.$$
+
+Por lo tanto $$\Norm{x+y}_p \leq \Norm{x}_p + \Norm{y}_p.$$
+
+\end{itemize}
+
+
+Veamos ahora que $\Norm{\cdot}_\infty$ es una norma en $\K^n$. Para eso, notemos que
+\begin{itemize}
+\item[\textbf{i)}] Sea $x = (x_1, \ldots, x_n) \in \K^n$. Si $x = 0$, entonces $\Norm{x}_\infty = \max_{i \in \N} \,  0 = 0.$ Si por otro lado $\Norm{x}_\infty = 0$, entonces $\abs{x_i} = 0$ para todo $1 \leq i \leq n$, y así $x_i = 0$, por lo que $x = 0$.
+\item[\textbf{ii)}] Sea $x = (x_1, \ldots, x_n) \in \K^n$ y $\lambda \in\K$. Entonces
+\Ecu{
+\Norm{\lambda x}_\infty = \Norm{(\lambda x_1, \ldots, \lambda x_n)}_\infty = \max_{1 \leq i \leq n} \,  \abs{ \lambda x_i} = \max_{1 \leq i \leq n} \,  \abs{\lambda}\abs{x_i} = \abs{\lambda} \max_{1 \leq i \leq n} \,  \abs{x_i} = \abs{\lambda} \Norm{x}_\infty.
+}
+\item[\textbf{iii)}] Sean $x = (x_1, \ldots, x_n), y = (y_1, \ldots, y_n) \in \K^n$, entonces 
+\Ecu{
+\Norm{x+y}_\infty &= \Norm{(x_1 + y_1, \ldots, x_n + y_n)}_\infty = \max_{1 \leq i \leq n} \,  \abs{x_i + y_i} \\
+& \leq \max_{1 \leq i \leq n} \,  (\abs{x_i} + \abs{x_i}) \leq \max_{1 \leq i \leq n} \,  \abs{x_i} + \max_{1 \leq i \leq n} \,  \abs{y_i} \\
+& = \Norm{x}_\infty + \Norm{y}_\infty.
+}
+\end{itemize}
+\end{Dem}
+
+En adelante, cuando trabajemos en $\K^n$ con la norma $\Norm{\cdot}_p$, lo denotaremos por $\ell_p^n$.  
+
+\begin{Ejem}
+Denotemos por $\K^\N$ al espacio de sucesiones en $\K$. Definamos para $1 \leq p < \infty$ las funciones $\Norm{\cdot}_p : \K^\N \to [0, \infty]$ y $\Norm{\cdot}_\infty : \K^\N \to [0, \infty]$ por $$\Norm{(x_1, x_2, \ldots)}_p = \left(  \sum_{i=1}^\infty \abs{x_i}^p \right)^{\frac{1}{p}} \mbox{  y  } \Norm{(x_1, x_2, \ldots)}_\infty = \sup_{i \in \N} \,  \abs{x_i},$$
+donde consideramos que $\infty^{\frac{1}{p}} = \infty$.
+
+Así pues, para $1\leq p\leq \infty$ definimos $\ell_p \subseteq \K^n$ como el espacio de sucesiones $x \in \K^\N$ para las cuales $\Norm{x}_p < \infty$.
+
+\end{Ejem}
+
+\begin{Dem}
+($\Norm{\cdot}_p$ es una norma en $\ell_p$.) \\
+(Pendiente).
+\end{Dem}
+
+
+\subsection{Operadores Lineales Acotados}
 
 No todo operador lineal $T:X\to Y$ entre los espacios normados $X$ e $Y$ resulta ser continuo. En este trabajo nos interesan los que sí son continuos. Una caracterización de un operador lineal continuo es que sea un \textit{operador lineal acotado}, esto es, que exista $K > 0$ tal que $$\Norm{Tx} \leq K \Norm{x} \mbox{ para todo } x \in X.$$ 
 
@@ -1141,132 +1265,8 @@ Así que $\varphi$ es un operador lineal acotado y por tanto continuo.
 \end{Dem}
 
 
-
-\subsection{Ejemplos de espacios normados.}
-En $\K^n $ la norma euclidiana resulta ser el caso $p=2$ de una familia de normas en $\K^n$ llamadas $p$-normas. En esta subsección introduciremos estas funciones y verificaremos que en efecto son normas en $\K^n$. Además, agregaremos otros ejemplos de espacios normados de dimensión infinita.      
-
-\begin{Ejem} \label{Ejem:EllePNormado}
-Dados $n \in \N$ y $1 \leq p < \infty$, definamos la función $\Norm{\cdot}_p:\K^n \to [0, \infty)$ por $$\Norm{(x_1, \ldots, x_n)}_p := \left(\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}}.$$  
-
-Para el caso $p = \infty$, definimos la función $\Norm{\cdot}_{\infty}: \K^n \to [0, \infty)$ dada por $$\Norm{(x_1, \ldots, x_n)}_\infty :=\max_{1 \leq i \leq n} \,  \abs{x_i}.$$
-Para verificar a continuación que $\Norm{\cdot}_p$ es una norma recurriremos a los siguientes lemas y ejemplos.
-\end{Ejem}
-
-\begin{Lema} \label{Lema:PrimeraDerivadaConvexidad}
-Sean $(a, b) \subseteq \R$ un intervalo y $f : (a, b) \to \R$ una función diferenciable. Si $$f(y) \geq f(x) + f^\prime(x) (y-x)$$  para todos $x,y \in (a, b)$, entonces $f$ es convexa.
-\end{Lema}
-
-\begin{Dem}
-Tomemos $x, y \in X$ y $0 \leq \lambda \leq 1$. Los casos $x = y$ y $\lambda \in \{ 0, 1 \}$ son claros, así que supongamos que $x \neq y$ y $\lambda \in (0, 1)$. Sea $c = \lambda x + (1-\lambda) y$. Sin perdida de generalidad supongamos que $x < y$, de manera que $x < c < y$. Por hipótesis tenemos que $$ f(x) \geq f(c) + f^\prime(c) (x-c) \;\;\mbox{ y }\;\; f(y) \geq f(c) + f^\prime(c) (y-c).$$ 
-
-De donde  $$\frac{f(x) - f(c)}{x-c} \leq  f^\prime(c) \leq \frac{f(y) - f(c)}{y-c}.$$ 
-
-Esto implica que $$(f(x) - f(c))(y-c) \geq  (f(y) - f(c))(x-c).$$
-
-O bien $$f(x)y - f(x)c - f(c)y + f(c)c \geq  f(y)x - f(y)c - f(c)x + f(c)c.$$
-
-Entonces \begin{equation} \label{Eq:RelacionFuncionConvexa} 
-f(c) \leq f(x)\cdot \frac{y-c}{x-y} + f(y)\cdot\frac{x-c}{x-y}.
-\end{equation} 
-
-Como $$\frac{y-c}{x-y} = \lambda \;\;\mbox{ y }\;\; \frac{x-c}{x-y} = 1- \lambda, $$ se sigue de (\ref{Eq:RelacionFuncionConvexa}) que $$f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1- \lambda)f(y).$$
-\end{Dem}
-
-\begin{Lema} \label{Lema:SegundaDerivadaPositivaConvexa}
-Sean $(a, b) \subseteq \R$ un intervalo y $f : (a, b) \to \R$ una función dos veces diferenciable. Si $f^{\prime\prime} \geq 0$ en $(a, b)$, entonces $f$ es convexa.
-\end{Lema}
-
-\begin{Dem}
-Sean $x, y \in (a, b)$. Para el caso $x = y$ es claro notar que $$f(y) \geq f(x) + f^\prime(x) (y-x).$$ 
-
-Así que podemos suponer que $x \neq y$. Sin perdida de generalidad  tomemos  $x < y$ (en realidad si se pierde algo de generalidad, pero el caso $y < x$ sólo se intercambian un $\leq$ y un $\geq$. ¿Hago ambos casos o sí puedo suponer que no hay ``perdida de generalidad''). El teorema del valor medio indica que existe $x < c < y$ tal que $$f^\prime(c) = \frac{f(y)-f(x)}{y-x}.$$
-Como $f^{\prime\prime} \geq 0$, se tiene que $f^\prime$ es creciente, de donde $f^\prime(x) \leq f^\prime(c)$ y así $$f^\prime(x) \leq \frac{f(y)-f(x)}{y-x}.$$
-Por lo tanto $f(y) \geq f(x) + f^\prime(x)(y-x)$ y el lema~\ref{Lema:PrimeraDerivadaConvexidad} indica que $f$ es convexa.
-\end{Dem}
-
-\begin{Ejem} \label{Ejem:XPConvexa}
-Fijemos $1 \leq p < \infty$ y consideremos $f: [0, \infty) \to[0, \infty)$ dada por $f(x) = x^p$. Claramente $f$ es diferenciable y $f^\prime(x) = p x^{p-1}$. Además $f^\prime$ vuelve  a ser diferenciable y $f^{\prime\prime}(x) = p(p-1)x^{p-2} \geq 0$ para todo $x \geq 0$ y por el lema~\ref{Lema:SegundaDerivadaPositivaConvexa} resulta que $f$ es convexa. 
-
-Tomemos $g = \abs{\cdot}$, la cual es convexa por ser una norma en $\K$. Sean $x, y \in \K$ y $\lambda \in [0, 1]$, como $g$ es convexa se tiene que $$g(\lambda x + (1-\lambda)y) \leq \lambda g(x) + (1-\lambda)g(y).$$
-
-Como $f$ es creciente y convexa resulta que
-$$f(g(\lambda x + (1-\lambda)y)) \leq f(\lambda g(x) + (1-\lambda)g(y)) \leq \lambda f(g(x)) + (1-\lambda)f(g(y)).$$
-
-Por lo tanto $f \circ g : \K \to \R$, $z \mapsto \abs{z}^p$ es convexa.
-\end{Ejem}
-
-\bigskip
-
-\begin{Dem}
-($\Norm{\cdot}_p$ es una norma en $\K^n$.) 
-
-Sea $1 \leq p < \infty$.
-\begin{itemize}
-\item[\textbf{i)}] Claramente, $\Norm{x}_p \geq 0$ para cualquier $x \in \K^n$. Además, si $x = 0 \in \K^n$, entonces $\Norm{x}_p= 0$. Es sencillo observar que si $\Norm{x}_p = 0$ para algún $x \in \K^n$, entonces $x = 0$.
-\item[\textbf{ii)}] Sea $x = (x_1, \ldots, x_n) \in \K^n$ y $\lambda \in \K$, entonces
-\Ecu{
-\Norm{\lambda x}_p &= \Norm{(\lambda x_1, \ldots, \lambda x_n)}_p =  \left(\sum_{i=1}^n \abs{\lambda x_i}^p\right)^{\frac{1}{p}} \\
-&= \left(\abs{\lambda}^p\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}} = \abs{\lambda} \left(\sum_{i=1}^n \abs{ x_i}^p\right)^{\frac{1}{p}} = \abs{\lambda} \Norm{x}_p.
-}
-\item[\textbf{iii)}] Sean $x, y \in \K^n$. Si $x = 0$ ó $y = 0$, claramente $\Norm{x+y}_p \leq \Norm{x}_p + \Norm{y}_p$. Así que tomamos $x, y \neq 0$. Definamos 
-$$x_0 := \frac{x}{\Norm{x}_p + \Norm{y}_p} \quad \mbox{  y } \quad y_0 := \frac{y}{\Norm{x}_p + \Norm{y}_p},$$ de tal manera que 
-$\Norm{x_0}_p + \Norm{y_0}_p = 1$. Definamos $\lambda := \Norm{y_0}_p \in (0, 1)$ y tomemos $$\widehat{x} :=\frac{x_0}{1-\lambda} \quad
- \mbox{ y } \quad \widehat{y} := \frac{y_0}{\lambda}.$$
-
-Notemos que $\Norm{\widehat{x}}_p = \Norm{\widehat{y}}_p = 1$ y expresemos $\widehat{x}=(\widehat{x_1}, \ldots \widehat{x_n})$ y $\widehat{y}= (\widehat{y_1}, \ldots \widehat{y_n})$. El ejemplo~\ref{Ejem:XPConvexa} muestra que la función $z \mapsto \abs{z}^p$ es convexa para $1 \leq p < \infty$. Así que tenemos que para $1 \leq i \leq n$
-$$\abs{(1-\lambda)\widehat{x_i} + \lambda \widehat{y_i}}^p \leq (1-\lambda)\abs{\widehat{x_i}}^p + \lambda \abs{\widehat{y_i}}^p.$$
- 
-Y al sumar $i$ de $1$ a $n$ obtenemos
-\Ecu{
-\Norm{x_0 + y_0}_p^p &= \Norm{(1-\lambda)\widehat{x} + \lambda \widehat{y}}_p^p \\
-&=  \sum_{i=1}^n\abs{(1-\lambda)\widehat{x_i} + \lambda \widehat{y_i}}^p \\
-&\leq (1-\lambda)\left(\sum_{i=1}^n \abs{\widehat{x_i}}^p \right) + \lambda \left( \sum_{i=1}^n\abs{\widehat{y_i}}^p \right) \\
-&= (1- \lambda) \Norm{\widehat{x}}_p^p + \lambda \Norm{\widehat{y}}_p^p = 1.
-}
-
-Como para $z \in [0, \infty)$ se tiene que $z^p \leq 1$ si, y sólo si $z \leq 1$, entonces $$\Norm{x_0 + y_0}_p \leq 1 = \Norm{x_0}_p + \Norm{y_0}_p.$$ 
-
-Esto es, $$\Norm{\frac{x+y}{\Norm{x}_p + \Norm{y}_p}}_p \leq \Norm{\frac{x}{\Norm{x}_p + \Norm{y}_p}}_p + \Norm{\frac{y}{\Norm{x}_p + \Norm{y}_p}}_p.$$
-
-Por lo tanto $$\Norm{x+y}_p \leq \Norm{x}_p + \Norm{y}_p.$$
-
-\end{itemize}
-
-
-Veamos ahora que $\Norm{\cdot}_\infty$ es una norma en $\K^n$. Para eso, notemos que
-\begin{itemize}
-\item[\textbf{i)}] Sea $x = (x_1, \ldots, x_n) \in \K^n$. Si $x = 0$, entonces $\Norm{x}_\infty = \max_{i \in \N} \,  0 = 0.$ Si por otro lado $\Norm{x}_\infty = 0$, entonces $\abs{x_i} = 0$ para todo $1 \leq i \leq n$, y así $x_i = 0$, por lo que $x = 0$.
-\item[\textbf{ii)}] Sea $x = (x_1, \ldots, x_n) \in \K^n$ y $\lambda \in\K$. Entonces
-\Ecu{
-\Norm{\lambda x}_\infty = \Norm{(\lambda x_1, \ldots, \lambda x_n)}_\infty = \max_{1 \leq i \leq n} \,  \abs{ \lambda x_i} = \max_{1 \leq i \leq n} \,  \abs{\lambda}\abs{x_i} = \abs{\lambda} \max_{1 \leq i \leq n} \,  \abs{x_i} = \abs{\lambda} \Norm{x}_\infty.
-}
-\item[\textbf{iii)}] Sean $x = (x_1, \ldots, x_n), y = (y_1, \ldots, y_n) \in \K^n$, entonces 
-\Ecu{
-\Norm{x+y}_\infty &= \Norm{(x_1 + y_1, \ldots, x_n + y_n)}_\infty = \max_{1 \leq i \leq n} \,  \abs{x_i + y_i} \\
-& \leq \max_{1 \leq i \leq n} \,  (\abs{x_i} + \abs{x_i}) \leq \max_{1 \leq i \leq n} \,  \abs{x_i} + \max_{1 \leq i \leq n} \,  \abs{y_i} \\
-& = \Norm{x}_\infty + \Norm{y}_\infty.
-}
-\end{itemize}
-\end{Dem}
-
-En adelante, cuando trabajemos en $\K^n$ con la norma $\Norm{\cdot}_p$ para $1\leq p \leq \infty$, denotaremos a este por $\ell_p^n$.  
-
-\begin{Ejem}
-Denotemos por $\K^\N$ al espacio de sucesiones en $\K$. Definamos para $1 \leq p \leq \infty$ la función $\Norm{\cdot}_p : \K^\N \to [0, \infty]$ dada por $$\Norm{(x_1, x_2, \ldots )}_p := \lim_{n\to \infty} \Norm{(x_1, \ldots, x_n)}_p. $$
-
-Resulta que para $x = (x_1, x_2, \ldots) \in \K^\N$ y $1 \leq p  < \infty$ se tiene que
-$$\Norm{x}_p = \lim_{n\to \infty} \left(\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}} \mbox{  y  } \Norm{x}_\infty = \lim_{n\to\infty} \left( \max_{1 \leq i \leq n} \,  \abs{x_i} \right).$$
-
-Así pues, para $1\leq p\leq \infty$ definimos $\ell_p \subseteq \K^n$ como el espacio de sucesiones $x \in \K^\N$ para las cuales $\Norm{x}_p < \infty$. De esta manera, tenemos que
-$$\Norm{x}_p = \left(  \sum_{i=1}^\infty \abs{x_i}^p \right)^{\frac{1}{p}} \mbox{  y  } \Norm{x}_\infty = \sup_{i \in \N} \,  \abs{x_i}.$$
-\end{Ejem}
-
-\begin{Dem}
-($\Norm{\cdot}_p$ es una norma en $\ell^p$.) \\
-(Pendiente).
-\end{Dem}
-
 \subsection{Compacidad de la bola cerrada en un espacio normado.}
+
 La compacidad es una propiedad muy importante que puede tener un subconjunto de un espacio topológico. El objetivo de esta sección es demostrar que la compacidad de la bola unitaria en un espacio normado depende simplemente de si este es de dimensión finita o no.
 
 \begin{Def}
