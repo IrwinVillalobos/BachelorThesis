@@ -350,7 +350,9 @@ Sean $M_1$ y $M_2$ espacios métricos y $f :  M_1 \to M_2$. Son equivalentes:
 \end{Prop}
 
 \begin{Dem}
-(Pendiente).
+Primero supongamos que $f$ es continua. Consideremos una sucesión $(x_n)_{n \in \N}$ tal que $x_n \to x$ para algún $x \in X$. Sea $V$ una vecindad abierta de $f(x)$ en $Y$. Como $f$ es continua, el conjunto $f^{-1}(V)$ es una vecindad abierta de $x$ en $X$. Dado que $x_n \to x$, existe $N \in \N$ tal que $x_n \in f^{-1}(V)$ para $n \geq \N$. Así pues, si $n \geq \N$ tenemos que $f(x_n) \in f(f^{-1}(V)) \subseteq V$. Por tanto $f(x_n) \to f(x)$. 
+
+Ahora supongamos que $f$ no es continua en algún $x \in X$, de manera que existe una vecindad abierta $V$ de $f(x)$ tal que para toda $n \in \N$ se tiene que $f(V_{\frac{1}{n}}(x)) \subsetneq V$. Así pues, para cada $n \in \N$ podemos tomar $x_n \in V_{\frac{1}{n}}(x)$ de tal manera que $f(x_n) \notin V$. Consideremos la sucesión $(x_n)_{n\in \N}$. Resulta que  $x_n \rightarrow x$. Sin embargo, para todo $n \in \N$ se tiene que $f(x_n) \notin V$, por lo que $f(x_n) \centernot\rightarrow f(x)$.
 \end{Dem}
 
 \begin{Prop}\label{Cor:CerraduraLimiteSucesiones} 
@@ -373,6 +375,18 @@ Sean $M$ un espacio métrico y $K \subseteq M$. Son equivalentes:
 
 \begin{Dem}
 (Pendiente.)
+\end{Dem}
+
+\begin{Def}
+Sea $M$ un espacio métrico, la \textit{distancia} de $x \in M$ a $A \subseteq M$ es $$d(x, A) := \inf \{ d(x,y) : y \in A \},$$ donde $\inf  \emptyset = \infty.$
+\end{Def}
+
+\begin{Prop}
+Sean $M$ un espacio métrico. Si $A \subseteq M$ es cerrado y $x \in M \setminus A$, entonces $d(x, A) > 0$. 
+\end{Prop}
+
+\begin{Dem}
+Se demostrará por contrapositiva. Supongamos que $d(x, A) = 0$. Tomemos un abierto $U$ que incluya a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$. Por lo que $U \cap A \neq \emptyset$. Por lo tanto $x \in \ov{A}$. Si $A$ fuera cerrado, entonces  $x \in A$.
 \end{Dem}
 
 \section{Redes.}
@@ -760,16 +774,11 @@ Sean $E$ y $F$ espacios vectoriales topológicos. Si existe un homeomorfismo line
 \end{Prop}
 
 \begin{Dem}
-(Pendiente).
+Sea $(x_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $F$. Consideremos la red $(T^{-1}(x_\alpha))_{\alpha \in \Lambda}$ en $E$. Sea $U$ una vecindad abierta del cero en $E$, entonces $T(U)$ es una vecindad abierta del cero en $F$. Por lo que existe $\alpha_0 \in \Lambda$ tal que $x_{\alpha_1} - x_{\alpha_2} \in T(U)$ para $\alpha_1, \alpha_2 \geq \alpha_0$. Así pues, $T^{-1}(x_{\alpha_1}) - T^{-1}(x_{\alpha_2}) = T^{-1}(x_{\alpha_1} - x_{\alpha_2}) \in U$ si $\alpha_1, \alpha_2 \geq \alpha_0$. Esto indica que $(T^{-1}(x_\alpha))_{\alpha \in \Lambda}$ es una red de Cauchy en $E$. 
+
+Como $E$ es completo, la red $(T^{-1}(x_\alpha))_{\alpha \in \Lambda}$ converge a algún $x \in E$. Demostremos que $(x_\alpha)_{\alpha \in \Lambda} \to T(x)$. Sea $V$ una vecindad de $T(x)$ en $F$, entonces $T^{-1}(V)$ es una vecindad de $x$ en $E$, por lo que existe $\beta_0 \in \Lambda$ tal que $T^{-1}(x_\beta) \in T^{-1}(V)$ para $\beta \geq \beta_0$. De esta manera, $x_\beta \in V$ si $\beta \geq \beta_0$, es decir, $x_\beta \to T(x)$.
 \end{Dem}
 
-\begin{Prop} \label{Prop:HomeomorfismoLinealPreservaCompletitud}
-Sean $E$ y $F$ espacios vectoriales topológicos. Si existe un homeomorfismo lineal $T : E \to F$ y $E$ es completo, entonces $F$ es completo.
-\end{Prop}
-
-\begin{proof}
-(Pendiente).
-\end{proof}
 
 \begin{Cor}
 Los espacios vectoriales topológicos de dimensión finita son completos.
@@ -999,7 +1008,7 @@ Sea $(x_n)_{n\in\N}$ una sucesión en $X$ que converge a $x \in X$. Por definició
 
 En un espacio normado $X$ resulta que la función $d: X \times X \to [0, \infty)$ definida por $$d(x, y) := \Norm{x-y}$$ es una métrica. Por lo que $X$ es un espacio métrico y entonces podemos considerar la topología inducida por la métrica, la cual se denomina topología original de $X$. A menos que se especifique otra cosa, cuando hablemos de un espacio normado como espacio topológico, consideraremos a este con la topología original.
 
-\begin{Prop} \label{Prop:TopologiaOriginalEsEVT}
+\begin{Prop} \label{Prop:TopologiaOriginalEspaciosNormadosEVT}
 Sea $X$ un espacio normado. Entonces $X$ es un espacio vectorial topológico. 
 \end{Prop}
 
@@ -1023,12 +1032,30 @@ concluimos que $\mathcal{B}_1 = \mathcal{B}_2$.
 Sea $X$ un espacio normado. Una sucesión $(x_n)_{n\in\N}$ es de \textit{Cauchy} si para todo $\varepsilon > 0$ existe $N \in\N$ tal que $\Norm{x_n - x_m} < \varepsilon$ para $n, m \geq N$. Decimos que $X$ es \textit{completo} si toda sucesión de Cauchy converge. En este caso decimos que $X$ es un \textit{espacio de Banach}.  
 \end{Def}
 
-\begin{Cor} \label{Cor:EspacioBanachEsEVTCompleto}
+\begin{Prop} \label{Prop:EspacioBanachEsEVTCompleto}
 Si $X$ es un espacio de Banach, entonces es un espacio vectorial topológico completo.
-\end{Cor}
+\end{Prop}
 
 \begin{Dem}
-(Pendiente).
+Ya sabemos de la proposición~\ref{Prop:TopologiaOriginalEspaciosNormadosEVT} que $X$ es un espacio vectorial topológico. Falta probar que las redes de Cauchy en $X$ convergen. Sea entonces $(x_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $X$. 
+
+Construyamos una sucesión $(\alpha_n)_{n \in \N}$ en $\Lambda$ de la siguiente manera. Sea $\alpha_1 \in \Lambda$ cualquiera. Supongamos que ya hemos definido $\alpha_{n-1}$ para algún $n \geq 2$. Entonces $V_{\frac{1}{n}}(0)$ es una vecindad del cero. Como $(x_\alpha)_{\alpha \in \Lambda}$ es de Cauchy, existe $\beta \in \Lambda$ tal que $x_{\beta_1} - x_{\beta_2} \in V_\frac{1}{n}(0)$ para $\beta_1, \beta_2 \geq \beta$. Así pues, definamos $\alpha_n$ de tal manera que $\alpha_n \geq \alpha_{n-1}$ y $\alpha_n \geq \beta$.   
+ 
+Una vez construida $(\alpha_n)_{n \in \N}$, resulta que $(x_{\alpha_n})_{n\in\N}$ es una sucesión en $X$ que cumple que
+\begin{equation} \label{Eq:RedesCauchy1} 
+\Norm{x_{\alpha_n} - x_\beta} < \frac{1}{n}, \mbox{ si } \beta \geq \alpha_n. 
+\end{equation}
+
+Tomemos $\varepsilon > 0$. Entonces existe $N \in \N$ tal que $\frac{1}{N} < \varepsilon$. De esta manera tenemos que si $n, m \geq N$, entonces  $x_{\alpha_n} - x_{\alpha_m} \in V_{\frac{1}{N}}(0)$ y así $\Norm{x_{\alpha_n} - x_{\alpha_m}} < \varepsilon$. De esto que $(x_{\alpha_n})_{n\in\N}$ es una sucesión de Cauchy. 
+
+Por ser $X$ completo las sucesiones de Cauchy convergen. Por lo que $(x_{\alpha_n})_{n\in\N}$ converge a algún $x \in X$. Demostremos que $(x_\alpha)_{\alpha \in \Lambda}$ converge también a $x$.
+
+Sea $U$ una vecindad del cero en $X$. Entonces existe $N \in \N$ con $V_\frac{1}{N}(0) \subseteq U$. Como $(x_{\alpha_n}) \to x$, podemos tomar $M \geq N$ tal que 
+\begin{equation} \label{Eq:RedesCauchy2}
+\Norm{x_{\alpha_n} -  x} < \frac{1}{2N} \mbox{ para } n \geq M.
+\end{equation} 
+Definamos $\beta = \alpha_{2M}$. Por (\ref{Eq:RedesCauchy1}) y (\ref{Eq:RedesCauchy2}), al tomar $\gamma \geq \beta$ se tiene que $$\Norm{x_\gamma - x_{\alpha_{2M}}} < \frac{1}{2N} \mbox{ y } \Norm{x_{\alpha_{2M}} - x } < \frac{1}{2N}.$$ 
+Por la desigualdad del triángulo $\Norm{x_\gamma - x} < \frac{1}{N}$ y así $x_\gamma - x \in U$. Por lo tanto $x_\alpha \to x$.
 \end{Dem}
 
 \subsection{Ejemplos de espacios normados.}
@@ -1264,23 +1291,9 @@ Sea $\dim \, X = n \in \N$ y $\{ x_1, \ldots, x_n \} \subseteq X$ una base de $X
 Así que $\varphi$ es un operador lineal acotado y por tanto continuo. 
 \end{Dem}
 
-
 \subsection{Compacidad de la bola cerrada en un espacio normado.}
 
 La compacidad es una propiedad muy importante que puede tener un subconjunto de un espacio topológico. El objetivo de esta sección es demostrar que la compacidad de la bola unitaria en un espacio normado depende simplemente de si este es de dimensión finita o no.
-
-\begin{Def}
-Sea $X$ un espacio normado, la \textit{distancia} de $x \in X$ a $A \subseteq X$ es $$d(x, A) := \inf \{ \Norm{x - y} : y \in A \},$$ donde $\inf  \emptyset = \infty.$
-\end{Def}
-
-\begin{Prop}
-Sean $X$ un espacio normado. Si $A \subseteq X$ es cerrado y $x \in X \setminus A$, entonces $d(x, A) > 0$. 
-\end{Prop}
-
-\begin{Dem}
-Se demostrará por contrapositiva. Supongamos que $d(x, A) = 0$. Tomemos un abierto $U$ que incluya a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$. Por lo que $U \cap A \neq \emptyset$. Por lo tanto $x \in \ov{A}$. Si $A$ fuera cerrado, entonces  $x \in A$.
-\end{Dem}
-
 
 \begin{Lema} \textbf{(de Riesz)}
 Sean $Y$ un subespacio propio y cerrado de un espacio normado $X$ y $\theta \in (0, 1)$, entonces existe $x_\theta \in X$ con $\Norm{x_\theta} = 1$ para el cual $\Norm{x_\theta - y} > \theta$ para todo $y \in Y$. 
@@ -1323,7 +1336,6 @@ $$\Norm{x_{n+1} - \sum_{i=1}^{n} \alpha_i x_i } \geq \frac{1}{2}.$$
 
 Así pues, queda construida la sucesión $(x_n)_{n\in\N}$. Si tomamos $n, m \in \N$ con $n > m$ entonces al tomar $\alpha_1 = 1$ y $\alpha_i = 0$ para $1 \leq i \leq  n-1$ e $i \neq m$, de $(\ref{Eq:1})$ obtenemos que $\Norm{x_n - x_m} \geq \frac{1}{2}$. Esto indica que cualquier subsucesión de $(x_n)_{n\in\N}$ no es de Cauchy y por lo tanto no converge. Por la proposición~\ref{Tma:CompacidadPorConvergenciaDeSubredes} concluimos que $B_X$ no es compacto.
 \end{Dem}
-
 
 \section{Topologías débil y débil*.}
 
