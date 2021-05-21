@@ -298,9 +298,24 @@ Sean $I$ un conjunto no vacío y $X_i$ espacios topológicos para cada $i \in I$. 
 
 Veamos que con esta definición de topología producto las proyecciones son continuas. Fijemos $i \in I$ y tomemos cualquier abierto $U_i$ en $X_i$. Entonces $\pi_i^{-1}(U_i)$ es un básico de $\prod_{i\in I} X_i$ y por tanto es abierto. Esto indica que $\pi_i$ es continua. \\ 
 
+
 \begin{Def}
-Sea $X$ un espacio topológico. Diremos que $X$ es \textit{Hausdorff} si para todos $x, y \in X$ existen abiertos $U, V$ tales que $x \in V$, $y \in U$ y $U\cap V = \emptyset$.
+Sea $X$ un espacio topológico. Una \textit{sucesión} en $X$ es una función $s: \N \to X$. Usualmente representamos a la sucesión $s$ por $(x_n)_{n\in \N}$, donde $x_n := s(n)$ para toda $n \in \N$. 
+
+Si existe $x \in X$ tal que para cada vecindad abierta $U$ de $x$ existe $N \in \N$ tal que $x_n \in U$ para $n \geq n$, entonces decimos que $(x_n)_{n\in\N}$ \textit{converge} a $x$, que $x$ es el \textit{límite} de $(x_n)_{n\in\N}$ y lo denotamos por $x_n \to x$.
 \end{Def}
+
+\begin{Def}
+Sea $X$ un espacio topológico. Diremos que $X$ es \textit{Hausdorff} si para todos $x, y \in X$ distintos existen abiertos $U, V$ tales que $x \in U$, $y \in V$ y $U\cap V = \emptyset$.
+\end{Def}
+
+\begin{Prop}
+Sean $X$ es un espacio topológico y $(x_n)_{n \in \N}$ una sucesión en $X$ convergente. Si $X$ es Hausdorff, entonces el límite de $(x_n)_{n\in\N}$ es único.
+\end{Prop}
+
+\begin{Dem}
+Sean $x, y \in X$ dos límites de $(x_n)_{n\in\N}$. Sea $U$ una vecindad abierta de $x$ y $V$ una vecindad abierta de $y$, entonces existen $N, M \in \N$ tales que $x_n \in U$ y $y_m \in V$ si $n \geq N$ y $m \geq M$. Al tomar $K = \max(N, M)$ tenemos que $x_K \in U \cap V$ y por tanto $U \cap V \neq \emptyset$. La contrapositiva de la definición de Hausdorff indica que $x = y$.
+\end{Dem}
 
 \section{Espacios métricos.}
 El marco de espacios topológicos es muy general, por lo que estudiaremos un caso particular de estos espacios que tienen mejores propiedades y donde las sucesiones juegan un papel muy importante. 
@@ -322,7 +337,7 @@ y la \textit{bola cerrada} de centro $y \in M$ y radio $r > 0$ se define por
 $$B_r(y) = \{ x \in M : d(x, y) \leq r \}.$$
 
 \begin{Def}
-En un espacio métrico $M$ consideramos la familia de subconjuntos de $M$ $$\tau_M :=\{ U \subseteq M : \mbox{ para todo }x \in U \mbox{ existe } r > 0 \mbox{ tal que }V_r(x) \subseteq U\}.$$
+En un espacio métrico $M$ consideramos la familia de subconjuntos de $M$ $$\tau_M :=\{ U \subseteq M : \mbox{ para cada }x \in U \mbox{ existe } r > 0 \mbox{ tal que }V_r(x) \subseteq U\}.$$
 Esta resulta ser una topología en $M$ y la llamamos \textit{topología original} de $M$.
 \end{Def}
 
@@ -342,30 +357,30 @@ Si $U$ es abierto de $M$ y $x \in U$, por definición existe $r > 0$ tal que $x \
 Las sucesiones tienen un papel relevante en los espacios métricos, pues a través de ellas podemos caracterizar algunos conceptos que previamente hemos presentado.
 
 \begin{Prop} \label{Prop:ContinuidadPorSucesiones}
-Sean $M_1$ y $M_2$ espacios métricos y $f :  M_1 \to M_2$. Son equivalentes: 
+Sean $M_1$ y $M_2$ espacios métricos, $x \in M_1$ y $f :  M_1 \to M_2$. Son equivalentes: 
 \begin{itemize}
-\item \textbf{i)} $f$ es continua.
-\item \textbf{ii)} Para toda sucesión $(x_n)_{n\in\N} \subseteq M_1$ tal que $x_n \to x \in M_1$ se cumple que $f(x_n) \to f(x)$. 
+\item \textbf{i)} $f$ es continua en $x$.
+\item \textbf{ii)} Para toda sucesión $(x_n)_{n\in\N} \subseteq M_1$ tal que $x_n \to x$ se cumple que $f(x_n) \to f(x)$. 
 \end{itemize} 
 \end{Prop}
 
 \begin{Dem}
-Primero supongamos que $f$ es continua. Consideremos una sucesión $(x_n)_{n \in \N}$ tal que $x_n \to x$ para algún $x \in X$. Sea $V$ una vecindad abierta de $f(x)$ en $Y$. Como $f$ es continua, el conjunto $f^{-1}(V)$ es una vecindad abierta de $x$ en $X$. Dado que $x_n \to x$, existe $N \in \N$ tal que $x_n \in f^{-1}(V)$ para $n \geq \N$. Así pues, si $n \geq \N$ tenemos que $f(x_n) \in f(f^{-1}(V)) \subseteq V$. Por tanto $f(x_n) \to f(x)$. 
+Primero supongamos que $f$ es continua. Consideremos una sucesión $(x_n)_{n \in \N}$ tal que $x_n \to x$. Sea $V$ una vecindad abierta de $f(x)$ en $Y$. Como $f$ es continua, el conjunto $f^{-1}(V)$ es una vecindad abierta de $x$ en $X$. Dado que $x_n \to x$, existe $N \in \N$ tal que $x_n \in f^{-1}(V)$ para $n \geq \N$. Así pues, si $n \geq \N$ tenemos que $f(x_n) \in f(f^{-1}(V)) \subseteq V$. Por tanto $f(x_n) \to f(x)$. 
 
-Ahora supongamos que $f$ no es continua en algún $x \in X$, de manera que existe una vecindad abierta $V$ de $f(x)$ tal que para toda $n \in \N$ se tiene que $f(V_{\frac{1}{n}}(x)) \subsetneq V$. Así pues, para cada $n \in \N$ podemos tomar $x_n \in V_{\frac{1}{n}}(x)$ de tal manera que $f(x_n) \notin V$. Consideremos la sucesión $(x_n)_{n\in \N}$. Resulta que  $x_n \rightarrow x$. Sin embargo, para todo $n \in \N$ se tiene que $f(x_n) \notin V$, por lo que $f(x_n) \centernot\rightarrow f(x)$.
+Ahora demostraremos la contrapositiva. Supongamos pues que $f$ no es continua en $x$, de manera que existe una vecindad abierta $V$ de $f(x)$ tal que para toda $n \in \N$ se tiene que $f(V_{\frac{1}{n}}(x)) \subsetneq V$. Así pues, para cada $n \in \N$ podemos tomar $x_n \in V_{\frac{1}{n}}(x)$ de tal manera que $f(x_n) \notin V$. Consideremos la sucesión $(x_n)_{n\in \N}$. Resulta que  $x_n \rightarrow x$. Sin embargo, para todo $n \in \N$ se tiene que $f(x_n) \notin V$, por lo que $f(x_n) \centernot\rightarrow f(x)$.
 \end{Dem}
 
-\begin{Prop}\label{Cor:CerraduraLimiteSucesiones} 
+\begin{Prop}\label{Prop:CerraduraLimiteSucesiones} 
 Sean $M$ un espacio métrico y $A \subseteq M$. Entonces $\overline{A}$ es el conjunto de los puntos en $M$ que son el límite de alguna sucesión en $A$.
 \end{Prop}
 
 \begin{Dem}
-Tomemos $x \in \overline{A}$. Dado $n \in \N$, tenemos que $V_{\frac{1}{n}}(x)$ es una vecindad abierta de $x$ y por lo tanto $V_{\frac{1}{n}}(x) \cap A \neq \emptyset$. Así que existe algún $x_n \in V_{\frac{1}{n}}(x) \cap A$. Claramente, $(x_n)_{n\in \N}$ es una sucesión en $A$ tal que $x_n \to x$. 
+Tomemos $x \in \overline{A}$. Para cada $n \in \N$, tenemos que $V_{\frac{1}{n}}(x)$ es una vecindad abierta de $x$ y por lo tanto $V_{\frac{1}{n}}(x) \cap A \neq \emptyset$. Así que existe algún $x_n \in V_{\frac{1}{n}}(x) \cap A$. Claramente, $(x_n)_{n\in \N}$ es una sucesión en $A$ tal que $x_n \to x$. 
 
 Ahora tomemos $x \in M$ tal que existe $(x_n)_{n\in\N} \subseteq A$ con $x_n \to x$. Sea $U$ una vecindad abierta de $x$. Entonces existe $N \in \N$ tal que $x_n \in U$ si $n \geq N$. En particular, $x_N \in U \cap A \neq \emptyset$ y así $x \in \ov{A}$. 
 \end{Dem}
 
-\begin{Prop}
+\begin{Prop} \ref{Prop:CaracterizacionCompacidadSucesiones}
 Sean $M$ un espacio métrico y $K \subseteq M$. Son equivalentes:
 \begin{itemize}
 \item \textbf{i)} $K$ es compacto.
@@ -382,11 +397,11 @@ Sea $M$ un espacio métrico, la \textit{distancia} de $x \in M$ a $A \subseteq M$
 \end{Def}
 
 \begin{Prop}
-Sean $M$ un espacio métrico. Si $A \subseteq M$ es cerrado y $x \in M \setminus A$, entonces $d(x, A) > 0$. 
+Sean $M$ un espacio métrico y $A \subseteq M$ un conjunto cerrado. Si $x \in M \setminus A$, entonces $d(x, A) > 0$. 
 \end{Prop}
 
 \begin{Dem}
-Se demostrará por contrapositiva. Supongamos que $d(x, A) = 0$. Tomemos un abierto $U$ que incluya a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$. Por lo que $U \cap A \neq \emptyset$. Por lo tanto $x \in \ov{A}$. Si $A$ fuera cerrado, entonces  $x \in A$.
+Se demostrará por contrapositiva. Supongamos que $d(x, A) = 0$. Tomemos un abierto $U$ que incluya a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$, por lo que $U \cap A \neq \emptyset$. Así que $x \in \ov{A}$. Ya que $A$ es cerrado, entonces  $x \in A$.
 \end{Dem}
 
 \section{Redes.}
@@ -440,7 +455,7 @@ La relación $\subseteq$ es reflexiva y transitiva, así que $\leq$ también lo es.
 \end{Ejem}
 
 \begin{Def}
-Una \textit{red} en un conjunto $X$ es una función $\rho: \Lambda \to X$, donde $\Lambda$ es un conjunto dirigido. Usualmente representamos a la red $\rho$ por $(x_\alpha)_{\alpha \in \Lambda}$, donde $x_\alpha := f(\alpha)$ para toda $\alpha \in \Lambda$. Cuando sea necesario indicar que el dominio de una red es $\Lambda$, la llamaremos una $\Lambda$-\textit{red}.
+Una \textit{red} en un conjunto $X$ es una función $\rho: \Lambda \to X$, donde $\Lambda$ es un conjunto dirigido. Usualmente representamos a la red $\rho$ por $(x_\alpha)_{\alpha \in \Lambda}$, donde $x_\alpha := \rho(\alpha)$ para toda $\alpha \in \Lambda$. Cuando sea necesario indicar que el dominio de una red es $\Lambda$, la llamaremos una $\Lambda$-\textit{red}.
 \end{Def}
 
 \begin{Ejem} \label{Ejem:SucesionesSonRedes}
@@ -462,6 +477,8 @@ Sea $(x_n)_{n\in\N}$ una sucesión en un espacio topológico. El ejemplo~\ref{Ejem
 \begin{Ejem} \label{Ejem:RedConvergeVecindadesDeUnPunto}
 Sean $X$ un espacio topológico, $x \in X$ y $N_x$ el conjunto dirigido de vecindades abiertas de $x$. Consideremos $x_U \in U$ para toda $U \in N_x$. Entonces la red $(x_U)_{U \in N_x}$ converge a $x$ ya que si $U_0$ es vecindad de $x$, se tiene que $U_0 \in N_x$ y para $U \in N_x$ con $U \geq U_0$ se tiene que $x_{U} \in U \subseteq U_0$.
 \end{Ejem}
+
+En espacios métricos, la proposición~\ref{Prop:CerraduraLimiteSucesiones} da una caracterización de la cerradura de un conjunto a través de los límites de las sucesiones en ese conjunto. La siguiente proposición generaliza esa caracterización a espacios topológicos usando redes.
 
 \begin{Prop}\label{Prop:CerraduraLimiteRed} 
 Sea $X$ un espacio topológico y $A \subseteq X$. Entonces $\overline{A}$ es el conjunto de los puntos en $X$ que son el límite de alguna red en $A$. 
@@ -656,7 +673,7 @@ Sea $X$ un espacio vectorial topológico. Para cada vecindad abierta $U$ del $0$,
 \end{Lema}
 
 \begin{Dem}
-Sea $U$ una vecindad abierta del 0. Como $X$ es un espacio vectorial topológico, la función $+ : X \times X \to X, (x, y) \mapsto x+y$ es continua en el $(0, 0)$. Esto nos dice que para $U$, existe una vecindad abierta $W$ del $(0, 0)$ tal que $+(W) \subseteq U$. Existe entonces un básico $V_1 \times V_2$ en $X \times X$ con $V_1, V_2$ vecindades abiertas del $0$ tal que $V_1 \times V_2 \subseteq W$. Entonces $V := V_1 \cap V_2$ es una vecindad abierta del $0$ que cumple que $V \times V \subseteq W$. De esto se sigue que que $$V + V = +(V \times V) \subseteq +(W) \subseteq U.$$
+Sea $U$ una vecindad abierta del 0. Como $X$ es un espacio vectorial topológico, la función $+ : X \times X \to X, (x, y) \mapsto x+y$ es continua en el $(0, 0)$. Esto nos dice que para $U$, existe una vecindad abierta $W$ del $(0, 0)$ tal que $+(W) \subseteq U$. Existe entonces un básico $V_1 \times V_2$ en $X \times X$ con $V_1, V_2$ vecindades abiertas del $0$ tal que $V_1 \times V_2 \subseteq W$. Entonces $V := V_1 \cap V_2$ es una vecindad abierta del $0$ que cumple que $V \times V \subseteq W$. De esto se sigue que $$V + V = +(V \times V) \subseteq +(W) \subseteq U.$$
 \end{Dem}
 
 \begin{Def}
@@ -753,7 +770,7 @@ Un espacio vectorial topológico $X$ es \textit{completo} si toda red de Cauchy e
 \end{Def}
 
 \begin{Lema} \label{Lema:EVTsDimensionIgualIsomorfos}
-Sean $E$ un espacio vectorial topológico y $F \subseteq E$ un subespacio vectorial. Si $F$ es completo, entonces $F$ es cerrado respecto a $E$.
+Sean $E$ un espacio vectorial topológico y $F \subseteq E$ un subespacio vectorial. Si $F$ es completo, entonces $F$ es cerrado en $E$.
 \end{Lema}
 
 \begin{Dem}
@@ -769,23 +786,23 @@ Si $E$ es un espacio vectorial topológico y $\dim\,E = n < \infty$, entonces $E$
 (Pendiente).
 \end{Dem}
 
-\begin{Prop} \label{Prop:HomeomorfismoLinealPreservaCompletitud}
+\begin{Lema} \label{Lema:HomeomorfismoLinealPreservaCompletitud}
 Sean $E$ y $F$ espacios vectoriales topológicos. Si existe un homeomorfismo lineal $T : E \to F$ y $E$ es completo, entonces $F$ es completo.
-\end{Prop}
+\end{Lema}
 
 \begin{Dem}
-Sea $(x_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $F$. Consideremos la red $(T^{-1}(x_\alpha))_{\alpha \in \Lambda}$ en $E$. Sea $U$ una vecindad abierta del cero en $E$, entonces $T(U)$ es una vecindad abierta del cero en $F$. Por lo que existe $\alpha_0 \in \Lambda$ tal que $x_{\alpha_1} - x_{\alpha_2} \in T(U)$ para $\alpha_1, \alpha_2 \geq \alpha_0$. Así pues, $T^{-1}(x_{\alpha_1}) - T^{-1}(x_{\alpha_2}) = T^{-1}(x_{\alpha_1} - x_{\alpha_2}) \in U$ si $\alpha_1, \alpha_2 \geq \alpha_0$. Esto indica que $(T^{-1}(x_\alpha))_{\alpha \in \Lambda}$ es una red de Cauchy en $E$. 
+Sea $(x_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $F$. Consideremos la red $(T^{-1}(x_\alpha))_{\alpha \in \Lambda}$ en $E$. Sea $U$ una vecindad abierta del cero en $E$. Ya que $T$ es homeomirfismo se tiene que $T(U)$ es una vecindad abierta del cero en $F$, por lo que existe $\alpha_0 \in \Lambda$ tal que $x_{\alpha_1} - x_{\alpha_2} \in T(U)$ para $\alpha_1, \alpha_2 \geq \alpha_0$. Así pues, por la linealidad de $T$, $T^{-1}(x_{\alpha_1}) - T^{-1}(x_{\alpha_2}) = T^{-1}(x_{\alpha_1} - x_{\alpha_2}) \in U$ si $\alpha_1, \alpha_2 \geq \alpha_0$. Esto indica que $(T^{-1}(x_\alpha))_{\alpha \in \Lambda}$ es una red de Cauchy en $E$. 
 
-Como $E$ es completo, la red $(T^{-1}(x_\alpha))_{\alpha \in \Lambda}$ converge a algún $x \in E$. Demostremos que $(x_\alpha)_{\alpha \in \Lambda} \to T(x)$. Sea $V$ una vecindad de $T(x)$ en $F$, entonces $T^{-1}(V)$ es una vecindad de $x$ en $E$, por lo que existe $\beta_0 \in \Lambda$ tal que $T^{-1}(x_\beta) \in T^{-1}(V)$ para $\beta \geq \beta_0$. De esta manera, $x_\beta \in V$ si $\beta \geq \beta_0$, es decir, $x_\beta \to T(x)$.
+Como $E$ es completo, la red $(T^{-1}(x_\alpha))_{\alpha \in \Lambda}$ converge a algún $x \in E$. Puesto que $T$ es continua, el corolario~\ref{Cor:ContinuidadporRedes} indica que $x_\alpha \to T(x)$.
 \end{Dem}
 
 
 \begin{Cor}
-Los espacios vectoriales topológicos de dimensión finita son completos.
+Cualquier espacio vectorial topológico de dimensión finita es completo.
 \end{Cor}
 
 \begin{Dem}
-Sea $X$ un espacio vectorial topológico de dimensión finita $n \in \N$. Dado que $\K^n$ con la topología euclidiana es completo, y $X$ es isomorficamente homeomorfo a $\K^n$, resulta por la proposición~\ref{Prop:HomeomorfismoLinealPreservaCompletitud} que $X$ también es completo.
+Sea $X$ un espacio vectorial topológico de dimensión finita $n \in \N$. Dado que $\K^n$ con la topología euclidiana es un espacio vectorial topológico completo, y $X$ es isomorficamente homeomorfo a $\K^n$, resulta por el lema~\ref{Lema:HomeomorfismoLinealPreservaCompletitud} que $X$ también es completo.
 \end{Dem}
 
 \begin{Cor} \label{Cor:SubespacioDimensionFinitaCerrado}
