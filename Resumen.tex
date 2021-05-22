@@ -354,18 +354,40 @@ Tomemos $V_r(x) \in \mathcal{B}$ para algunos $r > 0$ y $x \in M$. Verifiquemos 
 Si $U$ es abierto de $M$ y $x \in U$, por definición existe $r > 0$ tal que $x \in V_r(x) \subseteq U$. La proposición~\ref{Prop:CaracterizacionDeBase} indica que $\mathcal{B}$ es una base de $M$. 
 \end{Dem}
 
+En un espacio métrico podemos caracterizar la convergencia de las sucesiones cambiando las vecindades arbitrarias por bolas abiertas como lo expresa la siguiente proposición.
+
+\begin{Prop}
+Sean $M$ un espacio métrico y  $(x_n)_{n \in\N}$ una sucesión en $M$. Resulta que $(x_n)_{n\in\N}$ converge a $x \in M$ si, y sólo si para todo $\varepsilon > 0$ existe $N \in \N$ tal que $\Norm{x_n - x} < \varepsilon$ si $n \geq \N$.
+\end{Prop}
+
+\begin{Dem}
+Supongamos que $x_n \to x$. Como $V_\varepsilon(x)$ es una vecindad abierta de $x$, se sigue de inmediato que existe $N \in \N$ tal que $x_n \in V_\varepsilon(x)$ si $n \geq \N$. Es decir, $\Norm{x_n - x} < \varepsilon$ si $n \geq \N$.
+
+Supongamos ahora que para todo $\varepsilon > 0$ existe $N \in \N$ tal que $\Norm{x_n - x} < \varepsilon$ si $n \geq \N$. Sea $U$ una vecindad abierta de $x$. Entonces existe $\varepsilon > 0$ con $V_\varepsilon(x) \subseteq U$. Por hipótesis existe $N \in \N$ tal que $x_n \in V_\varepsilon(x) \subseteq U$ si $n \geq \N$. Por lo tanto $x_n \to x$.
+\end{Dem}
+
+La siguiente proposición indica que los espacios métricos son Hausdorff y por lo tanto las sucesiones convergentes en espacios métricos tienen límite único.
+
+\begin{Prop}
+Todo espacio métrico es Hausdoff. 
+\end{Prop}
+
+\begin{Dem}
+Sea $M$ un espacio métrico y $x, y \in M$ con $x \neq y$. Entonces $r: = \frac{d(x, y)}{2} > 0$. Tomemos $U := V_r(x)$ y $V:= V_r(y)$, de forma que $x \in U$ y $y \in V$. Además, si existe $z \in U \Cap V$, entonces $$d(x, y) \leq d(x, z) + d(y, z) < r + r = d(x, y),$$ lo cual es una contradicción y así $U \cap V = \emptyset$ y $M$ es Hausdorff.
+\end{Dem}
+
 Las sucesiones tienen un papel relevante en los espacios métricos, pues a través de ellas podemos caracterizar algunos conceptos que previamente hemos presentado.
 
 \begin{Prop} \label{Prop:ContinuidadPorSucesiones}
-Sean $M_1$ y $M_2$ espacios métricos, $x \in M_1$ y $f :  M_1 \to M_2$. Son equivalentes: 
+Sean $M$ un espacio métrico, $E$ un espacios topológico, $x \in M$ y $f :  M \to E$. Son equivalentes: 
 \begin{itemize}
 \item \textbf{i)} $f$ es continua en $x$.
-\item \textbf{ii)} Para toda sucesión $(x_n)_{n\in\N} \subseteq M_1$ tal que $x_n \to x$ se cumple que $f(x_n) \to f(x)$. 
+\item \textbf{ii)} Para toda sucesión $(x_n)_{n\in\N} \subseteq M$ tal que $x_n \to x$ se cumple que $f(x_n) \to f(x)$. 
 \end{itemize} 
 \end{Prop}
 
 \begin{Dem}
-Primero supongamos que $f$ es continua. Consideremos una sucesión $(x_n)_{n \in \N}$ tal que $x_n \to x$. Sea $V$ una vecindad abierta de $f(x)$ en $Y$. Como $f$ es continua, el conjunto $f^{-1}(V)$ es una vecindad abierta de $x$ en $X$. Dado que $x_n \to x$, existe $N \in \N$ tal que $x_n \in f^{-1}(V)$ para $n \geq \N$. Así pues, si $n \geq \N$ tenemos que $f(x_n) \in f(f^{-1}(V)) \subseteq V$. Por tanto $f(x_n) \to f(x)$. 
+Primero supongamos que $f$ es continua. Consideremos una sucesión $(x_n)_{n \in \N} \subseteq M$ tal que $x_n \to x$. Sea $V$ una vecindad abierta de $f(x)$ en $Y$. Como $f$ es continua, el conjunto $f^{-1}(V)$ es una vecindad abierta de $x$ en $M$. Dado que $x_n \to x$, existe $N \in \N$ tal que $x_n \in f^{-1}(V)$ para $n \geq \N$. Así pues, si $n \geq \N$ tenemos que $f(x_n) \in f(f^{-1}(V)) \subseteq V$. Por tanto $f(x_n) \to f(x)$. 
 
 Ahora demostraremos la contrapositiva. Supongamos pues que $f$ no es continua en $x$, de manera que existe una vecindad abierta $V$ de $f(x)$ tal que para toda $n \in \N$ se tiene que $f(V_{\frac{1}{n}}(x)) \subsetneq V$. Así pues, para cada $n \in \N$ podemos tomar $x_n \in V_{\frac{1}{n}}(x)$ de tal manera que $f(x_n) \notin V$. Consideremos la sucesión $(x_n)_{n\in \N}$. Resulta que  $x_n \rightarrow x$. Sin embargo, para todo $n \in \N$ se tiene que $f(x_n) \notin V$, por lo que $f(x_n) \centernot\rightarrow f(x)$.
 \end{Dem}
@@ -769,7 +791,7 @@ Por otro lado, en cualquier espacio vectorial topológico no se cumple que toda r
 Un espacio vectorial topológico $X$ es \textit{completo} si toda red de Cauchy en $X$ converge.
 \end{Def}
 
-\begin{Lema} \label{Lema:EVTsDimensionIgualIsomorfos}
+\begin{Lema} \label{Lema:CompletoEntoncesCerrado}
 Sean $E$ un espacio vectorial topológico y $F \subseteq E$ un subespacio vectorial. Si $F$ es completo, entonces $F$ es cerrado en $E$.
 \end{Lema}
 
@@ -795,26 +817,6 @@ Sea $(x_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $F$. Consideremos la 
 
 Como $E$ es completo, la red $(T^{-1}(x_\alpha))_{\alpha \in \Lambda}$ converge a algún $x \in E$. Puesto que $T$ es continua, el corolario~\ref{Cor:ContinuidadporRedes} indica que $x_\alpha \to T(x)$.
 \end{Dem}
-
-
-\begin{Cor}
-Cualquier espacio vectorial topológico de dimensión finita es completo.
-\end{Cor}
-
-\begin{Dem}
-Sea $X$ un espacio vectorial topológico de dimensión finita $n \in \N$. Dado que $\K^n$ con la topología euclidiana es un espacio vectorial topológico completo, y $X$ es isomorficamente homeomorfo a $\K^n$, resulta por el lema~\ref{Lema:HomeomorfismoLinealPreservaCompletitud} que $X$ también es completo.
-\end{Dem}
-
-\begin{Cor} \label{Cor:SubespacioDimensionFinitaCerrado}
-Si $Y$ es un subespacio de dimensión finita de un espacio vectorial topológico $X$, entonces $Y$ es cerrado.
-\end{Cor}
-
-\begin{Dem}
-Sea $x \in \ov{Y}$. Por la proposición~\ref{Prop:CerraduraLimiteRed}, existe una red $(y_\alpha)_{\alpha\in\Lambda}$ en $Y$ que converge a $x \in X$. Como la red converge, entonces es de Cauchy. El corolario anterior indica que  $Y$ es completo y así $y_\alpha \to y \in Y$. Dado que $X$ es Hausdorff, $x = y$. Luego $x \in Y$, lo cual indica que $\ov{Y} \subseteq Y$ y $Y$ es cerrado.
-\end{Dem}
-
-
-Dado un espacio vectorial topológico $X$, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \tau)^*$ o simplemente por $X^*$.  A los elementos de este espacio dual los llamamos \textit{funcionales lineales continuos}.
 
 \subsection[Espacio vectorial topológico generado por una familia de seminormas.]{Espacio vectorial topológico generado por una familia de seminormas. \subsectionmark{E.V.T. generado por seminormas.}}
 \subsectionmark{E.V.T. generado por seminormas.}
@@ -857,18 +859,17 @@ Sean $X$ un espacio vectorial sobre $\K$ y $ \mathcal{F}$ una familia no vacía d
 \end{Def}
 
 \begin{Ejem} \label{Ejem:EVTFamiliaFuncionales}
-Ejemplo 
 Sea $A$ un conjunto no-vacío. Resulta que $X := F(A,\K)$ es un espacio vectorial. Para cada $a \in A$, sea $\delta_a : X \to \K$ definido por $\delta_a(f) = f(a)$. 
 
 Fijemos $a \in A$, consideremos $\abs{\delta_a} \geq 0$  y notemos que 
 \begin{itemize}
 \item[\textbf{i)}] Sean $f, g \in X$, entonces 
-$$\abs{\delta_a(f+g)} = \abs{f(a) + g(a)} \leq \abs{f(a)} + \abs{g(a)} = \abs{\delta_a(f)} + \abs{\delta_a(g)}.$$
+$$\delta_a(f+g) = f(a) + g(a) = \delta_a(f) + \delta_a(g).$$
 \item[\textbf{ii)}] Sean $f \in X$, $\lambda \in \K$, entonces
-$$\abs{\delta_a(\lambda f)} = \abs{\lambda f(a)} = \abs{\lambda} \abs{f(a)} = \abs{\lambda} \abs{\delta_a(f)}.$$
+$$\delta_a(\lambda f) = \lambda f(a) =  \lambda \delta_a(f).$$
 \item[\textbf{iii)}] Sea $f \in X$, $f \neq 0 $, entonces existe $a \in A$ con $\abs{\delta_a} = \abs{f(a)} \neq 0$.
 \end{itemize}
-Esto indica que $\mathcal{F} = \{ \abs{\delta_a}: a \in A \}$ es una familia de seminormas en $X$ que separa puntos.
+Tenemos que \textbf{i)} y \textbf{ii)} indican $\delta_a$ es un funcional lineal y el ejemplo~\ref{Ejem:SeminormaParaTopologiaDebil} indica que $\mathcal{F} = \{ \abs{\delta_a}: a \in A \}$ es una familia de seminormas en $X$. Por \textbf{iii)} tenemos que esta familia separa puntos.
 \end{Ejem}
 
 Sea $\mathcal{T}$ la colección de topologías de un espacio vectorial $X$ en las que toda seminorma en $\mathcal{F}$ es continua. Claramente, la topología discreta de $X$ está en $\mathcal{T}$ y así esta colección es no-vacía y entonces la intersección de todas las topologías en $\mathcal{T}$ vuelve a ser una topología de $X$. 
@@ -999,6 +1000,13 @@ $$\sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} \pi(\lambda_\alpha, x_\alpha) =
 Así que $\pi$ es continua.
 \end{Dem}
 
+\begin{Ejem}
+Sean $A$ un conjunto no-vacío y $X = F(A, \K)$ como en el ejemplo~\ref{Ejem:EVTFamiliaFuncionales}. Se verificó que  $\mathcal{F} = \{ \abs{\delta_a}: a \in A \}$ es una familia de seminormas en $X$ que separa puntos. Por lo que $X$ con la topología $\sigma(X, \mathcal{F})$ es un espacio vectorial topológico. Demostraremos que tal espacio vectorial es completo.
+
+(Pendiente).
+\end{Ejem}
+
+
 \section{Espacios normados.}
 
 \begin{Def}
@@ -1010,27 +1018,45 @@ En este caso decimos que $(X, \Norm{\cdot})$ es un \textit{espacio normado}.
 \begin{Def} Sea $X$ un espacio vectorial. Una función $f : X \to \R$ es \textit{convexa} si para todos $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que $$f(\lambda x + (1-\lambda y))\leq \lambda f(x) + (1-\lambda) f(y).$$
 \end{Def}
 
-\begin{Ejem}
-Una norma $\Norm{\cdot}:X \to \R$ es convexa pues dados $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que
-$$\Norm{\lambda x + (1-\lambda y)} \leq \abs{\lambda} \Norm{x} + \abs{1-\lambda} \Norm{y}  = \lambda \Norm{x} + (1-\lambda) \Norm{y}.$$
-\end{Ejem}
-
 \begin{Lema} \label{Lema:NormaContinua}
-Sea $X$ un espacio normado. Entonces la norma $\Norm{\cdot}:X \to [0, \infty)$ es una función continua.
+Sea $X$ un espacio normado. Entonces la norma $\Norm{\cdot}:X \to [0, \infty)$ es una función convexa y continua.
 \end{Lema}
 
 \begin{Dem}
+Sean $x, y \in X$ y $\lambda \in [0, 1]$. Observemos que
+$$\Norm{\lambda x + (1-\lambda y)} \leq \abs{\lambda} \Norm{x} + \abs{1-\lambda} \Norm{y}  = \lambda \Norm{x} + (1-\lambda) \Norm{y}.$$ de manera que $\Norm{\cdot}$ es convexa.
+
 Sea $(x_n)_{n\in\N}$ una sucesión en $X$ que converge a $x \in X$. Por definición esto indica que para todo $\varepsilon > 0$ existe $N \in \N$ tal que si $n \geq N$ entonces $\Norm{x_n - x} \leq \varepsilon$. Por la desigualdad del triángulo que $\abs{\Norm{x_n} - \Norm{x}} < \Norm{x_n - x}$. Esto implica que $\Norm{x_n}$ converge a $\Norm{x}$ y así $\Norm{\cdot}$ es continua.
 \end{Dem}
 
-En un espacio normado $X$ resulta que la función $d: X \times X \to [0, \infty)$ definida por $$d(x, y) := \Norm{x-y}$$ es una métrica. Por lo que $X$ es un espacio métrico y entonces podemos considerar la topología inducida por la métrica, la cual se denomina topología original de $X$. A menos que se especifique otra cosa, cuando hablemos de un espacio normado como espacio topológico, consideraremos a este con la topología original.
+\begin{Lema} \label{Lema:DerivadaCrecienteConvexa}
+Sean $(a, b) \subseteq \R$ un intervalo y $f : (a, b) \to \R$ una función diferenciable. Si $f^{\prime}$ es monótona-creciente en $(a, b)$, entonces $f$ es convexa.
+\end{Lema}
+
+\begin{Dem}
+Tomemos $x, y \in X$ y $0 \leq \lambda \leq 1$. Los casos $x = y$ y $\lambda \in \{ 0, 1 \}$ son claros, así que supongamos que $x \neq y$ y $\lambda \in (0, 1)$. Sea $c = \lambda x + (1-\lambda) y$. Sin generalidad supongamos que $x < y$, de manera que $x < c < y$. El teorema del valor medio indica que existen $z_1, z_2 \in \R$ con $x < z_1 <  c < z_2 < y$ tales que $$f^\prime(z_1) = \frac{f(c)-f(x)}{c-x} \;\;\mbox{ y } \;\;f^\prime(z_2) = \frac{f(y)-f(c)}{y-c}.$$
+
+Dado que $f^\prime$ es monótona-creciente, se tiene que $$\frac{f(c)-f(x)}{c-x} = f^\prime(z_1) \leq f^\prime(c) \leq f^\prime(z_2) = \frac{f(y)-f(c)}{y-c}.$$
+
+Esto implica que $$(f(x) - f(c))(y-c) \geq  (f(y) - f(c))(x-c).$$
+
+O bien $$f(x)(y - c) - f(c)y + f(c)c \geq  f(y)(x - c) - f(c)x + f(c)c.$$
+
+Entonces \begin{equation} \label{Eq:RelacionFuncionConvexa} 
+f(c) \leq f(x)\cdot \frac{c-y}{x-y} + f(y)\cdot\frac{x-c}{x-y}.
+\end{equation} 
+
+Como $$\frac{c-y}{x-y} = \lambda \;\;\mbox{ y }\;\; \frac{x-c}{x-y} = 1- \lambda, $$ se sigue de (\ref{Eq:RelacionFuncionConvexa}) que $$f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1- \lambda)f(y).$$
+\end{Dem}
+
+Es sencillo verificar que en un espacio normado $X$ la función $d: X \times X \to [0, \infty)$ definida por $$d(x, y) := \Norm{x-y}$$ es una métrica, por lo que $X$ es un espacio métrico y entonces podemos considerar la topología inducida por la métrica, la cual se denomina topología original de $X$. A menos que se especifique otra cosa, cuando hablemos de un espacio normado como espacio topológico, lo consideraremos con la topología original.
 
 \begin{Prop} \label{Prop:TopologiaOriginalEspaciosNormadosEVT}
-Sea $X$ un espacio normado. Entonces $X$ es un espacio vectorial topológico. 
+Si $X$ es un espacio normado, entonces es un espacio vectorial topológico. 
 \end{Prop}
 
 \begin{Dem}
-Denotemos por $\tau$ la topología original de $X$. Por definición, $\Norm{\cdot}$ es una seminorma en $X$. Demostraremos que $\tau = \sigma(X, \{ \Norm{\cdot} \})$. Dado que el teorema~\ref{Tma:SeminormasInducenEVT} indica que $X$ es un espacio vectorial topológico con la topología $\sigma(X, \{ \Norm{\cdot} \})$, esto implicaría que la topología original es una topología vectorial.
+Denotemos por $\tau$ la topología original de $X$. Por definición, $\Norm{\cdot}$ es una seminorma en $X$. Además $\{ \Norm{\cdot}\} $ separa puntos, pues dado $x \in X$ con $x \neq 0$, se tiene que $\Norm{x} \neq 0$. Demostraremos que $\tau = \sigma(X, \{ \Norm{\cdot} \})$. Dado que el teorema~\ref{Tma:SeminormasInducenEVT} indica que $X$ es un espacio vectorial topológico con la topología $\sigma(X, \{ \Norm{\cdot} \})$, esto implicará que la topología original es una topología vectorial.
 
 Así pues, para mostrar que $\tau = \sigma(X, \{ \Norm{\cdot} \})$ mostraremos que tienen una base común. Sea $\mathcal{B}_1$ la base de la topología original. Esto es 
 $$\mathcal{B}_1 = \{V_r(x) : r > 0, x \in X \}.$$
@@ -1054,64 +1080,44 @@ Si $X$ es un espacio de Banach, entonces es un espacio vectorial topológico comp
 \end{Prop}
 
 \begin{Dem}
-Ya sabemos de la proposición~\ref{Prop:TopologiaOriginalEspaciosNormadosEVT} que $X$ es un espacio vectorial topológico. Falta probar que las redes de Cauchy en $X$ convergen. Sea entonces $(x_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $X$. 
+La proposición~\ref{Prop:TopologiaOriginalEspaciosNormadosEVT} indica que $X$ es un espacio vectorial topológico. Falta probar que las redes de Cauchy en $X$ convergen. Sea entonces $(x_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $X$. 
 
-Construyamos una sucesión $(\alpha_n)_{n \in \N}$ en $\Lambda$ de la siguiente manera. Sea $\alpha_1 \in \Lambda$ cualquiera. Supongamos que ya hemos definido $\alpha_{n-1}$ para algún $n \geq 2$. Entonces $V_{\frac{1}{n}}(0)$ es una vecindad del cero. Como $(x_\alpha)_{\alpha \in \Lambda}$ es de Cauchy, existe $\beta \in \Lambda$ tal que $x_{\beta_1} - x_{\beta_2} \in V_\frac{1}{n}(0)$ para $\beta_1, \beta_2 \geq \beta$. Así pues, definamos $\alpha_n$ de tal manera que $\alpha_n \geq \alpha_{n-1}$ y $\alpha_n \geq \beta$.   
+Construyamos una sucesión $(\alpha_n)_{n \in \N}$ en $\Lambda$ de la siguiente manera. Sea $\alpha_1 \in \Lambda$ cualquiera. Supongamos que ya hemos definido $\alpha_{n-1}$ para algún $n \geq 2$. Como $(x_\alpha)_{\alpha \in \Lambda}$ es de Cauchy, existe $\beta \in \Lambda$ tal que $x_{\beta_1} - x_{\beta_2} \in V_\frac{1}{n}(0)$ para $\beta_1, \beta_2 \geq \beta$. Así pues, definamos $\alpha_n$ de tal manera que $\alpha_n \geq \alpha_{n-1}$ y $\alpha_n \geq \beta$.   
  
-Una vez construida $(\alpha_n)_{n \in \N}$, resulta que $(x_{\alpha_n})_{n\in\N}$ es una sucesión en $X$ que cumple que
+Una vez construida $(\alpha_n)_{n \in \N}$, notemos que $(x_{\alpha_n})_{n\in\N}$ es una sucesión en $X$ que cumple que
 \begin{equation} \label{Eq:RedesCauchy1} 
 \Norm{x_{\alpha_n} - x_\beta} < \frac{1}{n}, \mbox{ si } \beta \geq \alpha_n. 
 \end{equation}
 
-Tomemos $\varepsilon > 0$. Entonces existe $N \in \N$ tal que $\frac{1}{N} < \varepsilon$. De esta manera tenemos que si $n, m \geq N$, entonces  $x_{\alpha_n} - x_{\alpha_m} \in V_{\frac{1}{N}}(0)$ y así $\Norm{x_{\alpha_n} - x_{\alpha_m}} < \varepsilon$. De esto que $(x_{\alpha_n})_{n\in\N}$ es una sucesión de Cauchy. 
+Tomemos $\varepsilon > 0$. Entonces existe $N \in \N$ tal que $\frac{1}{N} < \varepsilon$. De esta manera tenemos que si $n, m \geq N$, entonces  $x_{\alpha_n} - x_{\alpha_m} \in V_{\frac{1}{N}}(0)$ y así $\Norm{x_{\alpha_n} - x_{\alpha_m}} < \varepsilon$. Esto indica que $(x_{\alpha_n})_{n\in\N}$ es una sucesión de Cauchy. 
 
-Por ser $X$ completo las sucesiones de Cauchy convergen. Por lo que $(x_{\alpha_n})_{n\in\N}$ converge a algún $x \in X$. Demostremos que $(x_\alpha)_{\alpha \in \Lambda}$ converge también a $x$.
+Ya que  $X$ es completo, $(x_{\alpha_n})_{n\in\N}$ converge a algún $x \in X$. Demostremos que $(x_\alpha)_{\alpha \in \Lambda}$ converge también a $x$.
 
-Sea $U$ una vecindad del cero en $X$. Entonces existe $N \in \N$ con $V_\frac{1}{N}(0) \subseteq U$. Como $(x_{\alpha_n}) \to x$, podemos tomar $M \geq N$ tal que 
+Sea $U$ una vecindad del cero en $X$. Entonces existe $N \in \N$ con $V_\frac{1}{N}(0) \subseteq U$. Como $x_{\alpha_n} \to x$, podemos tomar $M \geq N$ tal que 
 \begin{equation} \label{Eq:RedesCauchy2}
 \Norm{x_{\alpha_n} -  x} < \frac{1}{2N} \mbox{ para } n \geq M.
 \end{equation} 
 Definamos $\beta = \alpha_{2M}$. Por (\ref{Eq:RedesCauchy1}) y (\ref{Eq:RedesCauchy2}), al tomar $\gamma \geq \beta$ se tiene que $$\Norm{x_\gamma - x_{\alpha_{2M}}} < \frac{1}{2N} \mbox{ y } \Norm{x_{\alpha_{2M}} - x } < \frac{1}{2N}.$$ 
-Por la desigualdad del triángulo $\Norm{x_\gamma - x} < \frac{1}{N}$ y así $x_\gamma - x \in U$. Por lo tanto $x_\alpha \to x$.
+Por la desigualdad del triángulo $\Norm{x_\gamma - x} < \frac{1}{N}$ y así $x_\gamma - x \in U$. Es decir, $x_\alpha \to x$.
 \end{Dem}
 
 \subsection{Ejemplos de espacios normados.}
 
-En $\K^n $ la norma euclidiana resulta ser el caso $p=2$ de una familia de normas en $\K^n$ llamadas $p$-normas. En esta subsección introduciremos estas funciones y verificaremos que en efecto son normas en $\K^n$. Además, agregaremos otros ejemplos de espacios normados de dimensión infinita.      
+En $\K^n $ la norma euclidiana resulta ser el caso $p=2$ de una familia de normas en $\K^n$ llamadas $p$-normas. En esta subsección introduciremos estas funciones y verificaremos que en efecto son normas en $\K^n$. Además, agregaremos ejemplos de espacios normados de dimensión infinita.      
 
 \begin{Ejem} \label{Ejem:EllePNormado}
 Dados $n \in \N$ y $1 \leq p < \infty$, definamos la función $\Norm{\cdot}_p:\K^n \to [0, \infty)$ por $$\Norm{(x_1, \ldots, x_n)}_p := \left(\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}}.$$  
 
-Para el caso $p = \infty$, definimos la función $\Norm{\cdot}_{\infty}: \K^n \to [0, \infty)$ dada por $$\Norm{(x_1, \ldots, x_n)}_\infty :=\max_{1 \leq i \leq n} \,  \abs{x_i}.$$
-Para verificar a continuación que $\Norm{\cdot}_p$ es una norma recurriremos a los siguientes lemas y ejemplos.
+En el caso $p = \infty$, definimos la función $\Norm{\cdot}_{\infty}: \K^n \to [0, \infty)$ dada por $$\Norm{(x_1, \ldots, x_n)}_\infty :=\max_{1 \leq i \leq n} \,  \abs{x_i}.$$
+Para verificar  que $\Norm{\cdot}_p$ es una norma recurriremos al siguiente ejemplo.
 \end{Ejem}
 
-\begin{Lema} \label{Lema:SegundaDerivadaPositivaConvexa}
-Sean $(a, b) \subseteq \R$ un intervalo y $f : (a, b) \to \R$ una función dos veces diferenciable. Si $f^{\prime\prime} \geq 0$ en $(a, b)$, entonces $f$ es convexa.
-\end{Lema}
-
-\begin{Dem}
-Tomemos $x, y \in X$ y $0 \leq \lambda \leq 1$. Los casos $x = y$ y $\lambda \in \{ 0, 1 \}$ son claros, así que supongamos que $x \neq y$ y $\lambda \in (0, 1)$. Sea $c = \lambda x + (1-\lambda) y$. Sin perdida de generalidad supongamos que $x < y$(en realidad si se pierde algo de generalidad, pero el caso $y < x$ sólo se intercambian un $\leq$ y un $\geq$. ¿Hago ambos casos o sí puedo suponer que no hay ``perdida de generalidad''?), de manera que $x < c < y$. El teorema del valor medio indica que existen $z_1, z_2 \in \R$ con $x < z_1 <  c < z_2 < y$ tales que $$f^\prime(z_1) = \frac{f(c)-f(x)}{c-x} \;\;\mbox{ y } \;\;f^\prime(z_2) = \frac{f(y)-f(c)}{y-c}.$$
-
-Dado que $f^{\prime\prime} \geq 0$, se tiene que $f^\prime$ es creciente, de donde $$\frac{f(c)-f(x)}{c-x} = f^\prime(z_1) \leq f^\prime(c) \leq f^\prime(z_2) = \frac{f(y)-f(c)}{y-c}.$$
-
-Esto implica que $$(f(x) - f(c))(y-c) \geq  (f(y) - f(c))(x-c).$$
-
-O bien $$f(x)y - f(x)c - f(c)y + f(c)c \geq  f(y)x - f(y)c - f(c)x + f(c)c.$$
-
-Entonces \begin{equation} \label{Eq:RelacionFuncionConvexa} 
-f(c) \leq f(x)\cdot \frac{y-c}{x-y} + f(y)\cdot\frac{x-c}{x-y}.
-\end{equation} 
-
-Como $$\frac{y-c}{x-y} = \lambda \;\;\mbox{ y }\;\; \frac{x-c}{x-y} = 1- \lambda, $$ se sigue de (\ref{Eq:RelacionFuncionConvexa}) que $$f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1- \lambda)f(y).$$
-\end{Dem}
-
 \begin{Ejem} \label{Ejem:XPConvexa}
-Fijemos $1 \leq p < \infty$ y consideremos $f: [0, \infty) \to[0, \infty)$ dada por $f(x) = x^p$. Claramente $f$ es diferenciable y $f^\prime(x) = p x^{p-1}$. Además $f^\prime$ vuelve  a ser diferenciable y $f^{\prime\prime}(x) = p(p-1)x^{p-2} \geq 0$ para todo $x \geq 0$ y por el lema~\ref{Lema:SegundaDerivadaPositivaConvexa} resulta que $f$ es convexa. 
+Fijemos $1 \leq p < \infty$ y consideremos $f: [0, \infty) \to[0, \infty)$ dada por $f(x) = x^p$. Claramente, $f$ es diferenciable y $f^\prime(x) = p x^{p-1}$ es monótona creciente, así que el lema~\ref{Lema:DerivadaCrecienteConvexa} indica que $f$ es convexa. 
 
 Tomemos $g = \abs{\cdot}$, la cual es convexa por ser una norma en $\K$. Sean $x, y \in \K$ y $\lambda \in [0, 1]$, como $g$ es convexa se tiene que $$g(\lambda x + (1-\lambda)y) \leq \lambda g(x) + (1-\lambda)g(y).$$
 
-Como $f$ es creciente y convexa resulta que
+Dado que $f$ es creciente y convexa resulta que
 $$f(g(\lambda x + (1-\lambda)y)) \leq f(\lambda g(x) + (1-\lambda)g(y)) \leq \lambda f(g(x)) + (1-\lambda)f(g(y)).$$
 
 Por lo tanto $f \circ g : \K \to \R$, $z \mapsto \abs{z}^p$ es convexa.
@@ -1135,7 +1141,7 @@ $$x_0 := \frac{x}{\Norm{x}_p + \Norm{y}_p} \quad \mbox{  y } \quad y_0 := \frac{
 $\Norm{x_0}_p + \Norm{y_0}_p = 1$. Definamos $\lambda := \Norm{y_0}_p \in (0, 1)$ y tomemos $$\widehat{x} :=\frac{x_0}{1-\lambda} \quad
  \mbox{ y } \quad \widehat{y} := \frac{y_0}{\lambda}.$$
 
-Notemos que $\Norm{\widehat{x}}_p = \Norm{\widehat{y}}_p = 1$ y expresemos $\widehat{x}=(\widehat{x_1}, \ldots \widehat{x_n})$ y $\widehat{y}= (\widehat{y_1}, \ldots \widehat{y_n})$. El ejemplo~\ref{Ejem:XPConvexa} muestra que la función $z \mapsto \abs{z}^p$ es convexa para $1 \leq p < \infty$. Así que tenemos que para $1 \leq i \leq n$
+Notemos que $\Norm{\widehat{x}}_p = \Norm{\widehat{y}}_p = 1$ y expresemos $\widehat{x}=(\widehat{x_1}, \ldots \widehat{x_n})$ y $\widehat{y}= (\widehat{y_1}, \ldots \widehat{y_n})$. El ejemplo~\ref{Ejem:XPConvexa} muestra que la función $z \mapsto \abs{z}^p$ es convexa , así que tenemos que para $1 \leq i \leq n$
 $$\abs{(1-\lambda)\widehat{x_i} + \lambda \widehat{y_i}}^p \leq (1-\lambda)\abs{\widehat{x_i}}^p + \lambda \abs{\widehat{y_i}}^p.$$
  
 Y al sumar $i$ de $1$ a $n$ obtenemos
@@ -1165,7 +1171,7 @@ Veamos ahora que $\Norm{\cdot}_\infty$ es una norma en $\K^n$. Para eso, notemos
 \item[\textbf{iii)}] Sean $x = (x_1, \ldots, x_n), y = (y_1, \ldots, y_n) \in \K^n$, entonces 
 \Ecu{
 \Norm{x+y}_\infty &= \Norm{(x_1 + y_1, \ldots, x_n + y_n)}_\infty = \max_{1 \leq i \leq n} \,  \abs{x_i + y_i} \\
-& \leq \max_{1 \leq i \leq n} \,  (\abs{x_i} + \abs{x_i}) \leq \max_{1 \leq i \leq n} \,  \abs{x_i} + \max_{1 \leq i \leq n} \,  \abs{y_i} \\
+& \leq \max_{1 \leq i \leq n} \,  (\abs{x_i} + \abs{y_i}) \leq \max_{1 \leq i \leq n} \,  \abs{x_i} + \max_{1 \leq i \leq n} \,  \abs{y_i} \\
 & = \Norm{x}_\infty + \Norm{y}_\infty.
 }
 \end{itemize}
@@ -1177,7 +1183,7 @@ En adelante, cuando trabajemos en $\K^n$ con la norma $\Norm{\cdot}_p$, lo denot
 Denotemos por $\K^\N$ al espacio de sucesiones en $\K$. Definamos para $1 \leq p < \infty$ las funciones $\Norm{\cdot}_p : \K^\N \to [0, \infty]$ y $\Norm{\cdot}_\infty : \K^\N \to [0, \infty]$ por $$\Norm{(x_1, x_2, \ldots)}_p = \left(  \sum_{i=1}^\infty \abs{x_i}^p \right)^{\frac{1}{p}} \mbox{  y  } \Norm{(x_1, x_2, \ldots)}_\infty = \sup_{i \in \N} \,  \abs{x_i},$$
 donde consideramos que $\infty^{\frac{1}{p}} = \infty$.
 
-Así pues, para $1\leq p\leq \infty$ definimos $\ell_p \subseteq \K^n$ como el espacio de sucesiones $x \in \K^\N$ para las cuales $\Norm{x}_p < \infty$.
+Para $1\leq p\leq \infty$ definimos $\ell_p \subseteq \K^n$ como el espacio de sucesiones $x \in \K^\N$ tales que $\Norm{x}_p < \infty$.
 
 \end{Ejem}
 
@@ -1187,7 +1193,7 @@ Así pues, para $1\leq p\leq \infty$ definimos $\ell_p \subseteq \K^n$ como el es
 \end{Dem}
 
 
-\subsection{Operadores Lineales Acotados}
+\subsection{Espacio dual.}
 
 No todo operador lineal $T:X\to Y$ entre los espacios normados $X$ e $Y$ resulta ser continuo. En este trabajo nos interesan los que sí son continuos. Una caracterización de un operador lineal continuo es que sea un \textit{operador lineal acotado}, esto es, que exista $K > 0$ tal que $$\Norm{Tx} \leq K \Norm{x} \mbox{ para todo } x \in X.$$ 
 
@@ -1216,6 +1222,8 @@ Empecemos tomando $x \in X$. Si $x = 0$, entonces $$\Norm{Tx} = \Norm{0} = 0 \le
 
 Si por otro lado $x \neq 0$, entonces $y = \frac{x}{\Norm{x}} \in B_X$. Por lo que $\Norm{T} \geq \Norm{Ty}$. Esto es
 $$\Norm{T} \geq \Norm{T\left(\frac{x}{\Norm{x}}\right)} = \frac{\Norm{Tx}}{\Norm{x}}$$ y así $\Norm{Tx} \leq \Norm{T} \Norm{x}$. \\
+
+Dado un espacio vectorial topológico $X$, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \tau)^*$ o simplemente por $X^*$.  A los elementos de este espacio dual los llamamos \textit{funcionales lineales continuos}.
 
 Cuando $X$ sea un espacio normado, su espacio dual se denotará por $(X, \Norm{\cdot})^*$ o simplemente por $X^*$.  Como $\K$ es completo, resulta que $X^* = \mathcal{L}(X, \K)$ es un espacio de Banach.  
 
@@ -1287,15 +1295,11 @@ Análogamente, como $\dim \, Y =  \dim \,  X  = n$, entonces existe $S: \ell^n_2 
 \end{Dem}
 
 \begin{Cor}
-Sea $X$ un espacio normado de dimensión finita. Entonces todas las normas en $X$ son equivalentes entre sí.
+Si $X$ es un espacio normado de dimensión finita, entonces todas las normas en $X$ son equivalentes entre sí.
 \end{Cor}
 
-\begin{Dem}
-(Pendiente).
-\end{Dem}
-
 \begin{Cor} \label{Cor:FuncionalesLinealesContinuosEspaciosFinitos}
-Sea $X$ un espacio normado de dimensión finita y  $\varphi : X \to \K$ un funcional lineal. Entonces $\varphi$ es continuo. 
+Sea $X$ un espacio vectorial topológico de dimensión finita y  $\varphi : X \to \K$ un funcional lineal. Entonces $\varphi$ es continuo. 
 \end{Cor}
 
 \begin{Dem}
@@ -1311,6 +1315,23 @@ Así que $\varphi$ es un operador lineal acotado y por tanto continuo.
 \subsection{Compacidad de la bola cerrada en un espacio normado.}
 
 La compacidad es una propiedad muy importante que puede tener un subconjunto de un espacio topológico. El objetivo de esta sección es demostrar que la compacidad de la bola unitaria en un espacio normado depende simplemente de si este es de dimensión finita o no.
+
+
+\begin{Prop} \label{Prop:DimensionFinitaEVTCompleto}
+Cualquier espacio vectorial topológico de dimensión finita es completo.
+\end{Prop}
+
+\begin{Dem}
+Sea $X$ un espacio vectorial topológico de dimensión finita $n \in \N$. Dado que $\K^n$ con la topología euclidiana es un espacio vectorial topológico completo, y $X$ es isomorficamente homeomorfo a $\K^n$, resulta por el lema~\ref{Lema:HomeomorfismoLinealPreservaCompletitud} que $X$ también es completo.
+\end{Dem}
+
+\begin{Cor} \label{Cor:SubespacioDimensionFinitaCerrado}
+Si $Y$ es un subespacio de dimensión finita de un espacio vectorial topológico $X$, entonces $Y$ es cerrado en $X$.
+\end{Cor}
+
+\begin{Dem}
+La proposición $\ref{Prop:DimensionFinitaEVTCompleto}$ indica que $Y$ es completo. Del lema~\ref{Lema:CompletoEntoncesCerrado} se concluye que $Y$ es cerrado en $X$.
+\end{Dem}
 
 \begin{Lema} \textbf{(de Riesz)}
 Sean $Y$ un subespacio propio y cerrado de un espacio normado $X$ y $\theta \in (0, 1)$, entonces existe $x_\theta \in X$ con $\Norm{x_\theta} = 1$ para el cual $\Norm{x_\theta - y} > \theta$ para todo $y \in Y$. 
@@ -1379,7 +1400,7 @@ Si $X$ es un espacio normado, entonces $X_\mathrm{w}$ es un espacio vectorial to
 Sea $X$ un espacio normado. La topología original de $X$ se denotará por $\tau$. Notemos que cada seminorma en $\F_X$ es continua si consideramos la topología original en el dominio de cada funcional. Esto indica que $\tau_\mathrm{w} \subseteq \tau$. Esta contención es propia cuando $X$ es de dimensión infinita, como se muestra en la siguiente proposición. La idea de la demostración radica en que los abiertos de la topología débil en espacios de dimensión infinita siempre son ``grandes'', pues cada uno de ellos contiene una traslación de un subespacio no trivial.
 
 \begin{Prop} \label{Prop:ContencionPropiaTopologiaDebil}
-Si $X$ un espacio normado de dimensión infinita, entonces $\tau_\mathrm{w} \subsetneq \tau$.
+Si $X$ es un espacio normado de dimensión infinita, entonces $\tau_\mathrm{w} \subsetneq \tau$.
 \end{Prop}
 
 \begin{Dem}
