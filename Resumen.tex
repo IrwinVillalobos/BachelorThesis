@@ -253,7 +253,7 @@ Un subconjunto $K$ de un espacio topológico $X$ es \textit{compacto} si para cua
 \end{Def}
 
 
-\begin{Prop} \label{Prop:HomeomorfismoPreservaCompactos}
+\begin{Prop} \label{Prop:FuncionContinuaPreservaCompactos}
 Sean $X$ y $Y$ espacios topológicos y $f:X \to Y$ una función continua. Entonces $f$ preserva compactos.
 \end{Prop}
 
@@ -283,6 +283,14 @@ Si $f$ es continua, entonces $\pi_X \circ f$ y $\pi_Y \circ f$ también lo son, y
 Supongamos ahora que $\pi_X \circ f$ y $\pi_Y \circ f$ son continuas. Sea $U \times V$ un abierto básico de $X \times Y$, de manera que $U$ es abierto en $X$ y $V$ es abierto en $Y$. Entonces $(\pi_X \circ f)^{-1}(U)$ y $(\pi_Y \circ f)^{-1}(V)$ son abiertos en $E$ por lo que según la proposición~\ref{Prop:ContinuidadPorBasicos} también lo es  
 $$f^{-1}(U \times V) = (\pi_X \circ f)^{-1}(U) \bigcap (\pi_Y \circ f)^{-1}(V).$$
 \end{Dem} 
+
+\begin{Cor} \label{Cor:ContinuidadPorComponentes}
+Sean $E, X$ y $Y$ espacios topológicos, $f_X :  E \to X$ y $f_Y : E \to Y$. Entonces 
+\Ecu{
+f_X \times f_Y : E &\to X \times Y \\
+z & \mapsto (f_X(z), f_Y(z))
+} es continua si y sólo si $f_X$ y $f_Y$  lo son.
+\end{Cor}
 
 La construcción anterior de la topología producto es fácil de extender para el producto de una cantidad finita de espacios topológicos. Sin embargo, al momento de definir el producto de una cantidad arbitraria de espacios, hay un detalle que se debe considerar para definir su topología. \\
 
@@ -402,7 +410,7 @@ Tomemos $x \in \overline{A}$. Para cada $n \in \N$, tenemos que $V_{\frac{1}{n}}
 Ahora tomemos $x \in M$ tal que existe $(x_n)_{n\in\N} \subseteq A$ con $x_n \to x$. Sea $U$ una vecindad abierta de $x$. Entonces existe $N \in \N$ tal que $x_n \in U$ si $n \geq N$. En particular, $x_N \in U \cap A \neq \emptyset$ y así $x \in \ov{A}$. 
 \end{Dem}
 
-\begin{Prop} \ref{Prop:CaracterizacionCompacidadSucesiones}
+\begin{Prop} \label{Prop:CaracterizacionCompacidadSucesiones}
 Sean $M$ un espacio métrico y $K \subseteq M$. Son equivalentes:
 \begin{itemize}
 \item \textbf{i)} $K$ es compacto.
@@ -412,6 +420,9 @@ Sean $M$ un espacio métrico y $K \subseteq M$. Son equivalentes:
 
 \begin{Dem}
 (Pendiente.)
+
+%Hola mundo
+
 \end{Dem}
 
 \begin{Def}
@@ -714,7 +725,7 @@ y & \mapsto \lambda y.
 \end{itemize} 
 \end{Def}
 
-\begin{Prop}
+\begin{Prop} \label{Prop:TraslacionDilatacionContinuas}
 Sean $X$ un espacio vectorial topológico, $x \in X$ y $\lambda \neq 0$. Entonces $T_x$ y $D_\lambda$ son homeomorfismos.
 \end{Prop}
 
@@ -799,13 +810,63 @@ Sean $E$ un espacio vectorial topológico y $F \subseteq E$ un subespacio vectori
 Sea $x \in \ov{F}$. La proposición~\ref{Prop:CerraduraLimiteRed} establece que existe una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq F$ tal que $x_\alpha \to x$. Como $(x_\alpha)_{\alpha \in \Lambda}$ es convergente, el lema~\ref{Lema:RedConvergenteEsCauchy} indica que $(x_\alpha)_{\alpha \in \Lambda}$ es de Cauchy y al ser $F$ completo, se sigue que la red converge en $F$. Al ser $E$ Hausdorff, se sigue que $x \in F$ y así $F$ es cerrado. 
 \end{Dem}
 
+\begin{Def}
+Sean $E$ y $F$ dos espacios vectoriales topológicos. Decimos que $E$ y $F$ son \textit{isomorficamente homeomorfos} si existe un homeomorfismo $T: E \to F$ lineal.
+\end{Def}
 
-\begin{Tma}
+\begin{Tma} \label{Tma:IsomorfismoDimensionFinitaEVT} 
 Si $E$ es un espacio vectorial topológico y $\dim\,E = n < \infty$, entonces $E$ es isomorficamente homeomorfo a $\K^n$ con la topología euclidiana.
 \end{Tma}
 
 \begin{Dem}
-(Pendiente).
+Sea $\{ x_1, \ldots, x_n \}$ una base de $E$. Definamos la función 
+\Ecu{
+T: \K^n & \to X \\
+(a_1, \ldots, a_n) & \mapsto \sum_{i=1}^n a_i x_i. 
+} 
+Si $a = (a_1, \ldots, a_n), b = (b_1, \ldots, b_n) \in \K^n$ cumplen que $T(a) = T(b)$, entonces $\sum_{i=1}^n (a_i - b_i)x_i = 0$. Como $\{x_1, \ldots, x_n \}$ es linealmente independiente, entonces $a_1 - b_1 = \ldots = a_n - b_n = 0$. Así que $a = b$ y $T$ es inyectiva. 
+
+Sea $x \in E$. Como $\{x_1, \ldots, x_n \}$ genera a $E$, existen $a_1, \ldots, a_n \in \K$ tales que $$x = \sum_{i=1}^n a_i x_i = T(a_1, \ldots, a_n)$$ y así $T$ es sobreyectiva. 
+
+Veamos que $T$ es lineal. Dados $(a_1, \ldots, a_n), (b_1, \ldots, b_n) \in \K^n$ y $\lambda \in \K$, se tiene que
+\Ecu{
+T((a_1, \ldots, a_n) + \lambda (b_1, \ldots, b_n)) &= T((a_1 + \lambda b_1, \ldots, a_n + \lambda b_n)) = \sum_{i=1}^n (a_i + \lambda b_i) x_i \\
+&= \sum_{i=1}^n a_i  x_i +  \lambda\sum_{i=1}^n  b_i x_i = T(a_1, \ldots, a_n) + \lambda T(b_1, \ldots, b_n).
+}
+
+Demostremos que $T$ es continuo. Para $1 \leq i \leq n$ consideremos las proyecciones canónicas $\pi_i : \K^n \to \K$ y las funciones constantes $f_i: \K_n \to E$, $a \mapsto x_i$. Como $\pi_i$ y $f_i$ son continuas, entonces el corolario~\ref{Cor:ContinuidadPorComponentes} indica que $\pi_i \times f_i : \K^n \to \K \times E$ es continua. Al ser continuo el producto por escalares $\cdot: \K \times E \to E$, resulta que $\pi_i \cdot f_i = \cdot \circ  \pi_i \times f_i : \K^n \to E$ también es continua. 
+
+Ahora, como $\pi_1\cdot f_1$ y $\pi_2\cdot f_2$ son continuas, resulta que $(\pi_1 \cdot f_1) \times (\pi_2 \cdot f_2) : \K^2 \to E \times E$ es continua. Como la suma $+: E \times E \to E$ es una función continua, se sigue entonces que $(\pi_1 \cdot f_1) + (\pi_2 \cdot f_2) = + \circ [(\pi_1 \cdot f_1) \times (\pi_2 \cdot f_2)] : \K^n \to E$ es continua. De manera inductiva, llegamos a que $T = (p_1 \cdot f_1) + \ldots + (\pi_n \cdot f_n)$ es continua. 
+
+Ya sólo falta ver que $T^{-1}$ es continua. La proposición~\ref{Prop:ContinuidadEnCero} indica que basta probar que $T^{-1}$ es continua en el cero. Sea $U$ una vecindad del cero en $K^n$. Entonces existe $r > 0$ tal que $V_r(0) \subseteq U$. Es conocido que en la topología euclidiana la esfera $S^{n-1} := \{ a \in \K^n : d(a, 0) = 1\}$ es un conjunto compacto. Por la proposición~\ref{Prop:FuncionContinuaPreservaCompactos} tenemos que $T(S^{n-1})$ es un conjunto compacto en $E$ que no contiene al cero. 
+
+Como $E$ es Hausdorff, para cada $y \in T(S^{n-1})$ existen $U_y$, $V_y$ abiertos en $E$ tales que $y \in U_y$, $0 \in V_y$ y $U_y \cap V_y = \emptyset$. Como $\{ U_y \}_{y \in T(S^{n-1})}$ es una cubierta abierta de $T(S^{n-1})$ y este es compacto, existen $k \in \N$ y  $y_1, \ldots, y_k \in T(S^{n-1})$ tales que $$T(S^{n-1}) \subseteq \bigcup_{i=1}^k U_{y_i}.$$
+
+Tenemos que $V := \bigcap_{i=1}^k V_{y_i}$ es una vecindad abierta del cero. Además, como $U_y \cap V_y = \emptyset$ para toda $y \in T(S^{n-1})$, se sigue que $$U_{y_j} \cap \left( \bigcap_{i=1}^k  V_{y_i}\right) = \emptyset, \mbox{ para toda } j \in \{ 1, \ldots, k\}.$$
+
+De donde $$T(S^{n-1}) \cap V \subseteq \left( \bigcup_{j=1}^k U_{y_j} \right) \cap \left( \bigcap_{i=1}^k  V_{y_i}\right) = \emptyset.$$
+
+Ahora, como $\cdot: \K \times E \to T$ es continua y $V$ es una vecindad abierta del cero, existe un básico $(-\varepsilon, \varepsilon) \times \widehat{V}$ en $\K \times E$ tal que $0 \in \widehat{V}$ y $$\cdot((-\varepsilon, \varepsilon) \times \widehat{V}) = \{tz : t \in (-\varepsilon, \varepsilon), z \in \widehat{V} \} \subseteq V.$$ 
+
+Demostremos que $T^{-1}(\widehat{V}) \subseteq V_\frac{1}{\varepsilon}(0)$. Sea $T^{-1} z \in T^{-1}(\widehat{V})$, para algún $z \in \widehat{V}$. Fijemos por un momento $t \in (-\varepsilon, \varepsilon)$. Entonces $tz \in V$ de donde $tz \notin T(S^{n-1})$. Es decir, $T^{-1}(tz) \notin S^{n-1}$, o bien $d(T^{-1}(tz), 0) \neq 1$. Así, $\abs{t} \cdot d(T^{-1} z, 0) \neq 1$. Por lo tanto, para todo $t \in (-\varepsilon, \varepsilon) \setminus \{0\}$ se tiene que $d(T^{-1}(z), 0) \neq \frac{1}{\abs{t}} $, por lo que $T^{-1}(z) \in V_\frac{1}{\varepsilon}(0)$. 
+
+ 
+Sean $D_{r\varepsilon}^E: E \to E$ la dilatación por $r\varepsilon$ en $E$ y $D_{r\varepsilon}^{\K^n}: \K^n \to \K^n$ la dilatación por $r\varepsilon$ en $\K^n$. Como $D_{r\varepsilon}^E$ y $D_{r\varepsilon}^{\K^n}$ son isomorfismos   según la proposición~\ref{Prop:TraslacionDilatacionContinuas}, se sigue que el siguiente diagrama conmuta
+ 
+\[
+\xymatrix{
+E \ar[r]^{T^{-1}} \ar[d]_{D_{r\varepsilon}^{E}} & \K^n \ar[d]^{D_{r\varepsilon}^{\K^n}} \\
+E \ar[r]_{T^{-1}} & \K^n.
+}
+\] 
+
+Luego
+
+\begin{equation} \label{Eq:InversadeTContinuidad}
+T^{-1}(D_{r\varepsilon}^E(\widehat{V})) = D_{r\varepsilon}^{\K^n}(T^{-1}(\widehat{V})) \subseteq D_{r\varepsilon}^{\K^n}(V_\frac{1}{\varepsilon}(0)) = V_r(0) \subseteq U.
+\end{equation}
+
+La proposición~\ref{Prop:TraslacionDilatacionContinuas} indica que $D_{r\varepsilon}^E$ es homeomorfismo y por lo tanto $D_{r\varepsilon}^E(\widehat{V})$ es vecindad abierta del cero. De esto y de (\ref{Eq:InversadeTContinuidad}) concluimos que $T^{-1}$ es continua. 
 \end{Dem}
 
 \begin{Lema} \label{Lema:HomeomorfismoLinealPreservaCompletitud}
@@ -1227,6 +1288,15 @@ Dado un espacio vectorial topológico $X$, al espacio de operadores $\varphi : X 
 
 Cuando $X$ sea un espacio normado, su espacio dual se denotará por $(X, \Norm{\cdot})^*$ o simplemente por $X^*$.  Como $\K$ es completo, resulta que $X^* = \mathcal{L}(X, \K)$ es un espacio de Banach.  
 
+
+\begin{Prop} \label{Prop:FuncionalesLinealesContinuosEspaciosFinitos}
+Sea $E$ un espacio vectorial topológico de dimensión finita y  $\varphi : E \to \K$ un funcional lineal. Entonces $\varphi$ es continuo. 
+\end{Prop}
+
+\begin{Dem}
+Sea $\dim \, E = n \in \N$ y $\{ x_1, \ldots, x_n \} \subseteq X$ una base de $X$. Sea $T: \K^n \to E$ como en la demostración del teorema~\ref{Tma:IsomorfismoDimensionFinitaEVT}. Entonces $T^{-1}$ es continua. Definamos $S: \K^n \to \K$ como $S(a_1, \ldots, a_n) = a_1 \varphi(x_1) + \ldots + a_n \varphi(x_n)$. El mismo argumento que prueba que $T$ es continua funciona para probar que $S$ es continua (tomando $\K$ en lugar de $E$). De manera que $\varphi = S \circ T^{-1}$ es continuo.
+\end{Dem}
+
 Los teoremas de Hahn-Banach muestran que, cuando $X$ es un espacio normado, en $X^*$ existen suficientes funcionales que permiten hacer rica la teoría referente al espacio dual.
 
 \begin{Tma} \textbf{(Hahn-Banach)}
@@ -1239,9 +1309,9 @@ Sea $X$ un espacio normado. Entonces $X$ es de dimensión infinita si y sólo si $
 \end{Prop}
 
 \begin{Dem}
-Supongamos que $X$ es de dimensión infinita. Entonces para todo $n \in \N$ existen $x_1, \ldots, x_n \in X$ linealmente independientes. Sea $V = \mbox{span} \{ x_1, \ldots, x_n \}$, de manera que $\{ x_1, \ldots, x_n \}$ es una base de $V$. Para $i \in \{1, \ldots, n \}$ definamos el funcional lineal $\varphi_i : V \to \K$ dado por $\varphi_i(x_j) = \delta_{ij}$ que es continuo por el corolario~\ref{Cor:FuncionalesLinealesContinuosEspaciosFinitos} . Por el teorema de Hahn-Banach existe $F_i \in X^*$ tal que $F_i = f_i$ en $V$. Veamos que $\{F_1, \ldots, F_n\}$ es linealmente independiente en $X^*$. Sean $a_1, \ldots, a_n \in K$ tales que $$\sum_{j=1}^n a_i F_i = 0.$$ Al evaluar en $x_i$ obtenemos que $a_i = 0$. Esto muestra que para toda $n \in \N$ existen $n$ funcionales linealmente independientes. Por lo que $X^*$ es de dimensión infinita. 
+Supongamos que $X$ es de dimensión infinita. Entonces para todo $n \in \N$ existen $x_1, \ldots, x_n \in X$ linealmente independientes. Sea $V = \mbox{span} \{ x_1, \ldots, x_n \}$, de manera que $\{ x_1, \ldots, x_n \}$ es una base de $V$. Para $i \in \{1, \ldots, n \}$ definamos el funcional lineal $\varphi_i : V \to \K$ dado por $\varphi_i(x_j) = \delta_{ij}$ que es continuo por la proposición~\ref{Prop:FuncionalesLinealesContinuosEspaciosFinitos} . Por el teorema de Hahn-Banach existe $F_i \in X^*$ tal que $F_i = f_i$ en $V$. Veamos que $\{F_1, \ldots, F_n\}$ es linealmente independiente en $X^*$. Sean $a_1, \ldots, a_n \in K$ tales que $$\sum_{j=1}^n a_i F_i = 0.$$ Al evaluar en $x_i$ obtenemos que $a_i = 0$. Esto muestra que para toda $n \in \N$ existen $n$ funcionales linealmente independientes. Por lo que $X^*$ es de dimensión infinita. 
 
-Supongamos ahora que $X$ es de dimensión finita $n \in \N$. Existe entonces una base $\{x_1, \ldots, x_n \}$ de $X$. Para $1 \leq i \leq n$ definimos $f_i :X \to \K $ linealmente y de tal manera que $f_i(x_j) = \delta_{ij}$. Como $X$ es de dimensión finita el corolario~\ref{Cor:FuncionalesLinealesContinuosEspaciosFinitos} indica que cada $f_i$ es continuo. Veamos que $\{ f_1, \ldots, f_n \}$ generan a $X^*$. Tomamos entonces $f \in X^*$ y supongamos que $f(x_i) = a_i \in \K$ para cada $i \in \{1, \ldots, n\}$. Así, para cada $1 \leq i \leq n$
+Supongamos ahora que $X$ es de dimensión finita $n \in \N$. Existe entonces una base $\{x_1, \ldots, x_n \}$ de $X$. Para $1 \leq i \leq n$ definimos $f_i :X \to \K $ linealmente y de tal manera que $f_i(x_j) = \delta_{ij}$. Como $X$ es de dimensión finita la proposición~\ref{Prop:FuncionalesLinealesContinuosEspaciosFinitos} indica que cada $f_i$ es continuo. Veamos que $\{ f_1, \ldots, f_n \}$ generan a $X^*$. Tomamos entonces $f \in X^*$ y supongamos que $f(x_i) = a_i \in \K$ para cada $i \in \{1, \ldots, n\}$. Así, para cada $1 \leq i \leq n$
 $$\left( \sum_{j=1}^n a_j f_j \right)(x_i) = a_i = f(x_i).$$
 Por lo tanto $f = \sum_{j=1}^n a_j f_j$. Esto dice que existe un conjunto finito generador en $X^*$, por lo que $X^*$ es de dimensión finita.
 \end{Dem}
@@ -1260,57 +1330,12 @@ Si $X$ y $Y$ son espacios normados de dimensión finita y de la misma dimensión, 
 \end{Cor}
 
 \begin{Dem}
-Supongamos que $\dim \, X = n \in \N$ y sea $\{ x_1, \ldots, x_n \}$ una base suya. Demostraremos que $X$ es isomorfo como espacio normado a $\ell_2^n$ por medio de la función 
-\Ecu{
-T: \ell_2^n & \to X \\
-(a_1, \ldots, a_n) & \mapsto \sum_{i=1}^n a_i x_i. 
-} 
-Si $a = (a_1, \ldots, a_n), b = (b_1, \ldots, b_n) \in \ell_2^n$ cumplen que $T(a) = T(b)$, entonces $\sum_{i=1}^n (a_i - b_i)x_i = 0$. Como $\{x_1, \ldots, x_n \}$ es linealmente independiente, entonces $a_1 - b_1 = \ldots = a_n - b_n = 0$. Así que $a = b$ y $T$ es inyectiva. 
-
-Sea $x \in X$. Como $\{x_1, \ldots, x_n \}$ genera a $X$, existen $a_1, \ldots, a_n \in \K$ tales que $x = \sum_{i=1}^n a_i x_i = T(a_1, \ldots, a_n)$ y así $T$ es sobreyectiva. 
-
-Veamos que $T$ es lineal. Dados $(a_1, \ldots, a_n), (b_1, \ldots, b_n) \in \ell_1^n$ y $\lambda \in \K$, se tiene que
-\Ecu{
-T((a_1, \ldots, a_n) + \lambda (b_1, \ldots, b_n)) &= T((a_1 + \lambda b_1, \ldots, a_n + \lambda b_n)) = \sum_{i=1}^n (a_i + \lambda b_i) x_i \\
-&= \sum_{i=1}^n a_i  x_i +  \lambda\sum_{i=1}^n  b_i x_i = T(a_1, \ldots, a_n) + \lambda T(b_1, \ldots, b_n).
-}
-
-Ahora, tomemos $(a_1, \ldots, a_n) \in \ell_2^n$. Por la desigualdad del triángulo y la desigualdad de Schwarz 
-\Ecu{
-\Norm{T(a_1, \ldots, a_n)} & = \Norm{\sum_{i=1}^n a_i x_i} \leq \sum_{i=1}^n \abs{a_i} \Norm{x_i} \\
-&\leq \left( \sum_{i=1}^n \Norm{x_i}^2 \right)^{\frac{1}{2}} \left( \sum_{i=1}^n \abs{a_i}^2 \right)^{\frac{1}{2}} \\
-&= \left( \sum_{i=1}^n \Norm{x_i}^2 \right)^{\frac{1}{2}} \Norm{(a_1, \ldots, a_n)}_2.
-}
-
-Esto indica que $T$ es un operador lineal acotado y por lo tanto continuo. 
-
-Ahora consideremos la función $f = \Norm{\cdot} \circ T$. Como la norma es una función continua y $T$ es continua, entonces $f$ es continua. Dado que $S_{\ell_2^n} := \{ (a_1, \ldots, a_n) \in \K^n  : \Norm{(a_1, \ldots, a_n)}_2 = 1 \}$  es compacto en $\ell_2^n$  se sigue que $f$ alcanza un valor mínimo $m \in \K$ en $S_{\ell_2^n}$. Como $f \geq 0$, entonces $m \geq 0$. Supongamos que $m = 0$. Entonces existe $(a_1, \ldots, a_n) \in S_{\ell_2^n}$ tal que $$ \Norm{\sum_{i=1}^n a_i x_i} = f(a_1, \ldots, a_n) = 0.$$
-
-Por lo que $\sum_{i=1}^n a_i x_i = 0$ y esto indica que $a_1 = \ldots = a_n = 0$. Lo cual es una contradicción, pues  entonces $\Norm{(a_1, \ldots, a_n)}_2 = 0$. Así que $m > 0$ y $\frac{1}{m} > 0$. Para todo $x \in X$ con $x \neq 0$ se cumple que $T^{-1}(x) \neq 0$, $\frac{T^{-1}(x)}{\Norm{T^{-1}(x)}} \in S_{\ell_2^n}$ y 
-$$\frac{\Norm{x}}{\Norm{T^{-1}(x)}} = \Norm{T\left(\frac{T^{-1}(x)}{\Norm{T^{-1}(x)}}\right)} = f\left(\frac{T^{-1}(x)}{\Norm{T^{-1}(x)}}\right) \geq m. $$
-
-De donde $\Norm{T^{-1}(x)} \leq \frac{1}{m} \Norm{x}$. Por lo cual $T^{-1}$ es continua y $T$ es un isomorfismo de espacios normados. 
-
-Análogamente, como $\dim \, Y =  \dim \,  X  = n$, entonces existe $S: \ell^n_2 \to Y$  isomorfismo de espacios normados. Resulta entonces que $S\circ T^{-1} : X \to Y$ es un isomorfismo de espacios normados entre $X$ y $Y$.
+(Pendiente).
 \end{Dem}
 
 \begin{Cor}
 Si $X$ es un espacio normado de dimensión finita, entonces todas las normas en $X$ son equivalentes entre sí.
 \end{Cor}
-
-\begin{Cor} \label{Cor:FuncionalesLinealesContinuosEspaciosFinitos}
-Sea $X$ un espacio vectorial topológico de dimensión finita y  $\varphi : X \to \K$ un funcional lineal. Entonces $\varphi$ es continuo. 
-\end{Cor}
-
-\begin{Dem}
-Sea $\dim \, X = n \in \N$ y $\{ x_1, \ldots, x_n \} \subseteq X$ una base de $X$. Sean $T$ y $m$ como en la demostración de la proposición anterior. Tomemos $x \in X$ y $(a_1, \ldots, a_n) = T^{-1}(x)$. Entonces 
-\Ecu{
-\Norm{\varphi(x)} &= \Norm{\varphi\left(\sum_{i=1}^n a_i x_i \right)} = \Norm{\sum_{i=1}^n a_i \varphi (x_i) } \\
-& \leq \sum_{i=1}^n \abs{a_i} \Norm{\varphi(x_i)} \leq \left( \sum_{i=1}^n \Norm{\varphi(x_i)}^2  \right)^{\frac{1}{2}} \left( \sum_{i=1}^n \abs{a_i}^2  \right)^{\frac{1}{2}} \\
-& = \left( \sum_{i=1}^n \Norm{\varphi(x_i)}^2  \right)^{\frac{1}{2}} \Norm{a_1, \ldots, a_n}_2   \leq  \left( \sum_{i=1}^n \Norm{\varphi(x_i)}^2  \right)^{\frac{1}{2}} \frac{1}{m} \Norm{x}.
-} 
-Así que $\varphi$ es un operador lineal acotado y por tanto continuo. 
-\end{Dem}
 
 \subsection{Compacidad de la bola cerrada en un espacio normado.}
 
