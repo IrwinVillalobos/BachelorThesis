@@ -305,12 +305,12 @@ Sean $I$ un conjunto no vacío y $X_i$ espacios topológicos para cada $i \in I$. 
 \end{Def}
 
 Veamos que con esta definición de topología producto las proyecciones son continuas. Fijemos $i \in I$ y tomemos cualquier abierto $U_i$ en $X_i$. Entonces $\pi_i^{-1}(U_i)$ es un básico de $\prod_{i\in I} X_i$ y por tanto es abierto. Esto indica que $\pi_i$ es continua. \\ 
-
+ 
+ 
+Una \textit{sucesión} en un conjunto $X$ es una función $s: \N \to X$. Usualmente representamos a la sucesión $s$ por $(x_n)_{n\in \N}$, donde $x_n := s(n)$ para toda $n \in \N$. 
 
 \begin{Def}
-Sea $X$ un espacio topológico. Una \textit{sucesión} en $X$ es una función $s: \N \to X$. Usualmente representamos a la sucesión $s$ por $(x_n)_{n\in \N}$, donde $x_n := s(n)$ para toda $n \in \N$. 
-
-Si existe $x \in X$ tal que para cada vecindad abierta $U$ de $x$ existe $N \in \N$ tal que $x_n \in U$ para $n \geq n$, entonces decimos que $(x_n)_{n\in\N}$ \textit{converge} a $x$, que $x$ es el \textit{límite} de $(x_n)_{n\in\N}$ y lo denotamos por $x_n \to x$.
+Sea $X$ un espacio topológico y $(x_n)_{n\in\N}$ una sucesión. Si existe $x \in X$ tal que para cada vecindad abierta $U$ de $x$ existe $N \in \N$ tal que $x_n \in U$ para $n \geq n$, entonces decimos que $(x_n)_{n\in\N}$ \textit{converge} a $x$, que $x$ es el \textit{límite} de $(x_n)_{n\in\N}$ y lo denotamos por $x_n \to x$.
 \end{Def}
 
 \begin{Def}
@@ -322,7 +322,7 @@ Sean $X$ es un espacio topológico y $(x_n)_{n \in \N}$ una sucesión en $X$ conve
 \end{Prop}
 
 \begin{Dem}
-Sean $x, y \in X$ dos límites de $(x_n)_{n\in\N}$. Sea $U$ una vecindad abierta de $x$ y $V$ una vecindad abierta de $y$, entonces existen $N, M \in \N$ tales que $x_n \in U$ y $y_m \in V$ si $n \geq N$ y $m \geq M$. Al tomar $K = \max(N, M)$ tenemos que $x_K \in U \cap V$ y por tanto $U \cap V \neq \emptyset$. La contrapositiva de la definición de Hausdorff indica que $x = y$.
+Sean $x, y \in X$ límites de $(x_n)_{n\in\N}$. Sea $U$ una vecindad abierta de $x$ y $V$ una vecindad abierta de $y$, entonces existen $N, M \in \N$ tales que $x_n \in U$ y $y_m \in V$ si $n \geq N$ y $m \geq M$. Al tomar $K = \max(N, M)$ tenemos que $x_K \in U \cap V$ y por tanto $U \cap V \neq \emptyset$. La contrapositiva de la definición de Hausdorff indica que $x = y$.
 \end{Dem}
 
 \section{Espacios métricos.}
@@ -353,7 +353,7 @@ Esta resulta ser una topología en $M$ y la llamamos \textit{topología original} 
 La siguiente proposición indica que en un espacio métrico $M$ las bolas abiertas forman una base de la topología original de $M$.
 
 \begin{Prop} \label{Prop:BaseDeEntonrnosEspaciosNormados}
-Sea $M$ un espacio métrico. El conjunto $$\mathcal{B} := \{ V_r(x) : r > 0, x \in M \}$$ es una base de $M$.
+Sea $M$ un espacio métrico. La colección $$\mathcal{B} := \{ V_r(x) : r > 0, x \in M \}$$ es una base de $M$.
 \end{Prop}
 
 \begin{Dem}
@@ -365,11 +365,11 @@ Si $U$ es abierto de $M$ y $x \in U$, por definición existe $r > 0$ tal que $x \
 En un espacio métrico podemos caracterizar la convergencia de las sucesiones cambiando las vecindades arbitrarias por bolas abiertas como lo expresa la siguiente proposición.
 
 \begin{Prop}
-Sean $M$ un espacio métrico y  $(x_n)_{n \in\N}$ una sucesión en $M$. Resulta que $(x_n)_{n\in\N}$ converge a $x \in M$ si, y sólo si para todo $\varepsilon > 0$ existe $N \in \N$ tal que $\Norm{x_n - x} < \varepsilon$ si $n \geq \N$.
+Sean $M$ un espacio métrico y  $(x_n)_{n \in\N}$ una sucesión en $M$. Entonces $(x_n)_{n\in\N}$ converge a $x \in M$ si, y sólo si para todo $\varepsilon > 0$ existe $N \in \N$ tal que $\Norm{x_n - x} < \varepsilon$ si $n \geq \N$.
 \end{Prop}
 
 \begin{Dem}
-Supongamos que $x_n \to x$. Como $V_\varepsilon(x)$ es una vecindad abierta de $x$, se sigue de inmediato que existe $N \in \N$ tal que $x_n \in V_\varepsilon(x)$ si $n \geq \N$. Es decir, $\Norm{x_n - x} < \varepsilon$ si $n \geq \N$.
+Supongamos que $x_n \to x$ y sea $\varepsilon > 0$. Como $V_\varepsilon(x)$ es una vecindad abierta de $x$, se sigue de inmediato que existe $N \in \N$ tal que $x_n \in V_\varepsilon(x)$ si $n \geq \N$. Es decir, $\Norm{x_n - x} < \varepsilon$ si $n \geq \N$.
 
 Supongamos ahora que para todo $\varepsilon > 0$ existe $N \in \N$ tal que $\Norm{x_n - x} < \varepsilon$ si $n \geq \N$. Sea $U$ una vecindad abierta de $x$. Entonces existe $\varepsilon > 0$ con $V_\varepsilon(x) \subseteq U$. Por hipótesis existe $N \in \N$ tal que $x_n \in V_\varepsilon(x) \subseteq U$ si $n \geq \N$. Por lo tanto $x_n \to x$.
 \end{Dem}
@@ -377,7 +377,7 @@ Supongamos ahora que para todo $\varepsilon > 0$ existe $N \in \N$ tal que $\Nor
 La siguiente proposición indica que los espacios métricos son Hausdorff y por lo tanto las sucesiones convergentes en espacios métricos tienen límite único.
 
 \begin{Prop}
-Todo espacio métrico es Hausdoff. 
+Todo espacio métrico es Hausdorff. 
 \end{Prop}
 
 \begin{Dem}
@@ -410,13 +410,13 @@ Tomemos $x \in \overline{A}$. Para cada $n \in \N$, tenemos que $V_{\frac{1}{n}}
 Ahora tomemos $x \in M$ tal que existe $(x_n)_{n\in\N} \subseteq A$ con $x_n \to x$. Sea $U$ una vecindad abierta de $x$. Entonces existe $N \in \N$ tal que $x_n \in U$ si $n \geq N$. En particular, $x_N \in U \cap A \neq \emptyset$ y así $x \in \ov{A}$. 
 \end{Dem}
 
-\begin{Prop} \label{Prop:CaracterizacionCompacidadSucesiones}
+\begin{Tma} \label{Tma:CaracterizacionCompacidadSucesiones}
 Sean $M$ un espacio métrico y $K \subseteq M$. Son equivalentes:
 \begin{itemize}
 \item \textbf{i)} $K$ es compacto.
 \item \textbf{ii)} Toda sucesión en $K$ contiene una subsucesión convergente.
 \end{itemize}
-\end{Prop}
+\end{Tma}
 
 \begin{Dem}
 (Pendiente.)
@@ -426,12 +426,12 @@ Sean $M$ un espacio métrico y $K \subseteq M$. Son equivalentes:
 \end{Dem}
 
 \begin{Def}
-Sea $M$ un espacio métrico, la \textit{distancia} de $x \in M$ a $A \subseteq M$ es $$d(x, A) := \inf \{ d(x,y) : y \in A \},$$ donde $\inf  \emptyset = \infty.$
+Sea $M$ un espacio métrico. La \textit{distancia} de $x \in M$ a $A \subseteq M$ es $$d(x, A) := \inf \{ d(x,y) : y \in A \},$$ donde $\inf  \emptyset = \infty.$
 \end{Def}
 
-\begin{Prop}
+\begin{Lema} \label{Lema:DistanciaPositivaEnCerrados} 
 Sean $M$ un espacio métrico y $A \subseteq M$ un conjunto cerrado. Si $x \in M \setminus A$, entonces $d(x, A) > 0$. 
-\end{Prop}
+\end{Lema}
 
 \begin{Dem}
 Se demostrará por contrapositiva. Supongamos que $d(x, A) = 0$. Tomemos un abierto $U$ que incluya a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$, por lo que $U \cap A \neq \emptyset$. Así que $x \in \ov{A}$. Ya que $A$ es cerrado, entonces  $x \in A$.
@@ -590,7 +590,7 @@ Tomemos $\widehat{\alpha} \in \Lambda$ de tal manera que $\widehat{\alpha} \geq 
 Concluimos de esto que $(x_{\alpha, i})_{i\in I} \to (x_i)_{i\in I}$.
 \end{Dem}
 
-En la demostración de la proposición anterior se puede observar por qué es indispensable definir la topología producto como se definió y no simplemente como la generada por el producto de abiertos. Pues de lo contrario tal proposición sería falsa.
+En la demostración de la proposición anterior se puede observar por qué es indispensable definir la topología producto como se definió y no simplemente como la generada por el producto de abiertos. De lo contrario tal proposición sería falsa.
 
 \begin{Obs}
 Sea $X$ un espacio vectorial. El espacio $\mathcal{F}(\Lambda, X)$ de funciones de $\Lambda$ en $X$ es un espacio vectorial con la suma y producto por escalares definidas puntualmente. De esto podemos considerar la suma de $\Lambda$-redes $(x_\alpha)_{\alpha \in \Lambda}$ y $(y_\alpha)_{\alpha \in \Lambda}$ en $X$ como  
@@ -702,7 +702,7 @@ En este caso decimos que $\tau$ es una \textit{topología vectorial} y que $X$ es
 Sea $X$ un espacio vectorial  y $x_1, \ldots, x_n \in X$, $n \in \N$. El espacio generado por un conjunto $A \subseteq X$ se denotará por $\mbox{span}\, A$ y está definido como  $$\mbox{span} \, A  : = \left\{ \sum_{i=1}^n a_i x_i : n\in \N,  a_1, \ldots, a_n  \in \K, x_1, \ldots, x_n \in A \right\}.$$
 
 \begin{Lema} \label{Lema:VecindadesAbiertasAditivasEVT}
-Sea $X$ un espacio vectorial topológico. Para cada vecindad abierta $U$ del $0$, existe una vecindad abierta $V$ de $0$ con $$V + V \subseteq U.$$ 
+Sea $X$ un espacio vectorial topológico. Para cada vecindad abierta $U$ del $0$, existe una vecindad abierta $V$ de $0$ tal que $$V + V \subseteq U.$$ 
 \end{Lema}
 
 \begin{Dem}
@@ -772,6 +772,13 @@ Consideremos ahora $\pi: \K \times X \to X$ la función producto por un escalar, 
 $$\lim_{\alpha \in \Lambda} (\lambda_\alpha x_\alpha) = \left(\lim_{\alpha \in \Lambda} \lambda\alpha \right) \left( \lim_{\alpha \in \Lambda} x_\alpha \right).$$ 
 \end{Dem}
 
+\begin{Lema} \label{Lema:SumaYProductoEscalarDeFuncionesContinuas}
+Sea $X$ un espacio topológico y $E$ un espacio vectorial topológico. Si $\lambda \in \K$,  $f: X \to E$ y $g: X \to E$ son continuas en $x \in X$, entonces $f + g$ y $\lambda\, f $ son continuas en $x$.
+\end{Lema}
+
+\begin{Dem}
+(Pendiente).
+\end{Dem}
 
 \begin{Def}
 Sea $X$ un espacio vectorial topológico. Una \textit{red de Cauchy} en $X$ es una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ tal que para toda vecindad abierta $U$ del cero existe $\alpha \in \Lambda$ tal que $x_{\alpha_1} - x_{\alpha_2} \in U$ siempre que $\alpha_1, \alpha_2 \geq \alpha$. 
@@ -1363,7 +1370,7 @@ Sean $Y$ un subespacio propio y cerrado de un espacio normado $X$ y $\theta \in 
 \end{Lema}
 
 \begin{Dem}
-Tomemos $x \in X \setminus Y$. Como $Y$ es cerrado la distancia $d(x, Y)$ es positiva y $0 < \theta <1$ tenemos que 
+Tomemos $x \in X \setminus Y$. Como $Y$ es cerrado, el lema~\ref{Lema:DistanciaPositivaEnCerrados} indica que la distancia $d(x, Y)$ es positiva. Dado que $0 < \theta <1$, tenemos que 
 $$0 < d(x, Y) = \inf \{ \Norm{x-z} : z \in Y \} < \frac{d(x, Y)}{\theta}.$$
 Así que existe $z \in Y$ tal que $0 < \Norm{x - z} < \dfrac{d(x, Y)}{\theta}$. Definamos $x_\theta = \dfrac{x-z}{\Norm{x-z}}$. Claramente $\Norm{x_\theta} = 1$. Además, para $y \in Y$ se tiene que $z+ \Norm{x-z} y \in Y$. Por lo que
 \Ecu{
