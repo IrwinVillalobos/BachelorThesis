@@ -831,61 +831,8 @@ Sean $E$ un espacio vectorial topológico y $F \subseteq E$ un subespacio vectori
 Sea $x \in \ov{F}$. La proposición~\ref{Prop:CerraduraLimiteRed} establece que existe una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq F$ tal que $x_\alpha \to x$. Como $(x_\alpha)_{\alpha \in \Lambda}$ es convergente, el lema~\ref{Lema:RedConvergenteEsCauchy} indica que $(x_\alpha)_{\alpha \in \Lambda}$ es de Cauchy y al ser $F$ completo, se sigue que la red converge en $F$. Al ser $E$ Hausdorff, se sigue que $x \in F$ y así $F$ es cerrado. 
 \end{Dem}
 
-\begin{Def}
-Sean $E$ y $F$ dos espacios vectoriales topológicos. Decimos que $E$ y $F$ son \textit{isomorficamente homeomorfos} si existe un homeomorfismo lineal $T: E \to F$.
-\end{Def}
-
-\begin{Tma} \label{Tma:IsomorfismoDimensionFinitaEVT} 
-Si $E$ es un espacio vectorial topológico y $\dim\,E = n < \infty$, entonces $E$ es isomorficamente homeomorfo a $\K^n$ con la topología euclidiana.
-\end{Tma}
-
-\begin{Dem}
-Sea $\{ x_1, \ldots, x_n \}$ una base de $E$. Definamos la función 
-\Ecu{
-T: \K^n & \to X \\
-(a_1, \ldots, a_n) & \mapsto \sum_{i=1}^n a_i x_i. 
-} 
-Si $a = (a_1, \ldots, a_n), b = (b_1, \ldots, b_n) \in \K^n$ cumplen que $T(a) = T(b)$, entonces $\sum_{i=1}^n (a_i - b_i)x_i = 0$. Como $\{x_1, \ldots, x_n \}$ es linealmente independiente, entonces $a_1 - b_1 = \ldots = a_n - b_n = 0$. Así que $a = b$ y $T$ es inyectiva. 
-
-Sea $x \in E$. Como $\{x_1, \ldots, x_n \}$ genera a $E$, existen $a_1, \ldots, a_n \in \K$ tales que $$x = \sum_{i=1}^n a_i x_i = T(a_1, \ldots, a_n)$$ y así $T$ es sobreyectiva. 
-
-Veamos que $T$ es lineal. Dados $(a_1, \ldots, a_n), (b_1, \ldots, b_n) \in \K^n$ y $\lambda \in \K$, se tiene que
-\Ecu{
-T((a_1, \ldots, a_n) + \lambda (b_1, \ldots, b_n)) &= T((a_1 + \lambda b_1, \ldots, a_n + \lambda b_n)) = \sum_{i=1}^n (a_i + \lambda b_i) x_i \\
-&= \sum_{i=1}^n a_i  x_i +  \lambda\sum_{i=1}^n  b_i x_i = T(a_1, \ldots, a_n) + \lambda T(b_1, \ldots, b_n).
-}
-
-Demostremos que $T$ es continuo. Para $1 \leq i \leq n$ consideremos las proyecciones canónicas $\pi_i : \K^n \to \K$ y las funciones constantes $f_i: \K_n \to E$, $a \mapsto x_i$. Como $\pi_i$ y $f_i$ son continuas, entonces el lema~\ref{Lema:SumaYProductoEscalarDeFuncionesContinuas} indica que $T = (\pi_1 \cdot f_1) + \ldots + (\pi_n \cdot f_n)$ es continua. 
-
-Ya sólo falta ver que $T^{-1}$ es continua. La proposición~\ref{Prop:ContinuidadEnCero} indica que basta probar que $T^{-1}$ es continua en el cero. Sea $U$ una vecindad del cero en $\K^n$. Entonces existe $r > 0$ tal que $V_r(0) \subseteq U$. Es conocido que en la topología euclidiana la esfera $S^{n-1}_2 := \{ a \in \K^n : \Norm{a}_2 = 1\}$ es un conjunto compacto. Por la proposición~\ref{Prop:FuncionContinuaPreservaCompactos} tenemos que $T(S^{n-1}_2)$ es un conjunto compacto en $E$ que no contiene al cero. 
-
-Como $E$ es Hausdorff, $\{ 0\}$ es compacto en $E$. Dado que $T(S^{n-1}_2)$ también es compacto, la proposición~\ref{Prop:AbiertosSeparanCompactosEnHausdorff} existen $U$ y $V$ abiertos disjuntos tales que $0 \in U$ y $T(S_2^{n-1}) \subseteq V$.
-
-Ahora, como el producto por escalares $\cdot: \K \times E \to E$ es continuo y $V$ es una vecindad abierta del cero, existe un básico $(-\varepsilon, \varepsilon) \times \widehat{V}$ en $\K \times E$ tal que $0 \in \widehat{V}$ y $$\cdot((-\varepsilon, \varepsilon) \times \widehat{V}) = \{tz : t \in (-\varepsilon, \varepsilon), z \in \widehat{V} \} \subseteq V.$$ 
-
-Demostremos que $T^{-1}(\widehat{V}) \subseteq V_\frac{1}{\varepsilon}(0)$. Sea $z \in \widehat{V}$, de manera que  $T^{-1} z \in T^{-1}(\widehat{V})$. Sea $t \in (-\varepsilon, \varepsilon)$. Entonces $tz \in V$ de donde $tz \notin T(S^{n-1})$. Es decir, $T^{-1}(tz) \notin S^{n-1}$, o bien $\Norm{(T^{-1}(tz)} \neq 1$. Así, $\abs{t} \cdot \Norm{T^{-1} z} \neq 1$. Por lo tanto, para todo $t \in (-\varepsilon, \varepsilon) \setminus \{0\}$ se tiene que $\Norm{T^{-1}(z)} \neq \frac{1}{\abs{t}} $, por lo que $T^{-1}(z) \in V_\frac{1}{\varepsilon}(0)$. 
-
- 
-Sean $D_{r\varepsilon}^E: E \to E$ la dilatación por $r\varepsilon$ en $E$ y $D_{r\varepsilon}^{\K^n}: \K^n \to \K^n$ la dilatación por $r\varepsilon$ en $\K^n$. Como $D_{r\varepsilon}^E$ y $D_{r\varepsilon}^{\K^n}$ son isomorfismos   según la proposición~\ref{Prop:TraslacionDilatacionContinuas}, se sigue que el siguiente diagrama conmuta
- 
-\[
-\xymatrix{
-E \ar[r]^{T^{-1}} \ar[d]_{D_{r\varepsilon}^{E}} & \K^n \ar[d]^{D_{r\varepsilon}^{\K^n}} \\
-E \ar[r]_{T^{-1}} & \K^n.
-}
-\] 
-
-Luego
-
-\begin{equation} \label{Eq:InversadeTContinuidad}
-T^{-1}(D_{r\varepsilon}^E(\widehat{V})) = D_{r\varepsilon}^{\K^n}(T^{-1}(\widehat{V})) \subseteq D_{r\varepsilon}^{\K^n}(V_\frac{1}{\varepsilon}(0)) = V_r(0) \subseteq U.
-\end{equation}
-
-La proposición~\ref{Prop:TraslacionDilatacionContinuas} indica que $D_{r\varepsilon}^E$ es homeomorfismo y por lo tanto $D_{r\varepsilon}^E(\widehat{V})$ es vecindad abierta del cero. De esto y de (\ref{Eq:InversadeTContinuidad}) concluimos que $T^{-1}$ es continua. 
-\end{Dem}
-
 \begin{Lema} \label{Lema:HomeomorfismoLinealPreservaCompletitud}
-Sean $E$ y $F$ espacios vectoriales topológicos. Si existe un homeomorfismo lineal $T : E \to F$ y $E$ es completo, entonces $F$ es completo.
+Sean $E$ y $F$ espacios vectoriales topológicos. Si $T : E \to F$ es un homeomorfismo lineal y $E$ es completo, entonces $F$ es completo.
 \end{Lema}
 
 \begin{Dem}
@@ -1077,7 +1024,7 @@ Así que $\pi$ es continua.
 \end{Dem}
 
 \begin{Ejem}
-Sean $A$ un conjunto no-vacío y $X = F(A, \K)$ como en el ejemplo~\ref{Ejem:EVTFamiliaFuncionales}. Se verificó que  $\mathcal{F} = \{ \abs{\delta_a}: a \in A \}$ es una familia de seminormas en $X$ que separa puntos. Por lo que $X$ con la topología $\sigma(X, \mathcal{F})$ es un espacio vectorial topológico. Demostraremos que tal espacio vectorial es completo.
+Sean $A$ un conjunto no-vacío y $X = F(A, \K)$ como en el ejemplo~\ref{Ejem:EVTFamiliaFuncionales}. Se verificó que  $\mathcal{F} = \{ \abs{\delta_a}: a \in A \}$ es una familia de seminormas en $X$ que separa puntos, por lo que $X$ con la topología $\sigma(X, \mathcal{F})$ es un espacio vectorial topológico. Demostraremos que tal espacio vectorial es completo.
 
 (Pendiente).
 \end{Ejem}
@@ -1094,16 +1041,10 @@ En este caso decimos que $(X, \Norm{\cdot})$ es un \textit{espacio normado}.
 \begin{Def} Sea $X$ un espacio vectorial. Una función $f : X \to \R$ es \textit{convexa} si para todos $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que $$f(\lambda x + (1-\lambda y))\leq \lambda f(x) + (1-\lambda) f(y).$$
 \end{Def}
 
-\begin{Lema} \label{Lema:NormaContinua}
-Sea $X$ un espacio normado. Entonces la norma $\Norm{\cdot}:X \to [0, \infty)$ es una función convexa y continua.
-\end{Lema}
-
-\begin{Dem}
-Sean $x, y \in X$ y $\lambda \in [0, 1]$. Observemos que
-$$\Norm{\lambda x + (1-\lambda y)} \leq \abs{\lambda} \Norm{x} + \abs{1-\lambda} \Norm{y}  = \lambda \Norm{x} + (1-\lambda) \Norm{y}.$$ de manera que $\Norm{\cdot}$ es convexa.
-
-Sea $(x_n)_{n\in\N}$ una sucesión en $X$ que converge a $x \in X$. Por definición esto indica que para todo $\varepsilon > 0$ existe $N \in \N$ tal que si $n \geq N$ entonces $\Norm{x_n - x} \leq \varepsilon$. Por la desigualdad del triángulo que $\abs{\Norm{x_n} - \Norm{x}} < \Norm{x_n - x}$. Esto implica que $\Norm{x_n}$ converge a $\Norm{x}$ y así $\Norm{\cdot}$ es continua.
-\end{Dem}
+\begin{Ejem}
+Una norma $\Norm{\cdot}:X \to \R$ es convexa pues dados $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que
+$$\Norm{\lambda x + (1-\lambda y)} \leq \abs{\lambda} \Norm{x} + \abs{1-\lambda} \Norm{y}  = \lambda \Norm{x} + (1-\lambda) \Norm{y}.$$
+\end{Ejem}
 
 \begin{Lema} \label{Lema:DerivadaCrecienteConvexa}
 Sean $(a, b) \subseteq \R$ un intervalo y $f : (a, b) \to \R$ una función diferenciable. Si $f^{\prime}$ es monótona-creciente en $(a, b)$, entonces $f$ es convexa.
@@ -1125,7 +1066,28 @@ f(c) \leq f(x)\cdot \frac{c-y}{x-y} + f(y)\cdot\frac{x-c}{x-y}.
 Como $$\frac{c-y}{x-y} = \lambda \;\;\mbox{ y }\;\; \frac{x-c}{x-y} = 1- \lambda, $$ se sigue de (\ref{Eq:RelacionFuncionConvexa}) que $$f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1- \lambda)f(y).$$
 \end{Dem}
 
+\begin{Ejem} \label{Ejem:XPConvexa}
+Fijemos $1 \leq p < \infty$ y consideremos $f: [0, \infty) \to[0, \infty)$ dada por $f(x) = x^p$. Claramente, $f$ es diferenciable y $f^\prime(x) = p x^{p-1}$ es monótona creciente, así que el lema~\ref{Lema:DerivadaCrecienteConvexa} indica que $f$ es convexa. 
+
+Tomemos $g = \abs{\cdot}$, la cual es convexa por ser una norma en $\K$. Sean $x, y \in \K$ y $\lambda \in [0, 1]$, como $g$ es convexa se tiene que $$g(\lambda x + (1-\lambda)y) \leq \lambda g(x) + (1-\lambda)g(y).$$
+
+Dado que $f$ es creciente y convexa resulta que
+$$f(g(\lambda x + (1-\lambda)y)) \leq f(\lambda g(x) + (1-\lambda)g(y)) \leq \lambda f(g(x)) + (1-\lambda)f(g(y)).$$
+
+Por lo tanto $f \circ g : \K \to \R$, $z \mapsto \abs{z}^p$ es convexa.\\
+\end{Ejem}
+
 Es sencillo verificar que en un espacio normado $X$ la función $d: X \times X \to [0, \infty)$ definida por $$d(x, y) := \Norm{x-y}$$ es una métrica, por lo que $X$ es un espacio métrico y entonces podemos considerar la topología inducida por la métrica, la cual se denomina topología original de $X$. A menos que se especifique otra cosa, cuando hablemos de un espacio normado como espacio topológico, lo consideraremos con la topología original.
+
+
+\begin{Lema} \label{Lema:NormaContinua}
+Sea $X$ un espacio normado. Entonces la norma $\Norm{\cdot}:X \to [0, \infty)$ es una función continua.
+\end{Lema}
+
+\begin{Dem}
+Sea $(x_n)_{n\in\N}$ una sucesión en $X$ que converge a $x \in X$. Por definición esto indica que para todo $\varepsilon > 0$ existe $N \in \N$ tal que si $n \geq N$ entonces $\Norm{x_n - x} \leq \varepsilon$. Por la desigualdad del triángulo que $\abs{\Norm{x_n} - \Norm{x}} < \Norm{x_n - x}$. Esto implica que $\Norm{x_n}$ converge a $\Norm{x}$ y así $\Norm{\cdot}$ es continua.
+\end{Dem}
+
 
 \begin{Prop} \label{Prop:TopologiaOriginalEspaciosNormadosEVT}
 Si $X$ es un espacio normado, entonces es un espacio vectorial topológico. 
@@ -1185,25 +1147,10 @@ En $\K^n $ la norma euclidiana resulta ser el caso $p=2$ de una familia de norma
 Dados $n \in \N$ y $1 \leq p < \infty$, definamos la función $\Norm{\cdot}_p:\K^n \to [0, \infty)$ por $$\Norm{(x_1, \ldots, x_n)}_p := \left(\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}}.$$  
 
 En el caso $p = \infty$, definimos la función $\Norm{\cdot}_{\infty}: \K^n \to [0, \infty)$ dada por $$\Norm{(x_1, \ldots, x_n)}_\infty :=\max_{1 \leq i \leq n} \,  \abs{x_i}.$$
-Para verificar  que $\Norm{\cdot}_p$ es una norma recurriremos al siguiente ejemplo.
+A continuación demostraremos que $\Norm{\cdot}_p$ es una norma en $\K^n$ y que este es completo bajo esta norma.
 \end{Ejem}
-
-\begin{Ejem} \label{Ejem:XPConvexa}
-Fijemos $1 \leq p < \infty$ y consideremos $f: [0, \infty) \to[0, \infty)$ dada por $f(x) = x^p$. Claramente, $f$ es diferenciable y $f^\prime(x) = p x^{p-1}$ es monótona creciente, así que el lema~\ref{Lema:DerivadaCrecienteConvexa} indica que $f$ es convexa. 
-
-Tomemos $g = \abs{\cdot}$, la cual es convexa por ser una norma en $\K$. Sean $x, y \in \K$ y $\lambda \in [0, 1]$, como $g$ es convexa se tiene que $$g(\lambda x + (1-\lambda)y) \leq \lambda g(x) + (1-\lambda)g(y).$$
-
-Dado que $f$ es creciente y convexa resulta que
-$$f(g(\lambda x + (1-\lambda)y)) \leq f(\lambda g(x) + (1-\lambda)g(y)) \leq \lambda f(g(x)) + (1-\lambda)f(g(y)).$$
-
-Por lo tanto $f \circ g : \K \to \R$, $z \mapsto \abs{z}^p$ es convexa.
-\end{Ejem}
-
-\bigskip
 
 \begin{Dem}
-($\Norm{\cdot}_p$ es una norma en $\K^n$ y este es completo bajo esta norma.) 
-
 Sea $1 \leq p < \infty$.
 \begin{itemize}
 \item[\textbf{i)}] Claramente, $\Norm{x}_p \geq 0$ para cualquier $x \in \K^n$. Además, si $x = 0 \in \K^n$, entonces $\Norm{x}_p= 0$. Es sencillo observar que si $\Norm{x}_p = 0$ para algún $x \in \K^n$, entonces $x = 0$.
@@ -1282,9 +1229,9 @@ Sean $X$ y $Y$ espacios normados y  $T:X \to Y$ un operador lineal. Entonces $T$
 \end{Prop}
 
 \begin{Dem}
-Sea $A \subseteq X$ un conjunto acotado. Entonces existe $M > 0$ tal que $\Norm{x} < M $ para todo $x \in A$. Como $T$ es continua, existe $N >0$ tal que $\Norm{T(x)} < N \Norm{x}$. Así pues si $T(x) \in T(B)$ se sigue que $\Norm{T(x)} < MN.$ Por lo que $T(A)$ es acotado.
+Sea $A \subseteq X$ un conjunto acotado. Entonces existe $M > 0$ tal que $\Norm{x} \leq M $ para todo $x \in A$. Como $T$ es continua, existe $N >0$ tal que $\Norm{T(x)} \leq N \Norm{x}$ para toda $x \in  X$. Así pues si $T(x) \in T(A)$ se sigue que $\Norm{T(x)} \leq N\Norm{x} \leq MN.$ Por lo que $T(A)$ es acotado.
 
-Ahora supongamos que $T$ preserva conjuntos acotados. Como $B_X$ es un conjunto acotado, entonces $T(B)$ es un conjunto acotado por algún $K > 0$. Sea $x \in X$. Si $x = 0$, entonces $\Norm{Tx} = \Norm{0} = 0 \leq K \Norm{x}$. Supongamos entonces que $x \neq 0$, de manera que $\frac{x}{\Norm{x}} \in B_X$ y por lo tanto $T\left( \frac{x}{\Norm{x}} \right) \in T(B_X)$ y por lo tanto $\Norm{T\left( \frac{x}{\Norm{x}} \right)}  \leq K$ y así $\Norm{T(x)} \leq K \Norm{x}.$
+Ahora supongamos que $T$ preserva conjuntos acotados. Como $B_X$ es un conjunto acotado, entonces $T(B_X)$ es un conjunto acotado por algún $K > 0$. Sea $x \in X$. Si $x = 0$, entonces $\Norm{Tx} = \Norm{0} = 0 \leq K \Norm{x}$. Supongamos entonces que $x \neq 0$, de manera que $\frac{x}{\Norm{x}} \in B_X$ y por lo tanto $T\left( \frac{x}{\Norm{x}} \right) \in T(B_X)$ y por lo tanto $\Norm{T\left( \frac{x}{\Norm{x}} \right)}  \leq K$ y así $\Norm{T(x)} \leq K \Norm{x}.$
 \end{Dem}
 
 Sean $X$ y $Y$ espacios normados. Al espacio de los operadores lineales continuos $T: X \to Y$, y por tanto acotados, lo denotamos por $\mathcal{L}(X, Y)$. En este espacio definimos la función
@@ -1302,15 +1249,6 @@ $$\Norm{T} \geq \Norm{T\left(\frac{x}{\Norm{x}}\right)} = \frac{\Norm{Tx}}{\Norm
 Dado un espacio vectorial topológico $X$, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \tau)^*$ o simplemente por $X^*$.  A los elementos de este espacio dual los llamamos \textit{funcionales lineales continuos}.
 
 Cuando $X$ sea un espacio normado, su espacio dual se denotará por $(X, \Norm{\cdot})^*$ o simplemente por $X^*$.  Como $\K$ es completo, resulta que $X^* = \mathcal{L}(X, \K)$ es un espacio de Banach.  
-
-
-\begin{Prop} \label{Prop:FuncionalesLinealesContinuosEspaciosFinitos}
-Sea $E$ un espacio vectorial topológico de dimensión finita y  $\varphi : E \to \K$ un funcional lineal. Entonces $\varphi$ es continuo. 
-\end{Prop}
-
-\begin{Dem}
-Sea $\dim \, E = n \in \N$ y $\{ x_1, \ldots, x_n \} \subseteq X$ una base de $X$. Sea $T: \K^n \to E$ como en la demostración del teorema~\ref{Tma:IsomorfismoDimensionFinitaEVT}. Entonces $T^{-1}$ es continua. Definamos $S: \K^n \to \K$ como $S(a_1, \ldots, a_n) = a_1 \varphi(x_1) + \ldots + a_n \varphi(x_n)$. El mismo argumento que prueba que $T$ es continua funciona para probar que $S$ es continua (tomando $\K$ en lugar de $E$). De manera que $\varphi = S \circ T^{-1}$ es continuo.
-\end{Dem}
 
 Los teoremas de Hahn-Banach muestran que, cuando $X$ es un espacio normado, en $X^*$ existen suficientes funcionales que permiten hacer rica la teoría referente al espacio dual.
 
@@ -1332,30 +1270,70 @@ Por lo tanto $f = \sum_{j=1}^n a_j f_j$. Esto dice que existe un conjunto finito
 \end{Dem}
 
 
+\subsection{Compacidad de la bola cerrada en un espacio normado.}
+
+La compacidad es una propiedad muy importante que puede tener un subconjunto de un espacio topológico. El objetivo de esta sección es demostrar que la compacidad de la bola unitaria en un espacio normado depende simplemente de si este es de dimensión finita o no.
+
 \begin{Def} \hfill
 \begin{itemize}
 \item \textbf{i)} Sean $X$ y $Y$ espacios vectoriales. Se dice que $X$ y $Y$
 son \textit{isomorfos} como espacios vectoriales si existe $T :  X \to Y$ biyectiva y lineal. En este caso a $T$ se la llama \textit{isomorfismo} de espacios vectoriales.
-\item \textbf{ii)} Sean $X$ y $Y$ espacios normados. Se dice que $X$ y $Y$ son \textit{isomorfos} como espacios normados, si existe un isomorfismo de espacios vectoriales $T: X \to Y$ que también es un homeomorfismo. 
+\item \textbf{ii)} Sean $X$ y $Y$ espacios vectoriales topológicos. Se dice que $X$ y $Y$ son \textit{isomorfos} como espacios vectoriales topológicos o que son \textit{isomorficamente homeomorfos} si existe un isomorfismo de espacios vectoriales $T: X \to Y$ que también es un homeomorfismo. En este caso a $T$ se le llama \textit{isomorfismo} de espacios vectoriales topológicos. 
+\item \textbf{iii)} Sean $X$ y $Y$ espacios normados. Se dice que $X$ y $Y$ son \textit{isomorfos} como espacios normados si son isomorfos como espacios vectoriales topológicos. 
 \end{itemize}
 \end{Def}
+
+\begin{Tma} \label{Tma:IsomorfismoDimensionFinitaEVT} 
+Si $E$ es un espacio vectorial topológico y $\dim\,E = n < \infty$, entonces $E$ es isomorficamente homeomorfo a $\K^n$ con la topología euclidiana.
+\end{Tma}
+
+\begin{Dem}
+Sea $\{ x_1, \ldots, x_n \}$ una base de $E$. Definamos la función 
+\Ecu{
+T: \K^n & \to X \\
+(a_1, \ldots, a_n) & \mapsto \sum_{i=1}^n a_i x_i. 
+} 
+Si $a = (a_1, \ldots, a_n), b = (b_1, \ldots, b_n) \in \K^n$ cumplen que $T(a) = T(b)$, entonces $\sum_{i=1}^n (a_i - b_i)x_i = 0$. Como $\{x_1, \ldots, x_n \}$ es linealmente independiente, entonces $a_1 - b_1 = \ldots = a_n - b_n = 0$. Así que $a = b$ y $T$ es inyectiva. 
+
+Sea $x \in E$. Como $\{x_1, \ldots, x_n \}$ genera a $E$, existen $a_1, \ldots, a_n \in \K$ tales que $$x = \sum_{i=1}^n a_i x_i = T(a_1, \ldots, a_n)$$ y así $T$ es sobreyectiva. 
+
+Veamos que $T$ es lineal. Dados $(a_1, \ldots, a_n), (b_1, \ldots, b_n) \in \K^n$ y $\lambda \in \K$, se tiene que
+\Ecu{
+T((a_1, \ldots, a_n) + \lambda (b_1, \ldots, b_n)) &= T((a_1 + \lambda b_1, \ldots, a_n + \lambda b_n)) = \sum_{i=1}^n (a_i + \lambda b_i) x_i \\
+&= \sum_{i=1}^n a_i  x_i +  \lambda\sum_{i=1}^n  b_i x_i = T(a_1, \ldots, a_n) + \lambda T(b_1, \ldots, b_n).
+}
+
+Demostremos que $T$ es continuo. Para $1 \leq i \leq n$ consideremos las proyecciones canónicas $\pi_i : \K^n \to \K$ y las funciones constantes $f_i: \K_n \to E$, $a \mapsto x_i$. Como $\pi_i$ y $f_i$ son continuas, entonces el lema~\ref{Lema:SumaYProductoEscalarDeFuncionesContinuas} indica que $T = (\pi_1 \cdot f_1) + \ldots + (\pi_n \cdot f_n)$ es continua. 
+
+Ya sólo falta ver que $T^{-1}$ es continua. La proposición~\ref{Prop:ContinuidadEnCero} indica que basta probar que $T^{-1}$ es continua en el cero. Sea $U$ una vecindad del cero en $\K^n$. Entonces existe $r > 0$ tal que $V_r(0) \subseteq U$. Es conocido que en la topología euclidiana la esfera $S^{n-1}_2 := \{ a \in \K^n : \Norm{a}_2 = 1\}$ es un conjunto compacto. Por la proposición~\ref{Prop:FuncionContinuaPreservaCompactos} tenemos que $T(S^{n-1}_2)$ es un conjunto compacto en $E$ que no contiene al cero. 
+
+Como $E$ es Hausdorff, $\{ 0\}$ es compacto en $E$. Dado que $T(S^{n-1}_2)$ también es compacto, la proposición~\ref{Prop:AbiertosSeparanCompactosEnHausdorff} existen $U$ y $V$ abiertos disjuntos tales que $0 \in U$ y $T(S_2^{n-1}) \subseteq V$.
+
+Ahora, como el producto por escalares $\cdot: \K \times E \to E$ es continuo y $V$ es una vecindad abierta del cero, existe un básico $(-\varepsilon, \varepsilon) \times \widehat{V}$ en $\K \times E$ tal que $0 \in \widehat{V}$ y $$\cdot((-\varepsilon, \varepsilon) \times \widehat{V}) = \{tz : t \in (-\varepsilon, \varepsilon), z \in \widehat{V} \} \subseteq V.$$ 
+
+Probemos que $T^{-1}(\widehat{V}) \subseteq V_\frac{1}{\varepsilon}(0)$. Sea $z \in \widehat{V}$, de manera que  $T^{-1} z \in T^{-1}(\widehat{V})$. Tomemos $t \in (-\varepsilon, \varepsilon)$. Entonces $tz \in V$, de donde $tz \notin T(S^{n-1})$. Es decir, $T^{-1}(tz) \notin S^{n-1}$, o bien $\Norm{(T^{-1}(tz)} \neq 1$. Así que $\abs{t} \cdot \Norm{T^{-1} z} \neq 1$. Por lo tanto, para todo $t \in (-\varepsilon, \varepsilon) \setminus \{0\}$ se tiene que $\Norm{T^{-1}z} \neq \frac{1}{\abs{t}} $, por lo que $T^{-1}z \in V_\frac{1}{\varepsilon}(0)$. 
+
+ 
+Sean $D_{r\varepsilon}^E: E \to E$ la dilatación por $r\varepsilon$ en $E$. Demostremos que $T^{-1}(D_{r\varepsilon}^E(\widehat{V})) \subseteq U$. Tomemos $y \in \widehat{V}$, de manera que $T^{-1}(D_{r\varepsilon}^E(\widehat{y})) \in T^{-1}(D_{r\varepsilon}^E(\widehat{V}))$. Como $T^{-1}(\widehat{V}) \subseteq V_\frac{1}{\varepsilon}(0)$, se sigue que $T^{-1}y \in V_\frac{1}{\varepsilon}(0)$. Es decir, $\Norm{T^{-1}y} < \frac{1}{\varepsilon}$. De esto se sigue que $r\varepsilon \Norm{T^{-1}y} < r$, o bien $\Norm{r\varepsilon T^{-1}y} < r$. Entonces $T^{-1}(D^E_{r\varepsilon}(y)) = T^{-1}(r\varepsilon\cdot y) \in V_r(0) \subseteq U$. 
+ 
+La proposición~\ref{Prop:TraslacionDilatacionContinuas} indica que $D_{r\varepsilon}^E$ es homeomorfismo y por lo tanto $D_{r\varepsilon}^E(\widehat{V})$ es vecindad abierta del cero. De esto y de que $T^{-1}(D_{r\varepsilon}^E(\widehat{V})) \subseteq U$ concluimos que $T^{-1}$ es continua. 
+\end{Dem}
 
 \begin{Cor}
 Si $X$ y $Y$ son espacios normados de dimensión finita y de la misma dimensión, entonces son isomorfos como espacios normados.
 \end{Cor}
 
-\begin{Dem}
-(Pendiente).
-\end{Dem}
-
 \begin{Cor}
 Si $X$ es un espacio normado de dimensión finita, entonces todas las normas en $X$ son equivalentes entre sí.
 \end{Cor}
 
-\subsection{Compacidad de la bola cerrada en un espacio normado.}
+\begin{Prop} \label{Prop:FuncionalesLinealesContinuosEspaciosFinitos}
+Sea $E$ un espacio vectorial topológico de dimensión finita y  $\varphi : E \to \K$ un funcional lineal. Entonces $\varphi$ es continuo. 
+\end{Prop}
 
-La compacidad es una propiedad muy importante que puede tener un subconjunto de un espacio topológico. El objetivo de esta sección es demostrar que la compacidad de la bola unitaria en un espacio normado depende simplemente de si este es de dimensión finita o no.
-
+\begin{Dem}
+Sea $\dim \, E = n \in \N$ y $\{ x_1, \ldots, x_n \} \subseteq X$ una base de $X$. Sea $T: \K^n \to E$ como en la demostración del teorema~\ref{Tma:IsomorfismoDimensionFinitaEVT}. Entonces $T^{-1}$ es continua. Definamos $S: \K^n \to \K$ como $S(a_1, \ldots, a_n) = a_1 \varphi(x_1) + \ldots + a_n \varphi(x_n)$. Para $1 \leq i \leq n$ las proyecciones $\pi_i: \K^n \to \K$ y las funciones constantes $f_i: \K^n \to \K$, $a \mapsto \varphi(x_i)$ son continuas. Como $\K$ es un espacio vectorial topológico, el lema~\ref{Lema:SumaYProductoEscalarDeFuncionesContinuas} indica que $S = (\pi_1 \cdot f_1 + \ldots + \pi_n \cdot f_n)$ es continua de manera que $\varphi = S \circ T^{-1}$ también es continua.
+\end{Dem}
 
 \begin{Prop} \label{Prop:DimensionFinitaEVTCompleto}
 Cualquier espacio vectorial topológico de dimensión finita es completo.
