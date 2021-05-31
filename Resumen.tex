@@ -68,12 +68,12 @@
 \newtheorem{Def}{Definición}[section]
 \newtheorem{Ejem}{Ejemplo}[section]
 
-\declaretheoremstyle[%
-  spaceabove=-2pt,%
-  spacebelow=6pt,%
-  headfont=\normalfont\itshape,%
-  postheadspace=1em,%
-  qed=\qedsymbol%
+\declaretheoremstyle[
+  spaceabove=-2pt,
+  spacebelow=6pt,
+  headfont=\normalfont\itshape,
+  postheadspace=1em,
+  qed=\qedsymbol
 ]{mystyle} 
 \declaretheorem[name={Demostración},style=mystyle,unnumbered,
 ]{Dem}
@@ -252,7 +252,6 @@ Sea $A$ un conjunto cerrado. Entonces $X \setminus A$ es abierto. Como $f$ prese
 Un subconjunto $K$ de un espacio topológico $X$ es \textit{compacto} si para cualquier colección $\{ U_\alpha \}_{\alpha \in \Lambda}$ de abiertos tales que $$K \subseteq \bigcup_{\alpha \in \Lambda} U_\alpha$$ existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ tales que $$K \subseteq \bigcup_{i=1}^n U_{\alpha_i}.$$
 \end{Def}
 
-
 \begin{Prop} \label{Prop:FuncionContinuaPreservaCompactos}
 Sean $X$ y $Y$ espacios topológicos y $f:X \to Y$ una función continua. Entonces $f$ preserva compactos.
 \end{Prop}
@@ -306,16 +305,31 @@ Sean $I$ un conjunto no vacío y $X_i$ espacios topológicos para cada $i \in I$. 
 
 Veamos que con esta definición de topología producto las proyecciones son continuas. Fijemos $i \in I$ y tomemos cualquier abierto $U_i$ en $X_i$. Entonces $\pi_i^{-1}(U_i)$ es un básico de $\prod_{i\in I} X_i$ y por tanto es abierto. Esto indica que $\pi_i$ es continua. \\ 
  
- 
+\begin{Def}
+Sea $X$ un espacio topológico. Diremos que $X$ es \textit{Hausdorff} si para todos $x, y \in X$ distintos existen abiertos $U, V$ tales que $x \in U$, $y \in V$ y $U\cap V = \emptyset$.
+\end{Def}
+
+\begin{Prop} \label{Prop:AbiertosSeparanCompactosEnHausdorff}
+Sea $X$ un espacio topológico Hausdorff. Si $A$ y $B$ son dos conjuntos compactos disjuntos en $X$ entonces existen $U$ y $V$ abiertos disjuntos tales que $A \subseteq U$ y $B \subseteq V$.
+\end{Prop}
+
+\begin{Dem}
+Fijemos $x \in A$ por un momento. Por ser $X$ Hausdorff, para cada $y \in B$ existen $U_y$ y $V_y$ abiertos disjuntos tales que $x \in U_y$ y $y \in V_y$. De esta manera, $\{V_y \}_{y \in B}$ es una cubierta abierta de $B$. Al ser $B$ compacto, existen $n \in \N$ y $y_1, \ldots, y_n \in B$ tales que $$B \subseteq \bigcup_{i=1}^n V_{y_i}.$$
+
+Definamos $$U_x := \bigcap_{i=1}^n U_{y_i} \quad\mbox{ y }\quad V_x := \bigcup_{j=1}^n V_{y_j},$$ de tal manera que $U_x, V_x$ son abiertos, $x \in U_x$, $B \subseteq V_y$ y $$U_x \cap V_x = \left( \bigcap_{i=1}^n U_{y_i} \right) \cap \left( \bigcup_{j=1}^n V_{y_j} \right) = \bigcup_{j=1}^n \left[ \left(   \bigcap_{i=1}^n U_{y_i} \right) \cap V_{y_j}\right] \subseteq \bigcup_{j=1}^n \left[    U_{y_j} \cap V_{y_j}\right]  = \emptyset. $$
+
+Como $\{ U_x \}_{x \in A}$ es una cubierta abierta de $A$ y $A$ es compacto, existen $m \in \N$ y $x_1, \ldots, x_m \in A$ tales que $$A \subseteq \bigcup_{i=1}^m U_{x_i}.$$
+
+Definamos $$U := \bigcup_{i=1}^m U_{x_i} \quad\mbox{ y }\quad V := \bigcap_{j=1}^m V_{x_j},$$ de tal manera que $U, V$ son abiertos, $A \subseteq U$, $B \subseteq V$ y $$U \cap V = \left( \bigcup_{i=1}^m U_{x_i} \right) \cap \left( \bigcap_{j=1}^m V_{x_j} \right) = \bigcup_{i=1}^m \left[ U_{x_i} \cap \left( \bigcap_{j=1}^m V_{x_j} \right) \right] \subseteq \bigcup_{i=1}^m \left[    U_{x_i} \cap V_{x_i}\right]  = \emptyset. $$
+%Hola
+\end{Dem}
+
 Una \textit{sucesión} en un conjunto $X$ es una función $s: \N \to X$. Usualmente representamos a la sucesión $s$ por $(x_n)_{n\in \N}$, donde $x_n := s(n)$ para toda $n \in \N$. 
 
 \begin{Def}
 Sea $X$ un espacio topológico y $(x_n)_{n\in\N}$ una sucesión. Si existe $x \in X$ tal que para cada vecindad abierta $U$ de $x$ existe $N \in \N$ tal que $x_n \in U$ para $n \geq n$, entonces decimos que $(x_n)_{n\in\N}$ \textit{converge} a $x$, que $x$ es el \textit{límite} de $(x_n)_{n\in\N}$ y lo denotamos por $x_n \to x$.
 \end{Def}
 
-\begin{Def}
-Sea $X$ un espacio topológico. Diremos que $X$ es \textit{Hausdorff} si para todos $x, y \in X$ distintos existen abiertos $U, V$ tales que $x \in U$, $y \in V$ y $U\cap V = \emptyset$.
-\end{Def}
 
 \begin{Prop}
 Sean $X$ es un espacio topológico y $(x_n)_{n \in \N}$ una sucesión en $X$ convergente. Si $X$ es Hausdorff, entonces el límite de $(x_n)_{n\in\N}$ es único.
@@ -420,8 +434,6 @@ Sean $M$ un espacio métrico y $K \subseteq M$. Son equivalentes:
 
 \begin{Dem}
 (Pendiente.)
-
-%Hola mundo
 
 \end{Dem}
 
@@ -773,11 +785,13 @@ $$\lim_{\alpha \in \Lambda} (\lambda_\alpha x_\alpha) = \left(\lim_{\alpha \in \
 \end{Dem}
 
 \begin{Lema} \label{Lema:SumaYProductoEscalarDeFuncionesContinuas}
-Sea $X$ un espacio topológico y $E$ un espacio vectorial topológico. Si $\lambda \in \K$,  $f: X \to E$ y $g: X \to E$ son continuas en $x \in X$, entonces $f + g$ y $\lambda\, f $ son continuas en $x$.
+Sea $X$ un espacio topológico y $E$ un espacio vectorial topológico. Si $f: X \to E$, $g: X \to E$  y $h: X \to \K$ son continuas, entonces $f + g$ y $h \cdot f$ son continuas.
 \end{Lema}
 
 \begin{Dem}
-(Pendiente).
+Como $f$ y $g$ son continuas, el corolario~\ref{Cor:ContinuidadPorComponentes} indica que $f \times g : X \to E \times E$ es continua. Al ser continua la suma $+: E \times E \to E$, resulta que $f + g = + \circ  (f \times g) : X \to E$ también es continua. 
+
+Ahora, al ser $h$ y $f$ funciones continua, tenemos que $h \times f: X \to \K \times E$ es continua. Como el producto por escalares $\cdot: \K \times E \to E$ es una función continua, se sigue entonces que $h \cdot f = \cdot \circ (h \times f): X \to E$ es continua. 
 \end{Dem}
 
 \begin{Def}
@@ -818,7 +832,7 @@ Sea $x \in \ov{F}$. La proposición~\ref{Prop:CerraduraLimiteRed} establece que e
 \end{Dem}
 
 \begin{Def}
-Sean $E$ y $F$ dos espacios vectoriales topológicos. Decimos que $E$ y $F$ son \textit{isomorficamente homeomorfos} si existe un homeomorfismo $T: E \to F$ lineal.
+Sean $E$ y $F$ dos espacios vectoriales topológicos. Decimos que $E$ y $F$ son \textit{isomorficamente homeomorfos} si existe un homeomorfismo lineal $T: E \to F$.
 \end{Def}
 
 \begin{Tma} \label{Tma:IsomorfismoDimensionFinitaEVT} 
@@ -841,21 +855,15 @@ T((a_1, \ldots, a_n) + \lambda (b_1, \ldots, b_n)) &= T((a_1 + \lambda b_1, \ldo
 &= \sum_{i=1}^n a_i  x_i +  \lambda\sum_{i=1}^n  b_i x_i = T(a_1, \ldots, a_n) + \lambda T(b_1, \ldots, b_n).
 }
 
-Demostremos que $T$ es continuo. Para $1 \leq i \leq n$ consideremos las proyecciones canónicas $\pi_i : \K^n \to \K$ y las funciones constantes $f_i: \K_n \to E$, $a \mapsto x_i$. Como $\pi_i$ y $f_i$ son continuas, entonces el corolario~\ref{Cor:ContinuidadPorComponentes} indica que $\pi_i \times f_i : \K^n \to \K \times E$ es continua. Al ser continuo el producto por escalares $\cdot: \K \times E \to E$, resulta que $\pi_i \cdot f_i = \cdot \circ  \pi_i \times f_i : \K^n \to E$ también es continua. 
+Demostremos que $T$ es continuo. Para $1 \leq i \leq n$ consideremos las proyecciones canónicas $\pi_i : \K^n \to \K$ y las funciones constantes $f_i: \K_n \to E$, $a \mapsto x_i$. Como $\pi_i$ y $f_i$ son continuas, entonces el lema~\ref{Lema:SumaYProductoEscalarDeFuncionesContinuas} indica que $T = (\pi_1 \cdot f_1) + \ldots + (\pi_n \cdot f_n)$ es continua. 
 
-Ahora, como $\pi_1\cdot f_1$ y $\pi_2\cdot f_2$ son continuas, resulta que $(\pi_1 \cdot f_1) \times (\pi_2 \cdot f_2) : \K^2 \to E \times E$ es continua. Como la suma $+: E \times E \to E$ es una función continua, se sigue entonces que $(\pi_1 \cdot f_1) + (\pi_2 \cdot f_2) = + \circ [(\pi_1 \cdot f_1) \times (\pi_2 \cdot f_2)] : \K^n \to E$ es continua. De manera inductiva, llegamos a que $T = (p_1 \cdot f_1) + \ldots + (\pi_n \cdot f_n)$ es continua. 
+Ya sólo falta ver que $T^{-1}$ es continua. La proposición~\ref{Prop:ContinuidadEnCero} indica que basta probar que $T^{-1}$ es continua en el cero. Sea $U$ una vecindad del cero en $\K^n$. Entonces existe $r > 0$ tal que $V_r(0) \subseteq U$. Es conocido que en la topología euclidiana la esfera $S^{n-1}_2 := \{ a \in \K^n : \Norm{a}_2 = 1\}$ es un conjunto compacto. Por la proposición~\ref{Prop:FuncionContinuaPreservaCompactos} tenemos que $T(S^{n-1}_2)$ es un conjunto compacto en $E$ que no contiene al cero. 
 
-Ya sólo falta ver que $T^{-1}$ es continua. La proposición~\ref{Prop:ContinuidadEnCero} indica que basta probar que $T^{-1}$ es continua en el cero. Sea $U$ una vecindad del cero en $K^n$. Entonces existe $r > 0$ tal que $V_r(0) \subseteq U$. Es conocido que en la topología euclidiana la esfera $S^{n-1} := \{ a \in \K^n : d(a, 0) = 1\}$ es un conjunto compacto. Por la proposición~\ref{Prop:FuncionContinuaPreservaCompactos} tenemos que $T(S^{n-1})$ es un conjunto compacto en $E$ que no contiene al cero. 
+Como $E$ es Hausdorff, $\{ 0\}$ es compacto en $E$. Dado que $T(S^{n-1}_2)$ también es compacto, la proposición~\ref{Prop:AbiertosSeparanCompactosEnHausdorff} existen $U$ y $V$ abiertos disjuntos tales que $0 \in U$ y $T(S_2^{n-1}) \subseteq V$.
 
-Como $E$ es Hausdorff, para cada $y \in T(S^{n-1})$ existen $U_y$, $V_y$ abiertos en $E$ tales que $y \in U_y$, $0 \in V_y$ y $U_y \cap V_y = \emptyset$. Como $\{ U_y \}_{y \in T(S^{n-1})}$ es una cubierta abierta de $T(S^{n-1})$ y este es compacto, existen $k \in \N$ y  $y_1, \ldots, y_k \in T(S^{n-1})$ tales que $$T(S^{n-1}) \subseteq \bigcup_{i=1}^k U_{y_i}.$$
+Ahora, como el producto por escalares $\cdot: \K \times E \to E$ es continuo y $V$ es una vecindad abierta del cero, existe un básico $(-\varepsilon, \varepsilon) \times \widehat{V}$ en $\K \times E$ tal que $0 \in \widehat{V}$ y $$\cdot((-\varepsilon, \varepsilon) \times \widehat{V}) = \{tz : t \in (-\varepsilon, \varepsilon), z \in \widehat{V} \} \subseteq V.$$ 
 
-Tenemos que $V := \bigcap_{i=1}^k V_{y_i}$ es una vecindad abierta del cero. Además, como $U_y \cap V_y = \emptyset$ para toda $y \in T(S^{n-1})$, se sigue que $$U_{y_j} \cap \left( \bigcap_{i=1}^k  V_{y_i}\right) = \emptyset, \mbox{ para toda } j \in \{ 1, \ldots, k\}.$$
-
-De donde $$T(S^{n-1}) \cap V \subseteq \left( \bigcup_{j=1}^k U_{y_j} \right) \cap \left( \bigcap_{i=1}^k  V_{y_i}\right) = \emptyset.$$
-
-Ahora, como $\cdot: \K \times E \to T$ es continua y $V$ es una vecindad abierta del cero, existe un básico $(-\varepsilon, \varepsilon) \times \widehat{V}$ en $\K \times E$ tal que $0 \in \widehat{V}$ y $$\cdot((-\varepsilon, \varepsilon) \times \widehat{V}) = \{tz : t \in (-\varepsilon, \varepsilon), z \in \widehat{V} \} \subseteq V.$$ 
-
-Demostremos que $T^{-1}(\widehat{V}) \subseteq V_\frac{1}{\varepsilon}(0)$. Sea $T^{-1} z \in T^{-1}(\widehat{V})$, para algún $z \in \widehat{V}$. Fijemos por un momento $t \in (-\varepsilon, \varepsilon)$. Entonces $tz \in V$ de donde $tz \notin T(S^{n-1})$. Es decir, $T^{-1}(tz) \notin S^{n-1}$, o bien $d(T^{-1}(tz), 0) \neq 1$. Así, $\abs{t} \cdot d(T^{-1} z, 0) \neq 1$. Por lo tanto, para todo $t \in (-\varepsilon, \varepsilon) \setminus \{0\}$ se tiene que $d(T^{-1}(z), 0) \neq \frac{1}{\abs{t}} $, por lo que $T^{-1}(z) \in V_\frac{1}{\varepsilon}(0)$. 
+Demostremos que $T^{-1}(\widehat{V}) \subseteq V_\frac{1}{\varepsilon}(0)$. Sea $z \in \widehat{V}$, de manera que  $T^{-1} z \in T^{-1}(\widehat{V})$. Sea $t \in (-\varepsilon, \varepsilon)$. Entonces $tz \in V$ de donde $tz \notin T(S^{n-1})$. Es decir, $T^{-1}(tz) \notin S^{n-1}$, o bien $\Norm{(T^{-1}(tz)} \neq 1$. Así, $\abs{t} \cdot \Norm{T^{-1} z} \neq 1$. Por lo tanto, para todo $t \in (-\varepsilon, \varepsilon) \setminus \{0\}$ se tiene que $\Norm{T^{-1}(z)} \neq \frac{1}{\abs{t}} $, por lo que $T^{-1}(z) \in V_\frac{1}{\varepsilon}(0)$. 
 
  
 Sean $D_{r\varepsilon}^E: E \to E$ la dilatación por $r\varepsilon$ en $E$ y $D_{r\varepsilon}^{\K^n}: \K^n \to \K^n$ la dilatación por $r\varepsilon$ en $\K^n$. Como $D_{r\varepsilon}^E$ y $D_{r\varepsilon}^{\K^n}$ son isomorfismos   según la proposición~\ref{Prop:TraslacionDilatacionContinuas}, se sigue que el siguiente diagrama conmuta
