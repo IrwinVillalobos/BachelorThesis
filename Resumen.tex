@@ -38,6 +38,7 @@
 \newcommand{\np}[1]{\paragraph{Problema #1}}
 \newcommand{\sol}{\subparagraph{Solución}}
 \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\nn}[1]{\{ 1, \ldots, #1 \}}
 \newcommand{\Ker}{\mbox{Ker}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\weakarrow}{\stackrel{\mathrm{w}}{\longrightarrow}}
@@ -128,7 +129,7 @@ En este caso también decimos que $x$ es un \textit{punto interior} de $V$. Al co
 Si además de ser una vecindad de $x \in X$, $V$ es abierto, diremos que $V$ es una \textit{vecindad abierta} de $x$. En otras palabras, $V$ es una vecindad abierta de $x$ si, y sólo si $V$ es un abierto que lo contiene.
 
 \begin{Lema} \label{Lema:CaracterizacionAbierto}
-Sea $X$ un espacio topológico y $V \subseteq X$. Entonces $V$ es abierto si, y sólo si $V$ es un vecindad de $x$ para todo $x \in V$. En otras palabras, $V$ es abierto si, y sólo si $V = V^0$. 
+Sea $X$ un espacio topológico y $V \subseteq X$. Entonces $V$ es abierto si, y sólo si $V$ es una vecindad de $x$ para toda $x \in V$. En otras palabras, $V$ es abierto si, y sólo si $V = V^0$. 
 \end{Lema}
 
 \begin{Dem}
@@ -321,7 +322,15 @@ Definamos $$U_x := \bigcap_{i=1}^n U_{y_i} \quad\mbox{ y }\quad V_x := \bigcup_{
 Como $\{ U_x \}_{x \in A}$ es una cubierta abierta de $A$ y $A$ es compacto, existen $m \in \N$ y $x_1, \ldots, x_m \in A$ tales que $$A \subseteq \bigcup_{i=1}^m U_{x_i}.$$
 
 Definamos $$U := \bigcup_{i=1}^m U_{x_i} \quad\mbox{ y }\quad V := \bigcap_{j=1}^m V_{x_j},$$ de tal manera que $U, V$ son abiertos, $A \subseteq U$, $B \subseteq V$ y $$U \cap V = \left( \bigcup_{i=1}^m U_{x_i} \right) \cap \left( \bigcap_{j=1}^m V_{x_j} \right) = \bigcup_{i=1}^m \left[ U_{x_i} \cap \left( \bigcap_{j=1}^m V_{x_j} \right) \right] \subseteq \bigcup_{i=1}^m \left[    U_{x_i} \cap V_{x_i}\right]  = \emptyset. $$
-%Hola
+
+\end{Dem}
+
+\begin{Prop} \label{Prop:HausdorffCompactoEsCerrado}
+Sea $X$ un espacio topológico Hausdorff. Si $K \subset X$ es compacto, entonces es cerrado. (¿Es mejor que sea corolario?)
+\end{Prop}
+
+\begin{Dem}
+Tomemos $x \in X \setminus K$. Como $\{ x \}$ y $K$ son compactos, la proposición~\ref{Prop:AbiertosSeparanCompactosEnHausdorff} indica que existen abiertos disjuntos $U, V$ tales que $x \in U$ y $K \subseteq V$, entonces $x \in U \subseteq X \setminus V \subseteq X \setminus K$. Del lema~\ref{Lema:CaracterizacionAbierto} se sigue que $X \setminus K$ es abierto y por lo tanto $K$ es cerrado.
 \end{Dem}
 
 Una \textit{sucesión} en un conjunto $X$ es una función $s: \N \to X$. Usualmente representamos a la sucesión $s$ por $(x_n)_{n\in \N}$, donde $x_n := s(n)$ para toda $n \in \N$. 
@@ -1036,9 +1045,35 @@ Sean $A$ un conjunto no-vacío y $X = F(A, \K)$ como en el ejemplo~\ref{Ejem:EVTF
 Una \textit{norma} en un espacio vectorial $X$ es una seminorma $\Norm{\cdot}: X \to [0, \infty)$ tal que es \textit{definida positiva}, esto es para cada $x \in X$, $\Norm{x} = 0$ si, y sólo si $x = 0$.
 
 En este caso decimos que $(X, \Norm{\cdot})$ es un \textit{espacio normado}. 
-\end{Def}
+\end{Def} 
  
-\begin{Def} Sea $X$ un espacio vectorial. Una función $f : X \to \R$ es \textit{convexa} si para todos $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que $$f(\lambda x + (1-\lambda y))\leq \lambda f(x) + (1-\lambda) f(y).$$
+\begin{Def}
+Sea $X$ un espacio vectorial. Un subconjunto $A$ de $X$ es \textit{convexo} si para todos $x, y \in A$ y $\lambda \in [0,1]$ se tiene que $\lambda x + (1-\lambda) y \in A$. 
+\end{Def} 
+
+\begin{Ejem}
+Sea $X$ un espacio vectorial y $z \in X$. Claramente $X$ y $\{z\}$ son convexos. Además, si tomamos $x, y \in B_X$ y $\lambda \in [0, 1]$, entonces $\Norm{\lambda x + (1-\lambda)y} \leq \lambda \Norm{x} + (1- \lambda)\Norm{y} leq \lambda + (1-\lambda) = 1$. Así que $\lambda x + (1-\lambda)y \in B_X$ y $B_X$ es convexo.
+\end{Ejem}
+
+\begin{Prop} \label{Prop:FuncionLinealPreservaConvexos}
+Sean $X, Y$ espacios vectoriales y $T: X \to Y$ lineal. Si $A \subseteq X$ es convexo, entonces $T(A)$ es convexo.
+\end{Prop}
+
+\begin{Dem}
+Sean $x, y \in A$, de tal manera que $Tx, Ty \in T(A)$, y $\lambda \in [0,1]$. Como $A$ es convexo, se tiene que $\lambda x + (1- \lambda) y \in A$, de donde $\lambda Tx + (1-\lambda) Ty = T(lambda x + (1-\lambda)y) \in T(A)$.
+\end{Dem}
+
+\begin{Prop} \label{Prop:CerraduraDeConvexoEsConvexa}
+Sea $X$ un espacio vectorial. Si $A \subseteq X$ es convexo, entonces $\ov{A}$ es convexa.
+\end{Prop}
+
+\begin{Dem}
+Sean $x, y \in \ov{A}$ y $\lambda \in [0, 1]$. Como $x, y \in \ov{A}$, existen sucesiones $(x_n)_{n\in\N}$, $(y_n)_{n\in\N}$ en $A$ tales que $x_n \to x$ y $y_n \to y$. Dado que $A$ es convexo se cumple que $\lambda x_n + (1-\lambda) y_n \in A$. Además, la proposición~\ref{Prop:LimiteDeSuma} indica que $$\lim_{n\to \infty} [\lambda x_n + (1-\lambda) y_n] = \lambda \lim_{n\to\infty} x_n + (1-\lambda) \lim_{n\to \infty} y_n = \lambda x + (1-\lambda) y.$$ 
+
+Por lo tanto $\lambda x + (1-\lambda y) \in \ov{A}$.  
+\end{Dem}
+
+\begin{Def} Sean $X$ un espacio vectorial y $A \subseteq X$ convexo. Una función $f : A \to \R$ es \textit{convexa} si para todos $x, y \in A$ y $\lambda \in [0, 1]$ se tiene que $$f(\lambda x + (1-\lambda y))\leq \lambda f(x) + (1-\lambda) f(y).$$
 \end{Def}
 
 \begin{Ejem}
@@ -1200,13 +1235,13 @@ Veamos ahora que $\Norm{\cdot}_\infty$ es una norma en $\K^n$. Para eso, notemos
 \end{itemize}
 \end{Dem}
 
-En adelante, cuando trabajemos en $\K^n$ con la norma $\Norm{\cdot}_p$, lo denotaremos por $\ell_p^n$.  
+En adelante, cuando trabajemos en $\K^n$ con la norma $\Norm{\cdot}_p$, lo denotaremos por $\ell_p^n$. Si hace falta especificar el campo se denotará por $\ell_p^n(\K)$.  
 
 \begin{Ejem}
 Denotemos por $\K^\N$ al espacio de sucesiones en $\K$. Definamos para $1 \leq p < \infty$ las funciones $\Norm{\cdot}_p : \K^\N \to [0, \infty]$ y $\Norm{\cdot}_\infty : \K^\N \to [0, \infty]$ por $$\Norm{(x_1, x_2, \ldots)}_p = \left(  \sum_{i=1}^\infty \abs{x_i}^p \right)^{\frac{1}{p}} \mbox{  y  } \Norm{(x_1, x_2, \ldots)}_\infty = \sup_{i \in \N} \,  \abs{x_i},$$
 donde consideramos que $\infty^{\frac{1}{p}} = \infty$.
 
-Para $1\leq p\leq \infty$ definimos $\ell_p \subseteq \K^n$ como el espacio de sucesiones $x \in \K^\N$ tales que $\Norm{x}_p < \infty$.
+Para $1\leq p\leq \infty$ definimos a $\ell_p(\K)$, o simplemente $\ell_p$, como el espacio de sucesiones $x \in \K^\N$ tales que $\Norm{x}_p < \infty$.
 
 \end{Ejem}
 
@@ -1252,23 +1287,75 @@ Cuando $X$ sea un espacio normado, su espacio dual se denotará por $(X, \Norm{\c
 
 Los teoremas de Hahn-Banach muestran que, cuando $X$ es un espacio normado, en $X^*$ existen suficientes funcionales que permiten hacer rica la teoría referente al espacio dual.
 
-\begin{Tma} \textbf{(Hahn-Banach)}
+\begin{Tma} \textbf{(Hahn-Banach)} \label{Tma:HahnBanachFuncional}
 Sea $X$ un espacio normado y $V \subseteq X$ un subespacio vectorial. Si $f \in V^*$ entonces existe $F \in X^*$ tal que $F = f$ en $V$ y $\Norm{f} = \Norm{F}$.
 \end{Tma}
-
 
 \begin{Prop}
 Sea $X$ un espacio normado. Entonces $X$ es de dimensión infinita si y sólo si $X^*$ también lo es. 
 \end{Prop}
 
 \begin{Dem}
-Supongamos que $X$ es de dimensión infinita. Entonces para todo $n \in \N$ existen $x_1, \ldots, x_n \in X$ linealmente independientes. Sea $V = \mbox{span} \{ x_1, \ldots, x_n \}$, de manera que $\{ x_1, \ldots, x_n \}$ es una base de $V$. Para $i \in \{1, \ldots, n \}$ definamos el funcional lineal $\varphi_i : V \to \K$ dado por $\varphi_i(x_j) = \delta_{ij}$ que es continuo por la proposición~\ref{Prop:FuncionalesLinealesContinuosEspaciosFinitos} . Por el teorema de Hahn-Banach existe $F_i \in X^*$ tal que $F_i = f_i$ en $V$. Veamos que $\{F_1, \ldots, F_n\}$ es linealmente independiente en $X^*$. Sean $a_1, \ldots, a_n \in K$ tales que $$\sum_{j=1}^n a_i F_i = 0.$$ Al evaluar en $x_i$ obtenemos que $a_i = 0$. Esto muestra que para toda $n \in \N$ existen $n$ funcionales linealmente independientes. Por lo que $X^*$ es de dimensión infinita. 
+Supongamos que $X$ es de dimensión infinita. Entonces para todo $n \in \N$ existen $x_1, \ldots, x_n \in X$ linealmente independientes. Sea $V = \mbox{span} \{ x_1, \ldots, x_n \}$, de manera que $\{ x_1, \ldots, x_n \}$ es una base de $V$. Para $i \in \{1, \ldots, n \}$ definamos el funcional lineal $\varphi_i : V \to \K$ dado por $\varphi_i(x_j) = \delta_{ij}$ que es continuo por la proposición~\ref{Prop:FuncionalesLinealesContinuosEspaciosFinitos} . Por el teorema~\ref{Tma:HahnBanachFuncional} de Hahn-Banach existe $F_i \in X^*$ tal que $F_i = f_i$ en $V$. Veamos que $\{F_1, \ldots, F_n\}$ es linealmente independiente en $X^*$. Sean $a_1, \ldots, a_n \in K$ tales que $$\sum_{j=1}^n a_i F_i = 0.$$ Al evaluar en $x_i$ obtenemos que $a_i = 0$. Esto muestra que para toda $n \in \N$ existen $n$ funcionales linealmente independientes. Por lo que $X^*$ es de dimensión infinita. 
 
 Supongamos ahora que $X$ es de dimensión finita $n \in \N$. Existe entonces una base $\{x_1, \ldots, x_n \}$ de $X$. Para $1 \leq i \leq n$ definimos $f_i :X \to \K $ linealmente y de tal manera que $f_i(x_j) = \delta_{ij}$. Como $X$ es de dimensión finita la proposición~\ref{Prop:FuncionalesLinealesContinuosEspaciosFinitos} indica que cada $f_i$ es continuo. Veamos que $\{ f_1, \ldots, f_n \}$ generan a $X^*$. Tomamos entonces $f \in X^*$ y supongamos que $f(x_i) = a_i \in \K$ para cada $i \in \{1, \ldots, n\}$. Así, para cada $1 \leq i \leq n$
 $$\left( \sum_{j=1}^n a_j f_j \right)(x_i) = a_i = f(x_i).$$
 Por lo tanto $f = \sum_{j=1}^n a_j f_j$. Esto dice que existe un conjunto finito generador en $X^*$, por lo que $X^*$ es de dimensión finita.
 \end{Dem}
 
+Existen otras maneras de plantear los teoremas de Hanh-Banach con un enfoque más geométrico como lo muestra el siguiente teorema.
+
+\begin{Tma} \textbf{(Hahn-Banach)} \label{Tma:HahnBanachGeometrico}
+Sea $X$ un espacio normado real. Si $A$ y $B$ son dos conjuntos convexos disjuntos, $A$ es cerrado y $B$ compacto, entonces existen $\varphi \in X^*$ y $\alpha, \beta \in \R$ tales que $\varphi(x) < \alpha < \beta < \varphi(y)   \mbox{ para todos } x \in A, y \in B.$
+\end{Tma}
+
+\begin{Lema} \textbf{(Helly)} \label{Lema:HellyReal}
+Sean $X$ un espacio normado real, $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $a_1, \ldots, a_n \in \R$. Son equivalentes:
+\begin{itemize}
+\item \textbf{i)} Para todo $\varepsilon>0$ existe $x \in B_X$ tal que $\abs{\varphi_i(x) - a_i} < \varepsilon$ para toda $i \in \{ 1, \ldots, n\}$.
+\item \textbf{ii)} Para cualesquiera $b_1, \ldots, b_n \in \R$ se cumple que $\displaystyle\abs{\sum_{i=1}^n a_i b_i} \leq \Norm{\sum_{i=1}^n b_i f_i}.$
+\item \textbf{iii)} $(a_1, \ldots, a_n) \in \ov{T(B_X)}$, donde  $T: X \to \ell_1^n(\R), \, x \mapsto (\varphi_1(x), \ldots, \varphi_n(x))$. 
+\end{itemize}
+\end{Lema}
+
+\begin{Dem}
+Se demostrará que \textbf{i)} implica \textbf{ii)}, que \textbf{ii)} implica \textbf{iii)} y que \textbf{iii)} implica \textbf{i)}.
+
+Supongamos \textbf{i)}. Tomemos $b_1, \ldots, b_n \in \R$ cualesquiera. Sea $\varepsilon > 0$. Entonces existe $x \in B_X$ tal que $\abs{\varphi_i(x) - a_i} < \varepsilon$ para toda $i \in \nn{n}$. Observemos que 
+\Ecu{
+\abs{\sum_{i=1}^n a_i b_i} &= \abs{\sum_{i=1}^n (a_i - \varphi_i(x) + \varphi_i(x)) b_i} \leq \abs{\sum_{i=1}^n (a_i - \varphi_i(x)) b_i} + \abs{\left(\sum_{i=1}^n b_i \varphi_i \right)(x) } \\
+& \leq \sum_{i=1}^n \abs{a_i - \varphi_i(x)} b_i + \Norm{\sum_{i=1}^n b_i \varphi_i } \Norm{x} < \varepsilon  \sum_{i=1}^n\abs{b_i} + \Norm{\sum_{i=1}^n b_i \varphi_i }  
+}
+Como esto es para todo $\varepsilon >0$, se sigue que $\displaystyle\abs{\sum_{i=1}^n a_i b_i} \leq \Norm{\sum_{i=1}^n b_i \varphi_i}$. 
+
+Para mostrar que \textbf{ii)} implica \textbf{iii)} se hará por contrapositiva. Así pues, supongamos que $a = (a_1, \ldots, a_n) \notin \ov{T(B_X)}$, de manera que $\{a \}$ y $\ov{T(B_X)}$ son disjuntos. Como $B_X$ es convexo, la proposición~\ref{Prop:FuncionLinealPreservaConvexos} indica que $T(B_X)$ es convexo y por la proposición~\ref{Prop:CerraduraDeConvexoEsConvexa} se tiene que $\ov{T(B_X)}$ también es convexo.  Además, $\ov{T(B_X)}$ es cerrado. Claramente, $\{ a \}$ es compacto y convexo. El teorema~\ref{Tma:HahnBanachGeometrico} de Hanh-Banach dice que existe $\psi \in \ell_1^{n}(\R)^*$ y $\alpha \in \R$ tales que $\psi(y) < \alpha < \psi(a)$ para todo $y \in \ov{T(B_X)}$. Consideremos $\{ e_1, \ldots, e_n \}$ la base canónica de $\R^n$. Para $1\leq i \leq n$ definamos $b_i := \psi(e_i)$, de tal manera que para $(z_1, \ldots z_n) \in \R^n$ tenemos que $$\psi(z_1, \ldots, z_n) = \sum_{i=1}^n b_i z_i.$$
+
+Tomemos $x \in B_X$. Entonces $Tx \in T(B_X) \subseteq \ov{T(B_x)}$, por lo que $$\sum_{i=1}^n b_i \varphi_i(x) = \psi(\varphi_1(x), \ldots, \varphi_n(x)) = \psi(T(x))  < \alpha < \psi(a) = \sum_{i=1}^n a_i b_i \leq \abs{\sum_{i=1}^n a_i b_i }.$$  
+
+Como $-x \in B_X$, se tiene que $$-\sum_{i=1}^n b_i \varphi_i(x) =  \sum_{i=1}^n b_i \varphi_i(-x ) < \alpha < \abs{\sum_{i=1}^n a_i b_i},$$ de donde $$\displaystyle \abs{\sum_{i=1}^n b_i \varphi_i(x)} =   < \alpha < \abs{\sum_{i=1}^n a_i b_i}.$$
+
+Concluimos de aquí la negación de \textbf{ii)}, es decir, $$\Norm{\sum_{i=1}^n b_i \varphi_i} = \sup_{x \in B_X} \abs{\left(\sum_{i=1}^n b_i \varphi_i \right)(x)} \leq \alpha < \abs{\sum_{i=1}^n a_i b_i}.$$
+
+ 
+
+
+Finalmente, supongamos \textbf{iii)}. Sea $\varepsilon > 0$. Como $a = (a_1, \ldots, a_n) \in \ov{T(B_X)}$, se sigue que $V_\varepsilon(a) \cap T(B_X) \neq \emptyset$. Así que existe $y \in V_\varepsilon(a) \cap T(B_X)$. Como $y \in T(B_X)$, existe $x \in B_X$ con $T(x) = y$. Así que $T(x) \in V_\varepsilon(a)$. Para $i \in \nn{n}$ se tiene que $$\abs{\varphi_i(x) - a_i} \leq \sum_{j=1}^{n} \abs{\varphi_j(x) - a_j} = \Norm{Tx - a}_1 < \varepsilon.$$
+\end{Dem}
+
+El lema de Helly sigue siendo válido para espacios normados complejos como se muestra a continuación.
+
+\begin{Lema} \textbf{(Helly)} \label{Lema:HellyGeneral}
+Sean $X$ un espacio normado, $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $a_1, \ldots, a_n \in \K$. Son equivalentes:
+\begin{itemize}
+\item \textbf{i)} Para todo $\varepsilon>0$ existe $x \in B_X$ tal que $\abs{\varphi_i(x) - a_i} < \varepsilon$ para toda $i \in \{ 1, \ldots, n\}$.
+\item \textbf{ii)} Para cualesquiera $b_1, \ldots, b_n \in \K$ se cumple que $\displaystyle\abs{\sum_{i=1}^n a_i b_i} \leq \Norm{\sum_{i=1}^n b_i f_i}.$
+\item \textbf{iii)} $(a_1, \ldots, a_n) \in \ov{T(B_X)}$, donde  $T: X \to \ell_1^n(\K), \, x \mapsto (\varphi_1(x), \ldots, \varphi_n(x))$. 
+\end{itemize}
+\end{Lema}
+
+\begin{Dem}
+(Pendiente).
+\end{Dem}
 
 \subsection{Compacidad de la bola cerrada en un espacio normado.}
 
@@ -1307,7 +1394,7 @@ Demostremos que $T$ es continuo. Para $1 \leq i \leq n$ consideremos las proyecc
 
 Ya sólo falta ver que $T^{-1}$ es continua. La proposición~\ref{Prop:ContinuidadEnCero} indica que basta probar que $T^{-1}$ es continua en el cero. Sea $U$ una vecindad del cero en $\K^n$. Entonces existe $r > 0$ tal que $V_r(0) \subseteq U$. Es conocido que en la topología euclidiana la esfera $S^{n-1}_2 := \{ a \in \K^n : \Norm{a}_2 = 1\}$ es un conjunto compacto. Por la proposición~\ref{Prop:FuncionContinuaPreservaCompactos} tenemos que $T(S^{n-1}_2)$ es un conjunto compacto en $E$ que no contiene al cero. 
 
-Como $E$ es Hausdorff, $\{ 0\}$ es compacto en $E$. Dado que $T(S^{n-1}_2)$ también es compacto, la proposición~\ref{Prop:AbiertosSeparanCompactosEnHausdorff} existen $U$ y $V$ abiertos disjuntos tales que $0 \in U$ y $T(S_2^{n-1}) \subseteq V$.
+Dado que $\{ 0\}$ es compacto en $E$ y $T(S^{n-1}_2)$ también es compacto, la proposición~\ref{Prop:AbiertosSeparanCompactosEnHausdorff} existen $U$ y $V$ abiertos disjuntos tales que $0 \in U$ y $T(S_2^{n-1}) \subseteq V$.
 
 Ahora, como el producto por escalares $\cdot: \K \times E \to E$ es continuo y $V$ es una vecindad abierta del cero, existe un básico $(-\varepsilon, \varepsilon) \times \widehat{V}$ en $\K \times E$ tal que $0 \in \widehat{V}$ y $$\cdot((-\varepsilon, \varepsilon) \times \widehat{V}) = \{tz : t \in (-\varepsilon, \varepsilon), z \in \widehat{V} \} \subseteq V.$$ 
 
@@ -1522,6 +1609,8 @@ Aplicando el teorema~\ref{Tma:SeminormasInducenEVT}  se deduce el siguiente coro
 Sea $X$ un espacio normado. Entonces $X^*_{\mathrm{w}^*}$ es un espacio vectorial topológico.
 \end{Cor}
 
+La cerradura de un subconjunto $F$ de el espacio dual $X^*$ de un espacio normado $X$ respecto a la topología débil* se denotará por $\ov{F}^{\mathrm{w}^*}$.
+
 En el espacio dual $X^*$ de un espacio normado $X$ la convergencia en la topología débil* de una red $(\varphi_\alpha)_{\alpha \in \Lambda} \subseteq X^*$ a $\varphi \in X^*$ se denotará por $\wslim_{\alpha \in \Lambda} \varphi_\alpha = \varphi$ o también por $\varphi_\alpha \stackrel{\mathrm{w_*}}{\longrightarrow} \varphi$.
 
 
@@ -1606,7 +1695,22 @@ Si $X$ es un espacio normado reflexivo, entonces  $B_{X^*}$ es $\mathrm{w}$-comp
 \end{Cor}
 
 \begin{Dem}
-Habíamos notado anteriormente que en espacios reflexivos $\sigma(X^*, X) = \sigma(X^*, X^{**})$. Por lo que la compacidad con la topología débil y débil* de $B_{X^*}$ son equivalentes. Por el teorema de Banach-Alaoglu resulta entonces que $B_{X^*}$ es débil*-compacta y débil-compacta.
+Habíamos notado anteriormente que en espacios reflexivos $\sigma(X^*, X) = \sigma(X^*, X^{**})$. Por lo que la compacidad con la topología débil y débil* de $B_{X^*}$ son equivalentes. Por el teorema de Banach-Alaoglu resulta entonces que $B_{X^*}$ es $\mathrm{w}^*$-compacta y por tanto $\mathrm{w}$-compacta.
+\end{Dem}
+
+\begin{Tma} \textbf{(Goldstine)}
+Sea $X$ un espacio normado. Entonces $\ov{J(B_X)}^{\mathrm{w}^*}= B_{X^{**}} $.
+\end{Tma}
+
+\begin{Dem}
+El teorema de Banach-Alaoglu nos dice que $B_{X^{**}}$ es $\mathrm{w}^*$-compacta y como $X^{**}$ es Hausdorff de la proposición~\ref{Prop:HausdorffCompactoEsCerrado} se sigue que $B_{X^{**}}$ también es $\mathrm{w}^*$-cerrado. Como $J(B_X) \subseteq B_{X^{**}}$, tenemos que $$\ov{J(B_X)}^{\mathrm{w}^*} \subseteq \ov{B_{X^{**}}}^{\mathrm{w}^*} = B_{X^{**}}.$$
+
+Para demostrar la otra contención tomemos $\delta \in B_{X^{**}}$. Sea $U$ una $\mathrm{w}^*$-vecindad de $\delta$. Hay que demostrar que  $J(B_X) cap U \neq \emptyset$. Existen $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $\varepsilon > 0$ tales que $U_{\delta, \varphi_1, \ldots, \varphi_n, \varepsilon} \subseteq U$ (para realizar este paso tendría que demostrar que los básicos en realidad forman una base de entornos de la topología débil*, en lugar de simplemente una base ¿lo pruebo?). 
+
+Sean $b_1, \ldots, b_n \in\K$ cualesquiera. Tenemos que
+$$\abs{\sum_{i=1}^n \delta(\varphi_i) b_i } = \abs{\delta\left(\sum_{i=1}^n  b_i \varphi_i \right) } \leq \Norm{\delta} \Norm{\sum_{i=1}^n  b_i \varphi_i} \leq \Norm{\sum_{i=1}^n  b_i \varphi_i}.$$
+
+El lema~\ref{Lema:HellyGeneral} de Helly indica que existe $x \in B_X$ tal que para toda $1 \leq i \leq n$ se cumple que  $\abs{\varphi_i(x) - \delta(\varphi_i)} < \varepsilon$, o bien $\abs{(Jx - \delta)(\varphi_i)} < \varepsilon$. Es decir, $Jx \in J(B_X) \cap U_{\delta, \varphi_1, \ldots, \varphi_n, \varepsilon} \subseteq J(B_X) \cap U$. 
 \end{Dem}
 
 \begin{Tma}
@@ -1615,9 +1719,11 @@ es $\mathrm{w}$-compacta.
 \end{Tma}
 
 \begin{Dem}
-Supongamos primero que $X$ es reflexivo. El teorema de Banach-Alaoglu indica que $B_{X^{**}}$ es $\sigma(X^{**}, X^{*})$-compacto. La proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es abierta y como $J$ es reflexivo entonce $B_X = J^{-1}(B_{X^{**}})$ es $\sigma(X, X^*)$-compacto.
+Supongamos primero que $X$ es reflexivo. El teorema de Banach-Alaoglu indica que $B_{X^{**}}$ es $\sigma(X^{**}, X^{*})$-compacto. La proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es abierta y como $J$ es reflexivo entonces $B_X = J^{-1}(B_{X^{**}})$ es $\sigma(X, X^*)$-compacto.
 
-Ahora supongamos que $B_X$ es $\mathrm{w}$-compacta. (Pendiente).
+Ahora supongamos que $B_X$ es $\mathrm{w}$-compacta. La proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es continua. Así $J(B_X)$ es $\mathrm{w}^*$-compacto, por lo que al ser $X^{**}$ Hausdorff resulta de la proposición~\ref{Prop:HausdorffCompactoEsCerrado} que $J(B_X)$ también es $\mathrm{w}^*$-cerrado. Entonces, por el teorema de Goldstine se tiene que $$B_{X^{**}} = \ov{J(B_X)}^{\mathrm{w}^*} = J(B_X)$$
+
+Por lo tanto $X$ es reflexivo. 
 \end{Dem}
 
 \section{Medibilidad.}
@@ -1724,6 +1830,7 @@ Esto indica que en un espacio de Banach la convergencia débil de subseries impli
 \item Galaz Fontes. Elementos de Análisis Funcional. 
 \item Marian Fabian. Functional Analysis and Infinite-Dimensional Geometry.
 \item Francisco J. Diáz. Curso de Topología General.
+\item Haim Brezis. Functional Analysis, Sobolev Spaces and Partial Differential Equations.
 \end{itemize}
 
 
