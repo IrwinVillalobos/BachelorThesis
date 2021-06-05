@@ -311,26 +311,26 @@ Sea $X$ un espacio topológico. Diremos que $X$ es \textit{Hausdorff} si para tod
 \end{Def}
 
 \begin{Prop} \label{Prop:AbiertosSeparanCompactosEnHausdorff}
-Sea $X$ un espacio topológico Hausdorff. Si $A$ y $B$ son dos conjuntos compactos disjuntos en $X$ entonces existen $U$ y $V$ abiertos disjuntos tales que $A \subseteq U$ y $B \subseteq V$.
+Sea $X$ un espacio topológico Hausdorff. Si $A$ y $B$ son dos conjuntos compactos disjuntos en $X$ entonces existen abiertos disjuntos $U$ y $V$ tales que $A \subseteq U$ y $B \subseteq V$.
 \end{Prop}
 
 \begin{Dem}
-Fijemos $x \in A$ por un momento. Por ser $X$ Hausdorff, para cada $y \in B$ existen $U_y$ y $V_y$ abiertos disjuntos tales que $x \in U_y$ y $y \in V_y$. De esta manera, $\{V_y \}_{y \in B}$ es una cubierta abierta de $B$. Al ser $B$ compacto, existen $n \in \N$ y $y_1, \ldots, y_n \in B$ tales que $$B \subseteq \bigcup_{i=1}^n V_{y_i}.$$
+Fijemos $x \in A$ por un momento. Por ser $X$ Hausdorff, para cada $y \in B$ existen $U_y$ y $V_y$ abiertos disjuntos tales que $x \in U_y$ y $y \in V_y$. De esta manera, $\{V_y \}_{y \in B}$ es una cubierta abierta de $B$. Al ser $B$ compacto, existen $n \in \N$ y $y_1, \ldots, y_n \in B$ tales que $B \subseteq \bigcup_{i=1}^n V_{y_i}.$
 
-Definamos $$U_x := \bigcap_{i=1}^n U_{y_i} \quad\mbox{ y }\quad V_x := \bigcup_{j=1}^n V_{y_j},$$ de tal manera que $U_x, V_x$ son abiertos, $x \in U_x$, $B \subseteq V_y$ y $$U_x \cap V_x = \left( \bigcap_{i=1}^n U_{y_i} \right) \cap \left( \bigcup_{j=1}^n V_{y_j} \right) = \bigcup_{j=1}^n \left[ \left(   \bigcap_{i=1}^n U_{y_i} \right) \cap V_{y_j}\right] \subseteq \bigcup_{j=1}^n \left[    U_{y_j} \cap V_{y_j}\right]  = \emptyset. $$
+Definamos $$U_x := \bigcap_{i=1}^n U_{y_i} \quad\mbox{ y }\quad V_x := \bigcup_{j=1}^n V_{y_j},$$ de tal manera que $U_x, V_x$ son abiertos, $x \in U_x$, $B \subseteq V_x$ y $$U_x \cap V_x = \left( \bigcap_{i=1}^n U_{y_i} \right) \cap \left( \bigcup_{j=1}^n V_{y_j} \right) = \bigcup_{j=1}^n \left[ \left(   \bigcap_{i=1}^n U_{y_i} \right) \cap V_{y_j}\right] \subseteq \bigcup_{j=1}^n \left[    U_{y_j} \cap V_{y_j}\right]  = \emptyset. $$
 
-Como $\{ U_x \}_{x \in A}$ es una cubierta abierta de $A$ y $A$ es compacto, existen $m \in \N$ y $x_1, \ldots, x_m \in A$ tales que $$A \subseteq \bigcup_{i=1}^m U_{x_i}.$$
+Como $\{ U_x \}_{x \in A}$ es una cubierta abierta de $A$ y $A$ es compacto, existen $m \in \N$ y $x_1, \ldots, x_m \in A$ tales que $A \subseteq \bigcup_{i=1}^m U_{x_i}.$
 
 Definamos $$U := \bigcup_{i=1}^m U_{x_i} \quad\mbox{ y }\quad V := \bigcap_{j=1}^m V_{x_j},$$ de tal manera que $U, V$ son abiertos, $A \subseteq U$, $B \subseteq V$ y $$U \cap V = \left( \bigcup_{i=1}^m U_{x_i} \right) \cap \left( \bigcap_{j=1}^m V_{x_j} \right) = \bigcup_{i=1}^m \left[ U_{x_i} \cap \left( \bigcap_{j=1}^m V_{x_j} \right) \right] \subseteq \bigcup_{i=1}^m \left[    U_{x_i} \cap V_{x_i}\right]  = \emptyset. $$
 
 \end{Dem}
 
-\begin{Prop} \label{Prop:HausdorffCompactoEsCerrado}
-Sea $X$ un espacio topológico Hausdorff. Si $K \subset X$ es compacto, entonces es cerrado. (¿Es mejor que sea corolario?)
-\end{Prop}
+\begin{Cor} \label{Cor:HausdorffCompactoEsCerrado}
+Sea $X$ un espacio topológico Hausdorff. Si $K \subset X$ es compacto, entonces es cerrado. 
+\end{Cor}
 
 \begin{Dem}
-Tomemos $x \in X \setminus K$. Como $\{ x \}$ y $K$ son compactos, la proposición~\ref{Prop:AbiertosSeparanCompactosEnHausdorff} indica que existen abiertos disjuntos $U, V$ tales que $x \in U$ y $K \subseteq V$, entonces $x \in U \subseteq X \setminus V \subseteq X \setminus K$. Del lema~\ref{Lema:CaracterizacionAbierto} se sigue que $X \setminus K$ es abierto y por lo tanto $K$ es cerrado.
+Tomemos $x \in X \setminus K$. Como $\{ x \}$ y $K$ son compactos, la proposición~\ref{Prop:AbiertosSeparanCompactosEnHausdorff} indica que existen abiertos disjuntos $U, V$ tales que $x \in U$ y $K \subseteq V$. Entonces $x \in U \subseteq X \setminus V \subseteq X \setminus K$. Del lema~\ref{Lema:CaracterizacionAbierto} se sigue ahora que $X \setminus K$ es abierto y por lo tanto $K$ es cerrado.
 \end{Dem}
 
 Una \textit{sucesión} en un conjunto $X$ es una función $s: \N \to X$. Usualmente representamos a la sucesión $s$ por $(x_n)_{n\in \N}$, donde $x_n := s(n)$ para toda $n \in \N$. 
@@ -1435,7 +1435,7 @@ Si $Y$ es un subespacio de dimensión finita de un espacio vectorial topológico $
 \end{Cor}
 
 \begin{Dem}
-La proposición $\ref{Prop:DimensionFinitaEVTCompleto}$ indica que $Y$ es completo. Del lema~\ref{Lema:CompletoEntoncesCerrado} se concluye que $Y$ es cerrado en $X$.
+La proposición~\ref{Prop:DimensionFinitaEVTCompleto} indica que $Y$ es completo. Del lema~\ref{Lema:CompletoEntoncesCerrado} se concluye que $Y$ es cerrado en $X$.
 \end{Dem}
 
 \begin{Lema} \textbf{(de Riesz)}
@@ -1703,7 +1703,7 @@ Sea $X$ un espacio normado. Entonces $\ov{J(B_X)}^{\mathrm{w}^*}= B_{X^{**}} $.
 \end{Tma}
 
 \begin{Dem}
-El teorema de Banach-Alaoglu nos dice que $B_{X^{**}}$ es $\mathrm{w}^*$-compacta y como $X^{**}$ es Hausdorff de la proposición~\ref{Prop:HausdorffCompactoEsCerrado} se sigue que $B_{X^{**}}$ también es $\mathrm{w}^*$-cerrado. Como $J(B_X) \subseteq B_{X^{**}}$, tenemos que $$\ov{J(B_X)}^{\mathrm{w}^*} \subseteq \ov{B_{X^{**}}}^{\mathrm{w}^*} = B_{X^{**}}.$$
+El teorema de Banach-Alaoglu nos dice que $B_{X^{**}}$ es $\mathrm{w}^*$-compacta y como $X^{**}$ es Hausdorff del corolario~\ref{Cor:HausdorffCompactoEsCerrado} se sigue que $B_{X^{**}}$ también es $\mathrm{w}^*$-cerrado. Como $J(B_X) \subseteq B_{X^{**}}$, tenemos que $$\ov{J(B_X)}^{\mathrm{w}^*} \subseteq \ov{B_{X^{**}}}^{\mathrm{w}^*} = B_{X^{**}}.$$
 
 Para demostrar la otra contención tomemos $\delta \in B_{X^{**}}$. Sea $U$ una $\mathrm{w}^*$-vecindad de $\delta$. Hay que demostrar que  $J(B_X) cap U \neq \emptyset$. Existen $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $\varepsilon > 0$ tales que $U_{\delta, \varphi_1, \ldots, \varphi_n, \varepsilon} \subseteq U$ (para realizar este paso tendría que demostrar que los básicos en realidad forman una base de entornos de la topología débil*, en lugar de simplemente una base ¿lo pruebo?). 
 
@@ -1721,7 +1721,7 @@ es $\mathrm{w}$-compacta.
 \begin{Dem}
 Supongamos primero que $X$ es reflexivo. El teorema de Banach-Alaoglu indica que $B_{X^{**}}$ es $\sigma(X^{**}, X^{*})$-compacto. La proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es abierta y como $J$ es reflexivo entonces $B_X = J^{-1}(B_{X^{**}})$ es $\sigma(X, X^*)$-compacto.
 
-Ahora supongamos que $B_X$ es $\mathrm{w}$-compacta. La proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es continua. Así $J(B_X)$ es $\mathrm{w}^*$-compacto, por lo que al ser $X^{**}$ Hausdorff resulta de la proposición~\ref{Prop:HausdorffCompactoEsCerrado} que $J(B_X)$ también es $\mathrm{w}^*$-cerrado. Entonces, por el teorema de Goldstine se tiene que $$B_{X^{**}} = \ov{J(B_X)}^{\mathrm{w}^*} = J(B_X)$$
+Ahora supongamos que $B_X$ es $\mathrm{w}$-compacta. La proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es continua. Así $J(B_X)$ es $\mathrm{w}^*$-compacto, por lo que al ser $X^{**}$ Hausdorff resulta del corolario~\ref{Cor:HausdorffCompactoEsCerrado} que $J(B_X)$ también es $\mathrm{w}^*$-cerrado. Entonces, por el teorema de Goldstine se tiene que $$B_{X^{**}} = \ov{J(B_X)}^{\mathrm{w}^*} = J(B_X)$$
 
 Por lo tanto $X$ es reflexivo. 
 \end{Dem}
