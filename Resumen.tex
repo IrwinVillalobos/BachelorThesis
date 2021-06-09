@@ -1258,9 +1258,29 @@ Para $1\leq p\leq \infty$ definimos a $\ell_p(\K)$, o simplemente $\ell_p$, como
 
 \end{Ejem}
 
+
+\begin{Prop}
+Sea $1 \leq p \leq \infty$. Si $x = (x_1, x_2, \ldots) \in \ell_p$, entonces $$\Norm{x}_p = \lim_{n \to  \infty} \Norm{(x_1, \ldots, x_n)}_p.$$
+\end{Prop}
+
 \begin{Dem}
-($\Norm{\cdot}_p$ es una norma en $\ell_p$.) \\
 (Pendiente).
+\end{Dem}
+
+\begin{Dem}
+($\Norm{\cdot}_p$ es una norma en $\ell_p$.) 
+
+\begin{itemize}
+\item \textbf{i)} Sea $x = (x_1, x_2, \ldots, ) \in \ell_p$. Si $x = 0$, entonces $\Norm{x}_p = 0$. Si por otro lado $\Norm{x}_p = 0$, entonces $x_1 = x_2 =\ldots = 0$. Así que $x = 0$.
+\item \textbf{ii)} Si $x = (x_1, x_2, \ldots, ) \in \ell_p$ y $\lambda \in \K$, entonces $$\Norm{\lambda x}_p = \lim_{n\to \infty} \Norm{\lambda(x_1, \ldots, x_n)}_p = \lambda \lim_{n\to \infty} \Norm{(x_1, \ldots, x_n)}_p = \lambda \Norm{x}_p.$$
+\item \textbf{iii)}  Si $x = (x_1, x_2, \ldots, ), y = (y_1, y_2, \ldots) \in \ell_p$, entonces 
+\Ecu{
+\Norm{x}_p + \Norm{y}_p &= \lim_{n\to \infty} \Norm{(x_1, \ldots, x_n)}_p + \lim_{n\to \infty} \Norm{(y_1, \ldots, y_n)}_p \\
+& =  \lim_{n\to \infty} \Norm{(x_1, \ldots, x_n)}_p + \Norm{(y_1, \ldots, y_n)}_p  \\
+&\leq \lim_{n\to \infty} \Norm{(x_1, \ldots, x_n)_p + (y_1, \ldots, y_n)}_p = \Norm{x+y}_p.
+}
+\end{itemize}
+
 \end{Dem}
 
 
@@ -1322,11 +1342,13 @@ Existen otras maneras de plantear los teoremas de Hanh-Banach con un enfoque más
 Sea $X$ un espacio normado real. Si $A$ y $B$ son dos conjuntos convexos disjuntos, $A$ es cerrado y $B$ compacto, entonces existen $\varphi \in X^*$ y $\alpha, \beta \in \R$ tales que $\varphi(x) < \alpha < \beta < \varphi(y)   \mbox{ para todos } x \in A, y \in B.$
 \end{Tma}
 
+Como resultado de esta version del teorema de Hahn-Banach tenemos el lema de Helly, que en un futuro nos será de utilidad.
+
 \begin{Lema} \textbf{(Helly)} \label{Lema:HellyReal}
 Sean $X$ un espacio normado real, $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $a_1, \ldots, a_n \in \R$. Son equivalentes:
 \begin{itemize}
 \item \textbf{i)} Para todo $\varepsilon>0$ existe $x \in B_X$ tal que $\abs{\varphi_i(x) - a_i} < \varepsilon$ para toda $i \in \{ 1, \ldots, n\}$.
-\item \textbf{ii)} Para cualesquiera $b_1, \ldots, b_n \in \R$ se cumple que $\displaystyle\abs{\sum_{i=1}^n a_i b_i} \leq \Norm{\sum_{i=1}^n b_i f_i}.$
+\item \textbf{ii)} Para cualesquiera $b_1, \ldots, b_n \in \R$ se cumple que $\displaystyle\abs{\sum_{i=1}^n a_i b_i} \leq \Norm{\sum_{i=1}^n b_i \varphi_i}.$
 \item \textbf{iii)} $(a_1, \ldots, a_n) \in \ov{T(B_X)}$, donde  $T: X \to \ell_1^n(\R)$ está definida por $Tx =(\varphi_1(x), \ldots, \varphi_n(x))$. 
 \end{itemize}
 \end{Lema}
@@ -1360,12 +1382,14 @@ El lema de Helly sigue siendo válido para espacios normados complejos, como se m
 Sean $X$ un espacio normado, $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $a_1, \ldots, a_n \in \K$. Son equivalentes:
 \begin{itemize}
 \item \textbf{i)} Para todo $\varepsilon>0$ existe $x \in B_X$ tal que $\abs{\varphi_i(x) - a_i} < \varepsilon$ para toda $i \in \{ 1, \ldots, n\}$.
-\item \textbf{ii)} Para cualesquiera $b_1, \ldots, b_n \in \K$ se cumple que $\displaystyle\abs{\sum_{i=1}^n a_i b_i} \leq \Norm{\sum_{i=1}^n b_i f_i}.$
+\item \textbf{ii)} Para cualesquiera $b_1, \ldots, b_n \in \K$ se cumple que $\displaystyle\abs{\sum_{i=1}^n a_i b_i} \leq \Norm{\sum_{i=1}^n b_i \varphi_i}.$
 \item \textbf{iii)} $(a_1, \ldots, a_n) \in \ov{T(B_X)}$, donde  $T: X \to \ell_1^n(\K), \, x \mapsto (\varphi_1(x), \ldots, \varphi_n(x))$. 
 \end{itemize}
 \end{Lema}
 
 \begin{Dem}
+Si $\K = \R$, ya quedó demostrado en el lema anterior. Así que supongamos $\K = \C$. Las implicaciones de \textbf{i)} a \textbf{ii)} y de \textbf{iii)} a \textbf{i)} son totalmente análogas al caso real. Así que sólo falta verificar que \textbf{ii)} implica \textbf{iii)}.
+
 (Pendiente).
 \end{Dem}
 
@@ -1727,7 +1751,7 @@ Sea $X$ un espacio normado. Entonces $\ov{J(B_X)}^{\mathrm{w}^*}= B_{X^{**}} $.
 \begin{Dem}
 El teorema de Banach-Alaoglu nos dice que $B_{X^{**}}$ es $\mathrm{w}^*$-compacta y como $X^{**}$ es Hausdorff del corolario~\ref{Cor:HausdorffCompactoEsCerrado} se sigue que $B_{X^{**}}$ también es $\mathrm{w}^*$-cerrado. Dado que $J(B_X) \subseteq B_{X^{**}}$, tenemos que $$\ov{J(B_X)}^{\mathrm{w}^*} \subseteq \ov{B_{X^{**}}}^{\mathrm{w}^*} = B_{X^{**}}.$$
 
-Para demostrar la otra contención tomemos $\delta \in B_{X^{**}}$. Sea $U$ una $\mathrm{w}^*$-vecindad de $\delta$. Hay que demostrar que  $J(B_X) \cap U \neq \emptyset$. Existen $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $\varepsilon > 0$ tales que $U_{\delta, \varphi_1, \ldots, \varphi_n, \varepsilon} \subseteq U$. 
+Para demostrar la otra contención tomemos $\delta \in B_{X^{**}}$. Sea $U$ una $\mathrm{w}^*$-vecindad de $\delta$. Hay que demostrar que  $J(B_X) \cap U \neq \emptyset$. Por la proposición~\ref{Prop:BaseDeEntornosTopologiaDebilSeminormas} existen $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $\varepsilon > 0$ tales que $U_{\delta, \varphi_1, \ldots, \varphi_n, \varepsilon} \subseteq U$. 
 
 Sean $b_1, \ldots, b_n \in\K$ cualesquiera. Tenemos que
 $$\abs{\sum_{i=1}^n \delta(\varphi_i) b_i } = \abs{\delta\left(\sum_{i=1}^n  b_i \varphi_i \right) } \leq \Norm{\delta} \Norm{\sum_{i=1}^n  b_i \varphi_i} \leq \Norm{\sum_{i=1}^n  b_i \varphi_i}.$$
