@@ -229,7 +229,7 @@ Sea $X$ un espacio topológico. Entonces
 \begin{itemize}
 \item[\textbf{i)}] Demostremos que $\ov{A}^{\,\mathsf{c}}$ es abierto. Sea $x \in \ov{A}^{\,\mathsf{c}}$, de manera que $x \notin \ov{A}$. Así que existe $U$ vecindad abierta de $x$ tal que $U \cap A = \emptyset$. Dado $y \in U$ se tiene que $U$ es una vecindad de $y$ que no intersecta a $A$, por lo que $y \notin \ov{A}$ y así $x \in U \subseteq \ov{A}^{\,\mathsf{c}}$. Es decir, $\ov{A}^{\,\mathsf{c}}$ es una vecindad de todos sus puntos. El lema~\ref{Lema:CaracterizacionAbierto} implica que $\ov{A}^{\,\mathsf{c}}$ es abierto.
 \item[\textbf{ii)}] Dados $x \in A$ y $U$ vecindad abierta de $x$, se tiene entonces que $x \in A \cap U$, por lo que $A \cap U \neq \emptyset$ y así $x \in \ov{A}$.  
-\item[\textbf{iii)}] Sea $A$ un conjunto cerrado en $X$ y sea $x \in \ov{A}$. Supongamos que $x \notin A$, de manera que $x \in A^\mathsf{c}$. Como $A$ es cerrado entonces  $A^\mathsf{c}$ es una vecindad abierta de $x$. Dado que $x \in \ov{A}$, se tiene que $A \cap A^\mathsf{c} \neq \emptyset$, lo cual es una contradicción. Así que $x \in A$ y $\ov{A} \subseteq A$. Junto con \textbf{ii)} se concluye que $A = \ov{A}$. 
+\item[\textbf{iii)}] Sea $A$ un conjunto cerrado en $X$ y sea $x \in \ov{A}$. Supongamos que $x \notin A$, de manera que $x \in A^\mathsf{c}$. Como $A$ es cerrado entonces  $A^\mathsf{c}$ es una vecindad abierta de $x$. Dado que $x \in \ov{A}$, se tiene que $A \cap A^\mathsf{c} \neq \emptyset$, lo cual es una contradicción. Así que $x \in A$ y $\ov{A} \subseteq A$. Junto con \textbf{ii)} se concluye que $A = \ov{A}$.
 
 Si por otro lado suponemos que  $A = \ov{A}$, entonces \textbf{i)} indica que $A$ es cerrado.
 \end{itemize}
@@ -769,7 +769,7 @@ Notemos que para $y \in X$ se tiene que $(\pi_X \circ e_{\lambda})(y) = \lambda$
 \begin{Obs}
 Como consecuencia de la proposición anterior, si $U$ es un abierto en un espacio vectorial topológico $X$ y $x \in X$, entonces 
 $$U+x := \{ y+x : y \in U \} = T_x(U)$$ 
-también es abierto.
+también es abierto. Entonces $V$ es vecindad abierta de $x$ si, y sólo si, $V = x + U$, donde $U$ es vecindad abierta de $0$.
 \end{Obs}
 
 \begin{Prop} \label{Prop:ContinuidadEnCero}
@@ -800,7 +800,7 @@ Sea $X$ un espacio topológico y $E$ un espacio vectorial topológico. Si $f: X \t
 \begin{Dem}
 Como $f$ y $g$ son continuas, el corolario~\ref{Cor:ContinuidadPorComponentes} indica que $f \times g : X \to E \times E$ es continua. Al ser continua la suma $+: E \times E \to E$, resulta que $f + g = + \circ  (f \times g) : X \to E$ también es continua. 
 
-Ahora, al ser $h$ y $f$ funciones continua, tenemos que $h \times f: X \to \K \times E$ es continua. Como el producto por escalares $\cdot: \K \times E \to E$ es una función continua, se sigue entonces que $h \cdot f = \cdot \circ (h \times f): X \to E$ es continua. 
+Ahora, al ser $h$ y $f$ funciones continuas, tenemos que $h \times f: X \to \K \times E$ es continua. Como el producto por escalares $\cdot: \K \times E \to E$ es una función continua, se sigue entonces que $h \cdot f = \cdot \circ (h \times f): X \to E$ es continua. 
 \end{Dem}
 
 \begin{Def}
@@ -911,7 +911,7 @@ Sea $\mathcal{T}$ la colección de topologías de un espacio vectorial $X$ en las 
 
 La siguiente proposición propone una base de la topología $\sigma(X, \mathcal{F})$. 
 
-\begin{Prop} 
+\begin{Prop} \label{Prop:BaseTopologiaDebilSeminormas}
 Sea $\mathcal{F}$ una familia no vacía de seminormas en un espacio vectorial $X$. La familia de conjuntos
 $$U_{x, p_1, p_2, \ldots, p_k, \varepsilon} := \bigcap_{i=1}^k \{ y \in X : p_i (x-y) < \varepsilon  \}, \; x \in X, k\in  \N, p_1, p_2, \ldots , p_k \in \mathcal{F} \mbox{ y } \varepsilon > 0;$$
 forma una base de la topología $\sigma(X, \mathcal{F})$.
@@ -954,6 +954,15 @@ f_i^{-1}(V_\varepsilon(p_i(x))) &= \{ y\in X : f_i(y) \in V_\varepsilon(p_i(x)) 
 Demostremos que con la topología $\tau(\mathcal{B})$ en $X$, todas las seminormas $p:X \to \R$ en $\mathcal{F}$ son continuas. Así pues, tomemos $p \in \mathcal{F}$. Sea $x \in X$ cualquiera y $V_\varepsilon(p(x))$ una vecindad de $p(x)$ en $\R$. Notemos que $U_{x, p, \varepsilon}$ es una vecindad abierta de $x$ y además, si $y \in U_{x, p, \varepsilon}$, entonces $p(x-y) <\varepsilon$. Por la proposición~\ref{Prop:Seminorma} se sigue que $\abs{p(x)-p(y)} < \varepsilon$ y así $p(U_{x, p, \varepsilon}) \subseteq V_{\varepsilon}(p(x))$. Como $U_{x, p, \varepsilon}$ es abierto en $\sigma(X, \mathcal{F})$, se sigue que $p$ es continua.
 
 Esto indica que $\tau(\mathcal{B}) \in \mathcal{T}$. Por la minimalidad de $\sigma(X, \mathcal{F})$ y dado que $\tau(\mathcal{B}) \subseteq \sigma(X, \mathcal{F})$ se concluye que $\tau(\mathcal{B}) = \sigma(X, \mathcal{F})$ y así $\mathcal{B}$ es base de $\sigma(X, \F)$.
+\end{Dem}
+
+\begin{Prop} \label{Prop:BaseDeEntornosTopologiaDebilSeminormas}
+Sea $\mathcal{F}$ una familia no vacía de seminormas en un espacio vectorial $X$. Si $U$ es un abierto en $\sigma(X, \mathcal{F})$ y $x \in U$, entonces existen $k \in \N$, $p_1, \ldots, p_k \in\mathcal{F}$ y $\varepsilon > 0$ tales que $U_{x, p_1, \ldots, p_k, \varepsilon} \subseteq U$.
+\end{Prop}
+
+\begin{Dem}
+Por la proposición~\ref{Prop:BaseTopologiaDebilSeminormas} existen $y \in X$, $k\in\N$, $p_1, \ldots, p_k \in \mathcal{F}$ y $\delta > 0$ tal que $x \in U_{y, p_1, \ldots , p_k, \delta} \subseteq U$. Entonces $p_i(x-y) < \delta$ para todo $i \in \nn{k}$, de forma que podemos considerar $$\varepsilon := \min_{1\leq i \leq k} (\delta - p_i(x-y))  > 0.$$
+Tomemos $z \in U_{x, p_1, \ldots, p_k, \varepsilon}$. Entonces para $1 \leq i \leq n$ tenemos que $p_i(z-x) < \varepsilon \leq \delta - p_i(x-y)$. Por la desigualdad del triángulo $p_i(z-y) \leq p_i(z-x) + p_i(x-y) < \delta$. Así pues, $z \in U_{y, p_1, \ldots , p_k, \delta}$ y $U_{x, p_1, \ldots , p_k, \varepsilon} \subseteq U_{y, p_1, \ldots , p_k, \delta} \subseteq U$. 
 \end{Dem}
 
 Si la red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ converge en la topología $\sigma(X, \F)$, su límite lo denotamos por $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} x_\alpha$. En el caso particular de una sucesión $(x_n)_{n \in \N}$ denotamos el límite de la sucesión por $\sigma(X, \F)$-$\lim_{n \to \infty} x_n$. La siguiente proposición indica una caracterización de las sucesiones  convergentes bajo la topología $\sigma(X, \F)$.
@@ -1038,48 +1047,38 @@ Sean $A$ un conjunto no-vacío y $X = F(A, \K)$ como en el ejemplo~\ref{Ejem:EVTF
 (Pendiente).
 \end{Ejem}
 
+\subsection{Convexidad.}
 
-\section{Espacios normados.}
-
-\begin{Def}
-Una \textit{norma} en un espacio vectorial $X$ es una seminorma $\Norm{\cdot}: X \to [0, \infty)$ tal que es \textit{definida positiva}, esto es para cada $x \in X$, $\Norm{x} = 0$ si, y sólo si $x = 0$.
-
-En este caso decimos que $(X, \Norm{\cdot})$ es un \textit{espacio normado}. 
-\end{Def} 
- 
 \begin{Def}
 Sea $X$ un espacio vectorial. Un subconjunto $A$ de $X$ es \textit{convexo} si para todos $x, y \in A$ y $\lambda \in [0,1]$ se tiene que $\lambda x + (1-\lambda) y \in A$. 
 \end{Def} 
 
 \begin{Ejem}
-Sea $X$ un espacio vectorial y $z \in X$. Claramente $X$ y $\{z\}$ son convexos. Además, si tomamos $x, y \in B_X$ y $\lambda \in [0, 1]$, entonces $\Norm{\lambda x + (1-\lambda)y} \leq \lambda \Norm{x} + (1- \lambda)\Norm{y} leq \lambda + (1-\lambda) = 1$. Así que $\lambda x + (1-\lambda)y \in B_X$ y $B_X$ es convexo.
+Sea $X$ un espacio vectorial y $z \in X$. Claramente $X$ y $\{z\}$ son convexos.
 \end{Ejem}
+
 
 \begin{Prop} \label{Prop:FuncionLinealPreservaConvexos}
 Sean $X, Y$ espacios vectoriales y $T: X \to Y$ lineal. Si $A \subseteq X$ es convexo, entonces $T(A)$ es convexo.
 \end{Prop}
 
 \begin{Dem}
-Sean $x, y \in A$, de tal manera que $Tx, Ty \in T(A)$, y $\lambda \in [0,1]$. Como $A$ es convexo, se tiene que $\lambda x + (1- \lambda) y \in A$, de donde $\lambda Tx + (1-\lambda) Ty = T(lambda x + (1-\lambda)y) \in T(A)$.
+Sean $x, y \in A$, de tal manera que $Tx, Ty \in T(A)$, y $\lambda \in [0,1]$. Como $A$ es convexo, se tiene que $\lambda x + (1- \lambda) y \in A$, de donde $\lambda Tx + (1-\lambda) Ty = T(\lambda x + (1-\lambda)y) \in T(A)$.
 \end{Dem}
 
+
 \begin{Prop} \label{Prop:CerraduraDeConvexoEsConvexa}
-Sea $X$ un espacio vectorial. Si $A \subseteq X$ es convexo, entonces $\ov{A}$ es convexa.
+Sea $X$ un espacio vectorial topológico. Si $A \subseteq X$ es convexo, entonces $\ov{A}$ es convexa.
 \end{Prop}
 
 \begin{Dem}
-Sean $x, y \in \ov{A}$ y $\lambda \in [0, 1]$. Como $x, y \in \ov{A}$, existen sucesiones $(x_n)_{n\in\N}$, $(y_n)_{n\in\N}$ en $A$ tales que $x_n \to x$ y $y_n \to y$. Dado que $A$ es convexo se cumple que $\lambda x_n + (1-\lambda) y_n \in A$. Además, la proposición~\ref{Prop:LimiteDeSuma} indica que $$\lim_{n\to \infty} [\lambda x_n + (1-\lambda) y_n] = \lambda \lim_{n\to\infty} x_n + (1-\lambda) \lim_{n\to \infty} y_n = \lambda x + (1-\lambda) y.$$ 
+Sean $x, y \in \ov{A}$ y $\lambda \in [0, 1]$. Como $x, y \in \ov{A}$, ls proposición~\ref{Prop:CerraduraLimiteRed} indica que existen redes $(x_\alpha)_{\alpha \in \Lambda}$, $(y_\alpha)_{\alpha\in\Lambda}$ en $A$ tales que $x_\alpha \to x$ y $y_\alpha \to y$. Dado que $A$ es convexo se cumple que $\lambda x_\alpha + (1-\lambda) y_\alpha \in A$. Además, la proposición~\ref{Prop:LimiteDeSuma} indica que $$\lim_{\alpha \in \Lambda } [\lambda x_\alpha + (1-\lambda) y_\alpha] = \lambda \lim_{\alpha \in \Lambda } x_\alpha + (1-\lambda) \lim_{n\to \infty} y_\alpha = \lambda x + (1-\lambda) y.$$ 
 
 Por lo tanto $\lambda x + (1-\lambda y) \in \ov{A}$.  
 \end{Dem}
 
 \begin{Def} Sean $X$ un espacio vectorial y $A \subseteq X$ convexo. Una función $f : A \to \R$ es \textit{convexa} si para todos $x, y \in A$ y $\lambda \in [0, 1]$ se tiene que $$f(\lambda x + (1-\lambda y))\leq \lambda f(x) + (1-\lambda) f(y).$$
 \end{Def}
-
-\begin{Ejem}
-Una norma $\Norm{\cdot}:X \to \R$ es convexa pues dados $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que
-$$\Norm{\lambda x + (1-\lambda y)} \leq \abs{\lambda} \Norm{x} + \abs{1-\lambda} \Norm{y}  = \lambda \Norm{x} + (1-\lambda) \Norm{y}.$$
-\end{Ejem}
 
 \begin{Lema} \label{Lema:DerivadaCrecienteConvexa}
 Sean $(a, b) \subseteq \R$ un intervalo y $f : (a, b) \to \R$ una función diferenciable. Si $f^{\prime}$ es monótona-creciente en $(a, b)$, entonces $f$ es convexa.
@@ -1101,19 +1100,28 @@ f(c) \leq f(x)\cdot \frac{c-y}{x-y} + f(y)\cdot\frac{x-c}{x-y}.
 Como $$\frac{c-y}{x-y} = \lambda \;\;\mbox{ y }\;\; \frac{x-c}{x-y} = 1- \lambda, $$ se sigue de (\ref{Eq:RelacionFuncionConvexa}) que $$f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1- \lambda)f(y).$$
 \end{Dem}
 
-\begin{Ejem} \label{Ejem:XPConvexa}
-Fijemos $1 \leq p < \infty$ y consideremos $f: [0, \infty) \to[0, \infty)$ dada por $f(x) = x^p$. Claramente, $f$ es diferenciable y $f^\prime(x) = p x^{p-1}$ es monótona creciente, así que el lema~\ref{Lema:DerivadaCrecienteConvexa} indica que $f$ es convexa. 
+\begin{Lema} \label{Lema:XPConvexa}
+Sea $1 \leq p < \infty$. Entonces la función $h: \K \to \R$ definida por $h(z) = \abs{z}^p$ es convexa.
+\end{Lema}
 
-Tomemos $g = \abs{\cdot}$, la cual es convexa por ser una norma en $\K$. Sean $x, y \in \K$ y $\lambda \in [0, 1]$, como $g$ es convexa se tiene que $$g(\lambda x + (1-\lambda)y) \leq \lambda g(x) + (1-\lambda)g(y).$$
+\begin{Dem} 
+Consideremos $f: [0, \infty) \to[0, \infty)$ dada por $f(x) = x^p$. Claramente, $f$ es diferenciable y $f^\prime(x) = p x^{p-1}$ es monótona creciente, así que el lema~\ref{Lema:DerivadaCrecienteConvexa} indica que $f$ es convexa.
+
+Tomemos $g = \abs{\cdot}$, la cual es convexa en $\K$. Sean $x, y \in \K$ y $\lambda \in [0, 1]$, como $g$ es convexa se tiene que $$g(\lambda x + (1-\lambda)y) \leq \lambda g(x) + (1-\lambda)g(y).$$
 
 Dado que $f$ es creciente y convexa resulta que
 $$f(g(\lambda x + (1-\lambda)y)) \leq f(\lambda g(x) + (1-\lambda)g(y)) \leq \lambda f(g(x)) + (1-\lambda)f(g(y)).$$
 
-Por lo tanto $f \circ g : \K \to \R$, $z \mapsto \abs{z}^p$ es convexa.\\
-\end{Ejem}
+Por lo tanto, la función $h = f \circ g$ es convexa.
+\end{Dem}
+
+\section{Espacios normados.}
+
+\begin{Def}
+Una \textit{norma} en un espacio vectorial $X$ es una seminorma $\Norm{\cdot}: X \to [0, \infty)$ que es \textit{definida positiva}, esto es, para cada $x \in X$, $\Norm{x} = 0$ si, y sólo si $x = 0$. En este caso decimos que la pareja $(X, \Norm{\cdot})$ es un \textit{espacio normado}. 
+\end{Def} 
 
 Es sencillo verificar que en un espacio normado $X$ la función $d: X \times X \to [0, \infty)$ definida por $$d(x, y) := \Norm{x-y}$$ es una métrica, por lo que $X$ es un espacio métrico y entonces podemos considerar la topología inducida por la métrica, la cual se denomina topología original de $X$. A menos que se especifique otra cosa, cuando hablemos de un espacio normado como espacio topológico, lo consideraremos con la topología original.
-
 
 \begin{Lema} \label{Lema:NormaContinua}
 Sea $X$ un espacio normado. Entonces la norma $\Norm{\cdot}:X \to [0, \infty)$ es una función continua.
@@ -1123,6 +1131,11 @@ Sea $X$ un espacio normado. Entonces la norma $\Norm{\cdot}:X \to [0, \infty)$ e
 Sea $(x_n)_{n\in\N}$ una sucesión en $X$ que converge a $x \in X$. Por definición esto indica que para todo $\varepsilon > 0$ existe $N \in \N$ tal que si $n \geq N$ entonces $\Norm{x_n - x} \leq \varepsilon$. Por la desigualdad del triángulo que $\abs{\Norm{x_n} - \Norm{x}} < \Norm{x_n - x}$. Esto implica que $\Norm{x_n}$ converge a $\Norm{x}$ y así $\Norm{\cdot}$ es continua.
 \end{Dem}
 
+\begin{Ejem}
+Una norma $\Norm{\cdot}:X \to \R$ es una función convexa pues dados $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que
+$$\Norm{\lambda x + (1-\lambda y)} \leq \abs{\lambda} \Norm{x} + \abs{1-\lambda} \Norm{y}  = \lambda \Norm{x} + (1-\lambda) \Norm{y}.$$
+Además, si tomamos $x, y \in B_X$ y $\lambda \in [0, 1]$, entonces $\Norm{\lambda x + (1-\lambda)y} \leq \lambda \Norm{x} + (1- \lambda)\Norm{y} \leq \lambda + (1-\lambda) = 1$. Así que $\lambda x + (1-\lambda)y \in B_X$ y $B_X$ es convexa.
+\end{Ejem}
 
 \begin{Prop} \label{Prop:TopologiaOriginalEspaciosNormadosEVT}
 Si $X$ es un espacio normado, entonces es un espacio vectorial topológico. 
@@ -1174,7 +1187,7 @@ Definamos $\beta = \alpha_{2M}$. Por (\ref{Eq:RedesCauchy1}) y (\ref{Eq:RedesCau
 Por la desigualdad del triángulo $\Norm{x_\gamma - x} < \frac{1}{N}$ y así $x_\gamma - x \in U$. Es decir, $x_\alpha \to x$.
 \end{Dem}
 
-\subsection{Ejemplos de espacios normados.}
+\subsection{Ejemplos.}
 
 En $\K^n $ la norma euclidiana resulta ser el caso $p=2$ de una familia de normas en $\K^n$ llamadas $p$-normas. En esta subsección introduciremos estas funciones y verificaremos que en efecto son normas en $\K^n$. Además, agregaremos ejemplos de espacios normados de dimensión infinita.      
 
@@ -1199,7 +1212,7 @@ $$x_0 := \frac{x}{\Norm{x}_p + \Norm{y}_p} \quad \mbox{  y } \quad y_0 := \frac{
 $\Norm{x_0}_p + \Norm{y_0}_p = 1$. Definamos $\lambda := \Norm{y_0}_p \in (0, 1)$ y tomemos $$\widehat{x} :=\frac{x_0}{1-\lambda} \quad
  \mbox{ y } \quad \widehat{y} := \frac{y_0}{\lambda}.$$
 
-Notemos que $\Norm{\widehat{x}}_p = \Norm{\widehat{y}}_p = 1$ y expresemos $\widehat{x}=(\widehat{x_1}, \ldots \widehat{x_n})$ y $\widehat{y}= (\widehat{y_1}, \ldots \widehat{y_n})$. El ejemplo~\ref{Ejem:XPConvexa} muestra que la función $z \mapsto \abs{z}^p$ es convexa , así que tenemos que para $1 \leq i \leq n$
+Notemos que $\Norm{\widehat{x}}_p = \Norm{\widehat{y}}_p = 1$ y expresemos $\widehat{x}=(\widehat{x_1}, \ldots \widehat{x_n})$ y $\widehat{y}= (\widehat{y_1}, \ldots \widehat{y_n})$. El lema~\ref{Lema:XPConvexa} muestra que la función $z \mapsto \abs{z}^p$ es convexa , así que tenemos que para $1 \leq i \leq n$
 $$\abs{(1-\lambda)\widehat{x_i} + \lambda \widehat{y_i}}^p \leq (1-\lambda)\abs{\widehat{x_i}}^p + \lambda \abs{\widehat{y_i}}^p.$$
  
 Y al sumar $i$ de $1$ a $n$ obtenemos
@@ -1253,7 +1266,7 @@ Para $1\leq p\leq \infty$ definimos a $\ell_p(\K)$, o simplemente $\ell_p$, como
 
 \subsection{Espacio dual.}
 
-No todo operador lineal $T:X\to Y$ entre los espacios normados $X$ e $Y$ resulta ser continuo. En este trabajo nos interesan los que sí son continuos. Una caracterización de un operador lineal continuo es que sea un \textit{operador lineal acotado}, esto es, que exista $K > 0$ tal que $$\Norm{Tx} \leq K \Norm{x} \mbox{ para todo } x \in X.$$ 
+No todo operador lineal $T:X\to Y$ entre los espacios normados $X$ e $Y$ resulta ser continuo. Los de mayor interés son los que sí son continuos. Una caracterización de un operador lineal continuo es que sea un \textit{operador lineal acotado}, esto es, que exista $K > 0$ tal que $$\Norm{Tx} \leq K \Norm{x} \mbox{ para todo } x \in X.$$ 
 
 \begin{Def}
 Sea $X$ un espacio normado. Decimos que $A \subseteq X$ es un conjunto \textit{acotado} si existe $M > 0$ tal que $\Norm{x} \leq M$ para todo $x \in A$.
@@ -1314,7 +1327,7 @@ Sean $X$ un espacio normado real, $n \in \N$, $\varphi_1, \ldots, \varphi_n \in 
 \begin{itemize}
 \item \textbf{i)} Para todo $\varepsilon>0$ existe $x \in B_X$ tal que $\abs{\varphi_i(x) - a_i} < \varepsilon$ para toda $i \in \{ 1, \ldots, n\}$.
 \item \textbf{ii)} Para cualesquiera $b_1, \ldots, b_n \in \R$ se cumple que $\displaystyle\abs{\sum_{i=1}^n a_i b_i} \leq \Norm{\sum_{i=1}^n b_i f_i}.$
-\item \textbf{iii)} $(a_1, \ldots, a_n) \in \ov{T(B_X)}$, donde  $T: X \to \ell_1^n(\R), \, x \mapsto (\varphi_1(x), \ldots, \varphi_n(x))$. 
+\item \textbf{iii)} $(a_1, \ldots, a_n) \in \ov{T(B_X)}$, donde  $T: X \to \ell_1^n(\R)$ está definida por $Tx =(\varphi_1(x), \ldots, \varphi_n(x))$. 
 \end{itemize}
 \end{Lema}
 
@@ -1328,21 +1341,20 @@ Supongamos \textbf{i)}. Tomemos $b_1, \ldots, b_n \in \R$ cualesquiera. Sea $\va
 }
 Como esto es para todo $\varepsilon >0$, se sigue que $\displaystyle\abs{\sum_{i=1}^n a_i b_i} \leq \Norm{\sum_{i=1}^n b_i \varphi_i}$. 
 
-Para mostrar que \textbf{ii)} implica \textbf{iii)} se hará por contrapositiva. Así pues, supongamos que $a = (a_1, \ldots, a_n) \notin \ov{T(B_X)}$, de manera que $\{a \}$ y $\ov{T(B_X)}$ son disjuntos. Como $B_X$ es convexo, la proposición~\ref{Prop:FuncionLinealPreservaConvexos} indica que $T(B_X)$ es convexo y por la proposición~\ref{Prop:CerraduraDeConvexoEsConvexa} se tiene que $\ov{T(B_X)}$ también es convexo.  Además, $\ov{T(B_X)}$ es cerrado. Claramente, $\{ a \}$ es compacto y convexo. El teorema~\ref{Tma:HahnBanachGeometrico} de Hanh-Banach dice que existe $\psi \in \ell_1^{n}(\R)^*$ y $\alpha \in \R$ tales que $\psi(y) < \alpha < \psi(a)$ para todo $y \in \ov{T(B_X)}$. Consideremos $\{ e_1, \ldots, e_n \}$ la base canónica de $\R^n$. Para $1\leq i \leq n$ definamos $b_i := \psi(e_i)$, de tal manera que para $(z_1, \ldots z_n) \in \R^n$ tenemos que $$\psi(z_1, \ldots, z_n) = \sum_{i=1}^n b_i z_i.$$
+Para mostrar que \textbf{ii)} implica \textbf{iii)} procederemos por contrapositiva. Así pues, supongamos que $a = (a_1, \ldots, a_n) \notin \ov{T(B_X)}$, de manera que $\{a \}$ y $\ov{T(B_X)}$ son disjuntos. Como $B_X$ es convexo, la proposición~\ref{Prop:FuncionLinealPreservaConvexos} indica que $T(B_X)$ es convexo y por la proposición~\ref{Prop:CerraduraDeConvexoEsConvexa} se tiene que $\ov{T(B_X)}$ también es convexo.  Además, $\ov{T(B_X)}$ es cerrado. Claramente, $\{ a \}$ es compacto y convexo. El teorema~\ref{Tma:HahnBanachGeometrico} de Hahn-Banach dice que existe $\psi \in \ell_1^{n}(\R)^*$ y $\alpha \in \R$ tales que $\psi(y) < \alpha < \psi(a)$ para todo $y \in \ov{T(B_X)}$. Consideremos  la base canónica $\{ e_1, \ldots, e_n \}$ de $\R^n$. Para $1\leq i \leq n$ definamos $b_i := \psi(e_i)$, de tal manera que para $(z_1, \ldots z_n) \in \R^n$ tenemos que $$\psi(z_1, \ldots, z_n) = \sum_{i=1}^n b_i z_i.$$
 
 Tomemos $x \in B_X$. Entonces $Tx \in T(B_X) \subseteq \ov{T(B_x)}$, por lo que $$\sum_{i=1}^n b_i \varphi_i(x) = \psi(\varphi_1(x), \ldots, \varphi_n(x)) = \psi(T(x))  < \alpha < \psi(a) = \sum_{i=1}^n a_i b_i \leq \abs{\sum_{i=1}^n a_i b_i }.$$  
 
-Como $-x \in B_X$, se tiene que $$-\sum_{i=1}^n b_i \varphi_i(x) =  \sum_{i=1}^n b_i \varphi_i(-x ) < \alpha < \abs{\sum_{i=1}^n a_i b_i},$$ de donde $$\displaystyle \abs{\sum_{i=1}^n b_i \varphi_i(x)} =   < \alpha < \abs{\sum_{i=1}^n a_i b_i}.$$
+Como $-x \in B_X$, se tiene que $$-\sum_{i=1}^n b_i \varphi_i(x) =  \sum_{i=1}^n b_i \varphi_i(-x ) < \alpha < \abs{\sum_{i=1}^n a_i b_i},$$ de donde $$\displaystyle \abs{\sum_{i=1}^n b_i \varphi_i(x)} < \alpha < \abs{\sum_{i=1}^n a_i b_i}.$$
 
 Concluimos de aquí la negación de \textbf{ii)}, es decir, $$\Norm{\sum_{i=1}^n b_i \varphi_i} = \sup_{x \in B_X} \abs{\left(\sum_{i=1}^n b_i \varphi_i \right)(x)} \leq \alpha < \abs{\sum_{i=1}^n a_i b_i}.$$
 
- 
 
 
-Finalmente, supongamos \textbf{iii)}. Sea $\varepsilon > 0$. Como $a = (a_1, \ldots, a_n) \in \ov{T(B_X)}$, se sigue que $V_\varepsilon(a) \cap T(B_X) \neq \emptyset$. Así que existe $y \in V_\varepsilon(a) \cap T(B_X)$. Como $y \in T(B_X)$, existe $x \in B_X$ con $T(x) = y$. Así que $T(x) \in V_\varepsilon(a)$. Para $i \in \nn{n}$ se tiene que $$\abs{\varphi_i(x) - a_i} \leq \sum_{j=1}^{n} \abs{\varphi_j(x) - a_j} = \Norm{Tx - a}_1 < \varepsilon.$$
+Finalmente, supongamos \textbf{iii)}. Sea $\varepsilon > 0$. Como $a = (a_1, \ldots, a_n) \in \ov{T(B_X)}$, se sigue que $V_\varepsilon(a) \cap T(B_X) \neq \emptyset$. Así que existe $y \in V_\varepsilon(a) \cap T(B_X)$. Tomemos $x \in B_X$ con $T(x) = y$. Así que $T(x) \in V_\varepsilon(a)$. Para $i \in \nn{n}$ se tiene que $$\abs{\varphi_i(x) - a_i} \leq \sum_{j=1}^{n} \abs{\varphi_j(x) - a_j} = \Norm{Tx - a}_1 < \varepsilon.$$
 \end{Dem}
 
-El lema de Helly sigue siendo válido para espacios normados complejos como se muestra a continuación.
+El lema de Helly sigue siendo válido para espacios normados complejos, como se muestra a continuación.
 
 \begin{Lema} \textbf{(Helly)} \label{Lema:HellyGeneral}
 Sean $X$ un espacio normado, $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $a_1, \ldots, a_n \in \K$. Son equivalentes:
@@ -1357,9 +1369,10 @@ Sean $X$ un espacio normado, $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ 
 (Pendiente).
 \end{Dem}
 
-\subsection{Compacidad de la bola cerrada en un espacio normado.}
+\subsection{Espacios de dimensión finita.}
 
-La compacidad es una propiedad muy importante que puede tener un subconjunto de un espacio topológico. El objetivo de esta sección es demostrar que la compacidad de la bola unitaria en un espacio normado depende simplemente de si este es de dimensión finita o no.
+%Hola Mundo
+
 
 \begin{Def} \hfill
 \begin{itemize}
@@ -1394,7 +1407,7 @@ Demostremos que $T$ es continuo. Para $1 \leq i \leq n$ consideremos las proyecc
 
 Ya sólo falta ver que $T^{-1}$ es continua. La proposición~\ref{Prop:ContinuidadEnCero} indica que basta probar que $T^{-1}$ es continua en el cero. Sea $U$ una vecindad del cero en $\K^n$. Entonces existe $r > 0$ tal que $V_r(0) \subseteq U$. Es conocido que en la topología euclidiana la esfera $S^{n-1}_2 := \{ a \in \K^n : \Norm{a}_2 = 1\}$ es un conjunto compacto. Por la proposición~\ref{Prop:FuncionContinuaPreservaCompactos} tenemos que $T(S^{n-1}_2)$ es un conjunto compacto en $E$ que no contiene al cero. 
 
-Dado que $\{ 0\}$ es compacto en $E$ y $T(S^{n-1}_2)$ también es compacto, la proposición~\ref{Prop:AbiertosSeparanCompactosEnHausdorff} existen $U$ y $V$ abiertos disjuntos tales que $0 \in U$ y $T(S_2^{n-1}) \subseteq V$.
+Dado que $\{ 0\}$ es compacto en $E$ y $T(S^{n-1}_2)$ también es compacto, por la proposición~\ref{Prop:AbiertosSeparanCompactosEnHausdorff} existen $U$ y $V$ abiertos disjuntos tales que $0 \in U$ y $T(S_2^{n-1}) \subseteq V$.
 
 Ahora, como el producto por escalares $\cdot: \K \times E \to E$ es continuo y $V$ es una vecindad abierta del cero, existe un básico $(-\varepsilon, \varepsilon) \times \widehat{V}$ en $\K \times E$ tal que $0 \in \widehat{V}$ y $$\cdot((-\varepsilon, \varepsilon) \times \widehat{V}) = \{tz : t \in (-\varepsilon, \varepsilon), z \in \widehat{V} \} \subseteq V.$$ 
 
@@ -1405,14 +1418,6 @@ Sean $D_{r\varepsilon}^E: E \to E$ la dilatación por $r\varepsilon$ en $E$. Demo
  
 La proposición~\ref{Prop:TraslacionDilatacionContinuas} indica que $D_{r\varepsilon}^E$ es homeomorfismo y por lo tanto $D_{r\varepsilon}^E(\widehat{V})$ es vecindad abierta del cero. De esto y de que $T^{-1}(D_{r\varepsilon}^E(\widehat{V})) \subseteq U$ concluimos que $T^{-1}$ es continua. 
 \end{Dem}
-
-\begin{Cor}
-Si $X$ y $Y$ son espacios normados de dimensión finita y de la misma dimensión, entonces son isomorfos como espacios normados.
-\end{Cor}
-
-\begin{Cor}
-Si $X$ es un espacio normado de dimensión finita, entonces todas las normas en $X$ son equivalentes entre sí.
-\end{Cor}
 
 \begin{Prop} \label{Prop:FuncionalesLinealesContinuosEspaciosFinitos}
 Sea $E$ un espacio vectorial topológico de dimensión finita y  $\varphi : E \to \K$ un funcional lineal. Entonces $\varphi$ es continuo. 
@@ -1437,6 +1442,19 @@ Si $Y$ es un subespacio de dimensión finita de un espacio vectorial topológico $
 \begin{Dem}
 La proposición~\ref{Prop:DimensionFinitaEVTCompleto} indica que $Y$ es completo. Del lema~\ref{Lema:CompletoEntoncesCerrado} se concluye que $Y$ es cerrado en $X$.
 \end{Dem}
+
+\begin{Cor}
+Si $X$ y $Y$ son espacios normados de dimensión finita y de la misma dimensión, entonces son isomorfos como espacios normados.
+\end{Cor}
+
+\begin{Cor}
+Si $X$ es un espacio normado de dimensión finita, entonces todas las normas en $X$ son equivalentes entre sí.
+\end{Cor}
+
+\subsection{Compacidad de la bola cerrada en un espacio normado.}
+
+La compacidad es una propiedad muy importante que puede tener un subconjunto de un espacio topológico. El objetivo de esta sección es demostrar que la compacidad de la bola unitaria en un espacio normado depende simplemente de si este es de dimensión finita o no.
+
 
 \begin{Lema} \textbf{(de Riesz)}
 Sean $Y$ un subespacio propio y cerrado de un espacio normado $X$ y $\theta \in (0, 1)$, entonces existe $x_\theta \in X$ con $\Norm{x_\theta} = 1$ para el cual $\Norm{x_\theta - y} > \theta$ para todo $y \in Y$. 
@@ -1638,7 +1656,7 @@ Donde el primero es un abierto de $X^*_{\mathrm{w}^*}$ y el segundo es un abiert
 Si $X$ es un espacio normado tal que $J(X) = X^{**}$ se dice que $X$ es \textit{reflexivo}. 
 \end{Def}
 
-Si $X$ es un espacio reflexivo, entonces la ecuación~(\ref{Eq:IgualdadBasicos}) indica que las bases de la topología débil* y la topología débil de $X^*$ coinciden. Por lo que la primera contención en~(\ref{Eq:RelacionTopologias}) es una igualdad.
+Si $X$ es un espacio reflexivo, entonces la ecuación~(\ref{Eq:IgualdadBasicos}) indica que las bases de la topología débil* y la topología débil de $X^*$ coinciden, por lo que la primera contención en~(\ref{Eq:RelacionTopologias}) es una igualdad.
 
 \begin{Prop} \label{Prop:ReflexivoIdentifiacionCanonicaDebilContinua}
 Si $X$ es un espacio reflexivo, entonces $J :  X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es un homeomorfismo.
@@ -1647,6 +1665,10 @@ Si $X$ es un espacio reflexivo, entonces $J :  X_\mathrm{w} \to X^{**}_{\mathrm{
 \begin{Dem}
 Dado que $J$ es un isomorfismo de espacios vectoriales, ya sólo falta verificar que $J$ es abierta y continua. Para eso tomemos una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X_\mathrm{w}$ y $x \in X_\mathrm{w}$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebil} dice que que $x_\alpha \weakarrow x$ si, y sólo si $\varphi(x_\alpha) \to \varphi(x)$ para toda $\varphi \in X^*$. Esto último equivale a que $\delta_{x_\alpha}(\varphi) \to \delta_{x}(\varphi)$ para toda $\varphi \in X^*$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebilEstrella} indica que esto es lo mismo que $\delta_{x_\alpha} \weakstararrow \delta_x$, o bien, $J(x_\alpha) \weakstararrow J(x)$. Por lo que $J$ es continua al igual que $J^{-1}$.
 \end{Dem}
+
+\begin{Ejem}
+Sea $X$ un espacio normado de dimensión finita. Entonces $X$ es reflexivo. (Pendiente).
+\end{Ejem}
 
 Si $X$ es un espacio de dimensión infinita, la proposición anterior muestra que $X^*$ es de dimensión infinita, por lo que resulta que $B_{X^*}$ no es compacta respecto a la topología original. El siguiente teorema muestra que bajo la topología débil* sí lo es.
 
@@ -1703,9 +1725,9 @@ Sea $X$ un espacio normado. Entonces $\ov{J(B_X)}^{\mathrm{w}^*}= B_{X^{**}} $.
 \end{Tma}
 
 \begin{Dem}
-El teorema de Banach-Alaoglu nos dice que $B_{X^{**}}$ es $\mathrm{w}^*$-compacta y como $X^{**}$ es Hausdorff del corolario~\ref{Cor:HausdorffCompactoEsCerrado} se sigue que $B_{X^{**}}$ también es $\mathrm{w}^*$-cerrado. Como $J(B_X) \subseteq B_{X^{**}}$, tenemos que $$\ov{J(B_X)}^{\mathrm{w}^*} \subseteq \ov{B_{X^{**}}}^{\mathrm{w}^*} = B_{X^{**}}.$$
+El teorema de Banach-Alaoglu nos dice que $B_{X^{**}}$ es $\mathrm{w}^*$-compacta y como $X^{**}$ es Hausdorff del corolario~\ref{Cor:HausdorffCompactoEsCerrado} se sigue que $B_{X^{**}}$ también es $\mathrm{w}^*$-cerrado. Dado que $J(B_X) \subseteq B_{X^{**}}$, tenemos que $$\ov{J(B_X)}^{\mathrm{w}^*} \subseteq \ov{B_{X^{**}}}^{\mathrm{w}^*} = B_{X^{**}}.$$
 
-Para demostrar la otra contención tomemos $\delta \in B_{X^{**}}$. Sea $U$ una $\mathrm{w}^*$-vecindad de $\delta$. Hay que demostrar que  $J(B_X) cap U \neq \emptyset$. Existen $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $\varepsilon > 0$ tales que $U_{\delta, \varphi_1, \ldots, \varphi_n, \varepsilon} \subseteq U$ (para realizar este paso tendría que demostrar que los básicos en realidad forman una base de entornos de la topología débil*, en lugar de simplemente una base ¿lo pruebo?). 
+Para demostrar la otra contención tomemos $\delta \in B_{X^{**}}$. Sea $U$ una $\mathrm{w}^*$-vecindad de $\delta$. Hay que demostrar que  $J(B_X) \cap U \neq \emptyset$. Existen $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $\varepsilon > 0$ tales que $U_{\delta, \varphi_1, \ldots, \varphi_n, \varepsilon} \subseteq U$. 
 
 Sean $b_1, \ldots, b_n \in\K$ cualesquiera. Tenemos que
 $$\abs{\sum_{i=1}^n \delta(\varphi_i) b_i } = \abs{\delta\left(\sum_{i=1}^n  b_i \varphi_i \right) } \leq \Norm{\delta} \Norm{\sum_{i=1}^n  b_i \varphi_i} \leq \Norm{\sum_{i=1}^n  b_i \varphi_i}.$$
@@ -1721,7 +1743,7 @@ es $\mathrm{w}$-compacta.
 \begin{Dem}
 Supongamos primero que $X$ es reflexivo. El teorema de Banach-Alaoglu indica que $B_{X^{**}}$ es $\sigma(X^{**}, X^{*})$-compacto. La proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es abierta y como $J$ es reflexivo entonces $B_X = J^{-1}(B_{X^{**}})$ es $\sigma(X, X^*)$-compacto.
 
-Ahora supongamos que $B_X$ es $\mathrm{w}$-compacta. La proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es continua. Así $J(B_X)$ es $\mathrm{w}^*$-compacto, por lo que al ser $X^{**}$ Hausdorff resulta del corolario~\ref{Cor:HausdorffCompactoEsCerrado} que $J(B_X)$ también es $\mathrm{w}^*$-cerrado. Entonces, por el teorema de Goldstine se tiene que $$B_{X^{**}} = \ov{J(B_X)}^{\mathrm{w}^*} = J(B_X)$$
+Ahora supongamos que $B_X$ es $\mathrm{w}$-compacta. La proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es continua. Así $J(B_X)$ es $\mathrm{w}^*$-compacto, por lo que al ser $X^{**}$ Hausdorff resulta del corolario~\ref{Cor:HausdorffCompactoEsCerrado} que $J(B_X)$ también es $\mathrm{w}^*$-cerrado. Entonces, por el teorema de Goldstine se cumple que $$B_{X^{**}} = \ov{J(B_X)}^{\mathrm{w}^*} = J(B_X)$$
 
 Por lo tanto $X$ es reflexivo. 
 \end{Dem}
