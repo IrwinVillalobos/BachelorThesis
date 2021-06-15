@@ -304,7 +304,13 @@ Sean $I$ un conjunto no vacío y $X_i$ espacios topológicos para cada $i \in I$. 
 Sean $I$ un conjunto no vacío y $X_i$ espacios topológicos para cada $i \in I$. La \textit{topología producto} de $\prod_{i\in I} X_i$ es la generada por la base $$\left\{ \bigcap_{j=1}^k \pi_{i_j}^{-1}(U_j) : k \in \N, \, i_1, \ldots, i_k \in I \mbox{ y } U_j \mbox{ es abierto en } X_{i_j} \mbox{ para cada } 1\leq j \leq k\right\}.$$
 \end{Def}
 
-Veamos que con esta definición de topología producto las proyecciones son continuas. Fijemos $i \in I$ y tomemos cualquier abierto $U_i$ en $X_i$. Entonces $\pi_i^{-1}(U_i)$ es un básico de $\prod_{i\in I} X_i$ y por tanto es abierto. Esto indica que $\pi_i$ es continua. \\ 
+Veamos que con esta definición de topología producto las proyecciones son continuas. Fijemos $i \in I$ y tomemos cualquier abierto $U_i$ en $X_i$. Entonces $\pi_i^{-1}(U_i)$ es un básico de $\prod_{i\in I} X_i$ y por tanto es abierto. Esto indica que $\pi_i$ es continua.  
+ 
+Si tenemos un par de espacios topológicos compactos, es sencillo verificar que su producto sigue siendo compacto. Uno de los teoremas más importantes en la topología es el teorema de Tychonoff y generaliza este resultado estableciendo que el producto arbitrario de espacios compactos es compacto.  
+ 
+\begin{Tma} \textbf{(Tychonoff)}
+Sean $I$ un conjunto no vacío y $X_i$ espacios topológicos para cada $i \in I$. Si cada $X_i$ es un espacio compacto, entonces el espacio $\prod_{i\in I} X_i$ es compacto.
+\end{Tma} 
  
 \begin{Def}
 Sea $X$ un espacio topológico. Diremos que $X$ es \textit{Hausdorff} si para todos $x, y \in X$ distintos existen abiertos $U, V$ tales que $x \in U$, $y \in V$ y $U\cap V = \emptyset$.
@@ -715,7 +721,7 @@ A lo largo de este trabajo denotaremos por $\K$ el campo de los números reales o
 Supongamos que $\tau$ es una topología de un espacio vectorial $X$ sobre $\K$ tal que:
 \begin{itemize}
 \item \textbf{a)} $X$ es Hausdorff.
-\item \textbf{b)} Las operaciones de espacio vectorial $+ : X\times X \to X$ y $\cdot: \K \times X \to X$ son continuas. Naturalmente, en $X\times X$ y en $\K \times X$ consideramos las correspondientes topologías producto. 
+\item \textbf{b)} Las operaciones de espacio vectorial $+ : X\times X \to X$ y $\BD: \K \times X \to X$ son continuas. Naturalmente, en $X\times X$ y en $\K \times X$ consideramos las correspondientes topologías producto. 
 \end{itemize}
 
 En este caso decimos que $\tau$ es una \textit{topología vectorial} y que $X$ es un \textit{espacio vectorial topológico}. \\
@@ -763,13 +769,13 @@ De manera similar definimos
 e_{\lambda} : X &\to \K \times X  \\
 y &\mapsto (\lambda, y)
 } 
-Notemos que para $y \in X$ se tiene que $(\pi_X \circ e_{\lambda})(y) = \lambda$ y $(\pi_Y \circ e_{\lambda})(y) = y$. Esto indica que $\pi_X \circ e_{\lambda}$ es constante y $\pi_Y \circ e_{\lambda}$ es la identidad en $X$ y por lo tanto ambas son continuas. Por la proposición~\ref{Prop:ContinuidadPorComponentes} se tiene que $e_{\lambda}$ es continua.  De manera que $D_\lambda = \cdot \circ e_\lambda$ es continua. Como $\lambda$ fue arbitraria, entonces $D_{\lambda^{-1}}$ también es continua. 
+Notemos que para $y \in X$ se tiene que $(\pi_X \circ e_{\lambda})(y) = \lambda$ y $(\pi_Y \circ e_{\lambda})(y) = y$. Esto indica que $\pi_X \circ e_{\lambda}$ es constante y $\pi_Y \circ e_{\lambda}$ es la identidad en $X$ y por lo tanto ambas son continuas. Por la proposición~\ref{Prop:ContinuidadPorComponentes} se tiene que $e_{\lambda}$ es continua.  De manera que $D_\lambda = \BD \circ e_\lambda$ es continua. Como $\lambda$ fue arbitraria, entonces $D_{\lambda^{-1}}$ también es continua. 
 \end{Dem}
 
 \begin{Obs}
 Como consecuencia de la proposición anterior, si $U$ es un abierto en un espacio vectorial topológico $X$ y $x \in X$, entonces 
 $$U+x := \{ y+x : y \in U \} = T_x(U)$$ 
-también es abierto. Entonces $V$ es vecindad abierta de $x$ si, y sólo si, $V = x + U$, donde $U$ es vecindad abierta de $0$.
+también es abierto. Resulta así que $V$ es vecindad abierta de $x$ si, y sólo si, $V = x + U$, donde $U$ es vecindad abierta de $0$.
 \end{Obs}
 
 \begin{Prop} \label{Prop:ContinuidadEnCero}
@@ -794,13 +800,13 @@ $$\lim_{\alpha \in \Lambda} (\lambda_\alpha x_\alpha) = \left(\lim_{\alpha \in \
 \end{Dem}
 
 \begin{Lema} \label{Lema:SumaYProductoEscalarDeFuncionesContinuas}
-Sea $X$ un espacio topológico y $E$ un espacio vectorial topológico. Si $f: X \to E$, $g: X \to E$  y $h: X \to \K$ son continuas, entonces $f + g$ y $h \cdot f$ son continuas.
+Sea $X$ un espacio topológico y $E$ un espacio vectorial topológico. Si $f: X \to E$, $g: X \to E$  y $h: X \to \K$ son continuas, entonces $f + g$ y $h \BD f$ son continuas.
 \end{Lema}
 
 \begin{Dem}
 Como $f$ y $g$ son continuas, el corolario~\ref{Cor:ContinuidadPorComponentes} indica que $f \times g : X \to E \times E$ es continua. Al ser continua la suma $+: E \times E \to E$, resulta que $f + g = + \circ  (f \times g) : X \to E$ también es continua. 
 
-Ahora, al ser $h$ y $f$ funciones continuas, tenemos que $h \times f: X \to \K \times E$ es continua. Como el producto por escalares $\cdot: \K \times E \to E$ es una función continua, se sigue entonces que $h \cdot f = \cdot \circ (h \times f): X \to E$ es continua. 
+Ahora, al ser $h$ y $f$ funciones continuas, tenemos que $h \times f: X \to \K \times E$ es continua. Como el producto por escalares $\BD: \K \times E \to E$ es una función continua, se sigue entonces que $h \BD f = \BD \circ (h \times f): X \to E$ es continua. 
 \end{Dem}
 
 \begin{Def}
@@ -881,7 +887,7 @@ Sean $X$ un espacio vectorial y $p$ una seminorma. Entonces
 \end{Prop}
 
 \begin{Dem} \hfill \begin{itemize} 
-\item[\textbf{a)}] Observemos que $p(0) = p(0\cdot 0) = \abs{0}p(0) = 0$.
+\item[\textbf{a)}] Observemos que $p(0) = p(0\BD 0) = \abs{0}p(0) = 0$.
 \item[\textbf{b)}] Por la subaditividad de $p$ tenemos que $p(x) = p(x-y+y) \leq p(x-y) + p(y)$. De esto resulta que $p(x)-p(y) \leq p(x-y)$. Análogamente, $p(y)-p(x) \leq p(y-x) = p(x-y)$ y entonces $\abs{p(x)-p(y)} \leq p(x-y)$.
 \end{itemize}
 \end{Dem}
@@ -1050,11 +1056,11 @@ Sean $A$ un conjunto no-vacío y $X = F(A, \K)$ como en el ejemplo~\ref{Ejem:EVTF
 \subsection{Convexidad.}
 
 \begin{Def}
-Sea $X$ un espacio vectorial. Un subconjunto $A$ de $X$ es \textit{convexo} si para todos $x, y \in A$ y $\lambda \in [0,1]$ se tiene que $\lambda x + (1-\lambda) y \in A$. 
+Sea $X$ un espacio vectorial. Un subconjunto $A$ de $X$ es \textit{convexo} si para todos $x, y \in A$ y $\lambda \in [0,1]$ se cumple que $\lambda x + (1-\lambda) y \in A$. 
 \end{Def} 
 
 \begin{Ejem}
-Sea $X$ un espacio vectorial y $z \in X$. Claramente $X$ y $\{z\}$ son convexos.
+Sea $X$ un espacio vectorial y $x \in X$. Claramente $X$ y $\{x\}$ son convexos.
 \end{Ejem}
 
 
@@ -1121,20 +1127,21 @@ Por lo tanto, la función $h = f \circ g$ es convexa.
 Una \textit{norma} en un espacio vectorial $X$ es una seminorma $\Norm{\cdot}: X \to [0, \infty)$ que es \textit{definida positiva}, esto es, para cada $x \in X$, $\Norm{x} = 0$ si, y sólo si $x = 0$. En este caso decimos que la pareja $(X, \Norm{\cdot})$ es un \textit{espacio normado}. 
 \end{Def} 
 
-Es sencillo verificar que en un espacio normado $X$ la función $d: X \times X \to [0, \infty)$ definida por $$d(x, y) := \Norm{x-y}$$ es una métrica, por lo que $X$ es un espacio métrico y entonces podemos considerar la topología inducida por la métrica, la cual se denomina topología original de $X$. A menos que se especifique otra cosa, cuando hablemos de un espacio normado como espacio topológico, lo consideraremos con la topología original.
+Es sencillo verificar que en un espacio normado $X$ la función $d: X \times X \to [0, \infty)$ definida por $$d(x, y) := \Norm{x-y}$$ es una métrica, por lo que $X$ es un espacio métrico y entonces podemos considerar la topología inducida por la métrica, la cual se denomina \textit{topología original} de $X$. A menos que se especifique otra cosa, cuando hablemos de un espacio normado como espacio topológico, lo consideraremos con su topología original.
 
 \begin{Lema} \label{Lema:NormaContinua}
-Sea $X$ un espacio normado. Entonces la norma $\Norm{\cdot}:X \to [0, \infty)$ es una función continua.
+Sea $X$ un espacio normado. Entonces la norma $\Norm{\cdot}:X \to [0, \infty)$ es una función continua y convexa.
 \end{Lema}
 
 \begin{Dem}
 Sea $(x_n)_{n\in\N}$ una sucesión en $X$ que converge a $x \in X$. Por definición esto indica que para todo $\varepsilon > 0$ existe $N \in \N$ tal que si $n \geq N$ entonces $\Norm{x_n - x} \leq \varepsilon$. Por la desigualdad del triángulo que $\abs{\Norm{x_n} - \Norm{x}} < \Norm{x_n - x}$. Esto implica que $\Norm{x_n}$ converge a $\Norm{x}$ y así $\Norm{\cdot}$ es continua.
+
+Ahora, si $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que
+$$\Norm{\lambda x + (1-\lambda y)} \leq \abs{\lambda} \Norm{x} + \abs{1-\lambda} \Norm{y}  = \lambda \Norm{x} + (1-\lambda) \Norm{y},$$ y por lo tanto $\Norm{\cdot}$ es convexa.
 \end{Dem}
 
 \begin{Ejem}
-Una norma $\Norm{\cdot}:X \to \R$ es una función convexa pues dados $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que
-$$\Norm{\lambda x + (1-\lambda y)} \leq \abs{\lambda} \Norm{x} + \abs{1-\lambda} \Norm{y}  = \lambda \Norm{x} + (1-\lambda) \Norm{y}.$$
-Además, si tomamos $x, y \in B_X$ y $\lambda \in [0, 1]$, entonces $\Norm{\lambda x + (1-\lambda)y} \leq \lambda \Norm{x} + (1- \lambda)\Norm{y} \leq \lambda + (1-\lambda) = 1$. Así que $\lambda x + (1-\lambda)y \in B_X$ y $B_X$ es convexa.
+Si $X$ es un espacio normado y tomamos $x, y \in B_X$ y $\lambda \in [0, 1]$, entonces $\Norm{\lambda x + (1-\lambda)y} \leq \lambda \Norm{x} + (1- \lambda)\Norm{y} \leq \lambda + (1-\lambda) = 1$. Así que $\lambda x + (1-\lambda)y \in B_X$ y $B_X$ es convexa.
 \end{Ejem}
 
 \begin{Prop} \label{Prop:TopologiaOriginalEspaciosNormadosEVT}
@@ -1195,7 +1202,7 @@ En $\K^n $ la norma euclidiana resulta ser el caso $p=2$ de una familia de norma
 Dados $n \in \N$ y $1 \leq p < \infty$, definamos la función $\Norm{\cdot}_p:\K^n \to [0, \infty)$ por $$\Norm{(x_1, \ldots, x_n)}_p := \left(\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}}.$$  
 
 En el caso $p = \infty$, definimos la función $\Norm{\cdot}_{\infty}: \K^n \to [0, \infty)$ dada por $$\Norm{(x_1, \ldots, x_n)}_\infty :=\max_{1 \leq i \leq n} \,  \abs{x_i}.$$
-A continuación demostraremos que $\Norm{\cdot}_p$ es una norma en $\K^n$ y que este es completo bajo esta norma.
+A continuación demostraremos que $\Norm{\cdot}_p$ es una norma en $\K^n$.
 \end{Ejem}
 
 \begin{Dem}
@@ -1248,7 +1255,18 @@ Veamos ahora que $\Norm{\cdot}_\infty$ es una norma en $\K^n$. Para eso, notemos
 \end{itemize}
 \end{Dem}
 
-En adelante, cuando trabajemos en $\K^n$ con la norma $\Norm{\cdot}_p$, lo denotaremos por $\ell_p^n$. Si hace falta especificar el campo se denotará por $\ell_p^n(\K)$.  
+En adelante, cuando trabajemos en $\K^n$ con la norma $\Norm{\cdot}_p$, lo denotaremos por $\ell_p^n$. Si hace falta especificar el campo se denotará por $\ell_p^n(\K)$. 
+
+En el caso particular $p=2$, a la norma $\Norm{\cdot}_2$ en $\K^n$ le damos el nombre de \textit{norma euclidiana}. A continuación probaremos que $\ell_2^n$ es un espacio completo.
+
+\begin{Prop}
+Sea $n \in \N$. El espacio normado $\ell_2^n$ es completo. (¿Es mejor que la proposición diga: ``La norma euclidiana es completa '' ?).
+\end{Prop}
+
+\begin{Dem}
+(Pendiente).
+\end{Dem}
+
 
 \begin{Ejem}
 Denotemos por $\K^\N$ al espacio de sucesiones en $\K$. Definamos para $1 \leq p < \infty$ las funciones $\Norm{\cdot}_p : \K^\N \to [0, \infty]$ y $\Norm{\cdot}_\infty : \K^\N \to [0, \infty]$ por $$\Norm{(x_1, x_2, \ldots)}_p = \left(  \sum_{i=1}^\infty \abs{x_i}^p \right)^{\frac{1}{p}} \mbox{  y  } \Norm{(x_1, x_2, \ldots)}_\infty = \sup_{i \in \N} \,  \abs{x_i},$$
@@ -1259,25 +1277,29 @@ Para $1\leq p\leq \infty$ definimos a $\ell_p(\K)$, o simplemente $\ell_p$, como
 \end{Ejem}
 
 
-\begin{Prop}
+\begin{Lema} \label{Lema:LimiteElleP}
 Sea $1 \leq p \leq \infty$. Si $x = (x_1, x_2, \ldots) \in \ell_p$, entonces $$\Norm{x}_p = \lim_{n \to  \infty} \Norm{(x_1, \ldots, x_n)}_p.$$
-\end{Prop}
+\end{Lema}
 
 \begin{Dem}
 (Pendiente).
 \end{Dem}
 
-\begin{Dem}
-($\Norm{\cdot}_p$ es una norma en $\ell_p$.) 
+\begin{Prop}
+Sea $p \in [1, \infty]$, $\Norm{\cdot}_p$ es una norma en $\ell_p$.
+\end{Prop}
 
+\begin{Dem} 
+\hfill
 \begin{itemize}
 \item \textbf{i)} Sea $x = (x_1, x_2, \ldots, ) \in \ell_p$. Si $x = 0$, entonces $\Norm{x}_p = 0$. Si por otro lado $\Norm{x}_p = 0$, entonces $x_1 = x_2 =\ldots = 0$. Así que $x = 0$.
-\item \textbf{ii)} Si $x = (x_1, x_2, \ldots, ) \in \ell_p$ y $\lambda \in \K$, entonces $$\Norm{\lambda x}_p = \lim_{n\to \infty} \Norm{\lambda(x_1, \ldots, x_n)}_p = \lambda \lim_{n\to \infty} \Norm{(x_1, \ldots, x_n)}_p = \lambda \Norm{x}_p.$$
-\item \textbf{iii)}  Si $x = (x_1, x_2, \ldots, ), y = (y_1, y_2, \ldots) \in \ell_p$, entonces 
+\item \textbf{ii)} Si $x = (x_1, x_2, \ldots, ) \in \ell_p$ y $\lambda \in \K$, entonces el lema~\ref{Lema:LimiteElleP} indica que $$\Norm{\lambda x}_p = \lim_{n\to \infty} \Norm{\lambda(x_1, \ldots, x_n)}_p = \lambda \lim_{n\to \infty} \Norm{(x_1, \ldots, x_n)}_p = \lambda \Norm{x}_p.$$
+\item \textbf{iii)}  Si $x = (x_1, x_2, \ldots, ), y = (y_1, y_2, \ldots) \in \ell_p$, entonces del lema~\ref{Lema:LimiteElleP} se sigue que
 \Ecu{
 \Norm{x}_p + \Norm{y}_p &= \lim_{n\to \infty} \Norm{(x_1, \ldots, x_n)}_p + \lim_{n\to \infty} \Norm{(y_1, \ldots, y_n)}_p \\
 & =  \lim_{n\to \infty} \Norm{(x_1, \ldots, x_n)}_p + \Norm{(y_1, \ldots, y_n)}_p  \\
-&\leq \lim_{n\to \infty} \Norm{(x_1, \ldots, x_n)_p + (y_1, \ldots, y_n)}_p = \Norm{x+y}_p.
+&\geq \lim_{n\to \infty} \Norm{(x_1, \ldots, x_n) + (y_1, \ldots, y_n)}_p = \Norm{x+y}_p. \\
+& = \lim_{n\to \infty} \Norm{(x_1 + y_1, \ldots, x_n + y_n)}_p = \Norm{x+y}_p.
 }
 \end{itemize}
 
@@ -1383,7 +1405,7 @@ Sean $X$ un espacio normado, $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ 
 \begin{itemize}
 \item \textbf{i)} Para todo $\varepsilon>0$ existe $x \in B_X$ tal que $\abs{\varphi_i(x) - a_i} < \varepsilon$ para toda $i \in \{ 1, \ldots, n\}$.
 \item \textbf{ii)} Para cualesquiera $b_1, \ldots, b_n \in \K$ se cumple que $\displaystyle\abs{\sum_{i=1}^n a_i b_i} \leq \Norm{\sum_{i=1}^n b_i \varphi_i}.$
-\item \textbf{iii)} $(a_1, \ldots, a_n) \in \ov{T(B_X)}$, donde  $T: X \to \ell_1^n(\K), \, x \mapsto (\varphi_1(x), \ldots, \varphi_n(x))$. 
+\item \textbf{iii)} $(a_1, \ldots, a_n) \in \ov{T(B_X)}$, donde  $T: X \to \ell_1^n(\K)$ está definida por $Tx =(\varphi_1(x), \ldots, \varphi_n(x))$. 
 \end{itemize}
 \end{Lema}
 
@@ -1393,7 +1415,7 @@ Si $\K = \R$, ya quedó demostrado en el lema anterior. Así que supongamos $\K = 
 (Pendiente).
 \end{Dem}
 
-\subsection{Espacios de dimensión finita.}
+\subsection{Espacios vectoriales topológicos de dimensión finita.}
 
 %Hola Mundo
 
@@ -1433,12 +1455,12 @@ Ya sólo falta ver que $T^{-1}$ es continua. La proposición~\ref{Prop:Continuidad
 
 Dado que $\{ 0\}$ es compacto en $E$ y $T(S^{n-1}_2)$ también es compacto, por la proposición~\ref{Prop:AbiertosSeparanCompactosEnHausdorff} existen $U$ y $V$ abiertos disjuntos tales que $0 \in U$ y $T(S_2^{n-1}) \subseteq V$.
 
-Ahora, como el producto por escalares $\cdot: \K \times E \to E$ es continuo y $V$ es una vecindad abierta del cero, existe un básico $(-\varepsilon, \varepsilon) \times \widehat{V}$ en $\K \times E$ tal que $0 \in \widehat{V}$ y $$\cdot((-\varepsilon, \varepsilon) \times \widehat{V}) = \{tz : t \in (-\varepsilon, \varepsilon), z \in \widehat{V} \} \subseteq V.$$ 
+Ahora, como el producto por escalares $\BD: \K \times E \to E$ es continuo y $V$ es una vecindad abierta del cero, existe un básico $(-\varepsilon, \varepsilon) \times \widehat{V}$ en $\K \times E$ tal que $0 \in \widehat{V}$ y $$\BD((-\varepsilon, \varepsilon) \times \widehat{V}) = \{tz : t \in (-\varepsilon, \varepsilon), z \in \widehat{V} \} \subseteq V.$$ 
 
 Probemos que $T^{-1}(\widehat{V}) \subseteq V_\frac{1}{\varepsilon}(0)$. Sea $z \in \widehat{V}$, de manera que  $T^{-1} z \in T^{-1}(\widehat{V})$. Tomemos $t \in (-\varepsilon, \varepsilon)$. Entonces $tz \in V$, de donde $tz \notin T(S^{n-1})$. Es decir, $T^{-1}(tz) \notin S^{n-1}$, o bien $\Norm{(T^{-1}(tz)} \neq 1$. Así que $\abs{t} \cdot \Norm{T^{-1} z} \neq 1$. Por lo tanto, para todo $t \in (-\varepsilon, \varepsilon) \setminus \{0\}$ se tiene que $\Norm{T^{-1}z} \neq \frac{1}{\abs{t}} $, por lo que $T^{-1}z \in V_\frac{1}{\varepsilon}(0)$. 
 
  
-Sean $D_{r\varepsilon}^E: E \to E$ la dilatación por $r\varepsilon$ en $E$. Demostremos que $T^{-1}(D_{r\varepsilon}^E(\widehat{V})) \subseteq U$. Tomemos $y \in \widehat{V}$, de manera que $T^{-1}(D_{r\varepsilon}^E(\widehat{y})) \in T^{-1}(D_{r\varepsilon}^E(\widehat{V}))$. Como $T^{-1}(\widehat{V}) \subseteq V_\frac{1}{\varepsilon}(0)$, se sigue que $T^{-1}y \in V_\frac{1}{\varepsilon}(0)$. Es decir, $\Norm{T^{-1}y} < \frac{1}{\varepsilon}$. De esto se sigue que $r\varepsilon \Norm{T^{-1}y} < r$, o bien $\Norm{r\varepsilon T^{-1}y} < r$. Entonces $T^{-1}(D^E_{r\varepsilon}(y)) = T^{-1}(r\varepsilon\cdot y) \in V_r(0) \subseteq U$. 
+Sean $D_{r\varepsilon}^E: E \to E$ la dilatación por $r\varepsilon$ en $E$. Demostremos que $T^{-1}(D_{r\varepsilon}^E(\widehat{V})) \subseteq U$. Tomemos $y \in \widehat{V}$, de manera que $T^{-1}(D_{r\varepsilon}^E(\widehat{y})) \in T^{-1}(D_{r\varepsilon}^E(\widehat{V}))$. Como $T^{-1}(\widehat{V}) \subseteq V_\frac{1}{\varepsilon}(0)$, se sigue que $T^{-1}y \in V_\frac{1}{\varepsilon}(0)$. Es decir, $\Norm{T^{-1}y} < \frac{1}{\varepsilon}$. De esto se sigue que $r\varepsilon \Norm{T^{-1}y} < r$, o bien $\Norm{r\varepsilon T^{-1}y} < r$. Entonces $T^{-1}(D^E_{r\varepsilon}(y)) = T^{-1}(r\varepsilon\, y) \in V_r(0) \subseteq U$. 
  
 La proposición~\ref{Prop:TraslacionDilatacionContinuas} indica que $D_{r\varepsilon}^E$ es homeomorfismo y por lo tanto $D_{r\varepsilon}^E(\widehat{V})$ es vecindad abierta del cero. De esto y de que $T^{-1}(D_{r\varepsilon}^E(\widehat{V})) \subseteq U$ concluimos que $T^{-1}$ es continua. 
 \end{Dem}
@@ -1448,7 +1470,7 @@ Sea $E$ un espacio vectorial topológico de dimensión finita y  $\varphi : E \to 
 \end{Prop}
 
 \begin{Dem}
-Sea $\dim \, E = n \in \N$ y $\{ x_1, \ldots, x_n \} \subseteq X$ una base de $X$. Sea $T: \K^n \to E$ como en la demostración del teorema~\ref{Tma:IsomorfismoDimensionFinitaEVT}. Entonces $T^{-1}$ es continua. Definamos $S: \K^n \to \K$ como $S(a_1, \ldots, a_n) = a_1 \varphi(x_1) + \ldots + a_n \varphi(x_n)$. Para $1 \leq i \leq n$ las proyecciones $\pi_i: \K^n \to \K$ y las funciones constantes $f_i: \K^n \to \K$, $a \mapsto \varphi(x_i)$ son continuas. Como $\K$ es un espacio vectorial topológico, el lema~\ref{Lema:SumaYProductoEscalarDeFuncionesContinuas} indica que $S = (\pi_1 \cdot f_1 + \ldots + \pi_n \cdot f_n)$ es continua de manera que $\varphi = S \circ T^{-1}$ también es continua.
+Sea $\dim \, E = n \in \N$ y $\{ x_1, \ldots, x_n \} \subseteq X$ una base de $X$. Sea $T: \K^n \to E$ como en la demostración del teorema~\ref{Tma:IsomorfismoDimensionFinitaEVT}. Entonces $T^{-1}$ es continua. Definamos $S: \K^n \to \K$ como $S(a_1, \ldots, a_n) = a_1 \varphi(x_1) + \ldots + a_n \varphi(x_n)$. Para $1 \leq i \leq n$ las proyecciones $\pi_i: \K^n \to \K$ y las funciones constantes $f_i: \K^n \to \K$, $a \mapsto \varphi(x_i)$ son continuas. Como $\K$ es un espacio vectorial topológico, el lema~\ref{Lema:SumaYProductoEscalarDeFuncionesContinuas} indica que $S = (\pi_1 \BD f_1 + \ldots + \pi_n \BD f_n)$ es continua de manera que $\varphi = S \circ T^{-1}$ también es continua.
 \end{Dem}
 
 \begin{Prop} \label{Prop:DimensionFinitaEVTCompleto}
@@ -1687,7 +1709,7 @@ Si $X$ es un espacio reflexivo, entonces $J :  X_\mathrm{w} \to X^{**}_{\mathrm{
 \end{Prop}
 
 \begin{Dem}
-Dado que $J$ es un isomorfismo de espacios vectoriales, ya sólo falta verificar que $J$ es abierta y continua. Para eso tomemos una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X_\mathrm{w}$ y $x \in X_\mathrm{w}$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebil} dice que que $x_\alpha \weakarrow x$ si, y sólo si $\varphi(x_\alpha) \to \varphi(x)$ para toda $\varphi \in X^*$. Esto último equivale a que $\delta_{x_\alpha}(\varphi) \to \delta_{x}(\varphi)$ para toda $\varphi \in X^*$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebilEstrella} indica que esto es lo mismo que $\delta_{x_\alpha} \weakstararrow \delta_x$, o bien, $J(x_\alpha) \weakstararrow J(x)$. Por lo que $J$ es continua al igual que $J^{-1}$.
+Dado que $J$ es un isomorfismo de espacios vectoriales, ya sólo falta verificar que $J$ y $J^{-1}$ son continuas. Para eso tomemos una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X_\mathrm{w}$ y $x \in X_\mathrm{w}$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebil} dice que que $x_\alpha \weakarrow x$ si, y sólo si $\varphi(x_\alpha) \to \varphi(x)$ para toda $\varphi \in X^*$. Esto último equivale a que $\delta_{x_\alpha}(\varphi) \to \delta_{x}(\varphi)$ para toda $\varphi \in X^*$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebilEstrella} indica que esto es lo mismo que $\delta_{x_\alpha} \weakstararrow \delta_x$, o bien, $J(x_\alpha) \weakstararrow J(x)$. Por lo que $J$ es continua al igual que $J^{-1}$.
 \end{Dem}
 
 \begin{Ejem}
@@ -1705,7 +1727,7 @@ Sea $X$ un espacio normado. Entonces la bola unitaria cerrada de $X^*$ es compac
 Para cada $x \in X$ definamos el conjunto 
 $$D_x : = \{ \lambda \in \K : \abs{\lambda} \leq \Norm{x} \}.$$
 
-Cada uno de estos conjuntos es un disco compacto en $\K$. El teorema de Tychonoff indica que $$\mathcal{D} := \prod_{x\in X}{D_x}$$ es un espacio compacto con la topología producto.
+Como para cada $x \in X$, $D_x$ es compacto en $\K$, entonces el teorema de Tychonoff indica que $$\mathcal{D} := \prod_{x\in X}{D_x}$$ es un espacio compacto con la topología producto. 
 
 Consideremos ahora la función
 \Ecu{
@@ -1713,13 +1735,13 @@ F : B_{X^*} &\to \mathcal{D} \\
 \varphi & \mapsto (\varphi(x))_{x \in X}.
 }
 
-Veamos que está bien definida. Tomemos $\varphi \in B_{X^*}$ de manera que $\Norm{\varphi} \leq 1$. Dado $x \in X$, cada $\abs{\varphi(x)} \leq \Norm{x} \cdot \Norm{x} \leq \Norm{x}$. Así que $\abs{\varphi(x)} \in D_x$ y así $F(\varphi) \in \mathcal{D}$. 
+Veamos que está bien definida. Tomemos $\varphi \in B_{X^*}$ de manera que $\Norm{\varphi} \leq 1$. Dado $x \in X$, cada $\abs{\varphi(x)} \leq \Norm{x} \cdot \Norm{x} \leq \Norm{x}$. Así que $\abs{\varphi(x)} \in D_x$ y por lo tanto $F(\varphi) \in \mathcal{D}$. 
 
 Demostremos que $F$ es inyectiva. Dados $\varphi, \psi \in B_{X^*}$ con $F(\varphi) = F(\psi)$ se tiene que $(\varphi(x))_{x \in X} = (\psi(x))_{x \in X}$. De donde $\varphi(x) = \psi(x)$ para todo $x \in X$. Así que $\varphi = \psi$ y $F$ es inyectiva. 
 
-Consideremos una red $(\varphi_\alpha)_{\alpha \in \Lambda}$ en $B_{X^*}$ y $\varphi \in B_{X^*}$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebilEstrella} indica que $\varphi_\alpha \stackrel{\mathrm{w_*}}{\longrightarrow} \varphi$ si, y sólo si $\varphi_\alpha(x) \to \varphi(x)$ en $D_x$ para todo $x \in X$. La proposición~\ref{Prop:ConvergenciaPorComponentesEnProductoArbitrario} indica que esto último se da si, y sólo si $(\varphi_\alpha(x))_{x \in X} \to (\varphi(x))_{x \in X}$ en $\mathcal{D}$. O bien, si, y  sólo si $F(\varphi_\alpha) \to F(\varphi)$. Esto indica que $F$ es continua y al ser inyectiva se concluye que también preserva abiertos. 
+Consideremos una red $(\varphi_\alpha)_{\alpha \in \Lambda}$ en $B_{X^*}$ y $\varphi \in B_{X^*}$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebilEstrella} indica que $\varphi_\alpha \stackrel{\mathrm{w_*}}{\longrightarrow} \varphi$ si, y sólo si $\varphi_\alpha(x) \to \varphi(x)$ en $D_x$ para todo $x \in X$. La proposición~\ref{Prop:ConvergenciaPorComponentesEnProductoArbitrario} indica que esto último se da si, y sólo si $(\varphi_\alpha(x))_{x \in X} \to (\varphi(x))_{x \in X}$ en $\mathcal{D}$. O bien, si, y  sólo si $F(\varphi_\alpha) \to F(\varphi)$. Esto indica que $F$ es continua y al ser inyectiva se sigue que también preserva abiertos. 
 
-Por último, veamos que el rango de $F$ es cerrado. Tomemos $(G_\alpha)_{\alpha \in \Lambda}  \in F(B_{X^*})$ una red convergente. Sea $(d_x)_{x \in X} \in \mathcal{D}$ su límite. Existe entonces una red $(f_\alpha)_\alpha$ en $B_{X^*}$ tal que $F(f_\alpha) = G_\alpha$. Así,
+Por último, veamos que el rango de $F$ es cerrado. Tomemos una red convergente $(G_\alpha)_{\alpha \in \Lambda}  \in F(B_{X^*})$ y sea $(d_x)_{x \in X} \in \mathcal{D}$ su límite. Existe entonces una red $(f_\alpha)_\alpha$ en $B_{X^*}$ tal que $F(f_\alpha) = G_\alpha$. Así,
 $$\lim_{\alpha\in \Lambda} F(f_\alpha) = \lim_{\alpha\in\Lambda} (f_\alpha(x))_{x\in X} = (d_x)_{x \in X}.$$ 
 
 Queremos verificar que $(d_x)_{x \in X}$ pertenece a $F(B_{X^*})$. Consideramos entonces la función $g: X \to \K$ dada por $g(x) = d_x$ para todo $x \in X$. Notemos que $g$ es lineal, pues dados $x, y \in X$, $\lambda \in \K$ se tiene que
@@ -1753,7 +1775,7 @@ El teorema de Banach-Alaoglu nos dice que $B_{X^{**}}$ es $\mathrm{w}^*$-compact
 
 Para demostrar la otra contención tomemos $\delta \in B_{X^{**}}$. Sea $U$ una $\mathrm{w}^*$-vecindad de $\delta$. Hay que demostrar que  $J(B_X) \cap U \neq \emptyset$. Por la proposición~\ref{Prop:BaseDeEntornosTopologiaDebilSeminormas} existen $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $\varepsilon > 0$ tales que $U_{\delta, \varphi_1, \ldots, \varphi_n, \varepsilon} \subseteq U$. 
 
-Sean $b_1, \ldots, b_n \in\K$ cualesquiera. Tenemos que
+Sean $b_1, \ldots, b_n \in\K$ cualesquiera. Entonces
 $$\abs{\sum_{i=1}^n \delta(\varphi_i) b_i } = \abs{\delta\left(\sum_{i=1}^n  b_i \varphi_i \right) } \leq \Norm{\delta} \Norm{\sum_{i=1}^n  b_i \varphi_i} \leq \Norm{\sum_{i=1}^n  b_i \varphi_i}.$$
 
 El lema~\ref{Lema:HellyGeneral} de Helly indica que existe $x \in B_X$ tal que para toda $1 \leq i \leq n$ se cumple que  $\abs{\varphi_i(x) - \delta(\varphi_i)} < \varepsilon$, o bien $\abs{(Jx - \delta)(\varphi_i)} < \varepsilon$. Es decir, $Jx \in J(B_X) \cap U_{\delta, \varphi_1, \ldots, \varphi_n, \varepsilon} \subseteq J(B_X) \cap U$. 
@@ -1765,11 +1787,11 @@ es $\mathrm{w}$-compacta.
 \end{Tma}
 
 \begin{Dem}
-Supongamos primero que $X$ es reflexivo. El teorema de Banach-Alaoglu indica que $B_{X^{**}}$ es $\sigma(X^{**}, X^{*})$-compacto. La proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es abierta y como $J$ es reflexivo entonces $B_X = J^{-1}(B_{X^{**}})$ es $\sigma(X, X^*)$-compacto.
+Supongamos primero que $X$ es reflexivo. El teorema de Banach-Alaoglu indica que $B_{X^{**}}$ es $\sigma(X^{**}, X^{*})$-compacto. Por otra parte, la proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es un homeomorfismo y como $J$ es reflexivo entonces $B_X = J^{-1}(B_{X^{**}})$ es $\sigma(X, X^*)$-compacto.
 
 Ahora supongamos que $B_X$ es $\mathrm{w}$-compacta. La proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es continua. Así $J(B_X)$ es $\mathrm{w}^*$-compacto, por lo que al ser $X^{**}$ Hausdorff resulta del corolario~\ref{Cor:HausdorffCompactoEsCerrado} que $J(B_X)$ también es $\mathrm{w}^*$-cerrado. Entonces, por el teorema de Goldstine se cumple que $$B_{X^{**}} = \ov{J(B_X)}^{\mathrm{w}^*} = J(B_X)$$
 
-Por lo tanto $X$ es reflexivo. 
+Se sigue de aquí que $X$ es reflexivo. 
 \end{Dem}
 
 \section{Medibilidad.}
