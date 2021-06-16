@@ -262,6 +262,49 @@ Sea $K$ un conjunto compacto y $(U_{\alpha})_{\alpha \in \Lambda}$ una cubierta 
 
 Luego, $(U_{\alpha_i})_{i=1}^n$ es una cubierta finita de $f(K)$ y así este es un conjunto compacto.
 \end{Dem}
+  
+\begin{Def}
+Sea $X$ un espacio topológico. Diremos que $X$ es \textit{Hausdorff} si para todos $x, y \in X$ distintos existen abiertos $U, V$ tales que $x \in U$, $y \in V$ y $U\cap V = \emptyset$.
+\end{Def}
+
+\begin{Prop} \label{Prop:AbiertosSeparanCompactosEnHausdorff}
+Sea $X$ un espacio topológico Hausdorff. Si $A$ y $B$ son dos conjuntos compactos disjuntos en $X$ entonces existen abiertos disjuntos $U$ y $V$ tales que $A \subseteq U$ y $B \subseteq V$.
+\end{Prop}
+
+\begin{Dem}
+Fijemos $x \in A$ por un momento. Por ser $X$ Hausdorff, para cada $y \in B$ existen $U_y$ y $V_y$ abiertos disjuntos tales que $x \in U_y$ y $y \in V_y$. De esta manera, $\{V_y \}_{y \in B}$ es una cubierta abierta de $B$. Al ser $B$ compacto, existen $n \in \N$ y $y_1, \ldots, y_n \in B$ tales que $B \subseteq \bigcup_{i=1}^n V_{y_i}.$
+
+Definamos $$U_x := \bigcap_{i=1}^n U_{y_i} \quad\mbox{ y }\quad V_x := \bigcup_{j=1}^n V_{y_j},$$ de tal manera que $U_x, V_x$ son abiertos, $x \in U_x$, $B \subseteq V_x$ y $$U_x \cap V_x = \left( \bigcap_{i=1}^n U_{y_i} \right) \cap \left( \bigcup_{j=1}^n V_{y_j} \right) = \bigcup_{j=1}^n \left[ \left(   \bigcap_{i=1}^n U_{y_i} \right) \cap V_{y_j}\right] \subseteq \bigcup_{j=1}^n \left[    U_{y_j} \cap V_{y_j}\right]  = \emptyset. $$
+
+Como $\{ U_x \}_{x \in A}$ es una cubierta abierta de $A$ y $A$ es compacto, existen $m \in \N$ y $x_1, \ldots, x_m \in A$ tales que $A \subseteq \bigcup_{i=1}^m U_{x_i}.$
+
+Definamos $$U := \bigcup_{i=1}^m U_{x_i} \quad\mbox{ y }\quad V := \bigcap_{j=1}^m V_{x_j},$$ de tal manera que $U, V$ son abiertos, $A \subseteq U$, $B \subseteq V$ y $$U \cap V = \left( \bigcup_{i=1}^m U_{x_i} \right) \cap \left( \bigcap_{j=1}^m V_{x_j} \right) = \bigcup_{i=1}^m \left[ U_{x_i} \cap \left( \bigcap_{j=1}^m V_{x_j} \right) \right] \subseteq \bigcup_{i=1}^m \left[    U_{x_i} \cap V_{x_i}\right]  = \emptyset. $$
+
+\end{Dem}
+
+\begin{Cor} \label{Cor:HausdorffCompactoEsCerrado}
+Sea $X$ un espacio topológico Hausdorff. Si $K \subset X$ es compacto, entonces es cerrado. 
+\end{Cor}
+
+\begin{Dem}
+Tomemos $x \in X \setminus K$. Como $\{ x \}$ y $K$ son compactos, la proposición~\ref{Prop:AbiertosSeparanCompactosEnHausdorff} indica que existen abiertos disjuntos $U, V$ tales que $x \in U$ y $K \subseteq V$. Entonces $x \in U \subseteq X \setminus V \subseteq X \setminus K$. Del lema~\ref{Lema:CaracterizacionAbierto} se sigue ahora que $X \setminus K$ es abierto y por lo tanto $K$ es cerrado.
+\end{Dem}
+
+Una \textit{sucesión} en un conjunto $X$ es una función $s: \N \to X$. Usualmente representamos a la sucesión $s$ por $(x_n)_{n\in \N}$, donde $x_n := s(n)$ para toda $n \in \N$. 
+
+\begin{Def}
+Sea $X$ un espacio topológico y $(x_n)_{n\in\N}$ una sucesión. Si existe $x \in X$ tal que para cada vecindad abierta $U$ de $x$ existe $N \in \N$ tal que $x_n \in U$ para $n \geq n$, entonces decimos que $(x_n)_{n\in\N}$ \textit{converge} a $x$, que $x$ es el \textit{límite} de $(x_n)_{n\in\N}$ y lo denotamos por $x_n \to x$.
+\end{Def}
+
+
+\begin{Prop}
+Sean $X$ es un espacio topológico y $(x_n)_{n \in \N}$ una sucesión en $X$ convergente. Si $X$ es Hausdorff, entonces el límite de $(x_n)_{n\in\N}$ es único.
+\end{Prop}
+
+\begin{Dem}
+Sean $x, y \in X$ límites de $(x_n)_{n\in\N}$. Sea $U$ una vecindad abierta de $x$ y $V$ una vecindad abierta de $y$, entonces existen $N, M \in \N$ tales que $x_n \in U$ y $y_m \in V$ si $n \geq N$ y $m \geq M$. Al tomar $K = \max(N, M)$ tenemos que $x_K \in U \cap V$ y por tanto $U \cap V \neq \emptyset$. La contrapositiva de la definición de Hausdorff indica que $x = y$.
+\end{Dem}
+
 
 Sean $X$ y $Y$ dos espacios topológicos. En $X \times Y$ trabajamos con la \textit{topología producto}, que es la generada por la base $\{ U\times V : U \mbox{ abierto  en } X \mbox{ y } V \mbox{ abierto en } Y \}$. Consideremos las \textit{proyecciones canónicas} en $X$ y $Y$
 \Ecu{
@@ -309,50 +352,8 @@ Veamos que con esta definición de topología producto las proyecciones son contin
 Si tenemos un par de espacios topológicos compactos, es sencillo verificar que su producto sigue siendo compacto. Uno de los teoremas más importantes en la topología es el teorema de Tychonoff y generaliza este resultado estableciendo que el producto arbitrario de espacios compactos es compacto.  
  
 \begin{Tma} \textbf{(Tychonoff)}
-Sean $I$ un conjunto no vacío y $X_i$ espacios topológicos para cada $i \in I$. Si cada $X_i$ es un espacio compacto, entonces el espacio $\prod_{i\in I} X_i$ es compacto.
-\end{Tma} 
- 
-\begin{Def}
-Sea $X$ un espacio topológico. Diremos que $X$ es \textit{Hausdorff} si para todos $x, y \in X$ distintos existen abiertos $U, V$ tales que $x \in U$, $y \in V$ y $U\cap V = \emptyset$.
-\end{Def}
-
-\begin{Prop} \label{Prop:AbiertosSeparanCompactosEnHausdorff}
-Sea $X$ un espacio topológico Hausdorff. Si $A$ y $B$ son dos conjuntos compactos disjuntos en $X$ entonces existen abiertos disjuntos $U$ y $V$ tales que $A \subseteq U$ y $B \subseteq V$.
-\end{Prop}
-
-\begin{Dem}
-Fijemos $x \in A$ por un momento. Por ser $X$ Hausdorff, para cada $y \in B$ existen $U_y$ y $V_y$ abiertos disjuntos tales que $x \in U_y$ y $y \in V_y$. De esta manera, $\{V_y \}_{y \in B}$ es una cubierta abierta de $B$. Al ser $B$ compacto, existen $n \in \N$ y $y_1, \ldots, y_n \in B$ tales que $B \subseteq \bigcup_{i=1}^n V_{y_i}.$
-
-Definamos $$U_x := \bigcap_{i=1}^n U_{y_i} \quad\mbox{ y }\quad V_x := \bigcup_{j=1}^n V_{y_j},$$ de tal manera que $U_x, V_x$ son abiertos, $x \in U_x$, $B \subseteq V_x$ y $$U_x \cap V_x = \left( \bigcap_{i=1}^n U_{y_i} \right) \cap \left( \bigcup_{j=1}^n V_{y_j} \right) = \bigcup_{j=1}^n \left[ \left(   \bigcap_{i=1}^n U_{y_i} \right) \cap V_{y_j}\right] \subseteq \bigcup_{j=1}^n \left[    U_{y_j} \cap V_{y_j}\right]  = \emptyset. $$
-
-Como $\{ U_x \}_{x \in A}$ es una cubierta abierta de $A$ y $A$ es compacto, existen $m \in \N$ y $x_1, \ldots, x_m \in A$ tales que $A \subseteq \bigcup_{i=1}^m U_{x_i}.$
-
-Definamos $$U := \bigcup_{i=1}^m U_{x_i} \quad\mbox{ y }\quad V := \bigcap_{j=1}^m V_{x_j},$$ de tal manera que $U, V$ son abiertos, $A \subseteq U$, $B \subseteq V$ y $$U \cap V = \left( \bigcup_{i=1}^m U_{x_i} \right) \cap \left( \bigcap_{j=1}^m V_{x_j} \right) = \bigcup_{i=1}^m \left[ U_{x_i} \cap \left( \bigcap_{j=1}^m V_{x_j} \right) \right] \subseteq \bigcup_{i=1}^m \left[    U_{x_i} \cap V_{x_i}\right]  = \emptyset. $$
-
-\end{Dem}
-
-\begin{Cor} \label{Cor:HausdorffCompactoEsCerrado}
-Sea $X$ un espacio topológico Hausdorff. Si $K \subset X$ es compacto, entonces es cerrado. 
-\end{Cor}
-
-\begin{Dem}
-Tomemos $x \in X \setminus K$. Como $\{ x \}$ y $K$ son compactos, la proposición~\ref{Prop:AbiertosSeparanCompactosEnHausdorff} indica que existen abiertos disjuntos $U, V$ tales que $x \in U$ y $K \subseteq V$. Entonces $x \in U \subseteq X \setminus V \subseteq X \setminus K$. Del lema~\ref{Lema:CaracterizacionAbierto} se sigue ahora que $X \setminus K$ es abierto y por lo tanto $K$ es cerrado.
-\end{Dem}
-
-Una \textit{sucesión} en un conjunto $X$ es una función $s: \N \to X$. Usualmente representamos a la sucesión $s$ por $(x_n)_{n\in \N}$, donde $x_n := s(n)$ para toda $n \in \N$. 
-
-\begin{Def}
-Sea $X$ un espacio topológico y $(x_n)_{n\in\N}$ una sucesión. Si existe $x \in X$ tal que para cada vecindad abierta $U$ de $x$ existe $N \in \N$ tal que $x_n \in U$ para $n \geq n$, entonces decimos que $(x_n)_{n\in\N}$ \textit{converge} a $x$, que $x$ es el \textit{límite} de $(x_n)_{n\in\N}$ y lo denotamos por $x_n \to x$.
-\end{Def}
-
-
-\begin{Prop}
-Sean $X$ es un espacio topológico y $(x_n)_{n \in \N}$ una sucesión en $X$ convergente. Si $X$ es Hausdorff, entonces el límite de $(x_n)_{n\in\N}$ es único.
-\end{Prop}
-
-\begin{Dem}
-Sean $x, y \in X$ límites de $(x_n)_{n\in\N}$. Sea $U$ una vecindad abierta de $x$ y $V$ una vecindad abierta de $y$, entonces existen $N, M \in \N$ tales que $x_n \in U$ y $y_m \in V$ si $n \geq N$ y $m \geq M$. Al tomar $K = \max(N, M)$ tenemos que $x_K \in U \cap V$ y por tanto $U \cap V \neq \emptyset$. La contrapositiva de la definición de Hausdorff indica que $x = y$.
-\end{Dem}
+Sean $I$ un conjunto no vacío y $X_i$ espacios topológicos para cada $i \in I$. Si cada $X_i$ es un espacio compacto, entonces el espacio $\prod_{i\in I} X_i$ es compacto. (¿lo demuestro?)
+\end{Tma}
 
 \section{Espacios métricos.}
 El marco de espacios topológicos es muy general, por lo que estudiaremos un caso particular de estos espacios que tienen mejores propiedades y donde las sucesiones juegan un papel muy importante. 
@@ -1168,6 +1169,7 @@ concluimos que $\mathcal{B}_1 = \mathcal{B}_2$.
 Sea $X$ un espacio normado. Una sucesión $(x_n)_{n\in\N}$ es de \textit{Cauchy} si para todo $\varepsilon > 0$ existe $N \in\N$ tal que $\Norm{x_n - x_m} < \varepsilon$ para $n, m \geq N$. Decimos que $X$ es \textit{completo} si toda sucesión de Cauchy converge. En este caso decimos que $X$ es un \textit{espacio de Banach}.  
 \end{Def}
 
+
 \begin{Prop} \label{Prop:EspacioBanachEsEVTCompleto}
 Si $X$ es un espacio de Banach, entonces es un espacio vectorial topológico completo.
 \end{Prop}
@@ -1192,6 +1194,20 @@ Sea $U$ una vecindad del cero en $X$. Entonces existe $N \in \N$ con $V_\frac{1}
 \end{equation} 
 Definamos $\beta = \alpha_{2M}$. Por (\ref{Eq:RedesCauchy1}) y (\ref{Eq:RedesCauchy2}), al tomar $\gamma \geq \beta$ se tiene que $$\Norm{x_\gamma - x_{\alpha_{2M}}} < \frac{1}{2N} \mbox{ y } \Norm{x_{\alpha_{2M}} - x } < \frac{1}{2N}.$$ 
 Por la desigualdad del triángulo $\Norm{x_\gamma - x} < \frac{1}{N}$ y así $x_\gamma - x \in U$. Es decir, $x_\alpha \to x$.
+\end{Dem}
+
+\begin{Def}
+Sea $X$ un espacio normado. Decimos que $A \subseteq X$ es un conjunto \textit{acotado} si existe $M > 0$ tal que $\Norm{x} \leq M$ para todo $x \in A$.
+\end{Def}
+
+\begin{Prop} \label{Prop:SucesionesDeCauchySonAcotadas}
+Sea $X$ un espacio normado y $(x_n)_{n \in\N}$ una sucesión en $X$. Si $(x_n)_{n\in\N}$ es de Cauchy, entonces $\{ x_n : n \in \N \}$ es un conjunto acotado.
+\end{Prop}
+
+\begin{Dem}
+Tomemos $\varepsilon = 1$. Así pues, existe $N \in \N$ tal que si $n, m \geq N$, entonces $\Norm{x_n - x_m} < 1$. Esto indica que para $n \geq N$ se cumple que $$\Norm{x_n} - \Norm{x_N} \leq \abs{\Norm{x_n} - \Norm{x_N}} \leq \Norm{x_n - x_N} < 1$$ y así $\Norm{x_n} < 1 + \Norm{x_N}$.
+
+Definamos $M = \max(\Norm{x_1}, \ldots, \Norm{x_{N-1}}, 1+\Norm{x_N})$. De esta manera es claro verificar que $\Norm{x_n} \leq M$ para toda $n \in\N$ y así $\{ x_n : n \in \N \}$ es acotado.
 \end{Dem}
 
 \subsection{Ejemplos.}
@@ -1257,14 +1273,51 @@ Veamos ahora que $\Norm{\cdot}_\infty$ es una norma en $\K^n$. Para eso, notemos
 
 En adelante, cuando trabajemos en $\K^n$ con la norma $\Norm{\cdot}_p$, lo denotaremos por $\ell_p^n$. Si hace falta especificar el campo se denotará por $\ell_p^n(\K)$. 
 
-En el caso particular $p=2$, a la norma $\Norm{\cdot}_2$ en $\K^n$ le damos el nombre de \textit{norma euclidiana}. A continuación probaremos que $\ell_2^n$ es un espacio completo.
+En el caso particular $p=2$, a la norma $\Norm{\cdot}_2$ en $\K^n$ le damos el nombre de \textit{norma euclidiana}. A continuación probaremos que $\ell_2^n$ es un espacio completo haciendo uso del teorema de Heine-Borel.
 
-\begin{Prop}
+\begin{Tma} \label{Tma:HeineBorelReal} \textbf{(Heine-Borel)}
+Sea $n \in \N$ y consideremos $A \subseteq \ell_2^n(\R)$. Son equivalentes:
+\begin{itemize}
+\item \textbf{i)} $A$ es cerrado y acotado.
+\item \textbf{ii)} $A$ es compacto.
+\end{itemize}
+\end{Tma}
+
+\begin{Tma} \label{Tma:HeineBorelGeneral} \textbf{(Heine-Borel)}
+Sea $n \in \N$ y consideremos $A \subseteq \ell_2^n(\K)$. Son equivalentes:
+\begin{itemize}
+\item \textbf{i)} $A$ es cerrado y acotado.
+\item\textbf{ii)} $A$ es compacto.
+\end{itemize}
+\end{Tma}
+
+\begin{Dem}
+Sobre las demostraciones del teorema de Heine-Borel, ¿qué opción prefiere?
+\begin{itemize}
+\item \textbf{1.-} Demostrar la versión real y usarla para demostrar la versión en cualquier campo.
+\item \textbf{2.-} Dar por válida la versión real y usarla para demostrar la versión en cualquier campo
+\item \textbf{3.-} Dar por válida la versión de cualquier campo y sólo mencionarla.
+\end{itemize}
+\end{Dem}
+
+\begin{Prop} \label{Prop:NormaEuclidianaCompleta}
 Sea $n \in \N$. El espacio normado $\ell_2^n$ es completo. (¿Es mejor que la proposición diga: ``La norma euclidiana es completa '' ?).
 \end{Prop}
 
 \begin{Dem}
-(Pendiente).
+Sea $(x_n)_{n\in \N}$ una sucesión de Cauchy. La proposición~\ref{Prop:SucesionesDeCauchySonAcotadas} indica que $\{ x_n : n \in \N \}$ es un conjunto acotado por alguna constante $M \in\N$. Como la bola $B_M(0)$ es cerrada y acotada en $\ell_2^n$, el teorema~\ref{Tma:HeineBorelGeneral} de Haine-Borel señala que $B_M(0)$ es compacto. Como la sucesión $(x_n)_{n\in\N}$ vive en el conjunto compacto $B_M(0)$, el teorema~\ref{Tma:CaracterizacionCompacidadSucesiones} dice que existe una subsucesión $(x_{k_n})_{n \in \N}$ de $(x_n)_{n\in\N}$ que converge a algún $x \in B_M(0) \subseteq X$. Mostremos que $(x_n)_{n\in\N}$ también converge a $x$.
+
+Sea $\varepsilon> 0$. Dado que $(x_n)_{n\in \N}$ es de Cauchy, existe $N \in \N$ tal que
+\begin{equation} \label{Eq:NormaCompleta1}
+\Norm{x_n - x_m } < \frac{\varepsilon}{2}, \;\mbox{ si }\; n, m \geq N.
+\end{equation}
+
+Puesto que $(x_{k_n})_{n \in\N}$ converge a $x$, existe $M \in \N$ tal que 
+\begin{equation} \label{Eq:NormaCompleta2}
+\Norm{x_{k_n} - x} < \frac{\varepsilon}{2}, \; \mbox{ si } \; n \geq M.
+\end{equation}
+
+Tomemos $L = \max(N, M)$ y $n \geq L$. De esta manera tenemos que $k_L \geq L \geq N$ y $n \geq L \geq N$ y por $(\ref{Eq:NormaCompleta1})$ se sigue que $\Norm{x_{k_L} - x_n} < \frac{\varepsilon}{2}$. Además, como $L \geq M$, de $(\ref{Eq:NormaCompleta2})$ se tiene que $\Norm{x_{k_L} - x} < \frac{\varepsilon}{2}$. Por la desigualdad del triángulo concluimos que $$\Norm{x_n - x} \leq \Norm{x_n - x_{k_L}} + \Norm{x_{k_L} -  x} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon, $$ y así $x_n \to x$.
 \end{Dem}
 
 
@@ -1282,7 +1335,12 @@ Sea $1 \leq p \leq \infty$. Si $x = (x_1, x_2, \ldots) \in \ell_p$, entonces $$\
 \end{Lema}
 
 \begin{Dem}
-(Pendiente).
+Sea $1\leq  p < \infty$. Si $x \in \ell_p$, entonces $\Norm{x}_p < \infty$ y por tanto $$\left(\lim_{n \to  \infty} \Norm{(x_1, \ldots, x_n)}_p \right)^p =\lim_{n \to  \infty} \Norm{(x_1, \ldots, x_n)}_p^p = \lim_{n\to \infty} \sum_{i=1}^n \abs{x_i}^p = \sum_{i=1}^\infty \abs{x_i}^p = \Norm{x}_p^p < \infty.$$ 
+Así que $$ \lim_{n \to  \infty} \Norm{(x_1, \ldots, x_n)}_p = \Norm{x}_p.$$
+
+Tomemos ahora $p = \infty$. Para $n\in\N$ sea $a_n = \max(\abs{x_1},\ldots, \abs{x_n})$ y $a = \lim_{n\to \infty} a_n$. Como $\Norm{x}_\infty < \infty$, el conjunto $\{\abs{x_i} : i \in \N$ está acotado y así $(a_n)_{n\in\N}$ también.  Claramente, $(a_n)_{n\in\N}$ es monótona-creciente, de manera que $(a_n)_{n\in\N}$ converge y $a_k \leq \lim_{n\to\infty} a_n = a < \infty$ para toda $k \in \N$. Sea $i \in \N$, entonces para $k \geq i$ se tiene que $a_k \geq \abs{x_i}$ y por lo tanto $a \geq \abs{x_i}$. Así pues, $a$ es una cota superior de $\{\abs{x_i} : i \in \N\}$. Como $\Norm{x}_\infty$ es la mínima cota superior, resulta que $a \geq \Norm{x}_\infty$.
+
+Supongamos que $a > \Norm{x}_\infty$. Entonces $\varepsilon = a -\Norm{x}_\infty  > 0$. Por propiedades del supremo, existe $i\in\N$ tal que $\abs{x_i} > \Norm{x}_\infty - \varepsilon$ (Pendiente). 
 \end{Dem}
 
 \begin{Prop}
@@ -1309,10 +1367,6 @@ Sea $p \in [1, \infty]$, $\Norm{\cdot}_p$ es una norma en $\ell_p$.
 \subsection{Espacio dual.}
 
 No todo operador lineal $T:X\to Y$ entre los espacios normados $X$ e $Y$ resulta ser continuo. Los de mayor interés son los que sí son continuos. Una caracterización de un operador lineal continuo es que sea un \textit{operador lineal acotado}, esto es, que exista $K > 0$ tal que $$\Norm{Tx} \leq K \Norm{x} \mbox{ para todo } x \in X.$$ 
-
-\begin{Def}
-Sea $X$ un espacio normado. Decimos que $A \subseteq X$ es un conjunto \textit{acotado} si existe $M > 0$ tal que $\Norm{x} \leq M$ para todo $x \in A$.
-\end{Def}
 
 \begin{Prop} \label{Prop:IsomorfismoPreservaConjuntosAcotados}
 Sean $X$ y $Y$ espacios normados y  $T:X \to Y$ un operador lineal. Entonces $T$ es acotado si, y sólo si $T$ preserva conjuntos acotados.
@@ -1346,7 +1400,7 @@ Los teoremas de Hahn-Banach muestran que, cuando $X$ es un espacio normado, en $
 Sea $X$ un espacio normado y $V \subseteq X$ un subespacio vectorial. Si $f \in V^*$ entonces existe $F \in X^*$ tal que $F = f$ en $V$ y $\Norm{f} = \Norm{F}$.
 \end{Tma}
 
-\begin{Prop}
+\begin{Prop} \label{Prop:DualDimensionInfinita}
 Sea $X$ un espacio normado. Entonces $X$ es de dimensión infinita si y sólo si $X^*$ también lo es. 
 \end{Prop}
 
@@ -1478,8 +1532,12 @@ Cualquier espacio vectorial topológico de dimensión finita es completo.
 \end{Prop}
 
 \begin{Dem}
-Sea $X$ un espacio vectorial topológico de dimensión finita $n \in \N$. Dado que $\K^n$ con la topología euclidiana es un espacio vectorial topológico completo, y $X$ es isomorficamente homeomorfo a $\K^n$, resulta por el lema~\ref{Lema:HomeomorfismoLinealPreservaCompletitud} que $X$ también es completo.
+Sea $X$ un espacio vectorial topológico de dimensión finita $n \in \N$. Dado que $\ell^n_2$ es un espacio vectorial topológico completo, y $X$ es isomorficamente homeomorfo a $\ell^n$, resulta por el lema~\ref{Lema:HomeomorfismoLinealPreservaCompletitud} que $X$ también es completo.
 \end{Dem}
+
+\begin{Cor}
+Sea $n \in \N$ y $p \in [1,\infty]$. Entonces $\ell^n_p$ es un espacio de Banach. 
+\end{Cor}
 
 \begin{Cor} \label{Cor:SubespacioDimensionFinitaCerrado}
 Si $Y$ es un subespacio de dimensión finita de un espacio vectorial topológico $X$, entonces $Y$ es cerrado en $X$.
@@ -1489,13 +1547,26 @@ Si $Y$ es un subespacio de dimensión finita de un espacio vectorial topológico $
 La proposición~\ref{Prop:DimensionFinitaEVTCompleto} indica que $Y$ es completo. Del lema~\ref{Lema:CompletoEntoncesCerrado} se concluye que $Y$ es cerrado en $X$.
 \end{Dem}
 
-\begin{Cor}
+\begin{Cor} \label{Cor:EspaciosNormadosFinitosIsomorfos}
 Si $X$ y $Y$ son espacios normados de dimensión finita y de la misma dimensión, entonces son isomorfos como espacios normados.
 \end{Cor}
 
+\begin{Def}
+Sea $X$ un espacio vectorial y $\Norm{\cdot}_1$, $\Norm{\cdot}_2$ un par de normas en $X$. Decimos que $\Norm{\cdot}_1$ y $\Norm{\cdot}_2$ son normas equivalentes si existen $K_1$ y $K_2$ positivos tales que para todo $x \in X$ $$\K_1 \Norm{x}_1 \leq \Norm{x}_2 \leq K_2 \Norm{x}_1.$$
+\end{Def}
+
+\begin{Prop}
+Sea $X$ un espacio vectorial y $\Norm{\cdot}_1$, $\Norm{\cdot}_2$ un par de normas en $X$. Entonces $\Norm{\cdot}_1$ y $\Norm{\cdot}_2$ generan la misma topología en $X$ si y sólo si $\Norm{\cdot}_1$ y $\Norm{\cdot}_2$
+\end{Prop}
+
+\begin{Dem}
+(Pendiente).
+\end{Dem}
+
 \begin{Cor}
-Si $X$ es un espacio normado de dimensión finita, entonces todas las normas en $X$ son equivalentes entre sí.
+Si $X$ es un espacio normado de dimensión finita, entonces todas las normas en $X$ son equivalentes entre sí. 
 \end{Cor}
+
 
 \subsection{Compacidad de la bola cerrada en un espacio normado.}
 
@@ -1541,7 +1612,7 @@ En lugar de demostrar que si $B_X$ es compacta entonces $X$ es de dimensión fini
 Como $X$ es de dimensión infinita, el subespacio $\mbox{span}\{x_1, \ldots, x_n \}$ es propio y por ser de dimensión finita, por el corolario~\ref{Cor:SubespacioDimensionFinitaCerrado} es cerrado. Tomando $\theta = \frac{1}{4}$, por el lema de Riesz existe $x_{n+1}$ tal que $\Norm{x_{n+1} - y} > \frac{1}{4}$ para todo $y \in \mbox{span}\{x_1, \ldots, x_n \}$. De esto que si tomamos $\alpha_1, \ldots, \alpha_{n} \in \K$ entonces 
 $$\Norm{x_{n+1} - \sum_{i=1}^{n} \alpha_i x_i } \geq \frac{1}{2}.$$
 
-Así pues, queda construida la sucesión $(x_n)_{n\in\N}$. Si tomamos $n, m \in \N$ con $n > m$ entonces al tomar $\alpha_1 = 1$ y $\alpha_i = 0$ para $1 \leq i \leq  n-1$ e $i \neq m$, de $(\ref{Eq:1})$ obtenemos que $\Norm{x_n - x_m} \geq \frac{1}{2}$. Esto indica que cualquier subsucesión de $(x_n)_{n\in\N}$ no es de Cauchy y por lo tanto no converge. Por la proposición~\ref{Tma:CompacidadPorConvergenciaDeSubredes} concluimos que $B_X$ no es compacto.
+Así pues, queda construida la sucesión $(x_n)_{n\in\N}$. Si tomamos $n, m \in \N$ con $n > m$ entonces al tomar $\alpha_1 = 1$ y $\alpha_i = 0$ para $1 \leq i \leq  n-1$ e $i \neq m$, de $(\ref{Eq:1})$ obtenemos que $\Norm{x_n - x_m} \geq \frac{1}{2}$. Esto indica que cualquier subsucesión de $(x_n)_{n\in\N}$ no es de Cauchy y por lo tanto no converge. Por la proposición~\ref{Tma:CaracterizacionCompacidadSucesiones} concluimos que $B_X$ no es compacto.
 \end{Dem}
 
 \section{Topologías débil y débil*.}
@@ -1713,7 +1784,9 @@ Dado que $J$ es un isomorfismo de espacios vectoriales, ya sólo falta verificar 
 \end{Dem}
 
 \begin{Ejem}
-Sea $X$ un espacio normado de dimensión finita. Entonces $X$ es reflexivo. (Pendiente).
+Sea $X$ un espacio normado de dimensión finita $n \in\N$. Si $\{ x_1, \ldots, x_n\}$ es una base de $X$, podemos definir $f_1, \ldots, f_n \in X^*$ al igual que la demostración de la proposición~\ref{Prop:DualDimensionInfinita} de manera que $f_i(x_j) = \delta_{ij}$. Así pues, ya se demostró que $\{ f_1, \ldots, f_n \}$ es un conjunto generador en $X^*$. Verifiquemos que este conjunto es linealmente independiente. Sean $a_1, \ldots, a_n \in \K$ tales que $a_1 \BD f_1 + \ldots a_n \BD f_n = 0$. Al evaluar en $x_j$ tenemos que $a_j = 0$ y por tanto $\{f_1, \ldots, f_n \}$ es una base de $X^*$. 
+
+Entonces, si $X$ es de dimensión $n$, su dual $X^*$ también. Ahora, como $X^*$ es de dimensión $n$, su dual $X^{**}$ también lo es. Así que $X$ y $X^{**}$ son de la misma dimensión. Como $J$ es lineal, inyectiva y está definida entre espacios de la misma dimensión, resulta que es sobreyectiva y $X$ es reflexivo.  
 \end{Ejem}
 
 Si $X$ es un espacio de dimensión infinita, la proposición anterior muestra que $X^*$ es de dimensión infinita, por lo que resulta que $B_{X^*}$ no es compacta respecto a la topología original. El siguiente teorema muestra que bajo la topología débil* sí lo es.
