@@ -719,22 +719,22 @@ Por lo tanto $f(x_\alpha) \in (L- \varepsilon, L + \varepsilon) \subseteq U$, si
 
 A lo largo de este trabajo denotaremos por $\K$ el campo de los números reales o de los números complejos. 
 
-Supongamos que $\tau$ es una topología de un espacio vectorial $X$ sobre $\K$ tal que:
+Supongamos que $\tau$ es una topología de un espacio vectorial $E$ sobre $\K$ tal que:
 \begin{itemize}
-\item \textbf{a)} $X$ es Hausdorff.
-\item \textbf{b)} Las operaciones de espacio vectorial $+ : X\times X \to X$ y $\BD: \K \times X \to X$ son continuas. Naturalmente, en $X\times X$ y en $\K \times X$ consideramos las correspondientes topologías producto. 
+\item \textbf{a)} $E$ es Hausdorff.
+\item \textbf{b)} Las operaciones de espacio vectorial $+ : E\times E \to E$ y $\BD: \K \times E \to E$ son continuas. Naturalmente, en $E\times E$ y en $\K \times E$ consideramos las correspondientes topologías producto. 
 \end{itemize}
 
-En este caso decimos que $\tau$ es una \textit{topología vectorial} y que $X$ es un \textit{espacio vectorial topológico}. \\
+En este caso decimos que $\tau$ es una \textit{topología vectorial} y que $E$ es un \textit{espacio vectorial topológico}. \\
 
 Sea $X$ un espacio vectorial  y $x_1, \ldots, x_n \in X$, $n \in \N$. El espacio generado por un conjunto $A \subseteq X$ se denotará por $\mbox{span}\, A$ y está definido como  $$\mbox{span} \, A  : = \left\{ \sum_{i=1}^n a_i x_i : n\in \N,  a_1, \ldots, a_n  \in \K, x_1, \ldots, x_n \in A \right\}.$$
 
 \begin{Lema} \label{Lema:VecindadesAbiertasAditivasEVT}
-Sea $X$ un espacio vectorial topológico. Para cada vecindad abierta $U$ del $0$, existe una vecindad abierta $V$ de $0$ tal que $$V + V \subseteq U.$$ 
+Sea $E$ un espacio vectorial topológico. Para cada vecindad abierta $U$ del $0$, existe una vecindad abierta $V$ de $0$ tal que $$V + V \subseteq U.$$ 
 \end{Lema}
 
 \begin{Dem}
-Sea $U$ una vecindad abierta del 0. Como $X$ es un espacio vectorial topológico, la función $+ : X \times X \to X, (x, y) \mapsto x+y$ es continua en el $(0, 0)$. Esto nos dice que para $U$, existe una vecindad abierta $W$ del $(0, 0)$ tal que $+(W) \subseteq U$. Existe entonces un básico $V_1 \times V_2$ en $X \times X$ con $V_1, V_2$ vecindades abiertas del $0$ tal que $V_1 \times V_2 \subseteq W$. Entonces $V := V_1 \cap V_2$ es una vecindad abierta del $0$ que cumple que $V \times V \subseteq W$. De esto se sigue que $$V + V = +(V \times V) \subseteq +(W) \subseteq U.$$
+Sea $U$ una vecindad abierta del 0. Como $E$ es un espacio vectorial topológico, la función $+ : E \times E \to E, (x, y) \mapsto x+y$ es continua en el $(0, 0)$. Esto nos dice que para $U$, existe una vecindad abierta $W$ del $(0, 0)$ tal que $+(W) \subseteq U$. Existe entonces un básico $V_1 \times V_2$ en $E \times E$ con $V_1, V_2$ vecindades abiertas del $0$ tal que $V_1 \times V_2 \subseteq W$. Entonces $V := V_1 \cap V_2$ es una vecindad abierta del $0$ que cumple que $V \times V \subseteq W$. De esto se sigue que $$V + V = +(V \times V) \subseteq +(W) \subseteq U.$$
 \end{Dem}
 
 \begin{Def}
@@ -754,49 +754,53 @@ y & \mapsto \lambda y.
 \end{Def}
 
 \begin{Prop} \label{Prop:TraslacionDilatacionContinuas}
-Sean $X$ un espacio vectorial topológico, $x \in X$ y $\lambda \neq 0$. Entonces $T_x$ y $D_\lambda$ son homeomorfismos.
+Sean $E$ un espacio vectorial topológico, $x \in E$ y $\lambda \neq 0$. Entonces $T_x$ y $D_\lambda$ son homeomorfismos.
 \end{Prop}
 
 \begin{Dem}
 Claramente $T_{-x} = T_x^{-1}$ y $D_{\lambda^{-1}} = D_\lambda^{-1}$, de manera que $T_x$ y $D_\lambda$ son biyectivas. Definamos 
 \Ecu{
-e_{x} : X &\to X \times X  \\
+e_{x} : E &\to E \times E  \\
 y &\mapsto (x, y)
 } 
-Notemos que para $y \in X$ se tiene que $(\pi_X \circ e_{x})(y) = x$ y $(\pi_Y \circ e_{x})(y) = y$. Esto indica que $\pi_X \circ e_{x}$ es constante y $\pi_Y \circ e_{x}$ es la identidad en $X$ y por lo tanto ambas son continuas. Por la proposición~\ref{Prop:ContinuidadPorComponentes} se tiene que $e_{x}$ es continua. De manera que $T_x = + \circ e_x$ es continua. Como la $x$ fue arbitraria, entonces $T_{-x}$ también es continua. 
+Notemos que para $y \in E$ se tiene que $(\pi_1 \circ e_{x})(y) = x$ y $(\pi_2 \circ e_{x})(y) = y$. Esto indica que $\pi_1 \circ e_{x}$ es constante y $\pi_2 \circ e_{x}$ es la identidad en $X$ y por lo tanto ambas son continuas. Por la proposición~\ref{Prop:ContinuidadPorComponentes} se tiene que $e_{x}$ es continua. De manera que $T_x = + \circ e_x$ es continua. Como la $x$ fue arbitraria, entonces $T_{-x}$ también es continua. 
 
 De manera similar definimos 
 \Ecu{
-e_{\lambda} : X &\to \K \times X  \\
+e_{\lambda} : E &\to \K \times E  \\
 y &\mapsto (\lambda, y)
 } 
-Notemos que para $y \in X$ se tiene que $(\pi_X \circ e_{\lambda})(y) = \lambda$ y $(\pi_Y \circ e_{\lambda})(y) = y$. Esto indica que $\pi_X \circ e_{\lambda}$ es constante y $\pi_Y \circ e_{\lambda}$ es la identidad en $X$ y por lo tanto ambas son continuas. Por la proposición~\ref{Prop:ContinuidadPorComponentes} se tiene que $e_{\lambda}$ es continua.  De manera que $D_\lambda = \BD \circ e_\lambda$ es continua. Como $\lambda$ fue arbitraria, entonces $D_{\lambda^{-1}}$ también es continua. 
+Notemos que para $y \in E$ se tiene que $(\pi_1 \circ e_{\lambda})(y) = \lambda$ y $(\pi_2 \circ e_{\lambda})(y) = y$. Esto indica que $\pi_1 \circ e_{\lambda}$ es constante y $\pi_2 \circ e_{\lambda}$ es la identidad en $E$ y por lo tanto ambas son continuas. Por la proposición~\ref{Prop:ContinuidadPorComponentes} se tiene que $e_{\lambda}$ es continua.  De manera que $D_\lambda = \BD \circ e_\lambda$ es continua. Como $\lambda$ fue arbitraria, entonces $D_{\lambda^{-1}}$ también es continua. 
 \end{Dem}
 
-\begin{Obs}
-Como consecuencia de la proposición anterior, si $U$ es un abierto en un espacio vectorial topológico $X$ y $x \in X$, entonces 
-$$U+x := \{ y+x : y \in U \} = T_x(U)$$ 
+\begin{Obs} \label{Obs:DilatacionTraslacion}
+Como consecuencia de la proposición anterior, si $U$ es un abierto en un espacio vectorial topológico $E$ y $x \in X$, entonces 
+$$x + U := \{ x + y : y \in U \} = T_x(U)$$ 
 también es abierto. Resulta así que $V$ es vecindad abierta de $x$ si, y sólo si, $V = x + U$, donde $U$ es vecindad abierta de $0$.
+
+Si ademas consideramos $\lambda \in \K$, entonces
+$$\lambda \cdot U := \{ \lambda \cdot y : y \in U \} = D_\lambda(U)$$ 
+también es abierto. Resulta así que $U$ es vecindad abierta de $x$ si y sólo si,  $\lambda U$ es vecindad abierta de $\lambda x$.
 \end{Obs}
 
 \begin{Prop} \label{Prop:ContinuidadEnCero}
-Sean $X, Y$ espacios vectoriales topológicos. Si $T:X \to Y$ es lineal y continua en el cero, entonces $T$ es continua.
+Sean $E, F$ espacios vectoriales topológicos. Si $T:E \to F$ es lineal y continua en el cero, entonces $T$ es continua.
 \end{Prop}
 
 \begin{Dem}
-Sea $x \in X$. Veremos que $T$ es continua en $x$. Sea $U$ una vecindad abierta de $Tx$ de manera que $Tx \in U$. Entonces $U_0 := U - Tx$ es abierto en $Y$ y además $0 \in U_0$. Como $T$ es continua en $0$, existe un abierto $V_0$ del cero tal que $Ty \in U_0$ si $y \in V_0$. Así que $x \in V_0 +x$ y $ V_0 + x$ es una vecindad abierta de $x$. Si $y \in V_0 + x$, entonces $y-x \in V_0$, de manera que $Ty -Tx = T(y-x) \in U_0 = U - Tx$, de donde $Ty \in U$. Así que $T$ es continua en $x$. 
+Sea $x \in E$. Veremos que $T$ es continua en $x$. Sea $U$ una vecindad abierta de $Tx$ de manera que $Tx \in U$. Entonces $U_0 := U - Tx$ es abierto en $F$ y además $0 \in U_0$. Como $T$ es continua en $0$, existe un abierto $V_0$ del cero tal que $Ty \in U_0$ si $y \in V_0$. Así que $x \in V_0 +x$ y $ V_0 + x$ es una vecindad abierta de $x$. Si $y \in V_0 + x$, entonces $y-x \in V_0$, de manera que $Ty -Tx = T(y-x) \in U_0 = U - Tx$, de donde $Ty \in U$. Así que $T$ es continua en $x$. 
 \end{Dem}
 
 \begin{Prop} \label{Prop:LimiteDeSuma}
-Sean $X$ un espacio vectorial topológico, $(\lambda_\alpha)_{\alpha\in\Lambda} \in \K$ una red que converge en $\K$; y $(x_\alpha)_{\alpha \in \Lambda}$ y $(y_\alpha)_{\alpha \in \Lambda}$ redes que convergen en $X$. Entonces $(\lambda_\alpha x_\alpha + y_\alpha)_{\alpha\in\Lambda}$ converge y 
+Sean $E$ un espacio vectorial topológico, $(\lambda_\alpha)_{\alpha\in\Lambda} \in \K$ una red que converge en $\K$; y $(x_\alpha)_{\alpha \in \Lambda}$ y $(y_\alpha)_{\alpha \in \Lambda}$ redes que convergen en $E$. Entonces $(\lambda_\alpha x_\alpha + y_\alpha)_{\alpha\in\Lambda}$ converge y 
 $$\lim_{\alpha \in \Lambda} (\lambda_\alpha x_\alpha + y_\alpha) = \left(\lim_{\alpha \in \Lambda} \lambda_\alpha\right) \left(\lim_{\alpha \in \Lambda} x_\alpha\right) + \left(\lim_{\alpha \in \Lambda} y_\alpha\right).$$ 
 \end{Prop}
 
 \begin{Dem}
-Sea $\sigma: X\times X \to X$ la función suma, es decir, $\sigma(x, y) = x+y$ para toda $(x, y) \in X\times X$. Supongamos que $x_\alpha \to x$ y $y_\alpha \to y$ para algunos $x, y \in X$. De esto y por la proposición~\ref{Prop:ConvergenciaPorComponentes} se sigue que $(x_\alpha, y_\alpha) \to (x, y)$. Como $\sigma$ es continua, por el corolario~\ref{Cor:ContinuidadporRedes} tenemos que $\sigma(x_\alpha, y_\alpha) \to \sigma(x, y)$. Es decir,
+Sea $\sigma: E\times E \to E$ la función suma, es decir, $\sigma(x, y) = x+y$ para toda $(x, y) \in E\times E$. Supongamos que $x_\alpha \to x$ y $y_\alpha \to y$ para algunos $x, y \in E$. De esto y por la proposición~\ref{Prop:ConvergenciaPorComponentes} se sigue que $(x_\alpha, y_\alpha) \to (x, y)$. Como $\sigma$ es continua, por el corolario~\ref{Cor:ContinuidadporRedes} tenemos que $\sigma(x_\alpha, y_\alpha) \to \sigma(x, y)$. Es decir,
 $$\lim_{\alpha \in \Lambda} (x_\alpha + y_\alpha) = \left(\lim_{\alpha \in \Lambda} x_\alpha\right) + \left(\lim_{\alpha \in \Lambda} y_\alpha\right).$$ 
 
-Consideremos ahora $\pi: \K \times X \to X$ la función producto por un escalar, es decir $\pi(\lambda, x) = \lambda x$ para toda $(\lambda, x) \in \K\times X$. Supongamos que $x_\alpha \to x$ y $\lambda_\alpha \to \lambda$ para algunos $x \in X, \lambda \in \K$. Por la proposición~\ref{Prop:ConvergenciaPorComponentes} tenemos que $(\lambda_\alpha, x_\alpha) \to (\lambda, x)$. Como $\pi$ es continua, por el corolario~\ref{Cor:ContinuidadporRedes} tenemos que $\pi(\lambda_\alpha, x_\alpha) \to \sigma(\lambda, x)$. Es decir,
+Consideremos ahora $\pi: \K \times E \to E$ la función producto por un escalar, es decir $\pi(\lambda, x) = \lambda x$ para toda $(\lambda, x) \in \K\times E$. Supongamos que $x_\alpha \to x$ y $\lambda_\alpha \to \lambda$ para algunos $x \in E, \lambda \in \K$. Por la proposición~\ref{Prop:ConvergenciaPorComponentes} tenemos que $(\lambda_\alpha, x_\alpha) \to (\lambda, x)$. Como $\pi$ es continua, por el corolario~\ref{Cor:ContinuidadporRedes} tenemos que $\pi(\lambda_\alpha, x_\alpha) \to \sigma(\lambda, x)$. Es decir,
 $$\lim_{\alpha \in \Lambda} (\lambda_\alpha x_\alpha) = \left(\lim_{\alpha \in \Lambda} \lambda\alpha \right) \left( \lim_{\alpha \in \Lambda} x_\alpha \right).$$ 
 \end{Dem}
 
@@ -811,15 +815,15 @@ Ahora, al ser $h$ y $f$ funciones continuas, tenemos que $h \times f: X \to \K \
 \end{Dem}
 
 \begin{Def}
-Sea $X$ un espacio vectorial topológico. Una \textit{red de Cauchy} en $X$ es una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ tal que para toda vecindad abierta $U$ del cero existe $\alpha \in \Lambda$ tal que $x_{\alpha_1} - x_{\alpha_2} \in U$ siempre que $\alpha_1, \alpha_2 \geq \alpha$. 
+Sea $E$ un espacio vectorial topológico. Una \textit{red de Cauchy} en $E$ es una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq E$ tal que para toda vecindad abierta $U$ del cero existe $\alpha \in \Lambda$ tal que $x_{\alpha_1} - x_{\alpha_2} \in U$ siempre que $\alpha_1, \alpha_2 \geq \alpha$. 
 \end{Def}
 
 \begin{Lema} \label{Lema:RedConvergenteEsCauchy}
-Sea $X$ un espacio vectorial topológico. Si una red en $X$ es convergente, entonces es de Cauchy.
+Sea $E$ un espacio vectorial topológico. Si una red en $E$ es convergente, entonces es de Cauchy.
 \end{Lema}
 
 \begin{Dem}
-Sea $(x_\alpha)_{\alpha\in\Lambda}$ una red en $X$ tal que converge a $x \in X$. Sea $U$ una vecindad abierta del cero. Por el lema~\ref{Lema:VecindadesAbiertasAditivasEVT} existe una vecindad abierta $V$ del cero tal que $V + V \subseteq U$. Como $V$ es vecindad abierta del cero, entonces $V + x$ es vecindad abierta de $x$ y por tanto existe $\beta_1\in \Lambda$ tal que  
+Sea $(x_\alpha)_{\alpha\in\Lambda}$ una red en $E$ tal que converge a $x \in E$. Sea $U$ una vecindad abierta del cero. Por el lema~\ref{Lema:VecindadesAbiertasAditivasEVT} existe una vecindad abierta $V$ del cero tal que $V + V \subseteq U$. Como $V$ es vecindad abierta del cero, entonces $V + x$ es vecindad abierta de $x$ y por tanto existe $\beta_1\in \Lambda$ tal que  
 \begin{equation} \label{Eq:xBeta1} 
 x_\beta \in  V + x, \mbox{ si } \beta \geq \beta_1. 
 \end{equation}
@@ -836,7 +840,7 @@ $$x_{\alpha_1} - x_{\alpha_2} = (x_{\alpha_1} - x)+ (x -x_{\alpha_2}) \in V + V 
 Por otro lado, en cualquier espacio vectorial topológico no se cumple que toda red de Cauchy sea convergente. Es por esto que tenemos la siguiente definición.
 
 \begin{Def}
-Un espacio vectorial topológico $X$ es \textit{completo} si toda red de Cauchy en $X$ converge.
+Un espacio vectorial topológico $E$ es \textit{completo} si toda red de Cauchy en $E$ converge.
 \end{Def}
 
 \begin{Lema} \label{Lema:CompletoEntoncesCerrado}
@@ -1319,16 +1323,17 @@ Para $1\leq p\leq \infty$ definimos a $\ell_p(\K)$, o simplemente $\ell_p$, como
 
 
 \begin{Lema} \label{Lema:LimiteElleP}
-Sea $1 \leq p \leq \infty$. Si $x = (x_1, x_2, \ldots) \in \ell_p$, entonces $$\Norm{x}_p = \lim_{n \to  \infty} \Norm{(x_1, \ldots, x_n)}_p.$$
+Sea $1 \leq p \leq \infty$. Si $x = (x_1, x_2, \ldots) \in \ell_p$, entonces $$\Norm{x}_p = \lim_{n \to \infty} \Norm{(x_1, \ldots, x_n)}_p.$$
 \end{Lema}
 
 \begin{Dem}
 Sea $1\leq  p < \infty$. Si $x \in \ell_p$, entonces $\Norm{x}_p < \infty$ y por tanto $$\left(\lim_{n \to  \infty} \Norm{(x_1, \ldots, x_n)}_p \right)^p =\lim_{n \to  \infty} \Norm{(x_1, \ldots, x_n)}_p^p = \lim_{n\to \infty} \sum_{i=1}^n \abs{x_i}^p = \sum_{i=1}^\infty \abs{x_i}^p = \Norm{x}_p^p < \infty.$$ 
-Así que $$ \lim_{n \to  \infty} \Norm{(x_1, \ldots, x_n)}_p = \Norm{x}_p.$$
+
+Así que $$ \lim_{n \to \infty} \Norm{(x_1, \ldots, x_n)}_p = \Norm{x}_p.$$
 
 Tomemos ahora $p = \infty$. Para $n\in\N$ sea $a_n = \max(\abs{x_1},\ldots, \abs{x_n})$ y $a = \lim_{n\to \infty} a_n$. Como $\Norm{x}_\infty < \infty$, el conjunto $\{\abs{x_i} : i \in \N$ está acotado y así $(a_n)_{n\in\N}$ también.  Claramente, $(a_n)_{n\in\N}$ es monótona-creciente, de manera que $(a_n)_{n\in\N}$ converge y $a_k \leq \lim_{n\to\infty} a_n = a < \infty$ para toda $k \in \N$. Sea $i \in \N$, entonces para $k \geq i$ se tiene que $a_k \geq \abs{x_i}$ y por lo tanto $a \geq \abs{x_i}$. Así pues, $a$ es una cota superior de $\{\abs{x_i} : i \in \N\}$. Como $\Norm{x}_\infty$ es la mínima cota superior, resulta que $a \geq \Norm{x}_\infty$.
 
-Supongamos que $a > \Norm{x}_\infty$. Entonces $\varepsilon = a -\Norm{x}_\infty  > 0$. Por propiedades del supremo, existe $i\in\N$ tal que $\abs{x_i} > \Norm{x}_\infty - \varepsilon$ (Pendiente). 
+Por otro lado, tenemos que para cada $n \in \N$, $a_n = \max(\abs{x_1},\ldots, \abs{x_n}) \in \{\abs{x_i} : i \in \N\}$. Como $\Norm{x}_\infty$ es una cota superior de este último conjunto, resulta que $a_n \leq \Norm{x}_\infty$. De esto se sigue que $a = \lim_{n\to \infty} a_n \leq \Norm{x}_\infty$ y concluimos que $\lim_{n \to \infty} \Norm{(x_1, \ldots, x_n)}_\infty = \Norm{x}_\infty$.
 \end{Dem}
 
 \begin{Prop}
@@ -1461,7 +1466,7 @@ Si $\K = \R$, ya quedó demostrado en el lema anterior. Así que supongamos $\K = 
 \begin{itemize}
 \item \textbf{i)} Sean $X$ y $Y$ espacios vectoriales. Se dice que $X$ y $Y$
 son \textit{isomorfos} como espacios vectoriales si existe $T :  X \to Y$ biyectiva y lineal. En este caso a $T$ se la llama \textit{isomorfismo} de espacios vectoriales.
-\item \textbf{ii)} Sean $X$ y $Y$ espacios vectoriales topológicos. Se dice que $X$ y $Y$ son \textit{isomorfos} como espacios vectoriales topológicos o que son \textit{isomorficamente homeomorfos} si existe un isomorfismo de espacios vectoriales $T: X \to Y$ que también es un homeomorfismo. En este caso a $T$ se le llama \textit{isomorfismo} de espacios vectoriales topológicos. 
+\item \textbf{ii)} Sean $E$ y $F$ espacios vectoriales topológicos. Se dice que $E$ y $F$ son \textit{isomorfos} como espacios vectoriales topológicos o que son \textit{isomorficamente homeomorfos} si existe un isomorfismo de espacios vectoriales $T: E \to F$ que también es un homeomorfismo. En este caso a $T$ se le llama \textit{isomorfismo} de espacios vectoriales topológicos. 
 \item \textbf{iii)} Sean $X$ y $Y$ espacios normados. Se dice que $X$ y $Y$ son \textit{isomorfos} como espacios normados si son isomorfos como espacios vectoriales topológicos. 
 \end{itemize}
 \end{Def}
@@ -1496,9 +1501,9 @@ Ahora, como el producto por escalares $\BD: \K \times E \to E$ es continuo y $V$
 
 Probemos que $T^{-1}(\widehat{V}) \subseteq V_\frac{1}{\varepsilon}(0)$. Sea $z \in \widehat{V}$, de manera que  $T^{-1} z \in T^{-1}(\widehat{V})$. Tomemos $t \in (-\varepsilon, \varepsilon)$. Entonces $tz \in V$, de donde $tz \notin T(S^{n-1})$. Es decir, $T^{-1}(tz) \notin S^{n-1}$, o bien $\Norm{(T^{-1}(tz)} \neq 1$. Así que $\abs{t} \cdot \Norm{T^{-1} z} \neq 1$. Por lo tanto, para todo $t \in (-\varepsilon, \varepsilon) \setminus \{0\}$ se tiene que $\Norm{T^{-1}z} \neq \frac{1}{\abs{t}} $, por lo que $T^{-1}z \in V_\frac{1}{\varepsilon}(0)$. 
  
-Sean $D_{r\varepsilon}^E: E \to E$ la dilatación por $r\varepsilon$ en $E$. Demostremos que $T^{-1}(D_{r\varepsilon}^E(\widehat{V})) \subseteq U$. Tomemos $y \in \widehat{V}$, de manera que $T^{-1}(D_{r\varepsilon}^E(\widehat{y})) \in T^{-1}(D_{r\varepsilon}^E(\widehat{V}))$. Como $T^{-1}(\widehat{V}) \subseteq V_\frac{1}{\varepsilon}(0)$, se sigue que $T^{-1}y \in V_\frac{1}{\varepsilon}(0)$. Es decir, $\Norm{T^{-1}y} < \frac{1}{\varepsilon}$. De esto se sigue que $r\varepsilon \Norm{T^{-1}y} < r$, o bien $\Norm{r\varepsilon T^{-1}y} < r$. Entonces $T^{-1}(D^E_{r\varepsilon}(y)) = T^{-1}(r\varepsilon\, y) \in V_r(0) \subseteq U$. 
+Demostremos que $T^{-1}(r \varepsilon \cdot \widehat{V}) \subseteq U$. Tomemos $y \in \widehat{V}$, de manera que $T^{-1}(r \varepsilon \cdot y) \in T^{-1}(r \varepsilon \cdot\widehat{V})$. Como $T^{-1}(\widehat{V}) \subseteq V_\frac{1}{\varepsilon}(0)$, se sigue que $T^{-1}y \in V_\frac{1}{\varepsilon}(0)$. Es decir, $\Norm{T^{-1}y} < \frac{1}{\varepsilon}$. De esto se sigue que $r\varepsilon \Norm{T^{-1}y} < r$, o bien $\Norm{r\varepsilon \cdot T^{-1}y} < r$. Entonces $T^{-1}(r\varepsilon \cdot y) \in V_r(0) \subseteq U$. 
  
-La proposición~\ref{Prop:TraslacionDilatacionContinuas} indica que $D_{r\varepsilon}^E$ es homeomorfismo y por lo tanto $D_{r\varepsilon}^E(\widehat{V})$ es vecindad abierta del cero. De esto y de que $T^{-1}(D_{r\varepsilon}^E(\widehat{V})) \subseteq U$ concluimos que $T^{-1}$ es continua. 
+Dado que $\widehat{V}$ es una vecindad abierta del cero, la observación~\ref{Obs:DilatacionTraslacion} indica que $r \varepsilon \cdot \widehat{V}$ también es vecindad abierta del cero. De esto y de que $T^{-1}(D_{r\varepsilon}^E(\widehat{V})) \subseteq U$ concluimos que $T^{-1}$ es continua. 
 \end{Dem}
 
 \begin{Prop} \label{Prop:FuncionalesLinealesContinuosEspaciosFinitos}
@@ -1630,6 +1635,15 @@ Sean $X$ un espacio normado y $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ una 
 
 En particular, si $(x_n)_{n \in \N} \subseteq X$ es una sucesión en $X$ y $x \in X$. Tenemos entonces que $\displaystyle\wlim_{n \to \infty} x_n = x$ si, y sólo si $\displaystyle\lim_{n \to \infty} \varphi(x_n) = \varphi(x)$  para cualquier $\varphi \in X^*$.
 \end{Cor}
+
+Sobre la notación de la topología débil veo las siguientes opciones:
+\begin{itemize}
+\item \textbf{i)} Denotar ${X_\mathrm{w}}^* := (X_\mathrm{w})^*$ y ${X^*}_\mathrm{w} := (X^*)_\mathrm{w}$.
+\item \textbf{ii)} Denotar ${X_\mathrm{w}}^* := (X_\mathrm{w})^*$ y $X^*_\mathrm{w} := (X^*)_\mathrm{w}$. (Opción sugerida por mi).
+\item \textbf{iii)} Denotar siempre con paréntesis.
+\end{itemize}
+¿Cuál prefiere?
+
 
 \begin{Prop}
 Si $X$ es un espacio normado, entonces $X^* = X_\mathrm{w}^*$ o $X^* = {X_\mathrm{w}}^*$ ó $X^* = (X_\mathrm{w})^*$.
@@ -1805,7 +1819,7 @@ Habíamos notado anteriormente que en espacios reflexivos $\sigma(X^*, X) = \sigm
 \end{Dem}
 
 \begin{Tma} \textbf{(Goldstine)}
-Sea $X$ un espacio normado. Entonces $\ov{J(B_X)}^{\mathrm{w}^*}= B_{X^{**}} $.
+Sea $X$ un espacio normado. Entonces $\ov{J(B_X)}^{\mathrm{w}^*}= B_{X^{**}}$.
 \end{Tma}
 
 \begin{Dem}
