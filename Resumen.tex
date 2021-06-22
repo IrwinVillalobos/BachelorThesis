@@ -337,14 +337,14 @@ z & \mapsto (f_X(z), f_Y(z))
 
 La construcción anterior de la topología producto es fácil de extender para el producto de una cantidad finita de espacios topológicos. Sin embargo, al momento de definir el producto de una cantidad arbitraria de espacios, hay un detalle que se debe considerar para definir su topología. \\
 
-Sean $I$ un conjunto no vacío y $X_i$ espacios topológicos para cada $i \in I$. Para $j \in I$ la $j$-ésima \textit{proyección canónica} es 
+Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$. Para $j \in I$ la $j$-ésima \textit{proyección canónica} es 
 \Ecu{
 \pi_j : \prod_{i\in I} X_i \to X_j \\
 (x_i)_{i \in I} \mapsto x_j.
 }
 
 \begin{Def}
-Sean $I$ un conjunto no vacío y $X_i$ espacios topológicos para cada $i \in I$. La \textit{topología producto} de $\prod_{i\in I} X_i$ es la generada por la base $$\left\{ \bigcap_{j=1}^k \pi_{i_j}^{-1}(U_j) : k \in \N, \, i_1, \ldots, i_k \in I \mbox{ y } U_j \mbox{ es abierto en } X_{i_j} \mbox{ para cada } 1\leq j \leq k\right\}.$$
+Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$. La \textit{topología producto} de $\prod_{i\in I} X_i$ es la generada por la base $$\left\{ \bigcap_{j=1}^k \pi_{i_j}^{-1}(U_j) : k \in \N, \, i_1, \ldots, i_k \in I \mbox{ y } U_j \mbox{ es abierto en } X_{i_j} \mbox{ para cada } 1\leq j \leq k\right\}.$$
 \end{Def}
 
 Veamos que con esta definición de topología producto las proyecciones son continuas. Fijemos $i \in I$ y tomemos cualquier abierto $U_i$ en $X_i$. Entonces $\pi_i^{-1}(U_i)$ es un básico de $\prod_{i\in I} X_i$ y por tanto es abierto. Esto indica que $\pi_i$ es continua.  
@@ -352,7 +352,7 @@ Veamos que con esta definición de topología producto las proyecciones son contin
 Si tenemos un par de espacios topológicos compactos, es sencillo verificar que su producto sigue siendo compacto. Uno de los teoremas más importantes en la topología es el teorema de Tychonoff y generaliza este resultado estableciendo que el producto arbitrario de espacios compactos es compacto.  
  
 \begin{Tma} \textbf{(Tychonoff)}
-Sean $I$ un conjunto no vacío y $X_i$ espacios topológicos para cada $i \in I$. Si cada $X_i$ es un espacio compacto, entonces el espacio $\prod_{i\in I} X_i$ es compacto. (¿lo demuestro?)
+Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$. Si cada $X_i$ es un espacio compacto, entonces el espacio $\prod_{i\in I} X_i$ es compacto.
 \end{Tma}
 
 \section{Espacios métricos.}
@@ -1142,7 +1142,7 @@ $$\Norm{\lambda x + (1-\lambda y)} \leq \abs{\lambda} \Norm{x} + \abs{1-\lambda}
 \end{Dem}
 
 \begin{Ejem}
-Si $X$ es un espacio normado y tomamos $x, y \in B_X$ y $\lambda \in [0, 1]$, entonces $\Norm{\lambda x + (1-\lambda)y} \leq \lambda \Norm{x} + (1- \lambda)\Norm{y} \leq \lambda + (1-\lambda) = 1$. Así que $\lambda x + (1-\lambda)y \in B_X$ y $B_X$ es convexa.
+Si $X$ es un espacio normado y tomamos $x, y \in B_X$ y $\lambda \in [0, 1]$, entonces $\Norm{\lambda x + (1-\lambda)y} \leq \lambda \Norm{x} + (1- \lambda)\Norm{y} \leq \lambda + (1-\lambda) = 1$. Así que $\lambda x + (1-\lambda)y \in B_X$. Por lo tanto $B_X$ es convexa.
 \end{Ejem}
 
 \begin{Prop} \label{Prop:TopologiaOriginalEspaciosNormadosEVT}
@@ -1196,13 +1196,31 @@ Definamos $\beta = \alpha_{2M}$. Por (\ref{Eq:RedesCauchy1}) y (\ref{Eq:RedesCau
 Por la desigualdad del triángulo $\Norm{x_\gamma - x} < \frac{1}{N}$ y así $x_\gamma - x \in U$. Es decir, $x_\alpha \to x$.
 \end{Dem}
 
+\begin{Lema} \label{Lema:SucesionCauchyConSubsucesionConvergenteConverge}
+Sea $X$ un espacio normado. Si $(x_n)_{n \in\N}$ es una sucesión de Cauchy y tiene una subsucesión que converge a $x \in X$, entonces $(x_n)_{n\in\N}$ converge a $x$.
+\end{Lema}
+
+\begin{Dem}
+Supongamos que $(x_n)_{n\in\N}$ es de Cauchy y que $(x_{k_n})_{n\in\N}$ es una subsucesión de $(x_n)_{n\in\N}$ que converge a $x \in X$. Sea $\varepsilon> 0$. Dado que $(x_n)_{n\in \N}$ es de Cauchy, existe $N \in \N$ tal que
+\begin{equation} \label{Eq:NormaCompleta1}
+\Norm{x_n - x_m } < \frac{\varepsilon}{2}, \;\mbox{ si }\; n, m \geq N.
+\end{equation}
+
+Puesto que $(x_{k_n})_{n \in\N}$ converge a $x$, existe $M \in \N$ tal que 
+\begin{equation} \label{Eq:NormaCompleta2}
+\Norm{x_{k_n} - x} < \frac{\varepsilon}{2}, \; \mbox{ si } \; n \geq M.
+\end{equation}
+
+Tomemos $L = \max(N, M)$ y $n \geq L$. De esta manera tenemos que $k_L \geq L \geq N$ y $n \geq L \geq N$ y por $(\ref{Eq:NormaCompleta1})$ se sigue que $\Norm{x_{k_L} - x_n} < \frac{\varepsilon}{2}$. Además, como $L \geq M$, de $(\ref{Eq:NormaCompleta2})$ se tiene que $\Norm{x_{k_L} - x} < \frac{\varepsilon}{2}$. Por la desigualdad del triángulo concluimos que $$\Norm{x_n - x} \leq \Norm{x_n - x_{k_L}} + \Norm{x_{k_L} -  x} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon, $$ y así $x_n \to x$.
+\end{Dem}
+
 \begin{Def}
 Sea $X$ un espacio normado. Decimos que $A \subseteq X$ es un conjunto \textit{acotado} si existe $M > 0$ tal que $\Norm{x} \leq M$ para todo $x \in A$.
 \end{Def}
 
-\begin{Prop} \label{Prop:SucesionesDeCauchySonAcotadas}
+\begin{Lema} \label{Lema:SucesionesDeCauchySonAcotadas}
 Sea $X$ un espacio normado y $(x_n)_{n \in\N}$ una sucesión en $X$. Si $(x_n)_{n\in\N}$ es de Cauchy, entonces $\{ x_n : n \in \N \}$ es un conjunto acotado.
-\end{Prop}
+\end{Lema}
 
 \begin{Dem}
 Tomemos $\varepsilon = 1$. Así pues, existe $N \in \N$ tal que si $n, m \geq N$, entonces $\Norm{x_n - x_m} < 1$. Esto indica que para $n \geq N$ se cumple que $$\Norm{x_n} - \Norm{x_N} \leq \abs{\Norm{x_n} - \Norm{x_N}} \leq \Norm{x_n - x_N} < 1$$ y así $\Norm{x_n} < 1 + \Norm{x_N}$.
@@ -1217,7 +1235,7 @@ En $\K^n $ la norma euclidiana resulta ser el caso $p=2$ de una familia de norma
 \begin{Ejem} \label{Ejem:EllePNormado}
 Dados $n \in \N$ y $1 \leq p < \infty$, definamos la función $\Norm{\cdot}_p:\K^n \to [0, \infty)$ por $$\Norm{(x_1, \ldots, x_n)}_p := \left(\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}}.$$  
 
-En el caso $p = \infty$, definimos la función $\Norm{\cdot}_{\infty}: \K^n \to [0, \infty)$ dada por $$\Norm{(x_1, \ldots, x_n)}_\infty :=\max_{1 \leq i \leq n} \,  \abs{x_i}.$$
+En el caso $p = \infty$, definimos la función $\Norm{\cdot}_{\infty}: \K^n \to [0, \infty)$ por $$\Norm{(x_1, \ldots, x_n)}_\infty :=\max_{1 \leq i \leq n} \,  \abs{x_i}.$$
 A continuación demostraremos que $\Norm{\cdot}_p$ es una norma en $\K^n$.
 \end{Ejem}
 
@@ -1275,14 +1293,6 @@ En adelante, cuando trabajemos en $\K^n$ con la norma $\Norm{\cdot}_p$, lo denot
 
 En el caso particular $p=2$, a la norma $\Norm{\cdot}_2$ en $\K^n$ le damos el nombre de \textit{norma euclidiana}. A continuación probaremos que $\ell_2^n$ es un espacio completo haciendo uso del teorema de Heine-Borel.
 
-\begin{Tma} \label{Tma:HeineBorelReal} \textbf{(Heine-Borel)}
-Sea $n \in \N$ y consideremos $A \subseteq \ell_2^n(\R)$. Son equivalentes:
-\begin{itemize}
-\item \textbf{i)} $A$ es cerrado y acotado.
-\item \textbf{ii)} $A$ es compacto.
-\end{itemize}
-\end{Tma}
-
 \begin{Tma} \label{Tma:HeineBorelGeneral} \textbf{(Heine-Borel)}
 Sea $n \in \N$ y consideremos $A \subseteq \ell_2^n(\K)$. Son equivalentes:
 \begin{itemize}
@@ -1291,33 +1301,12 @@ Sea $n \in \N$ y consideremos $A \subseteq \ell_2^n(\K)$. Son equivalentes:
 \end{itemize}
 \end{Tma}
 
-\begin{Dem}
-Sobre las demostraciones del teorema de Heine-Borel, ¿qué opción prefiere?
-\begin{itemize}
-\item \textbf{1.-} Demostrar la versión real y usarla para demostrar la versión en cualquier campo.
-\item \textbf{2.-} Dar por válida la versión real y usarla para demostrar la versión en cualquier campo
-\item \textbf{3.-} Dar por válida la versión de cualquier campo y sólo mencionarla.
-\end{itemize}
-\end{Dem}
-
 \begin{Prop} \label{Prop:NormaEuclidianaCompleta}
-Sea $n \in \N$. El espacio normado $\ell_2^n$ es completo. (¿Es mejor que la proposición diga: ``La norma euclidiana es completa '' ?).
+Sea $n \in \N$. El espacio normado $\ell_2^n$ es completo. 
 \end{Prop}
 
 \begin{Dem}
-Sea $(x_n)_{n\in \N}$ una sucesión de Cauchy. La proposición~\ref{Prop:SucesionesDeCauchySonAcotadas} indica que $\{ x_n : n \in \N \}$ es un conjunto acotado por alguna constante $M \in\N$. Como la bola $B_M(0)$ es cerrada y acotada en $\ell_2^n$, el teorema~\ref{Tma:HeineBorelGeneral} de Haine-Borel señala que $B_M(0)$ es compacto. Como la sucesión $(x_n)_{n\in\N}$ vive en el conjunto compacto $B_M(0)$, el teorema~\ref{Tma:CaracterizacionCompacidadSucesiones} dice que existe una subsucesión $(x_{k_n})_{n \in \N}$ de $(x_n)_{n\in\N}$ que converge a algún $x \in B_M(0) \subseteq X$. Mostremos que $(x_n)_{n\in\N}$ también converge a $x$.
-
-Sea $\varepsilon> 0$. Dado que $(x_n)_{n\in \N}$ es de Cauchy, existe $N \in \N$ tal que
-\begin{equation} \label{Eq:NormaCompleta1}
-\Norm{x_n - x_m } < \frac{\varepsilon}{2}, \;\mbox{ si }\; n, m \geq N.
-\end{equation}
-
-Puesto que $(x_{k_n})_{n \in\N}$ converge a $x$, existe $M \in \N$ tal que 
-\begin{equation} \label{Eq:NormaCompleta2}
-\Norm{x_{k_n} - x} < \frac{\varepsilon}{2}, \; \mbox{ si } \; n \geq M.
-\end{equation}
-
-Tomemos $L = \max(N, M)$ y $n \geq L$. De esta manera tenemos que $k_L \geq L \geq N$ y $n \geq L \geq N$ y por $(\ref{Eq:NormaCompleta1})$ se sigue que $\Norm{x_{k_L} - x_n} < \frac{\varepsilon}{2}$. Además, como $L \geq M$, de $(\ref{Eq:NormaCompleta2})$ se tiene que $\Norm{x_{k_L} - x} < \frac{\varepsilon}{2}$. Por la desigualdad del triángulo concluimos que $$\Norm{x_n - x} \leq \Norm{x_n - x_{k_L}} + \Norm{x_{k_L} -  x} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon, $$ y así $x_n \to x$.
+Sea $(x_m)_{m\in \N}$ una sucesión de Cauchy. El lema~\ref{Lema:SucesionesDeCauchySonAcotadas} indica que $\{ x_m : m \in \N \}$ es un conjunto acotado por alguna constante $M \in\N$. Como la bola $B_M(0)$ es cerrada y acotada en $\ell_2^n$, el teorema de Heine-Borel señala que $B_M(0)$ es compacto. Dado que la sucesión $(x_m)_{m\in\N}$ vive en el conjunto compacto $B_M(0)$, el teorema~\ref{Tma:CaracterizacionCompacidadSucesiones} dice que existe una subsucesión $(x_{k_m})_{m \in \N}$ de $(x_m)_{m\in\N}$ que converge a algún $x \in B_M(0) \subseteq X$. Del lema~\ref{Lema:SucesionCauchyConSubsucesionConvergenteConverge} se sigue que $x_m \to x$.
 \end{Dem}
 
 
@@ -1326,7 +1315,6 @@ Denotemos por $\K^\N$ al espacio de sucesiones en $\K$. Definamos para $1 \leq p
 donde consideramos que $\infty^{\frac{1}{p}} = \infty$.
 
 Para $1\leq p\leq \infty$ definimos a $\ell_p(\K)$, o simplemente $\ell_p$, como el espacio de sucesiones $x \in \K^\N$ tales que $\Norm{x}_p < \infty$.
-
 \end{Ejem}
 
 
@@ -1344,7 +1332,7 @@ Supongamos que $a > \Norm{x}_\infty$. Entonces $\varepsilon = a -\Norm{x}_\infty
 \end{Dem}
 
 \begin{Prop}
-Sea $p \in [1, \infty]$, $\Norm{\cdot}_p$ es una norma en $\ell_p$.
+Para cada $p \in [1, \infty]$, la función $\Norm{\cdot}_p$ es una norma en $\ell_p$.
 \end{Prop}
 
 \begin{Dem} 
@@ -1405,11 +1393,11 @@ Sea $X$ un espacio normado. Entonces $X$ es de dimensión infinita si y sólo si $
 \end{Prop}
 
 \begin{Dem}
-Supongamos que $X$ es de dimensión infinita. Entonces para todo $n \in \N$ existen $x_1, \ldots, x_n \in X$ linealmente independientes. Sea $V = \mbox{span} \{ x_1, \ldots, x_n \}$, de manera que $\{ x_1, \ldots, x_n \}$ es una base de $V$. Para $i \in \{1, \ldots, n \}$ definamos el funcional lineal $\varphi_i : V \to \K$ dado por $\varphi_i(x_j) = \delta_{ij}$ que es continuo por la proposición~\ref{Prop:FuncionalesLinealesContinuosEspaciosFinitos} . Por el teorema~\ref{Tma:HahnBanachFuncional} de Hahn-Banach existe $F_i \in X^*$ tal que $F_i = f_i$ en $V$. Veamos que $\{F_1, \ldots, F_n\}$ es linealmente independiente en $X^*$. Sean $a_1, \ldots, a_n \in K$ tales que $$\sum_{j=1}^n a_i F_i = 0.$$ Al evaluar en $x_i$ obtenemos que $a_i = 0$. Esto muestra que para toda $n \in \N$ existen $n$ funcionales linealmente independientes. Por lo que $X^*$ es de dimensión infinita. 
+Supongamos que $X$ es de dimensión infinita. Entonces para todo $n \in \N$ existen $x_1, \ldots, x_n \in X$ linealmente independientes. Sea $V = \mbox{span} \{ x_1, \ldots, x_n \}$, de manera que $\{ x_1, \ldots, x_n \}$ es una base de $V$. Para $i \in \{1, \ldots, n \}$ definamos el funcional lineal $\varphi_i : V \to \K$ dado por $\varphi_i(x_j) = \delta_{ij}$ que es continuo por la proposición~\ref{Prop:FuncionalesLinealesContinuosEspaciosFinitos} . Por el teorema~\ref{Tma:HahnBanachFuncional} de Hahn-Banach existe $F_i \in X^*$ tal que $F_i = \varphi_i$ en $V$. Veamos que $\{F_1, \ldots, F_n\}$ es linealmente independiente en $X^*$. Sean $a_1, \ldots, a_n \in K$ tales que $$\sum_{j=1}^n a_i F_i = 0.$$ Al evaluar en $x_i$ obtenemos que $a_i = 0$. Esto muestra que para toda $n \in \N$ existen $n$ funcionales linealmente independientes. Por lo que $X^*$ es de dimensión infinita. 
 
 Supongamos ahora que $X$ es de dimensión finita $n \in \N$. Existe entonces una base $\{x_1, \ldots, x_n \}$ de $X$. Para $1 \leq i \leq n$ definimos $f_i :X \to \K $ linealmente y de tal manera que $f_i(x_j) = \delta_{ij}$. Como $X$ es de dimensión finita la proposición~\ref{Prop:FuncionalesLinealesContinuosEspaciosFinitos} indica que cada $f_i$ es continuo. Veamos que $\{ f_1, \ldots, f_n \}$ generan a $X^*$. Tomamos entonces $f \in X^*$ y supongamos que $f(x_i) = a_i \in \K$ para cada $i \in \{1, \ldots, n\}$. Así, para cada $1 \leq i \leq n$
 $$\left( \sum_{j=1}^n a_j f_j \right)(x_i) = a_i = f(x_i).$$
-Por lo tanto $f = \sum_{j=1}^n a_j f_j$. Esto dice que existe un conjunto finito generador en $X^*$, por lo que $X^*$ es de dimensión finita.
+Por lo tanto $f = \sum_{j=1}^n a_j f_j$. Esto dice que existe un conjunto finito generador en $X^*$, por lo que $X^*$ es de dimensión finita y además $\dim X^* \leq \dim X$.
 \end{Dem}
 
 Existen otras maneras de plantear los teoremas de Hanh-Banach con un enfoque más geométrico como lo muestra el siguiente teorema.
@@ -1447,8 +1435,6 @@ Como $-x \in B_X$, se tiene que $$-\sum_{i=1}^n b_i \varphi_i(x) =  \sum_{i=1}^n
 
 Concluimos de aquí la negación de \textbf{ii)}, es decir, $$\Norm{\sum_{i=1}^n b_i \varphi_i} = \sup_{x \in B_X} \abs{\left(\sum_{i=1}^n b_i \varphi_i \right)(x)} \leq \alpha < \abs{\sum_{i=1}^n a_i b_i}.$$
 
-
-
 Finalmente, supongamos \textbf{iii)}. Sea $\varepsilon > 0$. Como $a = (a_1, \ldots, a_n) \in \ov{T(B_X)}$, se sigue que $V_\varepsilon(a) \cap T(B_X) \neq \emptyset$. Así que existe $y \in V_\varepsilon(a) \cap T(B_X)$. Tomemos $x \in B_X$ con $T(x) = y$. Así que $T(x) \in V_\varepsilon(a)$. Para $i \in \nn{n}$ se tiene que $$\abs{\varphi_i(x) - a_i} \leq \sum_{j=1}^{n} \abs{\varphi_j(x) - a_j} = \Norm{Tx - a}_1 < \varepsilon.$$
 \end{Dem}
 
@@ -1470,9 +1456,6 @@ Si $\K = \R$, ya quedó demostrado en el lema anterior. Así que supongamos $\K = 
 \end{Dem}
 
 \subsection{Espacios vectoriales topológicos de dimensión finita.}
-
-%Hola Mundo
-
 
 \begin{Def} \hfill
 \begin{itemize}
@@ -1512,7 +1495,6 @@ Dado que $\{ 0\}$ es compacto en $E$ y $T(S^{n-1}_2)$ también es compacto, por l
 Ahora, como el producto por escalares $\BD: \K \times E \to E$ es continuo y $V$ es una vecindad abierta del cero, existe un básico $(-\varepsilon, \varepsilon) \times \widehat{V}$ en $\K \times E$ tal que $0 \in \widehat{V}$ y $$\BD((-\varepsilon, \varepsilon) \times \widehat{V}) = \{tz : t \in (-\varepsilon, \varepsilon), z \in \widehat{V} \} \subseteq V.$$ 
 
 Probemos que $T^{-1}(\widehat{V}) \subseteq V_\frac{1}{\varepsilon}(0)$. Sea $z \in \widehat{V}$, de manera que  $T^{-1} z \in T^{-1}(\widehat{V})$. Tomemos $t \in (-\varepsilon, \varepsilon)$. Entonces $tz \in V$, de donde $tz \notin T(S^{n-1})$. Es decir, $T^{-1}(tz) \notin S^{n-1}$, o bien $\Norm{(T^{-1}(tz)} \neq 1$. Así que $\abs{t} \cdot \Norm{T^{-1} z} \neq 1$. Por lo tanto, para todo $t \in (-\varepsilon, \varepsilon) \setminus \{0\}$ se tiene que $\Norm{T^{-1}z} \neq \frac{1}{\abs{t}} $, por lo que $T^{-1}z \in V_\frac{1}{\varepsilon}(0)$. 
-
  
 Sean $D_{r\varepsilon}^E: E \to E$ la dilatación por $r\varepsilon$ en $E$. Demostremos que $T^{-1}(D_{r\varepsilon}^E(\widehat{V})) \subseteq U$. Tomemos $y \in \widehat{V}$, de manera que $T^{-1}(D_{r\varepsilon}^E(\widehat{y})) \in T^{-1}(D_{r\varepsilon}^E(\widehat{V}))$. Como $T^{-1}(\widehat{V}) \subseteq V_\frac{1}{\varepsilon}(0)$, se sigue que $T^{-1}y \in V_\frac{1}{\varepsilon}(0)$. Es decir, $\Norm{T^{-1}y} < \frac{1}{\varepsilon}$. De esto se sigue que $r\varepsilon \Norm{T^{-1}y} < r$, o bien $\Norm{r\varepsilon T^{-1}y} < r$. Entonces $T^{-1}(D^E_{r\varepsilon}(y)) = T^{-1}(r\varepsilon\, y) \in V_r(0) \subseteq U$. 
  
@@ -1520,11 +1502,11 @@ La proposición~\ref{Prop:TraslacionDilatacionContinuas} indica que $D_{r\varepsi
 \end{Dem}
 
 \begin{Prop} \label{Prop:FuncionalesLinealesContinuosEspaciosFinitos}
-Sea $E$ un espacio vectorial topológico de dimensión finita y  $\varphi : E \to \K$ un funcional lineal. Entonces $\varphi$ es continuo. 
+Sea $E$ un espacio vectorial topológico de dimensión finita. Si $\varphi : E \to \K$ es un funcional lineal, entonces $\varphi$ es continuo. 
 \end{Prop}
 
 \begin{Dem}
-Sea $\dim \, E = n \in \N$ y $\{ x_1, \ldots, x_n \} \subseteq X$ una base de $X$. Sea $T: \K^n \to E$ como en la demostración del teorema~\ref{Tma:IsomorfismoDimensionFinitaEVT}. Entonces $T^{-1}$ es continua. Definamos $S: \K^n \to \K$ como $S(a_1, \ldots, a_n) = a_1 \varphi(x_1) + \ldots + a_n \varphi(x_n)$. Para $1 \leq i \leq n$ las proyecciones $\pi_i: \K^n \to \K$ y las funciones constantes $f_i: \K^n \to \K$, $a \mapsto \varphi(x_i)$ son continuas. Como $\K$ es un espacio vectorial topológico, el lema~\ref{Lema:SumaYProductoEscalarDeFuncionesContinuas} indica que $S = (\pi_1 \BD f_1 + \ldots + \pi_n \BD f_n)$ es continua de manera que $\varphi = S \circ T^{-1}$ también es continua.
+Sean $\dim \, E = n \in \N$ y $\{ x_1, \ldots, x_n \} \subseteq X$ una base de $X$. Sea $T: \K^n \to E$ como en la demostración del teorema~\ref{Tma:IsomorfismoDimensionFinitaEVT}. Entonces $T^{-1}$ es continua. Definamos $S: \K^n \to \K$ como $S(a_1, \ldots, a_n) = a_1 \varphi(x_1) + \ldots + a_n \varphi(x_n)$. Para $1 \leq i \leq n$ las proyecciones $\pi_i: \K^n \to \K$ y las funciones constantes $f_i: \K^n \to \K$, $a \mapsto \varphi(x_i)$ son continuas. Como $\K$ es un espacio vectorial topológico, el lema~\ref{Lema:SumaYProductoEscalarDeFuncionesContinuas} indica que $S = (\pi_1 \BD f_1 + \ldots + \pi_n \BD f_n)$ es continua de manera que $\varphi = S \circ T^{-1}$ también es continua.
 \end{Dem}
 
 \begin{Prop} \label{Prop:DimensionFinitaEVTCompleto}
@@ -1532,41 +1514,26 @@ Cualquier espacio vectorial topológico de dimensión finita es completo.
 \end{Prop}
 
 \begin{Dem}
-Sea $X$ un espacio vectorial topológico de dimensión finita $n \in \N$. Dado que $\ell^n_2$ es un espacio vectorial topológico completo, y $X$ es isomorficamente homeomorfo a $\ell^n$, resulta por el lema~\ref{Lema:HomeomorfismoLinealPreservaCompletitud} que $X$ también es completo.
+Sea $E$ un espacio vectorial topológico de dimensión finita $n \in \N$. Dado que $\ell^n_2$ es un espacio vectorial topológico de dimensión $n$, del teorema~\ref{Tma:IsomorfismoDimensionFinitaEVT} se sigue que $E$ es isomorfo a $\ell^n_2$ como espacio normado. Según la proposición~\ref{Prop:NormaEuclidianaCompleta}, $\ell_2^n$ es un espacio completo. Así que del lema~\ref{Lema:HomeomorfismoLinealPreservaCompletitud} resulta que $E$ también es completo.
 \end{Dem}
 
+Del resultado anterior se sigue inmediatamente que los espacios de dimensión finita $\ell^n_p$ son completos.
+
 \begin{Cor}
-Sea $n \in \N$ y $p \in [1,\infty]$. Entonces $\ell^n_p$ es un espacio de Banach. 
+Sean $n \in \N$ y $p \in [1,\infty]$. Entonces $\ell^n_p$ es un espacio de Banach. 
 \end{Cor}
 
 \begin{Cor} \label{Cor:SubespacioDimensionFinitaCerrado}
-Si $Y$ es un subespacio de dimensión finita de un espacio vectorial topológico $X$, entonces $Y$ es cerrado en $X$.
+Sea $E$ un espacio vectorial topológico. Si $F$ es un subespacio de dimensión finita de $E$, entonces $F$ es cerrado en $E$.
 \end{Cor}
 
 \begin{Dem}
-La proposición~\ref{Prop:DimensionFinitaEVTCompleto} indica que $Y$ es completo. Del lema~\ref{Lema:CompletoEntoncesCerrado} se concluye que $Y$ es cerrado en $X$.
+La proposición~\ref{Prop:DimensionFinitaEVTCompleto} indica que $F$ es completo. Del lema~\ref{Lema:CompletoEntoncesCerrado} se concluye que $F$ es cerrado en $E$.
 \end{Dem}
 
 \begin{Cor} \label{Cor:EspaciosNormadosFinitosIsomorfos}
 Si $X$ y $Y$ son espacios normados de dimensión finita y de la misma dimensión, entonces son isomorfos como espacios normados.
 \end{Cor}
-
-\begin{Def}
-Sea $X$ un espacio vectorial y $\Norm{\cdot}_1$, $\Norm{\cdot}_2$ un par de normas en $X$. Decimos que $\Norm{\cdot}_1$ y $\Norm{\cdot}_2$ son normas equivalentes si existen $K_1$ y $K_2$ positivos tales que para todo $x \in X$ $$\K_1 \Norm{x}_1 \leq \Norm{x}_2 \leq K_2 \Norm{x}_1.$$
-\end{Def}
-
-\begin{Prop}
-Sea $X$ un espacio vectorial y $\Norm{\cdot}_1$, $\Norm{\cdot}_2$ un par de normas en $X$. Entonces $\Norm{\cdot}_1$ y $\Norm{\cdot}_2$ generan la misma topología en $X$ si y sólo si $\Norm{\cdot}_1$ y $\Norm{\cdot}_2$
-\end{Prop}
-
-\begin{Dem}
-(Pendiente).
-\end{Dem}
-
-\begin{Cor}
-Si $X$ es un espacio normado de dimensión finita, entonces todas las normas en $X$ son equivalentes entre sí. 
-\end{Cor}
-
 
 \subsection{Compacidad de la bola cerrada en un espacio normado.}
 
@@ -1665,7 +1632,7 @@ En particular, si $(x_n)_{n \in \N} \subseteq X$ es una sucesión en $X$ y $x \in
 \end{Cor}
 
 \begin{Prop}
-Si $X$ es un espacio normado, entonces $X^* = X_\mathrm{w}^*$.
+Si $X$ es un espacio normado, entonces $X^* = X_\mathrm{w}^*$ o $X^* = {X_\mathrm{w}}^*$ ó $X^* = (X_\mathrm{w})^*$.
 \end{Prop}
 
 \begin{Dem}
@@ -1735,7 +1702,7 @@ Así pues $\Norm{Jx} \geq \Norm{x}$. El lema~\ref{Lema:DeltaContinua} indica que 
 Para cada $x \in X$ resulta que $\abs{\delta_x}$ es una seminorma. Dado $\varphi \in X^*$ distinto de cero, existe $x \neq 0$ con $\varphi(x) \neq 0$. Así que $\delta_x(\varphi) \neq 0$. Es decir, $$\F_{X^*} := \{ \abs{\delta_x} : x\in X\}$$ es una familia de seminormas en $X^*$ que separa puntos de $X$. 
 
 \begin{Def}
-Sea $X$ un espacio normado. La \textit{topología débil*} de $X^*$ es $\sigma(X^*, \F_{X^*})$ y se denotará por $\sigma(X^*, X)$ o simplemente por $\tau_{\mathrm{w}^*}$. Cuando trabajemos con la topología débil de $X^*$, al espacio vectorial topológico correspondiente lo denotaremos por $X^*_{\mathrm{w}^*}$.
+Sea $X$ un espacio normado. La \textit{topología débil*} de $X^*$ es $\sigma(X^*, \F_{X^*})$ y se denotará por $\sigma(X^*, X)$ o simplemente por $\tau_{\mathrm{w}^*}$. Cuando trabajemos con la topología débil* de $X^*$, al espacio vectorial topológico correspondiente lo denotaremos por $X^*_{\mathrm{w}^*}$ o ${X^*}_{\mathrm{w}^*}$ o $(X^*)_{\mathrm{w}^*}$.
 \end{Def}
 
 Aplicando el teorema~\ref{Tma:SeminormasInducenEVT}  se deduce el siguiente corolario.
@@ -1744,7 +1711,7 @@ Aplicando el teorema~\ref{Tma:SeminormasInducenEVT}  se deduce el siguiente coro
 Sea $X$ un espacio normado. Entonces $X^*_{\mathrm{w}^*}$ es un espacio vectorial topológico.
 \end{Cor}
 
-La cerradura de un subconjunto $F$ de el espacio dual $X^*$ de un espacio normado $X$ respecto a la topología débil* se denotará por $\ov{F}^{\mathrm{w}^*}$.
+La cerradura de un subconjunto $F$ del espacio dual $X^*$ de un espacio normado $X$ respecto a la topología débil* se denotará por $\ov{F}^{\mathrm{w}^*}$.
 
 En el espacio dual $X^*$ de un espacio normado $X$ la convergencia en la topología débil* de una red $(\varphi_\alpha)_{\alpha \in \Lambda} \subseteq X^*$ a $\varphi \in X^*$ se denotará por $\wslim_{\alpha \in \Lambda} \varphi_\alpha = \varphi$ o también por $\varphi_\alpha \stackrel{\mathrm{w_*}}{\longrightarrow} \varphi$.
 
@@ -1757,39 +1724,19 @@ En particular, si $(\varphi_n)_{n \in \N} \subseteq X^*$ es una sucesión en $X^*
 
 Observemos que la convergencia debil* de funcionales es precisamente la convergencia puntual. \\
 
-En el espacio $X^*$ podemos considerar tres topologías: la topología original $\tau_{\Norm{\cdot}}$, la topología débil $\sigma(X^*, X^{**})$ y la topología débil* $\sigma(X^*, X)$. Establezcamos una relación entre ellas. 
+De acuerdo al desarrollo anterior, en el espacio $X^*$ podemos considerar tres topologías: la topología original $\tau_{\Norm{\cdot}}$, la topología débil $\sigma(X^*, X^{**})$ y la topología débil* $\sigma(X^*, X)$. Establezcamos una relación entre ellas. 
 
 Para $\varphi \in X^*$, $k \in \N$, $x_1,\ldots, x_k \in X$ y $\varepsilon > 0$, tenemos que 
 \begin{equation} \label{Eq:IgualdadBasicos}
 U_{\varphi, x_1,\ldots, x_k, \varepsilon} = U_{\varphi, J(x_1),\ldots, J(x_k), \varepsilon}.
 \end{equation}
 
-Donde el primero es un abierto de $X^*_{\mathrm{w}^*}$ y el segundo es un abierto de $X^*_{\mathrm{w}}$.  Así pues, todo abierto en $X^*_{\mathrm{w}^*}$ es abierto  en $X^*_{\mathrm{w}}$. Por esto y por la proposición~\ref{Prop:ContencionPropiaTopologiaDebil} se tiene que 
+Notemos que el primer conjunto es un abierto de $X^*_{\mathrm{w}^*}$ y el segundo es un abierto de $X^*_{\mathrm{w}}$.  Así pues, todo abierto en $X^*_{\mathrm{w}^*}$ es abierto  en $X^*_{\mathrm{w}}$. Por esto y por la proposición~\ref{Prop:ContencionPropiaTopologiaDebil} se tiene que 
 \begin{equation} \label{Eq:RelacionTopologias}
 \sigma(X^*, X) \subseteq \sigma(X^*, X^{**}) \subseteq \tau_{\Norm{\cdot}_{X^*}}.
 \end{equation}
 
-\begin{Def}
-Si $X$ es un espacio normado tal que $J(X) = X^{**}$ se dice que $X$ es \textit{reflexivo}. 
-\end{Def}
-
-Si $X$ es un espacio reflexivo, entonces la ecuación~(\ref{Eq:IgualdadBasicos}) indica que las bases de la topología débil* y la topología débil de $X^*$ coinciden, por lo que la primera contención en~(\ref{Eq:RelacionTopologias}) es una igualdad.
-
-\begin{Prop} \label{Prop:ReflexivoIdentifiacionCanonicaDebilContinua}
-Si $X$ es un espacio reflexivo, entonces $J :  X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es un homeomorfismo.
-\end{Prop}
-
-\begin{Dem}
-Dado que $J$ es un isomorfismo de espacios vectoriales, ya sólo falta verificar que $J$ y $J^{-1}$ son continuas. Para eso tomemos una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X_\mathrm{w}$ y $x \in X_\mathrm{w}$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebil} dice que que $x_\alpha \weakarrow x$ si, y sólo si $\varphi(x_\alpha) \to \varphi(x)$ para toda $\varphi \in X^*$. Esto último equivale a que $\delta_{x_\alpha}(\varphi) \to \delta_{x}(\varphi)$ para toda $\varphi \in X^*$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebilEstrella} indica que esto es lo mismo que $\delta_{x_\alpha} \weakstararrow \delta_x$, o bien, $J(x_\alpha) \weakstararrow J(x)$. Por lo que $J$ es continua al igual que $J^{-1}$.
-\end{Dem}
-
-\begin{Ejem}
-Sea $X$ un espacio normado de dimensión finita $n \in\N$. Si $\{ x_1, \ldots, x_n\}$ es una base de $X$, podemos definir $f_1, \ldots, f_n \in X^*$ al igual que la demostración de la proposición~\ref{Prop:DualDimensionInfinita} de manera que $f_i(x_j) = \delta_{ij}$. Así pues, ya se demostró que $\{ f_1, \ldots, f_n \}$ es un conjunto generador en $X^*$. Verifiquemos que este conjunto es linealmente independiente. Sean $a_1, \ldots, a_n \in \K$ tales que $a_1 \BD f_1 + \ldots a_n \BD f_n = 0$. Al evaluar en $x_j$ tenemos que $a_j = 0$ y por tanto $\{f_1, \ldots, f_n \}$ es una base de $X^*$. 
-
-Entonces, si $X$ es de dimensión $n$, su dual $X^*$ también. Ahora, como $X^*$ es de dimensión $n$, su dual $X^{**}$ también lo es. Así que $X$ y $X^{**}$ son de la misma dimensión. Como $J$ es lineal, inyectiva y está definida entre espacios de la misma dimensión, resulta que es sobreyectiva y $X$ es reflexivo.  
-\end{Ejem}
-
-Si $X$ es un espacio de dimensión infinita, la proposición anterior muestra que $X^*$ es de dimensión infinita, por lo que resulta que $B_{X^*}$ no es compacta respecto a la topología original. El siguiente teorema muestra que bajo la topología débil* sí lo es.
+Si $X$ es un espacio de dimensión infinita, la proposición~\ref{Prop:DualDimensionInfinita} muestra que $X^*$ es de dimensión infinita, por lo que resulta que $B_{X^*}$ no es compacta respecto a la topología original. El siguiente teorema muestra que bajo la topología débil* sí lo es.
 
 
 \begin{Tma} \textbf{(Banach-Alaoglu)}
@@ -1814,7 +1761,7 @@ Demostremos que $F$ es inyectiva. Dados $\varphi, \psi \in B_{X^*}$ con $F(\varp
 
 Consideremos una red $(\varphi_\alpha)_{\alpha \in \Lambda}$ en $B_{X^*}$ y $\varphi \in B_{X^*}$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebilEstrella} indica que $\varphi_\alpha \stackrel{\mathrm{w_*}}{\longrightarrow} \varphi$ si, y sólo si $\varphi_\alpha(x) \to \varphi(x)$ en $D_x$ para todo $x \in X$. La proposición~\ref{Prop:ConvergenciaPorComponentesEnProductoArbitrario} indica que esto último se da si, y sólo si $(\varphi_\alpha(x))_{x \in X} \to (\varphi(x))_{x \in X}$ en $\mathcal{D}$. O bien, si, y  sólo si $F(\varphi_\alpha) \to F(\varphi)$. Esto indica que $F$ es continua y al ser inyectiva se sigue que también preserva abiertos. 
 
-Por último, veamos que el rango de $F$ es cerrado. Tomemos una red convergente $(G_\alpha)_{\alpha \in \Lambda}  \in F(B_{X^*})$ y sea $(d_x)_{x \in X} \in \mathcal{D}$ su límite. Existe entonces una red $(f_\alpha)_\alpha$ en $B_{X^*}$ tal que $F(f_\alpha) = G_\alpha$. Así,
+Por último, veamos que el rango de $F$ es cerrado en $\mathcal{D}$. Tomemos entonces una red convergente $(G_\alpha)_{\alpha \in \Lambda}  \in F(B_{X^*})$ y sea $(d_x)_{x \in X} \in \mathcal{D}$ su límite. De esta manera existe una red $(f_\alpha)_\alpha$ en $B_{X^*}$ tal que $F(f_\alpha) = G_\alpha$. Así,
 $$\lim_{\alpha\in \Lambda} F(f_\alpha) = \lim_{\alpha\in\Lambda} (f_\alpha(x))_{x\in X} = (d_x)_{x \in X}.$$ 
 
 Queremos verificar que $(d_x)_{x \in X}$ pertenece a $F(B_{X^*})$. Consideramos entonces la función $g: X \to \K$ dada por $g(x) = d_x$ para todo $x \in X$. Notemos que $g$ es lineal, pues dados $x, y \in X$, $\lambda \in \K$ se tiene que
@@ -1831,12 +1778,30 @@ Esto indica que $\Norm{g} \leq 1$, por lo que $g \in B_{X^*}$ y $$F(g) = (g(x))_
 Por lo tanto $(d_x)_{x\in X} \in F(B_{X^*})$ y así $F(B_{X^*})$ es cerrado. Como $\mathcal{D}$ es compacto y $F(B_{X^*})$ es cerrado, entonces también es compacto. Además $F$ es un homeomorfismo entre $F(B_{X^*})$ y $B_{X^*}$. Por lo que $B_{X^*}$ es compacto con la topología débil*.
 \end{Dem}
 
+\begin{Def}
+Si $X$ es un espacio normado tal que $J(X) = X^{**}$ se dice que $X$ es \textit{reflexivo}. 
+\end{Def}
+
+Si $X$ es un espacio reflexivo, entonces la ecuación~(\ref{Eq:IgualdadBasicos}) indica que las bases de la topología débil* y la topología débil de $X^*$ coinciden, por lo que la primera contención en~(\ref{Eq:RelacionTopologias}) es una igualdad.
+
+\begin{Prop} \label{Prop:ReflexivoIdentifiacionCanonicaDebilContinua}
+Sea $X$ un espacio normado. Se cumple que $J :  X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es continua. Si además $X$ es reflexivo, entonces $J :  X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es un homeomorfismo.
+\end{Prop}
+
+\begin{Dem}
+Supongamos que $X$ es reflexivo y mostremos que $J$ es homeomorfismo. Sólo notemos que en la parte donde se demuestra que $J$ es continua, no se requiere que $X$ sea reflexivo. Así pues, dado que $J$ es un isomorfismo de espacios vectoriales, ya sólo falta verificar que $J$ y $J^{-1}$ son continuas. Para eso tomemos una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X_\mathrm{w}$ y $x \in X_\mathrm{w}$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebil} dice que que $x_\alpha \weakarrow x$ si, y sólo si $\varphi(x_\alpha) \to \varphi(x)$ para toda $\varphi \in X^*$. Esto último equivale a que $\delta_{x_\alpha}(\varphi) \to \delta_{x}(\varphi)$ para toda $\varphi \in X^*$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebilEstrella} indica que esto es lo mismo que $\delta_{x_\alpha} \weakstararrow \delta_x$, o bien, $J(x_\alpha) \weakstararrow J(x)$. Por lo que $J$ es continua al igual que $J^{-1}$.
+\end{Dem}
+
+\begin{Ejem}
+Sea $X$ un espacio normado de dimensión finita $n \in\N$. Al final de la demostración de la proposición~\ref{Prop:DualDimensionInfinita} se estableció que $\dim X \geq \dim X^*$. Luego $\dim X \geq \dim X^* \geq \dim X^{**}$. Por otro lado $J: X \to X^{**}$ es inyectiva, por lo que $\dim X \leq \dim X^{**}$. Así que $X$ y $X^{**}$ son de la misma dimensión. Como $J$ es lineal, inyectiva y está definida entre espacios de la misma dimensión, resulta que es sobreyectiva y $X$ es reflexivo.  
+\end{Ejem}
+
 \begin{Cor} 
 Si $X$ es un espacio normado reflexivo, entonces  $B_{X^*}$ es $\mathrm{w}$-compacta.
 \end{Cor}
 
 \begin{Dem}
-Habíamos notado anteriormente que en espacios reflexivos $\sigma(X^*, X) = \sigma(X^*, X^{**})$. Por lo que la compacidad con la topología débil y débil* de $B_{X^*}$ son equivalentes. Por el teorema de Banach-Alaoglu resulta entonces que $B_{X^*}$ es $\mathrm{w}^*$-compacta y por tanto $\mathrm{w}$-compacta.
+Habíamos notado anteriormente que en espacios reflexivos $\sigma(X^*, X) = \sigma(X^*, X^{**})$. Por lo que la compacidad con la topología débil y débil* de $B_{X^*}$ coinciden. Por el teorema de Banach-Alaoglu resulta entonces que $B_{X^*}$ es $\mathrm{w}^*$-compacta y por tanto $\mathrm{w}$-compacta.
 \end{Dem}
 
 \begin{Tma} \textbf{(Goldstine)}
@@ -1844,7 +1809,7 @@ Sea $X$ un espacio normado. Entonces $\ov{J(B_X)}^{\mathrm{w}^*}= B_{X^{**}} $.
 \end{Tma}
 
 \begin{Dem}
-El teorema de Banach-Alaoglu nos dice que $B_{X^{**}}$ es $\mathrm{w}^*$-compacta y como $X^{**}$ es Hausdorff del corolario~\ref{Cor:HausdorffCompactoEsCerrado} se sigue que $B_{X^{**}}$ también es $\mathrm{w}^*$-cerrado. Dado que $J(B_X) \subseteq B_{X^{**}}$, tenemos que $$\ov{J(B_X)}^{\mathrm{w}^*} \subseteq \ov{B_{X^{**}}}^{\mathrm{w}^*} = B_{X^{**}}.$$
+El teorema de Banach-Alaoglu nos dice que $B_{X^{**}}$ es $\mathrm{w}^*$-compacta y como $X^{**}$ es Hausdorff del corolario~\ref{Cor:HausdorffCompactoEsCerrado} se sigue que $B_{X^{**}}$ también es $\mathrm{w}^*$-cerrado. Dado que $J(B_X) \subseteq B_{X^{**}}$, se cumple que $$\ov{J(B_X)}^{\mathrm{w}^*} \subseteq \ov{B_{X^{**}}}^{\mathrm{w}^*} = B_{X^{**}}.$$
 
 Para demostrar la otra contención tomemos $\delta \in B_{X^{**}}$. Sea $U$ una $\mathrm{w}^*$-vecindad de $\delta$. Hay que demostrar que  $J(B_X) \cap U \neq \emptyset$. Por la proposición~\ref{Prop:BaseDeEntornosTopologiaDebilSeminormas} existen $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $\varepsilon > 0$ tales que $U_{\delta, \varphi_1, \ldots, \varphi_n, \varepsilon} \subseteq U$. 
 
