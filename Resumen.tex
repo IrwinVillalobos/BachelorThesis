@@ -283,7 +283,7 @@ Definamos $$U := \bigcup_{i=1}^m U_{x_i} \quad\mbox{ y }\quad V := \bigcap_{j=1}
 \end{Dem}
 
 \begin{Cor} \label{Cor:HausdorffCompactoEsCerrado}
-Sea $X$ un espacio topológico Hausdorff. Si $K \subset X$ es compacto, entonces es cerrado. 
+Sea $X$ un espacio topológico Hausdorff. Si $K$ es un subconjunto compacto de $X$, entonces $K$ es cerrado. 
 \end{Cor}
 
 \begin{Dem}
@@ -385,7 +385,7 @@ Esta resulta ser una topología en $M$ y la llamamos \textit{topología original} 
 
 La siguiente proposición indica que en un espacio métrico $M$ las bolas abiertas forman una base de la topología original de $M$.
 
-\begin{Prop} \label{Prop:BaseDeEntonrnosEspaciosNormados}
+\begin{Prop} \label{Prop:BaseDeEntonrnosEspaciosMetricos}
 Sea $M$ un espacio métrico. La colección $$\mathcal{B} := \{ V_r(x) : r > 0, x \in M \}$$ es una base de $M$.
 \end{Prop}
 
@@ -409,7 +409,7 @@ Supongamos ahora que para todo $\varepsilon > 0$ existe $N \in \N$ tal que $\Nor
 
 La siguiente proposición indica que los espacios métricos son Hausdorff y por lo tanto las sucesiones convergentes en espacios métricos tienen límite único.
 
-\begin{Prop}
+\begin{Prop} \label{Prop:EspacioMetricoHausdorff}
 Todo espacio métrico es Hausdorff. 
 \end{Prop}
 
@@ -444,38 +444,79 @@ Ahora tomemos $x \in M$ tal que existe $(x_n)_{n\in\N} \subseteq A$ con $x_n \to
 \end{Dem}
 
 \begin{Def}
-Sea $X$ un espacio topológico y $(x_n)_{n \in \N}$ una sucesión en $X$. Decimos que $x \in X$ es un \textit{punto de acumulación} de $(x_n)_{n \in \N}$ si para toda vecindad abierta $V$ de $x$ existen infinitos $n \in \N$ tales que $x_n \in V$.
+Sea $M$ un espacio métrico. Una sucesión $(x_n)_{n\in\N} \subseteq M$ es de \textit{Cauchy} si para todo $\varepsilon > 0$ existe $N \in\N$ tal que $d(x_n, x_m) < \varepsilon$ para $n, m \geq N$. Decimos que $M$ es \textit{completo} si toda sucesión de Cauchy converge.  
 \end{Def}
 
-\begin{Obs}
-Notemos que $x \in X$ es un punto de acumulación de $(x_n)_{n \in \N}$ si, y sólo si para toda vecindad abierta $V$ de $x$ y para toda $n \in \N$ existe $m \geq n$ tal que $x_m \in V$.
-\end{Obs}
-
-El concepto de punto de acumulación existe además para un conjunto arbitrario en $X$. Aunque uno podría pensar que el concepto de punto de acumulación de una sucesión es un caso particular del concepto de punto de acumulación de un conjunto, resulta que no es así. Este último resulta ser más débil.
-
-\begin{Lema} \label{Lema:LimiteSubsucesiones}
-Sea $M$ un espacio métrico y $(x_n)_{n\in\N}$ una sucesión en $\N$. Entonces los puntos de acumulación de $(x_n)_{n \in \N}$ coinciden con los límites de las subsucesiones de $(x_n)_{n\in\N}$.
+\begin{Lema} \label{Lema:SucesionCauchyConSubsucesionConvergenteConverge}
+Sea $M$ un espacio normado. Si $(x_n)_{n \in\N}$ es una sucesión de Cauchy en $M$ y tiene una subsucesión que converge a $x \in M$, entonces $(x_n)_{n\in\N}$ converge a $x$.
 \end{Lema}
+
+\begin{Dem}
+Supongamos que $(x_n)_{n\in\N} \subseteq M$ es de Cauchy y que $(x_{k_n})_{n\in\N}$ es una subsucesión de $(x_n)_{n\in\N}$ que converge a $x \in X$. Sea $\varepsilon> 0$. Dado que $(x_n)_{n\in \N}$ es de Cauchy, existe $N \in \N$ tal que
+\begin{equation} \label{Eq:NormaCompleta1}
+d(x_n, x_m) < \frac{\varepsilon}{2}, \;\mbox{ si }\; n, m \geq N.
+\end{equation}
+
+Puesto que $(x_{k_n})_{n \in\N}$ converge a $x$, existe $M \in \N$ tal que 
+\begin{equation} \label{Eq:NormaCompleta2}
+d(x_{k_n}, x) < \frac{\varepsilon}{2}, \; \mbox{ si } \; n \geq M.
+\end{equation}
+
+Tomemos $L = \max(N, M)$ y $n \geq L$. De esta manera tenemos que $k_L \geq L \geq N$ y $n \geq L \geq N$ y por $(\ref{Eq:NormaCompleta1})$ se sigue que $d(x_{k_L}, x_n) < \frac{\varepsilon}{2}$. Además, como $L \geq M$, de $(\ref{Eq:NormaCompleta2})$ se tiene que $d(x_{k_L}, x) < \frac{\varepsilon}{2}$. Por la desigualdad del triángulo concluimos que $$d(x_n, x) \leq d(x_n, x_{k_L}) + d(x_{k_L},  x) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon, $$ y así $x_n \to x$.
+\end{Dem}
+
+\begin{Def}
+Sea $X$ un espacio topológico y $A$ un conjunto en $X$. Decimos que $x \in X$ es un \textit{punto de acumulación} de $A$ si para toda vecindad abierta $U$ de $x$ se cumple que $(U \cap A) \setminus \{ x \} \neq \emptyset$. Al conjunto de puntos de acumulación de $A$ lo denotamos por $A^\prime$.
+\end{Def}
+
+\begin{Prop} \label{Prop:PropiedadesPuntosDeAcumulacion}
+Sea $X$ un espacio topológico.
+\begin{itemize}
+\item \textbf{i)} Si $A \subseteq B \subseteq X$, entonces $A^\prime \subseteq B^\prime$. 
+\item \textbf{ii)} Si $A \subseteq X$, entonces $A^\prime \subseteq \ov{A}$.
+\end{itemize}
+\end{Prop}
 
 \begin{Dem}
 (Pendiente).
 \end{Dem}
 
+\begin{Prop} \label{Prop:PuntoAcumulacionDeComplementoFinito}
+Sea $X$ un espacio topológico y $A$ un conjunto en $X$. Si $x \in X$ es un punto de acumulación de $A$ y $B \subseteq A$ es un conjunto finito, entonces $x$ es punto de acumulación de $A \setminus B$.  
+\end{Prop}
+
+\begin{Dem}
+supongamos que $B = \{ x_1, \ldots , x_k \}$ para algún $k \in \N$ y algunos $x_1, \ldots, x_k \in A$. Sea $U$ una vecindad abierta de $x$. Entonces existe $r > 0$ tal que $V_r(x) \subseteq U$. Sea $s = \min (\{ d(x, x_i) : 1 \leq i \leq k \mbox{ y } x \neq x_i \} \cup \{ r \}) > 0$. Como $V_s(x)$ es una vecindad abierta de $x$ y $x$ es punto de acumulación de $A$, existe $y \in (A\cap V_s(x))\setminus \{x \}$. De esta forma se cumple que $y \in A$, $y \neq x$, $y \in V_r(x) \subseteq U$ y $d(x, y) < s \leq d(x, x_i)$ para todo $1\leq i \leq k$ con $x_i \neq x$. Si $x_i = x$ para algún $i \in \nn{k}$, entonces $y \neq x = x_i$. Así que $y \notin B$. Por tanto $((A\setminus B)\cap U) \setminus \{ x \} \neq \emptyset$ y $x$ es punto de acumulación de $A \setminus B$.  
+\end{Dem}
+
+\begin{Def}
+Sea $M$ un espacio métrico. Un conjunto $K \subseteq M$ se dice \textit{totalmente acotado} si para cada $\varepsilon > 0$ existen $n \in\N, x_1, \ldots, x_n \in M$ tales que 
+$$K \subseteq \bigcup_{i=1}^n V_\varepsilon(x_i).$$
+En este caso diremos que $\{ x_1, \ldots, x_n \}$ es una $\varepsilon$-\textit{red} de $\K$
+\end{Def}
+
 \begin{Tma} \label{Tma:CaracterizacionCompacidadSucesiones}
 Sean $M$ un espacio métrico y $K \subseteq M$. Son equivalentes:
 \begin{itemize}
 \item \textbf{i)} $K$ es compacto.
-\item \textbf{ii)} Toda sucesión en $K$ contiene una subsucesión convergente.
+\item \textbf{ii)} Toda sucesión en $K$ contiene una subsucesión convergente en $K$.
+\item \textbf{iii)} $K$ es completo y totalmente acotado.
 \end{itemize}
 \end{Tma}
 
 \begin{Dem}
-Supongamos primero que $K$ es compacto y consideremos una sucesión $(x_n)_{n \in \N}$ en $K$. Para cada $n \in \N$ definamos el conjunto $C_n = \ov{ \{x_m : m \geq n\} }$. Supongamos que $\bigcap_{n=1}^\infty C_n = \emptyset$. Por las leyes de De Morgan se sigue que $\bigcup_{n=1}^\infty (K \setminus C_n) = K$. Así pues, $\{ K \setminus C_n \}_{n \in \N}$ es una cubierta abierta de $K$ respecto al espacio métrico $K$. Por ser $K$ compacto, existen $N \in \N$, $k_1, \ldots, k_N \in \N$ con $K = \bigcup_{i=1}^N (K \setminus C_{k_i})$. Así que $\bigcap_{i=1}^N C_{k_i} = \emptyset$. Tomemos $k = \max \{ k_i : 1 \leq 1 \leq N \}$. De manera que $x_k \in C_k \subseteq C_{k_i}$ para toda $1 \leq i \leq N$. Lo que indica que $x_k \in \bigcap_{i=1}^n C_{k_i}$. Esto es una contradicción, por lo que $\bigcap_{n=1}^{ \infty} C_n \neq \emptyset$. 
+Demostraremos que \textbf{i)} implica \textbf{ii)}, que \textbf{ii)} implica \textbf{iii)} y que \textbf{iii)} implica \textbf{i)}.
 
-Tomemos $x \in \bigcap_{n=1}^\infty C_n$. Veamos que $x$ es un punto de acumulación de $(x_n)_{n \in \N}$. Sea $V$ una vecindad abierta de $x$ y $n \in \N$. Como $x \in C_n$, se tiene que $\{ x_m : m \geq n \} \cap V \neq \emptyset$. Así que existe $m \geq n$ con $x_m \in V$. Del lema~\ref{Lema:LimiteSubsucesiones} se sigue que existe una subsucesión de $(x_n)_{n\in\N}$ que converge a $x$. 
+Así pues, tomemos $K \subseteq M$ compacto como en \textbf{i)}. Sea $(x_n)_{n\in\N}$ una sucesión en $K$. Consideremos el conjunto $A = \{ x_n : n \in \N \}$. Supongamos que $A$ tiene un punto de acumulación $x \in X$. La proposición~\ref{Prop:EspacioMetricoHausdorff} indica que $M$ es Hausdorff y el corolario~\ref{Cor:HausdorffCompactoEsCerrado} asegura que $K$ es cerrado. Como $A \subseteq K$, de la proposición~\ref{Prop:PropiedadesPuntosDeAcumulacion} se sigue que 
+$$x \in A^\prime \subseteq K^\prime \subseteq \ov{K} = K.$$
+ 
+Construyamos $(k_n)_{n \in \N} \subseteq \N$ de tal forma que $(x_{k_n})_{n \in\N}$ sea una subsucesión convergente de $(x_n)_{n \in\N}$. Como $x$ es punto de acumulación de $A$ y $V_{2^{-1}}(x)$ es una vecindad abierta de $x$, resulta que  $(A \cap V_{2^{-1}}(x)) \setminus \{ x \} \neq \emptyset$. Así que existe $k_1 \in \N$ tal que $x_{k_1} \in  V_{2^{-1}}(x) \setminus \{ x \}$. La proposición~\ref{Prop:PuntoAcumulacionDeComplementoFinito} afirma que $x$ es punto de acumulación de $A \setminus \{ x_1, \ldots , x_{k_1} \}$. Dado que $V_{2^{-2}}$ es vecindad abierta de $x$, tenemos que $(A \setminus \{x_1, \ldots, x_{k_1} \} \cap V_{2^{-2}}(x)) \setminus \{ x \} \neq \emptyset$.  Así que existe $k_2 \in \N$ tal que $x_{k_2} \in  V_{2^{-2}}(x) \setminus \{ x, x_1, \ldots, x_{k_1} \}$. Esto indica que $k_1 < k_2$. Sucesivamente podemos construir la subsucesión $(x_{k_n})_{n\in\N}$ de $(x_n)_{n \in\N}$ tal que $x_{k_n} \in V_{2^{-n}}(x)$. Claramente $x_{k_n} \to x$.
 
-Supongamos ahora que $X$ no es compacto. Existe entonces una cubierta abierta $\{ V_i \}_{i \in I}$ de $X$ tal que  no tiene  una subcubierta finita. Sea $\Lambda$ la colección de subconjuntos finitos de $I$ con el orden de inclusión. Para cada $F \in \Lambda$ la subcolección finita $\{ V_i : i \in F \}$ no cubre a $X$. Por lo que $\bigcup_{i\in F} V_i \neq X$. Así que existe $x_F \in X$ tal que $x_F \notin V_i$ para todo $i \in F$. Consideremos la red $(x_F)_{F \in \Lambda}$. Demostremos que esta red no tiene subredes que converjan. Por el lema~\ref{Lema:LimiteSubredes} esto último equivale a demostrar que $(x_F)_{F \in \Lambda}$ no tiene puntos de acumulación. Sea $x \in X$. Entonces $x \in V_{i_0}$ para algún $i_0 \in I$. Además, para $F \in \Lambda$ tal que $\{ i_0 \} \subseteq F$ se tiene que $x_F \notin V_{i_0}$. Esto indica que $x$ no es punto de acumulación de $(x_F)_{F \in \Lambda}$.
+Ahora supongamos que $A$ no tiene puntos de acumulación. Entonces, para cada $x \in \K$ existe una vecindad abierta $V_x$ de $x$ tal que $(A \cap V_x) \setminus \{ x \} = \emptyset$, o bien $A \cap V_x \subseteq \{ x \}$. Como $\{  V_x \}_{x \in K}$ es una cubierta abierta de $K$, existen $k \in \N$, $y_1, \ldots, y_k \in \K$ tales que $K \subseteq \bigcup_{i=1}^k V_{y_i}$. De esto que
+$$A = A \cap K \subseteq A \cap \left( \bigcup_{i=1}^k V_{y_i} \right) = \bigcup_{i=1}^k (A \cap V_{y_i}) \subseteq \bigcup_{i=1}^k \{ y_i \}.$$ 
+Es decir, $(x_n)_{n\in\N}$ solamente toma los valores $\{ y_1, \ldots, y_k\}$, por lo que algún $y_i$ aparece infinitas veces en $(x_n)_{n\in\N}$. La subsucesión constante de $(x_n)_{n\in\N}$ que consiste en este $y_i$ converge a $y_i \in\K$.
 
+Ahora supongamos \textbf{ii)}. (Pendiente).
 \end{Dem}
 
 \begin{Def}
@@ -684,6 +725,7 @@ Al notar que $\varphi$ verifica \textbf{ii)} y \textbf{iii)} de la definición an
 Sean $X$ un espacio topológico y $(x_\alpha)_{\alpha \in \Lambda}$ una red en $X$. Decimos que $x \in X$ es un \textit{punto de acumulación} de $(x_\alpha)_{\alpha \in \Lambda}$ si para toda vecindad abierta $V$ de $x$ y para toda $\alpha \in \Lambda$ existe $\beta \geq \alpha$ tal que $x_\beta \in V$.
 \end{Def}
 
+El concepto de punto de acumulación existe además para un conjunto arbitrario en $X$. Aunque uno podría pensar que el concepto de punto de acumulación de una red es un caso particular del concepto de punto de acumulación de un conjunto, resulta que no es así. Este último resulta ser más débil.
 
 \begin{Lema} \label{Lema:LimiteSubredes}
 Si $X$ es un espacio topológico, entonces el conjunto de los puntos de acumulación de una red $(x_\alpha)_{\alpha\in\Lambda}$ en $X$ coincide con el conjunto de los límites de sus subredes. 
@@ -746,6 +788,8 @@ Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$.
 \end{Tma}
 
 \begin{Dem}
+Sea $(f_\alpha)_{\alpha \in \Lambda}$ una red en $X = \prod_{i \in I} X_i$. Demostremos que existe una subred de $(f_\alpha)_{\alpha \in \Lambda}$ convergente. 
+
 (Pendiente).
 \end{Dem}
 
@@ -1168,6 +1212,8 @@ Una \textit{norma} en un espacio vectorial $X$ es una seminorma $\Norm{\cdot}: X
 
 Es sencillo verificar que en un espacio normado $X$ la función $d: X \times X \to [0, \infty)$ definida por $$d(x, y) := \Norm{x-y}$$ es una métrica, por lo que $X$ es un espacio métrico y entonces podemos considerar la topología inducida por la métrica, la cual se denomina \textit{topología original} de $X$. A menos que se especifique otra cosa, cuando hablemos de un espacio normado como espacio topológico, lo consideraremos con su topología original.
 
+Además, los conceptos de sucesión de Cauchy y completitud se heredan de las definiciones en espacios métricos. Si un espacio normado es completo decimos que es un \textit{espacio de Banach}.
+
 \begin{Lema} \label{Lema:NormaContinua}
 Sea $X$ un espacio normado. Entonces la norma $\Norm{\cdot}:X \to [0, \infty)$ es una función continua y convexa.
 \end{Lema}
@@ -1203,11 +1249,6 @@ U_{x, \Norm{\cdot}, \varepsilon} &= \{ y \in X : \Norm{\cdot}(x-y) < \varepsilon
 concluimos que $\mathcal{B}_1 = \mathcal{B}_2$.
 \end{Dem}
 
-\begin{Def}
-Sea $X$ un espacio normado. Una sucesión $(x_n)_{n\in\N}$ es de \textit{Cauchy} si para todo $\varepsilon > 0$ existe $N \in\N$ tal que $\Norm{x_n - x_m} < \varepsilon$ para $n, m \geq N$. Decimos que $X$ es \textit{completo} si toda sucesión de Cauchy converge. En este caso decimos que $X$ es un \textit{espacio de Banach}.  
-\end{Def}
-
-
 \begin{Prop} \label{Prop:EspacioBanachEsEVTCompleto}
 Si $X$ es un espacio de Banach, entonces es un espacio vectorial topológico completo.
 \end{Prop}
@@ -1234,24 +1275,6 @@ Definamos $\beta = \alpha_{2M}$. Por (\ref{Eq:RedesCauchy1}) y (\ref{Eq:RedesCau
 Por la desigualdad del triángulo $\Norm{x_\gamma - x} < \frac{1}{N}$ y así $x_\gamma - x \in U$. Es decir, $x_\alpha \to x$.
 \end{Dem}
 
-\begin{Lema} \label{Lema:SucesionCauchyConSubsucesionConvergenteConverge}
-Sea $X$ un espacio normado. Si $(x_n)_{n \in\N}$ es una sucesión de Cauchy y tiene una subsucesión que converge a $x \in X$, entonces $(x_n)_{n\in\N}$ converge a $x$.
-\end{Lema}
-
-\begin{Dem}
-Supongamos que $(x_n)_{n\in\N}$ es de Cauchy y que $(x_{k_n})_{n\in\N}$ es una subsucesión de $(x_n)_{n\in\N}$ que converge a $x \in X$. Sea $\varepsilon> 0$. Dado que $(x_n)_{n\in \N}$ es de Cauchy, existe $N \in \N$ tal que
-\begin{equation} \label{Eq:NormaCompleta1}
-\Norm{x_n - x_m } < \frac{\varepsilon}{2}, \;\mbox{ si }\; n, m \geq N.
-\end{equation}
-
-Puesto que $(x_{k_n})_{n \in\N}$ converge a $x$, existe $M \in \N$ tal que 
-\begin{equation} \label{Eq:NormaCompleta2}
-\Norm{x_{k_n} - x} < \frac{\varepsilon}{2}, \; \mbox{ si } \; n \geq M.
-\end{equation}
-
-Tomemos $L = \max(N, M)$ y $n \geq L$. De esta manera tenemos que $k_L \geq L \geq N$ y $n \geq L \geq N$ y por $(\ref{Eq:NormaCompleta1})$ se sigue que $\Norm{x_{k_L} - x_n} < \frac{\varepsilon}{2}$. Además, como $L \geq M$, de $(\ref{Eq:NormaCompleta2})$ se tiene que $\Norm{x_{k_L} - x} < \frac{\varepsilon}{2}$. Por la desigualdad del triángulo concluimos que $$\Norm{x_n - x} \leq \Norm{x_n - x_{k_L}} + \Norm{x_{k_L} -  x} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon, $$ y así $x_n \to x$.
-\end{Dem}
-
 \begin{Def}
 Sea $X$ un espacio normado. Decimos que $A \subseteq X$ es un conjunto \textit{acotado} si existe $M > 0$ tal que $\Norm{x} \leq M$ para todo $x \in A$.
 \end{Def}
@@ -1261,7 +1284,7 @@ Sea $X$ un espacio normado y $(x_n)_{n \in\N}$ una sucesión en $X$. Si $(x_n)_{n
 \end{Lema}
 
 \begin{Dem}
-Tomemos $\varepsilon = 1$. Así pues, existe $N \in \N$ tal que si $n, m \geq N$, entonces $\Norm{x_n - x_m} < 1$. Esto indica que para $n \geq N$ se cumple que $$\Norm{x_n} - \Norm{x_N} \leq \abs{\Norm{x_n} - \Norm{x_N}} \leq \Norm{x_n - x_N} < 1$$ y así $\Norm{x_n} < 1 + \Norm{x_N}$.
+Tomemos $\varepsilon = 1$. Así, existe $N \in \N$ tal que si $n, m \geq N$, entonces $\Norm{x_n - x_m} < 1$. Esto indica que para $n \geq N$ se cumple que $$\Norm{x_n} - \Norm{x_N} \leq \abs{\Norm{x_n} - \Norm{x_N}} \leq \Norm{x_n - x_N} < 1$$ y así $\Norm{x_n} < 1 + \Norm{x_N}$.
 
 Definamos $M = \max(\Norm{x_1}, \ldots, \Norm{x_{N-1}}, 1+\Norm{x_N})$. De esta manera es claro verificar que $\Norm{x_n} \leq M$ para toda $n \in\N$ y así $\{ x_n : n \in \N \}$ es acotado.
 \end{Dem}
@@ -1962,6 +1985,11 @@ Una función $f: \Omega \to X$ se dice \textit{escalarmente} $\mu$\textit{-medibl
 \begin{Dem}
 (Pendiente)
 \end{Dem}
+
+\begin{Def}
+Sea $f: \Omega \to X$ una función simple de manera que $f(\omega) = \sum_{i=1}^n \chi_{E_i} (\omega) x_i$ para algunos $n \in\N$, $E_1, \ldots, E_n \in \Sigma$ disjuntos y $x_1,\ldots, x_n \in X$. Entonces definimos la \textit{integral de Bochner} de $f$ en $E \in \Sigma$ como 
+$$\int_E f \, d \mu := \sum_{i=1}^n \mu(E\cap E_i)x_i.$$ 
+\end{Def}
 
 \section{El teorema de Orlicz-Pettis.}
 
