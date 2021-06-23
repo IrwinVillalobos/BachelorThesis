@@ -347,13 +347,16 @@ Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$.
 Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$. La \textit{topología producto} de $\prod_{i\in I} X_i$ es la generada por la base $$\left\{ \bigcap_{j=1}^k \pi_{i_j}^{-1}(U_j) : k \in \N, \, i_1, \ldots, i_k \in I \mbox{ y } U_j \mbox{ es abierto en } X_{i_j} \mbox{ para cada } 1\leq j \leq k\right\}.$$
 \end{Def}
 
-Veamos que con esta definición de topología producto las proyecciones son continuas. Fijemos $i \in I$ y tomemos cualquier abierto $U_i$ en $X_i$. Entonces $\pi_i^{-1}(U_i)$ es un básico de $\prod_{i\in I} X_i$ y por tanto es abierto. Esto indica que $\pi_i$ es continua.  
- 
-Si tenemos un par de espacios topológicos compactos, es sencillo verificar que su producto sigue siendo compacto. Uno de los teoremas más importantes en la topología es el teorema de Tychonoff y generaliza este resultado estableciendo que el producto arbitrario de espacios compactos es compacto.  
- 
-\begin{Tma} \textbf{(Tychonoff)}
-Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$. Si cada $X_i$ es un espacio compacto, entonces el espacio $\prod_{i\in I} X_i$ es compacto.
-\end{Tma}
+Veamos que con esta definición de topología producto las proyecciones son continuas. Fijemos $i \in I$ y tomemos cualquier abierto $U_i$ en $X_i$. Entonces $\pi_i^{-1}(U_i)$ es un básico de $\prod_{i\in I} X_i$ y por tanto es abierto. Esto indica que $\pi_i$ es continua.  \\
+
+Una manera de identificar a un elemento $(x_i)_{i \in I}$ de $\prod_{i\in I} X_i$ es mediante la función 
+\Ecu{
+f: I &\to \bigcup_{i\in I} X_i \\
+j &\mapsto f(j) := x_j.
+}
+
+En varias ocasiones, será más sencillo considerar al producto como el espacio de estas funciones
+$$\prod_{i\in I} X_i = \left\{ \left. f : I \to \bigcup_{i \in I} X_i \,\right\vert\, f(j) \in X_j , \mbox{ para cada } j \in I  \right\} .$$
 
 \section{Espacios métricos.}
 El marco de espacios topológicos es muy general, por lo que estudiaremos un caso particular de estos espacios que tienen mejores propiedades y donde las sucesiones juegan un papel muy importante. 
@@ -437,7 +440,25 @@ Sean $M$ un espacio métrico y $A \subseteq M$. Entonces $\overline{A}$ es el con
 \begin{Dem}
 Tomemos $x \in \overline{A}$. Para cada $n \in \N$, tenemos que $V_{\frac{1}{n}}(x)$ es una vecindad abierta de $x$ y por lo tanto $V_{\frac{1}{n}}(x) \cap A \neq \emptyset$. Así que existe algún $x_n \in V_{\frac{1}{n}}(x) \cap A$. Claramente, $(x_n)_{n\in \N}$ es una sucesión en $A$ tal que $x_n \to x$. 
 
-Ahora tomemos $x \in M$ tal que existe $(x_n)_{n\in\N} \subseteq A$ con $x_n \to x$. Sea $U$ una vecindad abierta de $x$. Entonces existe $N \in \N$ tal que $x_n \in U$ si $n \geq N$. En particular, $x_N \in U \cap A \neq \emptyset$ y así $x \in \ov{A}$. 
+Ahora tomemos $x \in M$ tal que existe $(x_n)_{n\in\N} \subseteq A$ con $x_n \to x$. Sea $U$ una vecindad abierta de $x$. Entonces existe $N \in \N$ tal que $x_n \in U$ si $n \geq N$. En particular, $x_N \in U \cap A \neq \emptyset$ y de esta manera $x \in \ov{A}$. 
+\end{Dem}
+
+\begin{Def}
+Sea $X$ un espacio topológico y $(x_n)_{n \in \N}$ una sucesión en $X$. Decimos que $x \in X$ es un \textit{punto de acumulación} de $(x_n)_{n \in \N}$ si para toda vecindad abierta $V$ de $x$ existen infinitos $n \in \N$ tales que $x_n \in V$.
+\end{Def}
+
+\begin{Obs}
+Notemos que $x \in X$ es un punto de acumulación de $(x_n)_{n \in \N}$ si, y sólo si para toda vecindad abierta $V$ de $x$ y para toda $n \in \N$ existe $m \geq n$ tal que $x_m \in V$.
+\end{Obs}
+
+El concepto de punto de acumulación existe además para un conjunto arbitrario en $X$. Aunque uno podría pensar que el concepto de punto de acumulación de una sucesión es un caso particular del concepto de punto de acumulación de un conjunto, resulta que no es así. Este último resulta ser más débil.
+
+\begin{Lema} \label{Lema:LimiteSubsucesiones}
+Sea $M$ un espacio métrico y $(x_n)_{n\in\N}$ una sucesión en $\N$. Entonces los puntos de acumulación de $(x_n)_{n \in \N}$ coinciden con los límites de las subsucesiones de $(x_n)_{n\in\N}$.
+\end{Lema}
+
+\begin{Dem}
+(Pendiente).
 \end{Dem}
 
 \begin{Tma} \label{Tma:CaracterizacionCompacidadSucesiones}
@@ -449,7 +470,11 @@ Sean $M$ un espacio métrico y $K \subseteq M$. Son equivalentes:
 \end{Tma}
 
 \begin{Dem}
-(Pendiente.)
+Supongamos primero que $K$ es compacto y consideremos una sucesión $(x_n)_{n \in \N}$ en $K$. Para cada $n \in \N$ definamos el conjunto $C_n = \ov{ \{x_m : m \geq n\} }$. Supongamos que $\bigcap_{n=1}^\infty C_n = \emptyset$. Por las leyes de De Morgan se sigue que $\bigcup_{n=1}^\infty (K \setminus C_n) = K$. Así pues, $\{ K \setminus C_n \}_{n \in \N}$ es una cubierta abierta de $K$ respecto al espacio métrico $K$. Por ser $K$ compacto, existen $N \in \N$, $k_1, \ldots, k_N \in \N$ con $K = \bigcup_{i=1}^N (K \setminus C_{k_i})$. Así que $\bigcap_{i=1}^N C_{k_i} = \emptyset$. Tomemos $k = \max \{ k_i : 1 \leq 1 \leq N \}$. De manera que $x_k \in C_k \subseteq C_{k_i}$ para toda $1 \leq i \leq N$. Lo que indica que $x_k \in \bigcap_{i=1}^n C_{k_i}$. Esto es una contradicción, por lo que $\bigcap_{n=1}^{ \infty} C_n \neq \emptyset$. 
+
+Tomemos $x \in \bigcap_{n=1}^\infty C_n$. Veamos que $x$ es un punto de acumulación de $(x_n)_{n \in \N}$. Sea $V$ una vecindad abierta de $x$ y $n \in \N$. Como $x \in C_n$, se tiene que $\{ x_m : m \geq n \} \cap V \neq \emptyset$. Así que existe $m \geq n$ con $x_m \in V$. Del lema~\ref{Lema:LimiteSubsucesiones} se sigue que existe una subsucesión de $(x_n)_{n\in\N}$ que converge a $x$. 
+
+Supongamos ahora que $X$ no es compacto. Existe entonces una cubierta abierta $\{ V_i \}_{i \in I}$ de $X$ tal que  no tiene  una subcubierta finita. Sea $\Lambda$ la colección de subconjuntos finitos de $I$ con el orden de inclusión. Para cada $F \in \Lambda$ la subcolección finita $\{ V_i : i \in F \}$ no cubre a $X$. Por lo que $\bigcup_{i\in F} V_i \neq X$. Así que existe $x_F \in X$ tal que $x_F \notin V_i$ para todo $i \in F$. Consideremos la red $(x_F)_{F \in \Lambda}$. Demostremos que esta red no tiene subredes que converjan. Por el lema~\ref{Lema:LimiteSubredes} esto último equivale a demostrar que $(x_F)_{F \in \Lambda}$ no tiene puntos de acumulación. Sea $x \in X$. Entonces $x \in V_{i_0}$ para algún $i_0 \in I$. Además, para $F \in \Lambda$ tal que $\{ i_0 \} \subseteq F$ se tiene que $x_F \notin V_{i_0}$. Esto indica que $x$ no es punto de acumulación de $(x_F)_{F \in \Lambda}$.
 
 \end{Dem}
 
@@ -660,7 +685,7 @@ Sean $X$ un espacio topológico y $(x_\alpha)_{\alpha \in \Lambda}$ una red en $X
 \end{Def}
 
 
-\begin{Lema} \label{Lema:limitesubred}
+\begin{Lema} \label{Lema:LimiteSubredes}
 Si $X$ es un espacio topológico, entonces el conjunto de los puntos de acumulación de una red $(x_\alpha)_{\alpha\in\Lambda}$ en $X$ coincide con el conjunto de los límites de sus subredes. 
 \end{Lema}
 
@@ -691,11 +716,11 @@ Sea $X$ un espacio topológico. Son equivalentes:
 \end{Tma}
 
 \begin{Dem}
-Supongamos primero que $X$ es compacto y consideremos una red $(x_\alpha)_{\alpha \in \Lambda}$ en $X$. Para cada $\alpha \in \Lambda$ definamos el conjunto $C_\alpha = \ov{ \{x_\beta : \beta \geq \alpha\} }$. Supongamos que $\bigcap_{\alpha \in \Lambda} C_\alpha = \emptyset$. Entonces $\bigcup_{\alpha\in \Lambda} (X \setminus C_\alpha) = X$. Así pues, $\{ X \setminus C_\alpha \}_{\alpha \in \Lambda}$ es una cubierta abierta de $X$. Por ser $X$ compacto, existen $n \in \N$, $\alpha_1, \ldots, \alpha \in \Lambda$ con $X = \bigcup_{i=1}^n (X \setminus C_{\alpha_i})$. Así que $\bigcap_{i=1}^n C_{\alpha_i} = \emptyset$. Tomemos $\gamma \in \Lambda$ con $\gamma \geq \alpha_i$ para todo $1 \leq i \leq n$. De esto se sigue que $x_\gamma \in C_\gamma \subseteq C_{\alpha_i}$. Lo que indica que $x_\gamma \in \bigcap_{i=1}^n C_\alpha$. Esto es una contradicción, por lo que $\bigcap_{\alpha \in \Lambda} C_\alpha \neq \emptyset$. 
+Supongamos primero que $X$ es compacto y consideremos una red $(x_\alpha)_{\alpha \in \Lambda}$ en $X$. Para cada $\alpha \in \Lambda$ definamos el conjunto $C_\alpha = \ov{ \{x_\beta : \beta \geq \alpha\} }$. Supongamos que $\bigcap_{\alpha \in \Lambda} C_\alpha = \emptyset$. Entonces $\bigcup_{\alpha\in \Lambda} (X \setminus C_\alpha) = X$. Así pues, $\{ X \setminus C_\alpha \}_{\alpha \in \Lambda}$ es una cubierta abierta de $X$. Por ser $X$ compacto, existen $n \in \N$, $\alpha_1, \ldots, \alpha_n \in \Lambda$ con $X = \bigcup_{i=1}^n (X \setminus C_{\alpha_i})$. Así que $\bigcap_{i=1}^n C_{\alpha_i} = \emptyset$. Tomemos $\gamma \in \Lambda$ con $\gamma \geq \alpha_i$ para todo $1 \leq i \leq n$. De esto se sigue que $x_\gamma \in C_\gamma \subseteq C_{\alpha_i}$. Lo que indica que $x_\gamma \in \bigcap_{i=1}^n C_{\alpha_i}$. Esto es una contradicción, por lo que $\bigcap_{\alpha \in \Lambda} C_\alpha \neq \emptyset$. 
 
-Tomemos $x \in \bigcap_{\alpha \in \Lambda} C_\alpha$. Veamos que $x$ es un punto de acumulación de $(x_\alpha)_{\alpha \in \Lambda}$. Sea $V$ una vecindad abierta de $x$ y $\alpha_0 \in \Lambda$. Como $x \in C_{\alpha_0}$, se tiene que $\{ x_\beta : \beta \geq \alpha_0 \} \cap V \neq \emptyset$. Por el lema~\ref{Lema:limitesubred} podemos afirmar que existe una subred de $(x_\alpha)_{\alpha\in\Lambda}$ que converge a $x$. 
+Tomemos $x \in \bigcap_{\alpha \in \Lambda} C_\alpha$. Veamos que $x$ es un punto de acumulación de $(x_\alpha)_{\alpha \in \Lambda}$. Sea $V$ una vecindad abierta de $x$ y $\alpha \in \Lambda$. Como $x \in C_{\alpha}$, se tiene que $\{ x_\beta : \beta \geq \alpha \} \cap V \neq \emptyset$. Así que existe $\beta \geq \alpha$ con $x_\beta \in V$. Del lema~\ref{Lema:LimiteSubredes} se sigue que existe una subred de $(x_\alpha)_{\alpha\in\Lambda}$ que converge a $x$. 
 
-Supongamos ahora que $X$ no es compacto. Existe entonces una cubierta abierta $\{ V_i \}_{i \in I}$ de $X$ tal que  no tiene  una subcubierta finita. Sea $\Lambda$ la colección de subconjuntos finitos de $I$ con el orden de inclusión. Para cada $F \in \Lambda$ la subcolección finita $\{ V_i : i \in F \}$ no cubre a $X$. Por lo que $\bigcup_{i\in F} V_i \neq X$. Así que existe $x_F \in X$ tal que $x_F \notin V_i$ para todo $i \in F$. Consideremos la red $(x_F)_{F \in \Lambda}$. Demostremos que esta red no tiene subredes que converjan. Por el lema~\ref{Lema:limitesubred} esto último equivale a demostrar que $(x_F)_{F \in \Lambda}$ no tiene puntos de acumulación. Sea $x \in X$. Entonces $x \in V_{i_0}$ para algún $i_0 \in I$. Además, para $F \in \Lambda$ tal que $\{ i_0 \} \subseteq F$ se tiene que $x_F \notin V_{i_0}$. Esto indica que $x$ no es punto de acumulación de $(x_F)_{F \in \Lambda}$. 
+Supongamos ahora que $X$ no es compacto. Existe entonces una cubierta abierta $\{ V_i \}_{i \in I}$ de $X$ tal que  no tiene  una subcubierta finita. Sea $\Lambda$ la colección de subconjuntos finitos de $I$ con el orden de inclusión. Para cada $F \in \Lambda$ la subcolección finita $\{ V_i : i \in F \}$ no cubre a $X$. Por lo que $\bigcup_{i\in F} V_i \neq X$. Así que existe $x_F \in X$ tal que $x_F \notin V_i$ para todo $i \in F$. Consideremos la red $(x_F)_{F \in \Lambda}$. Demostremos que esta red no tiene subredes que converjan. Por el lema~\ref{Lema:LimiteSubredes} esto último equivale a demostrar que $(x_F)_{F \in \Lambda}$ no tiene puntos de acumulación. Sea $x \in X$. Entonces $x \in V_{i_0}$ para algún $i_0 \in I$. Además, para $F \in \Lambda$ tal que $\{ i_0 \} \subseteq F$ se tiene que $x_F \notin V_{i_0}$. Esto indica que $x$ no es punto de acumulación de $(x_F)_{F \in \Lambda}$. 
 \end{Dem}
 
 \begin{Lema}
@@ -714,6 +739,15 @@ $$L- \varepsilon < g(x_\alpha) \leq f(x_\alpha) \leq h(x_\alpha) < L + \varepsil
 Por lo tanto $f(x_\alpha) \in (L- \varepsilon, L + \varepsilon) \subseteq U$, si $\alpha \geq \alpha_0$. 
 \end{Dem}
 
+Si tenemos un par de espacios topológicos compactos, es sencillo verificar que su producto sigue siendo compacto. Uno de los teoremas más importantes en la topología es el teorema de Tychonoff y generaliza este resultado estableciendo que el producto arbitrario de espacios compactos es compacto.  
+ 
+\begin{Tma} \textbf{(Tychonoff)}
+Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$. Si cada $X_i$ es un espacio compacto, entonces el espacio $\prod_{i\in I} X_i$ es compacto.
+\end{Tma}
+
+\begin{Dem}
+(Pendiente).
+\end{Dem}
 
 \section{Espacios vectoriales topológicos.}
 
@@ -1642,7 +1676,7 @@ Sobre la notación de la topología débil veo las siguientes opciones:
 \item \textbf{ii)} Denotar ${X_\mathrm{w}}^* := (X_\mathrm{w})^*$ y $X^*_\mathrm{w} := (X^*)_\mathrm{w}$. (Opción sugerida por mi).
 \item \textbf{iii)} Denotar siempre con paréntesis.
 \end{itemize}
-¿Cuál prefiere?
+¿Cuál opción prefiere?
 
 
 \begin{Prop}
@@ -1875,11 +1909,11 @@ Consideremos $V$ un abierto en $X$ y sea $\{ x_{k_1}, ..., x_{k_s} \} = \{x_0, x
 \end{Dem}
 
 \begin{Prop} \label{Prop:MedibilidadConvergenciaBanach}
-Sean $f_n: \Omega \to X$ medibles y $f : \Omega \to X$ tal que $f_n \to f$. Entonces $f$ es medible. Trataremos de ver a partir de esto que $f^{-1}(V_r(x))$ es medible.
+Sean $f_n: \Omega \to X$ medibles y $f : \Omega \to X$ tal que $f_n \to f$. Entonces $f$ es medible. 
 \end{Prop}
 
 \begin{Dem}
-Consideremos un abierto básico de $X$, es decir, la bola $V_r(x)$ para algún $r > 0$ y $x\in X$. Como cada $f_n$ es medible, entonces $f_n^{-1}(V_r(x))$ es medible. (Pendiente)
+Consideremos un abierto básico de $X$, es decir, la bola $V_r(x)$ para algún $r > 0$ y $x\in X$. Como cada $f_n$ es medible, entonces $f_n^{-1}(V_r(x))$ es medible. Trataremos de ver a partir de esto que $f^{-1}(V_r(x))$ es medible. (Pendiente)
 \end{Dem}
 
 \begin{Def} 
@@ -1944,13 +1978,14 @@ Esto indica que en un espacio de Banach la convergencia débil de subseries impli
 \begin{itemize}
 \item http://math.uga.edu/~pete/convergence.pdf
 \item https://terrytao.wordpress.com/2011/05/24/locally-compact-topological-vector-spaces/
-\item Rudin. Functional Analysis.
-\item Diestel. Sequences and Series in Banach Spaces.
+\item Walter Rudin. Functional Analysis.
+\item Joseph Diestel. Sequences and Series in Banach Spaces.
 \item Megginson. An Introduction to Banach Space Theory.
 \item Galaz Fontes. Elementos de Análisis Funcional. 
 \item Marian Fabian. Functional Analysis and Infinite-Dimensional Geometry.
 \item Francisco J. Diáz. Curso de Topología General.
 \item Haim Brezis. Functional Analysis, Sobolev Spaces and Partial Differential Equations.
+\item Paul R. Chernoff. A Simple Proof of Tychonoff's Theorem Via Nets.
 \end{itemize}
 
 
