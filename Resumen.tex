@@ -290,6 +290,32 @@ Sea $X$ un espacio topológico Hausdorff. Si $K$ es un subconjunto compacto de $X
 Tomemos $x \in X \setminus K$. Como $\{ x \}$ y $K$ son compactos, la proposición~\ref{Prop:AbiertosSeparanCompactosEnHausdorff} indica que existen abiertos disjuntos $U, V$ tales que $x \in U$ y $K \subseteq V$. Entonces $x \in U \subseteq X \setminus V \subseteq X \setminus K$. Del lema~\ref{Lema:CaracterizacionAbierto} se sigue ahora que $X \setminus K$ es abierto y por lo tanto $K$ es cerrado.
 \end{Dem}
 
+\begin{Def}
+Sea $X$ un espacio topológico y $A$ un conjunto en $X$. Decimos que $x \in X$ es un \textit{punto de acumulación} de $A$ si para toda vecindad abierta $U$ de $x$ se cumple que $(U \cap A) \setminus \{ x \} \neq \emptyset$. Al conjunto de puntos de acumulación de $A$ lo denotamos por $A^\prime$.
+\end{Def}
+
+\begin{Lema} \label{Lema:PropiedadesPuntosDeAcumulacion}
+Sea $X$ un espacio topológico.
+\begin{itemize}
+\item \textbf{i)} Si $A \subseteq B \subseteq X$, entonces $A^\prime \subseteq B^\prime$. 
+\item \textbf{ii)} Si $A \subseteq X$, entonces $A^\prime \subseteq \ov{A}$.
+\end{itemize}
+\end{Lema}
+
+\begin{Dem}
+(Pendiente).
+\end{Dem}
+
+\begin{Lema} \label{Lema:PuntoAcumulacionDeComplementoFinito}
+Sea $X$ un espacio topológico Hausdorff y $A$ un conjunto en $X$. Si $x \in X$ es un punto de acumulación de $A$ y $B \subseteq A$ es un conjunto finito, entonces $x$ es punto de acumulación de $A \setminus B$.  
+\end{Lema}
+
+\begin{Dem}
+Supongamos que $B = \{ x_1, \ldots , x_k \}$ para algún $k \in \N$ y algunos $x_1, \ldots, x_k \in A$. Sea $U$ una vecindad abierta de $x$. 
+Como cada $\{ x_i \}$ es compacto, entonces es cerrado. Así que $$B \setminus \{ x \} = \bigcup_{\substack{ 1 \leq i \leq n  \\
+x_i \neq x } } \{ x_i \}$$ también es cerrado. De esto se sigue que $(X \setminus B) \cup \{ x \} = X \setminus (B \setminus \{ x \})$ es abierto al igual que $(U \setminus B) \cup \{ x \} = U \cap((X \setminus B) \cup \{ x \})$. Como $(U \setminus B) \cup \{ x \}$ es una vecindad abierta de $x$, se cumple que $[((U \setminus B) \cup \{ x \}) \cap A] \setminus \{ x \} \neq \emptyset$. Esto equivale a decir que $[U \cap (A \setminus B)] \setminus \{ x \} \neq \emptyset$ y así $x$ es punto de acumulación de $A \setminus B$. 
+\end{Dem}
+
 Una \textit{sucesión} en un conjunto $X$ es una función $s: \N \to X$. Usualmente representamos a la sucesión $s$ por $(x_n)_{n\in \N}$, donde $x_n := s(n)$ para toda $n \in \N$. 
 
 \begin{Def}
@@ -337,7 +363,12 @@ z & \mapsto (f_X(z), f_Y(z))
 
 La construcción anterior de la topología producto es fácil de extender para el producto de una cantidad finita de espacios topológicos. Sin embargo, al momento de definir el producto de una cantidad arbitraria de espacios, hay un detalle que se debe considerar para definir su topología. \\
 
-Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$. Para $j \in I$ la $j$-ésima \textit{proyección canónica} es 
+Sean $I$ un conjunto no vacío  y $X_i$ un espacio topológico para cada $i \in I$. El espacio \textit{producto} de los espacios $X_i$ es
+$$\prod_{i\in I} X_i = \left\{ \left. f : I \to \bigcup_{i \in I} X_i \,\right\vert\, f(i) \in X_i , \mbox{ para cada } i \in I  \right\} .$$
+
+Dada $f \in \prod_{i\in I} X_i$, usualmente representaremos a este elemento por $(x_i)_{i\in I}$ donde $x_i := f(i)$ para todo $i \in I$.
+
+Para $j \in I$ la $j$-ésima \textit{proyección canónica} es 
 \Ecu{
 \pi_j : \prod_{i\in I} X_i \to X_j \\
 (x_i)_{i \in I} \mapsto x_j.
@@ -347,16 +378,7 @@ Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$.
 Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$. La \textit{topología producto} de $\prod_{i\in I} X_i$ es la generada por la base $$\left\{ \bigcap_{j=1}^k \pi_{i_j}^{-1}(U_j) : k \in \N, \, i_1, \ldots, i_k \in I \mbox{ y } U_j \mbox{ es abierto en } X_{i_j} \mbox{ para cada } 1\leq j \leq k\right\}.$$
 \end{Def}
 
-Veamos que con esta definición de topología producto las proyecciones son continuas. Fijemos $i \in I$ y tomemos cualquier abierto $U_i$ en $X_i$. Entonces $\pi_i^{-1}(U_i)$ es un básico de $\prod_{i\in I} X_i$ y por tanto es abierto. Esto indica que $\pi_i$ es continua.  \\
-
-Una manera de identificar a un elemento $(x_i)_{i \in I}$ de $\prod_{i\in I} X_i$ es mediante la función 
-\Ecu{
-f: I &\to \bigcup_{i\in I} X_i \\
-j &\mapsto f(j) := x_j.
-}
-
-En varias ocasiones, será más sencillo considerar al producto como el espacio de estas funciones
-$$\prod_{i\in I} X_i = \left\{ \left. f : I \to \bigcup_{i \in I} X_i \,\right\vert\, f(j) \in X_j , \mbox{ para cada } j \in I  \right\} .$$
+Veamos que con esta definición de topología producto las proyecciones son continuas. Fijemos $i \in I$ y tomemos cualquier abierto $U_i$ en $X_i$. Entonces $\pi_i^{-1}(U_i)$ es un básico de $\prod_{i\in I} X_i$ y por tanto es abierto. Esto indica que $\pi_i$ es continua. 
 
 \section{Espacios métricos.}
 El marco de espacios topológicos es muy general, por lo que estudiaremos un caso particular de estos espacios que tienen mejores propiedades y donde las sucesiones juegan un papel muy importante. 
@@ -448,7 +470,7 @@ Sea $M$ un espacio métrico. Una sucesión $(x_n)_{n\in\N} \subseteq M$ es de \tex
 \end{Def}
 
 \begin{Lema} \label{Lema:SucesionCauchyConSubsucesionConvergenteConverge}
-Sea $M$ un espacio normado. Si $(x_n)_{n \in\N}$ es una sucesión de Cauchy en $M$ y tiene una subsucesión que converge a $x \in M$, entonces $(x_n)_{n\in\N}$ converge a $x$.
+Sea $M$ un espacio métrico. Si $(x_n)_{n \in\N}$ es una sucesión de Cauchy en $M$ y tiene una subsucesión que converge a $x \in M$, entonces $(x_n)_{n\in\N}$ converge a $x$.
 \end{Lema}
 
 \begin{Dem}
@@ -466,31 +488,7 @@ Tomemos $L = \max(N, M)$ y $n \geq L$. De esta manera tenemos que $k_L \geq L \g
 \end{Dem}
 
 \begin{Def}
-Sea $X$ un espacio topológico y $A$ un conjunto en $X$. Decimos que $x \in X$ es un \textit{punto de acumulación} de $A$ si para toda vecindad abierta $U$ de $x$ se cumple que $(U \cap A) \setminus \{ x \} \neq \emptyset$. Al conjunto de puntos de acumulación de $A$ lo denotamos por $A^\prime$.
-\end{Def}
-
-\begin{Prop} \label{Prop:PropiedadesPuntosDeAcumulacion}
-Sea $X$ un espacio topológico.
-\begin{itemize}
-\item \textbf{i)} Si $A \subseteq B \subseteq X$, entonces $A^\prime \subseteq B^\prime$. 
-\item \textbf{ii)} Si $A \subseteq X$, entonces $A^\prime \subseteq \ov{A}$.
-\end{itemize}
-\end{Prop}
-
-\begin{Dem}
-(Pendiente).
-\end{Dem}
-
-\begin{Prop} \label{Prop:PuntoAcumulacionDeComplementoFinito}
-Sea $X$ un espacio topológico y $A$ un conjunto en $X$. Si $x \in X$ es un punto de acumulación de $A$ y $B \subseteq A$ es un conjunto finito, entonces $x$ es punto de acumulación de $A \setminus B$.  
-\end{Prop}
-
-\begin{Dem}
-supongamos que $B = \{ x_1, \ldots , x_k \}$ para algún $k \in \N$ y algunos $x_1, \ldots, x_k \in A$. Sea $U$ una vecindad abierta de $x$. Entonces existe $r > 0$ tal que $V_r(x) \subseteq U$. Sea $s = \min (\{ d(x, x_i) : 1 \leq i \leq k \mbox{ y } x \neq x_i \} \cup \{ r \}) > 0$. Como $V_s(x)$ es una vecindad abierta de $x$ y $x$ es punto de acumulación de $A$, existe $y \in (A\cap V_s(x))\setminus \{x \}$. De esta forma se cumple que $y \in A$, $y \neq x$, $y \in V_r(x) \subseteq U$ y $d(x, y) < s \leq d(x, x_i)$ para todo $1\leq i \leq k$ con $x_i \neq x$. Si $x_i = x$ para algún $i \in \nn{k}$, entonces $y \neq x = x_i$. Así que $y \notin B$. Por tanto $((A\setminus B)\cap U) \setminus \{ x \} \neq \emptyset$ y $x$ es punto de acumulación de $A \setminus B$.  
-\end{Dem}
-
-\begin{Def}
-Sea $M$ un espacio métrico. Un conjunto $K \subseteq M$ se dice \textit{totalmente acotado} si para cada $\varepsilon > 0$ existen $n \in\N, x_1, \ldots, x_n \in M$ tales que 
+Sea $M$ un espacio métrico. Un conjunto $K \subseteq M$ es \textit{totalmente acotado} si para cada $\varepsilon > 0$ existen $n \in\N, x_1, \ldots, x_n \in M$ tales que 
 $$K \subseteq \bigcup_{i=1}^n V_\varepsilon(x_i).$$
 En este caso diremos que $\{ x_1, \ldots, x_n \}$ es una $\varepsilon$-\textit{red} de $\K$
 \end{Def}
@@ -507,12 +505,12 @@ Sean $M$ un espacio métrico y $K \subseteq M$. Son equivalentes:
 \begin{Dem}
 Demostraremos que \textbf{i)} implica \textbf{ii)}, que \textbf{ii)} implica \textbf{iii)} y que \textbf{iii)} implica \textbf{i)}.
 
-Así pues, tomemos $K \subseteq M$ compacto como en \textbf{i)}. Sea $(x_n)_{n\in\N}$ una sucesión en $K$. Consideremos el conjunto $A = \{ x_n : n \in \N \}$. Supongamos que $A$ tiene un punto de acumulación $x \in X$. La proposición~\ref{Prop:EspacioMetricoHausdorff} indica que $M$ es Hausdorff y el corolario~\ref{Cor:HausdorffCompactoEsCerrado} asegura que $K$ es cerrado. Como $A \subseteq K$, de la proposición~\ref{Prop:PropiedadesPuntosDeAcumulacion} se sigue que 
+Así pues, tomemos un conjunto compacto $K \subseteq M$. Sea $(x_n)_{n\in\N}$ una sucesión en $K$. Consideremos el conjunto $A = \{ x_n : n \in \N \}$. Supongamos que $A$ tiene un punto de acumulación $x \in X$. Al ser $M$ Hausdorff, el corolario~\ref{Cor:HausdorffCompactoEsCerrado} asegura que $K$ es cerrado. Como $A \subseteq K$, del lema~\ref{Lema:PropiedadesPuntosDeAcumulacion} se sigue entonces
 $$x \in A^\prime \subseteq K^\prime \subseteq \ov{K} = K.$$
  
-Construyamos $(k_n)_{n \in \N} \subseteq \N$ de tal forma que $(x_{k_n})_{n \in\N}$ sea una subsucesión convergente de $(x_n)_{n \in\N}$. Como $x$ es punto de acumulación de $A$ y $V_{2^{-1}}(x)$ es una vecindad abierta de $x$, resulta que  $(A \cap V_{2^{-1}}(x)) \setminus \{ x \} \neq \emptyset$. Así que existe $k_1 \in \N$ tal que $x_{k_1} \in  V_{2^{-1}}(x) \setminus \{ x \}$. La proposición~\ref{Prop:PuntoAcumulacionDeComplementoFinito} afirma que $x$ es punto de acumulación de $A \setminus \{ x_1, \ldots , x_{k_1} \}$. Dado que $V_{2^{-2}}$ es vecindad abierta de $x$, tenemos que $(A \setminus \{x_1, \ldots, x_{k_1} \} \cap V_{2^{-2}}(x)) \setminus \{ x \} \neq \emptyset$.  Así que existe $k_2 \in \N$ tal que $x_{k_2} \in  V_{2^{-2}}(x) \setminus \{ x, x_1, \ldots, x_{k_1} \}$. Esto indica que $k_1 < k_2$. Sucesivamente podemos construir la subsucesión $(x_{k_n})_{n\in\N}$ de $(x_n)_{n \in\N}$ tal que $x_{k_n} \in V_{2^{-n}}(x)$. Claramente $x_{k_n} \to x$.
+Construyamos $(n_k)_{k \in \N} \subseteq \N$ de tal forma que $(x_{n_k})_{k \in\N}$ sea una subsucesión convergente de $(x_n)_{n \in\N}$. Como $x$ es punto de acumulación de $A$ y $V_{2^{-1}}(x)$ es una vecindad abierta de $x$, resulta que  $(A \cap V_{2^{-1}}(x)) \setminus \{ x \} \neq \emptyset$. Así que existe $n_1 \in \N$ tal que $x_{n_1} \in  V_{2^{-1}}(x) \setminus \{ x \}$. El lema~\ref{Lema:PuntoAcumulacionDeComplementoFinito} afirma que $x$ es punto de acumulación de $A \setminus \{ x_1, \ldots , x_{n_1} \}$. Dado que $V_{2^{-2}}$ es vecindad abierta de $x$, tenemos que $(A \setminus \{x_1, \ldots, x_{n_1} \} \cap V_{2^{-2}}(x)) \setminus \{ x \} \neq \emptyset$.  Así que existe $n_2 \in \N$ tal que $x_{n_2} \in  V_{2^{-2}}(x) \setminus \{ x, x_1, \ldots, x_{n_1} \}$. Esto indica que $n_1 < n_2$. Repitiendo  este proceso sucesivamente podemos construir la subsucesión $(x_{n_k})_{k\in\N}$ de $(x_n)_{n \in\N}$ tal que $x_{n_k} \in V_{2^{-k}}(x)$. Claramente $x_{n_k} \to x$.
 
-Ahora supongamos que $A$ no tiene puntos de acumulación. Entonces, para cada $x \in \K$ existe una vecindad abierta $V_x$ de $x$ tal que $(A \cap V_x) \setminus \{ x \} = \emptyset$, o bien $A \cap V_x \subseteq \{ x \}$. Como $\{  V_x \}_{x \in K}$ es una cubierta abierta de $K$, existen $k \in \N$, $y_1, \ldots, y_k \in \K$ tales que $K \subseteq \bigcup_{i=1}^k V_{y_i}$. De esto que
+Ahora supongamos que $A$ no tiene puntos de acumulación. Entonces, para cada $x \in K$ existe una vecindad abierta $V_x$ de $x$ tal que $(A \cap V_x) \setminus \{ x \} = \emptyset$, o bien $A \cap V_x \subseteq \{ x \}$. Al ser $\{  V_x \}_{x \in K}$ una cubierta abierta de $K$, existen $k \in \N$, $y_1, \ldots, y_k \in \K$ tales que $K \subseteq \bigcup_{i=1}^k V_{y_i}$. De esto resulta que
 $$A = A \cap K \subseteq A \cap \left( \bigcup_{i=1}^k V_{y_i} \right) = \bigcup_{i=1}^k (A \cap V_{y_i}) \subseteq \bigcup_{i=1}^k \{ y_i \}.$$ 
 Es decir, $(x_n)_{n\in\N}$ solamente toma los valores $\{ y_1, \ldots, y_k\}$, por lo que algún $y_i$ aparece infinitas veces en $(x_n)_{n\in\N}$. La subsucesión constante de $(x_n)_{n\in\N}$ que consiste en este $y_i$ converge a $y_i \in\K$.
 
@@ -529,6 +527,30 @@ Sean $M$ un espacio métrico y $A \subseteq M$ un conjunto cerrado. Si $x \in M \
 
 \begin{Dem}
 Se demostrará por contrapositiva. Supongamos que $d(x, A) = 0$. Tomemos un abierto $U$ que incluya a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$, por lo que $U \cap A \neq \emptyset$. Así que $x \in \ov{A}$. Ya que $A$ es cerrado, entonces  $x \in A$.
+\end{Dem}
+
+\begin{Def}
+Sea $M$ un espacio métrico. Decimos que $A \subseteq M$ es un conjunto \textit{acotado} si existe $r > 0$ tal que $d(x, y) < r$ para todos $x, y \in A$.
+\end{Def}
+
+\begin{Prop} \label{Prop:CaracterizacionConjuntoAcotado}
+Sea $M$ un espacio métrico, $A \subseteq M$ y $x \in M$. Entonces $A$ es acotado si, y sólo si existe $K > 0$ tal que $d(x, y) < K$ para todo $y \in A$.
+\end{Prop}
+
+\begin{Dem}
+Supongamos que $A$ es acotado. Si $A = \emptyset$ entonces con $K = 1$ se cumple que $d(x, y) < K$ para todo $y \in A$. Supongamos que $A \neq \emptyset$ y sea $z \in A$. Como $A$ es acotado, existe $r > 0$ tal que $d(y_1, y_2) < r$ para todos $y_1, y_2 \in A$. Definamos $K = d(x, z) + r > 0$ y sea $y \in A$. Entonces de la desigualdad del triángulo se sigue que $d(x, y) \leq d(x, z) + d(z, y) < K$. 
+
+Ahora supongamos que existe $K > 0$ de tal forma que $d(x, y) < K$ para todo $y \in A$. Consideremos $r = 2K  > 0$ y tomemos $y_1, y_2 \in A$. Por la desigualdad el triángulo, se sigue que $d(y_1, y_2) \leq d(y_1, x) + d(x, y_2) < 2K = r$ y así $A$ es acotado.
+\end{Dem}
+
+\begin{Lema} \label{Lema:SucesionesDeCauchySonAcotadas}
+Sea $M$ un espacio métrico y $(x_n)_{n \in\N}$ una sucesión en $M$. Si $(x_n)_{n\in\N}$ es de Cauchy, entonces $\{ x_n : n \in \N \}$ es un conjunto acotado.
+\end{Lema}
+
+\begin{Dem}
+Tomemos $\varepsilon = 1$. Así, existe $N \in \N$ tal que si $n, m \geq N$, entonces $\Norm{x_n - x_m} < 1$. Esto indica que para $n \geq N$ se cumple que $d(x_n, x_N) < 1$.
+
+Definamos $M = \max(1, d(x_1, x_N), d(x_2, x_N), \ldots, d(x_{N-1}, x_N)) > 0$. De esta manera es claro que $d(x_n, x_N) \leq M$ para toda $n \in\N$ y de la proposición~\ref{Prop:CaracterizacionConjuntoAcotado} se sigue que $\{ x_n : n \in \N \}$ es acotado.
 \end{Dem}
 
 \section{Redes.}
@@ -722,22 +744,22 @@ Al notar que $\varphi$ verifica \textbf{ii)} y \textbf{iii)} de la definición an
 \end{Ejem}
 
 \begin{Def}
-Sean $X$ un espacio topológico y $(x_\alpha)_{\alpha \in \Lambda}$ una red en $X$. Decimos que $x \in X$ es un \textit{punto de acumulación} de $(x_\alpha)_{\alpha \in \Lambda}$ si para toda vecindad abierta $V$ de $x$ y para toda $\alpha \in \Lambda$ existe $\beta \geq \alpha$ tal que $x_\beta \in V$.
+Sean $X$ un espacio topológico y $(x_\alpha)_{\alpha \in \Lambda}$ una red en $X$. Decimos que $x \in X$ es un \textit{punto límite} de $(x_\alpha)_{\alpha \in \Lambda}$ si para toda vecindad abierta $V$ de $x$ y para toda $\alpha \in \Lambda$ existe $\beta \geq \alpha$ tal que $x_\beta \in V$.
 \end{Def}
 
-El concepto de punto de acumulación existe además para un conjunto arbitrario en $X$. Aunque uno podría pensar que el concepto de punto de acumulación de una red es un caso particular del concepto de punto de acumulación de un conjunto, resulta que no es así. Este último resulta ser más débil.
+Observemos que en una red existen los términos de límite y punto límite. Hay que tener siempre en cuenta que son conceptos diferentes. Uno hace referencia a los puntos a los cuales converge la red y el otro a los puntos  a los que convergen sus subredes como lo muestra el siguiente lema.  
 
 \begin{Lema} \label{Lema:LimiteSubredes}
-Si $X$ es un espacio topológico, entonces el conjunto de los puntos de acumulación de una red $(x_\alpha)_{\alpha\in\Lambda}$ en $X$ coincide con el conjunto de los límites de sus subredes. 
+Si $X$ es un espacio topológico, entonces el conjunto de los puntos límite de una red $(x_\alpha)_{\alpha\in\Lambda}$ en $X$ coincide con el conjunto de los límites de sus subredes. 
 \end{Lema}
 
 \begin{Dem}
-Primero supongamos que $x\in X$ es el límite de alguna subred $(y_\beta)_{\beta\in \Gamma}$ de $(x_\alpha)_{\alpha \in \Lambda}$. Entonces existe $\varphi : \Gamma \to \Lambda$ monótona y final con $y_\beta = x_{\varphi(\beta)}$. Sea $V$ un abierto de $x$ y $\alpha \in \Lambda$. Como $y_\beta \to x$, existe $\beta_0 \in \Gamma$ tal que $y_\beta \in V$ para $\beta \geq \beta_0$. Como $\varphi$ es final existe $\beta_1 \in \Gamma$ con $\alpha \leq \varphi(\beta_1)$. Debido a que $\beta_0$ y $\beta_1$ son fijos, existe $\beta \in \Gamma$ tal que $\beta \geq \beta_0$ y $\beta \geq \beta_1$. Tenemos que $x_{\varphi(\beta)} = y_\beta \in V$ pues $\beta \geq \beta_0$. Dado que $\varphi$ es monótona, se sigue que $\alpha \leq \varphi(\beta_1) \leq \varphi(\beta)$. Así que $x$ es un punto de acumulación de $(x_\alpha)_{\alpha \in \Lambda}$. 
+Primero supongamos que $x\in X$ es el límite de alguna subred $(y_\beta)_{\beta\in \Gamma}$ de $(x_\alpha)_{\alpha \in \Lambda}$. Entonces existe $\varphi : \Gamma \to \Lambda$ monótona y final con $y_\beta = x_{\varphi(\beta)}$. Sea $V$ un abierto de $x$ y $\alpha \in \Lambda$. Como $y_\beta \to x$, existe $\beta_0 \in \Gamma$ tal que $y_\beta \in V$ para $\beta \geq \beta_0$. Como $\varphi$ es final existe $\beta_1 \in \Gamma$ con $\alpha \leq \varphi(\beta_1)$. Debido a que $\beta_0$ y $\beta_1$ son fijos, existe $\beta \in \Gamma$ tal que $\beta \geq \beta_0$ y $\beta \geq \beta_1$. Tenemos que $x_{\varphi(\beta)} = y_\beta \in V$ pues $\beta \geq \beta_0$. Dado que $\varphi$ es monótona, se sigue que $\alpha \leq \varphi(\beta_1) \leq \varphi(\beta)$. Así que $x$ es un punto límite de $(x_\alpha)_{\alpha \in \Lambda}$. 
 
-Ahora supongamos que $x$ es un punto de acumulación de $(x_\alpha)_{\alpha_\in \Lambda}$. Sea $N_x$ la colección de  vecindades abiertas de $x$. Definamos el   conjunto 
+Ahora supongamos que $x$ es un punto límite de $(x_\alpha)_{\alpha_\in \Lambda}$. Sea $N_x$ la colección de  vecindades abiertas de $x$. Definamos el   conjunto 
 $$B = \{ (V, \alpha) : V \in N_x, x_\alpha \in V \} \subseteq N_x \times \Lambda.$$
 
-Consideremos el orden producto de $N_x \times \Lambda$. Al restringir ese orden a $B$ claramente seguirá siendo reflexivo y transitivo. Tomemos $(V,\alpha_0), (U, \beta_0) \in B$. Notemos que $V \cap U \in N_x$. Consideremos $\gamma_0 \in \Lambda$ con $\gamma_0 \geq \alpha_0$ y $\gamma_0 \geq \beta_0$. Como $x$ es punto de acumulación de $(x_\alpha)_{\alpha\in \Lambda}$ existe $\gamma \geq \gamma_0$ con $x_\gamma \in V \cap U$. Así que $(V\cap U, \gamma) \geq (V, \alpha), (V\cap U, \gamma) \geq (U, \beta)$ con $(V\cap U, \gamma) \in B$. Es decir, $B$ es un conjunto dirigido con este orden. 
+Consideremos el orden producto de $N_x \times \Lambda$. Al restringir ese orden a $B$ claramente seguirá siendo reflexivo y transitivo. Tomemos $(V,\alpha_0), (U, \beta_0) \in B$. Notemos que $V \cap U \in N_x$. Consideremos $\gamma_0 \in \Lambda$ con $\gamma_0 \geq \alpha_0$ y $\gamma_0 \geq \beta_0$. Como $x$ es punto límite de $(x_\alpha)_{\alpha\in \Lambda}$ existe $\gamma \geq \gamma_0$ con $x_\gamma \in V \cap U$. Así que $(V\cap U, \gamma) \geq (V, \alpha), (V\cap U, \gamma) \geq (U, \beta)$ con $(V\cap U, \gamma) \in B$. Es decir, $B$ es un conjunto dirigido con este orden. 
 
 Introduzcamos $\varphi : B \to \Lambda$ de tal manera que $\varphi(V, \alpha) = \alpha$ para $(V, \alpha) \in B$. Veamos que $\varphi$ es monótona y final:
 \begin{itemize}
@@ -760,9 +782,9 @@ Sea $X$ un espacio topológico. Son equivalentes:
 \begin{Dem}
 Supongamos primero que $X$ es compacto y consideremos una red $(x_\alpha)_{\alpha \in \Lambda}$ en $X$. Para cada $\alpha \in \Lambda$ definamos el conjunto $C_\alpha = \ov{ \{x_\beta : \beta \geq \alpha\} }$. Supongamos que $\bigcap_{\alpha \in \Lambda} C_\alpha = \emptyset$. Entonces $\bigcup_{\alpha\in \Lambda} (X \setminus C_\alpha) = X$. Así pues, $\{ X \setminus C_\alpha \}_{\alpha \in \Lambda}$ es una cubierta abierta de $X$. Por ser $X$ compacto, existen $n \in \N$, $\alpha_1, \ldots, \alpha_n \in \Lambda$ con $X = \bigcup_{i=1}^n (X \setminus C_{\alpha_i})$. Así que $\bigcap_{i=1}^n C_{\alpha_i} = \emptyset$. Tomemos $\gamma \in \Lambda$ con $\gamma \geq \alpha_i$ para todo $1 \leq i \leq n$. De esto se sigue que $x_\gamma \in C_\gamma \subseteq C_{\alpha_i}$. Lo que indica que $x_\gamma \in \bigcap_{i=1}^n C_{\alpha_i}$. Esto es una contradicción, por lo que $\bigcap_{\alpha \in \Lambda} C_\alpha \neq \emptyset$. 
 
-Tomemos $x \in \bigcap_{\alpha \in \Lambda} C_\alpha$. Veamos que $x$ es un punto de acumulación de $(x_\alpha)_{\alpha \in \Lambda}$. Sea $V$ una vecindad abierta de $x$ y $\alpha \in \Lambda$. Como $x \in C_{\alpha}$, se tiene que $\{ x_\beta : \beta \geq \alpha \} \cap V \neq \emptyset$. Así que existe $\beta \geq \alpha$ con $x_\beta \in V$. Del lema~\ref{Lema:LimiteSubredes} se sigue que existe una subred de $(x_\alpha)_{\alpha\in\Lambda}$ que converge a $x$. 
+Tomemos $x \in \bigcap_{\alpha \in \Lambda} C_\alpha$. Veamos que $x$ es un punto límite de $(x_\alpha)_{\alpha \in \Lambda}$. Sea $V$ una vecindad abierta de $x$ y $\alpha \in \Lambda$. Como $x \in C_{\alpha}$, se tiene que $\{ x_\beta : \beta \geq \alpha \} \cap V \neq \emptyset$. Así que existe $\beta \geq \alpha$ con $x_\beta \in V$. Del lema~\ref{Lema:LimiteSubredes} se sigue que existe una subred de $(x_\alpha)_{\alpha\in\Lambda}$ que converge a $x$. 
 
-Supongamos ahora que $X$ no es compacto. Existe entonces una cubierta abierta $\{ V_i \}_{i \in I}$ de $X$ tal que  no tiene  una subcubierta finita. Sea $\Lambda$ la colección de subconjuntos finitos de $I$ con el orden de inclusión. Para cada $F \in \Lambda$ la subcolección finita $\{ V_i : i \in F \}$ no cubre a $X$. Por lo que $\bigcup_{i\in F} V_i \neq X$. Así que existe $x_F \in X$ tal que $x_F \notin V_i$ para todo $i \in F$. Consideremos la red $(x_F)_{F \in \Lambda}$. Demostremos que esta red no tiene subredes que converjan. Por el lema~\ref{Lema:LimiteSubredes} esto último equivale a demostrar que $(x_F)_{F \in \Lambda}$ no tiene puntos de acumulación. Sea $x \in X$. Entonces $x \in V_{i_0}$ para algún $i_0 \in I$. Además, para $F \in \Lambda$ tal que $\{ i_0 \} \subseteq F$ se tiene que $x_F \notin V_{i_0}$. Esto indica que $x$ no es punto de acumulación de $(x_F)_{F \in \Lambda}$. 
+Supongamos ahora que $X$ no es compacto. Existe entonces una cubierta abierta $\{ V_i \}_{i \in I}$ de $X$ tal que  no tiene  una subcubierta finita. Sea $\Lambda$ la colección de subconjuntos finitos de $I$ con el orden de inclusión. Para cada $F \in \Lambda$ la subcolección finita $\{ V_i : i \in F \}$ no cubre a $X$. Por lo que $\bigcup_{i\in F} V_i \neq X$. Así que existe $x_F \in X$ tal que $x_F \notin V_i$ para todo $i \in F$. Consideremos la red $(x_F)_{F \in \Lambda}$. Demostremos que esta red no tiene subredes que converjan. Por el lema~\ref{Lema:LimiteSubredes} esto último equivale a demostrar que $(x_F)_{F \in \Lambda}$ no tiene puntos límite. Sea $x \in X$. Entonces $x \in V_{i_0}$ para algún $i_0 \in I$. Además, para $F \in \Lambda$ tal que $\{ i_0 \} \subseteq F$ se tiene que $x_F \notin V_{i_0}$. Esto indica que $x$ no es punto límite de $(x_F)_{F \in \Lambda}$. 
 \end{Dem}
 
 \begin{Lema}
@@ -929,7 +951,7 @@ Sean $E$ un espacio vectorial topológico y $F \subseteq E$ un subespacio vectori
 Sea $x \in \ov{F}$. La proposición~\ref{Prop:CerraduraLimiteRed} establece que existe una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq F$ tal que $x_\alpha \to x$. Como $(x_\alpha)_{\alpha \in \Lambda}$ es convergente, el lema~\ref{Lema:RedConvergenteEsCauchy} indica que $(x_\alpha)_{\alpha \in \Lambda}$ es de Cauchy y al ser $F$ completo, se sigue que la red converge en $F$. Al ser $E$ Hausdorff, se sigue que $x \in F$ y así $F$ es cerrado. 
 \end{Dem}
 
-\begin{Lema} \label{Lema:HomeomorfismoLinealPreservaCompletitud}
+\begin{Lema} \label{Lema:HomeomorfismoLinealPreservaCompletitez}
 Sean $E$ y $F$ espacios vectoriales topológicos. Si $T : E \to F$ es un homeomorfismo lineal y $E$ es completo, entonces $F$ es completo.
 \end{Lema}
 
@@ -1212,7 +1234,7 @@ Una \textit{norma} en un espacio vectorial $X$ es una seminorma $\Norm{\cdot}: X
 
 Es sencillo verificar que en un espacio normado $X$ la función $d: X \times X \to [0, \infty)$ definida por $$d(x, y) := \Norm{x-y}$$ es una métrica, por lo que $X$ es un espacio métrico y entonces podemos considerar la topología inducida por la métrica, la cual se denomina \textit{topología original} de $X$. A menos que se especifique otra cosa, cuando hablemos de un espacio normado como espacio topológico, lo consideraremos con su topología original.
 
-Además, los conceptos de sucesión de Cauchy y completitud se heredan de las definiciones en espacios métricos. Si un espacio normado es completo decimos que es un \textit{espacio de Banach}.
+Además, los conceptos de sucesión de Cauchy y completez se heredan de las definiciones en espacios métricos. Si un espacio normado es completo decimos que es un \textit{espacio de Banach}.
 
 \begin{Lema} \label{Lema:NormaContinua}
 Sea $X$ un espacio normado. Entonces la norma $\Norm{\cdot}:X \to [0, \infty)$ es una función continua y convexa.
@@ -1226,7 +1248,7 @@ $$\Norm{\lambda x + (1-\lambda y)} \leq \abs{\lambda} \Norm{x} + \abs{1-\lambda}
 \end{Dem}
 
 \begin{Ejem}
-Si $X$ es un espacio normado y tomamos $x, y \in B_X$ y $\lambda \in [0, 1]$, entonces $\Norm{\lambda x + (1-\lambda)y} \leq \lambda \Norm{x} + (1- \lambda)\Norm{y} \leq \lambda + (1-\lambda) = 1$. Así que $\lambda x + (1-\lambda)y \in B_X$. Por lo tanto $B_X$ es convexa.
+Si $X$ es un espacio normado y tomamos $x, y \in B_X$ y $\lambda \in [0, 1]$, entonces $$\Norm{\lambda x + (1-\lambda)y} \leq \lambda \Norm{x} + (1- \lambda)\Norm{y} \leq \lambda + (1-\lambda) = 1.$$ Así que $\lambda x + (1-\lambda)y \in B_X$. Por lo tanto $B_X$ es convexa.
 \end{Ejem}
 
 \begin{Prop} \label{Prop:TopologiaOriginalEspaciosNormadosEVT}
@@ -1275,18 +1297,12 @@ Definamos $\beta = \alpha_{2M}$. Por (\ref{Eq:RedesCauchy1}) y (\ref{Eq:RedesCau
 Por la desigualdad del triángulo $\Norm{x_\gamma - x} < \frac{1}{N}$ y así $x_\gamma - x \in U$. Es decir, $x_\alpha \to x$.
 \end{Dem}
 
-\begin{Def}
-Sea $X$ un espacio normado. Decimos que $A \subseteq X$ es un conjunto \textit{acotado} si existe $M > 0$ tal que $\Norm{x} \leq M$ para todo $x \in A$.
-\end{Def}
-
-\begin{Lema} \label{Lema:SucesionesDeCauchySonAcotadas}
-Sea $X$ un espacio normado y $(x_n)_{n \in\N}$ una sucesión en $X$. Si $(x_n)_{n\in\N}$ es de Cauchy, entonces $\{ x_n : n \in \N \}$ es un conjunto acotado.
-\end{Lema}
+\begin{Prop}
+Sea $X$ un espacio normado. Entonces $A \subseteq X$ es un conjunto acotado si, y sólo existe $M > 0$ tal que $\Norm{x} \leq M$ para todo $x \in A$. (¿Es mejor que sea corolario?)
+\end{Prop}
 
 \begin{Dem}
-Tomemos $\varepsilon = 1$. Así, existe $N \in \N$ tal que si $n, m \geq N$, entonces $\Norm{x_n - x_m} < 1$. Esto indica que para $n \geq N$ se cumple que $$\Norm{x_n} - \Norm{x_N} \leq \abs{\Norm{x_n} - \Norm{x_N}} \leq \Norm{x_n - x_N} < 1$$ y así $\Norm{x_n} < 1 + \Norm{x_N}$.
-
-Definamos $M = \max(\Norm{x_1}, \ldots, \Norm{x_{N-1}}, 1+\Norm{x_N})$. De esta manera es claro verificar que $\Norm{x_n} \leq M$ para toda $n \in\N$ y así $\{ x_n : n \in \N \}$ es acotado.
+La proposición~\ref{Prop:CaracterizacionConjuntoAcotado} indica que $A$ es acotado si y sólo si existe $M > 0$ tal que $\Norm{x} = d(x, 0) < M$ para todo $x \in A$.
 \end{Dem}
 
 \subsection{Ejemplos.}
@@ -1355,19 +1371,19 @@ En adelante, cuando trabajemos en $\K^n$ con la norma $\Norm{\cdot}_p$, lo denot
 En el caso particular $p=2$, a la norma $\Norm{\cdot}_2$ en $\K^n$ le damos el nombre de \textit{norma euclidiana}. A continuación probaremos que $\ell_2^n$ es un espacio completo haciendo uso del teorema de Heine-Borel.
 
 \begin{Tma} \label{Tma:HeineBorelGeneral} \textbf{(Heine-Borel)}
-Sea $n \in \N$ y consideremos $A \subseteq \ell_2^n(\K)$. Son equivalentes:
+Sea $A \subseteq \ell_2^n(\K)$. Son equivalentes:
 \begin{itemize}
 \item \textbf{i)} $A$ es cerrado y acotado.
 \item\textbf{ii)} $A$ es compacto.
 \end{itemize}
 \end{Tma}
 
-\begin{Prop} \label{Prop:NormaEuclidianaCompleta}
-Sea $n \in \N$. El espacio normado $\ell_2^n$ es completo. 
-\end{Prop}
+\begin{Tma} \label{Tma:NormaEuclidianaCompleta}
+El espacio normado $\ell_2^n$ es completo. 
+\end{Tma}
 
 \begin{Dem}
-Sea $(x_m)_{m\in \N}$ una sucesión de Cauchy. El lema~\ref{Lema:SucesionesDeCauchySonAcotadas} indica que $\{ x_m : m \in \N \}$ es un conjunto acotado por alguna constante $M \in\N$. Como la bola $B_M(0)$ es cerrada y acotada en $\ell_2^n$, el teorema de Heine-Borel señala que $B_M(0)$ es compacto. Dado que la sucesión $(x_m)_{m\in\N}$ vive en el conjunto compacto $B_M(0)$, el teorema~\ref{Tma:CaracterizacionCompacidadSucesiones} dice que existe una subsucesión $(x_{k_m})_{m \in \N}$ de $(x_m)_{m\in\N}$ que converge a algún $x \in B_M(0) \subseteq X$. Del lema~\ref{Lema:SucesionCauchyConSubsucesionConvergenteConverge} se sigue que $x_m \to x$.
+Sea $(x_m)_{m\in \N}$ una sucesión de Cauchy. El lema~\ref{Lema:SucesionesDeCauchySonAcotadas} indica que $\{ x_m : m \in \N \}$ es un conjunto acotado por alguna constante $M \in\N$. Como la bola $B_M(0)$ es cerrada y acotada en $\ell_2^n$, el teorema de Heine-Borel señala que $B_M(0)$ es compacto. Dado que $(x_m)_{m\in\N} \subseteq B_M(0)$ y este es compacto, el teorema~\ref{Tma:CaracterizacionCompacidadSucesiones} dice que existe una subsucesión $(x_{k_m})_{m \in \N}$ de $(x_m)_{m\in\N}$ que converge a algún $x \in B_M(0) \subseteq X$. Del lema~\ref{Lema:SucesionCauchyConSubsucesionConvergenteConverge} se sigue que $x_m \to x$.
 \end{Dem}
 
 
@@ -1384,13 +1400,13 @@ Sea $1 \leq p \leq \infty$. Si $x = (x_1, x_2, \ldots) \in \ell_p$, entonces $$\
 \end{Lema}
 
 \begin{Dem}
-Sea $1\leq  p < \infty$. Si $x \in \ell_p$, entonces $\Norm{x}_p < \infty$ y por tanto $$\left(\lim_{n \to  \infty} \Norm{(x_1, \ldots, x_n)}_p \right)^p =\lim_{n \to  \infty} \Norm{(x_1, \ldots, x_n)}_p^p = \lim_{n\to \infty} \sum_{i=1}^n \abs{x_i}^p = \sum_{i=1}^\infty \abs{x_i}^p = \Norm{x}_p^p < \infty.$$ 
+Sea $1\leq  p < \infty$. Si $x \in \ell_p$, entonces $\Norm{x}_p < \infty$ y por la continuidad de la función $z \mapsto z^p$ en $\R$ se sigue que $$\left(\lim_{n \to  \infty} \Norm{(x_1, \ldots, x_n)}_p \right)^p =\lim_{n \to  \infty} \Norm{(x_1, \ldots, x_n)}_p^p = \lim_{n\to \infty} \sum_{i=1}^n \abs{x_i}^p = \sum_{i=1}^\infty \abs{x_i}^p = \Norm{x}_p^p < \infty.$$ 
 
 Así que $$ \lim_{n \to \infty} \Norm{(x_1, \ldots, x_n)}_p = \Norm{x}_p.$$
 
-Tomemos ahora $p = \infty$. Para $n\in\N$ sea $a_n = \max(\abs{x_1},\ldots, \abs{x_n})$ y $a = \lim_{n\to \infty} a_n$. Como $\Norm{x}_\infty < \infty$, el conjunto $\{\abs{x_i} : i \in \N$ está acotado y así $(a_n)_{n\in\N}$ también.  Claramente, $(a_n)_{n\in\N}$ es monótona-creciente, de manera que $(a_n)_{n\in\N}$ converge y $a_k \leq \lim_{n\to\infty} a_n = a < \infty$ para toda $k \in \N$. Sea $i \in \N$, entonces para $k \geq i$ se tiene que $a_k \geq \abs{x_i}$ y por lo tanto $a \geq \abs{x_i}$. Así pues, $a$ es una cota superior de $\{\abs{x_i} : i \in \N\}$. Como $\Norm{x}_\infty$ es la mínima cota superior, resulta que $a \geq \Norm{x}_\infty$.
+Tomemos ahora $p = \infty$. Para $n\in\N$ sea $a_n = \max(\abs{x_1},\ldots, \abs{x_n})$. Como $\Norm{x}_\infty < \infty$, el conjunto $\{\abs{x_i} : i \in \N \}$ está acotado y así $(a_n)_{n\in\N}$ también.  Claramente, $(a_n)_{n\in\N}$ es monótona-creciente, de manera que $(a_n)_{n\in\N}$ converge y $a_k \leq \lim_{n\to\infty} a_n = \sup_{n \in\N} a_n < \infty$ para toda $k \in \N$. Sea $i \in \N$, entonces para $k \geq i$ se tiene que $a_k \geq \abs{x_i}$ y por lo tanto $\lim_{n\to\infty} a_n  \geq \abs{x_i}$. Así pues, $\lim_{n\to\infty} a_n $ es una cota superior de $\{\abs{x_i} : i \in \N\}$. Como $\Norm{x}_\infty$ es la mínima cota superior, resulta que $\lim_{n\to\infty} a_n  \geq \Norm{x}_\infty$.
 
-Por otro lado, tenemos que para cada $n \in \N$, $a_n = \max(\abs{x_1},\ldots, \abs{x_n}) \in \{\abs{x_i} : i \in \N\}$. Como $\Norm{x}_\infty$ es una cota superior de este último conjunto, resulta que $a_n \leq \Norm{x}_\infty$. De esto se sigue que $a = \lim_{n\to \infty} a_n \leq \Norm{x}_\infty$ y concluimos que $\lim_{n \to \infty} \Norm{(x_1, \ldots, x_n)}_\infty = \Norm{x}_\infty$.
+Por otro lado, tenemos que para cada $n \in \N$, resulta que $a_n \leq \Norm{x}_\infty$. De esto se sigue que $\lim_{n\to \infty} a_n \leq \Norm{x}_\infty$ y concluimos que $\lim_{n \to \infty} \Norm{(x_1, \ldots, x_n)}_\infty = \Norm{x}_\infty$.
 \end{Dem}
 
 \begin{Prop}
@@ -1576,7 +1592,7 @@ Cualquier espacio vectorial topológico de dimensión finita es completo.
 \end{Prop}
 
 \begin{Dem}
-Sea $E$ un espacio vectorial topológico de dimensión finita $n \in \N$. Dado que $\ell^n_2$ es un espacio vectorial topológico de dimensión $n$, del teorema~\ref{Tma:IsomorfismoDimensionFinitaEVT} se sigue que $E$ es isomorfo a $\ell^n_2$ como espacio normado. Según la proposición~\ref{Prop:NormaEuclidianaCompleta}, $\ell_2^n$ es un espacio completo. Así que del lema~\ref{Lema:HomeomorfismoLinealPreservaCompletitud} resulta que $E$ también es completo.
+Sea $E$ un espacio vectorial topológico de dimensión finita $n \in \N$. Dado que $\ell^n_2$ es un espacio vectorial topológico de dimensión $n$, del teorema~\ref{Tma:IsomorfismoDimensionFinitaEVT} se sigue que $E$ es isomorfo a $\ell^n_2$ como espacio normado. Según el teorema~\ref{Tma:NormaEuclidianaCompleta}, $\ell_2^n$ es un espacio completo. Así que del lema~\ref{Lema:HomeomorfismoLinealPreservaCompletitez} resulta que $E$ también es completo.
 \end{Dem}
 
 Del resultado anterior se sigue inmediatamente que los espacios de dimensión finita $\ell^n_p$ son completos.
@@ -1655,12 +1671,11 @@ Hemos visto que la bola unitaria de un espacio normado de dimensión infinita no 
 
 Sean $X$ un espacio normado y $X^*$ su espacio dual. Notemos que para cada $\varphi \in X^*$ la función $\abs{\varphi}$ es una seminorma. Además por el teorema de Hahn-Banach, para cada $x \neq 0$ existe un funcional lineal $\varphi \in X^*$ tal que $\varphi(x) \neq 0$. De manera que $\abs{\varphi(x)} \neq 0$. Por tanto $$\F_X := \{ \abs{\varphi} : \varphi \in X^* \}$$ es una familia de seminormas en $X$ que separa puntos en $X$. \\
 
-
 \begin{Def}
-Sea $X$ un espacio normado. La \textit{topología débil} de $X$ es $\sigma(X, \F_X)$ y la denotaremos por $\sigma(X, X^*)$ o simplemente por $\tau_{\mathrm{w}}$ si no hace falta especificar el espacio $X$. Cuando trabajemos con la topología débil de $X$, al espacio vectorial topológico correspondiente lo denotaremos por $X_{\mathrm{w}}$.
+Sea $X$ un espacio normado. La \textit{topología débil} de $X$ es $\sigma(X, \F_X)$ y la denotaremos por $\sigma(X, X^*)$ o simplemente por $\tau_{\mathrm{w}}$ si no hace falta especificar el espacio $X$. Cuando trabajemos con la topología débil de $X$, el espacio vectorial topológico correspondiente se denotará por $X_{\mathrm{w}}$.
 \end{Def}
 
-Como consecuencia del teorema~\ref{Tma:SeminormasInducenEVT} tenemos el siguiente corolario.
+Como consecuencia del teorema~\ref{Tma:SeminormasInducenEVT} el siguiente corolario indica que $X_\mathrm{w}$ es un espacio vectorial topológico. Así que podemos considerar su dual, el cual denotaremos por ${X_\mathrm{w}}^*$ para diferenciarlo de $X_\mathrm{w}^*$, que denota considerar primero el dual del espacio $X$ y en este considerar su topología débil, es decir, $X_\mathrm{w}^* = (X^*)_\mathrm{w}$ y ${X_\mathrm{w}}^* = (X_\mathrm{w})^*$.
 
 \begin{Cor}
 Si $X$ es un espacio normado, entonces $X_\mathrm{w}$ es un espacio vectorial topológico.
@@ -1693,17 +1708,9 @@ Sean $X$ un espacio normado y $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ una 
 En particular, si $(x_n)_{n \in \N} \subseteq X$ es una sucesión en $X$ y $x \in X$. Tenemos entonces que $\displaystyle\wlim_{n \to \infty} x_n = x$ si, y sólo si $\displaystyle\lim_{n \to \infty} \varphi(x_n) = \varphi(x)$  para cualquier $\varphi \in X^*$.
 \end{Cor}
 
-Sobre la notación de la topología débil veo las siguientes opciones:
-\begin{itemize}
-\item \textbf{i)} Denotar ${X_\mathrm{w}}^* := (X_\mathrm{w})^*$ y ${X^*}_\mathrm{w} := (X^*)_\mathrm{w}$.
-\item \textbf{ii)} Denotar ${X_\mathrm{w}}^* := (X_\mathrm{w})^*$ y $X^*_\mathrm{w} := (X^*)_\mathrm{w}$. (Opción sugerida por mi).
-\item \textbf{iii)} Denotar siempre con paréntesis.
-\end{itemize}
-¿Cuál opción prefiere?
-
 
 \begin{Prop}
-Si $X$ es un espacio normado, entonces $X^* = X_\mathrm{w}^*$ o $X^* = {X_\mathrm{w}}^*$ ó $X^* = (X_\mathrm{w})^*$.
+Si $X$ es un espacio normado, entonces $X^* = {X_\mathrm{w}}^*$.
 \end{Prop}
 
 \begin{Dem}
@@ -1773,7 +1780,7 @@ Así pues $\Norm{Jx} \geq \Norm{x}$. El lema~\ref{Lema:DeltaContinua} indica que 
 Para cada $x \in X$ resulta que $\abs{\delta_x}$ es una seminorma. Dado $\varphi \in X^*$ distinto de cero, existe $x \neq 0$ con $\varphi(x) \neq 0$. Así que $\delta_x(\varphi) \neq 0$. Es decir, $$\F_{X^*} := \{ \abs{\delta_x} : x\in X\}$$ es una familia de seminormas en $X^*$ que separa puntos de $X$. 
 
 \begin{Def}
-Sea $X$ un espacio normado. La \textit{topología débil*} de $X^*$ es $\sigma(X^*, \F_{X^*})$ y se denotará por $\sigma(X^*, X)$ o simplemente por $\tau_{\mathrm{w}^*}$. Cuando trabajemos con la topología débil* de $X^*$, al espacio vectorial topológico correspondiente lo denotaremos por $X^*_{\mathrm{w}^*}$ o ${X^*}_{\mathrm{w}^*}$ o $(X^*)_{\mathrm{w}^*}$.
+Sea $X$ un espacio normado. La \textit{topología débil*} de $X^*$ es $\sigma(X^*, \F_{X^*})$ y se denotará por $\sigma(X^*, X)$ o simplemente por $\tau_{\mathrm{w}^*}$. Cuando trabajemos con la topología débil* de $X^*$, al espacio vectorial topológico correspondiente lo denotaremos por $X^*_{\mathrm{w}^*}$.
 \end{Def}
 
 Aplicando el teorema~\ref{Tma:SeminormasInducenEVT}  se deduce el siguiente corolario.
@@ -1782,7 +1789,7 @@ Aplicando el teorema~\ref{Tma:SeminormasInducenEVT}  se deduce el siguiente coro
 Sea $X$ un espacio normado. Entonces $X^*_{\mathrm{w}^*}$ es un espacio vectorial topológico.
 \end{Cor}
 
-La cerradura de un subconjunto $F$ del espacio dual $X^*$ de un espacio normado $X$ respecto a la topología débil* se denotará por $\ov{F}^{\mathrm{w}^*}$.
+La cerradura respecto a la topología débil* de un subconjunto $F$ del espacio dual $X^*$ de un espacio normado $X$ se denotará por $\ov{F}^{\mathrm{w}^*}$.
 
 En el espacio dual $X^*$ de un espacio normado $X$ la convergencia en la topología débil* de una red $(\varphi_\alpha)_{\alpha \in \Lambda} \subseteq X^*$ a $\varphi \in X^*$ se denotará por $\wslim_{\alpha \in \Lambda} \varphi_\alpha = \varphi$ o también por $\varphi_\alpha \stackrel{\mathrm{w_*}}{\longrightarrow} \varphi$.
 
@@ -1853,19 +1860,23 @@ Por lo tanto $(d_x)_{x\in X} \in F(B_{X^*})$ y así $F(B_{X^*})$ es cerrado. Como
 Si $X$ es un espacio normado tal que $J(X) = X^{**}$ se dice que $X$ es \textit{reflexivo}. 
 \end{Def}
 
+\begin{Prop}
+Todo espacio de dimensión finita es reflexivo. 
+\end{Prop}
+
+\begin{Dem}
+Sea $X$ un espacio normado de dimensión finita. Al final de la demostración de la proposición~\ref{Prop:DualDimensionInfinita} se estableció entonces $\dim X \geq \dim X^*$. Luego $\dim X \geq \dim X^* \geq \dim X^{**}$. Por otro lado $J: X \to X^{**}$ es inyectiva, por lo que $\dim X \leq \dim X^{**}$. Así que $X$ y $X^{**}$ son de la misma dimensión. Como $J$ es lineal, inyectiva y está definida entre espacios de la misma dimensión, resulta que es sobreyectiva y $X$ es reflexivo.  
+\end{Dem}
+
 Si $X$ es un espacio reflexivo, entonces la ecuación~(\ref{Eq:IgualdadBasicos}) indica que las bases de la topología débil* y la topología débil de $X^*$ coinciden, por lo que la primera contención en~(\ref{Eq:RelacionTopologias}) es una igualdad.
 
 \begin{Prop} \label{Prop:ReflexivoIdentifiacionCanonicaDebilContinua}
-Sea $X$ un espacio normado. Se cumple que $J :  X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es continua. Si además $X$ es reflexivo, entonces $J :  X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es un homeomorfismo.
+Sea $X$ un espacio normado. Entonces $J :  X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es continua. Si además $X$ es reflexivo, entonces $J :  X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es un homeomorfismo.
 \end{Prop}
 
 \begin{Dem}
 Supongamos que $X$ es reflexivo y mostremos que $J$ es homeomorfismo. Sólo notemos que en la parte donde se demuestra que $J$ es continua, no se requiere que $X$ sea reflexivo. Así pues, dado que $J$ es un isomorfismo de espacios vectoriales, ya sólo falta verificar que $J$ y $J^{-1}$ son continuas. Para eso tomemos una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X_\mathrm{w}$ y $x \in X_\mathrm{w}$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebil} dice que que $x_\alpha \weakarrow x$ si, y sólo si $\varphi(x_\alpha) \to \varphi(x)$ para toda $\varphi \in X^*$. Esto último equivale a que $\delta_{x_\alpha}(\varphi) \to \delta_{x}(\varphi)$ para toda $\varphi \in X^*$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebilEstrella} indica que esto es lo mismo que $\delta_{x_\alpha} \weakstararrow \delta_x$, o bien, $J(x_\alpha) \weakstararrow J(x)$. Por lo que $J$ es continua al igual que $J^{-1}$.
 \end{Dem}
-
-\begin{Ejem}
-Sea $X$ un espacio normado de dimensión finita $n \in\N$. Al final de la demostración de la proposición~\ref{Prop:DualDimensionInfinita} se estableció que $\dim X \geq \dim X^*$. Luego $\dim X \geq \dim X^* \geq \dim X^{**}$. Por otro lado $J: X \to X^{**}$ es inyectiva, por lo que $\dim X \leq \dim X^{**}$. Así que $X$ y $X^{**}$ son de la misma dimensión. Como $J$ es lineal, inyectiva y está definida entre espacios de la misma dimensión, resulta que es sobreyectiva y $X$ es reflexivo.  
-\end{Ejem}
 
 \begin{Cor} 
 Si $X$ es un espacio normado reflexivo, entonces  $B_{X^*}$ es $\mathrm{w}$-compacta.
