@@ -180,7 +180,7 @@ Sea $X$ un conjunto no vacío. Una \textit{base} $\B$ de $X$ es una familia de su
 Una base $\mathcal{B}$ determina la topología $\tau(\B)$ definida por 
 $$\tau(\B) := \left\{ \bigcup_{\alpha \in \Lambda} B_\alpha : B_\alpha \in \B \mbox{ y } \Lambda \mbox{ cualquier conjunto } \right\}.$$
 
-Si $X$ es un espacio topológico, $\mathcal{B}$ es una base y $\tau (\mathcal{B})$ es la topología de $X$, diremos simplemente que $\mathcal{B}$ es una base de $X$. \\
+Si $X$ es un espacio topológico, $\mathcal{B}$ es una base y $\tau (\mathcal{B})$ es la topología de $X$, diremos simplemente que $\mathcal{B}$ es una base de $X$. 
 
 \begin{Prop} \label{Prop:CaracterizacionDeBase}
 Sea $\mathcal{B}$ una familia de abiertos de un espacio topológico $X$. Entonces $\mathcal{B}$ es una base de $X$ si, y sólo si para todo abierto $U$ en $X$ y $x \in U$ existe $B \in \mathcal{B}$ tal que $x \in B \subseteq U$.
@@ -272,14 +272,9 @@ Sea $X$ un espacio topológico Hausdorff. Si $A$ y $B$ son dos conjuntos compacto
 \end{Prop}
 
 \begin{Dem}
-Fijemos $x \in A$ por un momento. Por ser $X$ Hausdorff, para cada $y \in B$ existen $U_y$ y $V_y$ abiertos disjuntos tales que $x \in U_y$ y $y \in V_y$. De esta manera, $\{V_y \}_{y \in B}$ es una cubierta abierta de $B$. Al ser $B$ compacto, existen $n \in \N$ y $y_1, \ldots, y_n \in B$ tales que $B \subseteq \bigcup_{i=1}^n V_{y_i}.$
+Fijemos $x \in A$ por un momento. Por ser $X$ Hausdorff, para cada $y \in B$ existen $U_y$ y $V_y$ abiertos disjuntos tales que $x \in U_y$ y $y \in V_y$. De esta manera, $\{V_y \}_{y \in B}$ es una cubierta abierta de $B$. Al ser $B$ compacto, existen $n \in \N$ y $y_1, \ldots, y_n \in B$ tales que $B \subseteq \bigcup_{i=1}^n V_{y_i}.$ Definamos $$U_x := \bigcap_{i=1}^n U_{y_i} \quad\mbox{ y }\quad V_x := \bigcup_{j=1}^n V_{y_j},$$ de tal manera que $U_x, V_x$ son abiertos, $x \in U_x$, $B \subseteq V_x$ y $$U_x \cap V_x = \left( \bigcap_{i=1}^n U_{y_i} \right) \cap \left( \bigcup_{j=1}^n V_{y_j} \right) = \bigcup_{j=1}^n \left[ \left(   \bigcap_{i=1}^n U_{y_i} \right) \cap V_{y_j}\right] \subseteq \bigcup_{j=1}^n \left[    U_{y_j} \cap V_{y_j}\right]  = \emptyset. $$
 
-Definamos $$U_x := \bigcap_{i=1}^n U_{y_i} \quad\mbox{ y }\quad V_x := \bigcup_{j=1}^n V_{y_j},$$ de tal manera que $U_x, V_x$ son abiertos, $x \in U_x$, $B \subseteq V_x$ y $$U_x \cap V_x = \left( \bigcap_{i=1}^n U_{y_i} \right) \cap \left( \bigcup_{j=1}^n V_{y_j} \right) = \bigcup_{j=1}^n \left[ \left(   \bigcap_{i=1}^n U_{y_i} \right) \cap V_{y_j}\right] \subseteq \bigcup_{j=1}^n \left[    U_{y_j} \cap V_{y_j}\right]  = \emptyset. $$
-
-Como $\{ U_x \}_{x \in A}$ es una cubierta abierta de $A$ y $A$ es compacto, existen $m \in \N$ y $x_1, \ldots, x_m \in A$ tales que $A \subseteq \bigcup_{i=1}^m U_{x_i}.$
-
-Definamos $$U := \bigcup_{i=1}^m U_{x_i} \quad\mbox{ y }\quad V := \bigcap_{j=1}^m V_{x_j},$$ de tal manera que $U, V$ son abiertos, $A \subseteq U$, $B \subseteq V$ y $$U \cap V = \left( \bigcup_{i=1}^m U_{x_i} \right) \cap \left( \bigcap_{j=1}^m V_{x_j} \right) = \bigcup_{i=1}^m \left[ U_{x_i} \cap \left( \bigcap_{j=1}^m V_{x_j} \right) \right] \subseteq \bigcup_{i=1}^m \left[    U_{x_i} \cap V_{x_i}\right]  = \emptyset. $$
-
+Como $\{ U_x \}_{x \in A}$ es una cubierta abierta de $A$ y $A$ es compacto, existen $m \in \N$ y $x_1, \ldots, x_m \in A$ tales que $A \subseteq \bigcup_{i=1}^m U_{x_i}$. Definamos $$U := \bigcup_{i=1}^m U_{x_i} \quad\mbox{ y }\quad V := \bigcap_{j=1}^m V_{x_j},$$ de tal manera que $U, V$ son abiertos, $A \subseteq U$, $B \subseteq V$ y $$U \cap V = \left( \bigcup_{i=1}^m U_{x_i} \right) \cap \left( \bigcap_{j=1}^m V_{x_j} \right) = \bigcup_{i=1}^m \left[ U_{x_i} \cap \left( \bigcap_{j=1}^m V_{x_j} \right) \right] \subseteq \bigcup_{i=1}^m \left[    U_{x_i} \cap V_{x_i}\right]  = \emptyset. $$
 \end{Dem}
 
 \begin{Cor} \label{Cor:HausdorffCompactoEsCerrado}
@@ -303,7 +298,11 @@ Sea $X$ un espacio topológico.
 \end{Lema}
 
 \begin{Dem}
-(Pendiente).
+\hfill
+\begin{itemize}
+\item \textbf{i)} Sea $x \in A^\prime$ y $U$ una vecindad abierta de $x$. Como $\emptyset \subsetneq (U \cap A) \setminus \{ x \} \subseteq (U \cap B) \setminus \{ x \}$, se sigue que $x \in B^\prime$.
+\item \textbf{ii)} Sea $x \in A^\prime$ y $U$ una vecindad abierta de $x$. Como $\emptyset \subsetneq (U \cap A) \setminus \{ x \} \subseteq (U \cap A)$, se sigue entonces que $x \in \ov{A}$.
+\end{itemize}
 \end{Dem}
 
 \begin{Lema} \label{Lema:PuntoAcumulacionDeComplementoFinito}
@@ -1155,7 +1154,9 @@ Así que $\pi$ es continua.
 \begin{Ejem}
 Sean $A$ un conjunto no-vacío y $X = F(A, \K)$ como en el ejemplo~\ref{Ejem:EVTFamiliaFuncionales}. Se verificó que  $\mathcal{F} = \{ \abs{\delta_a}: a \in A \}$ es una familia de seminormas en $X$ que separa puntos, por lo que $X$ con la topología $\sigma(X, \mathcal{F})$ es un espacio vectorial topológico. Demostraremos que tal espacio vectorial es completo.
 
-(Pendiente).
+Sea $(f_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $X$. Al tomar $a \in A$, tenemos que para todo $\varepsilon > 0$, $U_{0, \abs{\delta_a}, \varepsilon}$ es una vecindad abierta en $\sigma(X, \mathcal{F})$ del cero. Así que existe $\alpha \in \Lambda$ tal que para todas $\alpha_1, \alpha_2 \geq \alpha$ se cumple que $f_{\alpha_1} - f_{\alpha_2} \in U_{0, \abs{\delta_a}, \varepsilon}$, es decir, $\abs{\delta_a}(f_{\alpha_1} - f_{\alpha_2}) = \abs{f_{\alpha_1}(a) - f_{\alpha_2}(a)} < \varepsilon$. Esto indica que $(f_\alpha(a))_{\alpha\in\Lambda}$ es una red de Cauchy en $\K$ para todo $a \in A$. Como $\K$ es completo, (aquí uso que $\K$ es completo) existe $x_a \in \K$ tal que $f_\alpha(a) \to x_a$. Definamos entonces $f \in X$ por $f(a) = x_a$ para toda $a \in A$.
+
+Mostremos que $f_\alpha \to f$. Sea $U_{f, \abs{\delta_{a_1}}, \ldots, \abs{\delta_{a_k}}, \varepsilon}$ una vecindad básica de $f$ para algunos $k \in \N$, $a_1, \ldots, a_k \in A$ y $\varepsilon > 0$. Para cada $i \in \nn{k}$, se tiene que $f_\alpha(a_i) \to f(a_i)$, así que existe $\alpha_i \in \Lambda$ tal que si $\alpha \geq \alpha_i$, entonces $\abs{\delta_{a_i}}(f_{\alpha} - f) = \abs{f_{\alpha}(a_i) - f(a_i)} < \varepsilon$. Así que si tomamos $\beta \in  \Lambda$ con $\beta \geq \alpha_i$ para todo $1 \leq  i \leq k$, entonces $f_\alpha \in U_{f, \abs{\delta_{a_1}}, \ldots, \abs{\delta_{a_k}}, \varepsilon}$ siempre que $\alpha \geq \beta$. Por lo tanto $f_\alpha \to f$ y $(X, \sigma(X, \mathcal{F}))$ es completo.
 \end{Ejem}
 
 \subsection{Convexidad.}
