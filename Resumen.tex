@@ -49,6 +49,12 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\C}{\mathbb{C}}
 
+\newcommand\restr[2]{{
+  \left.\kern-\nulldelimiterspace #1 \vphantom{\big|} \right|_{#2} 
+}}
+
+\def\Dom{\qopname\relax m{Dom}}
+
 \hypersetup{
     colorlinks=true,
     linkcolor=black,
@@ -758,6 +764,22 @@ $$\lambda (x_\alpha)_{\alpha \in \Lambda}  = ( \lambda x_\alpha )_{\alpha \in \L
 
 Con esta suma y producto resulta que el espacio de $\Lambda$-redes en el espacio vectorial $X$ vuelve a ser un espacio vectorial. \\
 
+\begin{Lema}
+\textbf{(del sándwich)} Sean $X$ un espacio topológico y $f, g $ y $h$ funciones reales definidas en $X$ tales que $g(x) \leq f(x) \leq h(x)$ para todo $x \in X$. Si para una red $(x_\alpha)_{\alpha \in \Lambda}$ en $X$ se satisface que $$\displaystyle\lim_{\alpha \in \Lambda} g(x_\alpha) = \lim_{\alpha \in \Lambda} h(x_\alpha) = L,$$ entonces $\displaystyle  \lim_{\alpha \in \Lambda} f(x_\alpha) = L$.
+\end{Lema}
+
+\begin{Dem}
+Sea $U$ una vecindad abierta de $L$. Tomemos $\varepsilon > 0$ tal que $(L- \varepsilon, L + \varepsilon) \subseteq U$. Como este intervalo es una vecindad abierta de $L$, por hipótesis existen $\alpha_1, \alpha_2 \in \Lambda$ tales que 
+\Ecu{
+g(x_\alpha) \in (L-\varepsilon, L+\varepsilon)\mbox{ si }\alpha \geq \alpha_1 \quad \mbox{ y } \quad h(x_\alpha) \in &(L-\varepsilon, L+\varepsilon)\mbox{ si }\alpha \geq \alpha_2. 
+}
+
+Al tomar $\alpha_0 \in \Lambda$ tal que $\alpha_0 \geq \alpha_1$ y $\alpha_0 \geq \alpha_2$, se cumple que $g(x_\alpha), h(x_\alpha) \in (L- \varepsilon, L + \varepsilon)$, de donde
+$$L- \varepsilon < g(x_\alpha) \leq f(x_\alpha) \leq h(x_\alpha) < L + \varepsilon, \mbox{ si } \alpha \geq \alpha_0.$$
+
+Por lo tanto $f(x_\alpha) \in (L- \varepsilon, L + \varepsilon) \subseteq U$, si $\alpha \geq \alpha_0$. 
+\end{Dem}
+
 De manera similar a la definición de una subsucesión, podemos definir el concepto de subred.
 
 \begin{Def}
@@ -827,21 +849,29 @@ Tomemos $x \in \bigcap_{\alpha \in \Lambda} C_\alpha$. Veamos que $x$ es un punt
 Supongamos ahora que $X$ no es compacto. Existe entonces una cubierta abierta $\{ V_i \}_{i \in I}$ de $X$ tal que  no tiene  una subcubierta finita. Sea $\Lambda$ la colección de subconjuntos finitos de $I$ con el orden de inclusión. Para cada $F \in \Lambda$ la subcolección finita $\{ V_i : i \in F \}$ no cubre a $X$. Por lo que $\bigcup_{i\in F} V_i \neq X$. Así que existe $x_F \in X$ tal que $x_F \notin V_i$ para todo $i \in F$. Consideremos la red $(x_F)_{F \in \Lambda}$. Demostremos que esta red no tiene subredes que converjan. Por el lema~\ref{Lema:LimiteSubredes} esto último equivale a demostrar que $(x_F)_{F \in \Lambda}$ no tiene puntos límite. Sea $x \in X$. Entonces $x \in V_{i_0}$ para algún $i_0 \in I$. Además, para $F \in \Lambda$ tal que $\{ i_0 \} \subseteq F$ se tiene que $x_F \notin V_{i_0}$. Esto indica que $x$ no es punto límite de $(x_F)_{F \in \Lambda}$. 
 \end{Dem}
 
-\begin{Lema}
-\textbf{(del sándwich)} Sean $X$ un espacio topológico y $f, g $ y $h$ funciones reales definidas en $X$ tales que $g(x) \leq f(x) \leq h(x)$ para todo $x \in X$. Si para una red $(x_\alpha)_{\alpha \in \Lambda}$ en $X$ se satisface que $$\displaystyle\lim_{\alpha \in \Lambda} g(x_\alpha) = \lim_{\alpha \in \Lambda} h(x_\alpha) = L,$$ entonces $\displaystyle  \lim_{\alpha \in \Lambda} f(x_\alpha) = L$.
-\end{Lema}
+\begin{Def}
+Sean $I$ un conjunto no vacío, $J\subseteq I$ y $X_i$ un espacio topológico para cada $i \in I$. 
+\begin{itemize}
+\item \textbf{i)} Decimos que $g: J \to \bigcup_{i\in I} X_i$ es un \textit{miembro parcialmente definido} de $\prod_{i \in I} X_i$ si $g(j) \in X_j$ para toda $j \in I$.
+\item \textbf{ii)} Dada una red $(f_\alpha)_{\alpha \in \Lambda}$ en $\prod_{i \in I} X_i$, decimos que un miembro parcialmente definido $g$ de $\prod_{i \in I} X_i$ es un \textit{punto límite parcial} de $(f_\alpha)_{\alpha \in \Lambda}$ si $g$ es un punto límite de $(\restr{f_\alpha}{J})_{\alpha \in \Lambda}$ en $\prod_{j\in J}X_j$.
+\end{itemize}
+\end{Def}
+
+\begin{Prop}
+Sean $I$ un conjunto no vacío, $X_i$ un espacio topológico para cada $i \in I$. Entonces la colección $\mathcal{P}$ de miembros parcialmente definidos de $\prod_{i\in I} X_i$ es un conjunto parcialmente ordenado con la relación $\leq$ tal que para $g_1, g_2 \in\mathcal{P}$ se tenga que $$g_1 \leq g_2 \;\mbox{ si, y sólo si }\; \Dom g_1 \subseteq \Dom g_2 \mbox{ y } \restr{g_2}{\Dom g_1} = g_1.$$
+\end{Prop}
 
 \begin{Dem}
-Sea $U$ una vecindad abierta de $L$. Tomemos $\varepsilon > 0$ tal que $(L- \varepsilon, L + \varepsilon) \subseteq U$. Como este intervalo es una vecindad abierta de $L$, por hipótesis existen $\alpha_1, \alpha_2 \in \Lambda$ tales que 
-\Ecu{
-g(x_\alpha) \in (L-\varepsilon, L+\varepsilon)\mbox{ si }\alpha \geq \alpha_1 \quad \mbox{ y } \quad h(x_\alpha) \in &(L-\varepsilon, L+\varepsilon)\mbox{ si }\alpha \geq \alpha_2. 
-}
-
-Al tomar $\alpha_0 \in \Lambda$ tal que $\alpha_0 \geq \alpha_1$ y $\alpha_0 \geq \alpha_2$, se cumple que $g(x_\alpha), h(x_\alpha) \in (L- \varepsilon, L + \varepsilon)$, de donde
-$$L- \varepsilon < g(x_\alpha) \leq f(x_\alpha) \leq h(x_\alpha) < L + \varepsilon, \mbox{ si } \alpha \geq \alpha_0.$$
-
-Por lo tanto $f(x_\alpha) \in (L- \varepsilon, L + \varepsilon) \subseteq U$, si $\alpha \geq \alpha_0$. 
+Notemos que
+\begin{itemize}
+\item[\textbf{i)}] Dado $g_1 \in \mathcal{P}$, claramente se tiene que $ \Dom g_1 \subseteq \Dom g_1$ y $\restr{g_1}{\Dom g_1} = g_1.$
+\item[\textbf{ii)}] Sean $g_1, g_2 \in \mathcal{P}$ con $g_1 \leq g_2$ y $g_2 \leq g_1$. Entonces $\Dom g_1 \subseteq \Dom g_2$ y $\Dom g_2 \subseteq \Dom g_1$. Así que $\Dom g_1 = \Dom g_2$. Además, $g_1 = \restr{g_2}{\Dom g_1} = \restr{g_2}{\Dom g_2} = g_2$. Así que $g_1 = g_2$.
+\item[\textbf{iii)}] Tomemos $g_1, g_2, g_3 \in \mathcal{P}$ tales que $g_1 \leq g_2$ y $g_2 \leq g_3$. De que $\Dom g_1 \subseteq \Dom g_2$ y $\Dom g_2 \subseteq \Dom g_3$, se sigue que $\Dom g_1 \subseteq \Dom g_3$. Además, puesto que $g_1 = \restr{g_2}{\Dom g_1}$ y $ g_2 = \restr{g_3}{\Dom g_2}$, se tiene que $$g_1 = \restr{g_2}{\Dom g_1} = \restr{\left(\restr{g_3}{\Dom g_2}\right)}{\Dom g_1} = \restr{g_3}{\Dom g_1}.$$ Luego $g_1 \leq g_3$.
+\end{itemize}
+Por lo tanto $\leq$ es un orden parcial. A este le llamamos \textit{orden de extensión de funciones}.
 \end{Dem}
+
+Para evitar ambigüedades al trabajar con las proyecciones, denotaremos por $\pi_{J, i}$ a la proyección de dominio $\prod_{j \in J} X_j$ tal que $\pi_{J, i}(f) = f(i)$ para algún $J \subseteq I$ y $j \in J$.
 
 Si tenemos un par de espacios topológicos compactos, es sencillo verificar que su producto sigue siendo compacto. Uno de los teoremas más importantes en la topología es el teorema de Tychonoff y generaliza este resultado estableciendo que el producto arbitrario de espacios compactos es compacto.  
  
@@ -852,7 +882,21 @@ Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$.
 \begin{Dem}
 Sea $(f_\alpha)_{\alpha \in \Lambda}$ una red en $X = \prod_{i \in I} X_i$. Demostremos que existe una subred de $(f_\alpha)_{\alpha \in \Lambda}$ convergente. 
 
-(Pendiente).
+Sea $\mathcal{Q}$ la colección de puntos límite parciales de $(f_\alpha)_{\alpha \in \Lambda}$.  Como $\mathcal{Q} \subseteq \mathcal{P}$ y $\mathcal{P}$ es un conjunto parcialmente ordenado con el orden de extensión de funciones, entonces $\mathcal{Q}$ también lo es. Veamos que $\mathcal{Q}$ es no-vacío. Fijemos por el momento $j \in I$ cualquiera. Entonces $(f_\alpha(j))_{\alpha \in \Lambda}$ es un red en $X_j$. Como $X_j$ es compacto, $(f_\alpha(j))_{\alpha \in \Lambda}$ tiene alguna subred que converge a algún $x_j \in X_j$. Por el lema~\ref{Lema:LimiteSubredes}, se sigue que $x_j$ es un punto límite de $(f_\alpha(j))_{\alpha \in \Lambda}$. Definamos $g: \{ j \} \to \bigcup_{i\in I} X_i$ por $g(j) = x_j$. Veamos que $g$ es un punto límite de $(\restr{f_\alpha}{\{ j \}})_{\alpha \in \Lambda}$. Así pues, tomemos $\pi_{\{j\}, j}^{-1}(U)$ una vecindad básica de $g$ para alguna a vecindad abierta $U$ de $x_i$. Como $x_i$ es punto límite de $(f_\alpha(j))_{\alpha \in \Lambda}$, existe $\alpha_0 \in \lambda$ tal que si $\alpha \geq \alpha_0$, entonces $\pi_{\{j\}, j}(\restr{f_\alpha}{\{j \}}) = f_\alpha(j) \in U$, es decir $\restr{f_\alpha}{\{j \}} \in \pi_{\{j\},j}^{-1}(U)$. Así que $g$ es punto límite parcial  de $(f_\alpha)_{\alpha \in \Lambda}$ y $\mathcal{Q} \neq \emptyset$.    
+
+Sea $\mathcal{C} = \{ g_\lambda : \lambda \in \Gamma \}$ un subconjunto totalmente ordenado de $\mathcal{Q}$. Probemos que $\mathcal{C}$ tiene un máximo. Denotemos por $J_\lambda$ el dominio de $g_\lambda$. Sea $J_0 = \bigcup_{\lambda \in \Gamma} J_\lambda$ y definamos $g_0 : J_0 \to \bigcup_{i\in I} X_i$, de la siguiente forma. Dado $j \in J_0$, existe $\lambda \in \Gamma$ tal que $j \in J_\lambda$, de tal forma que podemos definir $g_0(j) = g_\lambda(j)$. 
+
+Notemos que $g_0$ está bien definida en todo $j \in J_0$. Sean $\lambda_1, \lambda_2 \in \Gamma$ tales que $j \in J_{\lambda_1}$ y $j \in J_{\lambda_2}$. Como $\mathcal{C}$ es totalmente ordenado, podemos suponer sin perdida de generalidad de $g_{\lambda_1} \leq g_{\lambda_2}$. Por lo que $g_{\lambda_1}(j) = g_{\lambda_2}(j)$.
+
+Demostremos ahora que $g_0 \in \mathcal{Q}$. Consideremos $\bigcap_{k=1}^n \pi_{J_0, j_k}^{-1}(U_k)$ una vecindad abierta de $g_0$ para algunos $n \in \N$, $j_1, \ldots, j_n \in J_0$ y $U_1, \ldots, U_n$ abiertos en $X_{j_1}, \ldots, X_{j_n}$ respectivamente. Fijemos $k \in \nn{n}$ por un momento. Sea $\lambda_k \in \Gamma$ tal que $j_k \in J_{\lambda_k}$. Entonces $g_0 \in \pi_{J_0, j_k}^{-1}(U_k)$, de donde $$\displaystyle\pi_{J_{\lambda_k}, j_k}(g_{\lambda_k})  =  g_{\lambda_k}(j_k) = g_0(j_k) = \pi_{J_0, j_k}(g_0) \in U_k.$$
+
+De esto que  $g_{\lambda_k} \in \pi_{J_{\lambda_k}, j_k}^{-1}(U_k)$ y  como $g_{\lambda_k} \in \mathcal{C}$, existe $\alpha_k \in \Lambda$ tal que $\restr{f_\alpha}{J_{\lambda_k}} \in \pi_{J_{\lambda_k}, j_k}^{-1}(U_k)$ siempre que $\alpha \geq \alpha_k$. Es decir, si $\alpha \geq \alpha_k$, entonces $$\restr{f_\alpha}{J_0} (j_k) = \restr{f_\alpha}{J_{\lambda_k}} (j_k) = \pi_{J_{\lambda_k}, j_k}\left(\restr{f_\alpha}{J_{\lambda_k}}\right)  \in U_k,$$ 
+o bien, $\restr{f_\alpha}{J_0} \in \pi_{J_0, j_k}^{-1}(U_k)$ para $\alpha \geq \alpha_k$. Tomando $\beta \in \Lambda$ tal que $\beta \geq \alpha_k$ para toda $k \in \nn{n}$, se obtiene que $\restr{f_\alpha}{J_0} \in \bigcap_{k=1}^n \pi_{J_0, j_k}^{-1}(U_k)$ y por lo tanto $g_0$ es punto límite de $(\restr{f_\alpha}{J_0})_{\alpha \in \Lambda}$ y $g_0 \in \mathcal{C}$.
+
+Claramente $g_0 \geq g_\lambda$ para todo $\lambda \in \Gamma$. Así que $\mathcal{C}$ tiene un máximo. Por el lema de Zorn, se sigue que $\mathcal{Q}$ tiene un elemento maximal $g$ de dominio $J \subseteq I$. Nuestro último paso es probar que $J = I$, para que de esta manera $g$ sea un punto límite de $(f_\alpha)_{\alpha\in\Lambda}$ y por el lema~\ref{Lema:LimiteSubredes} y el teorema~\ref{Tma:CompacidadPorConvergenciaDeSubredes} se concluya que $\prod_{i\in I} X_i$ es compacto. 
+
+Supongamos que $J \subsetneq I$, de forma que existe $h \in J \setminus I$. Como $g$ es punto límite de $(\restr{f_\alpha}{J})_{\alpha\in\Lambda}$, (pendiente)...
+
 \end{Dem}
 
 \section{Espacios vectoriales topológicos.}
