@@ -1456,7 +1456,11 @@ En adelante, cuando trabajemos en $\K^n$ con la norma $\Norm{\cdot}_p$, lo denot
 
 En el caso particular $p=2$, a la norma $\Norm{\cdot}_2$ en $\K^n$ le damos el nombre de \textit{norma euclidiana}. A continuación probaremos que $\ell_2^n$ es un espacio completo haciendo uso del teorema de Heine-Borel.
 
-\begin{Tma} \label{Tma:HeineBorelGeneral} \textbf{(Heine-Borel)}
+\begin{Tma} \label{Tma:HeineBorel} \textbf{(Heine-Borel)}
+Sea $K \subseteq \ell_2(\K)$ un conjunto compacto. Si $A$ es un subconjunto infinito de $K$ entonces $A$ tiene un punto de acumulación en $A$. 
+\end{Tma}
+
+\begin{Tma} \label{Tma:HeineBorelGeneral} 
 Sea $A \subseteq \ell_2^n(\K)$. Son equivalentes:
 \begin{itemize}
 \item \textbf{i)} $A$ es cerrado y acotado.
@@ -2055,17 +2059,16 @@ g_n(\omega) = \begin{cases} f_n(\omega) \; \mbox{ si } \omega \in A, \\
 Notemos que $g_n(\omega)$ converge para todo $\omega \in G$ a la función $g : \Omega \to X$ tal que $g = f$ en $A$. Por la proposición~\ref{Prop:SimpleMedible}, $g$ es medible. Así que $f$ es $\mu$-medible. 
 \end{Dem}
 
-Recordemos que un espacio de Banach $X$ es \textit{separable} si existe un conjunto $A \subseteq X$ numerable y denso en $X$.\\
+Recordemos que un espacio de Banach $X$ es \textit{separable} si existe un conjunto $A \subseteq X$ numerable y denso en $X$.
 
 \begin{Tma} \textbf{(Egorov)} Supongamos que $X$ es un espacio de Banach separable. Sean $f_n: \Omega \to X$ funciones medibles y supongamos que existe $A \subseteq \Omega$ con $\mu$-medida finita tal que $(f_n)_n$ converge $\mu$-c.t.p. a una función límite $f: \Omega \to X$. Entonces para cada $\varepsilon > 0$ existe $B \subseteq A$ medible con $\mu(B) < \varepsilon$ y tal que $f_n$ converge uniformemente a $f$ en $B$. 
 \end{Tma}
 
 \begin{Dem}
- (Pendiente)
+ (Pendiente).
 \end{Dem}
 
 A la propiedad que se concluye del teorema de Egorov se le llama \textit{convergencia casi uniforme}.
-
 
 \begin{Def} 
 Una función $f: \Omega \to \K$ es $\mu$-\textit{medible} si existe $g: \Omega \to \K$ medible tal que $f = g$ $\mu$-c.t.p. 
@@ -2087,6 +2090,20 @@ Una función $f: \Omega \to X$ se dice \textit{escalarmente} $\mu$\textit{-medibl
 Sea $f: \Omega \to X$ una función simple de manera que $f(\omega) = \sum_{i=1}^n \chi_{E_i} (\omega) x_i$ para algunos $n \in\N$, $E_1, \ldots, E_n \in \Sigma$ disjuntos y $x_1,\ldots, x_n \in X$. Entonces definimos la \textit{integral de Bochner} de $f$ en $E \in \Sigma$ como 
 $$\int_E f \, d \mu := \sum_{i=1}^n \mu(E\cap E_i)x_i.$$ 
 \end{Def}
+
+\begin{Def}
+Una función $\mu$-medible $f: \Omega \to X$ es \textbf{Bochner integrable} si existe una sucesión de funciones simples $(f_n)_{n \in \N}$ tales que $$\lim_{n \to \infty} \int_{\Omega} \Norm{f_n(\omega) - f(\omega)} d\mu(\omega) = .0$$
+
+en este caso $\int_{E} f d \mu$ se define para cada $E \in \sigma$ por $$\int_E f d \mu = \lim_{n \to \infty} \int_E f_n d \mu.$$
+\end{Def}
+
+\begin{Prop}
+Una función $\mu$-medible $f: \Omega \to X$ es Bochner integrable si, y sólo si $$\int_\Omega \Norm{f} d \mu < \infty.$$
+\end{Prop}
+
+\begin{Dem}
+(Pendiente).
+\end{Dem}
 
 \section{El teorema de Orlicz-Pettis.}
 
