@@ -251,6 +251,8 @@ Sea $A$ un conjunto cerrado. Entonces $X \setminus A$ es abierto. Como $f$ prese
 
 \begin{Def}
 Un subconjunto $K$ de un espacio topológico $X$ es \textit{compacto} si para cualquier colección $\{ U_\alpha \}_{\alpha \in \Lambda}$ de abiertos tales que $$K \subseteq \bigcup_{\alpha \in \Lambda} U_\alpha$$ existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ tales que $$K \subseteq \bigcup_{i=1}^n U_{\alpha_i}.$$
+
+A la colección $\{ U_\alpha \}_{\alpha \in \Lambda}$ se le denomina \textit{cubierta abierta} de $K$ y a la subcolección $\{ U_{\alpha_1}, \ldots, U_{\alpha_n} \}$ se le llama \textit{subcubierta finita} de $\{ U_\alpha \}_{\alpha \in \Lambda}$.
 \end{Def}
 
 \begin{Prop} \label{Prop:FuncionContinuaPreservaCompactos}
@@ -258,7 +260,7 @@ Sean $X$ y $Y$ espacios topológicos y $f:X \to Y$ una función continua. Entonces
 \end{Prop}
 
 \begin{Dem}
-Sea $K$ un conjunto compacto y $(U_{\alpha})_{\alpha \in \Lambda}$ una cubierta abierta de $f(K)$, entonces $(f^{-1}(U_\alpha))_{\alpha \in \Lambda}$ es una cubierta abierta de $K$ por ser $f$ continua. Por lo que existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ tales que $$K \subseteq\bigcup_{i=1}^n f^{-1} (U_\alpha).$$
+Sea $K$ un conjunto compacto y $\{U_{\alpha}\}_{\alpha \in \Lambda}$ una cubierta abierta de $f(K)$, entonces $(f^{-1}(U_\alpha))_{\alpha \in \Lambda}$ es una cubierta abierta de $K$ por ser $f$ continua. Por lo que existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ tales que $$K \subseteq\bigcup_{i=1}^n f^{-1} (U_\alpha).$$
 
 Luego, $(U_{\alpha_i})_{i=1}^n$ es una cubierta finita de $f(K)$ y así este es un conjunto compacto.
 \end{Dem}
@@ -386,8 +388,8 @@ El marco de espacios topológicos es muy general, por lo que estudiaremos un caso
 Un \textit{espacio métrico} es una pareja $(M, d)$ donde $M$ es un conjunto no vacío y $d: M \times M \to [0, \infty)$ es una función llamada \textit{métrica} que cumple:
 \begin{itemize}
 \item \textbf{i)} Es \textit{definida positiva}, es decir, para $x, y \in M$ se cumple que $d(x, y) = 0$ si y sólo si $x = y$. 
-\item \textbf{ii)} Es \textit{simétrica}, es decir, dados $x, y \in M$ $d(x, y) = d(y, x)$.
-\item \textbf{iii)} Cumple la \textit{desigualdad del triángulo}, es decir, si $x, y, z \in M$, entonces $d(x, z) \leq d(x, y) + d(y, z)$.
+\item \textbf{ii)} Es \textit{simétrica}, es decir, si $x, y \in M$ entonces $d(x, y) = d(y, x)$.
+\item \textbf{iii)} Cumple la \textit{desigualdad del triángulo}, es decir, para $x, y, z \in M$, $d(x, z) \leq d(x, y) + d(y, z)$.
 \end{itemize}
 \end{Def}
 
@@ -492,6 +494,26 @@ $$K \subseteq \bigcup_{i=1}^n V_\varepsilon(x_i).$$
 En este caso diremos que $\{ x_1, \ldots, x_n \}$ es una $\varepsilon$-\textit{red} de $\K$
 \end{Def}
 
+\begin{Obs}
+Sea $M$ un espacio métrico y $K \subseteq M$ un conjunto totalmente acotado. Entonces
+\begin{itemize}
+\item \textbf{i)} Si $A \subseteq K$, entonces $A$ es totalmente acotado.
+\item \textbf{ii)} Si $K \neq \emptyset$, entonces para todo $\varepsilon > 0$, existe una $\varepsilon$-red de $K$ formada de puntos en $K$. 
+\end{itemize}
+\end{Obs}
+
+\begin{Dem}
+\hfill
+\begin{itemize}
+\item \textbf{i)} Es claro del hecho de que toda $\varepsilon$-red de $K$ también es un $\varepsilon$-red de $A$.
+\item \textbf{ii)} Sea $\varepsilon > 0$. Como $K$ es totalmente acotado, existe una $\frac{\varepsilon}{2}$-red $\{x_1, \ldots, x_n\}$ de $K$ para algunos $n \in\N$,  $x_1, \ldots, x_n \in K$. Entonces tenemos que 
+\begin{equation}
+K \subseteq \bigcup_{i=1}^n V_{\frac{\varepsilon}{2}}(x_i).
+\end{equation} 
+Sean $\{ x_{n_1}, \ldots, x_{n_k} \}$ los puntos en la  $\frac{\varepsilon}{2}$-red tales que $K \cap V_{\frac{\varepsilon}{2}}(x_{n_i}) \neq \emptyset$. Hay al menos uno de estos pues, $K \neq \emptyset$. Además, se sigue cumpliendo que $\{ x_{n_1}, \ldots, x_{n_k} \}$ es una $\frac{\varepsilon}{2}$-red de $K$. Para cada $1 \leq i \leq k$ tomemos $y_i \in K \cap V_{\frac{\varepsilon}{2}}(x_{n_i})$. Sea $x \in K$, entonces $x \in V_{\frac{\varepsilon}{2}}(x_{n_i})$ para algún $i \in \nn{k}$. Se sigue de esto que $d(x, y_i) \leq d(x, x_{n_i}) + d(x_{n_i}, y_i) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$. Así que $\{ y_1, \ldots, y_k \}$ es una $\varepsilon$-red de $K$ con puntos en $K$.   
+\end{itemize}
+\end{Dem}
+
 \begin{Tma} \label{Tma:CaracterizacionCompacidadSucesiones}
 Sean $M$ un espacio métrico y $K \subseteq M$. Son equivalentes:
 \begin{itemize}
@@ -513,7 +535,27 @@ Ahora supongamos que $A$ no tiene puntos de acumulación. Entonces, para cada $x 
 $$A = A \cap K \subseteq A \cap \left( \bigcup_{i=1}^k V_{y_i} \right) = \bigcup_{i=1}^k (A \cap V_{y_i}) \subseteq \bigcup_{i=1}^k \{ y_i \}.$$ 
 Es decir, $(x_n)_{n\in\N}$ solamente toma los valores $\{ y_1, \ldots, y_k\}$, por lo que algún $y_i$ aparece infinitas veces en $(x_n)_{n\in\N}$. La subsucesión constante de $(x_n)_{n\in\N}$ que consiste en este $y_i$ converge a $y_i \in\K$.
 
-Ahora supongamos \textbf{ii)}. (Pendiente).
+Ahora supongamos \textbf{ii)}, es decir, supongamos que toda sucesión en $K$ tiene una subsucesión que converge en $K$. Para probar que $K$ es completo, tomemos una sucesión $(x_n)_{n\in\N} \subseteq K$ de Cauchy. Por hipótesis, existe una subsucesión $(x_{n_k})_{k\in\N}$ de $(x_n)_{n\in\N}$ tal que converge a algún $x \in K$. El lema~\ref{Lema:SucesionCauchyConSubsucesionConvergenteConverge} indica que $(x_n)_{n\in\N}$ converge a $x$. De esta forma $K$ es completo.
+
+Para demostrar que $K$ es totalmente acotado, se procederá por contrapositiva. Así, supongamos que $K$ no es totalmente acotado. Así que existe $\varepsilon > 0$ tal que para todos $n \in\N$, $x_1, \ldots, x_n \in M$ se tiene que $$K \subsetneq \bigcup_{i=1}^n V_\varepsilon(x_i).$$
+
+Construyamos una sucesión $(x_n)_{n\in\N} \subseteq K$ sin subsucesiones convergentes en $K$. Tomemos $x_1 \in K$ cualquiera. Supongamos que tenemos definidos $x_1, \ldots, x_n \in K$ tal que $d(x_i, x_j) \geq \varepsilon$ para todos $1 \leq i, j \leq n$ distintos. Como $K$ no es totalmente acotado, entonces $\{ x_1, \ldots, x_n \}$ no es una $\varepsilon$-red de $K$. Así que existe $x_{n+1} \in \K$ tal que $x_{n+1}\notin \bigcup_{i=1}^n V_\varepsilon(x_i)$, es decir, $d(x_{n+1}, x_i) \geq \varepsilon$ para toda $i \in \nn{n}$. Así pues, construimos $(x_n)_{n\in\N} \subseteq K$ tal que $d(x_i, x_j) \geq \varepsilon$ si $i \neq j$. 
+
+Supongamos que $(x_n)_{n\in\N}$ tiene alguna subsucesión $(x_{n_k})_{k\in\N}$ que converge a algún $x \in K$. Entonces existe $N \in \N$ tal que $d(x_n, x) < \frac{\varepsilon}{2}$ si $n \geq N$. Entonces $$d(x_N, x_{N+1}) \leq d(x_N, x) + d(x_{N+1}, x) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon,$$ lo cual es falso. Así que $(x_n)_{n\in\N}$ no tiene subsucesiones convergentes en $K$.
+
+Finalmente, demostremos que \textbf{iii)} implica \textbf{i)} por contradicción. Supongamos que $K$ no es compacto. Entonces existe una cubierta abierta $\{ U_{\alpha} \}_{\alpha \in \Lambda}$ de $K$ sin ninguna subcubierta finita.  
+
+Como $K$ es no-vacío y es totalmente acotado, existe una $2^{-1}$-red $\{p_1, \ldots, p_n \}$. Si toda bola $V_{2^{-1}}(p_i)$ se pudiera cubrir por una cantidad finita de elementos en $\{ U_{\alpha} \}_{\alpha \in \Lambda}$, entonces resultaría que a partir de estos podemos formar una subcubierta finita de $\{ U_{\alpha} \}_{\alpha \in \Lambda}$. Entonces existe algún $V_{2^{-1}}(p_i)$ que no se puede cubrir con una subcubierta finita de $\{ U_{\alpha} \}_{\alpha \in \Lambda}$. Tomemos $x_1 = p_i$. 
+
+Dado que $K \cap V_{2^{-1}}(p_i) \neq \emptyset$ es totalmente acotado, tiene una $2^{-2}$-red $\{ q_1, \ldots, q_m \} \subseteq K \cap V_{2^{-1}}(p_i)$. De manera similar a la elección de $x_1$, existe $j \in\nn{m}$ tal que $K \cap V_{2^{-2}}(y_j)$ no se puede cubrir con una cantidad finita de elementos en $\{ U_{\alpha} \}_{\alpha \in \Lambda}$. Definimos $x_2 = q_j$.
+
+Continuando con este proceso construimos la sucesión $(x_n)_{n \in\N} \subseteq K$ de tal forma que para todo $n \in \N$ se cumpla que $x_{n+1} \in K \cap V_{2^{-n}}(x_n)$ y que no existe ninguna subcolección finita de $\{ U_{\alpha} \}_{\alpha \in \Lambda}$ que cubra a $K \cap V_{2^{-n}}(x_n)$.  De esto se sigue que $d(x_n, x_{n+1}) < 2^{-n}$ para toda $n \in\N$.
+
+Mostremos que $(x_n)_{n\in\N}$ es de Cauchy. Sea $\varepsilon > 0$. Como $(2^{-n})_{n\in\N}$ es sumable, podemos tomar $N \in \N$ tal que $\sum_{i=N}^\infty < \varepsilon$. Por la desigualdad del triángulo, dados $n, m \geq N$, $n < m$, se tiene que $$d(x_n, x_m) \leq \sum_{i=n}^{m-1} d(x_i, x_{i+1}) \leq  \sum_{i=N}^\infty 2^{-i} < \varepsilon.$$ 
+
+Puesto que $K$ es completo, $(x_n)_{n\in\N}$ converge a algún $x \in K$. Sea $\alpha_0 \in \Lambda$ tal que $x \in U_{\alpha_0}$. Sea $r > 0$ tal que $V_r(x) \subseteq U_{\alpha_0}$. Dado que $x_n \to x$, existe $N$ tal que $x_N \in V_{\frac{r}{2}}(x)$ y $2^{-N} < \frac{r}{2}$. De esto se sigue que para $y \in V_{2^{-N}}(x_N)$ se cumple que $$d(x, y) \leq d(x, x_N) + d(x_N, y) < \frac{r}{2} + 2^{-N} < r.$$
+
+Es decir, $V_{2^{-N}}(x_N) \subseteq V_r(x) \subseteq W_{\alpha_0}$. De donde $V_{2^{-N}}(x_N) \cap K \subseteq W_{\alpha_0}$, lo cual es una contradicción.
 \end{Dem}
 
 \begin{Def}
@@ -564,7 +606,6 @@ Un \textit{conjunto dirigido} es una pareja $(\Lambda, \leq)$, donde $\Lambda$ e
 \item \textbf{iii)} Si $\alpha, \beta \in \Lambda$, entonces existe $\gamma \in \Lambda$ con $\alpha \leq \gamma$ y $\beta \leq \gamma$.
 \end{itemize} 
 \end{Def} 
-\bigskip
 
 Del principio de inducción junto con \textbf{iii)} se sigue que para cualquier cantidad $n\in\N$ y cualquier colección finita $\alpha_1, ..., \alpha_n \in \Lambda$ de tamaño $n$, existe $\beta \in \Lambda$ con $\beta \geq \alpha_i$ para toda $1 \leq i \leq n$. En otras palabras, cualquier conjunto finito de $\Lambda$ tiene una cota superior. 
 
