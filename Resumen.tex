@@ -1516,9 +1516,19 @@ Para cada $p \in [1, \infty]$, la función $\Norm{\cdot}_p$ es una norma en $\ell
 & = \lim_{n\to \infty} \Norm{(x_1 + y_1, \ldots, x_n + y_n)}_p = \Norm{x+y}_p.
 }
 \end{itemize}
-
+Además, observemos que para cada $p \in [1, \infty]$, se tiene que $\abs{x_n} \leq \Norm{x}_p$ para todo $n \in \N$.
 \end{Dem}
 
+\begin{Prop}
+Para cada $p \in [1, \infty]$, $\ell_p$ es un espacio de Banach. (¿mover después de que $\K$ es completo?)
+\end{Prop}
+
+\begin{Dem}
+Como cada elemento en $\ell_p$ es una sucesión en $\K$, usaremos la notación de funciones en $\ell_p$. Tomemos pues una sucesión de Cauchy $(f_n)_{n \in\N}$ en $\ell_p$. Dado $k \in \N$, notemos que $(f_n(k))_{n\in \N}$ es una sucesión de Cauchy en $\K$, pues dado $\varepsilon > 0$, existe $N \in \N$ tal que si $n, m \geq N$ entonces
+$$\abs{f_n(k) - f_m(k)} \leq \Norm{f_n - f_m} < \varepsilon.$$
+
+Así pues, como $\K$ con la norma euclidiana es completo, se sigue que para toda $k\in\N$, $(f_n(k))_{n\in \N}$ converge a algún $x_k \in \K$. Consideremos $f: \N \to \K$ definida por $f(k) = x_k$ para todo $k\in\N$. Demostremos que $f \in \ell_p$ y que $f_n \to f$.
+\end{Dem}
 
 \subsection{Espacio dual.}
 
