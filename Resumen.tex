@@ -319,8 +319,8 @@ Sea $X$ un espacio topológico Hausdorff y $A$ un conjunto en $X$. Si $x \in X$ e
 
 \begin{Dem}
 Supongamos que $B = \{ x_1, \ldots , x_k \}$ para algún $k \in \N$ y algunos $x_1, \ldots, x_k \in A$. Sea $U$ una vecindad abierta de $x$. 
-Como cada $\{ x_i \}$ es compacto, entonces es cerrado. Así que $$B \setminus \{ x \} = \bigcup_{\substack{ 1 \leq i \leq n  \\
-x_i \neq x } } \{ x_i \}$$ también es cerrado. De esto se sigue que $(X \setminus B) \cup \{ x \} = X \setminus (B \setminus \{ x \})$ es abierto al igual que $(U \setminus B) \cup \{ x \} = U \cap((X \setminus B) \cup \{ x \})$. Como $(U \setminus B) \cup \{ x \}$ es una vecindad abierta de $x$, se cumple que $[((U \setminus B) \cup \{ x \}) \cap A] \setminus \{ x \} \neq \emptyset$. Esto equivale a decir que $[U \cap (A \setminus B)] \setminus \{ x \} \neq \emptyset$ y así $x$ es punto de acumulación de $A \setminus B$. 
+Como $X$ es Hausdorff y cada $\{ x_i \}$ es compacto, entonces estos son cerrados. Así que $$B \setminus \{ x \} = \bigcup_{\substack{ 1 \leq i \leq n  \\
+x_i \neq x } } \{ x_i \}$$ es cerrado. De esto se sigue que $(X \setminus B) \cup \{ x \} = X \setminus (B \setminus \{ x \})$ es abierto y en consecuencia también lo es $(U \setminus B) \cup \{ x \} = U \cap((X \setminus B) \cup \{ x \})$. Como $(U \setminus B) \cup \{ x \}$ es una vecindad abierta de $x$, se cumple que $[((U \setminus B) \cup \{ x \}) \cap A] \setminus \{ x \} \neq \emptyset$. Esto equivale a que $[U \cap (A \setminus B)] \setminus \{ x \} \neq \emptyset$ y así $x$ es punto de acumulación de $A \setminus B$. 
 \end{Dem}
 
 Una \textit{sucesión} en un conjunto $X$ es una función $s: \N \to X$. Usualmente representamos a la sucesión $s$ por $(x_n)_{n\in \N}$, donde $x_n := s(n)$ para toda $n \in \N$. 
@@ -329,7 +329,6 @@ Una \textit{sucesión} en un conjunto $X$ es una función $s: \N \to X$. Usualment
 Sea $X$ un espacio topológico y $(x_n)_{n\in\N}$ una sucesión. Si existe $x \in X$ tal que para cada vecindad abierta $U$ de $x$ existe $N \in \N$ tal que $x_n \in U$ para $n \geq n$, entonces decimos que $(x_n)_{n\in\N}$ \textit{converge} a $x$, que $x$ es el \textit{límite} de $(x_n)_{n\in\N}$ y lo denotamos por $x_n \to x$.
 \end{Def}
 
-
 \begin{Prop}
 Sean $X$ es un espacio topológico y $(x_n)_{n \in \N}$ una sucesión en $X$ convergente. Si $X$ es Hausdorff, entonces el límite de $(x_n)_{n\in\N}$ es único.
 \end{Prop}
@@ -337,7 +336,6 @@ Sean $X$ es un espacio topológico y $(x_n)_{n \in \N}$ una sucesión en $X$ conve
 \begin{Dem}
 Sean $x, y \in X$ límites de $(x_n)_{n\in\N}$. Sea $U$ una vecindad abierta de $x$ y $V$ una vecindad abierta de $y$, entonces existen $N, M \in \N$ tales que $x_n \in U$ y $y_m \in V$ si $n \geq N$ y $m \geq M$. Al tomar $K = \max(N, M)$ tenemos que $x_K \in U \cap V$ y por tanto $U \cap V \neq \emptyset$. La contrapositiva de la definición de Hausdorff indica que $x = y$.
 \end{Dem}
-
 
 Sean $X$ y $Y$ dos espacios topológicos. En $X \times Y$ trabajamos con la \textit{topología producto}, que es la generada por la base $\{ U\times V : U \mbox{ abierto  en } X \mbox{ y } V \mbox{ abierto en } Y \}$. Consideremos las \textit{proyecciones canónicas} en $X$ y $Y$
 \Ecu{
@@ -370,10 +368,10 @@ z & \mapsto (f_X(z), f_Y(z))
 
 La construcción anterior de la topología producto es fácil de extender para el producto de una cantidad finita de espacios topológicos. Sin embargo, al momento de definir el producto de una cantidad arbitraria de espacios, hay un detalle que se debe considerar para definir su topología. \\
 
-Sean $I$ un conjunto no vacío  y $X_i$ un espacio topológico para cada $i \in I$. El espacio \textit{producto} de los espacios $X_i$ es
+Sean $I$ un conjunto no vacío  y $X_i$ un espacio topológico para cada $i \in I$. El espacio \textit{producto} de los espacios $X_i$ es el conjunto
 $$\prod_{i\in I} X_i = \left\{ \left. f : I \to \bigcup_{i \in I} X_i \,\right\vert\, f(i) \in X_i , \mbox{ para cada } i \in I  \right\} .$$
 
-Dada $f \in \prod_{i\in I} X_i$, usualmente representaremos a este elemento por $(x_i)_{i\in I}$ donde $x_i := f(i)$ para todo $i \in I$.
+Usualmente representaremos a $f \in \prod_{i\in I} X_i$ por el conjunto de sus valores $(x_i)_{i\in I}$ donde cada $x_i := f(i)$ para todo $i \in I$. En el caso finito $I = \{1, \ldots, n, \}$, notemos que $(x_i)_{i \in I}$ es simplemente la $n$-ada $(x_1, \ldots, x_n)$.
 
 Para $j \in I$ la $j$-ésima \textit{proyección canónica} es 
 \Ecu{
@@ -388,7 +386,7 @@ Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$.
 Veamos que con esta definición de topología producto las proyecciones son continuas. Fijemos $i \in I$ y tomemos cualquier abierto $U_i$ en $X_i$. Entonces $\pi_i^{-1}(U_i)$ es un básico de $\prod_{i\in I} X_i$ y por tanto es abierto. Esto indica que $\pi_i$ es continua. 
 
 \section{Espacios métricos.}
-El marco de espacios topológicos es muy general, por lo que estudiaremos un caso particular de estos espacios que tienen mejores propiedades y donde las sucesiones juegan un papel muy importante. 
+El marco de espacios topológicos es muy general, por lo que estudiaremos a continuación un caso particular de estos espacios que tienen mejores propiedades y donde las sucesiones juegan un papel muy importante. 
 
 \begin{Def}
 Un \textit{espacio métrico} es una pareja $(M, d)$ donde $M$ es un conjunto no vacío y $d: M \times M \to [0, \infty)$ es una función llamada \textit{métrica} que cumple:
@@ -495,88 +493,6 @@ Tomemos $L = \max(N, M)$ y $n \geq L$. De esta manera tenemos que $k_L \geq L \g
 \end{Dem}
 
 \begin{Def}
-Sea $M$ un espacio métrico. Un conjunto $K \subseteq M$ es \textit{totalmente acotado} si para cada $\varepsilon > 0$ existen $n \in\N, x_1, \ldots, x_n \in M$ tales que 
-$$K \subseteq \bigcup_{i=1}^n V_\varepsilon(x_i).$$
-En este caso diremos que $\{ x_1, \ldots, x_n \}$ es una $\varepsilon$-\textit{red} de $\K$
-\end{Def}
-
-\begin{Obs}
-Sea $M$ un espacio métrico y $K \subseteq M$ un conjunto totalmente acotado. Entonces
-\begin{itemize}
-\item \textbf{i)} Si $A \subseteq K$, entonces $A$ es totalmente acotado.
-\item \textbf{ii)} Si $K \neq \emptyset$, entonces para todo $\varepsilon > 0$, existe una $\varepsilon$-red de $K$ formada de puntos en $K$. 
-\end{itemize}
-\end{Obs}
-
-\begin{Dem}
-\hfill
-\begin{itemize}
-\item \textbf{i)} Es claro del hecho de que toda $\varepsilon$-red de $K$ también es un $\varepsilon$-red de $A$.
-\item \textbf{ii)} Sea $\varepsilon > 0$. Como $K$ es totalmente acotado, existe una $\frac{\varepsilon}{2}$-red $\{x_1, \ldots, x_n\}$ de $K$ para algunos $n \in\N$,  $x_1, \ldots, x_n \in K$. Entonces tenemos que 
-\begin{equation}
-K \subseteq \bigcup_{i=1}^n V_{\frac{\varepsilon}{2}}(x_i).
-\end{equation} 
-Sean $\{ x_{n_1}, \ldots, x_{n_k} \}$ los puntos en la  $\frac{\varepsilon}{2}$-red tales que $K \cap V_{\frac{\varepsilon}{2}}(x_{n_i}) \neq \emptyset$. Hay al menos uno de estos pues, $K \neq \emptyset$. Además, se sigue cumpliendo que $\{ x_{n_1}, \ldots, x_{n_k} \}$ es una $\frac{\varepsilon}{2}$-red de $K$. Para cada $1 \leq i \leq k$ tomemos $y_i \in K \cap V_{\frac{\varepsilon}{2}}(x_{n_i})$. Sea $x \in K$, entonces $x \in V_{\frac{\varepsilon}{2}}(x_{n_i})$ para algún $i \in \nn{k}$. Se sigue de esto que $d(x, y_i) \leq d(x, x_{n_i}) + d(x_{n_i}, y_i) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$. Así que $\{ y_1, \ldots, y_k \}$ es una $\varepsilon$-red de $K$ con puntos en $K$.   
-\end{itemize}
-\end{Dem}
-
-\begin{Tma} \label{Tma:CaracterizacionCompacidadSucesiones}
-Sean $M$ un espacio métrico y $K \subseteq M$. Son equivalentes:
-\begin{itemize}
-\item \textbf{i)} $K$ es compacto.
-\item \textbf{ii)} Toda sucesión en $K$ contiene una subsucesión convergente en $K$.
-\item \textbf{iii)} $K$ es completo y totalmente acotado.
-\end{itemize}
-\end{Tma}
-
-\begin{Dem}
-Demostraremos que \textbf{i)} implica \textbf{ii)}, que \textbf{ii)} implica \textbf{iii)} y que \textbf{iii)} implica \textbf{i)}.
-
-Así pues, tomemos un conjunto compacto $K \subseteq M$. Sea $(x_n)_{n\in\N}$ una sucesión en $K$. Consideremos el conjunto $A = \{ x_n : n \in \N \}$. Supongamos que $A$ tiene un punto de acumulación $x \in X$. Al ser $M$ Hausdorff, el corolario~\ref{Cor:HausdorffCompactoEsCerrado} asegura que $K$ es cerrado. Como $A \subseteq K$, del lema~\ref{Lema:PropiedadesPuntosDeAcumulacion} se sigue entonces
-$$x \in A^\prime \subseteq K^\prime \subseteq \ov{K} = K.$$
- 
-Construyamos $(n_k)_{k \in \N} \subseteq \N$ de tal forma que $(x_{n_k})_{k \in\N}$ sea una subsucesión convergente de $(x_n)_{n \in\N}$. Como $x$ es punto de acumulación de $A$ y $V_{2^{-1}}(x)$ es una vecindad abierta de $x$, resulta que  $(A \cap V_{2^{-1}}(x)) \setminus \{ x \} \neq \emptyset$. Así que existe $n_1 \in \N$ tal que $x_{n_1} \in  V_{2^{-1}}(x) \setminus \{ x \}$. El lema~\ref{Lema:PuntoAcumulacionDeComplementoFinito} afirma que $x$ es punto de acumulación de $A \setminus \{ x_1, \ldots , x_{n_1} \}$. Dado que $V_{2^{-2}}$ es vecindad abierta de $x$, tenemos que $(A \setminus \{x_1, \ldots, x_{n_1} \} \cap V_{2^{-2}}(x)) \setminus \{ x \} \neq \emptyset$.  Así que existe $n_2 \in \N$ tal que $x_{n_2} \in  V_{2^{-2}}(x) \setminus \{ x, x_1, \ldots, x_{n_1} \}$. Esto indica que $n_1 < n_2$. Repitiendo  este proceso sucesivamente podemos construir la subsucesión $(x_{n_k})_{k\in\N}$ de $(x_n)_{n \in\N}$ tal que $x_{n_k} \in V_{2^{-k}}(x)$. Claramente $x_{n_k} \to x$.
-
-Ahora supongamos que $A$ no tiene puntos de acumulación. Entonces, para cada $x \in K$ existe una vecindad abierta $V_x$ de $x$ tal que $(A \cap V_x) \setminus \{ x \} = \emptyset$, o bien $A \cap V_x \subseteq \{ x \}$. Al ser $\{  V_x \}_{x \in K}$ una cubierta abierta de $K$, existen $k \in \N$, $y_1, \ldots, y_k \in \K$ tales que $K \subseteq \bigcup_{i=1}^k V_{y_i}$. De esto resulta que
-$$A = A \cap K \subseteq A \cap \left( \bigcup_{i=1}^k V_{y_i} \right) = \bigcup_{i=1}^k (A \cap V_{y_i}) \subseteq \bigcup_{i=1}^k \{ y_i \}.$$ 
-Es decir, $(x_n)_{n\in\N}$ solamente toma los valores $\{ y_1, \ldots, y_k\}$, por lo que algún $y_i$ aparece infinitas veces en $(x_n)_{n\in\N}$. La subsucesión constante de $(x_n)_{n\in\N}$ que consiste en este $y_i$ converge a $y_i \in\K$.
-
-Ahora supongamos \textbf{ii)}, es decir, supongamos que toda sucesión en $K$ tiene una subsucesión que converge en $K$. Para probar que $K$ es completo, tomemos una sucesión $(x_n)_{n\in\N} \subseteq K$ de Cauchy. Por hipótesis, existe una subsucesión $(x_{n_k})_{k\in\N}$ de $(x_n)_{n\in\N}$ tal que converge a algún $x \in K$. El lema~\ref{Lema:SucesionCauchyConSubsucesionConvergenteConverge} indica que $(x_n)_{n\in\N}$ converge a $x$. De esta forma $K$ es completo.
-
-Para demostrar que $K$ es totalmente acotado, se procederá por contrapositiva. Así, supongamos que $K$ no es totalmente acotado. Así que existe $\varepsilon > 0$ tal que para todos $n \in\N$, $x_1, \ldots, x_n \in M$ se tiene que $$K \subsetneq \bigcup_{i=1}^n V_\varepsilon(x_i).$$
-
-Construyamos una sucesión $(x_n)_{n\in\N} \subseteq K$ sin subsucesiones convergentes en $K$. Tomemos $x_1 \in K$ cualquiera. Supongamos que tenemos definidos $x_1, \ldots, x_n \in K$ tal que $d(x_i, x_j) \geq \varepsilon$ para todos $1 \leq i, j \leq n$ distintos. Como $K$ no es totalmente acotado, entonces $\{ x_1, \ldots, x_n \}$ no es una $\varepsilon$-red de $K$. Así que existe $x_{n+1} \in \K$ tal que $x_{n+1}\notin \bigcup_{i=1}^n V_\varepsilon(x_i)$, es decir, $d(x_{n+1}, x_i) \geq \varepsilon$ para toda $i \in \nn{n}$. Así pues, construimos $(x_n)_{n\in\N} \subseteq K$ tal que $d(x_i, x_j) \geq \varepsilon$ si $i \neq j$. 
-
-Supongamos que $(x_n)_{n\in\N}$ tiene alguna subsucesión $(x_{n_k})_{k\in\N}$ que converge a algún $x \in K$. Entonces existe $N \in \N$ tal que $d(x_n, x) < \frac{\varepsilon}{2}$ si $n \geq N$. Entonces $$d(x_N, x_{N+1}) \leq d(x_N, x) + d(x_{N+1}, x) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon,$$ lo cual es falso. Así que $(x_n)_{n\in\N}$ no tiene subsucesiones convergentes en $K$.
-
-Finalmente, demostremos que \textbf{iii)} implica \textbf{i)} por contradicción. Supongamos que $K$ no es compacto. Entonces existe una cubierta abierta $\{ U_{\alpha} \}_{\alpha \in \Lambda}$ de $K$ sin ninguna subcubierta finita.  
-
-Como $K$ es no-vacío y es totalmente acotado, existe una $2^{-1}$-red $\{p_1, \ldots, p_n \}$. Si toda bola $V_{2^{-1}}(p_i)$ se pudiera cubrir por una cantidad finita de elementos en $\{ U_{\alpha} \}_{\alpha \in \Lambda}$, entonces resultaría que a partir de estos podemos formar una subcubierta finita de $\{ U_{\alpha} \}_{\alpha \in \Lambda}$. Entonces existe algún $V_{2^{-1}}(p_i)$ que no se puede cubrir con una subcubierta finita de $\{ U_{\alpha} \}_{\alpha \in \Lambda}$. Tomemos $x_1 = p_i$. 
-
-Dado que $K \cap V_{2^{-1}}(p_i) \neq \emptyset$ es totalmente acotado, tiene una $2^{-2}$-red $\{ q_1, \ldots, q_m \} \subseteq K \cap V_{2^{-1}}(p_i)$. De manera similar a la elección de $x_1$, existe $j \in\nn{m}$ tal que $K \cap V_{2^{-2}}(y_j)$ no se puede cubrir con una cantidad finita de elementos en $\{ U_{\alpha} \}_{\alpha \in \Lambda}$. Definimos $x_2 = q_j$.
-
-Continuando con este proceso construimos la sucesión $(x_n)_{n \in\N} \subseteq K$ de tal forma que para todo $n \in \N$ se cumpla que $x_{n+1} \in K \cap V_{2^{-n}}(x_n)$ y que no existe ninguna subcolección finita de $\{ U_{\alpha} \}_{\alpha \in \Lambda}$ que cubra a $K \cap V_{2^{-n}}(x_n)$.  De esto se sigue que $d(x_n, x_{n+1}) < 2^{-n}$ para toda $n \in\N$.
-
-Mostremos que $(x_n)_{n\in\N}$ es de Cauchy. Sea $\varepsilon > 0$. Como $(2^{-n})_{n\in\N}$ es sumable, podemos tomar $N \in \N$ tal que $\sum_{i=N}^\infty < \varepsilon$. Por la desigualdad del triángulo, dados $n, m \geq N$, $n < m$, se tiene que $$d(x_n, x_m) \leq \sum_{i=n}^{m-1} d(x_i, x_{i+1}) \leq  \sum_{i=N}^\infty 2^{-i} < \varepsilon.$$ 
-
-Puesto que $K$ es completo, $(x_n)_{n\in\N}$ converge a algún $x \in K$. Sea $\alpha_0 \in \Lambda$ tal que $x \in U_{\alpha_0}$. Sea $r > 0$ tal que $V_r(x) \subseteq U_{\alpha_0}$. Dado que $x_n \to x$, existe $N$ tal que $x_N \in V_{\frac{r}{2}}(x)$ y $2^{-N} < \frac{r}{2}$. De esto se sigue que para $y \in V_{2^{-N}}(x_N)$ se cumple que $$d(x, y) \leq d(x, x_N) + d(x_N, y) < \frac{r}{2} + 2^{-N} < r.$$
-
-Es decir, $V_{2^{-N}}(x_N) \subseteq V_r(x) \subseteq W_{\alpha_0}$. De donde $V_{2^{-N}}(x_N) \cap K \subseteq W_{\alpha_0}$, lo cual es una contradicción.
-\end{Dem}
-
-\begin{Def}
-Sea $M$ un espacio métrico. La \textit{distancia} de $x \in M$ a $A \subseteq M$ es $$d(x, A) := \inf \{ d(x,y) : y \in A \},$$ donde $\inf  \emptyset = \infty.$
-\end{Def}
-
-\begin{Lema} \label{Lema:DistanciaPositivaEnCerrados} 
-Sean $M$ un espacio métrico y $A \subseteq M$ un conjunto cerrado. Si $x \in M \setminus A$, entonces $d(x, A) > 0$. 
-\end{Lema}
-
-\begin{Dem}
-Se demostrará por contrapositiva. Supongamos que $d(x, A) = 0$. Tomemos un abierto $U$ que incluya a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$, por lo que $U \cap A \neq \emptyset$. Así que $x \in \ov{A}$. Ya que $A$ es cerrado, entonces  $x \in A$.
-\end{Dem}
-
-\begin{Def}
 Sea $M$ un espacio métrico. Decimos que $A \subseteq M$ es un conjunto \textit{acotado} si existe $r > 0$ tal que $d(x, y) < r$ para todos $x, y \in A$.
 \end{Def}
 
@@ -599,6 +515,91 @@ Tomemos $\varepsilon = 1$. Así, existe $N \in \N$ tal que si $n, m \geq N$, ento
 
 Definamos $M = \max(1, d(x_1, x_N), d(x_2, x_N), \ldots, d(x_{N-1}, x_N)) > 0$. De esta manera es claro que $d(x_n, x_N) \leq M$ para toda $n \in\N$ y de la proposición~\ref{Prop:CaracterizacionConjuntoAcotado} se sigue que $\{ x_n : n \in \N \}$ es acotado.
 \end{Dem}
+
+\begin{Def}
+Sea $M$ un espacio métrico. Un conjunto $K \subseteq M$ es \textit{totalmente acotado} si para cada $\varepsilon > 0$ existen $n \in\N, x_1, \ldots, x_n \in M$ tales que 
+$$K \subseteq \bigcup_{i=1}^n V_\varepsilon(x_i).$$
+En este caso diremos que $\{ x_1, \ldots, x_n \}$ es una $\varepsilon$-\textit{red} de $\K$
+\end{Def}
+
+\begin{Obs}
+Sea $M$ un espacio métrico y $K \subseteq M$ un conjunto totalmente acotado. Entonces
+\begin{itemize}
+\item \textbf{i)} Si $A \subseteq K$, entonces $A$ es totalmente acotado.
+\item \textbf{ii)} Si $K \neq \emptyset$, entonces para todo $\varepsilon > 0$, existe una $\varepsilon$-red de $K$ formada de puntos en $K$. 
+\end{itemize}
+\end{Obs}
+
+\begin{Dem}
+\hfill
+\begin{itemize}
+\item[\textbf{i)}] Es claro del hecho de que toda $\varepsilon$-red de $K$ también es un $\varepsilon$-red de $A$.
+\item[\textbf{ii)}] Sea $\varepsilon > 0$. Como $K$ es totalmente acotado, existe una $\frac{\varepsilon}{2}$-red $\{x_1, \ldots, x_n\}$ de $K$ para algunos $n \in\N$,  $x_1, \ldots, x_n \in K$. Entonces tenemos que 
+\begin{equation}
+K \subseteq \bigcup_{i=1}^n V_{\frac{\varepsilon}{2}}(x_i).
+\end{equation} 
+Sean $\{ x_{n_1}, \ldots, x_{n_k} \}$ los puntos en la  $\frac{\varepsilon}{2}$-red tales que $K \cap V_{\frac{\varepsilon}{2}}(x_{n_i}) \neq \emptyset$. Hay al menos uno de estos pues, $K \neq \emptyset$. Además, se sigue cumpliendo que $\{ x_{n_1}, \ldots, x_{n_k} \}$ es una $\frac{\varepsilon}{2}$-red de $K$. Para cada $1 \leq i \leq k$ tomemos $y_i \in K \cap V_{\frac{\varepsilon}{2}}(x_{n_i})$. Sea $x \in K$, entonces $x \in V_{\frac{\varepsilon}{2}}(x_{n_i})$ para algún $i \in \nn{k}$. Se sigue de esto que $d(x, y_i) \leq d(x, x_{n_i}) + d(x_{n_i}, y_i) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$. Así que $\{ y_1, \ldots, y_k \}$ es una $\varepsilon$-red de $K$ con puntos en $K$.   
+\end{itemize}
+\end{Dem}
+
+\begin{Tma} \label{Tma:CaracterizacionCompacidadSucesiones}
+Sean $M$ un espacio métrico y $K \subseteq M$. Son equivalentes:
+\begin{itemize}
+\item \textbf{i)} $K$ es compacto.
+\item \textbf{ii)} Toda sucesión en $K$ contiene una subsucesión convergente en $K$.
+\item \textbf{iii)} $K$ es completo y totalmente acotado.
+\end{itemize}
+\end{Tma}
+
+\begin{Dem}
+Demostraremos que \textbf{i)} implica \textbf{ii)}, que \textbf{ii)} implica \textbf{iii)} y que \textbf{iii)} implica \textbf{i)}.
+
+Así pues, tomemos un conjunto compacto $K \subseteq M$. Sea $(x_n)_{n\in\N}$ una sucesión en $K$. Consideremos el conjunto $A = \{ x_n : n \in \N \}$. Supongamos primero que $A$ tiene un punto de acumulación $x \in X$. Al ser $M$ Hausdorff, el corolario~\ref{Cor:HausdorffCompactoEsCerrado} asegura que $K$ es cerrado. Como $A \subseteq K$, del lema~\ref{Lema:PropiedadesPuntosDeAcumulacion} se sigue entonces que
+$$x \in A^\prime \subseteq K^\prime \subseteq \ov{K} = K.$$
+ 
+Construyamos $(n_k)_{k \in \N} \subseteq \N$ de tal forma que $(x_{n_k})_{k \in\N}$ sea una subsucesión convergente de $(x_n)_{n \in\N}$. Como $x$ es punto de acumulación de $A$ y $V_{2^{-1}}(x)$ es una vecindad abierta de $x$, resulta que  $(A \cap V_{2^{-1}}(x)) \setminus \{ x \} \neq \emptyset$. Así que existe $n_1 \in \N$ tal que $x_{n_1} \in  V_{2^{-1}}(x) \setminus \{ x \}$. El lema~\ref{Lema:PuntoAcumulacionDeComplementoFinito} afirma que $x$ es punto de acumulación de $A \setminus \{ x_1, \ldots , x_{n_1} \}$. Dado que $V_{2^{-2}}(x)$ es una vecindad abierta de $x$, tenemos que $(A \setminus \{x_1, \ldots, x_{n_1} \} \cap V_{2^{-2}}(x)) \setminus \{ x \} \neq \emptyset$.  Luego, existe $n_2 \in \N$ que cumple que $x_{n_2} \in  V_{2^{-2}}(x) \setminus \{ x, x_1, \ldots, x_{n_1} \}$. Esto indica que $n_1 < n_2$. Repitiendo  este proceso sucesivamente construimos la subsucesión $(x_{n_k})_{k\in\N}$ de $(x_n)_{n \in\N}$ tal que $x_{n_k} \in V_{2^{-k}}(x)$. Claramente $x_{n_k} \to x$.
+
+Ahora supongamos que $A$ no tiene puntos de acumulación. Entonces, para cada $x \in K$ existe una vecindad abierta $V_x$ de $x$ tal que $(A \cap V_x) \setminus \{ x \} = \emptyset$, lo que equivale a $A \cap V_x \subseteq \{ x \}$. Al ser $\{  V_x \}_{x \in K}$ una cubierta abierta de $K$, existen $k \in \N$, $y_1, \ldots, y_k \in \K$ tales que $K \subseteq \bigcup_{i=1}^k V_{y_i}$. De esto resulta que
+$$A = A \cap K \subseteq A \cap \left( \bigcup_{i=1}^k V_{y_i} \right) = \bigcup_{i=1}^k (A \cap V_{y_i}) \subseteq \bigcup_{i=1}^k \{ y_i \}.$$ 
+
+Es decir, $(x_n)_{n\in\N}$ solamente toma algunos de los valores $\{ y_1, \ldots, y_k\}$, por lo que para algún $1\leq i\leq k$, el valor $y_i$ aparece infinitas veces en $(x_n)_{n\in\N}$. La subsucesión constante de $(x_n)_{n\in\N}$ que consiste en este $y_i$ converge a $y_i \in\K$.
+
+Ahora supongamos \textbf{ii)}, es decir, supongamos que toda sucesión en $K$ tiene una subsucesión que converge en $K$. Para probar que $K$ es completo, tomemos una sucesión $(x_n)_{n\in\N} \subseteq K$ de Cauchy. Por hipótesis, existe una subsucesión $(x_{n_k})_{k\in\N}$ de $(x_n)_{n\in\N}$ tal que converge a algún $x \in K$. El lema~\ref{Lema:SucesionCauchyConSubsucesionConvergenteConverge} indica que $(x_n)_{n\in\N}$ converge a $x$. De esta forma $K$ es completo.
+
+Para demostrar que $K$ es totalmente acotado, se procederá por contrapositiva. Así, supongamos que $K$ no es totalmente acotado. Así que existe $\varepsilon > 0$ tal que para todos $n \in\N$, $x_1, \ldots, x_n \in M$ se tiene que $$K \subsetneq \bigcup_{i=1}^n V_\varepsilon(x_i).$$
+
+Construiremos ahora una sucesión $(x_n)_{n\in\N} \subseteq K$ sin subsucesiones convergentes en $K$. Tomemos $x_1 \in K$ cualquiera. Supongamos que tenemos definidos $x_1, \ldots, x_n \in K$ tal que $d(x_i, x_j) \geq \varepsilon$ para todos $1 \leq i, j \leq n$ distintos. Como $K$ no es totalmente acotado, entonces $\{ x_1, \ldots, x_n \}$ no es una $\varepsilon$-red de $K$. Así que existe $x_{n+1} \in \K$ tal que $x_{n+1}\notin \bigcup_{i=1}^n V_\varepsilon(x_i)$, es decir, $d(x_{n+1}, x_i) \geq \varepsilon$ para toda $i \in \nn{n}$. Así pues, construimos $(x_n)_{n\in\N} \subseteq K$ tal que $d(x_i, x_j) \geq \varepsilon$ si $i \neq j$. 
+
+Supongamos que $(x_n)_{n\in\N}$ tiene alguna subsucesión $(x_{n_k})_{k\in\N}$ que converge a algún $x \in K$. Entonces existe $N \in \N$ tal que $d(x_n, x) < \frac{\varepsilon}{2}$ si $n \geq N$. Entonces $$d(x_N, x_{N+1}) \leq d(x_N, x) + d(x_{N+1}, x) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon,$$ lo cual es falso. Así que $(x_n)_{n\in\N}$ no tiene subsucesiones convergentes en $K$.
+
+Finalmente, demostremos que \textbf{iii)} implica \textbf{i)} por contradicción. Supongamos que $K$ no es compacto. Entonces existe una cubierta abierta $\{ U_{\alpha} \}_{\alpha \in \Lambda}$ de $K$ sin ninguna subcubierta finita.  
+
+Como $K$ es no-vacío y es totalmente acotado, existe una $2^{-1}$-red $\{p_1, \ldots, p_n \} \subseteq K$. Si toda bola $V_{2^{-1}}(p_i)$ se pudiera cubrir por una cantidad finita de elementos en $\{ U_{\alpha} \}_{\alpha \in \Lambda}$, entonces resultaría que a partir de estos podemos formar una subcubierta finita de $\{ U_{\alpha} \}_{\alpha \in \Lambda}$. Entonces existe alguna bola $V_{2^{-1}}(p_i)$ que no se puede cubrir con una subcubierta finita de $\{ U_{\alpha} \}_{\alpha \in \Lambda}$. Tomemos $x_1 = p_i$. 
+
+Dado que $K \cap V_{2^{-1}}(p_i) \neq \emptyset$ es totalmente acotado, tiene una $2^{-2}$-red $\{ q_1, \ldots, q_m \} \subseteq K \cap V_{2^{-1}}(p_i)$. De manera similar a la elección de $x_1$, existe $j \in\nn{m}$ tal que $K \cap V_{2^{-2}}(y_j)$ no se puede cubrir con una cantidad finita de elementos en $\{ U_{\alpha} \}_{\alpha \in \Lambda}$. Definimos $x_2 = q_j$.
+
+Continuando con este proceso construimos la sucesión $(x_n)_{n \in\N} \subseteq K$ de tal forma que para todo $n \in \N$ se cumpla que $x_{n+1} \in K \cap V_{2^{-n}}(x_n)$ y que no existe ninguna subcolección finita de $\{ U_{\alpha} \}_{\alpha \in \Lambda}$ que cubra a $K \cap V_{2^{-n}}(x_n)$.  Así, $d(x_n, x_{n+1}) < 2^{-n}$ para toda $n \in\N$.
+
+Mostremos que $(x_n)_{n\in\N}$ es de Cauchy. Sea $\varepsilon > 0$. Como $(2^{-n})_{n\in\N}$ es sumable, podemos tomar $N \in \N$ tal que $\sum_{i=N}^\infty 2^{-i} < \varepsilon$. Por la desigualdad del triángulo, dados $ m > n \geq N$, se tiene que $$d(x_n, x_m) \leq \sum_{i=n}^{m-1} d(x_i, x_{i+1}) \leq  \sum_{i=N}^\infty 2^{-i} < \varepsilon.$$ 
+
+Puesto que $K$ es completo, $(x_n)_{n\in\N}$ converge a algún $x \in K$. Sea $\alpha_0 \in \Lambda$ tal que $x \in U_{\alpha_0}$. Tomemos $r > 0$ tal que $V_r(x) \subseteq U_{\alpha_0}$. Dado que $x_n \to x$, existe $N$ tal que $x_N \in V_{\frac{r}{2}}(x)$ y $2^{-N} < \frac{r}{2}$. De esto se sigue que para $y \in V_{2^{-N}}(x_N)$ se cumple que $$d(x, y) \leq d(x, x_N) + d(x_N, y) < \frac{r}{2} + 2^{-N} < r.$$
+
+Es decir, $V_{2^{-N}}(x_N) \subseteq V_r(x) \subseteq U_{\alpha_0}$. De donde $V_{2^{-N}}(x_N) \cap K \subseteq U_{\alpha_0}$, lo cual es una contradicción.
+\end{Dem}
+
+
+\begin{Def}
+Sea $M$ un espacio métrico. La \textit{distancia} de $x \in M$ a $A \subseteq M$ es $$d(x, A) := \inf \{ d(x,y) : y \in A \},$$ donde $\inf  \emptyset = \infty.$
+\end{Def}
+
+\begin{Lema} \label{Lema:DistanciaPositivaEnCerrados} 
+Sean $M$ un espacio métrico y $A \subseteq M$ un conjunto cerrado. Si $x \in M \setminus A$, entonces $d(x, A) > 0$. 
+\end{Lema}
+
+\begin{Dem}
+Se demostrará por contrapositiva. Supongamos que $d(x, A) = 0$. Tomemos un abierto $U$ que incluya a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$, por lo que $U \cap A \neq \emptyset$. Así que $x \in \ov{A}$. Ya que $A$ es cerrado, entonces  $x \in A$.
+\end{Dem}
+
 
 \section{Redes.}
 
@@ -754,8 +755,10 @@ Concluimos de esto que $(x_{\alpha, i})_{i\in I} \to (x_i)_{i\in I}$.
 
 En la demostración de la proposición anterior se puede observar por qué es indispensable definir la topología producto como se definió y no simplemente como la generada por el producto de abiertos. De lo contrario tal proposición sería falsa.
 
+Dados $A, B$ dos conjuntos, denotamos por $F(A, B)$ a la colección de funciones de $f: A \to B$.
+
 \begin{Obs}
-Sea $X$ un espacio vectorial. El espacio $\mathcal{F}(\Lambda, X)$ de funciones de $\Lambda$ en $X$ es un espacio vectorial con la suma y producto por escalares definidas puntualmente. De esto podemos considerar la suma de $\Lambda$-redes $(x_\alpha)_{\alpha \in \Lambda}$ y $(y_\alpha)_{\alpha \in \Lambda}$ en $X$ como  
+Sea $X$ un espacio vectorial, entonces $F(\Lambda, X)$ es un espacio vectorial con la suma y producto por escalares definidas puntualmente. De esto podemos considerar la suma de $\Lambda$-redes $(x_\alpha)_{\alpha \in \Lambda}$ y $(y_\alpha)_{\alpha \in \Lambda}$ en $X$ como  
 $$(x_\alpha)_{\alpha \in \Lambda} + (y_\alpha)_{\alpha \in \Lambda} = (x_\alpha + y_\alpha)_{\alpha \in \Lambda}.$$
 
 Además el producto por el escalar $\lambda \in \K$ de la $\Lambda$-red $(x_\alpha)_{\alpha \in \Lambda}$ sería
@@ -809,10 +812,10 @@ Al notar que $\varphi$ verifica \textbf{ii)} y \textbf{iii)} de la definición an
 Sean $X$ un espacio topológico y $(x_\alpha)_{\alpha \in \Lambda}$ una red en $X$. Decimos que $x \in X$ es un \textit{punto límite} de $(x_\alpha)_{\alpha \in \Lambda}$ si para toda vecindad abierta $V$ de $x$ y para toda $\alpha \in \Lambda$ existe $\beta \geq \alpha$ tal que $x_\beta \in V$.
 \end{Def}
 
-Observemos que en una red existen los términos de límite y punto límite. Hay que tener siempre en cuenta que son conceptos diferentes. Uno hace referencia a los puntos a los cuales converge la red y el otro a los puntos  a los que convergen sus subredes como lo muestra el siguiente lema.  
+Observemos que para una red existen los conceptos de límite y punto límite. Hay que tener siempre en cuenta que son conceptos diferentes. Uno hace referencia al punto al cual puede converger la red y el otro a los puntos a los que pueden convergen sus subredes como lo muestra el siguiente lema.  
 
 \begin{Lema} \label{Lema:LimiteSubredes}
-Si $X$ es un espacio topológico, entonces el conjunto de los puntos límite de una red $(x_\alpha)_{\alpha\in\Lambda}$ en $X$ coincide con el conjunto de los límites de sus subredes. 
+Si $X$ es un espacio topológico, entonces $x \in X$ es un punto límite de una red $(x_\alpha)_{\alpha\in\Lambda}$ en $X$ si, y sólo si $x$ es el límite alguna subred de $(x_\alpha)_{\alpha\in\Lambda}$. 
 \end{Lema}
 
 \begin{Dem}
@@ -831,7 +834,7 @@ Introduzcamos $\varphi : B \to \Lambda$ de tal manera que $\varphi(V, \alpha) = 
 Lo anterior indica que $(x_{\varphi(V,\alpha)})_{(V,\alpha)\in B}$ es una subred de $(x_\alpha)_{\alpha \in \Lambda}$. Demostremos que su limite es $x$. Sea $U$ una vecindad abierta de $x$ y fijemos $\alpha_0 \in \Lambda$. Consideremos $(V, \alpha) \in B$ con $(V, \alpha) \geq (U, \alpha_0)$. Entonces $x_{\varphi(V, \alpha)} x_\alpha \in V \subseteq U$. Es decir, $x_{\varphi(V, \alpha)} \to x$.   
 \end{Dem}
 
-En espacios métricos la compacidad coincide con la compacidad por sucesiones. Esto no es cierto cuando trabajamos con espacios topológicos. Sin embargo, la siguiente proposición muestra que en este caso la compacidad sí coincide con la compacidad por redes. 
+En el teorema~\ref{Tma:CaracterizacionCompacidadSucesiones} se estableció que en espacios métricos la compacidad coincide con la compacidad por sucesiones. Esto no es cierto cuando trabajamos con espacios topológicos. Sin embargo, la siguiente proposición muestra que aún en este caso la compacidad sí coincide con la compacidad por redes. 
 
 \begin{Tma} \label{Tma:CompacidadPorConvergenciaDeSubredes}
 Sea $X$ un espacio topológico. Son equivalentes:
@@ -850,28 +853,46 @@ Supongamos ahora que $X$ no es compacto. Existe entonces una cubierta abierta $\
 \end{Dem}
 
 \begin{Def}
-Sean $I$ un conjunto no vacío, $J\subseteq I$ y $X_i$ un espacio topológico para cada $i \in I$. 
+Sea $A$ un conjunto. Una relación $\leq$ en $A$ es un \textit{orden parcial} si
 \begin{itemize}
-\item \textbf{i)} Decimos que $g: J \to \bigcup_{i\in I} X_i$ es un \textit{miembro parcialmente definido} de $\prod_{i \in I} X_i$ si $g(j) \in X_j$ para toda $j \in I$.
-\item \textbf{ii)} Dada una red $(f_\alpha)_{\alpha \in \Lambda}$ en $\prod_{i \in I} X_i$, decimos que un miembro parcialmente definido $g$ de $\prod_{i \in I} X_i$ es un \textit{punto límite parcial} de $(f_\alpha)_{\alpha \in \Lambda}$ si $g$ es un punto límite de $(\restr{f_\alpha}{J})_{\alpha \in \Lambda}$ en $\prod_{j\in J}X_j$.
+\item \textbf{i)} Es \textit{reflexiva}, es decir, para cada $a \in a$ se tiene $a \leq a$.
+\item \textbf{ii)} Es \textit{transitiva}, es decir, para todas $a, b, c \in A$ se cumple que si $a \leq b$ y $b \leq c$,  entonces $a \leq c$.
+\item \textbf{iii)} Es \textit{antisimétrica}, es decir, si para algunos $a, b \in A$, se cumple que $a\leq b$ y $b \leq a$ entonces $a = b$.
+\end{itemize}
+En este caso, a la pareja $(A, \leq)$ se le denomina \textit{conjunto parcialmente ordenado}.
+\end{Def}
+
+\begin{Ejem}
+Sean $D$ y $B$ conjuntos no vacíos, entonces la colección $\mathcal{P}$ de funciones $f: A \to B$ con $A \subseteq D$ es un conjunto parcialmente ordenado con la relación $\leq$ tal que para $f, g \in\mathcal{P}$ se tenga que $$f \leq g \;\mbox{ si, y sólo si }\; \Dom f \subseteq \Dom g \mbox{ y } \restr{g}{\Dom f} = f.$$
+
+Notemos que
+\begin{itemize}
+\item[\textbf{i)}] Dado $f \in \mathcal{P}$, claramente se tiene que $ \Dom f \subseteq \Dom f$ y $\restr{f}{\Dom f} = f.$
+\item[\textbf{ii)}] Tomemos $f, g, h \in \mathcal{P}$ tales que $f \leq g$ y $g \leq h$. De que $\Dom f \subseteq \Dom g$ y $\Dom g \subseteq \Dom h$, se sigue que $\Dom f \subseteq \Dom h$. Además, puesto que $f = \restr{g}{\Dom f}$ y $ g = \restr{h}{\Dom g}$, se tiene que $$f = \restr{g}{\Dom f} = \restr{\left(\restr{h}{\Dom g}\right)}{\Dom f} = \restr{h}{\Dom f}.$$ Luego $f \leq h$.
+\item[\textbf{iii)}] Sean $f, g \in \mathcal{P}$ con $f \leq g$ y $g \leq f$. Entonces $\Dom f \subseteq \Dom g$ y $\Dom g \subseteq \Dom f$. Así que $\Dom f = \Dom g$. Además, $f = \restr{g}{\Dom f} = \restr{g}{\Dom g} = g$. Así que $f = g$.
+\end{itemize}
+Por lo tanto $\leq$ es un orden parcial. A este le llamamos \textit{orden de extensión de funciones}.
+\end{Ejem}
+
+\begin{Def}
+Un conjunto parcialmente ordenado $(A, \leq)$ es un \textit{conjunto totalmente ordenado} si cumple que para todos $a, b \in A$ se satisface que $a \leq b$ o que $b \leq a$. En este caso a $\leq$ se le denomina \textit{orden total} en $A$.
+\end{Def}
+
+El lema de Zorn, enunciado a continuación, garantiza la existencia de elementos maximales en algunos conjuntos parcialmente ordenados. Este lema se considera en muchas circunstancias como un axioma por su equivalencia con el axioma de elección. 
+
+\begin{Lema} \textbf{(de Zorn)}
+Sea $A$ un conjunto no vacío. Si todo subconjunto no vacío y totalmente ordenado de $A$ tiene un elemento máximo, entonces $A$ tiene un elemento maximal.
+\end{Lema}
+
+\begin{Def}
+Sean $I$ un conjunto y $X_i$ un espacio topológico para cada $i \in I$. 
+\begin{itemize}
+\item \textbf{i)} Un \textit{miembro parcialmente definido} de $\prod_{i \in I} X_i$ es cualquier elemento $g$ en $\prod_{j \in J} X_j$ para algún $J \subseteq I$ no vacío.
+\item \textbf{ii)} Dada una red $(f_\alpha)_{\alpha \in \Lambda}$ en $\prod_{i \in I} X_i$, decimos que un miembro parcialmente definido $g$ de $\prod_{i \in I} X_i$ con $\Dom g = J$ es un \textit{punto límite parcial} de $(f_\alpha)_{\alpha \in \Lambda}$ si $g$ es un punto límite de la red $(\restr{f_\alpha}{J})_{\alpha \in \Lambda}$ en $\prod_{j\in J}X_j$.
 \end{itemize}
 \end{Def}
 
-\begin{Prop}
-Sean $I$ un conjunto no vacío, $X_i$ un espacio topológico para cada $i \in I$. Entonces la colección $\mathcal{P}$ de miembros parcialmente definidos de $\prod_{i\in I} X_i$ es un conjunto parcialmente ordenado con la relación $\leq$ tal que para $g_1, g_2 \in\mathcal{P}$ se tenga que $$g_1 \leq g_2 \;\mbox{ si, y sólo si }\; \Dom g_1 \subseteq \Dom g_2 \mbox{ y } \restr{g_2}{\Dom g_1} = g_1.$$
-\end{Prop}
-
-\begin{Dem}
-Notemos que
-\begin{itemize}
-\item[\textbf{i)}] Dado $g_1 \in \mathcal{P}$, claramente se tiene que $ \Dom g_1 \subseteq \Dom g_1$ y $\restr{g_1}{\Dom g_1} = g_1.$
-\item[\textbf{ii)}] Sean $g_1, g_2 \in \mathcal{P}$ con $g_1 \leq g_2$ y $g_2 \leq g_1$. Entonces $\Dom g_1 \subseteq \Dom g_2$ y $\Dom g_2 \subseteq \Dom g_1$. Así que $\Dom g_1 = \Dom g_2$. Además, $g_1 = \restr{g_2}{\Dom g_1} = \restr{g_2}{\Dom g_2} = g_2$. Así que $g_1 = g_2$.
-\item[\textbf{iii)}] Tomemos $g_1, g_2, g_3 \in \mathcal{P}$ tales que $g_1 \leq g_2$ y $g_2 \leq g_3$. De que $\Dom g_1 \subseteq \Dom g_2$ y $\Dom g_2 \subseteq \Dom g_3$, se sigue que $\Dom g_1 \subseteq \Dom g_3$. Además, puesto que $g_1 = \restr{g_2}{\Dom g_1}$ y $ g_2 = \restr{g_3}{\Dom g_2}$, se tiene que $$g_1 = \restr{g_2}{\Dom g_1} = \restr{\left(\restr{g_3}{\Dom g_2}\right)}{\Dom g_1} = \restr{g_3}{\Dom g_1}.$$ Luego $g_1 \leq g_3$.
-\end{itemize}
-Por lo tanto $\leq$ es un orden parcial. A este le llamamos \textit{orden de extensión de funciones}.
-\end{Dem}
-
-Para evitar ambigüedades al trabajar con las proyecciones, denotaremos por $\pi_{J, i}$ a la proyección de dominio $\prod_{j \in J} X_j$ tal que $\pi_{J, i}(f) = f(i)$ para algún $J \subseteq I$ y $j \in J$.
+Para evitar ambigüedades al trabajar con las proyecciones, denotaremos por $\pi_{J, i}$ a la proyección de dominio $\prod_{j \in J} X_j$ tal que $\pi_{J, i}(f) = f(i)$ para algún $J \subseteq I$ y $i \in J$.
 
 Si tenemos un par de espacios topológicos compactos, es sencillo verificar que su producto sigue siendo compacto. Uno de los teoremas más importantes en la topología es el teorema de Tychonoff y generaliza este resultado estableciendo que el producto arbitrario de espacios compactos es compacto.  
  
@@ -880,17 +901,17 @@ Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$.
 \end{Tma}
 
 \begin{Dem}
-Sea $(f_\alpha)_{\alpha \in \Lambda}$ una red en $X = \prod_{i \in I} X_i$. Demostremos que existe una subred de $(f_\alpha)_{\alpha \in \Lambda}$ convergente. 
+Sea $(f_\alpha)_{\alpha \in \Lambda}$ una red en $X = \prod_{i \in I} X_i$. Demostremos que existe una subred de $(f_\alpha)_{\alpha \in \Lambda}$ que es convergente. 
 
-Sea $\mathcal{Q}$ la colección de puntos límite parciales de $(f_\alpha)_{\alpha \in \Lambda}$.  Como $\mathcal{Q} \subseteq \mathcal{P}$ y $\mathcal{P}$ es un conjunto parcialmente ordenado con el orden de extensión de funciones, entonces $\mathcal{Q}$ también lo es. Veamos que $\mathcal{Q}$ es no-vacío. Fijemos por el momento $j \in I$ cualquiera. Entonces $(f_\alpha(j))_{\alpha \in \Lambda}$ es un red en $X_j$. Como $X_j$ es compacto, $(f_\alpha(j))_{\alpha \in \Lambda}$ tiene alguna subred que converge a algún $x_j \in X_j$. Por el lema~\ref{Lema:LimiteSubredes}, se sigue que $x_j$ es un punto límite de $(f_\alpha(j))_{\alpha \in \Lambda}$. Definamos $g: \{ j \} \to \bigcup_{i\in I} X_i$ por $g(j) = x_j$. Veamos que $g$ es un punto límite de $(\restr{f_\alpha}{\{ j \}})_{\alpha \in \Lambda}$. Así pues, tomemos $\pi_{\{j\}, j}^{-1}(U)$ una vecindad básica de $g$ para alguna a vecindad abierta $U$ de $x_i$. Como $x_i$ es punto límite de $(f_\alpha(j))_{\alpha \in \Lambda}$, existe $\alpha_0 \in \lambda$ tal que si $\alpha \geq \alpha_0$, entonces $\pi_{\{j\}, j}(\restr{f_\alpha}{\{j \}}) = f_\alpha(j) \in U$, es decir $\restr{f_\alpha}{\{j \}} \in \pi_{\{j\},j}^{-1}(U)$. Así que $g$ es punto límite parcial  de $(f_\alpha)_{\alpha \in \Lambda}$ y $\mathcal{Q} \neq \emptyset$.    
+Sea $\mathcal{Q}$ la colección de puntos límite parciales de $(f_\alpha)_{\alpha \in \Lambda}$. Entonces $\mathcal{Q}$ es un conjunto parcialmente ordenado con el orden de extensión de funciones. Veamos que $\mathcal{Q}$ es no-vacío. Fijemos por el momento $j \in I$ cualquiera. Entonces $(f_\alpha(j))_{\alpha \in \Lambda}$ es un red en $X_j$. Como $X_j$ es compacto, $(f_\alpha(j))_{\alpha \in \Lambda}$ tiene alguna subred que converge a algún $x_j \in X_j$. Por el lema~\ref{Lema:LimiteSubredes}, se sigue que $x_j$ es un punto límite de $(f_\alpha(j))_{\alpha \in \Lambda}$. Definamos $g: \{ j \} \to \bigcup_{i\in I} X_i$ por $g(j) = x_j$. Veamos que $g$ es un punto límite de $(\restr{f_\alpha}{\{ j \}})_{\alpha \in \Lambda}$. Así pues, tomemos $\pi_{\{j\}, j}^{-1}(U)$ una vecindad básica de $g$ para alguna a vecindad abierta $U$ de $x_i$. Como $x_j$ es punto límite de $(f_\alpha(j))_{\alpha \in \Lambda}$, existe $\alpha_0 \in \lambda$ tal que si $\alpha \geq \alpha_0$, entonces $\pi_{\{j\}, j}(\restr{f_\alpha}{\{j \}}) = f_\alpha(j) \in U$, es decir $\restr{f_\alpha}{\{j \}} \in \pi_{\{j\},j}^{-1}(U)$. Así que $g$ es punto límite parcial  de $(f_\alpha)_{\alpha \in \Lambda}$ y $\mathcal{Q} \neq \emptyset$.    
 
-Sea $\mathcal{C} = \{ g_\lambda : \lambda \in \Gamma \}$ un subconjunto totalmente ordenado de $\mathcal{Q}$. Probemos que $\mathcal{C}$ tiene un máximo. Denotemos por $J_\lambda$ el dominio de $g_\lambda$. Sea $J_0 = \bigcup_{\lambda \in \Gamma} J_\lambda$ y definamos $g_0 : J_0 \to \bigcup_{i\in I} X_i$, de la siguiente forma. Dado $j \in J_0$, existe $\lambda \in \Gamma$ tal que $j \in J_\lambda$, de tal forma que podemos definir $g_0(j) = g_\lambda(j)$. 
+Sea $\mathcal{C} = \{ g_\lambda : \lambda \in \Gamma \}$ un subconjunto totalmente ordenado de $\mathcal{Q}$. Probemos que $\mathcal{C}$ tiene un elemento máximo. Denotemos por $J_\lambda$ el dominio de $g_\lambda$. Sea $J_0 = \bigcup_{\lambda \in \Gamma} J_\lambda$ y definamos $g_0 : J_0 \to \bigcup_{i\in I} X_i$, de la siguiente forma. Dado $j \in J_0$, existe $\lambda \in \Gamma$ tal que $j \in J_\lambda$, de tal manera que podemos definir $g_0(j) = g_\lambda(j)$. 
 
 Notemos que $g_0$ está bien definida en todo $j \in J_0$. Sean $\lambda_1, \lambda_2 \in \Gamma$ tales que $j \in J_{\lambda_1}$ y $j \in J_{\lambda_2}$. Como $\mathcal{C}$ es totalmente ordenado, podemos suponer sin perdida de generalidad de $g_{\lambda_1} \leq g_{\lambda_2}$. Por lo que $g_{\lambda_1}(j) = g_{\lambda_2}(j)$.
 
-Demostremos ahora que $g_0 \in \mathcal{Q}$. Consideremos $\bigcap_{k=1}^n \pi_{J_0, j_k}^{-1}(U_k)$ una vecindad abierta de $g_0$ para algunos $n \in \N$, $j_1, \ldots, j_n \in J_0$ y $U_1, \ldots, U_n$ abiertos en $X_{j_1}, \ldots, X_{j_n}$ respectivamente. Fijemos $k \in \nn{n}$ por un momento. Sea $\lambda_k \in \Gamma$ tal que $j_k \in J_{\lambda_k}$. Entonces $g_0 \in \pi_{J_0, j_k}^{-1}(U_k)$, de donde $$\displaystyle\pi_{J_{\lambda_k}, j_k}(g_{\lambda_k})  =  g_{\lambda_k}(j_k) = g_0(j_k) = \pi_{J_0, j_k}(g_0) \in U_k.$$
+Demostremos ahora que $g_0 \in \mathcal{Q}$. Consideremos una vecindad abierta $\bigcap_{k=1}^n \pi_{J_0, j_k}^{-1}(U_k)$ de $g_0$ para algunos $n \in \N$, $j_1, \ldots, j_n \in J_0$ y $U_1, \ldots, U_n$ abiertos en $X_{j_1}, \ldots, X_{j_n}$ respectivamente. Fijemos $k \in \nn{n}$ por un momento. Sea $\lambda_k \in \Gamma$ tal que $j_k \in J_{\lambda_k}$. Entonces $g_0 \in \pi_{J_0, j_k}^{-1}(U_k)$, de donde $$\displaystyle\pi_{J_{\lambda_k}, j_k}(g_{\lambda_k})  =  g_{\lambda_k}(j_k) = g_0(j_k) = \pi_{J_0, j_k}(g_0) \in U_k.$$
 
-De esto que  $g_{\lambda_k} \in \pi_{J_{\lambda_k}, j_k}^{-1}(U_k)$ y  como $g_{\lambda_k} \in \mathcal{C}$, existe $\alpha_k \in \Lambda$ tal que $\restr{f_\alpha}{J_{\lambda_k}} \in \pi_{J_{\lambda_k}, j_k}^{-1}(U_k)$ siempre que $\alpha \geq \alpha_k$. Es decir, si $\alpha \geq \alpha_k$, entonces $$\restr{f_\alpha}{J_0} (j_k) = \restr{f_\alpha}{J_{\lambda_k}} (j_k) = \pi_{J_{\lambda_k}, j_k}\left(\restr{f_\alpha}{J_{\lambda_k}}\right)  \in U_k,$$ 
+De esto resulta que  $g_{\lambda_k} \in \pi_{J_{\lambda_k}, j_k}^{-1}(U_k)$ y  como $g_{\lambda_k} \in \mathcal{C}$, existe $\alpha_k \in \Lambda$ tal que $\restr{f_\alpha}{J_{\lambda_k}} \in \pi_{J_{\lambda_k}, j_k}^{-1}(U_k)$ siempre que $\alpha \geq \alpha_k$. Es decir, si $\alpha \geq \alpha_k$, entonces $$\restr{f_\alpha}{J_0} (j_k) = \restr{f_\alpha}{J_{\lambda_k}} (j_k) = \pi_{J_{\lambda_k}, j_k}\left(\restr{f_\alpha}{J_{\lambda_k}}\right)  \in U_k,$$ 
 o bien, $\restr{f_\alpha}{J_0} \in \pi_{J_0, j_k}^{-1}(U_k)$ para $\alpha \geq \alpha_k$. Tomando $\beta \in \Lambda$ tal que $\beta \geq \alpha_k$ para toda $k \in \nn{n}$, se obtiene que $\restr{f_\alpha}{J_0} \in \bigcap_{k=1}^n \pi_{J_0, j_k}^{-1}(U_k)$ y por lo tanto $g_0$ es punto límite de $(\restr{f_\alpha}{J_0})_{\alpha \in \Lambda}$ y $g_0 \in \mathcal{C}$.
 
 Claramente $g_0 \geq g_\lambda$ para todo $\lambda \in \Gamma$. Así que $\mathcal{C}$ tiene un máximo. Por el lema de Zorn, se sigue que $\mathcal{Q}$ tiene un elemento maximal $g$ de dominio $J \subseteq I$. Nuestro último paso es probar que $J = I$, para que de esta manera $g$ sea un punto límite de $(f_\alpha)_{\alpha\in\Lambda}$ y por el lema~\ref{Lema:LimiteSubredes} y el teorema~\ref{Tma:CompacidadPorConvergenciaDeSubredes} se concluya que $\prod_{i\in I} X_i$ es compacto. 
@@ -1086,15 +1107,15 @@ Sean $X$ un espacio vectorial sobre $\K$ y $ \mathcal{F}$ una familia no vacía d
 \end{Def}
 
 \begin{Ejem} \label{Ejem:EVTFamiliaFuncionales}
-Sea $A$ un conjunto no-vacío. Resulta que $X := F(A,\K)$ es un espacio vectorial. Para cada $a \in A$, sea $\delta_a : X \to \K$ definido por $\delta_a(f) = f(a)$. 
+Sea $A$ un conjunto no-vacío. Entonces $X := F(A,\K)$ es un espacio vectorial. Para cada $a \in A$, sea $\delta_a : X \to \K$ la función definida por $\delta_a(f) = f(a)$. 
 
-Fijemos $a \in A$, consideremos $\abs{\delta_a} \geq 0$  y notemos que 
+Fijemos $a \in A$  y notemos que 
 \begin{itemize}
 \item[\textbf{i)}] Sean $f, g \in X$, entonces 
 $$\delta_a(f+g) = f(a) + g(a) = \delta_a(f) + \delta_a(g).$$
 \item[\textbf{ii)}] Sean $f \in X$, $\lambda \in \K$, entonces
 $$\delta_a(\lambda f) = \lambda f(a) =  \lambda \delta_a(f).$$
-\item[\textbf{iii)}] Sea $f \in X$, $f \neq 0 $, entonces existe $a \in A$ con $\abs{\delta_a} = \abs{f(a)} \neq 0$.
+\item[\textbf{iii)}] Sea $f \in X$, $f \neq 0 $, entonces existe $a \in A$ con $\abs{\delta_a}(f) = \abs{f(a)} \neq 0$.
 \end{itemize}
 Tenemos que \textbf{i)} y \textbf{ii)} indican $\delta_a$ es un funcional lineal y el ejemplo~\ref{Ejem:SeminormaParaTopologiaDebil} indica que $\mathcal{F} = \{ \abs{\delta_a}: a \in A \}$ es una familia de seminormas en $X$. Por \textbf{iii)} tenemos que esta familia separa puntos.
 \end{Ejem}
@@ -1237,9 +1258,9 @@ Así que $\pi$ es continua.
 \end{Dem}
 
 \begin{Ejem}
-Sean $A$ un conjunto no-vacío y $X = F(A, \K)$ como en el ejemplo~\ref{Ejem:EVTFamiliaFuncionales}. Se verificó que  $\mathcal{F} = \{ \abs{\delta_a}: a \in A \}$ es una familia de seminormas en $X$ que separa puntos, por lo que $X$ con la topología $\sigma(X, \mathcal{F})$ es un espacio vectorial topológico. Demostraremos que tal espacio vectorial es completo.
+Sean $A$ un conjunto no-vacío y $X = F(A, \K)$ como en el ejemplo~\ref{Ejem:EVTFamiliaFuncionales}. Se verificó ahí que  $\mathcal{F} = \{ \abs{\delta_a}: a \in A \}$ es una familia de seminormas en $X$ que separa puntos, por lo que $X$ con la topología $\sigma(X, \mathcal{F})$ es un espacio vectorial topológico. Demostraremos que tal espacio vectorial es completo.
 
-Sea $(f_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $X$. Al tomar $a \in A$, tenemos que para todo $\varepsilon > 0$, $U_{0, \abs{\delta_a}, \varepsilon}$ es una vecindad abierta en $\sigma(X, \mathcal{F})$ del cero. Así que existe $\alpha \in \Lambda$ tal que para todas $\alpha_1, \alpha_2 \geq \alpha$ se cumple que $f_{\alpha_1} - f_{\alpha_2} \in U_{0, \abs{\delta_a}, \varepsilon}$, es decir, $\abs{\delta_a}(f_{\alpha_1} - f_{\alpha_2}) = \abs{f_{\alpha_1}(a) - f_{\alpha_2}(a)} < \varepsilon$. Esto indica que $(f_\alpha(a))_{\alpha\in\Lambda}$ es una red de Cauchy en $\K$ para todo $a \in A$. Como $\K$ es completo, (aquí uso que $\K$ es completo) existe $x_a \in \K$ tal que $f_\alpha(a) \to x_a$. Definamos entonces $f \in X$ por $f(a) = x_a$ para toda $a \in A$.
+Sea $(f_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $X$. Al tomar $a \in A$, tenemos que para todo $\varepsilon > 0$, $U_{0, \abs{\delta_a}, \varepsilon}$ es una vecindad abierta en $\sigma(X, \mathcal{F})$ del cero. Así que existe $\alpha \in \Lambda$ tal que para todas $\alpha_1, \alpha_2 \geq \alpha$ se cumple que $f_{\alpha_1} - f_{\alpha_2} \in U_{0, \abs{\delta_a}, \varepsilon}$, es decir, $\abs{\delta_a}(f_{\alpha_1} - f_{\alpha_2}) = \abs{f_{\alpha_1}(a) - f_{\alpha_2}(a)} < \varepsilon$. Esto indica que $(f_\alpha(a))_{\alpha\in\Lambda}$ es una red de Cauchy en $\K$ para todo $a \in A$. Como $\K$ es completo, existe $x_a \in \K$ tal que $f_\alpha(a) \to x_a$. Definamos entonces $f \in X$ por $f(a) = x_a$, para toda $a \in A$.
 
 Mostremos que $f_\alpha \to f$. Sea $U_{f, \abs{\delta_{a_1}}, \ldots, \abs{\delta_{a_k}}, \varepsilon}$ una vecindad básica de $f$ para algunos $k \in \N$, $a_1, \ldots, a_k \in A$ y $\varepsilon > 0$. Para cada $i \in \nn{k}$, se tiene que $f_\alpha(a_i) \to f(a_i)$, así que existe $\alpha_i \in \Lambda$ tal que si $\alpha \geq \alpha_i$, entonces $\abs{\delta_{a_i}}(f_{\alpha} - f) = \abs{f_{\alpha}(a_i) - f(a_i)} < \varepsilon$. Así que si tomamos $\beta \in  \Lambda$ con $\beta \geq \alpha_i$ para todo $1 \leq  i \leq k$, entonces $f_\alpha \in U_{f, \abs{\delta_{a_1}}, \ldots, \abs{\delta_{a_k}}, \varepsilon}$ siempre que $\alpha \geq \beta$. Por lo tanto $f_\alpha \to f$ y $(X, \sigma(X, \mathcal{F}))$ es completo.
 \end{Ejem}
@@ -1383,9 +1404,9 @@ Definamos $\beta = \alpha_{2M}$. Por (\ref{Eq:RedesCauchy1}) y (\ref{Eq:RedesCau
 Por la desigualdad del triángulo $\Norm{x_\gamma - x} < \frac{1}{N}$ y así $x_\gamma - x \in U$. Es decir, $x_\alpha \to x$.
 \end{Dem}
 
-\begin{Prop}
-Sea $X$ un espacio normado. Entonces $A \subseteq X$ es un conjunto acotado si, y sólo existe $M > 0$ tal que $\Norm{x} \leq M$ para todo $x \in A$. (¿Es mejor que sea corolario?)
-\end{Prop}
+\begin{Cor}
+Sea $X$ un espacio normado. Entonces $A \subseteq X$ es un conjunto acotado si, y sólo existe $M > 0$ tal que $\Norm{x} \leq M$ para todo $x \in A$. 
+\end{Cor}
 
 \begin{Dem}
 La proposición~\ref{Prop:CaracterizacionConjuntoAcotado} indica que $A$ es acotado si y sólo si existe $M > 0$ tal que $\Norm{x} = d(x, 0) < M$ para todo $x \in A$.
@@ -1454,10 +1475,10 @@ Veamos ahora que $\Norm{\cdot}_\infty$ es una norma en $\K^n$. Para eso, notemos
 
 En adelante, cuando trabajemos en $\K^n$ con la norma $\Norm{\cdot}_p$, lo denotaremos por $\ell_p^n$. Si hace falta especificar el campo se denotará por $\ell_p^n(\K)$. 
 
-En el caso particular $p=2$, a la norma $\Norm{\cdot}_2$ en $\K^n$ le damos el nombre de \textit{norma euclidiana}. A continuación probaremos que $\ell_2^n$ es un espacio completo haciendo uso del teorema de Heine-Borel.
+En el caso particular $p=2$, notemos que la norma $\Norm{\cdot}_2$ en $\K^n$ es precisamente la norma euclidiana. A continuación probaremos que $\ell_2^n$ es un espacio de Banach haciendo uso del teorema de Heine-Borel en $ell_2^1(\K) = \K$.
 
 \begin{Tma} \label{Tma:HeineBorel} \textbf{(Heine-Borel)}
-Sea $K \subseteq \ell_2(\K)$ un conjunto compacto. Si $A$ es un subconjunto infinito de $K$ entonces $A$ tiene un punto de acumulación en $A$. 
+Para todos $a, b \in \R$ con $a \leq b$, el intervalo $[a, b]$ es compacto. 
 \end{Tma}
 
 \begin{Tma} \label{Tma:HeineBorelGeneral} 
@@ -1468,14 +1489,23 @@ Sea $A \subseteq \ell_2^n(\K)$. Son equivalentes:
 \end{itemize}
 \end{Tma}
 
+\begin{Dem}
+(Pendiente).
+\end{Dem}
+
 \begin{Tma} \label{Tma:NormaEuclidianaCompleta}
 El espacio normado $\ell_2^n$ es completo. 
 \end{Tma}
 
 \begin{Dem}
-Sea $(x_m)_{m\in \N}$ una sucesión de Cauchy. El lema~\ref{Lema:SucesionesDeCauchySonAcotadas} indica que $\{ x_m : m \in \N \}$ es un conjunto acotado por alguna constante $M \in\N$. Como la bola $B_M(0)$ es cerrada y acotada en $\ell_2^n$, el teorema de Heine-Borel señala que $B_M(0)$ es compacto. Dado que $(x_m)_{m\in\N} \subseteq B_M(0)$ y este es compacto, el teorema~\ref{Tma:CaracterizacionCompacidadSucesiones} dice que existe una subsucesión $(x_{k_m})_{m \in \N}$ de $(x_m)_{m\in\N}$ que converge a algún $x \in B_M(0) \subseteq X$. Del lema~\ref{Lema:SucesionCauchyConSubsucesionConvergenteConverge} se sigue que $x_m \to x$.
+Sea $(x_m)_{m\in \N}$ una sucesión de Cauchy. El lema~\ref{Lema:SucesionesDeCauchySonAcotadas} indica que $\{ x_m : m \in \N \}$ es un conjunto acotado por alguna constante $M \in\N$. Como la bola $B_M(0)$ es cerrada y acotada en $\ell_2^n$, el teorema de Heine-Borel señala que $B_M(0)$ es compacto. Dado que $(x_m)_{m\in\N} \subseteq B_M(0)$ y este conjunto es compacto, el teorema~\ref{Tma:CaracterizacionCompacidadSucesiones} dice que existe una subsucesión $(x_{k_m})_{m \in \N}$ de $(x_m)_{m\in\N}$ que converge a algún $x \in B_M(0) \subseteq X$. Del lema~\ref{Lema:SucesionCauchyConSubsucesionConvergenteConverge} se sigue que $x_m \to x$.
 \end{Dem}
 
+Más adelante probaremos que no sólo $\ell_2^n$ es completo, sino que el resto de los espacios $\ell_p^n$ también lo son.
+
+\begin{Cor}
+El espacio $\K$ con la norma euclidiana es un espacio vectorial topológico completo. (Mover a E.V.T.)
+\end{Cor}
 
 \begin{Ejem}
 Denotemos por $\K^\N$ al espacio de sucesiones en $\K$. Definamos para $1 \leq p < \infty$ las funciones $\Norm{\cdot}_p : \K^\N \to [0, \infty]$ y $\Norm{\cdot}_\infty : \K^\N \to [0, \infty]$ por $$\Norm{(x_1, x_2, \ldots)}_p = \left(  \sum_{i=1}^\infty \abs{x_i}^p \right)^{\frac{1}{p}} \mbox{  y  } \Norm{(x_1, x_2, \ldots)}_\infty = \sup_{i \in \N} \,  \abs{x_i},$$
@@ -1494,14 +1524,14 @@ Sea $1\leq  p < \infty$. Si $x \in \ell_p$, entonces $\Norm{x}_p < \infty$ y por
 
 Así que $$ \lim_{n \to \infty} \Norm{(x_1, \ldots, x_n)}_p = \Norm{x}_p.$$
 
-Tomemos ahora $p = \infty$. Para $n\in\N$ sea $a_n = \max(\abs{x_1},\ldots, \abs{x_n})$. Como $\Norm{x}_\infty < \infty$, el conjunto $\{\abs{x_i} : i \in \N \}$ está acotado y así $(a_n)_{n\in\N}$ también.  Claramente, $(a_n)_{n\in\N}$ es monótona-creciente, de manera que $(a_n)_{n\in\N}$ converge y $a_k \leq \lim_{n\to\infty} a_n = \sup_{n \in\N} a_n < \infty$ para toda $k \in \N$. Sea $i \in \N$, entonces para $k \geq i$ se tiene que $a_k \geq \abs{x_i}$ y por lo tanto $\lim_{n\to\infty} a_n  \geq \abs{x_i}$. Así pues, $\lim_{n\to\infty} a_n $ es una cota superior de $\{\abs{x_i} : i \in \N\}$. Como $\Norm{x}_\infty$ es la mínima cota superior, resulta que $\lim_{n\to\infty} a_n  \geq \Norm{x}_\infty$.
+Tomemos ahora $p = \infty$. Para $n\in\N$ sea $a_n = \max(\abs{x_1},\ldots, \abs{x_n})$. Como $\Norm{x}_\infty < \infty$, el conjunto $\{\abs{x_i} : i \in \N \}$ está acotado y así $(a_n)_{n\in\N}$ también.  Claramente, $(a_n)_{n\in\N}$ es monótona-creciente y $a_n \leq \Norm{x}_\infty < \infty$, de manera que $(a_n)_{n\in\N}$ converge y $a_k \leq \lim_{n\to\infty} a_n = \sup_{n \in\N} a_n < \infty$ para toda $k \in \N$. Sea $i \in \N$, entonces para $k \geq i$ se tiene que $a_k \geq \abs{x_i}$ y por lo tanto $\lim_{n\to\infty} a_n  \geq \abs{x_i}$. Así pues, $\lim_{n\to\infty} a_n $ es una cota superior de $\{\abs{x_i} : i \in \N\}$. Como $\Norm{x}_\infty$ es la mínima cota superior, resulta que $\lim_{n\to\infty} a_n  \geq \Norm{x}_\infty$.
 
 Por otro lado, tenemos que para cada $n \in \N$, resulta que $a_n \leq \Norm{x}_\infty$. De esto se sigue que $\lim_{n\to \infty} a_n \leq \Norm{x}_\infty$ y concluimos que $\lim_{n \to \infty} \Norm{(x_1, \ldots, x_n)}_\infty = \Norm{x}_\infty$.
 \end{Dem}
 
-\begin{Prop}
+\begin{Lema}
 Para cada $p \in [1, \infty]$, la función $\Norm{\cdot}_p$ es una norma en $\ell_p$.
-\end{Prop}
+\end{Lema}
 
 \begin{Dem} 
 \hfill
@@ -1520,7 +1550,7 @@ Además, observemos que para cada $p \in [1, \infty]$, se tiene que $\abs{x_n} \l
 \end{Dem}
 
 \begin{Prop}
-Para cada $p \in [1, \infty]$, $\ell_p$ es un espacio de Banach. (¿mover después de que $\K$ es completo?)
+Para cada $p \in [1, \infty]$, $\ell_p$ es un espacio de Banach.
 \end{Prop}
 
 \begin{Dem}
@@ -1561,6 +1591,12 @@ $$\Norm{T} \geq \Norm{T\left(\frac{x}{\Norm{x}}\right)} = \frac{\Norm{Tx}}{\Norm
 Dado un espacio vectorial topológico $X$, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \tau)^*$ o simplemente por $X^*$.  A los elementos de este espacio dual los llamamos \textit{funcionales lineales continuos}.
 
 Cuando $X$ sea un espacio normado, su espacio dual se denotará por $(X, \Norm{\cdot})^*$ o simplemente por $X^*$.  Como $\K$ es completo, resulta que $X^* = \mathcal{L}(X, \K)$ es un espacio de Banach.  
+
+\begin{Ejem}
+Si $1 \leq p \leq \leq \infty$, al único elemento $q \in \R$ tal que $\frac{1}{p} + \frac{1}{q} = 1$ se le llama \textit{exponente conjugado} de $p$, donde $\frac{1}{\infty} = 0$. Mostremos que para $1 \leq p < \infty$, $(\ell_p)^* \simeq \ell_q$ y $\ell_1$ es isométricamente homeomorfo a un subespacio de $(\ell_\infty)^*$.  
+
+(Pendiente).
+\end{Ejem}
 
 Los teoremas de Hahn-Banach muestran que, cuando $X$ es un espacio normado, en $X^*$ existen suficientes funcionales que permiten hacer rica la teoría referente al espacio dual.
 
@@ -1777,7 +1813,7 @@ Sean $X$ un espacio normado y $X^*$ su espacio dual. Notemos que para cada $\var
 Sea $X$ un espacio normado. La \textit{topología débil} de $X$ es $\sigma(X, \F_X)$ y la denotaremos por $\sigma(X, X^*)$ o simplemente por $\tau_{\mathrm{w}}$ si no hace falta especificar el espacio $X$. Cuando trabajemos con la topología débil de $X$, el espacio vectorial topológico correspondiente se denotará por $X_{\mathrm{w}}$.
 \end{Def}
 
-Como consecuencia del teorema~\ref{Tma:SeminormasInducenEVT} el siguiente corolario indica que $X_\mathrm{w}$ es un espacio vectorial topológico. Así que podemos considerar su dual, el cual denotaremos por ${X_\mathrm{w}}^*$ para diferenciarlo de $X_\mathrm{w}^*$, que denota considerar primero el dual del espacio $X$ y en este considerar su topología débil, es decir, $X_\mathrm{w}^* = (X^*)_\mathrm{w}$ y ${X_\mathrm{w}}^* = (X_\mathrm{w})^*$.
+Como consecuencia del teorema~\ref{Tma:SeminormasInducenEVT} el siguiente corolario indica que $X_\mathrm{w}$ es un espacio vectorial topológico. Así que podemos considerar su espacio dual, el cual denotaremos por ${X_\mathrm{w}}^*$ para diferenciarlo de $X_\mathrm{w}^*$, que denota considerar primero el dual del espacio $X$ y en este considerar su topología débil, es decir, $X_\mathrm{w}^* = (X^*)_\mathrm{w}$ y ${X_\mathrm{w}}^* = (X_\mathrm{w})^*$.
 
 \begin{Cor}
 Si $X$ es un espacio normado, entonces $X_\mathrm{w}$ es un espacio vectorial topológico.
@@ -1816,9 +1852,9 @@ Si $X$ es un espacio normado, entonces $X^* = {X_\mathrm{w}}^*$.
 \end{Prop}
 
 \begin{Dem}
-Tomemos $\varphi \in X^*$. Por definición la seminorma $\abs{\varphi} : X_\mathrm{w} \to \K$ es continua, en particular es continua en el cero. Sea $V$ un entorno del cero en $\K$ y escojamos una bola abierta $V_r(0)$ con $r>0$ tal que $V_r(0) \subseteq V$. Como $\abs{\varphi}$ es continua, existe un  abierto $W$ en $\tau_\mathrm{w}$ del cero en $X$ tal que $\abs{\varphi}(W) \subseteq [0, r)$. Pero esto implica que $\varphi(W) \subseteq V_r(0) \subseteq V$. Así que $\varphi$ es continua en el cero y como también es lineal por la proposición~\ref{Prop:ContinuidadEnCero} podemos concluir que es continua. Esto muestra que $X^* \subseteq X_\mathrm{w}^*$. 
+Tomemos $\varphi \in X^*$. Por definición la seminorma $\abs{\varphi} : X_\mathrm{w} \to \K$ es continua, en particular es continua en el cero. Sea $V$ un entorno del cero en $\K$ y escojamos una bola abierta $V_r(0)$ con $r>0$ tal que $V_r(0) \subseteq V$. Como $\abs{\varphi}$ es continua, existe un  abierto $W$ en $\tau_\mathrm{w}$ del cero en $X$ tal que $\abs{\varphi}(W) \subseteq [0, r)$. Pero esto implica que $\varphi(W) \subseteq V_r(0) \subseteq V$. Así que $\varphi$ es continua en el cero y como también es lineal por la proposición~\ref{Prop:ContinuidadEnCero} podemos concluir que es continua. Esto muestra que $X^* \subseteq {X_\mathrm{w}}^*$. 
 
-Por otro lado, la proposición~\ref{Prop:ContencionPropiaTopologiaDebil} indica que $\tau_\mathrm{w} \subseteq \tau$. Por lo que todo funcional lineal y continuo con la topología $\tau_\mathrm{w}$ también será continuo con la topología $\tau$. Es decir, $X_\mathrm{w}^* \subseteq X^*$.
+Por otro lado, la proposición~\ref{Prop:ContencionPropiaTopologiaDebil} indica que $\tau_\mathrm{w} \subseteq \tau$. Por lo que todo funcional lineal y continuo con la topología $\tau_\mathrm{w}$ también será continuo con la topología $\tau$. Es decir, ${X_\mathrm{w}}^* \subseteq X^*$.
 \end{Dem}
 
 %/////////////////////////////////////////////////////////////////////////
@@ -2128,7 +2164,7 @@ $$\lim_{n\to\infty} \sum_{j=1}^n x_{k_j} \mbox{ existe bajo la norma.}$$ \\
 
 Esto indica que en un espacio de Banach la convergencia débil de subseries implica convergencia de subseries bajo la norma.
 
-\section{Bibliografía.}
+\section*{Bibliografía.}
 \begin{itemize}
 \item http://math.uga.edu/~pete/convergence.pdf
 \item https://terrytao.wordpress.com/2011/05/24/locally-compact-topological-vector-spaces/
