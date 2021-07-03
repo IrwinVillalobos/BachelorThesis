@@ -48,6 +48,10 @@
 \newcommand{\Norm}[1]{\left\Vert #1 \right\Vert}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\C}{\mathbb{C}}
+\newcommand{\calC}{\mathcal{C}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calQ}{\mathcal{Q}}
+\newcommand{\calF}{\mathcal{F}}
 
 \newcommand\restr[2]{{
   \left.\kern-\nulldelimiterspace #1 \vphantom{\big|} \right|_{#2} 
@@ -875,6 +879,17 @@ Por lo tanto $\leq$ es un orden parcial. A este le llamamos \textit{orden de ext
 \end{Ejem}
 
 \begin{Def}
+Sean $D$ y $B$ conjuntos no vacíos y $\mathcal{P}$ la colección de funciones $f: A \to B$ con $A \subseteq D$. Decimos que  un subconjunto no vacío $\mathcal{C}$ de $\mathcal{P}$ es \textit{extendible} si cumple que
+\begin{equation} \label{Eq:PropiedadUnionFunciones}
+\mbox{ para todas } f, g \in \mathcal{C}, \mbox{ se cumple que }f = g \mbox{ en } \Dom f \cap \Dom g.
+\end{equation}
+
+Sea $A = \bigcup_{f \in \mathcal{C}} \Dom f$, denotamos por $\bigcup_{f \in \mathcal{C}} f$ a la función $g: A \to B$ definida de la siguiente forma. Dado $a \in A$, existe $f \in \mathcal{C}$ tal que $a \in \Dom f$, de manera que definimos $g(a) = f(a)$. 
+
+Notemos que la propiedad (\ref{Eq:PropiedadUnionFunciones}) indica que $g$ está bien definida en todo $A$. 
+\end{Def}
+
+\begin{Def}
 Un conjunto parcialmente ordenado $(A, \leq)$ es un \textit{conjunto totalmente ordenado} si cumple que para todos $a, b \in A$ se satisface que $a \leq b$ o que $b \leq a$. En este caso a $\leq$ se le denomina \textit{orden total} en $A$.
 \end{Def}
 
@@ -885,7 +900,7 @@ Sea $A$ un conjunto no vacío. Si todo subconjunto no vacío y totalmente ordenado
 \end{Lema}
 
 \begin{Def}
-Sean $I$ un conjunto y $X_i$ un espacio topológico para cada $i \in I$. 
+Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$. 
 \begin{itemize}
 \item \textbf{i)} Un \textit{miembro parcialmente definido} de $\prod_{i \in I} X_i$ es cualquier elemento $g$ en $\prod_{j \in J} X_j$ para algún $J \subseteq I$ no vacío.
 \item \textbf{ii)} Dada una red $(f_\alpha)_{\alpha \in \Lambda}$ en $\prod_{i \in I} X_i$, decimos que un miembro parcialmente definido $g$ de $\prod_{i \in I} X_i$ con $\Dom g = J$ es un \textit{punto límite parcial} de $(f_\alpha)_{\alpha \in \Lambda}$ si $g$ es un punto límite de la red $(\restr{f_\alpha}{J})_{\alpha \in \Lambda}$ en $\prod_{j\in J}X_j$.
@@ -894,6 +909,25 @@ Sean $I$ un conjunto y $X_i$ un espacio topológico para cada $i \in I$.
 
 Para evitar ambigüedades al trabajar con las proyecciones, denotaremos por $\pi_{J, i}$ a la proyección de dominio $\prod_{j \in J} X_j$ tal que $\pi_{J, i}(f) = f(i)$ para algún $J \subseteq I$ y $i \in J$.
 
+\begin{Prop} \label{Prop:PuntoLimiteParcialIndividual}
+Sean $I$ un conjunto no vacío, $X_i$ un espacio topológico para cada $i \in I$ y $(f_\alpha)_{\alpha \in \Lambda}$ una red en $\prod_{i\in I} X_i$. Si para algún $j \in I$ se tiene que $x \in X_{j}$ es un punto límite de $(f_\alpha(j))_{\alpha \in \Lambda}$, entonces $g: \{ j \} \to \bigcup_{i \in I} X_i$, definida por $g(j) = x$, es un punto límite parcial de $(f_\alpha)_{\alpha \in \Lambda}$.
+\end{Prop}
+
+\begin{Dem}
+Tomemos $\pi_{\{j\}, j}^{-1}(U)$ una vecindad básica de $g$ para alguna a vecindad abierta $U$ de $x$ en $X_j$. Como $x$ es punto límite de $(f_\alpha(j))_{\alpha \in \Lambda}$, existe $\alpha_0 \in \lambda$ tal que si $\alpha \geq \alpha_0$, entonces $\pi_{\{j\}, j}(\restr{f_\alpha}{\{j \}}) = f_\alpha(j) \in U$, es decir $\restr{f_\alpha}{\{j \}} \in \pi_{\{j\},j}^{-1}(U)$. Así que $g$ es punto límite parcial  de $(f_\alpha)_{\alpha \in \Lambda}$.
+\end{Dem}
+
+\begin{Prop} \label{Prop:PuntoLimiteParcialUnion}
+Sean $I$ un conjunto no vacío, $X_i$ un espacio topológico para todo $i \in I$, $(f_\alpha)_{\alpha \in \Lambda}$ una red en $\prod_{i\in I} X_i$, y $\mathcal{C}$ una familia no vacía y extendible de puntos límite parciales de $(f_\alpha)_{\alpha \in \Lambda}$. Entonces $\bigcup_{g \in \mathcal{C}} g$ es un punto límite parcial de $(f_\alpha)_{\alpha \in \Lambda}$.
+\end{Prop}
+
+\begin{Dem}
+Sea $h = \bigcup_{g \in \mathcal{C}} g$ y $J = \Dom g$. Consideremos una vecindad abierta $\bigcap_{k=1}^n \pi_{J, j_k}^{-1}(U_k)$ de $h$ para algunos $n \in \N$, $j_1, \ldots, j_n \in J$ y $U_1, \ldots, U_n$ abiertos en $X_{j_1}, \ldots, X_{j_n}$ respectivamente. Fijemos $k \in \nn{n}$ por un momento. Sea $g_k \in \calC$ tal que $j_k \in \Dom g_k$. Denotemos a $\Dom g_k$ por $J_k$. Dado que $h \in \pi_{J, j_k}^{-1}(U_k)$, se sigue que $$\displaystyle\pi_{J_k, j_k}(g_k)  =  g_k(j_k) = h(j_k) = \pi_{J, j_k}(h) \in U_k.$$
+
+De esto resulta que  $g_k \in \pi_{J_k, j_k}^{-1}(U_k)$ y  como $g_k$ es punto límite de $(\restr{f_\alpha}{J_k})_{\alpha \in \Lambda}$, existe $\alpha_k \in \Lambda$ tal que $\restr{f_\alpha}{J_k} \in \pi_{J_k, j_k}^{-1}(U_k)$ siempre que $\alpha \geq \alpha_k$. Es decir, si $\alpha \geq \alpha_k$, entonces $$\restr{f_\alpha}{J} (j_k) = \restr{f_\alpha}{J_k} (j_k) = \pi_{J_k, j_k}\left(\restr{f_\alpha}{J_k}\right)  \in U_k,$$ 
+o bien, $\restr{f_\alpha}{J} \in \pi_{J, j_k}^{-1}(U_k)$ para $\alpha \geq \alpha_k$. Tomando $\beta \in \Lambda$ tal que $\beta \geq \alpha_k$ para toda $k \in \nn{n}$, se obtiene que $\restr{f_\alpha}{J} \in \bigcap_{k=1}^n \pi_{J, j_k}^{-1}(U_k)$ y por lo tanto $h$ es punto límite de $(\restr{f_\alpha}{J})_{\alpha \in \Lambda}$.
+\end{Dem}
+
 Si tenemos un par de espacios topológicos compactos, es sencillo verificar que su producto sigue siendo compacto. Uno de los teoremas más importantes en la topología es el teorema de Tychonoff y generaliza este resultado estableciendo que el producto arbitrario de espacios compactos es compacto.  
  
 \begin{Tma} \textbf{(Tychonoff)}
@@ -901,23 +935,13 @@ Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$.
 \end{Tma}
 
 \begin{Dem}
-Sea $(f_\alpha)_{\alpha \in \Lambda}$ una red en $X = \prod_{i \in I} X_i$. Demostremos que existe una subred de $(f_\alpha)_{\alpha \in \Lambda}$ que es convergente. 
+Sea $(f_\alpha)_{\alpha \in \Lambda}$ una red en $X = \prod_{i \in I} X_i$. Demostremos que $(f_\alpha)_{\alpha \in \Lambda}$ tiene un punto límite. De esta manera por el teorema~\ref{Tma:CompacidadPorConvergenciaDeSubredes} y el lema~\ref{Lema:LimiteSubredes} se concluiría que $\prod_{i \in I} X_i$ es un espacio compacto.
 
-Sea $\mathcal{Q}$ la colección de puntos límite parciales de $(f_\alpha)_{\alpha \in \Lambda}$. Entonces $\mathcal{Q}$ es un conjunto parcialmente ordenado con el orden de extensión de funciones. Veamos que $\mathcal{Q}$ es no-vacío. Fijemos por el momento $j \in I$ cualquiera. Entonces $(f_\alpha(j))_{\alpha \in \Lambda}$ es un red en $X_j$. Como $X_j$ es compacto, $(f_\alpha(j))_{\alpha \in \Lambda}$ tiene alguna subred que converge a algún $x_j \in X_j$. Por el lema~\ref{Lema:LimiteSubredes}, se sigue que $x_j$ es un punto límite de $(f_\alpha(j))_{\alpha \in \Lambda}$. Definamos $g: \{ j \} \to \bigcup_{i\in I} X_i$ por $g(j) = x_j$. Veamos que $g$ es un punto límite de $(\restr{f_\alpha}{\{ j \}})_{\alpha \in \Lambda}$. Así pues, tomemos $\pi_{\{j\}, j}^{-1}(U)$ una vecindad básica de $g$ para alguna a vecindad abierta $U$ de $x_i$. Como $x_j$ es punto límite de $(f_\alpha(j))_{\alpha \in \Lambda}$, existe $\alpha_0 \in \lambda$ tal que si $\alpha \geq \alpha_0$, entonces $\pi_{\{j\}, j}(\restr{f_\alpha}{\{j \}}) = f_\alpha(j) \in U$, es decir $\restr{f_\alpha}{\{j \}} \in \pi_{\{j\},j}^{-1}(U)$. Así que $g$ es punto límite parcial  de $(f_\alpha)_{\alpha \in \Lambda}$ y $\mathcal{Q} \neq \emptyset$.    
+Sea $\mathcal{Q}$ la colección de puntos límite parciales de $(f_\alpha)_{\alpha \in \Lambda}$. Entonces $\mathcal{Q}$ es un conjunto parcialmente ordenado con el orden de extensión de funciones. Veamos que $\mathcal{Q}$ es no-vacío. Fijemos $i_0 \in I$ cualquiera. Entonces $(f_\alpha(i_0))_{\alpha \in \Lambda}$ es un red en $X_{i_0}$. Como $X_{i_0}$ es compacto, $(f_\alpha(i_0))_{\alpha \in \Lambda}$ tiene alguna subred que converge a algún $p \in X_{i_0}$. Por el lema~\ref{Lema:LimiteSubredes}, se sigue que $p$ es un punto límite de $(f_\alpha(i_0))_{\alpha \in \Lambda}$. Definamos $g: \{ i_0 \} \to \bigcup_{i\in I} X_i$ por $g(i_0) = p$. La proposición~\ref{Prop:PuntoLimiteParcialIndividual} indica que $g$ es punto límite parcial de $(f_\alpha)_{\alpha \in \Lambda}$ y así $\mathcal{Q} \neq \emptyset$.    
 
-Sea $\mathcal{C} = \{ g_\lambda : \lambda \in \Gamma \}$ un subconjunto totalmente ordenado de $\mathcal{Q}$. Probemos que $\mathcal{C}$ tiene un elemento máximo. Denotemos por $J_\lambda$ el dominio de $g_\lambda$. Sea $J_0 = \bigcup_{\lambda \in \Gamma} J_\lambda$ y definamos $g_0 : J_0 \to \bigcup_{i\in I} X_i$, de la siguiente forma. Dado $j \in J_0$, existe $\lambda \in \Gamma$ tal que $j \in J_\lambda$, de tal manera que podemos definir $g_0(j) = g_\lambda(j)$. 
-
-Notemos que $g_0$ está bien definida en todo $j \in J_0$. Sean $\lambda_1, \lambda_2 \in \Gamma$ tales que $j \in J_{\lambda_1}$ y $j \in J_{\lambda_2}$. Como $\mathcal{C}$ es totalmente ordenado, podemos suponer sin perdida de generalidad de $g_{\lambda_1} \leq g_{\lambda_2}$. Por lo que $g_{\lambda_1}(j) = g_{\lambda_2}(j)$.
-
-Demostremos ahora que $g_0 \in \mathcal{Q}$. Consideremos una vecindad abierta $\bigcap_{k=1}^n \pi_{J_0, j_k}^{-1}(U_k)$ de $g_0$ para algunos $n \in \N$, $j_1, \ldots, j_n \in J_0$ y $U_1, \ldots, U_n$ abiertos en $X_{j_1}, \ldots, X_{j_n}$ respectivamente. Fijemos $k \in \nn{n}$ por un momento. Sea $\lambda_k \in \Gamma$ tal que $j_k \in J_{\lambda_k}$. Entonces $g_0 \in \pi_{J_0, j_k}^{-1}(U_k)$, de donde $$\displaystyle\pi_{J_{\lambda_k}, j_k}(g_{\lambda_k})  =  g_{\lambda_k}(j_k) = g_0(j_k) = \pi_{J_0, j_k}(g_0) \in U_k.$$
-
-De esto resulta que  $g_{\lambda_k} \in \pi_{J_{\lambda_k}, j_k}^{-1}(U_k)$ y  como $g_{\lambda_k} \in \mathcal{C}$, existe $\alpha_k \in \Lambda$ tal que $\restr{f_\alpha}{J_{\lambda_k}} \in \pi_{J_{\lambda_k}, j_k}^{-1}(U_k)$ siempre que $\alpha \geq \alpha_k$. Es decir, si $\alpha \geq \alpha_k$, entonces $$\restr{f_\alpha}{J_0} (j_k) = \restr{f_\alpha}{J_{\lambda_k}} (j_k) = \pi_{J_{\lambda_k}, j_k}\left(\restr{f_\alpha}{J_{\lambda_k}}\right)  \in U_k,$$ 
-o bien, $\restr{f_\alpha}{J_0} \in \pi_{J_0, j_k}^{-1}(U_k)$ para $\alpha \geq \alpha_k$. Tomando $\beta \in \Lambda$ tal que $\beta \geq \alpha_k$ para toda $k \in \nn{n}$, se obtiene que $\restr{f_\alpha}{J_0} \in \bigcap_{k=1}^n \pi_{J_0, j_k}^{-1}(U_k)$ y por lo tanto $g_0$ es punto límite de $(\restr{f_\alpha}{J_0})_{\alpha \in \Lambda}$ y $g_0 \in \mathcal{C}$.
-
-Claramente $g_0 \geq g_\lambda$ para todo $\lambda \in \Gamma$. Así que $\mathcal{C}$ tiene un máximo. Por el lema de Zorn, se sigue que $\mathcal{Q}$ tiene un elemento maximal $g$ de dominio $J \subseteq I$. Nuestro último paso es probar que $J = I$, para que de esta manera $g$ sea un punto límite de $(f_\alpha)_{\alpha\in\Lambda}$ y por el lema~\ref{Lema:LimiteSubredes} y el teorema~\ref{Tma:CompacidadPorConvergenciaDeSubredes} se concluya que $\prod_{i\in I} X_i$ es compacto. 
-
-Supongamos que $J \subsetneq I$, de forma que existe $h \in J \setminus I$. Como $g$ es punto límite de $(\restr{f_\alpha}{J})_{\alpha\in\Lambda}$, (pendiente)...
-
+Sea $\mathcal{C}$ un subconjunto totalmente ordenado no vacío de $\mathcal{Q}$. Sean $g_1, g_2 \in \calC$, como $\mathcal{C}$ es totalmente ordenado, podemos suponer sin perdida de generalidad de $g_1 \leq g_2$. Por lo que $\Dom g_1 \subseteq \Dom g_2$ y $g_1 = \restr{g_2}{\Dom g_1}$. Así que $g_1 = g_2$ en $\Dom g_1 = \Dom g_1 \cap \Dom g_2$. Esto indica que $\calC$ es extendible y así podemos definir $g_0 = \bigcup_{g \in \calC} g$. La proposición~\ref{Prop:PuntoLimiteParcialUnion} asegura que $g_0$ es un punto límite parcial de $(f_\alpha)_{\alpha \in \Lambda}$, de manera que $g_0 \in \calQ$. Claramente $g_0 \geq g$ para toda $g \in \calC$. Así que $\mathcal{C}$ tiene un elemento máximo. Por el lema de Zorn, se sigue que $\mathcal{Q}$ tiene un elemento maximal $g$ de dominio $J \subseteq I$.
+ 
+Nuestro último paso es probar que $J = I$. Supongamos que $J \subsetneq I$, de forma que existe $j \in I \setminus J$. Como $X_j$ es compacto y $(f_\alpha(j))_{\alpha\in\Lambda}$ es una red en $X_j$, del teorema~\ref{Tma:CompacidadPorConvergenciaDeSubredes} y del lema~\ref{Lema:LimiteSubredes} se sigue que $q \in X_j$ un punto límite de $(f_\alpha(j))_{\alpha\in\Lambda}$. La proposición~\ref{Prop:PuntoLimiteParcialIndividual} indica que la función $h: \{ j \} \to \bigcup_{i\in I} X_i$ definida por $h(j) = q$ es un punto límite parcial de $(f_\alpha)_{\alpha\in\Lambda}$. Notemos que $\{ g, h \}$ es una familia de puntos límite parciales de $(f_\alpha)_{\alpha\in\Lambda}$ que es extendible, pues $\Dom g \cap \Dom h = J \cap \{ j \} = \emptyset$. Luego, la proposición~\ref{Prop:PuntoLimiteParcialUnion} indica que $g \cup h$ es un punto límite parcial de $(f_\alpha)_{\alpha\in\Lambda}$. Pero esto contradice que $g$ sea maximal en $\calQ$, pues $g \cup h \in \calQ$, $g \leq g \cup h$ y $g \neq g \cup h$. Así que $J = I$, por lo que $g$ es un punto límite de $(f_\alpha)_{\alpha \in\Lambda}$. 
 \end{Dem}
 
 \section{Espacios vectoriales topológicos.}
@@ -1290,7 +1314,7 @@ Sea $X$ un espacio vectorial topológico. Si $A \subseteq X$ es convexo, entonces
 \end{Prop}
 
 \begin{Dem}
-Sean $x, y \in \ov{A}$ y $\lambda \in [0, 1]$. Como $x, y \in \ov{A}$, ls proposición~\ref{Prop:CerraduraLimiteRed} indica que existen redes $(x_\alpha)_{\alpha \in \Lambda}$, $(y_\alpha)_{\alpha\in\Lambda}$ en $A$ tales que $x_\alpha \to x$ y $y_\alpha \to y$. Dado que $A$ es convexo se cumple que $\lambda x_\alpha + (1-\lambda) y_\alpha \in A$. Además, la proposición~\ref{Prop:LimiteDeSuma} indica que $$\lim_{\alpha \in \Lambda } [\lambda x_\alpha + (1-\lambda) y_\alpha] = \lambda \lim_{\alpha \in \Lambda } x_\alpha + (1-\lambda) \lim_{n\to \infty} y_\alpha = \lambda x + (1-\lambda) y.$$ 
+Sean $x, y \in \ov{A}$ y $\lambda \in [0, 1]$. Como $x, y \in \ov{A}$, la proposición~\ref{Prop:CerraduraLimiteRed} indica que existen redes $(x_\alpha)_{\alpha \in \Lambda}$, $(y_\alpha)_{\alpha\in\Lambda}$ en $A$ tales que $x_\alpha \to x$ y $y_\alpha \to y$. Dado que $A$ es convexo se cumple que $\lambda x_\alpha + (1-\lambda) y_\alpha \in A$. Además, la proposición~\ref{Prop:LimiteDeSuma} indica que $$\lim_{\alpha \in \Lambda } [\lambda x_\alpha + (1-\lambda) y_\alpha] = \lambda \lim_{\alpha \in \Lambda } x_\alpha + (1-\lambda) \lim_{n\to \infty} y_\alpha = \lambda x + (1-\lambda) y.$$ 
 
 Por lo tanto $\lambda x + (1-\lambda y) \in \ov{A}$.  
 \end{Dem}
