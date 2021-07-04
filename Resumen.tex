@@ -604,6 +604,381 @@ Sean $M$ un espacio métrico y $A \subseteq M$ un conjunto cerrado. Si $x \in M \
 Se demostrará por contrapositiva. Supongamos que $d(x, A) = 0$. Tomemos un abierto $U$ que incluya a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$, por lo que $U \cap A \neq \emptyset$. Así que $x \in \ov{A}$. Ya que $A$ es cerrado, entonces  $x \in A$.
 \end{Dem}
 
+\section{Espacios normados.}
+
+\begin{Def}
+Una \textit{norma} en un espacio vectorial $X$ es una seminorma $\Norm{\cdot}: X \to [0, \infty)$ que es \textit{definida positiva}, esto es, para cada $x \in X$, $\Norm{x} = 0$ si, y sólo si $x = 0$. En este caso decimos que la pareja $(X, \Norm{\cdot})$ es un \textit{espacio normado}. 
+\end{Def} 
+
+Es sencillo verificar que en un espacio normado $X$ la función $d: X \times X \to [0, \infty)$ definida por $$d(x, y) := \Norm{x-y}$$ es una métrica, por lo que $X$ es un espacio métrico y entonces podemos considerar la topología inducida por la métrica, la cual se denomina \textit{topología original} de $X$. A menos que se especifique otra cosa, cuando hablemos de un espacio normado como espacio topológico, lo consideraremos con su topología original.
+
+Además, los conceptos de sucesión de Cauchy y completez se heredan de las definiciones en espacios métricos. Si un espacio normado es completo decimos que es un \textit{espacio de Banach}.
+
+\begin{Lema} \label{Lema:NormaContinua}
+Sea $X$ un espacio normado. Entonces la norma $\Norm{\cdot}:X \to [0, \infty)$ es una función continua.
+\end{Lema}
+
+\begin{Dem}
+Sea $(x_n)_{n\in\N}$ una sucesión en $X$ que converge a $x \in X$. Por definición esto indica que para todo $\varepsilon > 0$ existe $N \in \N$ tal que si $n \geq N$ entonces $\Norm{x_n - x} \leq \varepsilon$. Por la desigualdad del triángulo que $\abs{\Norm{x_n} - \Norm{x}} < \Norm{x_n - x}$. Esto implica que $\Norm{x_n}$ converge a $\Norm{x}$ y así $\Norm{\cdot}$ es continua.
+\end{Dem}
+
+\begin{Prop} \label{Prop:LimiteDeSumaSucesion}
+Sean $X$ un espacio normado, $\lambda \in \K$; y $(x_n)_{n \in \N}$ y $(y_n)_{n \in \N}$ sucesiones que convergen en $E$. Entonces $(\lambda x_n + y_n)_{n\in\N}$ converge y 
+$$\lim_{n \to \infty} (\lambda x_n + y_n) = \lambda \left(\lim_{n \to \infty} x_n\right) + \left(\lim_{n \to \infty} y_n\right).$$ 
+
+(Este es un caso particular de la proposición~\ref{Prop:LimiteDeSumaRed}. En aquella proposición la $\lambda$ no era fija, sino que también era una red. Pero como hago uso esta proposición con la $\lambda$ fija, lo enuncié y demostré de esta manera, ¿está bien así o prefiere que modifique a $\lambda$ como sucesión?)
+\end{Prop}
+
+\begin{Dem}
+Si $\lambda = 0$, entonces el resultado es claro. Supongamos entonces que $\lambda \neq 0$. Sean $x = \lim_{n\to \infty} x_n$ y $y = \lim_{n\to \infty} y_n$. Tomemos $\varepsilon > 0$, de manera que existen $N_1, N_2 \in \N$ tales que 
+\Ecu{
+\Norm{x_n - x} < \frac{\varepsilon}{2\lambda}, \mbox{ si } n \geq N_1 \;\;\mbox{ y } \;\; \Norm{y_n - y} < \frac{\varepsilon}{2}, \mbox{ si } n \geq N_2.
+}
+
+Luego, si $n \geq \max(N_1, N_2)$, entonces $$\Norm{(\lambda x_n + y_n) - (\lambda x + y)} \leq \lambda \Norm{x_n - x} + \Norm{y_n - y} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.$$ 
+\end{Dem}
+
+\begin{Cor}
+Sea $X$ un espacio normado. Entonces $A \subseteq X$ es un conjunto acotado si, y sólo existe $M > 0$ tal que $\Norm{x} \leq M$ para todo $x \in A$. 
+\end{Cor}
+
+\begin{Dem}
+La proposición~\ref{Prop:CaracterizacionConjuntoAcotado} indica que $A$ es acotado si y sólo si existe $M > 0$ tal que $\Norm{x} = d(x, 0) < M$ para todo $x \in A$.
+\end{Dem}
+
+\subsection{Convexidad.}
+
+\begin{Def}
+Sea $X$ un espacio vectorial. Un subconjunto $A$ de $X$ es \textit{convexo} si para todos $x, y \in A$ y $\lambda \in [0,1]$ se cumple que $\lambda x + (1-\lambda) y \in A$. 
+\end{Def} 
+
+\begin{Ejem}
+Sea $X$ un espacio vectorial y $x \in X$. Claramente $X$ y $\{x\}$ son convexos.
+\end{Ejem}
+
+\begin{Ejem}
+Si $X$ es un espacio normado y tomamos $x, y \in B_X$ y $\lambda \in [0, 1]$, entonces $$\Norm{\lambda x + (1-\lambda)y} \leq \lambda \Norm{x} + (1- \lambda)\Norm{y} \leq \lambda + (1-\lambda) = 1.$$ Así que $\lambda x + (1-\lambda)y \in B_X$. Por lo tanto $B_X$ es convexa.
+\end{Ejem}
+
+\begin{Prop} \label{Prop:FuncionLinealPreservaConvexos}
+Sean $X, Y$ espacios vectoriales y $T: X \to Y$ lineal. Si $A \subseteq X$ es convexo, entonces $T(A)$ es convexo.
+\end{Prop}
+
+\begin{Dem}
+Sean $x, y \in A$, de tal manera que $Tx, Ty \in T(A)$, y $\lambda \in [0,1]$. Como $A$ es convexo, se tiene que $\lambda x + (1- \lambda) y \in A$, de donde $\lambda Tx + (1-\lambda) Ty = T(\lambda x + (1-\lambda)y) \in T(A)$.
+\end{Dem}
+
+
+\begin{Prop} \label{Prop:CerraduraDeConvexoEsConvexa}
+Sea $X$ un espacio normado. Si $A \subseteq X$ es convexo, entonces $\ov{A}$ es convexa. (Cambié esta proposición de E.V.T. a espacios normados, porque se necesita en la demostración de Helly en la sección de espacio dual, ¿está bien?)
+\end{Prop}
+
+\begin{Dem}
+Sean $x, y \in \ov{A}$ y $\lambda \in [0, 1]$. Como $x, y \in \ov{A}$, la proposición~\ref{Prop:CerraduraLimiteSucesiones} indica que existen sucesiones $(x_n)_{n \in \N}$, $(y_n)_{n\in\N}$ en $A$ tales que $x_n \to x$ y $y_n \to y$. Dado que $A$ es convexo se cumple que $\lambda x_n + (1-\lambda) y_n \in A$. Además, la proposición~\ref{Prop:LimiteDeSumaSucesion}  indica que $$\lim_{n \to \infty } [\lambda x_n + (1-\lambda) y_n] = \lambda \lim_{n \to \infty } x_n + (1-\lambda) \lim_{n\to \infty} y_n = \lambda x + (1-\lambda) y.$$ 
+
+Por lo tanto $\lambda x + (1-\lambda y) \in \ov{A}$.  
+\end{Dem}
+
+\begin{Def} Sean $X$ un espacio vectorial y $A \subseteq X$ convexo. Una función $f : A \to \R$ es \textit{convexa} si para todos $x, y \in A$ y $\lambda \in [0, 1]$ se tiene que $$f(\lambda x + (1-\lambda y))\leq \lambda f(x) + (1-\lambda) f(y).$$
+\end{Def}
+
+\begin{Lema} \label{Lema:NormaConvexa}
+Sea $X$ un espacio normado. Entonces la norma $\Norm{\cdot}:X \to [0, \infty)$ es una función convexa.
+\end{Lema}
+
+\begin{Dem}
+Si $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que
+$$\Norm{\lambda x + (1-\lambda y)} \leq \abs{\lambda} \Norm{x} + \abs{1-\lambda} \Norm{y}  = \lambda \Norm{x} + (1-\lambda) \Norm{y},$$ y por lo tanto $\Norm{\cdot}$ es convexa.
+\end{Dem}
+
+\begin{Lema} \label{Lema:DerivadaCrecienteConvexa}
+Sean $(a, b) \subseteq \R$ un intervalo y $f : (a, b) \to \R$ una función diferenciable. Si $f^{\prime}$ es monótona-creciente en $(a, b)$, entonces $f$ es convexa.
+\end{Lema}
+
+\begin{Dem}
+Tomemos $x, y \in X$ y $0 \leq \lambda \leq 1$. Los casos $x = y$ y $\lambda \in \{ 0, 1 \}$ son claros, así que supongamos que $x \neq y$ y $\lambda \in (0, 1)$. Sea $c = \lambda x + (1-\lambda) y$. Sin generalidad supongamos que $x < y$, de manera que $x < c < y$. El teorema del valor medio indica que existen $z_1, z_2 \in \R$ con $x < z_1 <  c < z_2 < y$ tales que $$f^\prime(z_1) = \frac{f(c)-f(x)}{c-x} \;\;\mbox{ y } \;\;f^\prime(z_2) = \frac{f(y)-f(c)}{y-c}.$$
+
+Dado que $f^\prime$ es monótona-creciente, se tiene que $$\frac{f(c)-f(x)}{c-x} = f^\prime(z_1) \leq f^\prime(c) \leq f^\prime(z_2) = \frac{f(y)-f(c)}{y-c}.$$
+
+Esto implica que $$(f(x) - f(c))(y-c) \geq  (f(y) - f(c))(x-c).$$
+
+O bien $$f(x)(y - c) - f(c)y + f(c)c \geq  f(y)(x - c) - f(c)x + f(c)c.$$
+
+Entonces \begin{equation} \label{Eq:RelacionFuncionConvexa} 
+f(c) \leq f(x)\cdot \frac{c-y}{x-y} + f(y)\cdot\frac{x-c}{x-y}.
+\end{equation} 
+
+Como $$\frac{c-y}{x-y} = \lambda \;\;\mbox{ y }\;\; \frac{x-c}{x-y} = 1- \lambda, $$ se sigue de (\ref{Eq:RelacionFuncionConvexa}) que $$f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1- \lambda)f(y).$$
+\end{Dem}
+
+\begin{Lema} \label{Lema:XPConvexa}
+Sea $1 \leq p < \infty$. Entonces la función $h: \K \to \R$ definida por $h(z) = \abs{z}^p$ es convexa.
+\end{Lema}
+
+\begin{Dem} 
+Consideremos $f: [0, \infty) \to[0, \infty)$ dada por $f(x) = x^p$. Claramente, $f$ es diferenciable y $f^\prime(x) = p x^{p-1}$ es monótona creciente, así que el lema~\ref{Lema:DerivadaCrecienteConvexa} indica que $f$ es convexa.
+
+Tomemos $g = \abs{\cdot}$, la cual es convexa en $\K$. Sean $x, y \in \K$ y $\lambda \in [0, 1]$, como $g$ es convexa se tiene que $$g(\lambda x + (1-\lambda)y) \leq \lambda g(x) + (1-\lambda)g(y).$$
+
+Dado que $f$ es creciente y convexa resulta que
+$$f(g(\lambda x + (1-\lambda)y)) \leq f(\lambda g(x) + (1-\lambda)g(y)) \leq \lambda f(g(x)) + (1-\lambda)f(g(y)).$$
+
+Por lo tanto, la función $h = f \circ g$ es convexa.
+\end{Dem}
+
+\subsection{Ejemplos.}
+
+En $\K^n $ la norma euclidiana resulta ser el caso $p=2$ de una familia de normas en $\K^n$ llamadas $p$-normas. En esta subsección introduciremos estas funciones y verificaremos que en efecto son normas en $\K^n$. Además, agregaremos ejemplos de espacios normados de dimensión infinita.      
+
+\begin{Ejem} \label{Ejem:EllePNormado}
+Dados $n \in \N$ y $1 \leq p < \infty$, definamos la función $\Norm{\cdot}_p:\K^n \to [0, \infty)$ por $$\Norm{(x_1, \ldots, x_n)}_p := \left(\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}}.$$  
+
+En el caso $p = \infty$, definimos la función $\Norm{\cdot}_{\infty}: \K^n \to [0, \infty)$ por $$\Norm{(x_1, \ldots, x_n)}_\infty :=\max_{1 \leq i \leq n} \,  \abs{x_i}.$$
+A continuación demostraremos que $\Norm{\cdot}_p$ es una norma en $\K^n$.
+\end{Ejem}
+
+\begin{Dem}
+Sea $1 \leq p < \infty$.
+\begin{itemize}
+\item[\textbf{i)}] Claramente, $\Norm{x}_p \geq 0$ para cualquier $x \in \K^n$. Además, si $x = 0 \in \K^n$, entonces $\Norm{x}_p= 0$. Es sencillo observar que si $\Norm{x}_p = 0$ para algún $x \in \K^n$, entonces $x = 0$.
+\item[\textbf{ii)}] Sea $x = (x_1, \ldots, x_n) \in \K^n$ y $\lambda \in \K$, entonces
+\Ecu{
+\Norm{\lambda x}_p &= \Norm{(\lambda x_1, \ldots, \lambda x_n)}_p =  \left(\sum_{i=1}^n \abs{\lambda x_i}^p\right)^{\frac{1}{p}} \\
+&= \left(\abs{\lambda}^p\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}} = \abs{\lambda} \left(\sum_{i=1}^n \abs{ x_i}^p\right)^{\frac{1}{p}} = \abs{\lambda} \Norm{x}_p.
+}
+\item[\textbf{iii)}] Sean $x, y \in \K^n$. Si $x = 0$ ó $y = 0$, claramente $\Norm{x+y}_p \leq \Norm{x}_p + \Norm{y}_p$. Así que tomamos $x, y \neq 0$. Definamos 
+$$x_0 := \frac{x}{\Norm{x}_p + \Norm{y}_p} \quad \mbox{  y } \quad y_0 := \frac{y}{\Norm{x}_p + \Norm{y}_p},$$ de tal manera que 
+$\Norm{x_0}_p + \Norm{y_0}_p = 1$. Definamos $\lambda := \Norm{y_0}_p \in (0, 1)$ y tomemos $$\widehat{x} :=\frac{x_0}{1-\lambda} \quad
+ \mbox{ y } \quad \widehat{y} := \frac{y_0}{\lambda}.$$
+
+Notemos que $\Norm{\widehat{x}}_p = \Norm{\widehat{y}}_p = 1$ y expresemos $\widehat{x}=(\widehat{x_1}, \ldots \widehat{x_n})$ y $\widehat{y}= (\widehat{y_1}, \ldots \widehat{y_n})$. El lema~\ref{Lema:XPConvexa} muestra que la función $z \mapsto \abs{z}^p$ es convexa , así que tenemos que para $1 \leq i \leq n$
+$$\abs{(1-\lambda)\widehat{x_i} + \lambda \widehat{y_i}}^p \leq (1-\lambda)\abs{\widehat{x_i}}^p + \lambda \abs{\widehat{y_i}}^p.$$
+ 
+Y al sumar $i$ de $1$ a $n$ obtenemos
+\Ecu{
+\Norm{x_0 + y_0}_p^p &= \Norm{(1-\lambda)\widehat{x} + \lambda \widehat{y}}_p^p \\
+&=  \sum_{i=1}^n\abs{(1-\lambda)\widehat{x_i} + \lambda \widehat{y_i}}^p \\
+&\leq (1-\lambda)\left(\sum_{i=1}^n \abs{\widehat{x_i}}^p \right) + \lambda \left( \sum_{i=1}^n\abs{\widehat{y_i}}^p \right) \\
+&= (1- \lambda) \Norm{\widehat{x}}_p^p + \lambda \Norm{\widehat{y}}_p^p = 1.
+}
+
+Como para $z \in [0, \infty)$ se tiene que $z^p \leq 1$ si, y sólo si $z \leq 1$, entonces $$\Norm{x_0 + y_0}_p \leq 1 = \Norm{x_0}_p + \Norm{y_0}_p.$$ 
+
+Esto es, $$\Norm{\frac{x+y}{\Norm{x}_p + \Norm{y}_p}}_p \leq \Norm{\frac{x}{\Norm{x}_p + \Norm{y}_p}}_p + \Norm{\frac{y}{\Norm{x}_p + \Norm{y}_p}}_p.$$
+
+Por lo tanto $$\Norm{x+y}_p \leq \Norm{x}_p + \Norm{y}_p.$$
+
+\end{itemize}
+
+Veamos ahora que $\Norm{\cdot}_\infty$ es una norma en $\K^n$. Para eso, notemos que
+\begin{itemize}
+\item[\textbf{i)}] Sea $x = (x_1, \ldots, x_n) \in \K^n$. Si $x = 0$, entonces $\Norm{x}_\infty = \max_{i \in \N} \,  0 = 0.$ Si por otro lado $\Norm{x}_\infty = 0$, entonces $\abs{x_i} = 0$ para todo $1 \leq i \leq n$, y así $x_i = 0$, por lo que $x = 0$.
+\item[\textbf{ii)}] Sea $x = (x_1, \ldots, x_n) \in \K^n$ y $\lambda \in\K$. Entonces
+\Ecu{
+\Norm{\lambda x}_\infty = \Norm{(\lambda x_1, \ldots, \lambda x_n)}_\infty = \max_{1 \leq i \leq n} \,  \abs{ \lambda x_i} = \max_{1 \leq i \leq n} \,  \abs{\lambda}\abs{x_i} = \abs{\lambda} \max_{1 \leq i \leq n} \,  \abs{x_i} = \abs{\lambda} \Norm{x}_\infty.
+}
+\item[\textbf{iii)}] Sean $x = (x_1, \ldots, x_n), y = (y_1, \ldots, y_n) \in \K^n$, entonces 
+\Ecu{
+\Norm{x+y}_\infty &= \Norm{(x_1 + y_1, \ldots, x_n + y_n)}_\infty = \max_{1 \leq i \leq n} \,  \abs{x_i + y_i} \\
+& \leq \max_{1 \leq i \leq n} \,  (\abs{x_i} + \abs{y_i}) \leq \max_{1 \leq i \leq n} \,  \abs{x_i} + \max_{1 \leq i \leq n} \,  \abs{y_i} \\
+& = \Norm{x}_\infty + \Norm{y}_\infty.
+}
+\end{itemize}
+\end{Dem}
+
+En adelante, cuando trabajemos en $\K^n$ con la norma $\Norm{\cdot}_p$, lo denotaremos por $\ell_p^n$. Si hace falta especificar el campo se denotará por $\ell_p^n(\K)$. 
+
+En el caso particular $p=2$, notemos que la norma $\Norm{\cdot}_2$ en $\K^n$ es precisamente la norma euclidiana. A continuación probaremos que $\ell_2^n$ es un espacio de Banach haciendo uso del teorema de Heine-Borel en $ell_2^1(\K) = \K$.
+
+\begin{Tma} \label{Tma:HeineBorel} \textbf{(Heine-Borel)}
+Para todos $a, b \in \R$ con $a \leq b$, el intervalo $[a, b]$ es compacto. 
+\end{Tma}
+
+\begin{Tma} \label{Tma:HeineBorelGeneral} 
+Sea $A \subseteq \ell_2^n(\K)$. Son equivalentes:
+\begin{itemize}
+\item \textbf{i)} $A$ es cerrado y acotado.
+\item\textbf{ii)} $A$ es compacto.
+\end{itemize}
+\end{Tma}
+
+\begin{Dem}
+(Pendiente).
+\end{Dem}
+
+\begin{Tma} \label{Tma:NormaEuclidianaCompleta}
+El espacio normado $\ell_2^n$ es completo. 
+\end{Tma}
+
+\begin{Dem}
+Sea $(x_m)_{m\in \N}$ una sucesión de Cauchy. El lema~\ref{Lema:SucesionesDeCauchySonAcotadas} indica que $\{ x_m : m \in \N \}$ es un conjunto acotado por alguna constante $M \in\N$. Como la bola $B_M(0)$ es cerrada y acotada en $\ell_2^n$, el teorema de Heine-Borel señala que $B_M(0)$ es compacto. Dado que $(x_m)_{m\in\N} \subseteq B_M(0)$ y este conjunto es compacto, el teorema~\ref{Tma:CaracterizacionCompacidadSucesiones} dice que existe una subsucesión $(x_{k_m})_{m \in \N}$ de $(x_m)_{m\in\N}$ que converge a algún $x \in B_M(0) \subseteq X$. Del lema~\ref{Lema:SucesionCauchyConSubsucesionConvergenteConverge} se sigue que $x_m \to x$.
+\end{Dem}
+
+Más adelante probaremos que no sólo $\ell_2^n$ es completo, sino que el resto de los espacios $\ell_p^n$ también lo son.
+
+\begin{Ejem}
+Denotemos por $\K^\N$ al espacio de sucesiones en $\K$. Definamos para $1 \leq p < \infty$ las funciones $\Norm{\cdot}_p : \K^\N \to [0, \infty]$ y $\Norm{\cdot}_\infty : \K^\N \to [0, \infty]$ por $$\Norm{(x_1, x_2, \ldots)}_p = \left(  \sum_{i=1}^\infty \abs{x_i}^p \right)^{\frac{1}{p}} \mbox{  y  } \Norm{(x_1, x_2, \ldots)}_\infty = \sup_{i \in \N} \,  \abs{x_i},$$
+donde consideramos que $\infty^{\frac{1}{p}} = \infty$.
+
+Para $1\leq p\leq \infty$ definimos a $\ell_p(\K)$, o simplemente $\ell_p$, como el espacio de sucesiones $x \in \K^\N$ tales que $\Norm{x}_p < \infty$.
+\end{Ejem}
+
+
+\begin{Lema} \label{Lema:LimiteElleP}
+Sea $1 \leq p \leq \infty$. Si $x = (x_1, x_2, \ldots) \in \ell_p$, entonces $$\Norm{x}_p = \lim_{n \to \infty} \Norm{(x_1, \ldots, x_n)}_p.$$
+\end{Lema}
+
+\begin{Dem}
+Sea $1\leq  p < \infty$. Si $x \in \ell_p$, entonces $\Norm{x}_p < \infty$ y por la continuidad de la función $z \mapsto z^p$ en $\R$ se sigue que $$\left(\lim_{n \to  \infty} \Norm{(x_1, \ldots, x_n)}_p \right)^p =\lim_{n \to  \infty} \Norm{(x_1, \ldots, x_n)}_p^p = \lim_{n\to \infty} \sum_{i=1}^n \abs{x_i}^p = \sum_{i=1}^\infty \abs{x_i}^p = \Norm{x}_p^p < \infty.$$ 
+
+Así que $$ \lim_{n \to \infty} \Norm{(x_1, \ldots, x_n)}_p = \Norm{x}_p.$$
+
+Tomemos ahora $p = \infty$. Para $n\in\N$ sea $a_n = \max(\abs{x_1},\ldots, \abs{x_n})$. Como $\Norm{x}_\infty < \infty$, el conjunto $\{\abs{x_i} : i \in \N \}$ está acotado y así $(a_n)_{n\in\N}$ también.  Claramente, $(a_n)_{n\in\N}$ es monótona-creciente y $a_n \leq \Norm{x}_\infty < \infty$, de manera que $(a_n)_{n\in\N}$ converge y $a_k \leq \lim_{n\to\infty} a_n = \sup_{n \in\N} a_n < \infty$ para toda $k \in \N$. Sea $i \in \N$, entonces para $k \geq i$ se tiene que $a_k \geq \abs{x_i}$ y por lo tanto $\lim_{n\to\infty} a_n  \geq \abs{x_i}$. Así pues, $\lim_{n\to\infty} a_n $ es una cota superior de $\{\abs{x_i} : i \in \N\}$. Como $\Norm{x}_\infty$ es la mínima cota superior, resulta que $\lim_{n\to\infty} a_n  \geq \Norm{x}_\infty$.
+
+Por otro lado, tenemos que para cada $n \in \N$, resulta que $a_n \leq \Norm{x}_\infty$. De esto se sigue que $\lim_{n\to \infty} a_n \leq \Norm{x}_\infty$ y concluimos que $\lim_{n \to \infty} \Norm{(x_1, \ldots, x_n)}_\infty = \Norm{x}_\infty$.
+\end{Dem}
+
+\begin{Lema}
+Para cada $p \in [1, \infty]$, la función $\Norm{\cdot}_p$ es una norma en $\ell_p$.
+\end{Lema}
+
+\begin{Dem} 
+\hfill
+\begin{itemize}
+\item \textbf{i)} Sea $x = (x_1, x_2, \ldots, ) \in \ell_p$. Si $x = 0$, entonces $\Norm{x}_p = 0$. Si por otro lado $\Norm{x}_p = 0$, entonces $x_1 = x_2 =\ldots = 0$. Así que $x = 0$.
+\item \textbf{ii)} Si $x = (x_1, x_2, \ldots, ) \in \ell_p$ y $\lambda \in \K$, entonces el lema~\ref{Lema:LimiteElleP} indica que $$\Norm{\lambda x}_p = \lim_{n\to \infty} \Norm{\lambda(x_1, \ldots, x_n)}_p = \lambda \lim_{n\to \infty} \Norm{(x_1, \ldots, x_n)}_p = \lambda \Norm{x}_p.$$
+\item \textbf{iii)}  Si $x = (x_1, x_2, \ldots, ), y = (y_1, y_2, \ldots) \in \ell_p$, entonces del lema~\ref{Lema:LimiteElleP} se sigue que
+\Ecu{
+\Norm{x}_p + \Norm{y}_p &= \lim_{n\to \infty} \Norm{(x_1, \ldots, x_n)}_p + \lim_{n\to \infty} \Norm{(y_1, \ldots, y_n)}_p \\
+& =  \lim_{n\to \infty} \Norm{(x_1, \ldots, x_n)}_p + \Norm{(y_1, \ldots, y_n)}_p  \\
+&\geq \lim_{n\to \infty} \Norm{(x_1, \ldots, x_n) + (y_1, \ldots, y_n)}_p = \Norm{x+y}_p. \\
+& = \lim_{n\to \infty} \Norm{(x_1 + y_1, \ldots, x_n + y_n)}_p = \Norm{x+y}_p.
+}
+\end{itemize}
+Además, observemos que para cada $p \in [1, \infty]$, se tiene que $\abs{x_n} \leq \Norm{x}_p$ para todo $n \in \N$.
+\end{Dem}
+
+\begin{Prop}
+Para cada $p \in [1, \infty]$, $\ell_p$ es un espacio de Banach.
+\end{Prop}
+
+\begin{Dem}
+Como cada elemento en $\ell_p$ es una sucesión en $\K$, usaremos la notación de funciones en $\ell_p$. Tomemos pues una sucesión de Cauchy $(f_n)_{n \in\N}$ en $\ell_p$. Dado $k \in \N$, notemos que $(f_n(k))_{n\in \N}$ es una sucesión de Cauchy en $\K$, pues dado $\varepsilon > 0$, existe $N \in \N$ tal que si $n, m \geq N$ entonces
+$$\abs{f_n(k) - f_m(k)} \leq \Norm{f_n - f_m} < \varepsilon.$$
+
+Así pues, como $\K$ con la norma euclidiana es completo, se sigue que para toda $k\in\N$, $(f_n(k))_{n\in \N}$ converge a algún $x_k \in \K$. Consideremos $f: \N \to \K$ definida por $f(k) = x_k$ para todo $k\in\N$. 
+
+Demostremos que $f_n \to f$. Para eso separemos en dos casos. Cuando $1 \leq p < \infty$, tenemos que 
+\end{Dem}
+
+\subsection{Espacio dual.}
+
+No todo operador lineal $T:X\to Y$ entre los espacios normados $X$ e $Y$ resulta ser continuo. Los de mayor interés son los que sí son continuos. Una caracterización de un operador lineal continuo es que sea un \textit{operador lineal acotado}, esto es, que exista $K > 0$ tal que $$\Norm{Tx} \leq K \Norm{x} \mbox{ para todo } x \in X.$$ 
+
+\begin{Prop} \label{Prop:IsomorfismoPreservaConjuntosAcotados}
+Sean $X$ y $Y$ espacios normados y  $T:X \to Y$ un operador lineal. Entonces $T$ es acotado si, y sólo si $T$ preserva conjuntos acotados.
+\end{Prop}
+
+\begin{Dem}
+Sea $A \subseteq X$ un conjunto acotado. Entonces existe $M > 0$ tal que $\Norm{x} \leq M $ para todo $x \in A$. Como $T$ es continua, existe $N >0$ tal que $\Norm{T(x)} \leq N \Norm{x}$ para toda $x \in  X$. Así pues si $T(x) \in T(A)$ se sigue que $\Norm{T(x)} \leq N\Norm{x} \leq MN.$ Por lo que $T(A)$ es acotado.
+
+Ahora supongamos que $T$ preserva conjuntos acotados. Como $B_X$ es un conjunto acotado, entonces $T(B_X)$ es un conjunto acotado por algún $K > 0$. Sea $x \in X$. Si $x = 0$, entonces $\Norm{Tx} = \Norm{0} = 0 \leq K \Norm{x}$. Supongamos entonces que $x \neq 0$, de manera que $\frac{x}{\Norm{x}} \in B_X$ y por lo tanto $T\left( \frac{x}{\Norm{x}} \right) \in T(B_X)$ y por lo tanto $\Norm{T\left( \frac{x}{\Norm{x}} \right)}  \leq K$ y así $\Norm{T(x)} \leq K \Norm{x}.$
+\end{Dem}
+
+Sean $X$ y $Y$ espacios normados. Al espacio de los operadores lineales continuos $T: X \to Y$, y por tanto acotados, lo denotamos por $\mathcal{L}(X, Y)$. En este espacio definimos la función
+$$\Norm{T} := \sup\{ \Norm{Tx}  :  x \in B_X\}.$$
+
+Esta resulta ser una norma y así $\mathcal{L}(X, Y)$ es un espacio normado. Si además $Y$ es un espacio de Banach, entonces $\mathcal{L}(X, Y)$ también es un espacio de Banach. \\
+
+Veamos que $$\Norm{Tx} \leq \Norm{T} \Norm{x}, \mbox{ para todo } x \in X.$$
+
+Empecemos tomando $x \in X$. Si $x = 0$, entonces $$\Norm{Tx} = \Norm{0} = 0 \leq  \Norm{T} \Norm{x}.$$ 
+
+Si por otro lado $x \neq 0$, entonces $y = \frac{x}{\Norm{x}} \in B_X$. Por lo que $\Norm{T} \geq \Norm{Ty}$. Esto es
+$$\Norm{T} \geq \Norm{T\left(\frac{x}{\Norm{x}}\right)} = \frac{\Norm{Tx}}{\Norm{x}}$$ y así $\Norm{Tx} \leq \Norm{T} \Norm{x}$. \\
+
+Dado un espacio vectorial topológico $X$, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \tau)^*$ o simplemente por $X^*$.  A los elementos de este espacio dual los llamamos \textit{funcionales lineales continuos}.
+
+Cuando $X$ sea un espacio normado, su espacio dual se denotará por $(X, \Norm{\cdot})^*$ o simplemente por $X^*$.  Como $\K$ es completo, resulta que $X^* = \mathcal{L}(X, \K)$ es un espacio de Banach.  
+
+\begin{Ejem}
+Si $1 \leq p \leq \leq \infty$, al único elemento $q \in \R$ tal que $\frac{1}{p} + \frac{1}{q} = 1$ se le llama \textit{exponente conjugado} de $p$, donde $\frac{1}{\infty} = 0$. Mostremos que para $1 \leq p < \infty$, $(\ell_p)^* \simeq \ell_q$ y $\ell_1$ es isométricamente homeomorfo a un subespacio de $(\ell_\infty)^*$.  
+
+(Pendiente).
+\end{Ejem}
+
+Los teoremas de Hahn-Banach muestran que, cuando $X$ es un espacio normado, en $X^*$ existen suficientes funcionales que permiten hacer rica la teoría referente al espacio dual.
+
+\begin{Tma} \textbf{(Hahn-Banach)} \label{Tma:HahnBanachFuncional}
+Sea $X$ un espacio normado y $V \subseteq X$ un subespacio vectorial. Si $f \in V^*$ entonces existe $F \in X^*$ tal que $F = f$ en $V$ y $\Norm{f} = \Norm{F}$.
+\end{Tma}
+
+\begin{Prop} \label{Prop:DualDimensionInfinita}
+Sea $X$ un espacio normado. Entonces $X$ es de dimensión infinita si y sólo si $X^*$ también lo es. 
+\end{Prop}
+
+\begin{Dem}
+Supongamos que $X$ es de dimensión infinita. Entonces para todo $n \in \N$ existen $x_1, \ldots, x_n \in X$ linealmente independientes. Sea $V = \mbox{span} \{ x_1, \ldots, x_n \}$, de manera que $\{ x_1, \ldots, x_n \}$ es una base de $V$. Para $i \in \{1, \ldots, n \}$ definamos el funcional lineal $\varphi_i : V \to \K$ dado por $\varphi_i(x_j) = \delta_{ij}$ que es continuo por la proposición~\ref{Prop:FuncionalesLinealesContinuosEspaciosFinitos} . Por el teorema~\ref{Tma:HahnBanachFuncional} de Hahn-Banach existe $F_i \in X^*$ tal que $F_i = \varphi_i$ en $V$. Veamos que $\{F_1, \ldots, F_n\}$ es linealmente independiente en $X^*$. Sean $a_1, \ldots, a_n \in K$ tales que $$\sum_{j=1}^n a_i F_i = 0.$$ Al evaluar en $x_i$ obtenemos que $a_i = 0$. Esto muestra que para toda $n \in \N$ existen $n$ funcionales linealmente independientes. Por lo que $X^*$ es de dimensión infinita. 
+
+Supongamos ahora que $X$ es de dimensión finita $n \in \N$. Existe entonces una base $\{x_1, \ldots, x_n \}$ de $X$. Para $1 \leq i \leq n$ definimos $f_i :X \to \K $ linealmente y de tal manera que $f_i(x_j) = \delta_{ij}$. Como $X$ es de dimensión finita la proposición~\ref{Prop:FuncionalesLinealesContinuosEspaciosFinitos} indica que cada $f_i$ es continuo. Veamos que $\{ f_1, \ldots, f_n \}$ generan a $X^*$. Tomamos entonces $f \in X^*$ y supongamos que $f(x_i) = a_i \in \K$ para cada $i \in \{1, \ldots, n\}$. Así, para cada $1 \leq i \leq n$
+$$\left( \sum_{j=1}^n a_j f_j \right)(x_i) = a_i = f(x_i).$$
+Por lo tanto $f = \sum_{j=1}^n a_j f_j$. Esto dice que existe un conjunto finito generador en $X^*$, por lo que $X^*$ es de dimensión finita y además $\dim X^* \leq \dim X$.
+\end{Dem}
+
+Existen otras maneras de plantear los teoremas de Hanh-Banach con un enfoque más geométrico como lo muestra el siguiente teorema.
+
+\begin{Tma} \textbf{(Hahn-Banach)} \label{Tma:HahnBanachGeometrico}
+Sea $X$ un espacio normado real. Si $A$ y $B$ son dos conjuntos convexos disjuntos, $A$ es cerrado y $B$ compacto, entonces existen $\varphi \in X^*$ y $\alpha, \beta \in \R$ tales que $\varphi(x) < \alpha < \beta < \varphi(y)   \mbox{ para todos } x \in A, y \in B.$
+\end{Tma}
+
+Como resultado de esta version del teorema de Hahn-Banach tenemos el lema de Helly, que en un futuro nos será de utilidad.
+
+\begin{Lema} \textbf{(Helly)} \label{Lema:HellyReal}
+Sean $X$ un espacio normado real, $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $a_1, \ldots, a_n \in \R$. Son equivalentes:
+\begin{itemize}
+\item \textbf{i)} Para todo $\varepsilon>0$ existe $x \in B_X$ tal que $\abs{\varphi_i(x) - a_i} < \varepsilon$ para toda $i \in \{ 1, \ldots, n\}$.
+\item \textbf{ii)} Para cualesquiera $b_1, \ldots, b_n \in \R$ se cumple que $\displaystyle\abs{\sum_{i=1}^n a_i b_i} \leq \Norm{\sum_{i=1}^n b_i \varphi_i}.$
+\item \textbf{iii)} $(a_1, \ldots, a_n) \in \ov{T(B_X)}$, donde  $T: X \to \ell_1^n(\R)$ está definida por $Tx =(\varphi_1(x), \ldots, \varphi_n(x))$. 
+\end{itemize}
+\end{Lema}
+
+\begin{Dem}
+Se demostrará que \textbf{i)} implica \textbf{ii)}, que \textbf{ii)} implica \textbf{iii)} y que \textbf{iii)} implica \textbf{i)}.
+
+Supongamos \textbf{i)}. Tomemos $b_1, \ldots, b_n \in \R$ cualesquiera. Sea $\varepsilon > 0$. Entonces existe $x \in B_X$ tal que $\abs{\varphi_i(x) - a_i} < \varepsilon$ para toda $i \in \nn{n}$. Observemos que 
+\Ecu{
+\abs{\sum_{i=1}^n a_i b_i} &= \abs{\sum_{i=1}^n (a_i - \varphi_i(x) + \varphi_i(x)) b_i} \leq \abs{\sum_{i=1}^n (a_i - \varphi_i(x)) b_i} + \abs{\left(\sum_{i=1}^n b_i \varphi_i \right)(x) } \\
+& \leq \sum_{i=1}^n \abs{a_i - \varphi_i(x)} b_i + \Norm{\sum_{i=1}^n b_i \varphi_i } \Norm{x} < \varepsilon  \sum_{i=1}^n\abs{b_i} + \Norm{\sum_{i=1}^n b_i \varphi_i }  
+}
+Como esto es para todo $\varepsilon >0$, se sigue que $\displaystyle\abs{\sum_{i=1}^n a_i b_i} \leq \Norm{\sum_{i=1}^n b_i \varphi_i}$. 
+
+Para mostrar que \textbf{ii)} implica \textbf{iii)} procederemos por contrapositiva. Así pues, supongamos que $a = (a_1, \ldots, a_n) \notin \ov{T(B_X)}$, de manera que $\{a \}$ y $\ov{T(B_X)}$ son disjuntos. Como $B_X$ es convexo, la proposición~\ref{Prop:FuncionLinealPreservaConvexos} indica que $T(B_X)$ es convexo y por la proposición~\ref{Prop:CerraduraDeConvexoEsConvexa} se tiene que $\ov{T(B_X)}$ también es convexo.  Además, $\ov{T(B_X)}$ es cerrado. Claramente, $\{ a \}$ es compacto y convexo. El teorema~\ref{Tma:HahnBanachGeometrico} de Hahn-Banach dice que existe $\psi \in \ell_1^{n}(\R)^*$ y $\alpha \in \R$ tales que $\psi(y) < \alpha < \psi(a)$ para todo $y \in \ov{T(B_X)}$. Consideremos  la base canónica $\{ e_1, \ldots, e_n \}$ de $\R^n$. Para $1\leq i \leq n$ definamos $b_i := \psi(e_i)$, de tal manera que para $(z_1, \ldots z_n) \in \R^n$ tenemos que $$\psi(z_1, \ldots, z_n) = \sum_{i=1}^n b_i z_i.$$
+
+Tomemos $x \in B_X$. Entonces $Tx \in T(B_X) \subseteq \ov{T(B_x)}$, por lo que $$\sum_{i=1}^n b_i \varphi_i(x) = \psi(\varphi_1(x), \ldots, \varphi_n(x)) = \psi(T(x))  < \alpha < \psi(a) = \sum_{i=1}^n a_i b_i \leq \abs{\sum_{i=1}^n a_i b_i }.$$  
+
+Como $-x \in B_X$, se tiene que $$-\sum_{i=1}^n b_i \varphi_i(x) =  \sum_{i=1}^n b_i \varphi_i(-x ) < \alpha < \abs{\sum_{i=1}^n a_i b_i},$$ de donde $$\displaystyle \abs{\sum_{i=1}^n b_i \varphi_i(x)} < \alpha < \abs{\sum_{i=1}^n a_i b_i}.$$
+
+Concluimos de aquí la negación de \textbf{ii)}, es decir, $$\Norm{\sum_{i=1}^n b_i \varphi_i} = \sup_{x \in B_X} \abs{\left(\sum_{i=1}^n b_i \varphi_i \right)(x)} \leq \alpha < \abs{\sum_{i=1}^n a_i b_i}.$$
+
+Finalmente, supongamos \textbf{iii)}. Sea $\varepsilon > 0$. Como $a = (a_1, \ldots, a_n) \in \ov{T(B_X)}$, se sigue que $V_\varepsilon(a) \cap T(B_X) \neq \emptyset$. Así que existe $y \in V_\varepsilon(a) \cap T(B_X)$. Tomemos $x \in B_X$ con $T(x) = y$. Así que $T(x) \in V_\varepsilon(a)$. Para $i \in \nn{n}$ se tiene que $$\abs{\varphi_i(x) - a_i} \leq \sum_{j=1}^{n} \abs{\varphi_j(x) - a_j} = \Norm{Tx - a}_1 < \varepsilon.$$
+\end{Dem}
+
+El lema de Helly sigue siendo válido para espacios normados complejos, como se muestra a continuación.
+
+\begin{Lema} \textbf{(Helly)} \label{Lema:HellyGeneral}
+Sean $X$ un espacio normado, $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $a_1, \ldots, a_n \in \K$. Son equivalentes:
+\begin{itemize}
+\item \textbf{i)} Para todo $\varepsilon>0$ existe $x \in B_X$ tal que $\abs{\varphi_i(x) - a_i} < \varepsilon$ para toda $i \in \{ 1, \ldots, n\}$.
+\item \textbf{ii)} Para cualesquiera $b_1, \ldots, b_n \in \K$ se cumple que $\displaystyle\abs{\sum_{i=1}^n a_i b_i} \leq \Norm{\sum_{i=1}^n b_i \varphi_i}.$
+\item \textbf{iii)} $(a_1, \ldots, a_n) \in \ov{T(B_X)}$, donde  $T: X \to \ell_1^n(\K)$ está definida por $Tx =(\varphi_1(x), \ldots, \varphi_n(x))$. 
+\end{itemize}
+\end{Lema}
+
+\begin{Dem}
+Si $\K = \R$, ya quedó demostrado en el lema anterior. Así que supongamos $\K = \C$. Las implicaciones de \textbf{i)} a \textbf{ii)} y de \textbf{iii)} a \textbf{i)} son totalmente análogas al caso real. Así que sólo falta verificar que \textbf{ii)} implica \textbf{iii)}.
+
+(Pendiente).
+\end{Dem}
 
 \section{Redes.}
 
@@ -1020,7 +1395,7 @@ Sean $E, F$ espacios vectoriales topológicos. Si $T:E \to F$ es lineal y continu
 Sea $x \in E$. Veremos que $T$ es continua en $x$. Sea $U$ una vecindad abierta de $Tx$ de manera que $Tx \in U$. Entonces $U_0 := U - Tx$ es abierto en $F$ y además $0 \in U_0$. Como $T$ es continua en $0$, existe un abierto $V_0$ del cero tal que $Ty \in U_0$ si $y \in V_0$. Así que $x \in V_0 +x$ y $ V_0 + x$ es una vecindad abierta de $x$. Si $y \in V_0 + x$, entonces $y-x \in V_0$, de manera que $Ty -Tx = T(y-x) \in U_0 = U - Tx$, de donde $Ty \in U$. Así que $T$ es continua en $x$. 
 \end{Dem}
 
-\begin{Prop} \label{Prop:LimiteDeSuma}
+\begin{Prop} \label{Prop:LimiteDeSumaRed}
 Sean $E$ un espacio vectorial topológico, $(\lambda_\alpha)_{\alpha\in\Lambda} \in \K$ una red que converge en $\K$; y $(x_\alpha)_{\alpha \in \Lambda}$ y $(y_\alpha)_{\alpha \in \Lambda}$ redes que convergen en $E$. Entonces $(\lambda_\alpha x_\alpha + y_\alpha)_{\alpha\in\Lambda}$ converge y 
 $$\lim_{\alpha \in \Lambda} (\lambda_\alpha x_\alpha + y_\alpha) = \left(\lim_{\alpha \in \Lambda} \lambda_\alpha\right) \left(\lim_{\alpha \in \Lambda} x_\alpha\right) + \left(\lim_{\alpha \in \Lambda} y_\alpha\right).$$ 
 \end{Prop}
@@ -1030,7 +1405,7 @@ Sea $\sigma: E\times E \to E$ la función suma, es decir, $\sigma(x, y) = x+y$ pa
 $$\lim_{\alpha \in \Lambda} (x_\alpha + y_\alpha) = \left(\lim_{\alpha \in \Lambda} x_\alpha\right) + \left(\lim_{\alpha \in \Lambda} y_\alpha\right).$$ 
 
 Consideremos ahora $\pi: \K \times E \to E$ la función producto por un escalar, es decir $\pi(\lambda, x) = \lambda x$ para toda $(\lambda, x) \in \K\times E$. Supongamos que $x_\alpha \to x$ y $\lambda_\alpha \to \lambda$ para algunos $x \in E, \lambda \in \K$. Por la proposición~\ref{Prop:ConvergenciaPorComponentes} tenemos que $(\lambda_\alpha, x_\alpha) \to (\lambda, x)$. Como $\pi$ es continua, por el corolario~\ref{Cor:ContinuidadporRedes} tenemos que $\pi(\lambda_\alpha, x_\alpha) \to \sigma(\lambda, x)$. Es decir,
-$$\lim_{\alpha \in \Lambda} (\lambda_\alpha x_\alpha) = \left(\lim_{\alpha \in \Lambda} \lambda\alpha \right) \left( \lim_{\alpha \in \Lambda} x_\alpha \right).$$ 
+$$\lim_{\alpha \in \Lambda} (\lambda_\alpha x_\alpha) = \left(\lim_{\alpha \in \Lambda} \lambda_\alpha \right) \left( \lim_{\alpha \in \Lambda} x_\alpha \right).$$ 
 \end{Dem}
 
 \begin{Lema} \label{Lema:SumaYProductoEscalarDeFuncionesContinuas}
@@ -1157,7 +1532,6 @@ $$U_{x, p_1, p_2, \ldots, p_k, \varepsilon} := \bigcap_{i=1}^k \{ y \in X : p_i 
 forma una base de la topología $\sigma(X, \mathcal{F})$.
 \end{Prop}
 
-
 \begin{Dem}
 Sea $\mathcal{B}$ la colección de conjuntos de la forma $U_{x, p_1, \ldots, p_k, \varepsilon}$, para algunos $x \in X$, $k\in \N$, $p_1, \ldots, p_k \in \mathcal{F}$, $\varepsilon > 0$. Veamos que $\mathcal{B}$ es una base. 
 
@@ -1247,7 +1621,7 @@ Lo cual es una contradicción. Así que $V \cap W = \emptyset$ y $\sigma(X, \F)$ e
 Sean $\sigma: X \times X \to X$ la función suma. Es decir, $\sigma(x, y) = x+y$ para $(x, y) \in X\times X$. Probaremos la continuidad de $\sigma$ usando el corolario~\ref{Cor:ContinuidadporRedes}. Tomemos una red $(x_\alpha, y_\alpha)_{\alpha\in \Lambda}$  en $X\times X$ y $(x, y) \in X \times X$ tal que $(x_\alpha, y_\alpha) \to (x, y)$. La proposición~\ref{Prop:ConvergenciaPorComponentes} indica que $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} x_\alpha = x$ y $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} y_\alpha = y$. Por la proposición~\ref{Prop:CaracterizacionConvergenciaDebilSeminorma} tenemos que para toda $p \in \F$ se tiene que $p(x_\alpha -x) \to 0$ y $p(y_\alpha - y) \to  0$. Por la subaditividad de $p$ tenemos que 
 $$0 \leq p(x_\alpha + y_\alpha - x- y) \leq p(x_\alpha - x) + p(y_\alpha - y).$$
 
-Por la proposición~\ref{Prop:LimiteDeSuma} y puesto que $\R$ es un e.v.t. se sigue que $$ \displaystyle\lim_{\alpha\in \Lambda} [ p(x_\alpha - x) +  p(y_\alpha - y)] = \lim_{\alpha\in \Lambda} p(x_\alpha - x) +  \lim_{\alpha\in \Lambda} p(y_\alpha - y) = 0.$$
+Por la proposición~\ref{Prop:LimiteDeSumaRed} y puesto que $\R$ es un e.v.t. se sigue que $$ \displaystyle\lim_{\alpha\in \Lambda} [ p(x_\alpha - x) +  p(y_\alpha - y)] = \lim_{\alpha\in \Lambda} p(x_\alpha - x) +  \lim_{\alpha\in \Lambda} p(y_\alpha - y) = 0.$$
 
 Entonces, por el lema del sándwich tenemos que $\displaystyle\lim_{\alpha\in \Lambda} p(x_\alpha + y_\alpha - x - y) = 0$ para toda $p \in \F$. 
 
@@ -1259,7 +1633,7 @@ Así que $\sigma$ es continua.
 Consideremos ahora la función producto por un escalar $\pi: \K \times X \to X$. Es decir, $\pi(\lambda, x) = \lambda x$ para $(\lambda, x) \in \K\times X$. Veamos que esta es continua. Tomemos una red $(\lambda_\alpha, x_\alpha)_{\alpha\in \Lambda}$  en $\K\times X$ y $(\lambda, x) \in \K \times X$ tal que $(\lambda_\alpha, x_\alpha) \to (\lambda, x)$. La proposición~\ref{Prop:ConvergenciaPorComponentes} indica que $\lambda_\alpha \to \lambda$ y $\sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} x_\alpha = x$. Por la proposición~\ref{Prop:CaracterizacionConvergenciaDebilSeminorma} tenemos que para toda $p \in \F$ se tiene que $p(x_\alpha - x) \to 0$. Por la subaditividad de $p$ se sigue que
 $$0 \leq p(x_\alpha) \leq p(x_\alpha - x) + p(x).$$
 
-Por el lema del sándwich y  la proposición~\ref{Prop:LimiteDeSuma} se tiene que  
+Por el lema del sándwich y  la proposición~\ref{Prop:LimiteDeSumaRed} se tiene que  
 $$0 = \lim_{\alpha\in \Lambda}0 \leq \lim_{\alpha\in \Lambda} p(x_\alpha) \leq \lim_{\alpha\in \Lambda}[p(x_\alpha - x) + p(x)] = \lim_{\alpha\in \Lambda}p(x_\alpha - x) + \lim_{\alpha\in \Lambda} p(x) = p(x).$$
 
 Además, por la subaditividad de $p$ tenemos que 
@@ -1268,7 +1642,7 @@ Además, por la subaditividad de $p$ tenemos que
 &= p((\lambda_\alpha - \lambda) x_\alpha) + p(\lambda (x_\alpha -   x)) = \abs{\lambda_\alpha - \lambda}p(x_\alpha) + \abs{\lambda} p(x_\alpha - x).
 }
 
-Por la proposición~\ref{Prop:LimiteDeSuma} se tiene que 
+Por la proposición~\ref{Prop:LimiteDeSumaRed} se tiene que 
 \Ecu{
 \lim_{\alpha\in \Lambda} [\abs{\lambda_\alpha - \lambda}p(x_\alpha) + \abs{\lambda} p(x_\alpha - x)] 
 &= \left( \lim_{\alpha\in \Lambda} \abs{\lambda_\alpha - \lambda} \right) \left( \lim_{\alpha\in \Lambda} p(x_\alpha)\right) + \left( \lim_{\alpha\in \Lambda} \abs{\lambda} p(x_\alpha - x)  \right) \\
@@ -1281,109 +1655,8 @@ $$\sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} \pi(\lambda_\alpha, x_\alpha) =
 Así que $\pi$ es continua.
 \end{Dem}
 
-\begin{Ejem}
-Sean $A$ un conjunto no-vacío y $X = F(A, \K)$ como en el ejemplo~\ref{Ejem:EVTFamiliaFuncionales}. Se verificó ahí que  $\mathcal{F} = \{ \abs{\delta_a}: a \in A \}$ es una familia de seminormas en $X$ que separa puntos, por lo que $X$ con la topología $\sigma(X, \mathcal{F})$ es un espacio vectorial topológico. Demostraremos que tal espacio vectorial es completo.
-
-Sea $(f_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $X$. Al tomar $a \in A$, tenemos que para todo $\varepsilon > 0$, $U_{0, \abs{\delta_a}, \varepsilon}$ es una vecindad abierta en $\sigma(X, \mathcal{F})$ del cero. Así que existe $\alpha \in \Lambda$ tal que para todas $\alpha_1, \alpha_2 \geq \alpha$ se cumple que $f_{\alpha_1} - f_{\alpha_2} \in U_{0, \abs{\delta_a}, \varepsilon}$, es decir, $\abs{\delta_a}(f_{\alpha_1} - f_{\alpha_2}) = \abs{f_{\alpha_1}(a) - f_{\alpha_2}(a)} < \varepsilon$. Esto indica que $(f_\alpha(a))_{\alpha\in\Lambda}$ es una red de Cauchy en $\K$ para todo $a \in A$. Como $\K$ es completo, existe $x_a \in \K$ tal que $f_\alpha(a) \to x_a$. Definamos entonces $f \in X$ por $f(a) = x_a$, para toda $a \in A$.
-
-Mostremos que $f_\alpha \to f$. Sea $U_{f, \abs{\delta_{a_1}}, \ldots, \abs{\delta_{a_k}}, \varepsilon}$ una vecindad básica de $f$ para algunos $k \in \N$, $a_1, \ldots, a_k \in A$ y $\varepsilon > 0$. Para cada $i \in \nn{k}$, se tiene que $f_\alpha(a_i) \to f(a_i)$, así que existe $\alpha_i \in \Lambda$ tal que si $\alpha \geq \alpha_i$, entonces $\abs{\delta_{a_i}}(f_{\alpha} - f) = \abs{f_{\alpha}(a_i) - f(a_i)} < \varepsilon$. Así que si tomamos $\beta \in  \Lambda$ con $\beta \geq \alpha_i$ para todo $1 \leq  i \leq k$, entonces $f_\alpha \in U_{f, \abs{\delta_{a_1}}, \ldots, \abs{\delta_{a_k}}, \varepsilon}$ siempre que $\alpha \geq \beta$. Por lo tanto $f_\alpha \to f$ y $(X, \sigma(X, \mathcal{F}))$ es completo.
-\end{Ejem}
-
-\subsection{Convexidad.}
-
-\begin{Def}
-Sea $X$ un espacio vectorial. Un subconjunto $A$ de $X$ es \textit{convexo} si para todos $x, y \in A$ y $\lambda \in [0,1]$ se cumple que $\lambda x + (1-\lambda) y \in A$. 
-\end{Def} 
-
-\begin{Ejem}
-Sea $X$ un espacio vectorial y $x \in X$. Claramente $X$ y $\{x\}$ son convexos.
-\end{Ejem}
-
-
-\begin{Prop} \label{Prop:FuncionLinealPreservaConvexos}
-Sean $X, Y$ espacios vectoriales y $T: X \to Y$ lineal. Si $A \subseteq X$ es convexo, entonces $T(A)$ es convexo.
-\end{Prop}
-
-\begin{Dem}
-Sean $x, y \in A$, de tal manera que $Tx, Ty \in T(A)$, y $\lambda \in [0,1]$. Como $A$ es convexo, se tiene que $\lambda x + (1- \lambda) y \in A$, de donde $\lambda Tx + (1-\lambda) Ty = T(\lambda x + (1-\lambda)y) \in T(A)$.
-\end{Dem}
-
-
-\begin{Prop} \label{Prop:CerraduraDeConvexoEsConvexa}
-Sea $X$ un espacio vectorial topológico. Si $A \subseteq X$ es convexo, entonces $\ov{A}$ es convexa.
-\end{Prop}
-
-\begin{Dem}
-Sean $x, y \in \ov{A}$ y $\lambda \in [0, 1]$. Como $x, y \in \ov{A}$, la proposición~\ref{Prop:CerraduraLimiteRed} indica que existen redes $(x_\alpha)_{\alpha \in \Lambda}$, $(y_\alpha)_{\alpha\in\Lambda}$ en $A$ tales que $x_\alpha \to x$ y $y_\alpha \to y$. Dado que $A$ es convexo se cumple que $\lambda x_\alpha + (1-\lambda) y_\alpha \in A$. Además, la proposición~\ref{Prop:LimiteDeSuma} indica que $$\lim_{\alpha \in \Lambda } [\lambda x_\alpha + (1-\lambda) y_\alpha] = \lambda \lim_{\alpha \in \Lambda } x_\alpha + (1-\lambda) \lim_{n\to \infty} y_\alpha = \lambda x + (1-\lambda) y.$$ 
-
-Por lo tanto $\lambda x + (1-\lambda y) \in \ov{A}$.  
-\end{Dem}
-
-\begin{Def} Sean $X$ un espacio vectorial y $A \subseteq X$ convexo. Una función $f : A \to \R$ es \textit{convexa} si para todos $x, y \in A$ y $\lambda \in [0, 1]$ se tiene que $$f(\lambda x + (1-\lambda y))\leq \lambda f(x) + (1-\lambda) f(y).$$
-\end{Def}
-
-\begin{Lema} \label{Lema:DerivadaCrecienteConvexa}
-Sean $(a, b) \subseteq \R$ un intervalo y $f : (a, b) \to \R$ una función diferenciable. Si $f^{\prime}$ es monótona-creciente en $(a, b)$, entonces $f$ es convexa.
-\end{Lema}
-
-\begin{Dem}
-Tomemos $x, y \in X$ y $0 \leq \lambda \leq 1$. Los casos $x = y$ y $\lambda \in \{ 0, 1 \}$ son claros, así que supongamos que $x \neq y$ y $\lambda \in (0, 1)$. Sea $c = \lambda x + (1-\lambda) y$. Sin generalidad supongamos que $x < y$, de manera que $x < c < y$. El teorema del valor medio indica que existen $z_1, z_2 \in \R$ con $x < z_1 <  c < z_2 < y$ tales que $$f^\prime(z_1) = \frac{f(c)-f(x)}{c-x} \;\;\mbox{ y } \;\;f^\prime(z_2) = \frac{f(y)-f(c)}{y-c}.$$
-
-Dado que $f^\prime$ es monótona-creciente, se tiene que $$\frac{f(c)-f(x)}{c-x} = f^\prime(z_1) \leq f^\prime(c) \leq f^\prime(z_2) = \frac{f(y)-f(c)}{y-c}.$$
-
-Esto implica que $$(f(x) - f(c))(y-c) \geq  (f(y) - f(c))(x-c).$$
-
-O bien $$f(x)(y - c) - f(c)y + f(c)c \geq  f(y)(x - c) - f(c)x + f(c)c.$$
-
-Entonces \begin{equation} \label{Eq:RelacionFuncionConvexa} 
-f(c) \leq f(x)\cdot \frac{c-y}{x-y} + f(y)\cdot\frac{x-c}{x-y}.
-\end{equation} 
-
-Como $$\frac{c-y}{x-y} = \lambda \;\;\mbox{ y }\;\; \frac{x-c}{x-y} = 1- \lambda, $$ se sigue de (\ref{Eq:RelacionFuncionConvexa}) que $$f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1- \lambda)f(y).$$
-\end{Dem}
-
-\begin{Lema} \label{Lema:XPConvexa}
-Sea $1 \leq p < \infty$. Entonces la función $h: \K \to \R$ definida por $h(z) = \abs{z}^p$ es convexa.
-\end{Lema}
-
-\begin{Dem} 
-Consideremos $f: [0, \infty) \to[0, \infty)$ dada por $f(x) = x^p$. Claramente, $f$ es diferenciable y $f^\prime(x) = p x^{p-1}$ es monótona creciente, así que el lema~\ref{Lema:DerivadaCrecienteConvexa} indica que $f$ es convexa.
-
-Tomemos $g = \abs{\cdot}$, la cual es convexa en $\K$. Sean $x, y \in \K$ y $\lambda \in [0, 1]$, como $g$ es convexa se tiene que $$g(\lambda x + (1-\lambda)y) \leq \lambda g(x) + (1-\lambda)g(y).$$
-
-Dado que $f$ es creciente y convexa resulta que
-$$f(g(\lambda x + (1-\lambda)y)) \leq f(\lambda g(x) + (1-\lambda)g(y)) \leq \lambda f(g(x)) + (1-\lambda)f(g(y)).$$
-
-Por lo tanto, la función $h = f \circ g$ es convexa.
-\end{Dem}
-
-\section{Espacios normados.}
-
-\begin{Def}
-Una \textit{norma} en un espacio vectorial $X$ es una seminorma $\Norm{\cdot}: X \to [0, \infty)$ que es \textit{definida positiva}, esto es, para cada $x \in X$, $\Norm{x} = 0$ si, y sólo si $x = 0$. En este caso decimos que la pareja $(X, \Norm{\cdot})$ es un \textit{espacio normado}. 
-\end{Def} 
-
-Es sencillo verificar que en un espacio normado $X$ la función $d: X \times X \to [0, \infty)$ definida por $$d(x, y) := \Norm{x-y}$$ es una métrica, por lo que $X$ es un espacio métrico y entonces podemos considerar la topología inducida por la métrica, la cual se denomina \textit{topología original} de $X$. A menos que se especifique otra cosa, cuando hablemos de un espacio normado como espacio topológico, lo consideraremos con su topología original.
-
-Además, los conceptos de sucesión de Cauchy y completez se heredan de las definiciones en espacios métricos. Si un espacio normado es completo decimos que es un \textit{espacio de Banach}.
-
-\begin{Lema} \label{Lema:NormaContinua}
-Sea $X$ un espacio normado. Entonces la norma $\Norm{\cdot}:X \to [0, \infty)$ es una función continua y convexa.
-\end{Lema}
-
-\begin{Dem}
-Sea $(x_n)_{n\in\N}$ una sucesión en $X$ que converge a $x \in X$. Por definición esto indica que para todo $\varepsilon > 0$ existe $N \in \N$ tal que si $n \geq N$ entonces $\Norm{x_n - x} \leq \varepsilon$. Por la desigualdad del triángulo que $\abs{\Norm{x_n} - \Norm{x}} < \Norm{x_n - x}$. Esto implica que $\Norm{x_n}$ converge a $\Norm{x}$ y así $\Norm{\cdot}$ es continua.
-
-Ahora, si $x, y \in X$ y $\lambda \in [0, 1]$ se tiene que
-$$\Norm{\lambda x + (1-\lambda y)} \leq \abs{\lambda} \Norm{x} + \abs{1-\lambda} \Norm{y}  = \lambda \Norm{x} + (1-\lambda) \Norm{y},$$ y por lo tanto $\Norm{\cdot}$ es convexa.
-\end{Dem}
-
-\begin{Ejem}
-Si $X$ es un espacio normado y tomamos $x, y \in B_X$ y $\lambda \in [0, 1]$, entonces $$\Norm{\lambda x + (1-\lambda)y} \leq \lambda \Norm{x} + (1- \lambda)\Norm{y} \leq \lambda + (1-\lambda) = 1.$$ Así que $\lambda x + (1-\lambda)y \in B_X$. Por lo tanto $B_X$ es convexa.
-\end{Ejem}
-
 \begin{Prop} \label{Prop:TopologiaOriginalEspaciosNormadosEVT}
-Si $X$ es un espacio normado, entonces es un espacio vectorial topológico. 
+Si $X$ es un espacio normado, entonces es un espacio vectorial topológico.  (¿Es mejor que sea corolario del resultado anterior?)
 \end{Prop}
 
 \begin{Dem}
@@ -1429,271 +1702,17 @@ Por la desigualdad del triángulo $\Norm{x_\gamma - x} < \frac{1}{N}$ y así $x_\g
 \end{Dem}
 
 \begin{Cor}
-Sea $X$ un espacio normado. Entonces $A \subseteq X$ es un conjunto acotado si, y sólo existe $M > 0$ tal que $\Norm{x} \leq M$ para todo $x \in A$. 
-\end{Cor}
-
-\begin{Dem}
-La proposición~\ref{Prop:CaracterizacionConjuntoAcotado} indica que $A$ es acotado si y sólo si existe $M > 0$ tal que $\Norm{x} = d(x, 0) < M$ para todo $x \in A$.
-\end{Dem}
-
-\subsection{Ejemplos.}
-
-En $\K^n $ la norma euclidiana resulta ser el caso $p=2$ de una familia de normas en $\K^n$ llamadas $p$-normas. En esta subsección introduciremos estas funciones y verificaremos que en efecto son normas en $\K^n$. Además, agregaremos ejemplos de espacios normados de dimensión infinita.      
-
-\begin{Ejem} \label{Ejem:EllePNormado}
-Dados $n \in \N$ y $1 \leq p < \infty$, definamos la función $\Norm{\cdot}_p:\K^n \to [0, \infty)$ por $$\Norm{(x_1, \ldots, x_n)}_p := \left(\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}}.$$  
-
-En el caso $p = \infty$, definimos la función $\Norm{\cdot}_{\infty}: \K^n \to [0, \infty)$ por $$\Norm{(x_1, \ldots, x_n)}_\infty :=\max_{1 \leq i \leq n} \,  \abs{x_i}.$$
-A continuación demostraremos que $\Norm{\cdot}_p$ es una norma en $\K^n$.
-\end{Ejem}
-
-\begin{Dem}
-Sea $1 \leq p < \infty$.
-\begin{itemize}
-\item[\textbf{i)}] Claramente, $\Norm{x}_p \geq 0$ para cualquier $x \in \K^n$. Además, si $x = 0 \in \K^n$, entonces $\Norm{x}_p= 0$. Es sencillo observar que si $\Norm{x}_p = 0$ para algún $x \in \K^n$, entonces $x = 0$.
-\item[\textbf{ii)}] Sea $x = (x_1, \ldots, x_n) \in \K^n$ y $\lambda \in \K$, entonces
-\Ecu{
-\Norm{\lambda x}_p &= \Norm{(\lambda x_1, \ldots, \lambda x_n)}_p =  \left(\sum_{i=1}^n \abs{\lambda x_i}^p\right)^{\frac{1}{p}} \\
-&= \left(\abs{\lambda}^p\sum_{i=1}^n \abs{x_i}^p\right)^{\frac{1}{p}} = \abs{\lambda} \left(\sum_{i=1}^n \abs{ x_i}^p\right)^{\frac{1}{p}} = \abs{\lambda} \Norm{x}_p.
-}
-\item[\textbf{iii)}] Sean $x, y \in \K^n$. Si $x = 0$ ó $y = 0$, claramente $\Norm{x+y}_p \leq \Norm{x}_p + \Norm{y}_p$. Así que tomamos $x, y \neq 0$. Definamos 
-$$x_0 := \frac{x}{\Norm{x}_p + \Norm{y}_p} \quad \mbox{  y } \quad y_0 := \frac{y}{\Norm{x}_p + \Norm{y}_p},$$ de tal manera que 
-$\Norm{x_0}_p + \Norm{y_0}_p = 1$. Definamos $\lambda := \Norm{y_0}_p \in (0, 1)$ y tomemos $$\widehat{x} :=\frac{x_0}{1-\lambda} \quad
- \mbox{ y } \quad \widehat{y} := \frac{y_0}{\lambda}.$$
-
-Notemos que $\Norm{\widehat{x}}_p = \Norm{\widehat{y}}_p = 1$ y expresemos $\widehat{x}=(\widehat{x_1}, \ldots \widehat{x_n})$ y $\widehat{y}= (\widehat{y_1}, \ldots \widehat{y_n})$. El lema~\ref{Lema:XPConvexa} muestra que la función $z \mapsto \abs{z}^p$ es convexa , así que tenemos que para $1 \leq i \leq n$
-$$\abs{(1-\lambda)\widehat{x_i} + \lambda \widehat{y_i}}^p \leq (1-\lambda)\abs{\widehat{x_i}}^p + \lambda \abs{\widehat{y_i}}^p.$$
- 
-Y al sumar $i$ de $1$ a $n$ obtenemos
-\Ecu{
-\Norm{x_0 + y_0}_p^p &= \Norm{(1-\lambda)\widehat{x} + \lambda \widehat{y}}_p^p \\
-&=  \sum_{i=1}^n\abs{(1-\lambda)\widehat{x_i} + \lambda \widehat{y_i}}^p \\
-&\leq (1-\lambda)\left(\sum_{i=1}^n \abs{\widehat{x_i}}^p \right) + \lambda \left( \sum_{i=1}^n\abs{\widehat{y_i}}^p \right) \\
-&= (1- \lambda) \Norm{\widehat{x}}_p^p + \lambda \Norm{\widehat{y}}_p^p = 1.
-}
-
-Como para $z \in [0, \infty)$ se tiene que $z^p \leq 1$ si, y sólo si $z \leq 1$, entonces $$\Norm{x_0 + y_0}_p \leq 1 = \Norm{x_0}_p + \Norm{y_0}_p.$$ 
-
-Esto es, $$\Norm{\frac{x+y}{\Norm{x}_p + \Norm{y}_p}}_p \leq \Norm{\frac{x}{\Norm{x}_p + \Norm{y}_p}}_p + \Norm{\frac{y}{\Norm{x}_p + \Norm{y}_p}}_p.$$
-
-Por lo tanto $$\Norm{x+y}_p \leq \Norm{x}_p + \Norm{y}_p.$$
-
-\end{itemize}
-
-
-Veamos ahora que $\Norm{\cdot}_\infty$ es una norma en $\K^n$. Para eso, notemos que
-\begin{itemize}
-\item[\textbf{i)}] Sea $x = (x_1, \ldots, x_n) \in \K^n$. Si $x = 0$, entonces $\Norm{x}_\infty = \max_{i \in \N} \,  0 = 0.$ Si por otro lado $\Norm{x}_\infty = 0$, entonces $\abs{x_i} = 0$ para todo $1 \leq i \leq n$, y así $x_i = 0$, por lo que $x = 0$.
-\item[\textbf{ii)}] Sea $x = (x_1, \ldots, x_n) \in \K^n$ y $\lambda \in\K$. Entonces
-\Ecu{
-\Norm{\lambda x}_\infty = \Norm{(\lambda x_1, \ldots, \lambda x_n)}_\infty = \max_{1 \leq i \leq n} \,  \abs{ \lambda x_i} = \max_{1 \leq i \leq n} \,  \abs{\lambda}\abs{x_i} = \abs{\lambda} \max_{1 \leq i \leq n} \,  \abs{x_i} = \abs{\lambda} \Norm{x}_\infty.
-}
-\item[\textbf{iii)}] Sean $x = (x_1, \ldots, x_n), y = (y_1, \ldots, y_n) \in \K^n$, entonces 
-\Ecu{
-\Norm{x+y}_\infty &= \Norm{(x_1 + y_1, \ldots, x_n + y_n)}_\infty = \max_{1 \leq i \leq n} \,  \abs{x_i + y_i} \\
-& \leq \max_{1 \leq i \leq n} \,  (\abs{x_i} + \abs{y_i}) \leq \max_{1 \leq i \leq n} \,  \abs{x_i} + \max_{1 \leq i \leq n} \,  \abs{y_i} \\
-& = \Norm{x}_\infty + \Norm{y}_\infty.
-}
-\end{itemize}
-\end{Dem}
-
-En adelante, cuando trabajemos en $\K^n$ con la norma $\Norm{\cdot}_p$, lo denotaremos por $\ell_p^n$. Si hace falta especificar el campo se denotará por $\ell_p^n(\K)$. 
-
-En el caso particular $p=2$, notemos que la norma $\Norm{\cdot}_2$ en $\K^n$ es precisamente la norma euclidiana. A continuación probaremos que $\ell_2^n$ es un espacio de Banach haciendo uso del teorema de Heine-Borel en $ell_2^1(\K) = \K$.
-
-\begin{Tma} \label{Tma:HeineBorel} \textbf{(Heine-Borel)}
-Para todos $a, b \in \R$ con $a \leq b$, el intervalo $[a, b]$ es compacto. 
-\end{Tma}
-
-\begin{Tma} \label{Tma:HeineBorelGeneral} 
-Sea $A \subseteq \ell_2^n(\K)$. Son equivalentes:
-\begin{itemize}
-\item \textbf{i)} $A$ es cerrado y acotado.
-\item\textbf{ii)} $A$ es compacto.
-\end{itemize}
-\end{Tma}
-
-\begin{Dem}
-(Pendiente).
-\end{Dem}
-
-\begin{Tma} \label{Tma:NormaEuclidianaCompleta}
-El espacio normado $\ell_2^n$ es completo. 
-\end{Tma}
-
-\begin{Dem}
-Sea $(x_m)_{m\in \N}$ una sucesión de Cauchy. El lema~\ref{Lema:SucesionesDeCauchySonAcotadas} indica que $\{ x_m : m \in \N \}$ es un conjunto acotado por alguna constante $M \in\N$. Como la bola $B_M(0)$ es cerrada y acotada en $\ell_2^n$, el teorema de Heine-Borel señala que $B_M(0)$ es compacto. Dado que $(x_m)_{m\in\N} \subseteq B_M(0)$ y este conjunto es compacto, el teorema~\ref{Tma:CaracterizacionCompacidadSucesiones} dice que existe una subsucesión $(x_{k_m})_{m \in \N}$ de $(x_m)_{m\in\N}$ que converge a algún $x \in B_M(0) \subseteq X$. Del lema~\ref{Lema:SucesionCauchyConSubsucesionConvergenteConverge} se sigue que $x_m \to x$.
-\end{Dem}
-
-Más adelante probaremos que no sólo $\ell_2^n$ es completo, sino que el resto de los espacios $\ell_p^n$ también lo son.
-
-\begin{Cor}
-El espacio $\K$ con la norma euclidiana es un espacio vectorial topológico completo. (Mover a E.V.T.)
+El espacio $\K$ con la norma euclidiana es un espacio vectorial topológico completo.
 \end{Cor}
 
 \begin{Ejem}
-Denotemos por $\K^\N$ al espacio de sucesiones en $\K$. Definamos para $1 \leq p < \infty$ las funciones $\Norm{\cdot}_p : \K^\N \to [0, \infty]$ y $\Norm{\cdot}_\infty : \K^\N \to [0, \infty]$ por $$\Norm{(x_1, x_2, \ldots)}_p = \left(  \sum_{i=1}^\infty \abs{x_i}^p \right)^{\frac{1}{p}} \mbox{  y  } \Norm{(x_1, x_2, \ldots)}_\infty = \sup_{i \in \N} \,  \abs{x_i},$$
-donde consideramos que $\infty^{\frac{1}{p}} = \infty$.
+Sean $A$ un conjunto no-vacío y $X = F(A, \K)$ como en el ejemplo~\ref{Ejem:EVTFamiliaFuncionales}. Se verificó ahí que  $\mathcal{F} = \{ \abs{\delta_a}: a \in A \}$ es una familia de seminormas en $X$ que separa puntos, por lo que $X$ con la topología $\sigma(X, \mathcal{F})$ es un espacio vectorial topológico. Demostraremos que tal espacio vectorial es completo.
 
-Para $1\leq p\leq \infty$ definimos a $\ell_p(\K)$, o simplemente $\ell_p$, como el espacio de sucesiones $x \in \K^\N$ tales que $\Norm{x}_p < \infty$.
+Sea $(f_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $X$. Al tomar $a \in A$, tenemos que para todo $\varepsilon > 0$, $U_{0, \abs{\delta_a}, \varepsilon}$ es una vecindad abierta en $\sigma(X, \mathcal{F})$ del cero. Así que existe $\alpha \in \Lambda$ tal que para todas $\alpha_1, \alpha_2 \geq \alpha$ se cumple que $f_{\alpha_1} - f_{\alpha_2} \in U_{0, \abs{\delta_a}, \varepsilon}$, es decir, $\abs{\delta_a}(f_{\alpha_1} - f_{\alpha_2}) = \abs{f_{\alpha_1}(a) - f_{\alpha_2}(a)} < \varepsilon$. Esto indica que $(f_\alpha(a))_{\alpha\in\Lambda}$ es una red de Cauchy en $\K$ para todo $a \in A$. Como $\K$ es completo, existe $x_a \in \K$ tal que $f_\alpha(a) \to x_a$. Definamos entonces $f \in X$ por $f(a) = x_a$, para toda $a \in A$.
+
+Mostremos que $f_\alpha \to f$. Sea $U_{f, \abs{\delta_{a_1}}, \ldots, \abs{\delta_{a_k}}, \varepsilon}$ una vecindad básica de $f$ para algunos $k \in \N$, $a_1, \ldots, a_k \in A$ y $\varepsilon > 0$. Para cada $i \in \nn{k}$, se tiene que $f_\alpha(a_i) \to f(a_i)$, así que existe $\alpha_i \in \Lambda$ tal que si $\alpha \geq \alpha_i$, entonces $\abs{\delta_{a_i}}(f_{\alpha} - f) = \abs{f_{\alpha}(a_i) - f(a_i)} < \varepsilon$. Así que si tomamos $\beta \in  \Lambda$ con $\beta \geq \alpha_i$ para todo $1 \leq  i \leq k$, entonces $f_\alpha \in U_{f, \abs{\delta_{a_1}}, \ldots, \abs{\delta_{a_k}}, \varepsilon}$ siempre que $\alpha \geq \beta$. Por lo tanto $f_\alpha \to f$ y $(X, \sigma(X, \mathcal{F}))$ es completo.
 \end{Ejem}
 
-
-\begin{Lema} \label{Lema:LimiteElleP}
-Sea $1 \leq p \leq \infty$. Si $x = (x_1, x_2, \ldots) \in \ell_p$, entonces $$\Norm{x}_p = \lim_{n \to \infty} \Norm{(x_1, \ldots, x_n)}_p.$$
-\end{Lema}
-
-\begin{Dem}
-Sea $1\leq  p < \infty$. Si $x \in \ell_p$, entonces $\Norm{x}_p < \infty$ y por la continuidad de la función $z \mapsto z^p$ en $\R$ se sigue que $$\left(\lim_{n \to  \infty} \Norm{(x_1, \ldots, x_n)}_p \right)^p =\lim_{n \to  \infty} \Norm{(x_1, \ldots, x_n)}_p^p = \lim_{n\to \infty} \sum_{i=1}^n \abs{x_i}^p = \sum_{i=1}^\infty \abs{x_i}^p = \Norm{x}_p^p < \infty.$$ 
-
-Así que $$ \lim_{n \to \infty} \Norm{(x_1, \ldots, x_n)}_p = \Norm{x}_p.$$
-
-Tomemos ahora $p = \infty$. Para $n\in\N$ sea $a_n = \max(\abs{x_1},\ldots, \abs{x_n})$. Como $\Norm{x}_\infty < \infty$, el conjunto $\{\abs{x_i} : i \in \N \}$ está acotado y así $(a_n)_{n\in\N}$ también.  Claramente, $(a_n)_{n\in\N}$ es monótona-creciente y $a_n \leq \Norm{x}_\infty < \infty$, de manera que $(a_n)_{n\in\N}$ converge y $a_k \leq \lim_{n\to\infty} a_n = \sup_{n \in\N} a_n < \infty$ para toda $k \in \N$. Sea $i \in \N$, entonces para $k \geq i$ se tiene que $a_k \geq \abs{x_i}$ y por lo tanto $\lim_{n\to\infty} a_n  \geq \abs{x_i}$. Así pues, $\lim_{n\to\infty} a_n $ es una cota superior de $\{\abs{x_i} : i \in \N\}$. Como $\Norm{x}_\infty$ es la mínima cota superior, resulta que $\lim_{n\to\infty} a_n  \geq \Norm{x}_\infty$.
-
-Por otro lado, tenemos que para cada $n \in \N$, resulta que $a_n \leq \Norm{x}_\infty$. De esto se sigue que $\lim_{n\to \infty} a_n \leq \Norm{x}_\infty$ y concluimos que $\lim_{n \to \infty} \Norm{(x_1, \ldots, x_n)}_\infty = \Norm{x}_\infty$.
-\end{Dem}
-
-\begin{Lema}
-Para cada $p \in [1, \infty]$, la función $\Norm{\cdot}_p$ es una norma en $\ell_p$.
-\end{Lema}
-
-\begin{Dem} 
-\hfill
-\begin{itemize}
-\item \textbf{i)} Sea $x = (x_1, x_2, \ldots, ) \in \ell_p$. Si $x = 0$, entonces $\Norm{x}_p = 0$. Si por otro lado $\Norm{x}_p = 0$, entonces $x_1 = x_2 =\ldots = 0$. Así que $x = 0$.
-\item \textbf{ii)} Si $x = (x_1, x_2, \ldots, ) \in \ell_p$ y $\lambda \in \K$, entonces el lema~\ref{Lema:LimiteElleP} indica que $$\Norm{\lambda x}_p = \lim_{n\to \infty} \Norm{\lambda(x_1, \ldots, x_n)}_p = \lambda \lim_{n\to \infty} \Norm{(x_1, \ldots, x_n)}_p = \lambda \Norm{x}_p.$$
-\item \textbf{iii)}  Si $x = (x_1, x_2, \ldots, ), y = (y_1, y_2, \ldots) \in \ell_p$, entonces del lema~\ref{Lema:LimiteElleP} se sigue que
-\Ecu{
-\Norm{x}_p + \Norm{y}_p &= \lim_{n\to \infty} \Norm{(x_1, \ldots, x_n)}_p + \lim_{n\to \infty} \Norm{(y_1, \ldots, y_n)}_p \\
-& =  \lim_{n\to \infty} \Norm{(x_1, \ldots, x_n)}_p + \Norm{(y_1, \ldots, y_n)}_p  \\
-&\geq \lim_{n\to \infty} \Norm{(x_1, \ldots, x_n) + (y_1, \ldots, y_n)}_p = \Norm{x+y}_p. \\
-& = \lim_{n\to \infty} \Norm{(x_1 + y_1, \ldots, x_n + y_n)}_p = \Norm{x+y}_p.
-}
-\end{itemize}
-Además, observemos que para cada $p \in [1, \infty]$, se tiene que $\abs{x_n} \leq \Norm{x}_p$ para todo $n \in \N$.
-\end{Dem}
-
-\begin{Prop}
-Para cada $p \in [1, \infty]$, $\ell_p$ es un espacio de Banach.
-\end{Prop}
-
-\begin{Dem}
-Como cada elemento en $\ell_p$ es una sucesión en $\K$, usaremos la notación de funciones en $\ell_p$. Tomemos pues una sucesión de Cauchy $(f_n)_{n \in\N}$ en $\ell_p$. Dado $k \in \N$, notemos que $(f_n(k))_{n\in \N}$ es una sucesión de Cauchy en $\K$, pues dado $\varepsilon > 0$, existe $N \in \N$ tal que si $n, m \geq N$ entonces
-$$\abs{f_n(k) - f_m(k)} \leq \Norm{f_n - f_m} < \varepsilon.$$
-
-Así pues, como $\K$ con la norma euclidiana es completo, se sigue que para toda $k\in\N$, $(f_n(k))_{n\in \N}$ converge a algún $x_k \in \K$. Consideremos $f: \N \to \K$ definida por $f(k) = x_k$ para todo $k\in\N$. 
-
-Demostremos que $f_n \to f$. Para eso separemos en dos casos. Cuando $1 \leq p < \infty$, tenemos que 
-\end{Dem}
-
-\subsection{Espacio dual.}
-
-No todo operador lineal $T:X\to Y$ entre los espacios normados $X$ e $Y$ resulta ser continuo. Los de mayor interés son los que sí son continuos. Una caracterización de un operador lineal continuo es que sea un \textit{operador lineal acotado}, esto es, que exista $K > 0$ tal que $$\Norm{Tx} \leq K \Norm{x} \mbox{ para todo } x \in X.$$ 
-
-\begin{Prop} \label{Prop:IsomorfismoPreservaConjuntosAcotados}
-Sean $X$ y $Y$ espacios normados y  $T:X \to Y$ un operador lineal. Entonces $T$ es acotado si, y sólo si $T$ preserva conjuntos acotados.
-\end{Prop}
-
-\begin{Dem}
-Sea $A \subseteq X$ un conjunto acotado. Entonces existe $M > 0$ tal que $\Norm{x} \leq M $ para todo $x \in A$. Como $T$ es continua, existe $N >0$ tal que $\Norm{T(x)} \leq N \Norm{x}$ para toda $x \in  X$. Así pues si $T(x) \in T(A)$ se sigue que $\Norm{T(x)} \leq N\Norm{x} \leq MN.$ Por lo que $T(A)$ es acotado.
-
-Ahora supongamos que $T$ preserva conjuntos acotados. Como $B_X$ es un conjunto acotado, entonces $T(B_X)$ es un conjunto acotado por algún $K > 0$. Sea $x \in X$. Si $x = 0$, entonces $\Norm{Tx} = \Norm{0} = 0 \leq K \Norm{x}$. Supongamos entonces que $x \neq 0$, de manera que $\frac{x}{\Norm{x}} \in B_X$ y por lo tanto $T\left( \frac{x}{\Norm{x}} \right) \in T(B_X)$ y por lo tanto $\Norm{T\left( \frac{x}{\Norm{x}} \right)}  \leq K$ y así $\Norm{T(x)} \leq K \Norm{x}.$
-\end{Dem}
-
-Sean $X$ y $Y$ espacios normados. Al espacio de los operadores lineales continuos $T: X \to Y$, y por tanto acotados, lo denotamos por $\mathcal{L}(X, Y)$. En este espacio definimos la función
-$$\Norm{T} := \sup\{ \Norm{Tx}  :  x \in B_X\}.$$
-
-Esta resulta ser una norma y así $\mathcal{L}(X, Y)$ es un espacio normado. Si además $Y$ es un espacio de Banach, entonces $\mathcal{L}(X, Y)$ también es un espacio de Banach. \\
-
-Veamos que $$\Norm{Tx} \leq \Norm{T} \Norm{x}, \mbox{ para todo } x \in X.$$
-
-Empecemos tomando $x \in X$. Si $x = 0$, entonces $$\Norm{Tx} = \Norm{0} = 0 \leq  \Norm{T} \Norm{x}.$$ 
-
-Si por otro lado $x \neq 0$, entonces $y = \frac{x}{\Norm{x}} \in B_X$. Por lo que $\Norm{T} \geq \Norm{Ty}$. Esto es
-$$\Norm{T} \geq \Norm{T\left(\frac{x}{\Norm{x}}\right)} = \frac{\Norm{Tx}}{\Norm{x}}$$ y así $\Norm{Tx} \leq \Norm{T} \Norm{x}$. \\
-
-Dado un espacio vectorial topológico $X$, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \tau)^*$ o simplemente por $X^*$.  A los elementos de este espacio dual los llamamos \textit{funcionales lineales continuos}.
-
-Cuando $X$ sea un espacio normado, su espacio dual se denotará por $(X, \Norm{\cdot})^*$ o simplemente por $X^*$.  Como $\K$ es completo, resulta que $X^* = \mathcal{L}(X, \K)$ es un espacio de Banach.  
-
-\begin{Ejem}
-Si $1 \leq p \leq \leq \infty$, al único elemento $q \in \R$ tal que $\frac{1}{p} + \frac{1}{q} = 1$ se le llama \textit{exponente conjugado} de $p$, donde $\frac{1}{\infty} = 0$. Mostremos que para $1 \leq p < \infty$, $(\ell_p)^* \simeq \ell_q$ y $\ell_1$ es isométricamente homeomorfo a un subespacio de $(\ell_\infty)^*$.  
-
-(Pendiente).
-\end{Ejem}
-
-Los teoremas de Hahn-Banach muestran que, cuando $X$ es un espacio normado, en $X^*$ existen suficientes funcionales que permiten hacer rica la teoría referente al espacio dual.
-
-\begin{Tma} \textbf{(Hahn-Banach)} \label{Tma:HahnBanachFuncional}
-Sea $X$ un espacio normado y $V \subseteq X$ un subespacio vectorial. Si $f \in V^*$ entonces existe $F \in X^*$ tal que $F = f$ en $V$ y $\Norm{f} = \Norm{F}$.
-\end{Tma}
-
-\begin{Prop} \label{Prop:DualDimensionInfinita}
-Sea $X$ un espacio normado. Entonces $X$ es de dimensión infinita si y sólo si $X^*$ también lo es. 
-\end{Prop}
-
-\begin{Dem}
-Supongamos que $X$ es de dimensión infinita. Entonces para todo $n \in \N$ existen $x_1, \ldots, x_n \in X$ linealmente independientes. Sea $V = \mbox{span} \{ x_1, \ldots, x_n \}$, de manera que $\{ x_1, \ldots, x_n \}$ es una base de $V$. Para $i \in \{1, \ldots, n \}$ definamos el funcional lineal $\varphi_i : V \to \K$ dado por $\varphi_i(x_j) = \delta_{ij}$ que es continuo por la proposición~\ref{Prop:FuncionalesLinealesContinuosEspaciosFinitos} . Por el teorema~\ref{Tma:HahnBanachFuncional} de Hahn-Banach existe $F_i \in X^*$ tal que $F_i = \varphi_i$ en $V$. Veamos que $\{F_1, \ldots, F_n\}$ es linealmente independiente en $X^*$. Sean $a_1, \ldots, a_n \in K$ tales que $$\sum_{j=1}^n a_i F_i = 0.$$ Al evaluar en $x_i$ obtenemos que $a_i = 0$. Esto muestra que para toda $n \in \N$ existen $n$ funcionales linealmente independientes. Por lo que $X^*$ es de dimensión infinita. 
-
-Supongamos ahora que $X$ es de dimensión finita $n \in \N$. Existe entonces una base $\{x_1, \ldots, x_n \}$ de $X$. Para $1 \leq i \leq n$ definimos $f_i :X \to \K $ linealmente y de tal manera que $f_i(x_j) = \delta_{ij}$. Como $X$ es de dimensión finita la proposición~\ref{Prop:FuncionalesLinealesContinuosEspaciosFinitos} indica que cada $f_i$ es continuo. Veamos que $\{ f_1, \ldots, f_n \}$ generan a $X^*$. Tomamos entonces $f \in X^*$ y supongamos que $f(x_i) = a_i \in \K$ para cada $i \in \{1, \ldots, n\}$. Así, para cada $1 \leq i \leq n$
-$$\left( \sum_{j=1}^n a_j f_j \right)(x_i) = a_i = f(x_i).$$
-Por lo tanto $f = \sum_{j=1}^n a_j f_j$. Esto dice que existe un conjunto finito generador en $X^*$, por lo que $X^*$ es de dimensión finita y además $\dim X^* \leq \dim X$.
-\end{Dem}
-
-Existen otras maneras de plantear los teoremas de Hanh-Banach con un enfoque más geométrico como lo muestra el siguiente teorema.
-
-\begin{Tma} \textbf{(Hahn-Banach)} \label{Tma:HahnBanachGeometrico}
-Sea $X$ un espacio normado real. Si $A$ y $B$ son dos conjuntos convexos disjuntos, $A$ es cerrado y $B$ compacto, entonces existen $\varphi \in X^*$ y $\alpha, \beta \in \R$ tales que $\varphi(x) < \alpha < \beta < \varphi(y)   \mbox{ para todos } x \in A, y \in B.$
-\end{Tma}
-
-Como resultado de esta version del teorema de Hahn-Banach tenemos el lema de Helly, que en un futuro nos será de utilidad.
-
-\begin{Lema} \textbf{(Helly)} \label{Lema:HellyReal}
-Sean $X$ un espacio normado real, $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $a_1, \ldots, a_n \in \R$. Son equivalentes:
-\begin{itemize}
-\item \textbf{i)} Para todo $\varepsilon>0$ existe $x \in B_X$ tal que $\abs{\varphi_i(x) - a_i} < \varepsilon$ para toda $i \in \{ 1, \ldots, n\}$.
-\item \textbf{ii)} Para cualesquiera $b_1, \ldots, b_n \in \R$ se cumple que $\displaystyle\abs{\sum_{i=1}^n a_i b_i} \leq \Norm{\sum_{i=1}^n b_i \varphi_i}.$
-\item \textbf{iii)} $(a_1, \ldots, a_n) \in \ov{T(B_X)}$, donde  $T: X \to \ell_1^n(\R)$ está definida por $Tx =(\varphi_1(x), \ldots, \varphi_n(x))$. 
-\end{itemize}
-\end{Lema}
-
-\begin{Dem}
-Se demostrará que \textbf{i)} implica \textbf{ii)}, que \textbf{ii)} implica \textbf{iii)} y que \textbf{iii)} implica \textbf{i)}.
-
-Supongamos \textbf{i)}. Tomemos $b_1, \ldots, b_n \in \R$ cualesquiera. Sea $\varepsilon > 0$. Entonces existe $x \in B_X$ tal que $\abs{\varphi_i(x) - a_i} < \varepsilon$ para toda $i \in \nn{n}$. Observemos que 
-\Ecu{
-\abs{\sum_{i=1}^n a_i b_i} &= \abs{\sum_{i=1}^n (a_i - \varphi_i(x) + \varphi_i(x)) b_i} \leq \abs{\sum_{i=1}^n (a_i - \varphi_i(x)) b_i} + \abs{\left(\sum_{i=1}^n b_i \varphi_i \right)(x) } \\
-& \leq \sum_{i=1}^n \abs{a_i - \varphi_i(x)} b_i + \Norm{\sum_{i=1}^n b_i \varphi_i } \Norm{x} < \varepsilon  \sum_{i=1}^n\abs{b_i} + \Norm{\sum_{i=1}^n b_i \varphi_i }  
-}
-Como esto es para todo $\varepsilon >0$, se sigue que $\displaystyle\abs{\sum_{i=1}^n a_i b_i} \leq \Norm{\sum_{i=1}^n b_i \varphi_i}$. 
-
-Para mostrar que \textbf{ii)} implica \textbf{iii)} procederemos por contrapositiva. Así pues, supongamos que $a = (a_1, \ldots, a_n) \notin \ov{T(B_X)}$, de manera que $\{a \}$ y $\ov{T(B_X)}$ son disjuntos. Como $B_X$ es convexo, la proposición~\ref{Prop:FuncionLinealPreservaConvexos} indica que $T(B_X)$ es convexo y por la proposición~\ref{Prop:CerraduraDeConvexoEsConvexa} se tiene que $\ov{T(B_X)}$ también es convexo.  Además, $\ov{T(B_X)}$ es cerrado. Claramente, $\{ a \}$ es compacto y convexo. El teorema~\ref{Tma:HahnBanachGeometrico} de Hahn-Banach dice que existe $\psi \in \ell_1^{n}(\R)^*$ y $\alpha \in \R$ tales que $\psi(y) < \alpha < \psi(a)$ para todo $y \in \ov{T(B_X)}$. Consideremos  la base canónica $\{ e_1, \ldots, e_n \}$ de $\R^n$. Para $1\leq i \leq n$ definamos $b_i := \psi(e_i)$, de tal manera que para $(z_1, \ldots z_n) \in \R^n$ tenemos que $$\psi(z_1, \ldots, z_n) = \sum_{i=1}^n b_i z_i.$$
-
-Tomemos $x \in B_X$. Entonces $Tx \in T(B_X) \subseteq \ov{T(B_x)}$, por lo que $$\sum_{i=1}^n b_i \varphi_i(x) = \psi(\varphi_1(x), \ldots, \varphi_n(x)) = \psi(T(x))  < \alpha < \psi(a) = \sum_{i=1}^n a_i b_i \leq \abs{\sum_{i=1}^n a_i b_i }.$$  
-
-Como $-x \in B_X$, se tiene que $$-\sum_{i=1}^n b_i \varphi_i(x) =  \sum_{i=1}^n b_i \varphi_i(-x ) < \alpha < \abs{\sum_{i=1}^n a_i b_i},$$ de donde $$\displaystyle \abs{\sum_{i=1}^n b_i \varphi_i(x)} < \alpha < \abs{\sum_{i=1}^n a_i b_i}.$$
-
-Concluimos de aquí la negación de \textbf{ii)}, es decir, $$\Norm{\sum_{i=1}^n b_i \varphi_i} = \sup_{x \in B_X} \abs{\left(\sum_{i=1}^n b_i \varphi_i \right)(x)} \leq \alpha < \abs{\sum_{i=1}^n a_i b_i}.$$
-
-Finalmente, supongamos \textbf{iii)}. Sea $\varepsilon > 0$. Como $a = (a_1, \ldots, a_n) \in \ov{T(B_X)}$, se sigue que $V_\varepsilon(a) \cap T(B_X) \neq \emptyset$. Así que existe $y \in V_\varepsilon(a) \cap T(B_X)$. Tomemos $x \in B_X$ con $T(x) = y$. Así que $T(x) \in V_\varepsilon(a)$. Para $i \in \nn{n}$ se tiene que $$\abs{\varphi_i(x) - a_i} \leq \sum_{j=1}^{n} \abs{\varphi_j(x) - a_j} = \Norm{Tx - a}_1 < \varepsilon.$$
-\end{Dem}
-
-El lema de Helly sigue siendo válido para espacios normados complejos, como se muestra a continuación.
-
-\begin{Lema} \textbf{(Helly)} \label{Lema:HellyGeneral}
-Sean $X$ un espacio normado, $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $a_1, \ldots, a_n \in \K$. Son equivalentes:
-\begin{itemize}
-\item \textbf{i)} Para todo $\varepsilon>0$ existe $x \in B_X$ tal que $\abs{\varphi_i(x) - a_i} < \varepsilon$ para toda $i \in \{ 1, \ldots, n\}$.
-\item \textbf{ii)} Para cualesquiera $b_1, \ldots, b_n \in \K$ se cumple que $\displaystyle\abs{\sum_{i=1}^n a_i b_i} \leq \Norm{\sum_{i=1}^n b_i \varphi_i}.$
-\item \textbf{iii)} $(a_1, \ldots, a_n) \in \ov{T(B_X)}$, donde  $T: X \to \ell_1^n(\K)$ está definida por $Tx =(\varphi_1(x), \ldots, \varphi_n(x))$. 
-\end{itemize}
-\end{Lema}
-
-\begin{Dem}
-Si $\K = \R$, ya quedó demostrado en el lema anterior. Así que supongamos $\K = \C$. Las implicaciones de \textbf{i)} a \textbf{ii)} y de \textbf{iii)} a \textbf{i)} son totalmente análogas al caso real. Así que sólo falta verificar que \textbf{ii)} implica \textbf{iii)}.
-
-(Pendiente).
-\end{Dem}
 
 \subsection{Espacios vectoriales topológicos de dimensión finita.}
 
@@ -2188,20 +2207,10 @@ $$\lim_{n\to\infty} \sum_{j=1}^n x_{k_j} \mbox{ existe bajo la norma.}$$ \\
 
 Esto indica que en un espacio de Banach la convergencia débil de subseries implica convergencia de subseries bajo la norma.
 
-\section*{Bibliografía.}
-\begin{itemize}
-\item http://math.uga.edu/~pete/convergence.pdf
-\item https://terrytao.wordpress.com/2011/05/24/locally-compact-topological-vector-spaces/
-\item Walter Rudin. Functional Analysis.
-\item Joseph Diestel. Sequences and Series in Banach Spaces.
-\item Megginson. An Introduction to Banach Space Theory.
-\item Galaz Fontes. Elementos de Análisis Funcional. 
-\item Marian Fabian. Functional Analysis and Infinite-Dimensional Geometry.
-\item Francisco J. Diáz. Curso de Topología General.
-\item Haim Brezis. Functional Analysis, Sobolev Spaces and Partial Differential Equations.
-\item Paul R. Chernoff. A Simple Proof of Tychonoff's Theorem Via Nets.
-\end{itemize}
 
+\nocite{*}
+\bibliographystyle{ieeetr}
+\bibliography{Bibliografia}
 
 \label{ultimapagina}
 \end{document}
