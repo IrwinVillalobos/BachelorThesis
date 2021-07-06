@@ -274,6 +274,14 @@ Sea $K$ un conjunto compacto y $\{U_{\alpha}\}_{\alpha \in \Lambda}$ una cubiert
 
 Luego, $(U_{\alpha_i})_{i=1}^n$ es una cubierta finita de $f(K)$ y así este es un conjunto compacto.
 \end{Dem}
+
+\begin{Prop} \label{Prop:CerradoEnCompactoEsCompacto}
+Sean $X$ un espacio topológico y $K \subseteq X$ compacto. Si $A \subseteq K$ es cerrado, entonces es compacto.
+\end{Prop}
+
+\begin{Dem}
+Sea $\{ U_\alpha \}_{\alpha\in\Lambda}$ una cubierta abierta de $A$. Como $A$ es cerrado, entonces $A^\mathsf{c}$ es abierto. Así que  $\{ U_\alpha \}_{\alpha\in\Lambda} \cup \{ A^\mathsf{c} \}$ es una cubierta abierta de $X$ y por tanto también de $K$. Como $K$ es compacto, existe una subcubierta finita $\calC$ de $\{ U_\alpha \}_{\alpha\in\Lambda}\cup \{ A^\mathsf{c} \}$ que cubre a $K$ y como $A \subseteq K$, entonces $\calC$ también cubre a $A$. Por lo tanto, $\calC \setminus \{ A^\mathsf{c} \}$ es una subcubierta finita de $\{ U_\alpha \}_{\alpha\in\Lambda}$ que cubre a $A$.   
+\end{Dem}
   
 \begin{Def}
 Sea $X$ un espacio topológico. Diremos que $X$ es \textit{Hausdorff} si para todos $x, y \in X$ distintos existen abiertos $U, V$ tales que $x \in U$, $y \in V$ y $U\cap V = \emptyset$.
@@ -607,7 +615,14 @@ Se demostrará por contrapositiva. Supongamos que $d(x, A) = 0$. Tomemos un abier
 \section{Espacios normados.}
 
 \begin{Def}
-Una \textit{norma} en un espacio vectorial $X$ es una seminorma $\Norm{\cdot}: X \to [0, \infty)$ que es \textit{definida positiva}, esto es, para cada $x \in X$, $\Norm{x} = 0$ si, y sólo si $x = 0$. En este caso decimos que la pareja $(X, \Norm{\cdot})$ es un \textit{espacio normado}. 
+Sea $X$ un espacio vectorial. Una \textit{norma} es una función $\Norm{\cdot}: X \to [0, \infty)$ tal que:
+\begin{itemize}
+\item \textbf{i)} Es \textit{definida positiva}, esto es, para cada $x \in X$, $\Norm{x} = 0$ si, y sólo si $x = 0$.
+\item \textbf{ii)} Es \textit{subaditiva}, es decir, para todas $x, y \in X$ se cumple $\Norm{x+y} \leq \Norm{x} + \Norm{y}$.
+\item \textbf{iii)} Es \textit{homogénea}, esto es, para toda $\lambda \in \K$ y $x \in X$ se satisface que
+$\Norm{\lambda x} = \abs{\lambda}\Norm{x}$.
+\end{itemize}
+En este caso decimos que la pareja $(X, \Norm{\cdot})$ es un \textit{espacio normado}.
 \end{Def} 
 
 Es sencillo verificar que en un espacio normado $X$ la función $d: X \times X \to [0, \infty)$ definida por $$d(x, y) := \Norm{x-y}$$ es una métrica, por lo que $X$ es un espacio métrico y entonces podemos considerar la topología inducida por la métrica, la cual se denomina \textit{topología original} de $X$. A menos que se especifique otra cosa, cuando hablemos de un espacio normado como espacio topológico, lo consideraremos con su topología original.
@@ -811,24 +826,19 @@ En adelante, cuando trabajemos en $\K^n$ con la norma $\Norm{\cdot}_p$, lo denot
 \end{Obs}
 
 \begin{Prop} \label{Prop:RectanguloCirculo}
-Las topologías producto de $\K \times \K$ coincide con la topología euclidiana $\K^2$. 
+La topología producto de $\K^n$ coincide con la topología euclidiana en $\K^n$. 
 \end{Prop}
 
 \begin{Dem}
-Sea $U \times V$ un abierto básico en la topología producto $\K \times \K$ tales que $U$, $V$ son abiertos en $\K$. Tomemos $(x, y) \in U \times V$, de manera que $x \in U$ y $y \in V$, de donde existe $r > 0$ tal que $V_r(x) \subseteq U$ y $V_r(y) \subseteq V$. Luego, si $(x^\prime, y^\prime) \in V_{r}(x, y)$, entonces $$\abs{x- x^\prime} \leq \Norm{(x, y) - (x^\prime, y^\prime)}_2 < r \;\mbox{ y }\;\abs{y- y^\prime} \leq \Norm{(x, y) - (x^\prime, y^\prime)}_2 < r,$$ de tal manera que $x^\prime \in V_r(x) \subseteq U$, $y^\prime \in V_r(y) \subseteq V$ y así $(x^\prime, y^\prime
-) \in U \times V$. Es decir, $V_r(x, y) \subseteq U \times V$ y $U \times V$ es abierto en la topología euclidiana.
+Sea $U = \prod_{i=1}^n U_i$ un abierto básico en la topología producto par algunos abiertos $U_1, \ldots, U_n$ en $\K$. Tomemos $x = (x_1, \ldots, x_n) \in U$, de manera que $x_i \in U_i$ para toda $i \in \nn{n}$. Para toda $1 \leq i \leq n$ existen $r_i > 0$ tales que $V_{r_i}(x_i) \subseteq U_i$. Definamos $r = \min(r_1, \ldots, r_n) > 0$. Sea $y = (y_1, \ldots, y_n) \in V_{r}(x)$, entonces para $i \in \nn{n}$, $\abs{x_i - y_i} \leq \Norm{x - y}_2 < r \leq r_i$, de tal forma que $y_i \in V_{r_i}(x_i) \subseteq U_i$ y así $y \in U$. Es decir, $V_r(x) \subseteq U$ y $U$ es abierto en la topología euclidiana.
 
-Ahora tomemos $V_r(x_0, y_0)$ un abierto básico en la topología euclidiana para algunos $x_0, y_0 \in \R$ y algún $r > 0$. Sea $(x, y) \in V_r(x_0, y_0)$, de manera que $$s = \frac{r- \Norm{(x_0, y_0) - (x, y)}_2}{\sqrt{2}} > 0.$$  
+Ahora tomemos $V_r(p)$ un abierto básico en la topología euclidiana para algunos $p = (p_1, \ldots, p_n) \in \K^n$ y $r > 0$. Sea $x \in V_r(p)$, de manera que $$s = \frac{r- \Norm{p - x}_2}{\sqrt{n}} > 0.$$  
 
-Mostremos que $V_s(x) \times V_s(y) \subseteq V_r(x_0, y_0)$. Sea pues $(x^\prime, y^\prime) \in V_s(x) \times V_s(y)$. Entonces 
-\Ecu{
-\Norm{ (x_0, y_0) - (x^\prime, y^\prime)}_2 &\leq \Norm{ (x_0, y_0) - (x, y)}_2 + \Norm{ (x, y) - (x^\prime, y^\prime)}_2 \\
-&= \Norm{ (x_0, y_0) - (x, y)}_2 + \sqrt{\abs{x - x^\prime}^2 + \abs{y - y^\prime}^2} \\
-&< \Norm{ (x_0, y_0) - (x, y)}_2 + \sqrt{s^2 + s^2}  \\
-&= \Norm{ (x_0, y_0) - (x, y)}_2 + s\sqrt{2}  = r. 
-}
+Mostremos que $ \prod_{i=1}^n V_s(x_i) \subseteq V_r(p)$. Sea pues $y = (y_1, \ldots, y_n) \in  \prod_{i=1}^n V_s(x_i)$. Entonces $$\Norm{x - y}_2 =  \sqrt{\sum_{i=1}^n \abs{x_i - y_i}^2} <  \sqrt{n s^2} =  s\sqrt{n}.$$
 
-Por lo tanto $V_r(x_0, y_0)$ es abierto en la topología producto.
+De la desigualdad del triángulo se sigue que $$\Norm{p - y}_2 \leq \Norm{p - x}_2 + \Norm{x - y}_2 < \Norm{p - x}_2 + s\sqrt{n}  = r.$$
+
+Por lo tanto $V_r(p)$ es abierto en la topología producto.
 \end{Dem}
 
 El teorema de Heine-Borel es un resultado del axioma del supremo de los números reales, en el cual recae la completitud de $\R$. 
@@ -848,7 +858,11 @@ Sea $A \subseteq \ell_2^n(\K)$. Son equivalentes:
 \end{Tma}
 
 \begin{Dem}
-(Pendiente).
+Primero supongamos que $A$ es compacto. Como $\ell_2^n(\K)$ es Hausdorff, se sigue del corolario~\ref{Cor:HausdorffCompactoEsCerrado} que $A$ es cerrado. Como $\{ V_n(0) \}_{n \in \N}$ es una cubierta abierta de $A$, existe una subcubierta finita $\{ V_{n_1}(0), \ldots, V_{n_k}(0)\}$ de $A$ para algún $k \in \N$ y algunos $n_1, \ldots, n_k \in \N$. Sea $N = \max(n_1, \ldots, n_k)$, de manera que $A \subseteq \bigcup_{i=1}^k V_{n_i}(0) \subseteq V_N(0)$ y así $A$ es acotado. 
+
+Ahora supongamos que $A$ es cerrado y acotado. Trabajemos primero el caso $\K = \R$. Como $A$ es acotado, existe $r > 0$ tal que $A \subseteq V_r(0)$. Por el teorema de Heine-Borel, el intervalo $[-r, r]$ es compacto y por el teorema de Tychonoff, $[-r, r]^n$ es compacto en $\R^n$. La proposición~\ref{Prop:RectanguloCirculo} indica que $[-r, r]$ es compacto en $\ell_2^n(\R)$. Dado que $A$ es cerrado, la proposición~\ref{Prop:CerradoEnCompactoEsCompacto} asegura que $A$ es compacto. 
+
+Si por otro lado $\K = \C$, podemos identificar a $\K$ con $\ell_2^2(\R)$ pues $\abs{ai +b } = \Norm{(a, b)}_2$ para todo $a+ib \in \C$, por lo que $\ell_2^n(\C)$ estaría identificados con $\ell_2^{2n}(\R)$. Así que si $A \subseteq \ell_2^n(\C)$ fuese cerrado y acotado, por su identificación con el caso real, $A$ sería compacto. 
 \end{Dem}
 
 \begin{Tma} \label{Tma:NormaEuclidianaCompleta}
@@ -856,7 +870,7 @@ El espacio normado $\ell_2^n$ es completo.
 \end{Tma}
 
 \begin{Dem}
-Sea $(x_m)_{m\in \N}$ una sucesión de Cauchy. El lema~\ref{Lema:SucesionesDeCauchySonAcotadas} indica que $\{ x_m : m \in \N \}$ es un conjunto acotado por alguna constante $M \in\N$. Como la bola $B_M(0)$ es cerrada y acotada en $\ell_2^n$, el teorema de Heine-Borel señala que $B_M(0)$ es compacto. Dado que $(x_m)_{m\in\N} \subseteq B_M(0)$ y este conjunto es compacto, el teorema~\ref{Tma:CaracterizacionCompacidadSucesiones} dice que existe una subsucesión $(x_{k_m})_{m \in \N}$ de $(x_m)_{m\in\N}$ que converge a algún $x \in B_M(0) \subseteq X$. Del lema~\ref{Lema:SucesionCauchyConSubsucesionConvergenteConverge} se sigue que $x_m \to x$.
+Sea $(x_m)_{m\in \N}$ una sucesión de Cauchy. El lema~\ref{Lema:SucesionesDeCauchySonAcotadas} indica que $\{ x_m : m \in \N \}$ es un conjunto acotado por alguna constante $M \in\N$. Como la bola $B_M(0)$ es cerrada y acotada en $\ell_2^n$, el teorema~\ref{Tma:HeineBorelGeneral} señala que $B_M(0)$ es compacto. Dado que $(x_m)_{m\in\N} \subseteq B_M(0)$ y este conjunto es compacto, el teorema~\ref{Tma:CaracterizacionCompacidadSucesiones} dice que existe una subsucesión $(x_{k_m})_{m \in \N}$ de $(x_m)_{m\in\N}$ que converge a algún $x \in B_M(0) \subseteq X$. Del lema~\ref{Lema:SucesionCauchyConSubsucesionConvergenteConverge} se sigue que $x_m \to x$.
 \end{Dem}
 
 El teorema anterior muestra que $\K$ con la norma $\abs{\cdot}$ es un espacio de Banach.
@@ -931,9 +945,7 @@ Empecemos tomando $x \in X$. Si $x = 0$, entonces $$\Norm{Tx} = \Norm{0} = 0 \le
 Si por otro lado $x \neq 0$, entonces $y = \frac{x}{\Norm{x}} \in B_X$. Por lo que $\Norm{T} \geq \Norm{Ty}$. Esto es
 $$\Norm{T} \geq \Norm{T\left(\frac{x}{\Norm{x}}\right)} = \frac{\Norm{Tx}}{\Norm{x}}$$ y así $\Norm{Tx} \leq \Norm{T} \Norm{x}$. \\
 
-Dado un espacio vectorial topológico $X$, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \tau)^*$ o simplemente por $X^*$.  A los elementos de este espacio dual los llamamos \textit{funcionales lineales continuos}.
-
-Cuando $X$ sea un espacio normado, su espacio dual se denotará por $(X, \Norm{\cdot})^*$ o simplemente por $X^*$.  Como $\K$ es completo, resulta que $X^* = \mathcal{L}(X, \K)$ es un espacio de Banach.  
+Dado un espacio normado $X$, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \Norm{\cdot})^*$ o simplemente por $X^*$.  A los elementos de este espacio dual los llamamos \textit{funcionales lineales continuos}. Como $\K$ es completo, resulta que $X^* = \mathcal{L}(X, \K)$ es un espacio de Banach.  
 
 \begin{Ejem}
 Si $1 \leq p \leq \leq \infty$, al único elemento $q \in \R$ tal que $\frac{1}{p} + \frac{1}{q} = 1$ se le llama \textit{exponente conjugado} de $p$, donde $\frac{1}{\infty} = 0$. Mostremos que para $1 \leq p < \infty$, $(\ell_p)^* \simeq \ell_q$ y $\ell_1$ es isométricamente homeomorfo a un subespacio de $(\ell_\infty)^*$.  
@@ -1495,6 +1507,8 @@ Sean $E$ un espacio vectorial topológico y $F \subseteq E$ un subespacio vectori
 Sea $x \in \ov{F}$. La proposición~\ref{Prop:CerraduraLimiteRed} establece que existe una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq F$ tal que $x_\alpha \to x$. Como $(x_\alpha)_{\alpha \in \Lambda}$ es convergente, el lema~\ref{Lema:RedConvergenteEsCauchy} indica que $(x_\alpha)_{\alpha \in \Lambda}$ es de Cauchy y al ser $F$ completo, se sigue que la red converge en $F$. Al ser $E$ Hausdorff, se sigue que $x \in F$ y así $F$ es cerrado. 
 \end{Dem}
 
+Dado un espacio vectorial topológico $X$, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \tau)^*$ o simplemente por $X^*$.
+
 \begin{Lema} \label{Lema:HomeomorfismoLinealPreservaCompletitez}
 Sean $E$ y $F$ espacios vectoriales topológicos. Si $T : E \to F$ es un homeomorfismo lineal y $E$ es completo, entonces $F$ es completo.
 \end{Lema}
@@ -1511,12 +1525,7 @@ Como $E$ es completo, la red $(T^{-1}(x_\alpha))_{\alpha \in \Lambda}$ converge 
 Un método para construir espacios vectoriales topológicos, el cual utilizaremos después para obtener la topología débil de un espacio de normado $X$ y la topología débil* en $X^*$, es utilizar el concepto de la topología generada por una familia de seminormas en un espacio vectorial. 
 
 \begin{Def}
-Sea $X$ un espacio vectorial sobre $\K$. Una \textit{seminorma} es una función $p: X \to [0, \infty)$ tal que:
-\begin{itemize}
-\item \textbf{i)} Es \textit{subaditiva}, es decir, para todas $x, y \in X$ se cumple $p(x+y) \leq p(x) +p (y)$.
-\item \textbf{ii)} Para $\lambda \in \K$ y $x \in X$ se satisface que
-$p(\lambda x) = \abs{\lambda}p(x)$.
-\end{itemize}
+Sea $X$ un espacio vectorial. Una \textit{seminorma} es una función $p: X \to [0, \infty)$ tal que es subaditiva y es homogénea.
 \end{Def}
 
 \begin{Ejem} \label{Ejem:SeminormaParaTopologiaDebil}
@@ -1603,7 +1612,7 @@ f_i^{-1}(V_\varepsilon(p_i(x))) &= \{ y\in X : f_i(y) \in V_\varepsilon(p_i(x)) 
 &= \{y \in X : \abs{p_i(x) - p_i(x-y) - p_i(x)} < \varepsilon \} \\
 &= \{y \in X : p_i(x-y) < \varepsilon \} = U_{x, p_i, \varepsilon}
 }
- es abierto en $\sigma(X, \mathcal{F})$. Por lo tanto $U_{x, p_1, \ldots, p_k, \varepsilon} = \bigcap_{i=1}^k U_{x, p_i, \varepsilon}$ es abierto en $\sigma(X, \mathcal{F})$. Esto indica que $\mathcal{B} \subseteq \sigma(X, \mathcal{F})$, por lo que $\tau(\mathcal{B}) \subseteq \sigma(X, \mathcal{F})$. 
+es abierto en $\sigma(X, \mathcal{F})$. Por lo tanto $U_{x, p_1, \ldots, p_k, \varepsilon} = \bigcap_{i=1}^k U_{x, p_i, \varepsilon}$ es abierto en $\sigma(X, \mathcal{F})$. Esto indica que $\mathcal{B} \subseteq \sigma(X, \mathcal{F})$, por lo que $\tau(\mathcal{B}) \subseteq \sigma(X, \mathcal{F})$. 
 
 Demostremos que con la topología $\tau(\mathcal{B})$ en $X$, todas las seminormas $p:X \to \R$ en $\mathcal{F}$ son continuas. Así pues, tomemos $p \in \mathcal{F}$. Sea $x \in X$ cualquiera y $V_\varepsilon(p(x))$ una vecindad de $p(x)$ en $\R$. Notemos que $U_{x, p, \varepsilon}$ es una vecindad abierta de $x$ y además, si $y \in U_{x, p, \varepsilon}$, entonces $p(x-y) <\varepsilon$. Por la proposición~\ref{Prop:Seminorma} se sigue que $\abs{p(x)-p(y)} < \varepsilon$ y así $p(U_{x, p, \varepsilon}) \subseteq V_{\varepsilon}(p(x))$. Como $U_{x, p, \varepsilon}$ es abierto en $\sigma(X, \mathcal{F})$, se sigue que $p$ es continua.
 
@@ -1827,9 +1836,11 @@ $$\abs{f_n(k) - f_m(k)} \leq \Norm{f_n - f_m} < \varepsilon.$$
 
 Así pues, como $\K$ con la norma euclidiana es completo, se sigue que para toda $k\in\N$, $(f_n(k))_{n\in \N}$ converge a algún $x_k \in \K$. Consideremos $f: \N \to \K$ definida por $f(k) = x_k$ para todo $k\in\N$. 
 
-Demostremos que $f_n \to f$. Para eso separemos en dos casos. Cuando $1 \leq p < \infty$, tenemos que 
+Demostremos que $f_n \to f$. Para eso separemos en dos casos. Cuando $1 \leq p < \infty$, tenemos que (Pendiente).
 
-(Pendiente).
+Mostremos ahora que $f_n \to f$ si por otro lado $p = \infty$. Como  
+
+Por último probemos que $f \in \ell_p$ para todo $p \in [1, \infty]$, (Pendiente).
 \end{Dem}
 
 \begin{Cor} \label{Cor:SubespacioDimensionFinitaCerrado}
@@ -1876,7 +1887,7 @@ Sea $X$ un espacio normado. Las siguientes afirmaciones son equivalentes:
 \begin{Dem}
 Demostraremos que \textbf{i)} implica \textbf{ii)}, que \textbf{ii)} implica \textbf{iii)} y que \textbf{iii)} implica \textbf{i)}. 
 
-Supongamos que $X$ es de dimensión finita $n$. Entonces existe un isomorfismo de espacios normados $T: X \to \ell^n_2$. Sea $A$ un conjunto cerrado y acotado en $X$. Por ser $T$ isomorfismo se sigue que $T(A)$ también es cerrado y acotado. El teorema de Heine-Borel indica que $T(A)$ es compacto en  $\ell^n_2$. Por lo tanto $A = T^{-1}(T(A))$ también lo es. 
+Supongamos que $X$ es de dimensión finita $n$. Entonces existe un isomorfismo de espacios normados $T: X \to \ell^n_2$. Sea $A$ un conjunto cerrado y acotado en $X$. Por ser $T$ isomorfismo se sigue que $T(A)$ también es cerrado y acotado. El teorema~\ref{Tma:HeineBorelGeneral} indica que $T(A)$ es compacto en  $\ell^n_2$. Por lo tanto $A = T^{-1}(T(A))$ también lo es. 
 
 Supongamos ahora que todo subespacio cerrado y acotado de $X$ es compacto. Entonces $B_X$ es compacta, pues es cerrada y acotada. 
 
@@ -1906,7 +1917,7 @@ Sean $X$ un espacio normado y $X^*$ su espacio dual. Notemos que para cada $\var
 Sea $X$ un espacio normado. La \textit{topología débil} de $X$ es $\sigma(X, \F_X)$ y la denotaremos por $\sigma(X, X^*)$ o simplemente por $\tau_{\mathrm{w}}$ si no hace falta especificar el espacio $X$. Cuando trabajemos con la topología débil de $X$, el espacio vectorial topológico correspondiente se denotará por $X_{\mathrm{w}}$.
 \end{Def}
 
-Como consecuencia del teorema~\ref{Tma:SeminormasInducenEVT} el siguiente corolario indica que $X_\mathrm{w}$ es un espacio vectorial topológico. Así que podemos considerar su espacio dual, el cual denotaremos por ${X_\mathrm{w}}^*$ para diferenciarlo de $X_\mathrm{w}^*$, que denota considerar primero el dual del espacio $X$ y en este considerar su topología débil, es decir, $X_\mathrm{w}^* = (X^*)_\mathrm{w}$ y ${X_\mathrm{w}}^* = (X_\mathrm{w})^*$.
+Como consecuencia del teorema~\ref{Tma:SeminormasInducenEVT} el siguiente corolario indica que $X_\mathrm{w}$ es un espacio vectorial topológico. Así que podemos considerar su espacio dual, el cual denotaremos por ${X_\mathrm{w}}^*$ para diferenciarlo de $X_\mathrm{w}^*$, que denota considerar primero el dual del espacio $X$ y en este considerar su topología débil, es decir, $X_\mathrm{w}^* = (X, \Norm{\cdot})^*$ y ${X_\mathrm{w}}^* = (X, \tau_\mathrm{w})^*$.
 
 \begin{Cor}
 Si $X$ es un espacio normado, entonces $X_\mathrm{w}$ es un espacio vectorial topológico.
