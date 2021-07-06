@@ -623,19 +623,33 @@ Sea $(x_n)_{n\in\N}$ una sucesión en $X$ que converge a $x \in X$. Por definició
 \end{Dem}
 
 \begin{Prop} \label{Prop:LimiteDeSumaSucesion}
-Sean $X$ un espacio normado, $\lambda \in \K$; y $(x_n)_{n \in \N}$ y $(y_n)_{n \in \N}$ sucesiones que convergen en $E$. Entonces $(\lambda x_n + y_n)_{n\in\N}$ converge y 
-$$\lim_{n \to \infty} (\lambda x_n + y_n) = \lambda \left(\lim_{n \to \infty} x_n\right) + \left(\lim_{n \to \infty} y_n\right).$$ 
-
-(Este es un caso particular de la proposición~\ref{Prop:LimiteDeSumaRed}. En aquella proposición la $\lambda$ no era fija, sino que también era una red. Pero como hago uso esta proposición con la $\lambda$ fija, lo enuncié y demostré de esta manera, ¿está bien así o prefiere que modifique a $\lambda$ como sucesión?)
+Sean $X$ un espacio normado, $(\lambda_n)_{n\in\N}$ una sucesión convergente en $\K$; y $(x_n)_{n \in \N}$ y $(y_n)_{n \in \N}$ sucesiones que convergen en $E$. Entonces $(\lambda_n x_n + y_n)_{n\in\N}$ converge y 
+$$\lim_{n \to \infty} (\lambda_n x_n + y_n) = \left(\lim_{n \to \infty} \lambda_n\right) \left(\lim_{n \to \infty} x_n\right) + \left(\lim_{n \to \infty} y_n\right).$$ 
 \end{Prop}
 
 \begin{Dem}
-Si $\lambda = 0$, entonces el resultado es claro. Supongamos entonces que $\lambda \neq 0$. Sean $x = \lim_{n\to \infty} x_n$ y $y = \lim_{n\to \infty} y_n$. Tomemos $\varepsilon > 0$, de manera que existen $N_1, N_2 \in \N$ tales que 
+Sean $x = \lim_{n\to \infty} x_n$ y $y = \lim_{n\to \infty} y_n$. Tomemos $\varepsilon > 0$, de manera que existen $N_1, N_2 \in \N$ tales que 
 \Ecu{
-\Norm{x_n - x} < \frac{\varepsilon}{2\lambda}, \mbox{ si } n \geq N_1 \;\;\mbox{ y } \;\; \Norm{y_n - y} < \frac{\varepsilon}{2}, \mbox{ si } n \geq N_2.
+\Norm{x_n - x} < \frac{\varepsilon}{2}, \mbox{ si } n \geq N_1 \;\;\mbox{ y } \;\; \Norm{y_n - y} < \frac{\varepsilon}{2}, \mbox{ si } n \geq N_2.
 }
 
-Luego, si $n \geq \max(N_1, N_2)$, entonces $$\Norm{(\lambda x_n + y_n) - (\lambda x + y)} \leq \lambda \Norm{x_n - x} + \Norm{y_n - y} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.$$ 
+Luego, si $n \geq \max(N_1, N_2)$, entonces $$\Norm{(x_n + y_n) - (x + y)} \leq \Norm{x_n - x} + \Norm{y_n - y} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.$$
+
+Sea $\lambda = \lim_{n\to\infty} \lambda_n$. Tomemos $\varepsilon > 0$, de manera que existen $M_1, M_2$ y $M_3 \in \N$ tales que
+\begin{alignat}{2}
+\abs{\lambda_n - \lambda} < \frac{\varepsilon}{2(\Norm{x}+1)},&& \mbox{ si }&  n \geq M_1; \label{Eq:LimProd1}\\
+\Norm{x_n-x} < \frac{\varepsilon}{2(\abs{\lambda}+1)},\;\,&& \mbox{ si }&  n \geq M_2 \mbox{ y }\label{Eq:LimProd2}\\
+\Norm{x_n-x}<1,\;\;\;\;\;\;\,&&\mbox{ si }&n\geq M_3.\label{Eq:LimProd3}
+\end{alignat}
+ 
+Por la desigualdad del triángulo, (\ref{Eq:LimProd3}) equivale a que $\Norm{x_n} < \Norm{x}+1$ si $n \geq M_3$. Así pues, tomando $n \geq \max(M_1, M_2, M_3)$ se sigue que
+\Ecu{
+\Norm{\lambda_n x_n - \lambda x} & = \Norm{\lambda_n x_n - \lambda x_n + \lambda x_n  - \lambda x} \\
+& \leq  \Norm{\lambda_n x_n - \lambda x_n} + \Norm{\lambda x_n  - \lambda x} \\
+& =  \abs{\lambda_n - \lambda}\Norm{x_n} + \abs{\lambda}\Norm{x_n - x} \\
+& \leq \abs{\lambda_n - \lambda}(\Norm{x}+1) + (\abs{\lambda}+1)\Norm{x_n - x} \\
+& < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+}
 \end{Dem}
 
 \begin{Cor}
@@ -788,11 +802,42 @@ Veamos ahora que $\Norm{\cdot}_\infty$ es una norma en $\K^n$. Para eso, notemos
 
 En adelante, cuando trabajemos en $\K^n$ con la norma $\Norm{\cdot}_p$, lo denotaremos por $\ell_p^n$. Si hace falta especificar el campo se denotará por $\ell_p^n(\K)$. 
 
-En el caso particular $p=2$, notemos que la norma $\Norm{\cdot}_2$ en $\K^n$ es precisamente la norma euclidiana. A continuación probaremos que $\ell_2^n$ es un espacio de Banach haciendo uso del teorema de Heine-Borel en $ell_2^1(\K) = \K$.
+\begin{Obs}
+\hfill
+\begin{itemize}
+\item En el caso particular $p=2$, notemos que la norma $\Norm{\cdot}_2$ en $\K^n$ es precisamente la norma euclidiana. 
+\item Cuando $n=1$, todas las normas $\Norm{\cdot}_p$ coinciden con $\abs{\cdot}$. Siempre que trabajemos con $\K$ como espacio normado, será con esta norma y cuando trabajemos con $\K$ como espacio topológico, será con la topología original inducida por tal normal.
+\end{itemize}
+\end{Obs}
+
+\begin{Prop} \label{Prop:RectanguloCirculo}
+Las topologías producto de $\K \times \K$ coincide con la topología euclidiana $\K^2$. 
+\end{Prop}
+
+\begin{Dem}
+Sea $U \times V$ un abierto básico en la topología producto $\K \times \K$ tales que $U$, $V$ son abiertos en $\K$. Tomemos $(x, y) \in U \times V$, de manera que $x \in U$ y $y \in V$, de donde existe $r > 0$ tal que $V_r(x) \subseteq U$ y $V_r(y) \subseteq V$. Luego, si $(x^\prime, y^\prime) \in V_{r}(x, y)$, entonces $$\abs{x- x^\prime} \leq \Norm{(x, y) - (x^\prime, y^\prime)}_2 < r \;\mbox{ y }\;\abs{y- y^\prime} \leq \Norm{(x, y) - (x^\prime, y^\prime)}_2 < r,$$ de tal manera que $x^\prime \in V_r(x) \subseteq U$, $y^\prime \in V_r(y) \subseteq V$ y así $(x^\prime, y^\prime
+) \in U \times V$. Es decir, $V_r(x, y) \subseteq U \times V$ y $U \times V$ es abierto en la topología euclidiana.
+
+Ahora tomemos $V_r(x_0, y_0)$ un abierto básico en la topología euclidiana para algunos $x_0, y_0 \in \R$ y algún $r > 0$. Sea $(x, y) \in V_r(x_0, y_0)$, de manera que $$s = \frac{r- \Norm{(x_0, y_0) - (x, y)}_2}{\sqrt{2}} > 0.$$  
+
+Mostremos que $V_s(x) \times V_s(y) \subseteq V_r(x_0, y_0)$. Sea pues $(x^\prime, y^\prime) \in V_s(x) \times V_s(y)$. Entonces 
+\Ecu{
+\Norm{ (x_0, y_0) - (x^\prime, y^\prime)}_2 &\leq \Norm{ (x_0, y_0) - (x, y)}_2 + \Norm{ (x, y) - (x^\prime, y^\prime)}_2 \\
+&= \Norm{ (x_0, y_0) - (x, y)}_2 + \sqrt{\abs{x - x^\prime}^2 + \abs{y - y^\prime}^2} \\
+&< \Norm{ (x_0, y_0) - (x, y)}_2 + \sqrt{s^2 + s^2}  \\
+&= \Norm{ (x_0, y_0) - (x, y)}_2 + s\sqrt{2}  = r. 
+}
+
+Por lo tanto $V_r(x_0, y_0)$ es abierto en la topología producto.
+\end{Dem}
+
+El teorema de Heine-Borel es un resultado del axioma del supremo de los números reales, en el cual recae la completitud de $\R$. 
 
 \begin{Tma} \label{Tma:HeineBorel} \textbf{(Heine-Borel)}
 Para todos $a, b \in \R$ con $a \leq b$, el intervalo $[a, b]$ es compacto. 
 \end{Tma}
+
+El siguiente teorema es resultado de Heine-Borel y nos será de ayuda al momento de probar que $\ell_2^n$ es completo.
 
 \begin{Tma} \label{Tma:HeineBorelGeneral} 
 Sea $A \subseteq \ell_2^n(\K)$. Son equivalentes:
@@ -814,7 +859,7 @@ El espacio normado $\ell_2^n$ es completo.
 Sea $(x_m)_{m\in \N}$ una sucesión de Cauchy. El lema~\ref{Lema:SucesionesDeCauchySonAcotadas} indica que $\{ x_m : m \in \N \}$ es un conjunto acotado por alguna constante $M \in\N$. Como la bola $B_M(0)$ es cerrada y acotada en $\ell_2^n$, el teorema de Heine-Borel señala que $B_M(0)$ es compacto. Dado que $(x_m)_{m\in\N} \subseteq B_M(0)$ y este conjunto es compacto, el teorema~\ref{Tma:CaracterizacionCompacidadSucesiones} dice que existe una subsucesión $(x_{k_m})_{m \in \N}$ de $(x_m)_{m\in\N}$ que converge a algún $x \in B_M(0) \subseteq X$. Del lema~\ref{Lema:SucesionCauchyConSubsucesionConvergenteConverge} se sigue que $x_m \to x$.
 \end{Dem}
 
-Más adelante probaremos que no sólo $\ell_2^n$ es completo, sino que el resto de los espacios $\ell_p^n$ también lo son.
+El teorema anterior muestra que $\K$ con la norma $\abs{\cdot}$ es un espacio de Banach.
 
 \begin{Ejem}
 Denotemos por $\K^\N$ al espacio de sucesiones en $\K$. Definamos para $1 \leq p < \infty$ las funciones $\Norm{\cdot}_p : \K^\N \to [0, \infty]$ y $\Norm{\cdot}_\infty : \K^\N \to [0, \infty]$ por $$\Norm{(x_1, x_2, \ldots)}_p = \left(  \sum_{i=1}^\infty \abs{x_i}^p \right)^{\frac{1}{p}} \mbox{  y  } \Norm{(x_1, x_2, \ldots)}_\infty = \sup_{i \in \N} \,  \abs{x_i},$$
@@ -858,18 +903,7 @@ Para cada $p \in [1, \infty]$, la función $\Norm{\cdot}_p$ es una norma en $\ell
 Además, observemos que para cada $p \in [1, \infty]$, se tiene que $\abs{x_n} \leq \Norm{x}_p$ para todo $n \in \N$.
 \end{Dem}
 
-\begin{Prop}
-Para cada $p \in [1, \infty]$, $\ell_p$ es un espacio de Banach.
-\end{Prop}
-
-\begin{Dem}
-Como cada elemento en $\ell_p$ es una sucesión en $\K$, usaremos la notación de funciones en $\ell_p$. Tomemos pues una sucesión de Cauchy $(f_n)_{n \in\N}$ en $\ell_p$. Dado $k \in \N$, notemos que $(f_n(k))_{n\in \N}$ es una sucesión de Cauchy en $\K$, pues dado $\varepsilon > 0$, existe $N \in \N$ tal que si $n, m \geq N$ entonces
-$$\abs{f_n(k) - f_m(k)} \leq \Norm{f_n - f_m} < \varepsilon.$$
-
-Así pues, como $\K$ con la norma euclidiana es completo, se sigue que para toda $k\in\N$, $(f_n(k))_{n\in \N}$ converge a algún $x_k \in \K$. Consideremos $f: \N \to \K$ definida por $f(k) = x_k$ para todo $k\in\N$. 
-
-Demostremos que $f_n \to f$. Para eso separemos en dos casos. Cuando $1 \leq p < \infty$, tenemos que 
-\end{Dem}
+Más adelante probaremos que no sólo $\ell_2^n$ es completo, sino que el resto de los espacios $\ell_p^n$ y $\ell_p$ también lo son.
 
 \subsection{Espacio dual.}
 
@@ -1329,7 +1363,13 @@ Supongamos que $\tau$ es una topología de un espacio vectorial $E$ sobre $\K$ ta
 \item \textbf{b)} Las operaciones de espacio vectorial $+ : E\times E \to E$ y $\BD: \K \times E \to E$ son continuas. Naturalmente, en $E\times E$ y en $\K \times E$ consideramos las correspondientes topologías producto. 
 \end{itemize}
 
-En este caso decimos que $\tau$ es una \textit{topología vectorial} y que $E$ es un \textit{espacio vectorial topológico}. \\
+En este caso decimos que $\tau$ es una \textit{topología vectorial} y que $E$ es un \textit{espacio vectorial topológico}. 
+
+\begin{Ejem} \label{Ejem:CampoEsEVT}
+Veamos que $\K$ es un espacio vectorial topológico. Como $\K$ con $\abs{\cdot}$ es un espacio normado, entonces es Hausdorff. Mostremos ahora que las funciones $+ : \K \times \K \to \K$  y $\BD: \K \times \K \to \K$ son continuas. 
+
+En la proposición~\ref{Prop:RectanguloCirculo} se verificó que la topología de $\K \times \K$ está inducida por la norma $\Norm{\cdot}_2$, por lo que para ver que $+$ y $\BD$ son continuas, basta mostrar que son continuas por sucesiones. Así pues, sea $(x_n, y_n)_{n\in\N}$ una sucesión en $\K \times \K$ que converge a $(x, y) \in \K\times \K$. Como las sucesiones son redes, la proposición\ref{Prop:ConvergenciaPorComponentes} indica que $x_n \to x$ y $y_n \to y$. Luego, la proposición~\ref{Prop:LimiteDeSumaSucesion} asegura que $+(x_n, y_n)_{n \in\N} = (x_n + y_n)_{n \in\N}$ y $\BD(x_n, y_n)_{n \in\N} = (x_n \BD y_n)_{n \in\N}$ convergen a $+(x, y) = x+y$ y $\BD(x, y) = x \BD y$ respectivamente.
+\end{Ejem}
 
 Sea $X$ un espacio vectorial  y $x_1, \ldots, x_n \in X$, $n \in \N$. El espacio generado por un conjunto $A \subseteq X$ se denotará por $\mbox{span}\, A$ y está definido como  $$\mbox{span} \, A  : = \left\{ \sum_{i=1}^n a_i x_i : n\in \N,  a_1, \ldots, a_n  \in \K, x_1, \ldots, x_n \in A \right\}.$$
 
@@ -1582,7 +1622,7 @@ Tomemos $z \in U_{x, p_1, \ldots, p_k, \varepsilon}$. Entonces para $1 \leq i \l
 Si la red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ converge en la topología $\sigma(X, \F)$, su límite lo denotamos por $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} x_\alpha$. En el caso particular de una sucesión $(x_n)_{n \in \N}$ denotamos el límite de la sucesión por $\sigma(X, \F)$-$\lim_{n \to \infty} x_n$. La siguiente proposición indica una caracterización de las sucesiones  convergentes bajo la topología $\sigma(X, \F)$.
 
 \begin{Prop} \label{Prop:CaracterizacionConvergenciaDebilSeminorma}
-Sean $X$ un espacio vectorial, $\F$ una familia no vacía de seminormas, $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ una red en $X$ y $x \in X$. Entonces $\sigma(X, \F)$-$\displaystyle\lim_{\alpha \in \Lambda} x_\alpha = x$ si, y sólo si $\displaystyle\lim_{\alpha \in \Lambda} p(x_\alpha -x) = 0$ para toda $p \in \F$.
+Sean $X$ un espacio vectorial, $\F$ una familia no vacía de seminormas en $X$, $(x_\alpha)_{\alpha \in \Lambda}$ una red en $X$ y $x \in X$. Entonces $$\sigma(X, \F)\mbox{-}\lim_{\alpha \in \Lambda} x_\alpha = x \mbox{ si, y sólo si } \lim_{\alpha \in \Lambda} p(x_\alpha -x) = 0 \mbox{ para toda }p \in \F.$$
 \end{Prop} 
  
 \begin{Dem}
@@ -1609,7 +1649,6 @@ Si $X$ es un espacio vectorial y $\F$ una familia de seminormas que separa punto
 \end{Tma}
 
 \begin{Dem}
-
 Sean $x_1, x_2 \in X$ distintos. Como $x_1 - x_2 \neq 0$ y $\F$ separa puntos de $X$, existe $p \in \F$ tal que $p(x_1-x_2) \neq 0$. Sea $\varepsilon = \frac{p(x_1 - x_2)}{2}$ y definamos los abiertos en $X$
 $$V := U_{x_1, p, \varepsilon} \mbox{ y } W := U_{x_2, p. \varepsilon}.$$
 
@@ -1778,9 +1817,20 @@ Sea $E$ un espacio vectorial topológico de dimensión finita $n \in \N$. Dado que
 
 Del resultado anterior se sigue inmediatamente que los espacios de dimensión finita $\ell^n_p$ son completos.
 
-\begin{Cor}
-Sean $n \in \N$ y $p \in [1,\infty]$. Entonces $\ell^n_p$ es un espacio de Banach. 
-\end{Cor}
+\begin{Prop}
+Para cada $p \in [1, \infty]$, $\ell_p$ es un espacio de Banach.
+\end{Prop}
+
+\begin{Dem}
+Como cada elemento en $\ell_p$ es una sucesión en $\K$, usaremos la notación de funciones en $\ell_p$. Tomemos pues una sucesión de Cauchy $(f_n)_{n \in\N}$ en $\ell_p$. Dado $k \in \N$, notemos que $(f_n(k))_{n\in \N}$ es una sucesión de Cauchy en $\K$, pues dado $\varepsilon > 0$, existe $N \in \N$ tal que si $n, m \geq N$ entonces
+$$\abs{f_n(k) - f_m(k)} \leq \Norm{f_n - f_m} < \varepsilon.$$
+
+Así pues, como $\K$ con la norma euclidiana es completo, se sigue que para toda $k\in\N$, $(f_n(k))_{n\in \N}$ converge a algún $x_k \in \K$. Consideremos $f: \N \to \K$ definida por $f(k) = x_k$ para todo $k\in\N$. 
+
+Demostremos que $f_n \to f$. Para eso separemos en dos casos. Cuando $1 \leq p < \infty$, tenemos que 
+
+(Pendiente).
+\end{Dem}
 
 \begin{Cor} \label{Cor:SubespacioDimensionFinitaCerrado}
 Sea $E$ un espacio vectorial topológico. Si $F$ es un subespacio de dimensión finita de $E$, entonces $F$ es cerrado en $E$.
@@ -2183,9 +2233,9 @@ $$\int_E f \, d \mu := \sum_{i=1}^n \mu(E\cap E_i)x_i.$$
 \end{Def}
 
 \begin{Def}
-Una función $\mu$-medible $f: \Omega \to X$ es \textbf{Bochner integrable} si existe una sucesión de funciones simples $(f_n)_{n \in \N}$ tales que $$\lim_{n \to \infty} \int_{\Omega} \Norm{f_n(\omega) - f(\omega)} d\mu(\omega) = .0$$
+Una función $\mu$-medible $f: \Omega \to X$ es \textbf{Bochner integrable} si existe una sucesión de funciones simples $(f_n)_{n \in \N}$ tales que $$\lim_{n \to \infty} \int_{\Omega} \Norm{f_n(\omega) - f(\omega)} d\mu(\omega) = 0.$$
 
-en este caso $\int_{E} f d \mu$ se define para cada $E \in \sigma$ por $$\int_E f d \mu = \lim_{n \to \infty} \int_E f_n d \mu.$$
+En este caso $\int_{E} f d \mu$ se define para cada $E \in \Sigma$ por $$\int_E f d \mu = \lim_{n \to \infty} \int_E f_n d \mu.$$
 \end{Def}
 
 \begin{Prop}
