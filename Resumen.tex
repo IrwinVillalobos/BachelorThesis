@@ -1831,16 +1831,40 @@ Para cada $p \in [1, \infty]$, $\ell_p$ es un espacio de Banach.
 \end{Prop}
 
 \begin{Dem}
-Como cada elemento en $\ell_p$ es una sucesión en $\K$, usaremos la notación de funciones en $\ell_p$. Tomemos pues una sucesión de Cauchy $(f_n)_{n \in\N}$ en $\ell_p$. Dado $k \in \N$, notemos que $(f_n(k))_{n\in \N}$ es una sucesión de Cauchy en $\K$, pues dado $\varepsilon > 0$, existe $N \in \N$ tal que si $n, m \geq N$ entonces
-$$\abs{f_n(k) - f_m(k)} \leq \Norm{f_n - f_m} < \varepsilon.$$
 
-Así pues, como $\K$ con la norma euclidiana es completo, se sigue que para toda $k\in\N$, $(f_n(k))_{n\in \N}$ converge a algún $x_k \in \K$. Consideremos $f: \N \to \K$ definida por $f(k) = x_k$ para todo $k\in\N$. 
+Como cada elemento en $\ell_p$ es una sucesión en $\K$, usaremos la notación de funciones en $\ell_p$ y en $\ell_p^k$. Dado $k \in \N$, denotemos por $[k]$ al conjunto $\{1, \ldots, k\}$. De esta forma, si $f \in \K^\N$, cada $\restr{f}{[k]}$ es un elemento de $\K^k$. 
 
-Demostremos que $f_n \to f$. Para eso separemos en dos casos. Cuando $1 \leq p < \infty$, tenemos que (Pendiente).
+Tomemos pues una sucesión de Cauchy $(f_n)_{n \in\N}$ en $\ell_p$. Entonces para todo $k\in\N$, $(\restr{f_n}{[k]})_{n\in \N}$ es una sucesión de Cauchy en $\ell_{p}^k$, pues dado $\varepsilon > 0$, existe $N \in \N$ tal que si $n, m \geq N$ entonces
+$$\Norm{\restr{f_n}{[k]} - \restr{f_m}{[k]}}_p \leq \Norm{f_n - f_m}_p < \varepsilon.$$
 
-Mostremos ahora que $f_n \to f$ si por otro lado $p = \infty$. Como  
+Así pues, como $\ell_p^k$ con la norma euclidiana es completo, se sigue que para toda $k\in\N$, $(\restr{f_n}{[k]})_{n\in \N}$ converge a algún $(x_1, \ldots, x_k) \in \ell_p^k$. Consideremos $f: \N \to \K$ definida por $f(k) = x_k$ para todo $k\in\N$, de manera que $\restr{f_n}{[k]} \to \restr{f}{[k]}$.
 
-Por último probemos que $f \in \ell_p$ para todo $p \in [1, \infty]$, (Pendiente).
+Verifiquemos que $f$ está bien definida en todo $k \in \N$. Tomemos cualquier $k_0 \geq k$, como $(\restr{f_n}{[k_0]})_{n\in \N}$ es de Cauchy,  dado $\varepsilon > 0$, existe $N \in \N$ tal que si $n, m \geq N$ entonces
+$$\abs{f_n(k) - f_m(k)} \leq \Norm{\restr{f_n}{[k_0]} - \restr{f_n}{[k_0]}}_p < \varepsilon.$$
+
+Esto indica que $(f_n(k))_{k\in \N}$ es de Cauchy. Puesto que $\K$ es completo, se sigue que $(f_n(k))_{n\in \N}$ converge a $x_k \in \K$. Como $\K$ es Hausdorff, este límite es único sin importar la elección de $k_0$. Así que $f(k) = x_k$ está bien definido.
+
+Demostremos ahora que $f_n \to f$.  Sea $\varepsilon > 0$. Como $(f_n)_{n\in\N}$ es de Cauchy, existe $N \in\N$ tal que 
+\begin{equation} \label{Eq:ElleBanach1}
+\Norm{\restr{f_n}{[k]} - \restr{f_m}{[k]}}_p \leq \Norm{f_n - f_m}_p < \frac{\varepsilon}{4}, \mbox{ para todos } n, m \geq N \mbox{ y } k \in \N.
+\end{equation}
+
+Sean $n \geq N$ y $k \in\N$, como $\restr{f_n}{[k]} \to \restr{f}{[k]}$ existe $M \geq N$ tal que 
+\begin{equation} \label{Eq:ElleBanach2}
+\Norm{\restr{f_m}{[k]} - \restr{f}{[k]}}_p < \frac{\varepsilon}{4}, \mbox{ si } m \geq M.
+\end{equation}
+
+Así pues, de (\ref{Eq:ElleBanach1}) y (\ref{Eq:ElleBanach2}) se sigue que  
+\begin{equation*}
+\Norm{\restr{f_n}{[k]} - \restr{f}{[k]}}_p < \frac{\varepsilon}{2}, \mbox{ para todas } n\geq N \mbox{ y } k \in \N. 
+\end{equation*}
+
+El lema~\ref{Lema:LimiteElleP} indica que 
+\begin{equation} \label{Eq:ElleBanach3}
+\Norm{f_n - f}_p = \lim_{k\to \infty}\Norm{\restr{f_n}{[k]} - \restr{f}{[k]}}_p \leq \frac{\varepsilon}{2} < \varepsilon, \mbox{ si } n\geq N. 
+\end{equation}
+
+Esto es $f_n \to f$. Por último probemos que $f \in \ell_p$. Tomando $\varepsilon = 1$ existe $N \in \N$ tal que se satisface (\ref{Eq:ElleBanach3}), de forma que $f - f_N \in \ell_p$ y como $f_N \in \ell_p$ concluimos que $f = (f - f_N) + f_N \in \ell_p$.
 \end{Dem}
 
 \begin{Cor} \label{Cor:SubespacioDimensionFinitaCerrado}
