@@ -280,7 +280,7 @@ Sean $X$ un espacio topológico y $K \subseteq X$ compacto. Si $A \subseteq K$ es
 \end{Prop}
 
 \begin{Dem}
-Sea $\{ U_\alpha \}_{\alpha\in\Lambda}$ una cubierta abierta de $A$. Como $A$ es cerrado, entonces $A^\mathsf{c}$ es abierto. Así que  $\{ U_\alpha \}_{\alpha\in\Lambda} \cup \{ A^\mathsf{c} \}$ es una cubierta abierta de $X$ y por tanto también de $K$. Como $K$ es compacto, existe una subcubierta finita $\calC$ de $\{ U_\alpha \}_{\alpha\in\Lambda}\cup \{ A^\mathsf{c} \}$ que cubre a $K$ y como $A \subseteq K$, entonces $\calC$ también cubre a $A$. Por lo tanto, $\calC \setminus \{ A^\mathsf{c} \}$ es una subcubierta finita de $\{ U_\alpha \}_{\alpha\in\Lambda}$ que cubre a $A$.   
+Sea $\{ U_\alpha \}_{\alpha\in\Lambda}$ una cubierta abierta de $A$. Como $A$ es cerrado, entonces $A^\mathsf{c}$ es abierto. Así que  $\{ U_\alpha \}_{\alpha\in\Lambda} \cup \{ A^\mathsf{c} \}$ es una cubierta abierta de $X$ y por tanto también de $K$. Puesto que $K$ es compacto, existe una subcubierta finita $\calC$ de $\{ U_\alpha \}_{\alpha\in\Lambda}\cup \{ A^\mathsf{c} \}$ que cubre a $K$ y dado que $A \subseteq K$, entonces $\calC$ también cubre a $A$. Por lo tanto, $\calC \setminus \{ A^\mathsf{c} \}$ es una subcubierta finita de $\{ U_\alpha \}_{\alpha\in\Lambda}$ que cubre a $A$.   
 \end{Dem}
   
 \begin{Def}
@@ -599,6 +599,7 @@ Puesto que $K$ es completo, $(x_n)_{n\in\N}$ converge a algún $x \in K$. Sea $\a
 Es decir, $V_{2^{-N}}(x_N) \subseteq V_r(x) \subseteq U_{\alpha_0}$. De donde $V_{2^{-N}}(x_N) \cap K \subseteq U_{\alpha_0}$, lo cual es una contradicción.
 \end{Dem}
 
+A la propiedad \textbf{ii)} se le denomina compacidad por sucesiones.
 
 \begin{Def}
 Sea $M$ un espacio métrico. La \textit{distancia} de $x \in M$ a $A \subseteq M$ es $$d(x, A) := \inf \{ d(x,y) : y \in A \},$$ donde $\inf  \emptyset = \infty.$
@@ -613,6 +614,8 @@ Se demostrará por contrapositiva. Supongamos que $d(x, A) = 0$. Tomemos un abier
 \end{Dem}
 
 \section{Espacios normados.}
+
+A lo largo de este trabajo denotaremos por $\K$ al campo de los números reales o de los números complejos. 
 
 \begin{Def}
 Sea $X$ un espacio vectorial. Una \textit{norma} es una función $\Norm{\cdot}: X \to [0, \infty)$ tal que:
@@ -699,7 +702,7 @@ Sean $x, y \in A$, de tal manera que $Tx, Ty \in T(A)$, y $\lambda \in [0,1]$. C
 
 
 \begin{Prop} \label{Prop:CerraduraDeConvexoEsConvexa}
-Sea $X$ un espacio normado. Si $A \subseteq X$ es convexo, entonces $\ov{A}$ es convexa. (Cambié esta proposición de E.V.T. a espacios normados, porque se necesita en la demostración de Helly en la sección de espacio dual, ¿está bien?)
+Sea $X$ un espacio normado. Si $A \subseteq X$ es convexo, entonces $\ov{A}$ es convexa. 
 \end{Prop}
 
 \begin{Dem}
@@ -820,19 +823,19 @@ En adelante, cuando trabajemos en $\K^n$ con la norma $\Norm{\cdot}_p$, lo denot
 \begin{Obs}
 \hfill
 \begin{itemize}
-\item En el caso particular $p=2$, notemos que la norma $\Norm{\cdot}_2$ en $\K^n$ es precisamente la norma euclidiana. 
-\item Cuando $n=1$, todas las normas $\Norm{\cdot}_p$ coinciden con $\abs{\cdot}$. Siempre que trabajemos con $\K$ como espacio normado, será con esta norma y cuando trabajemos con $\K$ como espacio topológico, será con la topología original inducida por tal normal.
+\item La norma $\Norm{\cdot}_2$ en $\K^n$ es precisamente la norma euclidiana. Siempre que trabajemos en $\K^n$ como espacio normado, será con esta norma y cuando trabajemos con $\K^n$ como espacio topológico, será con la topología original inducida por esta norma.
+\item Cuando $n=1$, todas las normas $\Norm{\cdot}_p$ coinciden con $\abs{\cdot}$. Así que en $\K$ siempre consideraremos esta norma a menos que se indique lo contrario.
 \end{itemize}
 \end{Obs}
 
-\begin{Prop} \label{Prop:RectanguloCirculo}
-La topología producto de $\K^n$ coincide con la topología euclidiana en $\K^n$. 
-\end{Prop}
+\begin{Lema} \label{Lema:RectanguloCirculo}
+En $\K^n$, la topología producto coincide con la topología original. 
+\end{Lema}
 
 \begin{Dem}
-Sea $U = \prod_{i=1}^n U_i$ un abierto básico en la topología producto par algunos abiertos $U_1, \ldots, U_n$ en $\K$. Tomemos $x = (x_1, \ldots, x_n) \in U$, de manera que $x_i \in U_i$ para toda $i \in \nn{n}$. Para toda $1 \leq i \leq n$ existen $r_i > 0$ tales que $V_{r_i}(x_i) \subseteq U_i$. Definamos $r = \min(r_1, \ldots, r_n) > 0$. Sea $y = (y_1, \ldots, y_n) \in V_{r}(x)$, entonces para $i \in \nn{n}$, $\abs{x_i - y_i} \leq \Norm{x - y}_2 < r \leq r_i$, de tal forma que $y_i \in V_{r_i}(x_i) \subseteq U_i$ y así $y \in U$. Es decir, $V_r(x) \subseteq U$ y $U$ es abierto en la topología euclidiana.
+Sea $U = \prod_{i=1}^n U_i$ un abierto básico en la topología producto para algunos abiertos $U_1, \ldots, U_n$ en $\K$. Tomemos $x = (x_1, \ldots, x_n) \in U$, de manera que $x_i \in U_i$ para toda $i \in \nn{n}$. Para toda $1 \leq i \leq n$ existen $r_i > 0$ tales que $V_{r_i}(x_i) \subseteq U_i$. Definamos $r = \min(r_1, \ldots, r_n) > 0$. Sea $y = (y_1, \ldots, y_n) \in V_{r}(x)$. Entonces para $i \in \nn{n}$, $\abs{x_i - y_i} \leq \Norm{x - y}_2 < r \leq r_i$, de tal forma que $y_i \in V_{r_i}(x_i) \subseteq U_i$ y así $y \in U$. Es decir, $V_r(x) \subseteq U$ y $U$ es abierto en la topología euclidiana.
 
-Ahora tomemos $V_r(p)$ un abierto básico en la topología euclidiana para algunos $p = (p_1, \ldots, p_n) \in \K^n$ y $r > 0$. Sea $x \in V_r(p)$, de manera que $$s = \frac{r- \Norm{p - x}_2}{\sqrt{n}} > 0.$$  
+Ahora tomemos  un abierto básico $V_r(p)$ en la topología euclidiana, donde $p = (p_1, \ldots, p_n) \in \K^n$ y $r > 0$. Sea $x \in V_r(p)$, de manera que $s = \frac{r- \Norm{p - x}_2}{\sqrt{n}} > 0.$  
 
 Mostremos que $ \prod_{i=1}^n V_s(x_i) \subseteq V_r(p)$. Sea pues $y = (y_1, \ldots, y_n) \in  \prod_{i=1}^n V_s(x_i)$. Entonces $$\Norm{x - y}_2 =  \sqrt{\sum_{i=1}^n \abs{x_i - y_i}^2} <  \sqrt{n s^2} =  s\sqrt{n}.$$
 
@@ -841,16 +844,16 @@ De la desigualdad del triángulo se sigue que $$\Norm{p - y}_2 \leq \Norm{p - x}_
 Por lo tanto $V_r(p)$ es abierto en la topología producto.
 \end{Dem}
 
-El teorema de Heine-Borel es un resultado del axioma del supremo de los números reales, en el cual recae la completitud de $\R$. 
+El teorema de Heine-Borel es una consecuencia del axioma del supremo de los números reales. 
 
 \begin{Tma} \label{Tma:HeineBorel} \textbf{(Heine-Borel)}
 Para todos $a, b \in \R$ con $a \leq b$, el intervalo $[a, b]$ es compacto. 
 \end{Tma}
 
-El siguiente teorema es resultado de Heine-Borel y nos será de ayuda al momento de probar que $\ell_2^n$ es completo.
+El teorema de Heine-Borel nos permite demostrar el siguiente resultado.
 
 \begin{Tma} \label{Tma:HeineBorelGeneral} 
-Sea $A \subseteq \ell_2^n(\K)$. Son equivalentes:
+Sea $A \subseteq \K^n$. Son equivalentes:
 \begin{itemize}
 \item \textbf{i)} $A$ es cerrado y acotado.
 \item\textbf{ii)} $A$ es compacto.
@@ -858,9 +861,9 @@ Sea $A \subseteq \ell_2^n(\K)$. Son equivalentes:
 \end{Tma}
 
 \begin{Dem}
-Primero supongamos que $A$ es compacto. Como $\ell_2^n(\K)$ es Hausdorff, se sigue del corolario~\ref{Cor:HausdorffCompactoEsCerrado} que $A$ es cerrado. Como $\{ V_n(0) \}_{n \in \N}$ es una cubierta abierta de $A$, existe una subcubierta finita $\{ V_{n_1}(0), \ldots, V_{n_k}(0)\}$ de $A$ para algún $k \in \N$ y algunos $n_1, \ldots, n_k \in \N$. Sea $N = \max(n_1, \ldots, n_k)$, de manera que $A \subseteq \bigcup_{i=1}^k V_{n_i}(0) \subseteq V_N(0)$ y así $A$ es acotado. 
+Primero supongamos que $A$ es compacto. Se sigue del corolario~\ref{Cor:HausdorffCompactoEsCerrado} que $A$ es cerrado. Por otra parte, $\{ V_n(0) \}_{n \in \N}$ es una cubierta abierta de $A$. Así que existe una subcubierta finita $\{ V_{n_1}(0), \ldots, V_{n_k}(0)\}$ de $A$ para algún $k \in \N$ y algunos $n_1, \ldots, n_k \in \N$. Sea $N = \max(n_1, \ldots, n_k)$, de manera que $A \subseteq \bigcup_{i=1}^k V_{n_i}(0) \subseteq V_N(0)$ y así $A$ es acotado. 
 
-Ahora supongamos que $A$ es cerrado y acotado. Trabajemos primero el caso $\K = \R$. Como $A$ es acotado, existe $r > 0$ tal que $A \subseteq V_r(0)$. Por el teorema de Heine-Borel, el intervalo $[-r, r]$ es compacto y por el teorema de Tychonoff, $[-r, r]^n$ es compacto en $\R^n$. La proposición~\ref{Prop:RectanguloCirculo} indica que $[-r, r]$ es compacto en $\ell_2^n(\R)$. Dado que $A$ es cerrado, la proposición~\ref{Prop:CerradoEnCompactoEsCompacto} asegura que $A$ es compacto. 
+Ahora supongamos que $A$ es cerrado y acotado. Trabajemos primero el caso $\K = \R$. Como $A$ es acotado, existe $r > 0$ tal que $A \subseteq V_r(0)$. Por el teorema de Heine-Borel, el intervalo $[-r, r]$ es compacto y por el teorema de Tychonoff, $[-r, r]^n$ es compacto en $\R^n$. El lema~\ref{Lema:RectanguloCirculo} indica que $[-r, r]$ es compacto en $\ell_2^n(\R)$. Dado que $A$ es cerrado, la proposición~\ref{Prop:CerradoEnCompactoEsCompacto} asegura que $A$ es compacto. 
 
 Si por otro lado $\K = \C$, podemos identificar a $\K$ con $\ell_2^2(\R)$ pues $\abs{ai +b } = \Norm{(a, b)}_2$ para todo $a+ib \in \C$, por lo que $\ell_2^n(\C)$ estaría identificados con $\ell_2^{2n}(\R)$. Así que si $A \subseteq \ell_2^n(\C)$ fuese cerrado y acotado, por su identificación con el caso real, $A$ sería compacto. 
 \end{Dem}
@@ -948,7 +951,7 @@ $$\Norm{T} \geq \Norm{T\left(\frac{x}{\Norm{x}}\right)} = \frac{\Norm{Tx}}{\Norm
 Dado un espacio normado $X$, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \Norm{\cdot})^*$ o simplemente por $X^*$.  A los elementos de este espacio dual los llamamos \textit{funcionales lineales continuos}. Como $\K$ es completo, resulta que $X^* = \mathcal{L}(X, \K)$ es un espacio de Banach.  
 
 \begin{Ejem}
-Si $1 \leq p \leq \leq \infty$, al único elemento $q \in \R$ tal que $\frac{1}{p} + \frac{1}{q} = 1$ se le llama \textit{exponente conjugado} de $p$, donde $\frac{1}{\infty} = 0$. Mostremos que para $1 \leq p < \infty$, $(\ell_p)^* \simeq \ell_q$ y $\ell_1$ es isométricamente homeomorfo a un subespacio de $(\ell_\infty)^*$.  
+Si $1 \leq p \leq \infty$, al único elemento $q \in \R$ tal que $\frac{1}{p} + \frac{1}{q} = 1$ se le llama \textit{exponente conjugado} de $p$, donde $\frac{1}{\infty} = 0$. Mostremos que para $1 \leq p < \infty$, $(\ell_p)^* \simeq \ell_q$ y $\ell_1$ es isométricamente homeomorfo a un subespacio de $(\ell_\infty)^*$.  
 
 (Pendiente).
 \end{Ejem}
@@ -1237,7 +1240,7 @@ Al notar que $\varphi$ verifica \textbf{ii)} y \textbf{iii)} de la definición an
 Sean $X$ un espacio topológico y $(x_\alpha)_{\alpha \in \Lambda}$ una red en $X$. Decimos que $x \in X$ es un \textit{punto límite} de $(x_\alpha)_{\alpha \in \Lambda}$ si para toda vecindad abierta $V$ de $x$ y para toda $\alpha \in \Lambda$ existe $\beta \geq \alpha$ tal que $x_\beta \in V$.
 \end{Def}
 
-Observemos que para una red existen los conceptos de límite y punto límite. Hay que tener siempre en cuenta que son conceptos diferentes. Uno hace referencia al punto al cual puede converger la red y el otro a los puntos a los que pueden convergen sus subredes como lo muestra el siguiente lema.  
+Observemos que para una red existen los conceptos de límite y punto límite. Hay que tener siempre en cuenta que son conceptos diferentes. Uno hace referencia al punto al cual puede converger la red y el otro a los puntos a los que pueden converger sus subredes, como lo muestra el siguiente lema.  
 
 \begin{Lema} \label{Lema:LimiteSubredes}
 Si $X$ es un espacio topológico, entonces $x \in X$ es un punto límite de una red $(x_\alpha)_{\alpha\in\Lambda}$ en $X$ si, y sólo si $x$ es el límite alguna subred de $(x_\alpha)_{\alpha\in\Lambda}$. 
@@ -1278,19 +1281,26 @@ Supongamos ahora que $X$ no es compacto. Existe entonces una cubierta abierta $\
 \end{Dem}
 
 \begin{Def}
-Sea $A$ un conjunto. Una relación $\leq$ en $A$ es un \textit{orden parcial} si
+Sea $A$ un conjunto. Una relación $\leq$ en $A$ es un \textit{orden total} si
 \begin{itemize}
 \item \textbf{i)} Es \textit{reflexiva}, es decir, para cada $a \in a$ se tiene $a \leq a$.
-\item \textbf{ii)} Es \textit{transitiva}, es decir, para todas $a, b, c \in A$ se cumple que si $a \leq b$ y $b \leq c$,  entonces $a \leq c$.
-\item \textbf{iii)} Es \textit{antisimétrica}, es decir, si para algunos $a, b \in A$, se cumple que $a\leq b$ y $b \leq a$ entonces $a = b$.
+\item \textbf{ii)} Es \textit{transitiva}, es decir, para $a, b, c \in A$ se cumple que si $a \leq b$ y $b \leq c$,  entonces $a \leq c$.
+\item \textbf{iii)} Es \textit{antisimétrica}, es decir, si para $a, b \in A$, se cumple que $a\leq b$ y $b \leq a$ entonces $a = b$.
+\item \textbf{iv)} Es \textit{total}, es decir, para todos $a, b \in A$ se satisface que $a \leq b$ o que $b \leq a$.
 \end{itemize}
-En este caso, a la pareja $(A, \leq)$ se le denomina \textit{conjunto parcialmente ordenado}.
+En este caso, a la pareja $(A, \leq)$ se le denomina \textit{conjunto totalmente ordenado}. Si $(A, \leq)$ solamente cumple \textbf{i)}, \textbf{ii)} y \textbf{iii)}, entonces esta es un \textit{conjunto parcialmente ordenado} y a $\leq$ se le denomina \textit{orden parcial} en $A$.
 \end{Def}
+
+El lema de Zorn, enunciado a continuación, garantiza la existencia de elementos maximales en algunos conjuntos parcialmente ordenados. Este lema se considera en muchas circunstancias como un axioma por su equivalencia con el axioma de elección. 
+
+\begin{Lema} \textbf{(de Zorn)}
+Sea $A$ un conjunto no vacío. Si todo subconjunto no vacío y totalmente ordenado de $A$ tiene un elemento máximo, entonces $A$ tiene un elemento maximal.
+\end{Lema}
 
 \begin{Ejem}
 Sean $D$ y $B$ conjuntos no vacíos, entonces la colección $\mathcal{P}$ de funciones $f: A \to B$ con $A \subseteq D$ es un conjunto parcialmente ordenado con la relación $\leq$ tal que para $f, g \in\mathcal{P}$ se tenga que $$f \leq g \;\mbox{ si, y sólo si }\; \Dom f \subseteq \Dom g \mbox{ y } \restr{g}{\Dom f} = f.$$
 
-Notemos que
+Notemos que:
 \begin{itemize}
 \item[\textbf{i)}] Dado $f \in \mathcal{P}$, claramente se tiene que $ \Dom f \subseteq \Dom f$ y $\restr{f}{\Dom f} = f.$
 \item[\textbf{ii)}] Tomemos $f, g, h \in \mathcal{P}$ tales que $f \leq g$ y $g \leq h$. De que $\Dom f \subseteq \Dom g$ y $\Dom g \subseteq \Dom h$, se sigue que $\Dom f \subseteq \Dom h$. Además, puesto que $f = \restr{g}{\Dom f}$ y $ g = \restr{h}{\Dom g}$, se tiene que $$f = \restr{g}{\Dom f} = \restr{\left(\restr{h}{\Dom g}\right)}{\Dom f} = \restr{h}{\Dom f}.$$ Luego $f \leq h$.
@@ -1305,34 +1315,24 @@ Sean $D$ y $B$ conjuntos no vacíos y $\mathcal{P}$ la colección de funciones $f:
 \mbox{ para todas } f, g \in \mathcal{C}, \mbox{ se cumple que }f = g \mbox{ en } \Dom f \cap \Dom g.
 \end{equation}
 
-Sea $A = \bigcup_{f \in \mathcal{C}} \Dom f$, denotamos por $\bigcup_{f \in \mathcal{C}} f$ a la función $g: A \to B$ definida de la siguiente forma. Dado $a \in A$, existe $f \in \mathcal{C}$ tal que $a \in \Dom f$, de manera que definimos $g(a) = f(a)$. 
+Sea $A = \bigcup_{f \in \mathcal{C}} \Dom f$. Denotamos por $\bigcup_{f \in \mathcal{C}} f$ a la función $g: A \to B$ definida de la siguiente forma. Dado $a \in A$, existe $f \in \mathcal{C}$ tal que $a \in \Dom f$, de manera que definimos $g(a) = f(a)$. 
 
 Notemos que la propiedad (\ref{Eq:PropiedadUnionFunciones}) indica que $g$ está bien definida en todo $A$. 
 \end{Def}
 
 \begin{Def}
-Un conjunto parcialmente ordenado $(A, \leq)$ es un \textit{conjunto totalmente ordenado} si cumple que para todos $a, b \in A$ se satisface que $a \leq b$ o que $b \leq a$. En este caso a $\leq$ se le denomina \textit{orden total} en $A$.
-\end{Def}
-
-El lema de Zorn, enunciado a continuación, garantiza la existencia de elementos maximales en algunos conjuntos parcialmente ordenados. Este lema se considera en muchas circunstancias como un axioma por su equivalencia con el axioma de elección. 
-
-\begin{Lema} \textbf{(de Zorn)}
-Sea $A$ un conjunto no vacío. Si todo subconjunto no vacío y totalmente ordenado de $A$ tiene un elemento máximo, entonces $A$ tiene un elemento maximal.
-\end{Lema}
-
-\begin{Def}
 Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$. 
 \begin{itemize}
 \item \textbf{i)} Un \textit{miembro parcialmente definido} de $\prod_{i \in I} X_i$ es cualquier elemento $g$ en $\prod_{j \in J} X_j$ para algún $J \subseteq I$ no vacío.
-\item \textbf{ii)} Dada una red $(f_\alpha)_{\alpha \in \Lambda}$ en $\prod_{i \in I} X_i$, decimos que un miembro parcialmente definido $g$ de $\prod_{i \in I} X_i$ con $\Dom g = J$ es un \textit{punto límite parcial} de $(f_\alpha)_{\alpha \in \Lambda}$ si $g$ es un punto límite de la red $(\restr{f_\alpha}{J})_{\alpha \in \Lambda}$ en $\prod_{j\in J}X_j$.
+\item \textbf{ii)} Dada una red $(f_\alpha)_{\alpha \in \Lambda}$ en $\prod_{i \in I} X_i$, decimos que un miembro parcialmente definido $g$ de $\prod_{i \in I} X_i$ con $\Dom g = J$ es un \textit{punto límite parcial} de $(f_\alpha)_{\alpha \in \Lambda}$, si $g$ es un punto límite de la red $(\restr{f_\alpha}{J})_{\alpha \in \Lambda}$ en $\prod_{j\in J}X_j$.
 \end{itemize}
 \end{Def}
 
 Para evitar ambigüedades al trabajar con las proyecciones, denotaremos por $\pi_{J, i}$ a la proyección de dominio $\prod_{j \in J} X_j$ tal que $\pi_{J, i}(f) = f(i)$ para algún $J \subseteq I$ y $i \in J$.
 
-\begin{Prop} \label{Prop:PuntoLimiteParcialIndividual}
+\begin{Lema} \label{Lema:PuntoLimiteParcialIndividual}
 Sean $I$ un conjunto no vacío, $X_i$ un espacio topológico para cada $i \in I$ y $(f_\alpha)_{\alpha \in \Lambda}$ una red en $\prod_{i\in I} X_i$. Si para algún $j \in I$ se tiene que $x \in X_{j}$ es un punto límite de $(f_\alpha(j))_{\alpha \in \Lambda}$, entonces $g: \{ j \} \to \bigcup_{i \in I} X_i$, definida por $g(j) = x$, es un punto límite parcial de $(f_\alpha)_{\alpha \in \Lambda}$.
-\end{Prop}
+\end{Lema}
 
 \begin{Dem}
 Tomemos $\pi_{\{j\}, j}^{-1}(U)$ una vecindad básica de $g$ para alguna a vecindad abierta $U$ de $x$ en $X_j$. Como $x$ es punto límite de $(f_\alpha(j))_{\alpha \in \Lambda}$, existe $\alpha_0 \in \lambda$ tal que si $\alpha \geq \alpha_0$, entonces $\pi_{\{j\}, j}(\restr{f_\alpha}{\{j \}}) = f_\alpha(j) \in U$, es decir $\restr{f_\alpha}{\{j \}} \in \pi_{\{j\},j}^{-1}(U)$. Así que $g$ es punto límite parcial  de $(f_\alpha)_{\alpha \in \Lambda}$.
@@ -1343,7 +1343,7 @@ Sean $I$ un conjunto no vacío, $X_i$ un espacio topológico para todo $i \in I$, 
 \end{Prop}
 
 \begin{Dem}
-Sea $h = \bigcup_{g \in \mathcal{C}} g$ y $J = \Dom g$. Consideremos una vecindad abierta $\bigcap_{k=1}^n \pi_{J, j_k}^{-1}(U_k)$ de $h$ para algunos $n \in \N$, $j_1, \ldots, j_n \in J$ y $U_1, \ldots, U_n$ abiertos en $X_{j_1}, \ldots, X_{j_n}$ respectivamente. Fijemos $k \in \nn{n}$ por un momento. Sea $g_k \in \calC$ tal que $j_k \in \Dom g_k$. Denotemos a $\Dom g_k$ por $J_k$. Dado que $h \in \pi_{J, j_k}^{-1}(U_k)$, se sigue que $$\displaystyle\pi_{J_k, j_k}(g_k)  =  g_k(j_k) = h(j_k) = \pi_{J, j_k}(h) \in U_k.$$
+Sean $h = \bigcup_{g \in \mathcal{C}} g$ y $J = \Dom h$. Consideremos una vecindad abierta $\bigcap_{k=1}^n \pi_{J, j_k}^{-1}(U_k)$ de $h$ para algunos $n \in \N$, $j_1, \ldots, j_n \in J$ y $U_1, \ldots, U_n$ abiertos en $X_{j_1}, \ldots, X_{j_n}$ respectivamente. Fijemos $k \in \nn{n}$ por un momento. Sea $g_k \in \calC$ tal que $j_k \in J_k$, donde $J_k = Dom g_k$. Dado que $h \in \pi_{J, j_k}^{-1}(U_k)$, se sigue que $$\displaystyle\pi_{J_k, j_k}(g_k)  =  g_k(j_k) = h(j_k) = \pi_{J, j_k}(h) \in U_k.$$
 
 De esto resulta que  $g_k \in \pi_{J_k, j_k}^{-1}(U_k)$ y  como $g_k$ es punto límite de $(\restr{f_\alpha}{J_k})_{\alpha \in \Lambda}$, existe $\alpha_k \in \Lambda$ tal que $\restr{f_\alpha}{J_k} \in \pi_{J_k, j_k}^{-1}(U_k)$ siempre que $\alpha \geq \alpha_k$. Es decir, si $\alpha \geq \alpha_k$, entonces $$\restr{f_\alpha}{J} (j_k) = \restr{f_\alpha}{J_k} (j_k) = \pi_{J_k, j_k}\left(\restr{f_\alpha}{J_k}\right)  \in U_k,$$ 
 o bien, $\restr{f_\alpha}{J} \in \pi_{J, j_k}^{-1}(U_k)$ para $\alpha \geq \alpha_k$. Tomando $\beta \in \Lambda$ tal que $\beta \geq \alpha_k$ para toda $k \in \nn{n}$, se obtiene que $\restr{f_\alpha}{J} \in \bigcap_{k=1}^n \pi_{J, j_k}^{-1}(U_k)$ y por lo tanto $h$ es punto límite de $(\restr{f_\alpha}{J})_{\alpha \in \Lambda}$.
@@ -1358,16 +1358,14 @@ Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$.
 \begin{Dem}
 Sea $(f_\alpha)_{\alpha \in \Lambda}$ una red en $X = \prod_{i \in I} X_i$. Demostremos que $(f_\alpha)_{\alpha \in \Lambda}$ tiene un punto límite. De esta manera por el teorema~\ref{Tma:CompacidadPorConvergenciaDeSubredes} y el lema~\ref{Lema:LimiteSubredes} se concluiría que $\prod_{i \in I} X_i$ es un espacio compacto.
 
-Sea $\mathcal{Q}$ la colección de puntos límite parciales de $(f_\alpha)_{\alpha \in \Lambda}$. Entonces $\mathcal{Q}$ es un conjunto parcialmente ordenado con el orden de extensión de funciones. Veamos que $\mathcal{Q}$ es no-vacío. Fijemos $i_0 \in I$ cualquiera. Entonces $(f_\alpha(i_0))_{\alpha \in \Lambda}$ es un red en $X_{i_0}$. Como $X_{i_0}$ es compacto, $(f_\alpha(i_0))_{\alpha \in \Lambda}$ tiene alguna subred que converge a algún $p \in X_{i_0}$. Por el lema~\ref{Lema:LimiteSubredes}, se sigue que $p$ es un punto límite de $(f_\alpha(i_0))_{\alpha \in \Lambda}$. Definamos $g: \{ i_0 \} \to \bigcup_{i\in I} X_i$ por $g(i_0) = p$. La proposición~\ref{Prop:PuntoLimiteParcialIndividual} indica que $g$ es punto límite parcial de $(f_\alpha)_{\alpha \in \Lambda}$ y así $\mathcal{Q} \neq \emptyset$.    
+Sea $\mathcal{Q}$ la colección de puntos límite parciales de $(f_\alpha)_{\alpha \in \Lambda}$. Entonces $\mathcal{Q}$ es un conjunto parcialmente ordenado con el orden de extensión de funciones. Veamos que $\mathcal{Q}$ es no-vacío. Fijemos $i_0 \in I$ cualquiera. Entonces $(f_\alpha(i_0))_{\alpha \in \Lambda}$ es un red en $X_{i_0}$. Como $X_{i_0}$ es compacto, $(f_\alpha(i_0))_{\alpha \in \Lambda}$ tiene alguna subred que converge a algún $p \in X_{i_0}$. Por el lema~\ref{Lema:LimiteSubredes}, se sigue que $p$ es un punto límite de $(f_\alpha(i_0))_{\alpha \in \Lambda}$. Definamos $g: \{ i_0 \} \to \bigcup_{i\in I} X_i$ por $g(i_0) = p$. El lema~\ref{Lema:PuntoLimiteParcialIndividual} indica que $g$ es punto límite parcial de $(f_\alpha)_{\alpha \in \Lambda}$ y así $\mathcal{Q} \neq \emptyset$.    
 
-Sea $\mathcal{C}$ un subconjunto totalmente ordenado no vacío de $\mathcal{Q}$. Sean $g_1, g_2 \in \calC$, como $\mathcal{C}$ es totalmente ordenado, podemos suponer sin perdida de generalidad de $g_1 \leq g_2$. Por lo que $\Dom g_1 \subseteq \Dom g_2$ y $g_1 = \restr{g_2}{\Dom g_1}$. Así que $g_1 = g_2$ en $\Dom g_1 = \Dom g_1 \cap \Dom g_2$. Esto indica que $\calC$ es extendible y así podemos definir $g_0 = \bigcup_{g \in \calC} g$. La proposición~\ref{Prop:PuntoLimiteParcialUnion} asegura que $g_0$ es un punto límite parcial de $(f_\alpha)_{\alpha \in \Lambda}$, de manera que $g_0 \in \calQ$. Claramente $g_0 \geq g$ para toda $g \in \calC$. Así que $\mathcal{C}$ tiene un elemento máximo. Por el lema de Zorn, se sigue que $\mathcal{Q}$ tiene un elemento maximal $g$ de dominio $J \subseteq I$.
+Sea $\mathcal{C}$ un subconjunto totalmente ordenado no vacío de $\mathcal{Q}$. Tomemos $g_1, g_2 \in \calC$. Como $\mathcal{C}$ es totalmente ordenado, podemos suponer sin perdida de generalidad de $g_1 \leq g_2$, por lo que $\Dom g_1 \subseteq \Dom g_2$ y $g_1 = \restr{g_2}{\Dom g_1}$. Así que $g_1 = g_2$ en $\Dom g_1 = \Dom g_1 \cap \Dom g_2$. Esto indica que $\calC$ es extendible y así podemos definir $g_0 = \bigcup_{g \in \calC} g$. La proposición~\ref{Prop:PuntoLimiteParcialUnion} asegura que $g_0$ es un punto límite parcial de $(f_\alpha)_{\alpha \in \Lambda}$, de manera que $g_0 \in \calQ$. Claramente $g_0 \geq g$ para toda $g \in \calC$. Así que $\mathcal{C}$ tiene un elemento máximo. Por el lema de Zorn, se sigue que $\mathcal{Q}$ tiene un elemento maximal $g$ de dominio $J \subseteq I$.
  
-Nuestro último paso es probar que $J = I$. Supongamos que $J \subsetneq I$, de forma que existe $j \in I \setminus J$. Como $X_j$ es compacto y $(f_\alpha(j))_{\alpha\in\Lambda}$ es una red en $X_j$, del teorema~\ref{Tma:CompacidadPorConvergenciaDeSubredes} y del lema~\ref{Lema:LimiteSubredes} se sigue que $q \in X_j$ un punto límite de $(f_\alpha(j))_{\alpha\in\Lambda}$. La proposición~\ref{Prop:PuntoLimiteParcialIndividual} indica que la función $h: \{ j \} \to \bigcup_{i\in I} X_i$ definida por $h(j) = q$ es un punto límite parcial de $(f_\alpha)_{\alpha\in\Lambda}$. Notemos que $\{ g, h \}$ es una familia de puntos límite parciales de $(f_\alpha)_{\alpha\in\Lambda}$ que es extendible, pues $\Dom g \cap \Dom h = J \cap \{ j \} = \emptyset$. Luego, la proposición~\ref{Prop:PuntoLimiteParcialUnion} indica que $g \cup h$ es un punto límite parcial de $(f_\alpha)_{\alpha\in\Lambda}$. Pero esto contradice que $g$ sea maximal en $\calQ$, pues $g \cup h \in \calQ$, $g \leq g \cup h$ y $g \neq g \cup h$. Así que $J = I$, por lo que $g$ es un punto límite de $(f_\alpha)_{\alpha \in\Lambda}$. 
+Nuestro último paso es probar que $J = I$. Supongamos que $J \subsetneq I$, de forma que existe $j \in I \setminus J$. Como $X_j$ es compacto y $(f_\alpha(j))_{\alpha\in\Lambda}$ es una red en $X_j$, del teorema~\ref{Tma:CompacidadPorConvergenciaDeSubredes} y del lema~\ref{Lema:LimiteSubredes} se sigue que $q \in X_j$ un punto límite de $(f_\alpha(j))_{\alpha\in\Lambda}$. El lema~\ref{Lema:PuntoLimiteParcialIndividual} indica que la función $h: \{ j \} \to \bigcup_{i\in I} X_i$ definida por $h(j) = q$ es un punto límite parcial de $(f_\alpha)_{\alpha\in\Lambda}$. Notemos que $\{ g, h \}$ es una familia de puntos límite parciales de $(f_\alpha)_{\alpha\in\Lambda}$ que es extendible, pues $\Dom g \cap \Dom h = J \cap \{ j \} = \emptyset$. Luego, la proposición~\ref{Prop:PuntoLimiteParcialUnion} indica que $g \cup h$ es un punto límite parcial de $(f_\alpha)_{\alpha\in\Lambda}$. Pero esto contradice que $g$ sea maximal en $\calQ$, pues $g \cup h \in \calQ$, $g \leq g \cup h$ y $g \neq g \cup h$. Así que $J = I$, por lo que $g$ es un punto límite de $(f_\alpha)_{\alpha \in\Lambda}$. 
 \end{Dem}
 
 \section{Espacios vectoriales topológicos.}
-
-A lo largo de este trabajo denotaremos por $\K$ el campo de los números reales o de los números complejos. 
 
 Supongamos que $\tau$ es una topología de un espacio vectorial $E$ sobre $\K$ tal que:
 \begin{itemize}
@@ -1380,7 +1378,7 @@ En este caso decimos que $\tau$ es una \textit{topología vectorial} y que $E$ es
 \begin{Ejem} \label{Ejem:CampoEsEVT}
 Veamos que $\K$ es un espacio vectorial topológico. Como $\K$ con $\abs{\cdot}$ es un espacio normado, entonces es Hausdorff. Mostremos ahora que las funciones $+ : \K \times \K \to \K$  y $\BD: \K \times \K \to \K$ son continuas. 
 
-En la proposición~\ref{Prop:RectanguloCirculo} se verificó que la topología de $\K \times \K$ está inducida por la norma $\Norm{\cdot}_2$, por lo que para ver que $+$ y $\BD$ son continuas, basta mostrar que son continuas por sucesiones. Así pues, sea $(x_n, y_n)_{n\in\N}$ una sucesión en $\K \times \K$ que converge a $(x, y) \in \K\times \K$. Como las sucesiones son redes, la proposición\ref{Prop:ConvergenciaPorComponentes} indica que $x_n \to x$ y $y_n \to y$. Luego, la proposición~\ref{Prop:LimiteDeSumaSucesion} asegura que $+(x_n, y_n)_{n \in\N} = (x_n + y_n)_{n \in\N}$ y $\BD(x_n, y_n)_{n \in\N} = (x_n \BD y_n)_{n \in\N}$ convergen a $+(x, y) = x+y$ y $\BD(x, y) = x \BD y$ respectivamente.
+En el lema~\ref{Lema:RectanguloCirculo} se verificó que la topología de $\K \times \K$ está inducida por la norma $\Norm{\cdot}_2$, por lo que para ver que $+$ y $\BD$ son continuas, basta mostrar que son continuas por sucesiones. Así pues, sea $(x_n, y_n)_{n\in\N}$ una sucesión en $\K \times \K$ que converge a $(x, y) \in \K\times \K$. Como las sucesiones son redes, la proposición\ref{Prop:ConvergenciaPorComponentes} indica que $x_n \to x$ y $y_n \to y$. Luego, la proposición~\ref{Prop:LimiteDeSumaSucesion} asegura que $+(x_n, y_n)_{n \in\N} = (x_n + y_n)_{n \in\N}$ y $\BD(x_n, y_n)_{n \in\N} = (x_n \BD y_n)_{n \in\N}$ convergen a $+(x, y) = x+y$ y $\BD(x, y) = x \BD y$ respectivamente.
 \end{Ejem}
 
 Sea $X$ un espacio vectorial  y $x_1, \ldots, x_n \in X$, $n \in \N$. El espacio generado por un conjunto $A \subseteq X$ se denotará por $\mbox{span}\, A$ y está definido como  $$\mbox{span} \, A  : = \left\{ \sum_{i=1}^n a_i x_i : n\in \N,  a_1, \ldots, a_n  \in \K, x_1, \ldots, x_n \in A \right\}.$$
@@ -1551,13 +1549,13 @@ Sean $X$ un espacio vectorial y $p$ una seminorma. Entonces
 \end{Dem}
 
 \begin{Def}
-Sean $X$ un espacio vectorial sobre $\K$ y $ \mathcal{F}$ una familia no vacía de seminormas en $X$. Diremos que $\mathcal{F}$ \textit{separa puntos} en $X$, si para cada $x \in X \setminus \{ 0 \}$  existe $p \in \mathcal{F}$ tal que $p(x) \neq 0$.  
+Sean $X$ un espacio vectorial sobre $\K$ y $ \mathcal{F}$ una familia de seminormas en $X$. Diremos que $\mathcal{F}$ \textit{separa puntos} en $X$, si para cada $x \in X \setminus \{ 0 \}$  existe $p \in \mathcal{F}$ tal que $p(x) \neq 0$.  
 \end{Def}
 
 \begin{Ejem} \label{Ejem:EVTFamiliaFuncionales}
 Sea $A$ un conjunto no-vacío. Entonces $X := F(A,\K)$ es un espacio vectorial. Para cada $a \in A$, sea $\delta_a : X \to \K$ la función definida por $\delta_a(f) = f(a)$. 
 
-Fijemos $a \in A$  y notemos que 
+Fijemos $a \in A$  y notemos que: 
 \begin{itemize}
 \item[\textbf{i)}] Sean $f, g \in X$, entonces 
 $$\delta_a(f+g) = f(a) + g(a) = \delta_a(f) + \delta_a(g).$$
@@ -1703,9 +1701,9 @@ $$\sigma(X, \F)\text{-}\lim_{\alpha \in \Lambda} \pi(\lambda_\alpha, x_\alpha) =
 Así que $\pi$ es continua.
 \end{Dem}
 
-\begin{Prop} \label{Prop:TopologiaOriginalEspaciosNormadosEVT}
-Si $X$ es un espacio normado, entonces es un espacio vectorial topológico.  (¿Es mejor que sea corolario del resultado anterior?)
-\end{Prop}
+\begin{Cor} \label{Cor:TopologiaOriginalEspaciosNormadosEVT}
+Si $X$ es un espacio normado, entonces es un espacio vectorial topológico.  
+\end{Cor}
 
 \begin{Dem}
 Denotemos por $\tau$ la topología original de $X$. Por definición, $\Norm{\cdot}$ es una seminorma en $X$. Además $\{ \Norm{\cdot}\} $ separa puntos, pues dado $x \in X$ con $x \neq 0$, se tiene que $\Norm{x} \neq 0$. Demostraremos que $\tau = \sigma(X, \{ \Norm{\cdot} \})$. Dado que el teorema~\ref{Tma:SeminormasInducenEVT} indica que $X$ es un espacio vectorial topológico con la topología $\sigma(X, \{ \Norm{\cdot} \})$, esto implicará que la topología original es una topología vectorial.
@@ -1728,7 +1726,7 @@ Si $X$ es un espacio de Banach, entonces es un espacio vectorial topológico comp
 \end{Prop}
 
 \begin{Dem}
-La proposición~\ref{Prop:TopologiaOriginalEspaciosNormadosEVT} indica que $X$ es un espacio vectorial topológico. Falta probar que las redes de Cauchy en $X$ convergen. Sea entonces $(x_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $X$. 
+El corolario~\ref{Cor:TopologiaOriginalEspaciosNormadosEVT} indica que $X$ es un espacio vectorial topológico. Falta probar que las redes de Cauchy en $X$ convergen. Sea entonces $(x_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $X$. 
 
 Construyamos una sucesión $(\alpha_n)_{n \in \N}$ en $\Lambda$ de la siguiente manera. Sea $\alpha_1 \in \Lambda$ cualquiera. Supongamos que ya hemos definido $\alpha_{n-1}$ para algún $n \geq 2$. Como $(x_\alpha)_{\alpha \in \Lambda}$ es de Cauchy, existe $\beta \in \Lambda$ tal que $x_{\beta_1} - x_{\beta_2} \in V_\frac{1}{n}(0)$ para $\beta_1, \beta_2 \geq \beta$. Así pues, definamos $\alpha_n$ de tal manera que $\alpha_n \geq \alpha_{n-1}$ y $\alpha_n \geq \beta$.   
  
@@ -1749,9 +1747,7 @@ Definamos $\beta = \alpha_{2M}$. Por (\ref{Eq:RedesCauchy1}) y (\ref{Eq:RedesCau
 Por la desigualdad del triángulo $\Norm{x_\gamma - x} < \frac{1}{N}$ y así $x_\gamma - x \in U$. Es decir, $x_\alpha \to x$.
 \end{Dem}
 
-\begin{Cor}
-El espacio $\K$ con la norma euclidiana es un espacio vectorial topológico completo.
-\end{Cor}
+Como resultado de lo anterior, el espacio $\K^n$ como espacio vectorial topológico es completo.
 
 \begin{Ejem}
 Sean $A$ un conjunto no-vacío y $X = F(A, \K)$ como en el ejemplo~\ref{Ejem:EVTFamiliaFuncionales}. Se verificó ahí que  $\mathcal{F} = \{ \abs{\delta_a}: a \in A \}$ es una familia de seminormas en $X$ que separa puntos, por lo que $X$ con la topología $\sigma(X, \mathcal{F})$ es un espacio vectorial topológico. Demostraremos que tal espacio vectorial es completo.
@@ -1761,8 +1757,8 @@ Sea $(f_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $X$. Al tomar $a \in 
 Mostremos que $f_\alpha \to f$. Sea $U_{f, \abs{\delta_{a_1}}, \ldots, \abs{\delta_{a_k}}, \varepsilon}$ una vecindad básica de $f$ para algunos $k \in \N$, $a_1, \ldots, a_k \in A$ y $\varepsilon > 0$. Para cada $i \in \nn{k}$, se tiene que $f_\alpha(a_i) \to f(a_i)$, así que existe $\alpha_i \in \Lambda$ tal que si $\alpha \geq \alpha_i$, entonces $\abs{\delta_{a_i}}(f_{\alpha} - f) = \abs{f_{\alpha}(a_i) - f(a_i)} < \varepsilon$. Así que si tomamos $\beta \in  \Lambda$ con $\beta \geq \alpha_i$ para todo $1 \leq  i \leq k$, entonces $f_\alpha \in U_{f, \abs{\delta_{a_1}}, \ldots, \abs{\delta_{a_k}}, \varepsilon}$ siempre que $\alpha \geq \beta$. Por lo tanto $f_\alpha \to f$ y $(X, \sigma(X, \mathcal{F}))$ es completo.
 \end{Ejem}
 
-
-\subsection{Espacios vectoriales topológicos de dimensión finita.}
+\subsection[Espacios vectoriales topológicos de dimensión finita.]{Espacios vectoriales topológicos de dimensión finita. \subsectionmark{Espacios de dimensión finita.}}
+\subsectionmark{Espacios de dimensión finita.}
 
 \begin{Def} \hfill
 \begin{itemize}
@@ -1824,7 +1820,7 @@ Cualquier espacio vectorial topológico de dimensión finita es completo.
 Sea $E$ un espacio vectorial topológico de dimensión finita $n \in \N$. Dado que $\ell^n_2$ es un espacio vectorial topológico de dimensión $n$, del teorema~\ref{Tma:IsomorfismoDimensionFinitaEVT} se sigue que $E$ es isomorfo a $\ell^n_2$ como espacio normado. Según el teorema~\ref{Tma:NormaEuclidianaCompleta}, $\ell_2^n$ es un espacio completo. Así que del lema~\ref{Lema:HomeomorfismoLinealPreservaCompletitez} resulta que $E$ también es completo.
 \end{Dem}
 
-Del resultado anterior se sigue inmediatamente que los espacios de dimensión finita $\ell^n_p$ son completos.
+Del resultado anterior se sigue inmediatamente que los espacios $\ell^n_p$ son completos.
 
 \begin{Prop}
 Para cada $p \in [1, \infty]$, $\ell_p$ es un espacio de Banach.
@@ -2106,12 +2102,12 @@ Veamos que está bien definida. Tomemos $\varphi \in B_{X^*}$ de manera que $\Nor
 
 Demostremos que $F$ es inyectiva. Dados $\varphi, \psi \in B_{X^*}$ con $F(\varphi) = F(\psi)$ se tiene que $(\varphi(x))_{x \in X} = (\psi(x))_{x \in X}$. De donde $\varphi(x) = \psi(x)$ para todo $x \in X$. Así que $\varphi = \psi$ y $F$ es inyectiva. 
 
-Consideremos una red $(\varphi_\alpha)_{\alpha \in \Lambda}$ en $B_{X^*}$ y $\varphi \in B_{X^*}$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebilEstrella} indica que $\varphi_\alpha \stackrel{\mathrm{w_*}}{\longrightarrow} \varphi$ si, y sólo si $\varphi_\alpha(x) \to \varphi(x)$ en $D_x$ para todo $x \in X$. La proposición~\ref{Prop:ConvergenciaPorComponentesEnProductoArbitrario} indica que esto último se da si, y sólo si $(\varphi_\alpha(x))_{x \in X} \to (\varphi(x))_{x \in X}$ en $\mathcal{D}$. O bien, si, y  sólo si $F(\varphi_\alpha) \to F(\varphi)$. Esto indica que $F$ es continua y al ser inyectiva se sigue que también preserva abiertos. 
+Consideremos una red $(\varphi_\alpha)_{\alpha \in \Lambda}$ en $B_{X^*}$ y $\varphi \in B_{X^*}$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebilEstrella} indica que $\varphi_\alpha \stackrel{\mathrm{w_*}}{\longrightarrow} \varphi$ si, y sólo si $\varphi_\alpha(x) \to \varphi(x)$ en $D_x$ para todo $x \in X$. La proposición~\ref{Prop:ConvergenciaPorComponentesEnProductoArbitrario} indica que esto último se da si, y sólo si $(\varphi_\alpha(x))_{x \in X} \to (\varphi(x))_{x \in X}$ en $\mathcal{D}$. O bien, si, y  sólo si $F(\varphi_\alpha) \to F(\varphi)$. Puesto que $F$ es inyectiva, el corolario~\ref{Cor:ContinuidadporRedes} indica que $F: B_{X^*} \to F(B_{X^*})$ es un  homeomorfismo.
 
 Por último, veamos que el rango de $F$ es cerrado en $\mathcal{D}$. Tomemos entonces una red convergente $(G_\alpha)_{\alpha \in \Lambda}  \in F(B_{X^*})$ y sea $(d_x)_{x \in X} \in \mathcal{D}$ su límite. De esta manera existe una red $(f_\alpha)_\alpha$ en $B_{X^*}$ tal que $F(f_\alpha) = G_\alpha$. Así,
 $$\lim_{\alpha\in \Lambda} F(f_\alpha) = \lim_{\alpha\in\Lambda} (f_\alpha(x))_{x\in X} = (d_x)_{x \in X}.$$ 
 
-Queremos verificar que $(d_x)_{x \in X}$ pertenece a $F(B_{X^*})$. Consideramos entonces la función $g: X \to \K$ dada por $g(x) = d_x$ para todo $x \in X$. Notemos que $g$ es lineal, pues dados $x, y \in X$, $\lambda \in \K$ se tiene que
+Queremos verificar que $(d_x)_{x \in X}$ pertenece a $F(B_{X^*})$. Consideremos pues la función $g: X \to \K$ dada por $g(x) = d_x$ para todo $x \in X$. Notemos que $g$ es lineal, pues dados $x, y \in X$, $\lambda \in \K$ resulta
 \Ecu{
 g(x + \lambda y) &= d_{x+\lambda y} = \lim_{\alpha\in\Lambda} f_\alpha(x+ \lambda y) = \lim_{\alpha\in\Lambda} f_\alpha(x) + \lambda \lim_{\alpha\in\Lambda} f_\alpha(y) = d_x + \lambda d_y = g(x) + \lambda g(y). 
 }
@@ -2122,7 +2118,7 @@ $$\abs{g(x)} \leq \abs{d_x} \leq \Norm{x} \leq 1.$$
 
 Esto indica que $\Norm{g} \leq 1$, por lo que $g \in B_{X^*}$ y $$F(g) = (g(x))_{x\in X} = (d_x)_{x\in X}.$$
 
-Por lo tanto $(d_x)_{x\in X} \in F(B_{X^*})$ y así $F(B_{X^*})$ es cerrado. Como $\mathcal{D}$ es compacto y $F(B_{X^*})$ es cerrado, entonces también es compacto. Además $F$ es un homeomorfismo entre $F(B_{X^*})$ y $B_{X^*}$. Por lo que $B_{X^*}$ es compacto con la topología débil*.
+Por lo tanto $(d_x)_{x\in X} \in F(B_{X^*})$ y así $F(B_{X^*})$ es cerrado. Como $\mathcal{D}$ es compacto y $F(B_{X^*})$ es cerrado, entonces también es compacto. Además $F$ es un homeomorfismo entre $F(B_{X^*})$ y $B_{X^*}$, por lo que $B_{X^*}$ es compacto con la topología débil*.
 \end{Dem}
 
 \begin{Def}
@@ -2130,7 +2126,7 @@ Si $X$ es un espacio normado tal que $J(X) = X^{**}$ se dice que $X$ es \textit{
 \end{Def}
 
 \begin{Prop}
-Todo espacio de dimensión finita es reflexivo. 
+Todo espacio normado de dimensión finita es reflexivo. 
 \end{Prop}
 
 \begin{Dem}
@@ -2294,7 +2290,6 @@ $$\lim_{n\to\infty} \sum_{j=1}^n x_{k_j} \mbox{ existe bajo la norma.}$$ \\
 \end{Tma}
 
 Esto indica que en un espacio de Banach la convergencia débil de subseries implica convergencia de subseries bajo la norma.
-
 
 \nocite{*}
 \bibliographystyle{ieeetr}
