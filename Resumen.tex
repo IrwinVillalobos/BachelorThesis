@@ -51,6 +51,8 @@
 \newcommand{\calC}{\mathcal{C}}
 \newcommand{\calP}{\mathcal{P}}
 \newcommand{\calQ}{\mathcal{Q}}
+\newcommand{\calG}{\mathcal{G}}
+\newcommand{\calI}{\mathcal{I}}
 \newcommand{\calF}{\mathcal{F}}
 
 \newcommand\restr[2]{{
@@ -117,6 +119,8 @@
 
 %\inicio{Seminario de Tesis}{3}{Irwin Enrique Villalobos López}{Dr. Fernando Galaz Fontes}{irwin.villalobos@cimat.mx}
 
+
+\tableofcontents
 
 \section{Topología.}
 
@@ -192,6 +196,16 @@ $$\tau(\B) := \left\{ \bigcup_{\alpha \in \Lambda} B_\alpha : B_\alpha \in \B \m
 
 Si $X$ es un espacio topológico, $\mathcal{B}$ es una base y $\tau (\mathcal{B})$ es la topología de $X$, diremos simplemente que $\mathcal{B}$ es una base de $X$. 
 
+\begin{Ejem}
+Consideremos en $\R$ la familia de intervalos abiertos $\mathcal{I} = \{(a, b) : a, b \in \R, a < b \}$. Notemos que:
+\begin{itemize}
+\item \textbf{i)} Dado $x\in \R$, el intervalo $(x-1, x+1)$ contiene a $x$, así que $\mathcal{I}$ es una cubierta de $\R$.
+\item \textbf{ii)} Sean $I_1 = (a_1, b_1), I_2 = (a_2, b_2) \in \mathcal{I}$ y $x \in I_1 \cap I_2$. Entonces $a_1 < x < b_1$ y $a_2 < x < b_2$. Si definimos $a = \max(a_1, a_2)$ y $b = \min(b_1, b_2)$, entonces $x \in (a, b) \subseteq I_1 \cap I_2$. 
+\end{itemize}
+
+Por lo tanto $\mathcal{I}$ es una base de $\R$ y la topología que genera se denomina \textit{topología usual} de $\R$. (¿Era esta la manera en la que quería que definiera la topología usual en $\R$?)
+\end{Ejem}
+
 \begin{Prop} \label{Prop:CaracterizacionDeBase}
 Sea $\mathcal{B}$ una familia de abiertos de un espacio topológico $X$. Entonces $\mathcal{B}$ es una base de $X$ si, y sólo si para todo abierto $U$ en $X$ y $x \in U$ existe $B \in \mathcal{B}$ tal que $x \in B \subseteq U$.
 \end{Prop}
@@ -264,6 +278,12 @@ Un subconjunto $K$ de un espacio topológico $X$ es \textit{compacto} si para cua
 
 A la colección $\{ U_\alpha \}_{\alpha \in \Lambda}$ se le denomina \textit{cubierta abierta} de $K$ y a la subcolección $\{ U_{\alpha_1}, \ldots, U_{\alpha_n} \}$ se le llama \textit{subcubierta finita} de $\{ U_\alpha \}_{\alpha \in \Lambda}$.
 \end{Def}
+
+El teorema de Heine-Borel es una consecuencia del axioma del supremo de los números reales. 
+
+\begin{Tma} \label{Tma:HeineBorel} \textbf{(Heine-Borel)}
+Para todos $a, b \in \R$ con $a \leq b$, el intervalo $[a, b]$ es compacto. 
+\end{Tma}
 
 \begin{Prop} \label{Prop:FuncionContinuaPreservaCompactos}
 Sean $X$ y $Y$ espacios topológicos y $f:X \to Y$ una función continua. Entonces $f$ preserva compactos.
@@ -396,6 +416,8 @@ Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$.
 \end{Def}
 
 Veamos que con esta definición de topología producto las proyecciones son continuas. Fijemos $i \in I$ y tomemos cualquier abierto $U_i$ en $X_i$. Entonces $\pi_i^{-1}(U_i)$ es un básico de $\prod_{i\in I} X_i$ y por tanto es abierto. Esto indica que $\pi_i$ es continua. 
+
+Dados $A, B$ dos conjuntos, denotamos por $F(A, B)$ a la colección de funciones $f: A \to B$. Notemos que $F(A, B) = \prod_{a \in A} B$, por lo que si $B$ es un espacio topológico, en $F(A, B)$ naturalmente ponemos considerar su topología producto.
 
 \section{Espacios métricos.}
 El marco de espacios topológicos es muy general, por lo que estudiaremos a continuación un caso particular de estos espacios que tienen mejores propiedades y donde las sucesiones juegan un papel muy importante. 
@@ -632,6 +654,8 @@ Es sencillo verificar que en un espacio normado $X$ la función $d: X \times X \t
 
 Además, los conceptos de sucesión de Cauchy y completez se heredan de las definiciones en espacios métricos. Si un espacio normado es completo decimos que es un \textit{espacio de Banach}.
 
+Sea $X$ un espacio vectorial  y $x_1, \ldots, x_n \in X$, $n \in \N$. El espacio generado por un conjunto $A \subseteq X$ se denotará por $\mbox{span}\, A$ y está definido como  $$\mbox{span} \, A  : = \left\{ \sum_{i=1}^n a_i x_i : n\in \N,  a_1, \ldots, a_n  \in \K, x_1, \ldots, x_n \in A \right\}.$$
+
 \begin{Lema} \label{Lema:NormaContinua}
 Sea $X$ un espacio normado. Entonces la norma $\Norm{\cdot}:X \to [0, \infty)$ es una función continua.
 \end{Lema}
@@ -844,12 +868,6 @@ De la desigualdad del triángulo se sigue que $$\Norm{p - y}_2 \leq \Norm{p - x}_
 Por lo tanto $V_r(p)$ es abierto en la topología producto.
 \end{Dem}
 
-El teorema de Heine-Borel es una consecuencia del axioma del supremo de los números reales. 
-
-\begin{Tma} \label{Tma:HeineBorel} \textbf{(Heine-Borel)}
-Para todos $a, b \in \R$ con $a \leq b$, el intervalo $[a, b]$ es compacto. 
-\end{Tma}
-
 El teorema de Heine-Borel nos permite demostrar el siguiente resultado.
 
 \begin{Tma} \label{Tma:HeineBorelGeneral} 
@@ -863,9 +881,14 @@ Sea $A \subseteq \K^n$. Son equivalentes:
 \begin{Dem}
 Primero supongamos que $A$ es compacto. Se sigue del corolario~\ref{Cor:HausdorffCompactoEsCerrado} que $A$ es cerrado. Por otra parte, $\{ V_n(0) \}_{n \in \N}$ es una cubierta abierta de $A$. Así que existe una subcubierta finita $\{ V_{n_1}(0), \ldots, V_{n_k}(0)\}$ de $A$ para algún $k \in \N$ y algunos $n_1, \ldots, n_k \in \N$. Sea $N = \max(n_1, \ldots, n_k)$, de manera que $A \subseteq \bigcup_{i=1}^k V_{n_i}(0) \subseteq V_N(0)$ y así $A$ es acotado. 
 
-Ahora supongamos que $A$ es cerrado y acotado. Trabajemos primero el caso $\K = \R$. Como $A$ es acotado, existe $r > 0$ tal que $A \subseteq V_r(0)$. Por el teorema de Heine-Borel, el intervalo $[-r, r]$ es compacto y por el teorema de Tychonoff, $[-r, r]^n$ es compacto en $\R^n$. El lema~\ref{Lema:RectanguloCirculo} indica que $[-r, r]$ es compacto en $\ell_2^n(\R)$. Dado que $A$ es cerrado, la proposición~\ref{Prop:CerradoEnCompactoEsCompacto} asegura que $A$ es compacto. 
+Ahora supongamos que $A$ es cerrado y acotado. Trabajemos primero el caso $\K = \R$. Como $A$ es acotado, existe $r > 0$ tal que $A \subseteq V_r(0)$. Por el teorema de Heine-Borel, el intervalo $[-r, r]$ es compacto y por el teorema de Tychonoff, $[-r, r]^n$ es compacto en $\R^n$ con su topología producto. El lema~\ref{Lema:RectanguloCirculo} indica que $[-r, r]$ es compacto en $\ell_2^n(\R)$. Dado que $A$ es cerrado, la proposición~\ref{Prop:CerradoEnCompactoEsCompacto} asegura que $A$ es compacto. 
 
-Si por otro lado $\K = \C$, podemos identificar a $\K$ con $\ell_2^2(\R)$ pues $\abs{ai +b } = \Norm{(a, b)}_2$ para todo $a+ib \in \C$, por lo que $\ell_2^n(\C)$ estaría identificados con $\ell_2^{2n}(\R)$. Así que si $A \subseteq \ell_2^n(\C)$ fuese cerrado y acotado, por su identificación con el caso real, $A$ sería compacto. 
+Si por otro lado $\K = \C$, consideremos la correspondencia canónica $J: \C^n \to \R^{2n}$ definida por $J(a_1 + i b_1 , \ldots, a_n + i b_n) = (a_1, b_1, \ldots, a_n, b_n)$. Claramente es biyectiva y además 
+\begin{equation} \label{Eq:ComplejosReales}
+\Norm{(a_1 + i b_1 , \ldots, a_n + i b_n)}_2 = \sqrt{\sum_{i=1}^n \abs{a_i + i b_i}^2} = \sqrt{\sum_{i=1}^n \abs{a_i}^2 +  \abs{b_i}^2} = \Norm{(a_1, b_1, \ldots, a_n, b_n)}_2.
+\end{equation}
+
+Por lo tanto, $J$ es un homeomorfismo entre $\C^n$ y $\R^{2n}$. Luego si $A$ es cerrado y acotado en $\C^n$, por la proposición~\ref{Prop:HomeomorfismoPreservaCerrados} $J(A)$ es cerrado. Además, de (\ref{Eq:ComplejosReales}) se sigue que $J(A)$ es acotado. Del caso real se sigue que $J(A)$ es compacto y por la proposición~\ref{Prop:FuncionContinuaPreservaCompactos} se concluye que $J^{-1}(J(A)) = A$ es compacto.
 \end{Dem}
 
 \begin{Tma} \label{Tma:NormaEuclidianaCompleta}
@@ -873,7 +896,7 @@ El espacio normado $\ell_2^n$ es completo.
 \end{Tma}
 
 \begin{Dem}
-Sea $(x_m)_{m\in \N}$ una sucesión de Cauchy. El lema~\ref{Lema:SucesionesDeCauchySonAcotadas} indica que $\{ x_m : m \in \N \}$ es un conjunto acotado por alguna constante $M \in\N$. Como la bola $B_M(0)$ es cerrada y acotada en $\ell_2^n$, el teorema~\ref{Tma:HeineBorelGeneral} señala que $B_M(0)$ es compacto. Dado que $(x_m)_{m\in\N} \subseteq B_M(0)$ y este conjunto es compacto, el teorema~\ref{Tma:CaracterizacionCompacidadSucesiones} dice que existe una subsucesión $(x_{k_m})_{m \in \N}$ de $(x_m)_{m\in\N}$ que converge a algún $x \in B_M(0) \subseteq X$. Del lema~\ref{Lema:SucesionCauchyConSubsucesionConvergenteConverge} se sigue que $x_m \to x$.
+Sea $(x_m)_{m\in \N} \subseteq \ell_2^n$ una sucesión de Cauchy. El lema~\ref{Lema:SucesionesDeCauchySonAcotadas} indica que $\{ x_m : m \in \N \}$ es un conjunto acotado por alguna constante $M \in\N$. Como la bola $B_M(0)$ es cerrada y acotada en $\ell_2^n$, el teorema~\ref{Tma:HeineBorelGeneral} señala que $B_M(0)$ es compacto. Dado que $(x_m)_{m\in\N} \subseteq B_M(0)$ y este conjunto es compacto, el teorema~\ref{Tma:CaracterizacionCompacidadSucesiones} dice que existe una subsucesión $(x_{k_m})_{m \in \N}$ de $(x_m)_{m\in\N}$ que converge a algún $x \in B_M(0) \subseteq X$. Del lema~\ref{Lema:SucesionCauchyConSubsucesionConvergenteConverge} se sigue que $x_m \to x$.
 \end{Dem}
 
 El teorema anterior muestra que $\K$ con la norma $\abs{\cdot}$ es un espacio de Banach.
@@ -921,6 +944,53 @@ Además, observemos que para cada $p \in [1, \infty]$, se tiene que $\abs{x_n} \l
 \end{Dem}
 
 Más adelante probaremos que no sólo $\ell_2^n$ es completo, sino que el resto de los espacios $\ell_p^n$ y $\ell_p$ también lo son.
+
+\subsection[Compacidad de la bola cerrada en un espacio normado.]{Compacidad de la bola cerrada en un espacio normado. \subsectionmark{Compacidad de la bola cerrada.}}
+\subsectionmark{Compacidad de la bola cerrada.}
+
+La compacidad es una propiedad muy importante que puede tener un subconjunto de un espacio topológico. El objetivo de esta sección es demostrar que la compacidad de la bola unitaria en un espacio normado depende simplemente de si este es de dimensión finita o no.
+
+\begin{Lema} \textbf{(de Riesz)}
+Sean $Y$ un subespacio propio y cerrado de un espacio normado $X$ y $\theta \in (0, 1)$, entonces existe $x_\theta \in X$ con $\Norm{x_\theta} = 1$ para el cual $\Norm{x_\theta - y} > \theta$ para todo $y \in Y$. 
+\end{Lema}
+
+\begin{Dem}
+Tomemos $x \in X \setminus Y$. Como $Y$ es cerrado, el lema~\ref{Lema:DistanciaPositivaEnCerrados} indica que la distancia $d(x, Y)$ es positiva. Dado que $0 < \theta <1$, tenemos que 
+$$0 < d(x, Y) = \inf \{ \Norm{x-z} : z \in Y \} < \frac{d(x, Y)}{\theta}.$$
+Así que existe $z \in Y$ tal que $0 < \Norm{x - z} < \dfrac{d(x, Y)}{\theta}$. Definamos $x_\theta = \dfrac{x-z}{\Norm{x-z}}$. Claramente $\Norm{x_\theta} = 1$. Además, para $y \in Y$ se tiene que $z+ \Norm{x-z} y \in Y$. Por lo que
+\Ecu{
+\Norm{x_\theta - y} = \Norm{\dfrac{x-z}{\Norm{x-z}} - y} = \frac{1}{\Norm{x-z}} \cdot \Norm{x - (z+ \Norm{x-z} y)}  > \frac{\theta}{d(x, Y)} \cdot d(x, Y) = \theta.
+}
+\end{Dem}
+
+En un espacio normado $X$, denotamos a la bola unitaria centrada en el cero por $B_X$. Con el siguiente teorema resolvemos el objetivo que planteamos al inicio de esta subsección.
+
+\begin{Tma} \label{Tma:DimensionFinitaCerradoAcotadoCompacto}
+Sea $X$ un espacio normado. Las siguientes afirmaciones son equivalentes:
+\begin{itemize}
+\item \textbf{i)} $X$ es de dimensión finita.
+\item \textbf{ii)} Todo subconjunto cerrado y acotado de $X$ es compacto.
+\item \textbf{iii)} La bola unitaria cerrada $B_X$ es compacta. 
+\end{itemize}
+\end{Tma}
+
+\begin{Dem}
+Demostraremos que \textbf{i)} implica \textbf{ii)}, que \textbf{ii)} implica \textbf{iii)} y que \textbf{iii)} implica \textbf{i)}. 
+
+Supongamos que $X$ es de dimensión finita $n$. Entonces existe un isomorfismo de espacios normados $T: X \to \ell^n_2$. Sea $A$ un conjunto cerrado y acotado en $X$. Por ser $T$ isomorfismo se sigue que $T(A)$ también es cerrado y acotado. El teorema~\ref{Tma:HeineBorelGeneral} indica que $T(A)$ es compacto en  $\ell^n_2$. Por lo tanto $A = T^{-1}(T(A))$ también lo es. 
+
+Supongamos ahora que todo subespacio cerrado y acotado de $X$ es compacto. Entonces $B_X$ es compacta, pues es cerrada y acotada. 
+
+En lugar de demostrar que si $B_X$ es compacta entonces $X$ es de dimensión finita, demostraremos su contrapuesta. Así que suponemos que $X$ es de dimensión infinita. Construiremos una sucesión $(x_n)_{n \in \N}$ en $B_X$ sin subsucesiones convergentes. Tomemos $x_1 \in B_x$  con $\Norm{x_1} = 1$. Supongamos que tenemos definidos a $x_1, \ldots, x_n$ para algún $n \in \N$ de tal forma que si $1 < k \leq n$ entonces para cualesquiera $\alpha_1, \ldots, \alpha_{k-1} \in \K$ 
+\begin{equation} \label{Eq:1}
+\Norm{x_k - \sum_{i=1}^{k-1} \alpha_i x_i } \geq \frac{1}{2}.
+\end{equation}
+
+Como $X$ es de dimensión infinita, el subespacio $\mbox{span}\{x_1, \ldots, x_n \}$ es propio y por ser de dimensión finita, por el corolario~\ref{Cor:SubespacioDimensionFinitaCerrado} es cerrado. Tomando $\theta = \frac{1}{4}$, por el lema de Riesz existe $x_{n+1}$ tal que $\Norm{x_{n+1} - y} > \frac{1}{4}$ para todo $y \in \mbox{span}\{x_1, \ldots, x_n \}$. De esto que si tomamos $\alpha_1, \ldots, \alpha_{n} \in \K$ entonces 
+$$\Norm{x_{n+1} - \sum_{i=1}^{n} \alpha_i x_i } \geq \frac{1}{2}.$$
+
+Así pues, queda construida la sucesión $(x_n)_{n\in\N}$. Si tomamos $n, m \in \N$ con $n > m$ entonces al tomar $\alpha_1 = 1$ y $\alpha_i = 0$ para $1 \leq i \leq  n-1$ e $i \neq m$, de $(\ref{Eq:1})$ obtenemos que $\Norm{x_n - x_m} \geq \frac{1}{2}$. Esto indica que cualquier subsucesión de $(x_n)_{n\in\N}$ no es de Cauchy y por lo tanto no converge. Por la proposición~\ref{Tma:CaracterizacionCompacidadSucesiones} concluimos que $B_X$ no es compacto.
+\end{Dem}
 
 \subsection{Espacio dual.}
 
@@ -1183,8 +1253,6 @@ Concluimos de esto que $(x_{\alpha, i})_{i\in I} \to (x_i)_{i\in I}$.
 
 En la demostración de la proposición anterior se puede observar por qué es indispensable definir la topología producto como se definió y no simplemente como la generada por el producto de abiertos. De lo contrario tal proposición sería falsa.
 
-Dados $A, B$ dos conjuntos, denotamos por $F(A, B)$ a la colección de funciones de $f: A \to B$.
-
 \begin{Obs}
 Sea $X$ un espacio vectorial, entonces $F(\Lambda, X)$ es un espacio vectorial con la suma y producto por escalares definidas puntualmente. De esto podemos considerar la suma de $\Lambda$-redes $(x_\alpha)_{\alpha \in \Lambda}$ y $(y_\alpha)_{\alpha \in \Lambda}$ en $X$ como  
 $$(x_\alpha)_{\alpha \in \Lambda} + (y_\alpha)_{\alpha \in \Lambda} = (x_\alpha + y_\alpha)_{\alpha \in \Lambda}.$$
@@ -1280,10 +1348,12 @@ Tomemos $x \in \bigcap_{\alpha \in \Lambda} C_\alpha$. Veamos que $x$ es un punt
 Supongamos ahora que $X$ no es compacto. Existe entonces una cubierta abierta $\{ V_i \}_{i \in I}$ de $X$ tal que  no tiene  una subcubierta finita. Sea $\Lambda$ la colección de subconjuntos finitos de $I$ con el orden de inclusión. Para cada $F \in \Lambda$ la subcolección finita $\{ V_i : i \in F \}$ no cubre a $X$. Por lo que $\bigcup_{i\in F} V_i \neq X$. Así que existe $x_F \in X$ tal que $x_F \notin V_i$ para todo $i \in F$. Consideremos la red $(x_F)_{F \in \Lambda}$. Demostremos que esta red no tiene subredes que converjan. Por el lema~\ref{Lema:LimiteSubredes} esto último equivale a demostrar que $(x_F)_{F \in \Lambda}$ no tiene puntos límite. Sea $x \in X$. Entonces $x \in V_{i_0}$ para algún $i_0 \in I$. Además, para $F \in \Lambda$ tal que $\{ i_0 \} \subseteq F$ se tiene que $x_F \notin V_{i_0}$. Esto indica que $x$ no es punto límite de $(x_F)_{F \in \Lambda}$. 
 \end{Dem}
 
+Si tenemos un par de espacios topológicos compactos, es sencillo verificar que su producto sigue siendo compacto. Uno de los teoremas más importantes en la topología es el teorema de Tychonoff y generaliza este resultado estableciendo que el producto arbitrario de espacios compactos es compacto.   En seguida introduciremos algunos conceptos y proposiciones necesarias para la demostración de tal teorema.
+
 \begin{Def}
-Sea $A$ un conjunto. Una relación $\leq$ en $A$ es un \textit{orden total} si
+Sea $A$ un conjunto no vacío. Una relación $\leq$ en $A$ es un \textit{orden total} si
 \begin{itemize}
-\item \textbf{i)} Es \textit{reflexiva}, es decir, para cada $a \in a$ se tiene $a \leq a$.
+\item \textbf{i)} Es \textit{reflexiva}, es decir, para cada $a \in A$ se tiene $a \leq a$.
 \item \textbf{ii)} Es \textit{transitiva}, es decir, para $a, b, c \in A$ se cumple que si $a \leq b$ y $b \leq c$,  entonces $a \leq c$.
 \item \textbf{iii)} Es \textit{antisimétrica}, es decir, si para $a, b \in A$, se cumple que $a\leq b$ y $b \leq a$ entonces $a = b$.
 \item \textbf{iv)} Es \textit{total}, es decir, para todos $a, b \in A$ se satisface que $a \leq b$ o que $b \leq a$.
@@ -1298,24 +1368,24 @@ Sea $A$ un conjunto no vacío. Si todo subconjunto no vacío y totalmente ordenado
 \end{Lema}
 
 \begin{Ejem}
-Sean $D$ y $B$ conjuntos no vacíos, entonces la colección $\mathcal{P}$ de funciones $f: A \to B$ con $A \subseteq D$ es un conjunto parcialmente ordenado con la relación $\leq$ tal que para $f, g \in\mathcal{P}$ se tenga que $$f \leq g \;\mbox{ si, y sólo si }\; \Dom f \subseteq \Dom g \mbox{ y } \restr{g}{\Dom f} = f.$$
+Sean $A$ y $B$ conjuntos. Denotemos por $\mathcal{G}(A, B)$ a la familia de funciones $f: D \to B$ tales que $D \subseteq A$. Claramente, la función vacía $f_\emptyset : \emptyset \to B$ está en $\mathcal{G}(A, B)$, por lo que este es no vacío. En $\mathcal{G}(A, B)$ definamos la relación $\leq$ de manera que para $f, g \in\mathcal{G}(A, B)$ se tenga que $$f \leq g \;\mbox{ si, y sólo si }\; \Dom f \subseteq \Dom g \mbox{ y } \restr{g}{\Dom f} = f.$$
 
 Notemos que:
 \begin{itemize}
-\item[\textbf{i)}] Dado $f \in \mathcal{P}$, claramente se tiene que $ \Dom f \subseteq \Dom f$ y $\restr{f}{\Dom f} = f.$
-\item[\textbf{ii)}] Tomemos $f, g, h \in \mathcal{P}$ tales que $f \leq g$ y $g \leq h$. De que $\Dom f \subseteq \Dom g$ y $\Dom g \subseteq \Dom h$, se sigue que $\Dom f \subseteq \Dom h$. Además, puesto que $f = \restr{g}{\Dom f}$ y $ g = \restr{h}{\Dom g}$, se tiene que $$f = \restr{g}{\Dom f} = \restr{\left(\restr{h}{\Dom g}\right)}{\Dom f} = \restr{h}{\Dom f}.$$ Luego $f \leq h$.
-\item[\textbf{iii)}] Sean $f, g \in \mathcal{P}$ con $f \leq g$ y $g \leq f$. Entonces $\Dom f \subseteq \Dom g$ y $\Dom g \subseteq \Dom f$. Así que $\Dom f = \Dom g$. Además, $f = \restr{g}{\Dom f} = \restr{g}{\Dom g} = g$. Así que $f = g$.
+\item[\textbf{i)}] Al tomar $f \in \mathcal{G}(A, B)$, claramente se tiene que $ \Dom f \subseteq \Dom f$ y $\restr{f}{\Dom f} = f.$
+\item[\textbf{ii)}] Dados $f, g, h \in \mathcal{G}(A, B)$ tales que $f \leq g$ y $g \leq h$. Como $\Dom f \subseteq \Dom g$ y $\Dom g \subseteq \Dom h$, se sigue que $\Dom f \subseteq \Dom h$. Además, puesto que $f = \restr{g}{\Dom f}$ y $ g = \restr{h}{\Dom g}$, se tiene que $$f = \restr{g}{\Dom f} = \restr{\left(\restr{h}{\Dom g}\right)}{\Dom f} = \restr{h}{\Dom f}.$$ Luego $f \leq h$.
+\item[\textbf{iii)}] Sean $f, g \in \mathcal{G}(A, B)$ tales que $f \leq g$ y $g \leq f$. Entonces $\Dom f \subseteq \Dom g$ y $\Dom g \subseteq \Dom f$. Así que $\Dom f = \Dom g$ y puesto que $f = \restr{g}{\Dom f} = \restr{g}{\Dom g} = g$, resulta que $f = g$.
 \end{itemize}
-Por lo tanto $\leq$ es un orden parcial. A este le llamamos \textit{orden de extensión de funciones}.
+Por lo tanto $\leq$ es un orden parcial en $\mathcal{G}(A, B)$. A este le llamamos \textit{orden de extensión de funciones}.
 \end{Ejem}
 
 \begin{Def}
-Sean $D$ y $B$ conjuntos no vacíos y $\mathcal{P}$ la colección de funciones $f: A \to B$ con $A \subseteq D$. Decimos que  un subconjunto no vacío $\mathcal{C}$ de $\mathcal{P}$ es \textit{extendible} si cumple que
+Sean $A$ y $B$ conjuntos no vacíos. Decimos que  un subconjunto no vacío $\mathcal{C}$ de $\mathcal{G}(A, B)$ es \textit{extendible} si
 \begin{equation} \label{Eq:PropiedadUnionFunciones}
 \mbox{ para todas } f, g \in \mathcal{C}, \mbox{ se cumple que }f = g \mbox{ en } \Dom f \cap \Dom g.
 \end{equation}
 
-Sea $A = \bigcup_{f \in \mathcal{C}} \Dom f$. Denotamos por $\bigcup_{f \in \mathcal{C}} f$ a la función $g: A \to B$ definida de la siguiente forma. Dado $a \in A$, existe $f \in \mathcal{C}$ tal que $a \in \Dom f$, de manera que definimos $g(a) = f(a)$. 
+Sea $\calC$ un subconjunto extendible de $\calG(A, B)$ y $D = \bigcup_{f \in \mathcal{C}} \Dom f$. Denotamos por $\bigcup_{f \in \mathcal{C}} f$ a la función $g: A \to B$ definida de la siguiente forma. Dado $a \in A$, existe $f \in \mathcal{C}$ tal que $a \in \Dom f$, de manera que definimos $g(a) = f(a)$. 
 
 Notemos que la propiedad (\ref{Eq:PropiedadUnionFunciones}) indica que $g$ está bien definida en todo $A$. 
 \end{Def}
@@ -1348,8 +1418,6 @@ Sean $h = \bigcup_{g \in \mathcal{C}} g$ y $J = \Dom h$. Consideremos una vecind
 De esto resulta que  $g_k \in \pi_{J_k, j_k}^{-1}(U_k)$ y  como $g_k$ es punto límite de $(\restr{f_\alpha}{J_k})_{\alpha \in \Lambda}$, existe $\alpha_k \in \Lambda$ tal que $\restr{f_\alpha}{J_k} \in \pi_{J_k, j_k}^{-1}(U_k)$ siempre que $\alpha \geq \alpha_k$. Es decir, si $\alpha \geq \alpha_k$, entonces $$\restr{f_\alpha}{J} (j_k) = \restr{f_\alpha}{J_k} (j_k) = \pi_{J_k, j_k}\left(\restr{f_\alpha}{J_k}\right)  \in U_k,$$ 
 o bien, $\restr{f_\alpha}{J} \in \pi_{J, j_k}^{-1}(U_k)$ para $\alpha \geq \alpha_k$. Tomando $\beta \in \Lambda$ tal que $\beta \geq \alpha_k$ para toda $k \in \nn{n}$, se obtiene que $\restr{f_\alpha}{J} \in \bigcap_{k=1}^n \pi_{J, j_k}^{-1}(U_k)$ y por lo tanto $h$ es punto límite de $(\restr{f_\alpha}{J})_{\alpha \in \Lambda}$.
 \end{Dem}
-
-Si tenemos un par de espacios topológicos compactos, es sencillo verificar que su producto sigue siendo compacto. Uno de los teoremas más importantes en la topología es el teorema de Tychonoff y generaliza este resultado estableciendo que el producto arbitrario de espacios compactos es compacto.  
  
 \begin{Tma} \textbf{(Tychonoff)}
 Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$. Si cada $X_i$ es un espacio compacto, entonces el espacio $\prod_{i\in I} X_i$ es compacto.
@@ -1362,7 +1430,7 @@ Sea $\mathcal{Q}$ la colección de puntos límite parciales de $(f_\alpha)_{\alpha
 
 Sea $\mathcal{C}$ un subconjunto totalmente ordenado no vacío de $\mathcal{Q}$. Tomemos $g_1, g_2 \in \calC$. Como $\mathcal{C}$ es totalmente ordenado, podemos suponer sin perdida de generalidad de $g_1 \leq g_2$, por lo que $\Dom g_1 \subseteq \Dom g_2$ y $g_1 = \restr{g_2}{\Dom g_1}$. Así que $g_1 = g_2$ en $\Dom g_1 = \Dom g_1 \cap \Dom g_2$. Esto indica que $\calC$ es extendible y así podemos definir $g_0 = \bigcup_{g \in \calC} g$. La proposición~\ref{Prop:PuntoLimiteParcialUnion} asegura que $g_0$ es un punto límite parcial de $(f_\alpha)_{\alpha \in \Lambda}$, de manera que $g_0 \in \calQ$. Claramente $g_0 \geq g$ para toda $g \in \calC$. Así que $\mathcal{C}$ tiene un elemento máximo. Por el lema de Zorn, se sigue que $\mathcal{Q}$ tiene un elemento maximal $g$ de dominio $J \subseteq I$.
  
-Nuestro último paso es probar que $J = I$. Supongamos que $J \subsetneq I$, de forma que existe $j \in I \setminus J$. Como $X_j$ es compacto y $(f_\alpha(j))_{\alpha\in\Lambda}$ es una red en $X_j$, del teorema~\ref{Tma:CompacidadPorConvergenciaDeSubredes} y del lema~\ref{Lema:LimiteSubredes} se sigue que $q \in X_j$ un punto límite de $(f_\alpha(j))_{\alpha\in\Lambda}$. El lema~\ref{Lema:PuntoLimiteParcialIndividual} indica que la función $h: \{ j \} \to \bigcup_{i\in I} X_i$ definida por $h(j) = q$ es un punto límite parcial de $(f_\alpha)_{\alpha\in\Lambda}$. Notemos que $\{ g, h \}$ es una familia de puntos límite parciales de $(f_\alpha)_{\alpha\in\Lambda}$ que es extendible, pues $\Dom g \cap \Dom h = J \cap \{ j \} = \emptyset$. Luego, la proposición~\ref{Prop:PuntoLimiteParcialUnion} indica que $g \cup h$ es un punto límite parcial de $(f_\alpha)_{\alpha\in\Lambda}$. Pero esto contradice que $g$ sea maximal en $\calQ$, pues $g \cup h \in \calQ$, $g \leq g \cup h$ y $g \neq g \cup h$. Así que $J = I$, por lo que $g$ es un punto límite de $(f_\alpha)_{\alpha \in\Lambda}$. 
+Nuestro último paso es probar que $J = I$. Supongamos que $J \subsetneq I$, de forma que existe $j \in I \setminus J$. Como $X_j$ es compacto y $(f_\alpha(j))_{\alpha\in\Lambda}$ es una red en $X_j$, del teorema~\ref{Tma:CompacidadPorConvergenciaDeSubredes} y del lema~\ref{Lema:LimiteSubredes} se sigue que existe un punto límite $q \in X_j$  de $(f_\alpha(j))_{\alpha\in\Lambda}$. El lema~\ref{Lema:PuntoLimiteParcialIndividual} indica que la función $h: \{ j \} \to \bigcup_{i\in I} X_i$ definida por $h(j) = q$ es un punto límite parcial de $(f_\alpha)_{\alpha\in\Lambda}$. Notemos que $\{ g, h \}$ es una familia de puntos límite parciales de $(f_\alpha)_{\alpha\in\Lambda}$ que es extendible, pues $\Dom g \cap \Dom h = J \cap \{ j \} = \emptyset$. Luego, la proposición~\ref{Prop:PuntoLimiteParcialUnion} indica que $g \cup h$ es un punto límite parcial de $(f_\alpha)_{\alpha\in\Lambda}$. Pero esto contradice que $g$ sea maximal en $\calQ$, pues $g \cup h \in \calQ$, $g \leq g \cup h$ y $g \neq g \cup h$. Así que $J = I$, por lo que $g$ es un punto límite de $(f_\alpha)_{\alpha \in\Lambda}$. 
 \end{Dem}
 
 \section{Espacios vectoriales topológicos.}
@@ -1378,10 +1446,8 @@ En este caso decimos que $\tau$ es una \textit{topología vectorial} y que $E$ es
 \begin{Ejem} \label{Ejem:CampoEsEVT}
 Veamos que $\K$ es un espacio vectorial topológico. Como $\K$ con $\abs{\cdot}$ es un espacio normado, entonces es Hausdorff. Mostremos ahora que las funciones $+ : \K \times \K \to \K$  y $\BD: \K \times \K \to \K$ son continuas. 
 
-En el lema~\ref{Lema:RectanguloCirculo} se verificó que la topología de $\K \times \K$ está inducida por la norma $\Norm{\cdot}_2$, por lo que para ver que $+$ y $\BD$ son continuas, basta mostrar que son continuas por sucesiones. Así pues, sea $(x_n, y_n)_{n\in\N}$ una sucesión en $\K \times \K$ que converge a $(x, y) \in \K\times \K$. Como las sucesiones son redes, la proposición\ref{Prop:ConvergenciaPorComponentes} indica que $x_n \to x$ y $y_n \to y$. Luego, la proposición~\ref{Prop:LimiteDeSumaSucesion} asegura que $+(x_n, y_n)_{n \in\N} = (x_n + y_n)_{n \in\N}$ y $\BD(x_n, y_n)_{n \in\N} = (x_n \BD y_n)_{n \in\N}$ convergen a $+(x, y) = x+y$ y $\BD(x, y) = x \BD y$ respectivamente.
+En el lema~\ref{Lema:RectanguloCirculo} se verificó que la topología de $\K \times \K$ está inducida por la norma $\Norm{\cdot}_2$, por lo que para ver que $+$ y $\BD$ son continuas, basta mostrar que son continuas por sucesiones. Así pues, sea $(x_n, y_n)_{n\in\N}$ una sucesión en $\K \times \K$ que converge a $(x, y) \in \K\times \K$. Como las sucesiones son redes, la proposición~\ref{Prop:ConvergenciaPorComponentes} indica que $x_n \to x$ y $y_n \to y$. Luego, la proposición~\ref{Prop:LimiteDeSumaSucesion} asegura que $+(x_n, y_n)_{n \in\N} = (x_n + y_n)_{n \in\N}$ y $\BD(x_n, y_n)_{n \in\N} = (x_n \BD y_n)_{n \in\N}$ convergen a $+(x, y) = x+y$ y $\BD(x, y) = x \BD y$ respectivamente.
 \end{Ejem}
-
-Sea $X$ un espacio vectorial  y $x_1, \ldots, x_n \in X$, $n \in \N$. El espacio generado por un conjunto $A \subseteq X$ se denotará por $\mbox{span}\, A$ y está definido como  $$\mbox{span} \, A  : = \left\{ \sum_{i=1}^n a_i x_i : n\in \N,  a_1, \ldots, a_n  \in \K, x_1, \ldots, x_n \in A \right\}.$$
 
 \begin{Lema} \label{Lema:VecindadesAbiertasAditivasEVT}
 Sea $E$ un espacio vectorial topológico. Para cada vecindad abierta $U$ del $0$, existe una vecindad abierta $V$ de $0$ tal que $$V + V \subseteq U.$$ 
@@ -1667,7 +1733,7 @@ Lo cual es una contradicción. Así que $V \cap W = \emptyset$ y $\sigma(X, \F)$ e
 Sean $\sigma: X \times X \to X$ la función suma. Es decir, $\sigma(x, y) = x+y$ para $(x, y) \in X\times X$. Probaremos la continuidad de $\sigma$ usando el corolario~\ref{Cor:ContinuidadporRedes}. Tomemos una red $(x_\alpha, y_\alpha)_{\alpha\in \Lambda}$  en $X\times X$ y $(x, y) \in X \times X$ tal que $(x_\alpha, y_\alpha) \to (x, y)$. La proposición~\ref{Prop:ConvergenciaPorComponentes} indica que $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} x_\alpha = x$ y $\sigma(X, \F)$-$\lim_{\alpha \in \Lambda} y_\alpha = y$. Por la proposición~\ref{Prop:CaracterizacionConvergenciaDebilSeminorma} tenemos que para toda $p \in \F$ se tiene que $p(x_\alpha -x) \to 0$ y $p(y_\alpha - y) \to  0$. Por la subaditividad de $p$ tenemos que 
 $$0 \leq p(x_\alpha + y_\alpha - x- y) \leq p(x_\alpha - x) + p(y_\alpha - y).$$
 
-Por la proposición~\ref{Prop:LimiteDeSumaRed} y puesto que $\R$ es un e.v.t. se sigue que $$ \displaystyle\lim_{\alpha\in \Lambda} [ p(x_\alpha - x) +  p(y_\alpha - y)] = \lim_{\alpha\in \Lambda} p(x_\alpha - x) +  \lim_{\alpha\in \Lambda} p(y_\alpha - y) = 0.$$
+Por la proposición~\ref{Prop:LimiteDeSumaRed} y puesto que $\R$ es un espacio vectorial topológico se sigue que $$ \displaystyle\lim_{\alpha\in \Lambda} [ p(x_\alpha - x) +  p(y_\alpha - y)] = \lim_{\alpha\in \Lambda} p(x_\alpha - x) +  \lim_{\alpha\in \Lambda} p(y_\alpha - y) = 0.$$
 
 Entonces, por el lema del sándwich tenemos que $\displaystyle\lim_{\alpha\in \Lambda} p(x_\alpha + y_\alpha - x - y) = 0$ para toda $p \in \F$. 
 
@@ -1874,56 +1940,6 @@ La proposición~\ref{Prop:DimensionFinitaEVTCompleto} indica que $F$ es completo.
 \begin{Cor} \label{Cor:EspaciosNormadosFinitosIsomorfos}
 Si $X$ y $Y$ son espacios normados de dimensión finita y de la misma dimensión, entonces son isomorfos como espacios normados.
 \end{Cor}
-
-
-\subsection[Compacidad de la bola cerrada en un espacio normado.]{Compacidad de la bola cerrada en un espacio normado. \subsectionmark{Compacidad de la bola cerrada.}}
-\subsectionmark{Compacidad de la bola cerrada.}
-
-
-La compacidad es una propiedad muy importante que puede tener un subconjunto de un espacio topológico. El objetivo de esta sección es demostrar que la compacidad de la bola unitaria en un espacio normado depende simplemente de si este es de dimensión finita o no.
-
-
-\begin{Lema} \textbf{(de Riesz)}
-Sean $Y$ un subespacio propio y cerrado de un espacio normado $X$ y $\theta \in (0, 1)$, entonces existe $x_\theta \in X$ con $\Norm{x_\theta} = 1$ para el cual $\Norm{x_\theta - y} > \theta$ para todo $y \in Y$. 
-\end{Lema}
-
-\begin{Dem}
-Tomemos $x \in X \setminus Y$. Como $Y$ es cerrado, el lema~\ref{Lema:DistanciaPositivaEnCerrados} indica que la distancia $d(x, Y)$ es positiva. Dado que $0 < \theta <1$, tenemos que 
-$$0 < d(x, Y) = \inf \{ \Norm{x-z} : z \in Y \} < \frac{d(x, Y)}{\theta}.$$
-Así que existe $z \in Y$ tal que $0 < \Norm{x - z} < \dfrac{d(x, Y)}{\theta}$. Definamos $x_\theta = \dfrac{x-z}{\Norm{x-z}}$. Claramente $\Norm{x_\theta} = 1$. Además, para $y \in Y$ se tiene que $z+ \Norm{x-z} y \in Y$. Por lo que
-\Ecu{
-\Norm{x_\theta - y} = \Norm{\dfrac{x-z}{\Norm{x-z}} - y} = \frac{1}{\Norm{x-z}} \cdot \Norm{x - (z+ \Norm{x-z} y)}  > \frac{\theta}{d(x, Y)} \cdot d(x, Y) = \theta.
-}
-\end{Dem}
-
-En un espacio normado $X$, denotamos a la bola unitaria centrada en el cero por $B_X$. Con el siguiente teorema resolvemos el objetivo que planteamos al inicio de esta subsección.
-
-\begin{Tma} \label{Tma:DimensionFinitaCerradoAcotadoCompacto}
-Sea $X$ un espacio normado. Las siguientes afirmaciones son equivalentes:
-\begin{itemize}
-\item \textbf{i)} $X$ es de dimensión finita.
-\item \textbf{ii)} Todo subconjunto cerrado y acotado de $X$ es compacto.
-\item \textbf{iii)} La bola unitaria cerrada $B_X$ es compacta. 
-\end{itemize}
-\end{Tma}
-
-\begin{Dem}
-Demostraremos que \textbf{i)} implica \textbf{ii)}, que \textbf{ii)} implica \textbf{iii)} y que \textbf{iii)} implica \textbf{i)}. 
-
-Supongamos que $X$ es de dimensión finita $n$. Entonces existe un isomorfismo de espacios normados $T: X \to \ell^n_2$. Sea $A$ un conjunto cerrado y acotado en $X$. Por ser $T$ isomorfismo se sigue que $T(A)$ también es cerrado y acotado. El teorema~\ref{Tma:HeineBorelGeneral} indica que $T(A)$ es compacto en  $\ell^n_2$. Por lo tanto $A = T^{-1}(T(A))$ también lo es. 
-
-Supongamos ahora que todo subespacio cerrado y acotado de $X$ es compacto. Entonces $B_X$ es compacta, pues es cerrada y acotada. 
-
-En lugar de demostrar que si $B_X$ es compacta entonces $X$ es de dimensión finita, demostraremos su contrapuesta. Así que suponemos que $X$ es de dimensión infinita. Construiremos una sucesión $(x_n)_{n \in \N}$ en $B_X$ sin subsucesiones convergentes. Tomemos $x_1 \in B_x$  con $\Norm{x_1} = 1$. Supongamos que tenemos definidos a $x_1, \ldots, x_n$ para algún $n \in \N$ de tal forma que si $1 < k \leq n$ entonces para cualesquiera $\alpha_1, \ldots, \alpha_{k-1} \in \K$ 
-\begin{equation} \label{Eq:1}
-\Norm{x_k - \sum_{i=1}^{k-1} \alpha_i x_i } \geq \frac{1}{2}.
-\end{equation}
-
-Como $X$ es de dimensión infinita, el subespacio $\mbox{span}\{x_1, \ldots, x_n \}$ es propio y por ser de dimensión finita, por el corolario~\ref{Cor:SubespacioDimensionFinitaCerrado} es cerrado. Tomando $\theta = \frac{1}{4}$, por el lema de Riesz existe $x_{n+1}$ tal que $\Norm{x_{n+1} - y} > \frac{1}{4}$ para todo $y \in \mbox{span}\{x_1, \ldots, x_n \}$. De esto que si tomamos $\alpha_1, \ldots, \alpha_{n} \in \K$ entonces 
-$$\Norm{x_{n+1} - \sum_{i=1}^{n} \alpha_i x_i } \geq \frac{1}{2}.$$
-
-Así pues, queda construida la sucesión $(x_n)_{n\in\N}$. Si tomamos $n, m \in \N$ con $n > m$ entonces al tomar $\alpha_1 = 1$ y $\alpha_i = 0$ para $1 \leq i \leq  n-1$ e $i \neq m$, de $(\ref{Eq:1})$ obtenemos que $\Norm{x_n - x_m} \geq \frac{1}{2}$. Esto indica que cualquier subsucesión de $(x_n)_{n\in\N}$ no es de Cauchy y por lo tanto no converge. Por la proposición~\ref{Tma:CaracterizacionCompacidadSucesiones} concluimos que $B_X$ no es compacto.
-\end{Dem}
 
 \section{Topologías débil y débil*.}
 
