@@ -81,6 +81,8 @@
 \newtheorem{Def}{Definición}[section]
 \newtheorem{Ejem}{Ejemplo}[section]
 
+
+
 \declaretheoremstyle[
   spaceabove=-2pt,
   spacebelow=6pt,
@@ -112,6 +114,8 @@
 \title{Hetmmet, Tareas}
 
 \setlist[itemize]{itemsep=2pt plus 1pt minus 0.5pt, topsep=0pt}
+\renewcommand\refname{Bibliografía.}
+
 
 \begin{document}
 \thispagestyle{plain}
@@ -367,6 +371,14 @@ Sean $X$ es un espacio topológico y $(x_n)_{n \in \N}$ una sucesión en $X$ conve
 
 \begin{Dem}
 Sean $x, y \in X$ límites de $(x_n)_{n\in\N}$. Sea $U$ una vecindad abierta de $x$ y $V$ una vecindad abierta de $y$, entonces existen $N, M \in \N$ tales que $x_n \in U$ y $y_m \in V$ si $n \geq N$ y $m \geq M$. Al tomar $K = \max(N, M)$ tenemos que $x_K \in U \cap V$ y por tanto $U \cap V \neq \emptyset$. La contrapositiva de la definición de Hausdorff indica que $x = y$.
+\end{Dem}
+
+\begin{Prop} \label{Lema:SubsucesionDeSucesionConvergenteConverge}
+Sea $X$ un espacio topológico. Si una red $(x_n)_{n\in\N} \subseteq X$ converge a $x \in X$, entonces toda subsucesión de $(x_n)_{n \in \N}$ converge a $x$.
+\end{Prop}
+
+\begin{Dem}
+Supongamos que $(x_n)_{n\in\N}\subseteq X$ converge a $x \in X$ y sea $(x_{n_k})_{k \in \N}$ una subsucesión de $(x_n)_{n \in\N}$ para algunos $n_1, n_2, \ldots \in \N$ crecientes. Sea $U$ una vecindad de $x$. Luego, existe $N \in\N$ tal que $x_n \in U$ si $n\geq N$. Si $k \geq N$, entonces $n_k \geq k \geq N$, y entonces $x_{n_k} \in U$. Así que $x_{n_k} \to x$.
 \end{Dem}
 
 Sean $X$ y $Y$ dos espacios topológicos. En $X \times Y$ trabajamos con la \textit{topología producto}, que es la generada por la base $\{ U\times V : U \mbox{ abierto  en } X \mbox{ y } V \mbox{ abierto en } Y \}$. Consideremos las \textit{proyecciones canónicas} en $X$ y $Y$
@@ -881,7 +893,7 @@ Sea $A \subseteq \K^n$. Son equivalentes:
 \begin{Dem}
 Primero supongamos que $A$ es compacto. Se sigue del corolario~\ref{Cor:HausdorffCompactoEsCerrado} que $A$ es cerrado. Por otra parte, $\{ V_n(0) \}_{n \in \N}$ es una cubierta abierta de $A$. Así que existe una subcubierta finita $\{ V_{n_1}(0), \ldots, V_{n_k}(0)\}$ de $A$ para algún $k \in \N$ y algunos $n_1, \ldots, n_k \in \N$. Sea $N = \max(n_1, \ldots, n_k)$, de manera que $A \subseteq \bigcup_{i=1}^k V_{n_i}(0) \subseteq V_N(0)$ y así $A$ es acotado. 
 
-Ahora supongamos que $A$ es cerrado y acotado. Trabajemos primero el caso $\K = \R$. Como $A$ es acotado, existe $r > 0$ tal que $A \subseteq V_r(0)$. Por el teorema de Heine-Borel, el intervalo $[-r, r]$ es compacto y por el teorema de Tychonoff, $[-r, r]^n$ es compacto en $\R^n$ con su topología producto. El lema~\ref{Lema:RectanguloCirculo} indica que $[-r, r]$ es compacto en $\ell_2^n(\R)$. Dado que $A$ es cerrado, la proposición~\ref{Prop:CerradoEnCompactoEsCompacto} asegura que $A$ es compacto. 
+Ahora supongamos que $A$ es cerrado y acotado. Trabajemos primero el caso $\K = \R$. Como $A$ es acotado, existe $r > 0$ tal que $A \subseteq V_r(0)$. Por el teorema de Heine-Borel, el intervalo $[-r, r]$ es compacto. Probemos que, $[-r, r]^n$ es compacto por sucesiones en $\R^n$ con su topología producto. Sea pues $(f_k)_{k\in\N}$ una sucesión en $[-r, r]^n$, donde cada $f_k : \{1, \ldots, n\} \to \R$. Entonces $(f_k(1))_{k\in \N}$ es una sucesión en $[-r, r]$. Como este es compacto, existe una subsucesión $(f_{k_{1, i}}(1))_{i\in \N}$ de $(f_k(1))_{k\in \N}$ convergente, para algunos $k_{1, 1}, k_{1, 2}, \ldots \in \N$. Como $(f_{k_{1, i}}(2))_{i\in \N}$ es una sucesión en $[-r, r]$ y este es compacto, existe una subsucesión $(f_{k_{2, i}}(2))_{i\in \N}$ de $(f_{k_{1, i}}(2))_{k\in \N}$ convergente, para algunos $k_{2, 1}, k_{2, 2}, \ldots \in \N$. Además del lema~\ref{Lema:SubsucesionDeSucesionConvergenteConverge} se sigue que $(f_{k_{2, i}}(1))_{i\in \N}$ también converge. Continuando sucesivamente podemos encontrar una sucesión creciente $(k_{n, i})_{i\in\N}$ tal que $(f_{k_{n, i}}(j))_{i\in\N}$ converge en $[-r, r]$ para toda $j \in \nn{n}$. Por la proposición~\ref{Prop:ConvergenciaPorComponentes} se sigue que en la topología producto de $[-r, r]^n$ la sucesión $(f_{k_{n, i}})_{i\in\N}$ converge. Así que $[-r, r]^n$ es compacto por sucesiones y por el lema~\ref{Tma:CaracterizacionCompacidadSucesiones} es compacto en la topología producto. El lema~\ref{Lema:RectanguloCirculo} indica que $[-r, r]$ es compacto en $\ell_2^n(\R)$. Dado que $A$ es cerrado, la proposición~\ref{Prop:CerradoEnCompactoEsCompacto} asegura que $A$ es compacto. 
 
 Si por otro lado $\K = \C$, consideremos la correspondencia canónica $J: \C^n \to \R^{2n}$ definida por $J(a_1 + i b_1 , \ldots, a_n + i b_n) = (a_1, b_1, \ldots, a_n, b_n)$. Claramente es biyectiva y además 
 \begin{equation} \label{Eq:ComplejosReales}
@@ -949,6 +961,54 @@ Más adelante probaremos que no sólo $\ell_2^n$ es completo, sino que el resto de
 \subsectionmark{Compacidad de la bola cerrada.}
 
 La compacidad es una propiedad muy importante que puede tener un subconjunto de un espacio topológico. El objetivo de esta sección es demostrar que la compacidad de la bola unitaria en un espacio normado depende simplemente de si este es de dimensión finita o no.
+
+\begin{Ejem}
+Para cada $p \in [1, \infty]$, $\ell_p$ es un espacio de Banach.
+\end{Ejem}
+
+\begin{Dem}
+Como cada elemento en $\ell_p$ es una sucesión en $\K$, usaremos la notación de funciones en $\ell_p$. Tomemos pues una sucesión de Cauchy $(f_n)_{n \in\N}$ en $\ell_p$. Fijemos $k \in \N$ y notemos que $(f_n(k))_{n\in \N}$ es una sucesión de Cauchy en $\K$ puesto que $(f_n)_{n \in\N}$ es de Cauchy y dados $n, m \in \N$ se tiene que
+$$\abs{f_n(k) - f_m(k)} \leq \Norm{f_n - f_m}.$$
+
+Así pues, como $\K$ es completo, se sigue que $(f_n(k))_{n\in \N}$ converge a algún $x_k \in \K$. Consideremos $f: \N \to \K$ definida por $f(k) = x_k$ para todo $k\in\N$. 
+
+Demostremos que $f \in \ell_p$ y $f_n \to f$. Para eso separemos en dos casos. El primero es cuando $1 \leq p < \infty$. Sea $\varepsilon > 0$ y $M\in\N$. Como $(f_n)_{n \in\N}$ es de Cauchy, existe $N \in \N$ tal que para $n, m \geq N$ se tenga que $$\sqrt[p]{\sum_{i=1}^M \abs{f_n(i) - f_m(i)}^p} \leq \sqrt[p]{\sum_{i=1}^\infty \abs{f_n(i) - f_m(i)}^p} = \Norm{f_n- f_m}_p < \varepsilon.$$
+
+De donde 
+\begin{equation} \label{Eq:ElleEsBanach1}
+\sum_{i=1}^M \abs{f_n(i) - f_m(i)}^p <  \varepsilon^p \mbox{ si } n, m \geq N.
+\end{equation}
+
+Fijemos $n \geq N$. Como $f_m(i) \to f(i)$ para todo $i \in \nn{M}$, haciendo $m \to \infty$ en (\ref{Eq:ElleEsBanach1}) se sigue que 
+\begin{equation*} 
+\sum_{i=1}^M \abs{f_n(i) - f(i)}^p <  \varepsilon^p.
+\end{equation*}
+
+De lo que resulta que 
+\begin{equation*} 
+\Norm{f_n -f}_p^p = \sum_{i=1}^\infty \abs{f_n(i) - f(i)}^p \leq  \varepsilon^p.
+\end{equation*}
+
+Es decir, 
+\begin{equation} \label{Eq:ElleEsBanach2}
+\Norm{f_n - f}_p \leq \varepsilon \mbox{ si }n \geq N. 
+\end{equation} 
+
+Tomando $\varepsilon = 1$ en (\ref{Eq:ElleEsBanach2}) existe $N \in \N$ tal que $\Norm{f - f_N}_p \leq 1$. Así que $f -f_N \in \ell_p$, y entonces $f = (f- f_N) + f_N \in \ell_p$. Además, lo establecido en (\ref{Eq:ElleEsBanach2}) indica precisamente que $f_n \to f$.
+
+Ahora trabajemos el caso $p = \infty$. Sea $\varepsilon > 0$. Como $(f_n)_{n \in\N}$ es de Cauchy, existe $N \in \N$ tal que para $n, m \geq N$ y $i \in \N$ se tenga que $$\abs{f_n(i) - f_m(i)} \leq \Norm{f_n- f_m}_\infty < \varepsilon.$$
+
+Fijemos $n \geq N$. Como $f_m(i) \to f(i)$ para todo $i \in \N$, haciendo $m \to \infty$  se sigue que 
+$$\abs{f_n(i) - f(i)} \leq \varepsilon \mbox{ para todo }i \in \N.$$
+
+Es decir, 
+\begin{equation} \label{Eq:ElleEsBanach3}
+\Norm{f_n - f}_\infty \leq \varepsilon \mbox{ si }n \geq N. 
+\end{equation} 
+
+Tomando $\varepsilon = 1$ en (\ref{Eq:ElleEsBanach3}) existe $N \in \N$ tal que $\Norm{f - f_N}_\infty \leq 1$. Así que $f -f_N \in \ell_p$, y entonces $f = (f- f_N) + f_N \in \ell_\infty$. Además, lo establecido en (\ref{Eq:ElleEsBanach3}) indica precisamente que $f_n \to f$.
+
+\end{Dem}
 
 \begin{Lema} \textbf{(de Riesz)}
 Sean $Y$ un subespacio propio y cerrado de un espacio normado $X$ y $\theta \in (0, 1)$, entonces existe $x_\theta \in X$ con $\Norm{x_\theta} = 1$ para el cual $\Norm{x_\theta - y} > \theta$ para todo $y \in Y$. 
@@ -2308,7 +2368,7 @@ $$\lim_{n\to\infty} \sum_{j=1}^n x_{k_j} \mbox{ existe bajo la norma.}$$ \\
 Esto indica que en un espacio de Banach la convergencia débil de subseries implica convergencia de subseries bajo la norma.
 
 \nocite{*}
-\bibliographystyle{ieeetr}
+\bibliographystyle{est-esp}
 \bibliography{Bibliografia}
 
 \label{ultimapagina}
