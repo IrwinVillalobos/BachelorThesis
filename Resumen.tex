@@ -520,6 +520,15 @@ Ahora tomemos $x \in M$ tal que existe $(x_n)_{n\in\N} \subseteq A$ con $x_n \to
 Sea $M$ un espacio métrico. Una sucesión $(x_n)_{n\in\N} \subseteq M$ es de \textit{Cauchy} si para todo $\varepsilon > 0$ existe $N \in\N$ tal que $d(x_n, x_m) < \varepsilon$ para $n, m \geq N$. Decimos que $M$ es \textit{completo} si toda sucesión de Cauchy converge.  
 \end{Def}
 
+\begin{Lema} \label{Lema:SucesionConvergenteEsCauchy}
+Sea $M$ un espacio métrico. Si una sucesión en $M$ es convergente, entonces es de Cauchy.
+\end{Lema}
+
+\begin{Dem}
+Consideremos una sucesión $(x_n)_{n\in\N}$ en $M$ tal que converge a $x \in M$.  Sea $\varepsilon > 0$. Como $x_n \to x$, existe $N \in\N$ tal que $d(x, x_n)  < \frac{\varepsilon}{2}$ si $n \geq N$. Luego, si $n, m \geq N$, entonces $d(x_n, x_m) \leq d(x_n, x) + d(x, x_m) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$. 
+\end{Dem}
+
+
 \begin{Lema} \label{Lema:SucesionCauchyConSubsucesionConvergenteConverge}
 Sea $M$ un espacio métrico. Si $(x_n)_{n \in\N}$ es una sucesión de Cauchy en $M$ y tiene una subsucesión que converge a $x \in M$, entonces $(x_n)_{n\in\N}$ converge a $x$.
 \end{Lema}
@@ -962,6 +971,74 @@ Más adelante probaremos que no sólo $\ell_2^n$ es completo, sino que el resto de
 
 La compacidad es una propiedad muy importante que puede tener un subconjunto de un espacio topológico. El objetivo de esta sección es demostrar que la compacidad de la bola unitaria en un espacio normado depende simplemente de si este es de dimensión finita o no.
 
+\begin{Def} \hfill
+\begin{itemize}
+\item \textbf{i)} Sean $X$ y $Y$ espacios vectoriales. Se dice que $X$ y $Y$
+son \textit{isomorfos} como espacios vectoriales si existe $T :  X \to Y$ biyectiva y lineal. En este caso a $T$ se la llama \textit{isomorfismo} de espacios vectoriales.
+\item \textbf{ii)} Sean $X$ y $Y$ espacios normado. Se dice que $X$ y $Y$ son \textit{isomorfos} como espacios normados o que son \textit{isomorficamente homeomorfos} si existe un isomorfismo de espacios vectoriales $T: X \to Y$ que también es un homeomorfismo. En este caso a $T$ se le llama \textit{isomorfismo} de espacios normados. 
+\end{itemize}
+\end{Def}
+
+\begin{Tma} \label{Tma:EspaciosNormadosFinitosIsomorfos}
+Si $X$ y $Y$ son espacios normados de dimensión finita y de la misma dimensión, entonces son isomorfos como espacios normados.
+\end{Tma}
+
+\begin{Dem}
+Supongamos que $\dim \, X = n \in \N$ y sea $\{ x_1, \ldots, x_n \}$ una base suya. Demostraremos que $X$ es isomorfo como espacio normado a $\ell_2^n$ por medio de la función 
+\Ecu{
+T: \ell_2^n & \to X \\
+(a_1, \ldots, a_n) & \mapsto \sum_{i=1}^n a_i x_i. 
+} 
+Si $a = (a_1, \ldots, a_n), b = (b_1, \ldots, b_n) \in \ell_2^n$ cumplen que $T(a) = T(b)$, entonces $\sum_{i=1}^n (a_i - b_i)x_i = 0$. Como $\{x_1, \ldots, x_n \}$ es linealmente independiente, entonces $a_1 - b_1 = \ldots = a_n - b_n = 0$. Así que $a = b$ y $T$ es inyectiva. 
+
+Sea $x \in X$. Como $\{x_1, \ldots, x_n \}$ genera a $X$, existen $a_1, \ldots, a_n \in \K$ tales que $x = \sum_{i=1}^n a_i x_i = T(a_1, \ldots, a_n)$ y así $T$ es sobreyectiva. 
+
+Veamos que $T$ es lineal. Dados $(a_1, \ldots, a_n), (b_1, \ldots, b_n) \in \ell_1^n$ y $\lambda \in \K$, se tiene que
+\Ecu{
+T((a_1, \ldots, a_n) + \lambda (b_1, \ldots, b_n)) &= T((a_1 + \lambda b_1, \ldots, a_n + \lambda b_n)) = \sum_{i=1}^n (a_i + \lambda b_i) x_i \\
+&= \sum_{i=1}^n a_i  x_i +  \lambda\sum_{i=1}^n  b_i x_i = T(a_1, \ldots, a_n) + \lambda T(b_1, \ldots, b_n).
+}
+
+Ahora, tomemos $(a_1, \ldots, a_n) \in \ell_2^n$. Por la desigualdad del triángulo y la desigualdad de Schwarz 
+\Ecu{
+\Norm{T(a_1, \ldots, a_n)} & = \Norm{\sum_{i=1}^n a_i x_i} \leq \sum_{i=1}^n \abs{a_i} \Norm{x_i} \\
+&\leq \left( \sum_{i=1}^n \Norm{x_i}^2 \right)^{\frac{1}{2}} \left( \sum_{i=1}^n \abs{a_i}^2 \right)^{\frac{1}{2}} \\
+&= \left( \sum_{i=1}^n \Norm{x_i}^2 \right)^{\frac{1}{2}} \Norm{(a_1, \ldots, a_n)}_2.
+}
+
+Esto indica que $T$ es un operador lineal acotado y por lo tanto continuo. 
+
+Ahora consideremos la función $f = \Norm{\cdot} \circ T$. Como la norma es una función continua y $T$ es continua, entonces $f$ es continua. Dado que $S_{\ell_2^n} := \{ (a_1, \ldots, a_n) \in \K^n  : \Norm{(a_1, \ldots, a_n)}_2 = 1 \}$  es compacto en $\ell_2^n$  se sigue que $f$ alcanza un valor mínimo $m \in \K$ en $S_{\ell_2^n}$. Como $f \geq 0$, entonces $m \geq 0$. Supongamos que $m = 0$. Entonces existe $(a_1, \ldots, a_n) \in S_{\ell_2^n}$ tal que $$ \Norm{\sum_{i=1}^n a_i x_i} = f(a_1, \ldots, a_n) = 0.$$
+
+Por lo que $\sum_{i=1}^n a_i x_i = 0$ y esto indica que $a_1 = \ldots = a_n = 0$. Lo cual es una contradicción, pues  entonces $\Norm{(a_1, \ldots, a_n)}_2 = 0$. Así que $m > 0$ y $\frac{1}{m} > 0$. Para todo $x \in X$ con $x \neq 0$ se cumple que $T^{-1}(x) \neq 0$, $\frac{T^{-1}(x)}{\Norm{T^{-1}(x)}} \in S_{\ell_2^n}$ y 
+$$\frac{\Norm{x}}{\Norm{T^{-1}(x)}} = \Norm{T\left(\frac{T^{-1}(x)}{\Norm{T^{-1}(x)}}\right)} = f\left(\frac{T^{-1}(x)}{\Norm{T^{-1}(x)}}\right) \geq m. $$
+
+De donde $\Norm{T^{-1}(x)} \leq \frac{1}{m} \Norm{x}$. Por lo cual $T^{-1}$ es continua y $T$ es un isomorfismo de espacios normados. 
+
+Análogamente, como $\dim \, Y =  \dim \,  X  = n$, entonces existe $S: \ell^n_2 \to Y$  isomorfismo de espacios normados. Resulta entonces que $S\circ T^{-1} : X \to Y$ es un isomorfismo de espacios normados entre $X$ y $Y$.
+\end{Dem}
+
+\begin{Lema} \label{Lema:IsomorfimoDeEspaciosNormadosPreservaCompletez}
+Sean $X$ y $Y$ espacios normados isomorfos. Si $X$ es completo, entonces $Y$ es completo.
+\end{Lema}
+
+\begin{Dem}
+Sea $(x_n)_{n \in \N}$ una sucesión de Cauchy en $Y$. Consideremos  un isomorfismo $T: X \to Y$ de espacios normados y a la sucesión $(T^{-1}x_n)_{n \in \N}$ en $X$. Sea $\varepsilon > 0$, como $T^{-1}$ es continua en el 0, existe $\delta > 0$ tal que si $x \in Y$ cumplen que $\Norm{x} < \delta$, entonces $\Norm{T^{-1} x} < \varepsilon$. Como $(x_n)_{n \in\N}$ es de Cauchy, existe $N in\N$ tal que $\Norm{x_n - x_m} < \delta $ si $n, m \geq N$. Entonces $\Norm{T^{-1}x_n - T^{-1}x_m} = \Norm{T^{-1}(x_n -x_m)} < \varepsilon$ si $n, m \geq N$. Es decir, $(T^{-1}x_n)_{n \in\N}$ es de Cauchy.
+
+Como $X$ es completo, la sucesión $(T^{-1}(x_n))_{n \in \N}$ converge a algún $x \in X$. Puesto que $T$ es continua, la proposición~\ref{Prop:ContinuidadPorSucesiones} indica que $x_\alpha \to T(x)$.
+\end{Dem}
+
+
+\begin{Prop} \label{Prop:EspacioNormadoDimensionFinitaCompleto}
+Cualquier espacio normado de dimensión finita es completo.
+\end{Prop}
+
+\begin{Dem}
+Sea $X$ un espacio normado de dimensión finita $n \in \N$. Dado que $\K^n$ con la topología euclidiana es un espacio vectorial topológico completo, y $X$ es isomorficamente homeomorfo a $\K^n$, resulta por el lema~\ref{Lema:IsomorfimoDeEspaciosNormadosPreservaCompletez} que $X$ también es completo.
+\end{Dem}
+
+Del resultado anterior se sigue inmediatamente que los espacios $\ell^n_p$ son completos.
+
 \begin{Ejem}
 Para cada $p \in [1, \infty]$, $\ell_p$ es un espacio de Banach.
 \end{Ejem}
@@ -1010,6 +1087,22 @@ Tomando $\varepsilon = 1$ en (\ref{Eq:ElleEsBanach3}) existe $N \in \N$ tal que 
 
 \end{Dem}
 
+\begin{Lema} \label{Lema:EspacioNormadoCompletoEntoncesCerrado}
+Sean $X$ un espacio normado y $Y \subseteq X$ un subespacio. Si $Y$ es completo, entonces $Y$ es cerrado en $X$.
+\end{Lema}
+
+\begin{Dem}
+Sea $x \in \ov{Y}$. La proposición~\ref{Prop:CerraduraLimiteSucesiones} establece que existe una sucesión $(x_n)_{n \in \N} \subseteq Y$ tal que $x_n \to x$. Como $(x_n)_{n \in \N}$ es convergente, el lema~\ref{Lema:SucesionConvergenteEsCauchy} indica que $(x_n)_{n \in \N}$ es de Cauchy y al ser $Y$ completo, se sigue que la red converge en $Y$. Al ser $X$ Hausdorff, se sigue que $x \in Y$ y así $Y$ es cerrado. 
+\end{Dem}
+
+\begin{Cor} \label{Cor:SubespacioNormadoDimensionFinitaCerrado}
+Si $Y$ es un subespacio de dimensión finita de un espacio normado $X$, entonces $Y$ es cerrado en $X$.
+\end{Cor}
+
+\begin{Dem}
+La proposición~\ref{Prop:EspacioNormadoDimensionFinitaCompleto} indica que $Y$ es completo. Del lema~\ref{Lema:EspacioNormadoCompletoEntoncesCerrado} se concluye que $Y$ es cerrado en $X$.
+\end{Dem}
+
 \begin{Lema} \textbf{(de Riesz)}
 Sean $Y$ un subespacio propio y cerrado de un espacio normado $X$ y $\theta \in (0, 1)$, entonces existe $x_\theta \in X$ con $\Norm{x_\theta} = 1$ para el cual $\Norm{x_\theta - y} > \theta$ para todo $y \in Y$. 
 \end{Lema}
@@ -1046,7 +1139,7 @@ En lugar de demostrar que si $B_X$ es compacta entonces $X$ es de dimensión fini
 \Norm{x_k - \sum_{i=1}^{k-1} \alpha_i x_i } \geq \frac{1}{2}.
 \end{equation}
 
-Como $X$ es de dimensión infinita, el subespacio $\mbox{span}\{x_1, \ldots, x_n \}$ es propio y por ser de dimensión finita, por el corolario~\ref{Cor:SubespacioDimensionFinitaCerrado} es cerrado. Tomando $\theta = \frac{1}{4}$, por el lema de Riesz existe $x_{n+1}$ tal que $\Norm{x_{n+1} - y} > \frac{1}{4}$ para todo $y \in \mbox{span}\{x_1, \ldots, x_n \}$. De esto que si tomamos $\alpha_1, \ldots, \alpha_{n} \in \K$ entonces 
+Como $X$ es de dimensión infinita, el subespacio $\mbox{span}\{x_1, \ldots, x_n \}$ es propio y por ser de dimensión finita, por el corolario~\ref{Cor:SubespacioNormadoDimensionFinitaCerrado} es cerrado. Tomando $\theta = \frac{1}{4}$, por el lema de Riesz existe $x_{n+1}$ tal que $\Norm{x_{n+1} - y} > \frac{1}{4}$ para todo $y \in \mbox{span}\{x_1, \ldots, x_n \}$. De esto que si tomamos $\alpha_1, \ldots, \alpha_{n} \in \K$ entonces 
 $$\Norm{x_{n+1} - \sum_{i=1}^{n} \alpha_i x_i } \geq \frac{1}{2}.$$
 
 Así pues, queda construida la sucesión $(x_n)_{n\in\N}$. Si tomamos $n, m \in \N$ con $n > m$ entonces al tomar $\alpha_1 = 1$ y $\alpha_i = 0$ para $1 \leq i \leq  n-1$ e $i \neq m$, de $(\ref{Eq:1})$ obtenemos que $\Norm{x_n - x_m} \geq \frac{1}{2}$. Esto indica que cualquier subsucesión de $(x_n)_{n\in\N}$ no es de Cauchy y por lo tanto no converge. Por la proposición~\ref{Tma:CaracterizacionCompacidadSucesiones} concluimos que $B_X$ no es compacto.
@@ -1623,7 +1716,7 @@ Por otro lado, en cualquier espacio vectorial topológico no se cumple que toda r
 Un espacio vectorial topológico $E$ es \textit{completo} si toda red de Cauchy en $E$ converge.
 \end{Def}
 
-\begin{Lema} \label{Lema:CompletoEntoncesCerrado}
+\begin{Lema} \label{Lema:EVTCompletoEntoncesCerrado}
 Sean $E$ un espacio vectorial topológico y $F \subseteq E$ un subespacio vectorial. Si $F$ es completo, entonces $F$ es cerrado en $E$.
 \end{Lema}
 
@@ -1886,13 +1979,8 @@ Mostremos que $f_\alpha \to f$. Sea $U_{f, \abs{\delta_{a_1}}, \ldots, \abs{\del
 \subsection[Espacios vectoriales topológicos de dimensión finita.]{Espacios vectoriales topológicos de dimensión finita. \subsectionmark{Espacios de dimensión finita.}}
 \subsectionmark{Espacios de dimensión finita.}
 
-\begin{Def} \hfill
-\begin{itemize}
-\item \textbf{i)} Sean $X$ y $Y$ espacios vectoriales. Se dice que $X$ y $Y$
-son \textit{isomorfos} como espacios vectoriales si existe $T :  X \to Y$ biyectiva y lineal. En este caso a $T$ se la llama \textit{isomorfismo} de espacios vectoriales.
-\item \textbf{ii)} Sean $E$ y $F$ espacios vectoriales topológicos. Se dice que $E$ y $F$ son \textit{isomorfos} como espacios vectoriales topológicos o que son \textit{isomorficamente homeomorfos} si existe un isomorfismo de espacios vectoriales $T: E \to F$ que también es un homeomorfismo. En este caso a $T$ se le llama \textit{isomorfismo} de espacios vectoriales topológicos. 
-\item \textbf{iii)} Sean $X$ y $Y$ espacios normados. Se dice que $X$ y $Y$ son \textit{isomorfos} como espacios normados si son isomorfos como espacios vectoriales topológicos. 
-\end{itemize}
+\begin{Def} 
+Sean $E$ y $F$ espacios vectoriales topológicos. Se dice que $E$ y $F$ son \textit{isomorfos} como espacios vectoriales topológicos o que son \textit{isomorficamente homeomorfos} si existe un isomorfismo de espacios vectoriales $T: E \to F$ que también es un homeomorfismo. En este caso a $T$ se le llama \textit{isomorfismo} de espacios vectoriales topológicos. 
 \end{Def}
 
 \begin{Tma} \label{Tma:IsomorfismoDimensionFinitaEVT} 
@@ -1946,60 +2034,13 @@ Cualquier espacio vectorial topológico de dimensión finita es completo.
 Sea $E$ un espacio vectorial topológico de dimensión finita $n \in \N$. Dado que $\ell^n_2$ es un espacio vectorial topológico de dimensión $n$, del teorema~\ref{Tma:IsomorfismoDimensionFinitaEVT} se sigue que $E$ es isomorfo a $\ell^n_2$ como espacio normado. Según el teorema~\ref{Tma:NormaEuclidianaCompleta}, $\ell_2^n$ es un espacio completo. Así que del lema~\ref{Lema:HomeomorfismoLinealPreservaCompletitez} resulta que $E$ también es completo.
 \end{Dem}
 
-Del resultado anterior se sigue inmediatamente que los espacios $\ell^n_p$ son completos.
-
-\begin{Prop}
-Para cada $p \in [1, \infty]$, $\ell_p$ es un espacio de Banach.
-\end{Prop}
-
-\begin{Dem}
-
-Como cada elemento en $\ell_p$ es una sucesión en $\K$, usaremos la notación de funciones en $\ell_p$ y en $\ell_p^k$. Dado $k \in \N$, denotemos por $[k]$ al conjunto $\{1, \ldots, k\}$. De esta forma, si $f \in \K^\N$, cada $\restr{f}{[k]}$ es un elemento de $\K^k$. 
-
-Tomemos pues una sucesión de Cauchy $(f_n)_{n \in\N}$ en $\ell_p$. Entonces para todo $k\in\N$, $(\restr{f_n}{[k]})_{n\in \N}$ es una sucesión de Cauchy en $\ell_{p}^k$, pues dado $\varepsilon > 0$, existe $N \in \N$ tal que si $n, m \geq N$ entonces
-$$\Norm{\restr{f_n}{[k]} - \restr{f_m}{[k]}}_p \leq \Norm{f_n - f_m}_p < \varepsilon.$$
-
-Así pues, como $\ell_p^k$ con la norma euclidiana es completo, se sigue que para toda $k\in\N$, $(\restr{f_n}{[k]})_{n\in \N}$ converge a algún $(x_1, \ldots, x_k) \in \ell_p^k$. Consideremos $f: \N \to \K$ definida por $f(k) = x_k$ para todo $k\in\N$, de manera que $\restr{f_n}{[k]} \to \restr{f}{[k]}$.
-
-Verifiquemos que $f$ está bien definida en todo $k \in \N$. Tomemos cualquier $k_0 \geq k$, como $(\restr{f_n}{[k_0]})_{n\in \N}$ es de Cauchy,  dado $\varepsilon > 0$, existe $N \in \N$ tal que si $n, m \geq N$ entonces
-$$\abs{f_n(k) - f_m(k)} \leq \Norm{\restr{f_n}{[k_0]} - \restr{f_n}{[k_0]}}_p < \varepsilon.$$
-
-Esto indica que $(f_n(k))_{k\in \N}$ es de Cauchy. Puesto que $\K$ es completo, se sigue que $(f_n(k))_{n\in \N}$ converge a $x_k \in \K$. Como $\K$ es Hausdorff, este límite es único sin importar la elección de $k_0$. Así que $f(k) = x_k$ está bien definido.
-
-Demostremos ahora que $f_n \to f$.  Sea $\varepsilon > 0$. Como $(f_n)_{n\in\N}$ es de Cauchy, existe $N \in\N$ tal que 
-\begin{equation} \label{Eq:ElleBanach1}
-\Norm{\restr{f_n}{[k]} - \restr{f_m}{[k]}}_p \leq \Norm{f_n - f_m}_p < \frac{\varepsilon}{4}, \mbox{ para todos } n, m \geq N \mbox{ y } k \in \N.
-\end{equation}
-
-Sean $n \geq N$ y $k \in\N$, como $\restr{f_n}{[k]} \to \restr{f}{[k]}$ existe $M \geq N$ tal que 
-\begin{equation} \label{Eq:ElleBanach2}
-\Norm{\restr{f_m}{[k]} - \restr{f}{[k]}}_p < \frac{\varepsilon}{4}, \mbox{ si } m \geq M.
-\end{equation}
-
-Así pues, de (\ref{Eq:ElleBanach1}) y (\ref{Eq:ElleBanach2}) se sigue que  
-\begin{equation*}
-\Norm{\restr{f_n}{[k]} - \restr{f}{[k]}}_p < \frac{\varepsilon}{2}, \mbox{ para todas } n\geq N \mbox{ y } k \in \N. 
-\end{equation*}
-
-El lema~\ref{Lema:LimiteElleP} indica que 
-\begin{equation} \label{Eq:ElleBanach3}
-\Norm{f_n - f}_p = \lim_{k\to \infty}\Norm{\restr{f_n}{[k]} - \restr{f}{[k]}}_p \leq \frac{\varepsilon}{2} < \varepsilon, \mbox{ si } n\geq N. 
-\end{equation}
-
-Esto es $f_n \to f$. Por último probemos que $f \in \ell_p$. Tomando $\varepsilon = 1$ existe $N \in \N$ tal que se satisface (\ref{Eq:ElleBanach3}), de forma que $f - f_N \in \ell_p$ y como $f_N \in \ell_p$ concluimos que $f = (f - f_N) + f_N \in \ell_p$.
-\end{Dem}
-
 \begin{Cor} \label{Cor:SubespacioDimensionFinitaCerrado}
 Sea $E$ un espacio vectorial topológico. Si $F$ es un subespacio de dimensión finita de $E$, entonces $F$ es cerrado en $E$.
 \end{Cor}
 
 \begin{Dem}
-La proposición~\ref{Prop:DimensionFinitaEVTCompleto} indica que $F$ es completo. Del lema~\ref{Lema:CompletoEntoncesCerrado} se concluye que $F$ es cerrado en $E$.
+La proposición~\ref{Prop:DimensionFinitaEVTCompleto} indica que $F$ es completo. Del lema~\ref{Lema:EVTCompletoEntoncesCerrado} se concluye que $F$ es cerrado en $E$.
 \end{Dem}
-
-\begin{Cor} \label{Cor:EspaciosNormadosFinitosIsomorfos}
-Si $X$ y $Y$ son espacios normados de dimensión finita y de la misma dimensión, entonces son isomorfos como espacios normados.
-\end{Cor}
 
 \section{Topologías débil y débil*.}
 
