@@ -12,6 +12,7 @@
 \usepackage{centernot}
 \usepackage{fancybox}
 \usepackage{enumitem}
+\usepackage{afterpage}
 \usepackage{multirow}
 \usepackage[all]{xy}
 \usepackage{color}
@@ -114,8 +115,14 @@
 \title{Hetmmet, Tareas}
 
 \setlist[itemize]{itemsep=2pt plus 1pt minus 0.5pt, topsep=0pt}
-\renewcommand\refname{Bibliografía.}
+%\renewcommand\bibname{Bibliografía.}
 
+\def\blankpage{%
+      \clearpage%
+      \thispagestyle{empty}%
+      \addtocounter{page}{-1}%
+      \null%
+      \clearpage}
 
 \begin{document}
 \thispagestyle{plain}
@@ -125,6 +132,10 @@
 
 
 \tableofcontents
+
+\newpage
+\blankpage
+
 
 \section{Topología.}
 
@@ -2015,7 +2026,7 @@ Probemos que $T^{-1}(\widehat{V}) \subseteq V_\frac{1}{\varepsilon}(0)$. Sea $z 
  
 Demostremos que $T^{-1}(r \varepsilon \cdot \widehat{V}) \subseteq U$. Tomemos $y \in \widehat{V}$, de manera que $T^{-1}(r \varepsilon \cdot y) \in T^{-1}(r \varepsilon \cdot\widehat{V})$. Como $T^{-1}(\widehat{V}) \subseteq V_\frac{1}{\varepsilon}(0)$, se sigue que $T^{-1}y \in V_\frac{1}{\varepsilon}(0)$. Es decir, $\Norm{T^{-1}y} < \frac{1}{\varepsilon}$. De esto se sigue que $r\varepsilon \Norm{T^{-1}y} < r$, o bien $\Norm{r\varepsilon \cdot T^{-1}y} < r$. Entonces $T^{-1}(r\varepsilon \cdot y) \in V_r(0) \subseteq U$. 
  
-Dado que $\widehat{V}$ es una vecindad abierta del cero, la observación~\ref{Obs:DilatacionTraslacion} indica que $r \varepsilon \cdot \widehat{V}$ también es vecindad abierta del cero. De esto y de que $T^{-1}(D_{r\varepsilon}^E(\widehat{V})) \subseteq U$ concluimos que $T^{-1}$ es continua. 
+Dado que $\widehat{V}$ es una vecindad abierta del cero, la observación~\ref{Obs:DilatacionTraslacion} indica que $r \varepsilon \cdot \widehat{V}$ también es vecindad abierta del cero. De esto y de que $T^{-1}(r\varepsilon \cdot \widehat{V}) \subseteq U$ concluimos que $T^{-1}$ es continua. 
 \end{Dem}
 
 \begin{Prop} \label{Prop:FuncionalesLinealesContinuosEspaciosFinitos}
