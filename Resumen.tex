@@ -247,10 +247,10 @@ Si $X$ es un espacio topológico, $\mathcal{B}$ es una base y $\tau (\mathcal{B})
 Consideremos en $\R$ la familia de intervalos abiertos $\mathcal{I} = \{(a, b) : a, b \in \R, a < b \}$. Notemos que:
 \begin{itemize}
 \item \textbf{i)} Dado $x\in \R$, el intervalo $(x-1, x+1)$ contiene a $x$, así que $\mathcal{I}$ es una cubierta de $\R$.
-\item \textbf{ii)} Sean $I_1 = (a_1, b_1), I_2 = (a_2, b_2) \in \mathcal{I}$ y $x \in I_1 \cap I_2$. Entonces $a_1 < x < b_1$ y $a_2 < x < b_2$. Si definimos $a = \max(a_1, a_2)$ y $b = \min(b_1, b_2)$, entonces $x \in (a, b) \subseteq I_1 \cap I_2$. 
+\item \textbf{ii)} Sean $I_1 = (a_1, b_1), I_2 = (a_2, b_2) \in \mathcal{I}$ tales que $x \in I_1 \cap I_2$. Entonces $a_1 < x < b_1$ y $a_2 < x < b_2$. Al definir $a = \max(a_1, a_2)$ y $b = \min(b_1, b_2)$, se tiene que $x \in (a, b) \subseteq I_1 \cap I_2$. 
 \end{itemize}
 
-Por lo tanto $\mathcal{I}$ es una base de $\R$ y la topología que genera se denomina \textit{topología usual} de $\R$. (¿Era esta la manera en la que quería que definiera la topología usual en $\R$?)
+Por lo tanto $\mathcal{I}$ es una base de $\R$; y la topología que genera se denomina \textit{topología usual} de $\R$. 
 \end{Ejem}
 
 \begin{Prop} \label{Prop:CaracterizacionDeBase}
@@ -273,9 +273,9 @@ Por definición \textbf{i)} y \textbf{ii)} indican que $\mathcal{B}$ es una base.
 
 Cuando sea necesario probar que una función es continua, si se cuenta con una base en el codominio, entonces basta probar que la preimagen de cualquier conjunto básico es abierto, como indica la siguiente proposición.
 
-\begin{Prop} \label{Prop:ContinuidadPorBasicos}
+\begin{Lema} \label{Lema:ContinuidadPorBasicos}
 Sean $X, Y$ espacios topológicos y $f: X \to Y$. Si $\B$ es una base de $Y$ y $f^{-1}(B)$ es abierto en $X$ para todo $B \in \B$, entonces $f$ es continua. 
-\end{Prop}
+\end{Lema}
 
 \begin{Dem}
 Sea $V$ abierto en $Y$. Entonces existen un conjunto $\Lambda$ y algunos $B_\alpha \in \B$, $\alpha \in \Lambda$ tales que $V = \bigcup_{\alpha \in \Lambda} B_\alpha$. Por hipótesis  $f^{-1}(B_\alpha)$ es abierto en $X$ para toda $\alpha \in \Lambda$, por lo que también lo es
@@ -326,7 +326,7 @@ Un subconjunto $K$ de un espacio topológico $X$ es \textit{compacto} si para cua
 A la colección $\{ U_\alpha \}_{\alpha \in \Lambda}$ se le denomina \textit{cubierta abierta} de $K$ y a la subcolección $\{ U_{\alpha_1}, \ldots, U_{\alpha_n} \}$ se le llama \textit{subcubierta finita} de $\{ U_\alpha \}_{\alpha \in \Lambda}$.
 \end{Def}
 
-El teorema de Heine-Borel es una consecuencia del axioma del supremo de los números reales. 
+El teorema de Heine-Borel es una consecuencia del axioma del supremo de los números reales, el cual constituye una propiedad fundamental de ellos.
 
 \begin{Tma} \label{Tma:HeineBorel} \textbf{(Heine-Borel)}
 Para todos $a, b \in \R$ con $a \leq b$, el intervalo $[a, b]$ es compacto. 
@@ -416,12 +416,12 @@ Sean $X$ es un espacio topológico y $(x_n)_{n \in \N}$ una sucesión en $X$ conve
 Sean $x, y \in X$ límites de $(x_n)_{n\in\N}$. Sea $U$ una vecindad abierta de $x$ y $V$ una vecindad abierta de $y$, entonces existen $N, M \in \N$ tales que $x_n \in U$ y $y_m \in V$ si $n \geq N$ y $m \geq M$. Al tomar $K = \max(N, M)$ tenemos que $x_K \in U \cap V$ y por tanto $U \cap V \neq \emptyset$. La contrapositiva de la definición de Hausdorff indica que $x = y$.
 \end{Dem}
 
-\begin{Prop} \label{Lema:SubsucesionDeSucesionConvergenteConverge}
-Sea $X$ un espacio topológico. Si una red $(x_n)_{n\in\N} \subseteq X$ converge a $x \in X$, entonces toda subsucesión de $(x_n)_{n \in \N}$ converge a $x$.
-\end{Prop}
+\begin{Lema} \label{Lema:SubsucesionDeSucesionConvergenteConverge}
+Sea $X$ un espacio topológico. Si una sucesión $(x_n)_{n\in\N} \subseteq X$ converge a $x \in X$, entonces toda subsucesión de $(x_n)_{n \in \N}$ converge a $x$.
+\end{Lema}
 
 \begin{Dem}
-Supongamos que $(x_n)_{n\in\N}\subseteq X$ converge a $x \in X$ y sea $(x_{n_k})_{k \in \N}$ una subsucesión de $(x_n)_{n \in\N}$ para algunos $n_1, n_2, \ldots \in \N$ crecientes. Sea $U$ una vecindad de $x$. Luego, existe $N \in\N$ tal que $x_n \in U$ si $n\geq N$. Si $k \geq N$, entonces $n_k \geq k \geq N$, y entonces $x_{n_k} \in U$. Así que $x_{n_k} \to x$.
+Supongamos que $(x_n)_{n\in\N}\subseteq X$ converge a $x \in X$ y sea $(x_{n_k})_{k \in \N}$ una subsucesión de $(x_n)_{n \in\N}$. Sea $U$ una vecindad de $x$. Luego, existe $N \in\N$ tal que $x_n \in U$ si $n\geq N$. Si $k \geq N$, entonces $n_k \geq k \geq N$, y entonces $x_{n_k} \in U$. Así que $x_{n_k} \to x$.
 \end{Dem}
 
 Sean $X$ y $Y$ dos espacios topológicos. En $X \times Y$ trabajamos con la \textit{topología producto}, que es la generada por la base $\{ U\times V : U \mbox{ abierto  en } X \mbox{ y } V \mbox{ abierto en } Y \}$. Consideremos las \textit{proyecciones canónicas} en $X$ y $Y$
@@ -441,7 +441,7 @@ Sean $E, X$ y $Y$ espacios topológicos y $f: E \to X \times Y$. Entonces $f$ es 
 \begin{Dem}
 Si $f$ es continua, entonces $\pi_X \circ f$ y $\pi_Y \circ f$ también lo son, ya que $\pi_X$ y $\pi_Y$ lo son y la composición de funciones continuas es continua. 
 
-Supongamos ahora que $\pi_X \circ f$ y $\pi_Y \circ f$ son continuas. Sea $U \times V$ un abierto básico de $X \times Y$, de manera que $U$ es abierto en $X$ y $V$ es abierto en $Y$. Entonces $(\pi_X \circ f)^{-1}(U)$ y $(\pi_Y \circ f)^{-1}(V)$ son abiertos en $E$ por lo que según la proposición~\ref{Prop:ContinuidadPorBasicos} también lo es  
+Supongamos ahora que $\pi_X \circ f$ y $\pi_Y \circ f$ son continuas. Sea $U \times V$ un abierto básico de $X \times Y$, de manera que $U$ es abierto en $X$ y $V$ es abierto en $Y$. Entonces $(\pi_X \circ f)^{-1}(U)$ y $(\pi_Y \circ f)^{-1}(V)$ son abiertos en $E$ por lo que según la proposición~\ref{Lema:ContinuidadPorBasicos} también lo es  
 $$f^{-1}(U \times V) = (\pi_X \circ f)^{-1}(U) \bigcap (\pi_Y \circ f)^{-1}(V).$$
 \end{Dem} 
 
@@ -472,7 +472,10 @@ Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$.
 
 Veamos que con esta definición de topología producto las proyecciones son continuas. Fijemos $i \in I$ y tomemos cualquier abierto $U_i$ en $X_i$. Entonces $\pi_i^{-1}(U_i)$ es un básico de $\prod_{i\in I} X_i$ y por tanto es abierto. Esto indica que $\pi_i$ es continua. 
 
-Dados $A, B$ dos conjuntos, denotamos por $F(A, B)$ a la colección de funciones $f: A \to B$. Notemos que $F(A, B) = \prod_{a \in A} B$, por lo que si $B$ es un espacio topológico, en $F(A, B)$ naturalmente ponemos considerar su topología producto.
+Dados $A, B$ dos conjuntos, denotamos por $F(A, B)$ a la colección de funciones $f: A \to B$. 
+\begin{Ejem}
+Si $A \neq \empty $, notemos que $$F(A, B) = \prod_{a \in A} B,$$ por lo que si $B$ es un espacio topológico, en $F(A, B)$ naturalmente ponemos considerar su topología producto. Esto ocurre, por ejemplo, con el espacio de funciones $F(A, \R)$.
+\end{Ejem}
 
 \chapter{Espacios métricos.}
 El marco de espacios topológicos es muy general, por lo que estudiaremos a continuación un caso particular de estos espacios que tienen mejores propiedades y donde las sucesiones juegan un papel muy importante. 
