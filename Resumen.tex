@@ -1,4 +1,4 @@
-\documentclass[12pt, letterpaper, twoside]{article}
+\documentclass[12pt, letterpaper, twoside]{book}
 \usepackage[latin1]{inputenc}
 \usepackage[spanish]{babel}
 \usepackage{amsmath}
@@ -73,14 +73,14 @@
 \urlstyle{same}
 
 
-\newtheorem{Tma}{Teorema}[section]
-\newtheorem{Prop}{Proposición}[section]
-\newtheorem{Lema}{Lema}[section]
-\newtheorem{Cor}{Corolario}[section]
+\newtheorem{Tma}{Teorema}[chapter]
+\newtheorem{Prop}{Proposición}[chapter]
+\newtheorem{Lema}{Lema}[chapter]
+\newtheorem{Cor}{Corolario}[chapter]
 \theoremstyle{definition}
-\newtheorem{Obs}{Observación}[section]
-\newtheorem{Def}{Definición}[section]
-\newtheorem{Ejem}{Ejemplo}[section]
+\newtheorem{Obs}{Observación}[chapter]
+\newtheorem{Def}{Definición}[chapter]
+\newtheorem{Ejem}{Ejemplo}[chapter]
 
 
 
@@ -117,27 +117,59 @@
 \setlist[itemize]{itemsep=2pt plus 1pt minus 0.5pt, topsep=0pt}
 %\renewcommand\bibname{Bibliografía.}
 
-\def\blankpage{%
-      \clearpage%
-      \thispagestyle{empty}%
-      \addtocounter{page}{-1}%
-      \null%
-      \clearpage}
+\setcounter{secnumdepth}{0}
+
+\fancypagestyle{front}{
+	\fancyhf{}
+	\fancyfoot[C]{\thepage}
+	\renewcommand\headrulewidth{0 pt}
+	\renewcommand\footrulewidth{0.6 pt}
+}
+
+
+\fancypagestyle{plain}{%
+	\fancyhf{}%
+	\fancyfoot[EL,OR]{Página \thepage}
+	\renewcommand\headrulewidth{0 pt}
+	\renewcommand\footrulewidth{0.6pt}
+}
+
+\fancypagestyle{cont}{%
+	\fancyhf{}%
+	\renewcommand\headrulewidth{0.6pt}
+	\renewcommand\footrulewidth{0.6pt}
+	\setlength\headheight{13.6pt}
+
+	\fancyhead[EL, OR]{\leftmark} 
+	\fancyhead[OL, ER]{\rightmark}
+
+	%\fancyfoot[CR]{\thepage}
+	\fancyfoot[EL,OR]{Página \thepage}
+
+	% Chapters and section marks without the number
+	\renewcommand\chaptermark[1]{\markboth{\thechapter.\ ##1}{}}
+	\renewcommand\sectionmark[1]{\markright{##1}}
+}
+
+
+\AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{front}}} 
 
 \begin{document}
-\thispagestyle{plain}
 
+\frontmatter
 
-%\inicio{Seminario de Tesis}{3}{Irwin Enrique Villalobos López}{Dr. Fernando Galaz Fontes}{irwin.villalobos@cimat.mx}
+\pagenumbering{roman}
 
+\pagestyle{front}
 
+\addcontentsline{toc}{chapter}{Índice General}
 \tableofcontents
 
-\newpage
-\blankpage
+\mainmatter
 
+\pagestyle{cont}
 
-\section{Topología.}
+\chapter{Topología.}
 
 Un aspecto muy importante de los espacios normados, sobre los cuales estaremos enfocándonos, es su topología, así que empezaremos este trabajo recordando algunos de sus conceptos principales. \\
 
@@ -442,7 +474,7 @@ Veamos que con esta definición de topología producto las proyecciones son contin
 
 Dados $A, B$ dos conjuntos, denotamos por $F(A, B)$ a la colección de funciones $f: A \to B$. Notemos que $F(A, B) = \prod_{a \in A} B$, por lo que si $B$ es un espacio topológico, en $F(A, B)$ naturalmente ponemos considerar su topología producto.
 
-\section{Espacios métricos.}
+\chapter{Espacios métricos.}
 El marco de espacios topológicos es muy general, por lo que estudiaremos a continuación un caso particular de estos espacios que tienen mejores propiedades y donde las sucesiones juegan un papel muy importante. 
 
 \begin{Def}
@@ -667,7 +699,7 @@ Sean $M$ un espacio métrico y $A \subseteq M$ un conjunto cerrado. Si $x \in M \
 Se demostrará por contrapositiva. Supongamos que $d(x, A) = 0$. Tomemos un abierto $U$ que incluya a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$, por lo que $U \cap A \neq \emptyset$. Así que $x \in \ov{A}$. Ya que $A$ es cerrado, entonces  $x \in A$.
 \end{Dem}
 
-\section{Espacios normados.}
+\chapter{Espacios normados.}
 
 A lo largo de este trabajo denotaremos por $\K$ al campo de los números reales o de los números complejos. 
 
@@ -734,7 +766,7 @@ Sea $X$ un espacio normado. Entonces $A \subseteq X$ es un conjunto acotado si, 
 La proposición~\ref{Prop:CaracterizacionConjuntoAcotado} indica que $A$ es acotado si y sólo si existe $M > 0$ tal que $\Norm{x} = d(x, 0) < M$ para todo $x \in A$.
 \end{Dem}
 
-\subsection{Convexidad.}
+\section{Convexidad.}
 
 \begin{Def}
 Sea $X$ un espacio vectorial. Un subconjunto $A$ de $X$ es \textit{convexo} si para todos $x, y \in A$ y $\lambda \in [0,1]$ se cumple que $\lambda x + (1-\lambda) y \in A$. 
@@ -814,7 +846,7 @@ $$f(g(\lambda x + (1-\lambda)y)) \leq f(\lambda g(x) + (1-\lambda)g(y)) \leq \la
 Por lo tanto, la función $h = f \circ g$ es convexa.
 \end{Dem}
 
-\subsection{Ejemplos.}
+\section{Ejemplos.}
 
 En $\K^n $ la norma euclidiana resulta ser el caso $p=2$ de una familia de normas en $\K^n$ llamadas $p$-normas. En esta subsección introduciremos estas funciones y verificaremos que en efecto son normas en $\K^n$. Además, agregaremos ejemplos de espacios normados de dimensión infinita.      
 
@@ -977,7 +1009,7 @@ Además, observemos que para cada $p \in [1, \infty]$, se tiene que $\abs{x_n} \l
 
 Más adelante probaremos que no sólo $\ell_2^n$ es completo, sino que el resto de los espacios $\ell_p^n$ y $\ell_p$ también lo son.
 
-\subsection[Compacidad de la bola cerrada en un espacio normado.]{Compacidad de la bola cerrada en un espacio normado. \subsectionmark{Compacidad de la bola cerrada.}}
+\section[Compacidad de la bola cerrada en un espacio normado.]{Compacidad de la bola cerrada en un espacio normado. \subsectionmark{Compacidad de la bola cerrada.}}
 \subsectionmark{Compacidad de la bola cerrada.}
 
 La compacidad es una propiedad muy importante que puede tener un subconjunto de un espacio topológico. El objetivo de esta sección es demostrar que la compacidad de la bola unitaria en un espacio normado depende simplemente de si este es de dimensión finita o no.
@@ -1156,7 +1188,7 @@ $$\Norm{x_{n+1} - \sum_{i=1}^{n} \alpha_i x_i } \geq \frac{1}{2}.$$
 Así pues, queda construida la sucesión $(x_n)_{n\in\N}$. Si tomamos $n, m \in \N$ con $n > m$ entonces al tomar $\alpha_1 = 1$ y $\alpha_i = 0$ para $1 \leq i \leq  n-1$ e $i \neq m$, de $(\ref{Eq:1})$ obtenemos que $\Norm{x_n - x_m} \geq \frac{1}{2}$. Esto indica que cualquier subsucesión de $(x_n)_{n\in\N}$ no es de Cauchy y por lo tanto no converge. Por la proposición~\ref{Tma:CaracterizacionCompacidadSucesiones} concluimos que $B_X$ no es compacto.
 \end{Dem}
 
-\subsection{Espacio dual.}
+\section{Espacio dual.}
 
 No todo operador lineal $T:X\to Y$ entre los espacios normados $X$ e $Y$ resulta ser continuo. Los de mayor interés son los que sí son continuos. Una caracterización de un operador lineal continuo es que sea un \textit{operador lineal acotado}, esto es, que exista $K > 0$ tal que $$\Norm{Tx} \leq K \Norm{x} \mbox{ para todo } x \in X.$$ 
 
@@ -1263,7 +1295,7 @@ Si $\K = \R$, ya quedó demostrado en el lema anterior. Así que supongamos $\K = 
 (Pendiente).
 \end{Dem}
 
-\section{Redes.}
+\chapter{Redes.}
 
 Hemos visto que el estudio de continuidad y compacidad en espacios métricos se puede realizar a través de sucesiones. Sin embargo, el concepto de redes, que generaliza a las sucesiones, resulta ser más adecuado en espacios vectoriales con una topología que no proviene de una métrica. Por tanto, desarrollaremos un poco de teoría de redes antes de seguir adelante. \\
 
@@ -1597,7 +1629,7 @@ Sea $\mathcal{C}$ un subconjunto totalmente ordenado no vacío de $\mathcal{Q}$. 
 Nuestro último paso es probar que $J = I$. Supongamos que $J \subsetneq I$, de forma que existe $j \in I \setminus J$. Como $X_j$ es compacto y $(f_\alpha(j))_{\alpha\in\Lambda}$ es una red en $X_j$, del teorema~\ref{Tma:CompacidadPorConvergenciaDeSubredes} y del lema~\ref{Lema:LimiteSubredes} se sigue que existe un punto límite $q \in X_j$  de $(f_\alpha(j))_{\alpha\in\Lambda}$. El lema~\ref{Lema:PuntoLimiteParcialIndividual} indica que la función $h: \{ j \} \to \bigcup_{i\in I} X_i$ definida por $h(j) = q$ es un punto límite parcial de $(f_\alpha)_{\alpha\in\Lambda}$. Notemos que $\{ g, h \}$ es una familia de puntos límite parciales de $(f_\alpha)_{\alpha\in\Lambda}$ que es extendible, pues $\Dom g \cap \Dom h = J \cap \{ j \} = \emptyset$. Luego, la proposición~\ref{Prop:PuntoLimiteParcialUnion} indica que $g \cup h$ es un punto límite parcial de $(f_\alpha)_{\alpha\in\Lambda}$. Pero esto contradice que $g$ sea maximal en $\calQ$, pues $g \cup h \in \calQ$, $g \leq g \cup h$ y $g \neq g \cup h$. Así que $J = I$, por lo que $g$ es un punto límite de $(f_\alpha)_{\alpha \in\Lambda}$. 
 \end{Dem}
 
-\section{Espacios vectoriales topológicos.}
+\chapter{Espacios vectoriales topológicos.}
 
 Supongamos que $\tau$ es una topología de un espacio vectorial $E$ sobre $\K$ tal que:
 \begin{itemize}
@@ -1747,8 +1779,8 @@ Sea $(x_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $F$. Consideremos la 
 Como $E$ es completo, la red $(T^{-1}(x_\alpha))_{\alpha \in \Lambda}$ converge a algún $x \in E$. Puesto que $T$ es continua, el corolario~\ref{Cor:ContinuidadporRedes} indica que $x_\alpha \to T(x)$.
 \end{Dem}
 
-\subsection[Espacio vectorial topológico generado por una familia de seminormas.]{Espacio vectorial topológico generado por una familia de seminormas. \subsectionmark{E.V.T. generado por seminormas.}}
-\subsectionmark{E.V.T. generado por seminormas.}
+\section[Espacio vectorial topológico generado por una familia de seminormas.]{Espacio vectorial topológico generado por una familia de seminormas. \sectionmark{Espacio generado por seminormas.}}
+\sectionmark{Espacio generado por seminormas.}
 
 Un método para construir espacios vectoriales topológicos, el cual utilizaremos después para obtener la topología débil de un espacio de normado $X$ y la topología débil* en $X^*$, es utilizar el concepto de la topología generada por una familia de seminormas en un espacio vectorial. 
 
@@ -1987,8 +2019,8 @@ Sea $(f_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $X$. Al tomar $a \in 
 Mostremos que $f_\alpha \to f$. Sea $U_{f, \abs{\delta_{a_1}}, \ldots, \abs{\delta_{a_k}}, \varepsilon}$ una vecindad básica de $f$ para algunos $k \in \N$, $a_1, \ldots, a_k \in A$ y $\varepsilon > 0$. Para cada $i \in \nn{k}$, se tiene que $f_\alpha(a_i) \to f(a_i)$, así que existe $\alpha_i \in \Lambda$ tal que si $\alpha \geq \alpha_i$, entonces $\abs{\delta_{a_i}}(f_{\alpha} - f) = \abs{f_{\alpha}(a_i) - f(a_i)} < \varepsilon$. Así que si tomamos $\beta \in  \Lambda$ con $\beta \geq \alpha_i$ para todo $1 \leq  i \leq k$, entonces $f_\alpha \in U_{f, \abs{\delta_{a_1}}, \ldots, \abs{\delta_{a_k}}, \varepsilon}$ siempre que $\alpha \geq \beta$. Por lo tanto $f_\alpha \to f$ y $(X, \sigma(X, \mathcal{F}))$ es completo.
 \end{Ejem}
 
-\subsection[Espacios vectoriales topológicos de dimensión finita.]{Espacios vectoriales topológicos de dimensión finita. \subsectionmark{Espacios de dimensión finita.}}
-\subsectionmark{Espacios de dimensión finita.}
+\section[Espacios vectoriales topológicos de dimensión finita.]{Espacios vectoriales topológicos de dimensión finita. \sectionmark{Espacios de dimensión finita.}}
+\sectionmark{Espacios de dimensión finita.}
 
 \begin{Def} 
 Sean $E$ y $F$ espacios vectoriales topológicos. Se dice que $E$ y $F$ son \textit{isomorfos} como espacios vectoriales topológicos o que son \textit{isomorficamente homeomorfos} si existe un isomorfismo de espacios vectoriales $T: E \to F$ que también es un homeomorfismo. En este caso a $T$ se le llama \textit{isomorfismo} de espacios vectoriales topológicos. 
@@ -2053,14 +2085,14 @@ Sea $E$ un espacio vectorial topológico. Si $F$ es un subespacio de dimensión fi
 La proposición~\ref{Prop:DimensionFinitaEVTCompleto} indica que $F$ es completo. Del lema~\ref{Lema:EVTCompletoEntoncesCerrado} se concluye que $F$ es cerrado en $E$.
 \end{Dem}
 
-\section{Topologías débil y débil*.}
+\chapter{Topologías débil y débil*.}
 
 Hemos visto que la bola unitaria de un espacio normado de dimensión infinita no es compacta. Podemos interpretar esto en el sentido de  que la topología usual de tal espacio normado $X$ tiene demasiados abiertos. Esto motiva el propósito de construir en $X$ topologías más débiles que su topología original, esto es, con menos abiertos. Una de estas es la topología débil, la cual se construye a partir de los funcionales lineales continuos de $X$. De manera similar definiremos la topología débil* en $X^*$. 
 
 %/////////////////////////////////////////////////////////////////////////
 %/////////////////////////Topologia Débil/////////////////////////////////
 %/////////////////////////////////////////////////////////////////////////
-\subsection{Topología débil.}
+\section{Topología débil.}
 
 Sean $X$ un espacio normado y $X^*$ su espacio dual. Notemos que para cada $\varphi \in X^*$ la función $\abs{\varphi}$ es una seminorma. Además por el teorema de Hahn-Banach, para cada $x \neq 0$ existe un funcional lineal $\varphi \in X^*$ tal que $\varphi(x) \neq 0$. De manera que $\abs{\varphi(x)} \neq 0$. Por tanto $$\F_X := \{ \abs{\varphi} : \varphi \in X^* \}$$ es una familia de seminormas en $X$ que separa puntos en $X$. \\
 
@@ -2115,7 +2147,7 @@ Por otro lado, la proposición~\ref{Prop:ContencionPropiaTopologiaDebil} indica q
 %/////////////////////////////////////////////////////////////////////////
 %/////////////////////////Topologia Débil*////////////////////////////////
 %/////////////////////////////////////////////////////////////////////////
-\subsection{Topología débil*.}
+\section{Topología débil*.}
 
 Dado cualquier espacio normado $X$,  hemos construido entonces su topología débil. Usando esta construcción con $X^*$  y a partir de $X^{**}$ obtenemos la correspondiente topología débil  en $X^*$. Sin embargo, en $X^{**}$ aparece otro espacio de funcionales que permite construir otra topología en $X^*$ que, en muchos casos, es todavía más débil que la topología débil de $X^{*}$.  Lo describiremos a continuación. \\
 
@@ -2307,7 +2339,7 @@ Ahora supongamos que $B_X$ es $\mathrm{w}$-compacta. La proposición~\ref{Prop:Re
 Se sigue de aquí que $X$ es reflexivo. 
 \end{Dem}
 
-\section{Medibilidad.}
+\chapter{Medibilidad.}
 
 Primero se introducen algunos conceptos, entre ellos el de la integral de Bochner que prometen ser útiles en la demostración del teorema. Consideremos un espacio de medida $(\Omega, \Sigma, \mu)$ donde $\Omega$ es no vacío y un espacio de Banach $(X, \Norm{\cdot})$. 
 
@@ -2408,7 +2440,7 @@ Una función $\mu$-medible $f: \Omega \to X$ es Bochner integrable si, y sólo si 
 (Pendiente).
 \end{Dem}
 
-\section{El teorema de Orlicz-Pettis.}
+\chapter{El teorema de Orlicz-Pettis.}
 
 El teorema de Orlicz-Pettis que se pretende demostrar en este capítulo establece lo siguiente: 
 \begin{Tma} \textbf{(Orlicz-Pettis)} Sea $\sum_n x_n$ una serie en un espacio de Banach $X$. Supongamos que para cada sucesión creciente de enteros positivos $(k_n)_n$ 
