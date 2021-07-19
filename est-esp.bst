@@ -839,8 +839,8 @@ FUNCTION {format.edition} % los ordinales deben escribirse según: http://buscon.
 { edition empty$
     { "" }
     { output.state mid.sentence =
-        { edition "l" change.case$ "\sptext{a} edici\'on" * }
-        { edition "t" change.case$ "\sptext{a} edici\'on" * }
+        { edition "l" change.case$ "\sptext{a} Ed." * }
+        { edition "t" change.case$ "\sptext{a} Ed." * }
       if$
     }
   if$
@@ -888,8 +888,8 @@ FUNCTION {format.pages}
 	{ pages 'new.pages := }
       if$
       new.pages multi.page.check
-        { "p\'aginas" new.pages n.dashify tie.or.space.connect }
-        { "p\'agina" new.pages tie.or.space.connect }
+        { "p." new.pages n.dashify tie.or.space.connect }
+        { "p." new.pages tie.or.space.connect }
       if$
     }
   if$
@@ -900,7 +900,7 @@ FUNCTION {format.vol.num.pages}
 { "Vol. " volume field.or.null *
   number empty$
     'skip$
-    { "\penalty0\mbox{} n{\textordmasculine} " number * "" * * %para usar \textordmasculine hay que hacer:\usepackage{textcomp}
+    { "\penalty0\mbox{} N{\textordmasculine} " number * "" * * %para usar \textordmasculine hay que hacer:\usepackage{textcomp}
       volume empty$
         { "hay un número pero no un volumen en " cite$ " (aunque este campo es opcional)" * * warning$ }
         'skip$
