@@ -880,7 +880,7 @@ Sean $X$ y $Y$ espacios normados y $T : X \to Y$ una isometría. Entonces $T$ es 
 \end{Prop}
 
 \begin{Dem}
-(Pendiente).
+Si $Tx = 0$, entonces $\Norm{x} = \Norm{Tx} = 0$ y por lo tanto $x = 0$. Esto indica que $T$ es inyectiva y por lo tanto $T: X \to T(X)$ es una función lineal biyectiva. Por lo tanto es un isomorfismo de espacios vectoriales. Y del hecho que $\Norm{Tx} = \Norm{x}$ se sigue que $T$ y $T^{-1}$ son continuas. Así que $T$ es un isomorfismo de espacios normados entre $X$ y $T(X)$. 
 \end{Dem}
 
 \section{Ejemplos.}
@@ -1138,9 +1138,10 @@ Sean $X$ y $Y$ isomorfos como espacios normados. Si $X$ es completo, entonces $Y
 \end{Lema}
 
 \begin{Dem}
-Sea $(x_n)_{n \in \N}$ una sucesión de Cauchy en $Y$. Consideremos  un isomorfismo $T: X \to Y$ de espacios normados y a la sucesión $(T^{-1}x_n)_{n \in \N}$ en $X$. Sea $\varepsilon > 0$, como $T^{-1}$ es continua en el 0, existe $\delta > 0$ tal que si $x \in Y$ cumplen que $\Norm{x} < \delta$, entonces $\Norm{T^{-1} x} < \varepsilon$. Como $(x_n)_{n \in\N}$ es de Cauchy, existe $N \in\N$ tal que $\Norm{x_n - x_m} < \delta $ si $n, m \geq N$. Entonces $\Norm{T^{-1}x_n - T^{-1}x_m} = \Norm{T^{-1}(x_n -x_m)} < \varepsilon$ si $n, m \geq N$. Es decir, $(T^{-1}x_n)_{n \in\N}$ es de Cauchy.
+Sea $(x_n)_{n \in \N}$ una sucesión de Cauchy en $Y$. Consideremos  un isomorfismo $T: X \to Y$ de espacios normados y a la sucesión $(T^{-1}x_n)_{n \in \N}$ en $X$. Como $T^{-1}$ es continua, existe $M > 0$ tal que si $x \in Y$, entonces $\Norm{T^{-1}x} < M \cdot \Norm{x}$. Esto indica que para $n, m \in \N$ se cumple que
+$$\Norm{T^{-1}x_n - T^{-1}x_m} < M \Norm{x_n - x_m}.$$ 
 
-Como $X$ es completo, la sucesión $(T^{-1}(x_n))_{n \in \N}$ converge a algún $x \in X$. Puesto que $T$ es continua, la proposición~\ref{Prop:ContinuidadPorSucesiones} indica que $x_\alpha \to T(x)$.
+Como $(x_n)_{n \in\N}$ es de Cauchy, esto último indica que $(T^{-1}x_n)_{n \in\N}$ también es de Cauchy. Dado que $X$ es completo, la sucesión $(T^{-1}(x_n))_{n \in \N}$ converge a algún $x \in X$. Puesto que $T$ es continua, la proposición~\ref{Prop:ContinuidadPorSucesiones} indica que $x_\alpha \to T(x)$.
 \end{Dem}
 
 
@@ -2036,6 +2037,40 @@ Sea $(f_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $Y$. Al tomar $a \in 
 Mostremos que $f_\alpha \to f$. Sea $U_{f, \abs{\delta_{a_1}}, \ldots, \abs{\delta_{a_k}}, \varepsilon}$ una vecindad básica de $f$ para algunos $k \in \N$, $a_1, \ldots, a_k \in A$ y $\varepsilon > 0$. Para cada $i \in \nn{k}$, se tiene que $f_\alpha(a_i) \to f(a_i)$, así que existe $\alpha_i \in \Lambda$ tal que si $\alpha \geq \alpha_i$, entonces $\abs{\delta_{a_i}}(f_{\alpha} - f) = \abs{f_{\alpha}(a_i) - f(a_i)} < \varepsilon$. Así que si tomamos $\beta \in  \Lambda$ con $\beta \geq \alpha_i$ para todo $1 \leq  i \leq k$, entonces $f_\alpha \in U_{f, \abs{\delta_{a_1}}, \ldots, \abs{\delta_{a_k}}, \varepsilon}$ siempre que $\alpha \geq \beta$. Por lo tanto $f_\alpha \to f$ y $(Y, \sigma(Y, \mathcal{F}))$ es completo.
 \end{Ejem}
 
+\begin{Def}
+Sea $E$ un espacio vectorial topológico. Un conjunto $B \subseteq E$ es \textit{acotado} si para toda vecindad abierta del cero $U$, existe $\lambda \in \K \setminus \{ 0 \}$ con $B \subseteq \lambda U$.
+\end{Def}
+
+\begin{Ejem}
+Sea $A$ un conjunto no vacío, $K \subseteq Y = F(A, \K)$ y $\calF = \{ \abs{\delta_a} : a \in A \}$. Entonces respecto a la topología $\sigma(Y, \calF )$ resulta que $K$ es compacto si y sólo si es cerrado y acotado. 
+\end{Ejem}
+
+\begin{Dem}
+Para cada $a \in X$, el conjunto $U_{0, \abs{\delta_a}, 1}$ es una vecindad abierta del cero. Como $K$ es acotado, existe $\lambda_a \in \K \setminus \{ 0 \}$ tal que $K \subseteq \lambda_a U_{0, \abs{\delta_a}, 1}$. Definamos el conjunto 
+$$D_a : = \{ \lambda \in \K : \abs{\lambda} \leq \abs{\lambda_a} \}.$$
+
+Como para cada $a \in A$, $D_a$ es compacto en $\K$, entonces el teorema de Tychonoff indica que $$\mathcal{D} := \prod_{a\in A}{D_a}$$ es un espacio compacto con la topología producto. 
+
+Consideremos ahora la función
+\Ecu{
+F : K &\to \mathcal{D} \\
+f & \mapsto (f(a))_{a \in A}.
+}
+
+Veamos que está bien definida. Tomemos $f \in K$. Dada $a \in A$, tenemos que $f \in \lambda_a U_{0, \abs{\delta_a}, 1}$. Entonces, $\lambda_a^{-1} f \in U_{0, \abs{\delta_a}, 1}$. Es decir, $\abs{\lambda_a}^{-1} \abs{f(a)} =  \abs{\delta_a}(\lambda_a^{-1} f - 0) < 1$.  Así que $\abs{f(a)} < \abs{\lambda_a}$ y $ f(a) \in D_a$, por lo que $F(f) \in \mathcal{D}$. 
+
+Demostremos que $F$ es inyectiva. Dados $f, g \in K$ con $F(f) = F(g)$ se tiene que $(f(a))_{a \in A} = (g(a))_{a \in A}$. De donde $f(a) = g(a)$ para todo $a \in A$. Así que $f = g$ y $F$ es inyectiva. 
+
+Consideremos una red $(f_\alpha)_{\alpha \in \Lambda}$ en $K$ y $f \in K$. La proposición~\ref{Prop:CaracterizacionConvergenciaDebilSeminorma} indica que $\sigma(Y, \calF)$-$\lim_{\alpha\in\Lambda} f_\alpha = f$ si, y sólo si $f_\alpha(a) \to f(a)$ en $D_a$ para todo $a \in A$. La proposición~\ref{Prop:ConvergenciaPorComponentesEnProductoArbitrario} indica que esto último se da si, y sólo si $(f_\alpha(a))_{a \in A} \to (f(a))_{a \in A}$ en $\mathcal{D}$. O bien, si, y  sólo si $F(f_\alpha) \to F(f)$. Puesto que $F$ es inyectiva, el corolario~\ref{Cor:ContinuidadporRedes} indica que $F: K \to F(K)$ es un  homeomorfismo.
+
+Por último, veamos que el rango de $F$ es cerrado en $\mathcal{D}$. Tomemos entonces una red convergente $(G_\alpha)_{\alpha \in \Lambda}  \in F(K)$ y sea $(d_a)_{a \in A} \in \mathcal{D}$ su límite. De esta manera existe una red $(f_\alpha)_\alpha$ en $K$ tal que $F(f_\alpha) = G_\alpha$. Así,
+\begin{equation} \label{Eq:AlaogluGeneral}
+\lim_{\alpha\in \Lambda} F(f_\alpha) = \lim_{\alpha\in\Lambda} (f_\alpha(a))_{a\in A} = (d_a)_{a \in A}.
+\end{equation}
+
+Queremos verificar que $(d_a)_{a \in A}$ pertenece a $F(K)$. Consideremos pues la función $g: A \to \K$ dada por $g(a) = d_a$ para todo $a \in A$. De (\ref{Eq:AlaogluGeneral}) se sigue que $\lim_{\alpha\in\Lambda} f_\alpha(a) = g(a)$ para toda $a \in A$. Por la proposición~\ref{Prop:CaracterizacionConvergenciaDebilSeminorma} se sigue que $\sigma(Y, \calF)$-$\lim_{\alpha\in\Lambda} f_\alpha = g$. Como $K$ es $\sigma(Y, \calF)$-cerrado, se sigue que $g \in K$ y $F(g) = (g(a))_{a\in A} = (d_a)_{a\in A}$. Por lo tanto $(d_a)_{a\in A} \in F(K)$ y así $F(K)$ es cerrado. Como $\mathcal{D}$ es compacto y $F(K)$ es cerrado, entonces también es compacto. Además $F$ es un homeomorfismo entre $F(K)$ y $K$, por lo que $K$ es compacto con la topología débil*.
+\end{Dem}
+
 \section[Espacios vectoriales topológicos de dimensión finita.]{Espacios vectoriales topológicos de dimensión finita. \sectionmark{Espacios de dimensión finita.}}
 \sectionmark{Espacios de dimensión finita.}
 
@@ -2356,7 +2391,18 @@ Ahora supongamos que $B_X$ es $\mathrm{w}$-compacta. La proposición~\ref{Prop:Re
 Se sigue de aquí que $X$ es reflexivo. 
 \end{Dem}
 
-\chapter{Medibilidad.}
+\chapter{El teorema de Orlicz-Pettis.}
+
+El teorema de Orlicz-Pettis que se pretende demostrar en este capítulo establece lo siguiente: 
+\begin{Tma} \textbf{(Orlicz-Pettis)} Sea $\sum_n x_n$ una serie en un espacio de Banach $X$. Supongamos que para cada sucesión creciente de enteros positivos $(k_n)_n$ 
+$$\wlim_{n\to \infty} \sum_{j=1}^n x_{k_j} \mbox{ existe.}$$
+Entones para cada sucesión creciente de enteros positivos $(k_n)_n$
+$$\lim_{n\to\infty} \sum_{j=1}^n x_{k_j} \mbox{ existe bajo la norma.}$$ \\
+\end{Tma}
+
+Esto indica que en un espacio de Banach la convergencia débil de subseries implica convergencia de subseries bajo la norma.
+
+\section{Medibilidad.}
 
 Primero se introducen algunos conceptos, entre ellos el de la integral de Bochner que prometen ser útiles en la demostración del teorema. Consideremos un espacio de medida $(\Omega, \Sigma, \mu)$ donde $\Omega$ es no vacío y un espacio de Banach $(X, \Norm{\cdot})$. 
 
@@ -2457,16 +2503,7 @@ Una función $\mu$-medible $f: \Omega \to X$ es Bochner integrable si, y sólo si 
 (Pendiente).
 \end{Dem}
 
-\chapter{El teorema de Orlicz-Pettis.}
 
-El teorema de Orlicz-Pettis que se pretende demostrar en este capítulo establece lo siguiente: 
-\begin{Tma} \textbf{(Orlicz-Pettis)} Sea $\sum_n x_n$ una serie en un espacio de Banach $X$. Supongamos que para cada sucesión creciente de enteros positivos $(k_n)_n$ 
-$$\wlim_{n\to \infty} \sum_{j=1}^n x_{k_j} \mbox{ existe.}$$
-Entones para cada sucesión creciente de enteros positivos $(k_n)_n$
-$$\lim_{n\to\infty} \sum_{j=1}^n x_{k_j} \mbox{ existe bajo la norma.}$$ \\
-\end{Tma}
-
-Esto indica que en un espacio de Banach la convergencia débil de subseries implica convergencia de subseries bajo la norma.
 
 \nocite{*}
 \bibliographystyle{est-esp}
