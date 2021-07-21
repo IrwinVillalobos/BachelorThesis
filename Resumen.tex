@@ -72,6 +72,17 @@
 
 \urlstyle{same}
 
+\makeatletter
+\def\th@plain{%
+  \thm@notefont{}% same as heading font
+  \itshape % body font
+}
+\def\th@definition{%
+  \thm@notefont{}% same as heading font
+  \normalfont % body font
+}
+\makeatother
+
 
 \newtheorem{Tma}{Teorema}[chapter]
 \newtheorem{Prop}{Proposición}[chapter]
@@ -474,7 +485,7 @@ Veamos que con esta definición de topología producto las proyecciones son contin
 
 Dados $A, B$ dos conjuntos, denotamos por $F(A, B)$ a la colección de funciones $f: A \to B$. 
 \begin{Ejem}
-Si $A \neq \empty $, notemos que $$F(A, B) = \prod_{a \in A} B,$$ por lo que si $B$ es un espacio topológico, en $F(A, B)$ naturalmente ponemos considerar su topología producto. Esto ocurre, por ejemplo, con el espacio de funciones $F(A, \R)$.
+Si $A \neq \emptyset$, notemos que $$F(A, B) = \prod_{a \in A} B,$$ por lo que si $B$ es un espacio topológico, en $F(A, B)$ naturalmente ponemos considerar su topología producto. Esto ocurre, por ejemplo, con el espacio de funciones $F(A, \R)$.
 \end{Ejem}
 
 \chapter{Espacios métricos.}
@@ -1178,7 +1189,7 @@ La proposición~\ref{Prop:EspacioNormadoDimensionFinitaCompleto} indica que $Y$ e
 
 La compacidad es una propiedad muy importante que puede tener un subconjunto de un espacio topológico. El objetivo de esta sección es demostrar que la compacidad de la bola unitaria en un espacio normado depende simplemente de si este es de dimensión finita o no.
 
-\begin{Lema} \textbf{(de Riesz)}
+\begin{Lema}[Riesz]
 Sean $Y$ un subespacio propio y cerrado de un espacio normado $X$ y $\theta \in (0, 1)$, entonces existe $x_\theta \in X$ con $\Norm{x_\theta} = 1$ para el cual $\Norm{x_\theta - y} > \theta$ para todo $y \in Y$. 
 \end{Lema}
 
@@ -1224,15 +1235,66 @@ Así pues, queda construida la sucesión $(x_n)_{n\in\N}$. Si tomamos $n, m \in \N
 
 Dado un espacio normado $X$, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \Norm{\cdot})^*$ o simplemente por $X^*$.  A los elementos de este espacio dual los llamamos \textit{funcionales lineales continuos}. Como $\K$ es completo, resulta que $X^* = \mathcal{L}(X, \K)$ es un espacio de Banach.  
 
-\begin{Ejem}
-Si $1 \leq p \leq \infty$, al único elemento $q \in \R$ tal que $\frac{1}{p} + \frac{1}{q} = 1$ se le llama \textit{exponente conjugado} de $p$, donde $\frac{1}{\infty} = 0$. Mostremos que para $1 \leq p < \infty$, $(\ell_p)^* \simeq \ell_q$ y $\ell_1$ es isométricamente homeomorfo a un subespacio de $(\ell_\infty)^*$.  
+\begin{Def}
+Si $1 \leq p \leq \infty$, al único elemento $q \in \R$ tal que $\frac{1}{p} + \frac{1}{q} = 1$ se le llama \textit{exponente conjugado} de $p$, donde $\frac{1}{\infty} = 0$. 
+\end{Def}
 
-(Pendiente).
+\begin{Lema}[Desigualdad de Young]
+Sean $1 < p < \infty$ y $q$ su exponente conjugado. Si $a, b \geq 0$, entonces $$ab \leq \frac{1}{p}a^p + \frac{1}{q}b^q.$$
+\end{Lema}
+
+\begin{Dem}
+Consideremos la función $f: [0, \infty)$ definida por $f(x) = -\ln(x)$, para toda $x \geq 0$. Notemos que $f^\prime(x) = -\frac{1}{x}$ es monótona-creciente. El lema~\ref{Lema:DerivadaCrecienteConvexa} indica que $f$ es convexa. Por lo tanto, si tomamos $\lambda = \frac{1}{p} \in (0,1)$, resulta que $1 - \lambda = \frac{1}{q}$. Así que 
+$$f(\lambda a^p + (1-\lambda) b^q ) \leq \lambda f(a^p) + (1-\lambda)f(b^q).$$
+
+De donde
+$$-\ln\left(\frac{1}{p} a^p + \frac{1}{q} b^q \right) \leq -\frac{1}{p} \ln(a^p) - \frac{1}{q} \ln(b^p) = -\ln(a) - \ln(b) = -\ln(ab).$$
+
+Dado que la función exponencial es creciente, de esta última desigualdad se sigue la desigualdad de Young.
+\end{Dem}
+
+\begin{Tma}[Desigualdad de Hölder]
+Sean $1 < p < \infty$ y $q$ su exponente conjugado. Si $n \in \N$ y $a_1, \ldots, a_n, b_1, \ldots, b_n \geq 0$, entonces $$\sum_{i=1}^n a_j b_j \leq \left( \sum_{i=1}^n a_i^p \right)^{\frac{1}{p}} \left( \sum_{i=1}^n b_i^q \right)^{\frac{1}{q}} $$
+\end{Tma}
+
+Para demostrar la desigualdad de Hölder están estas dos demostraciones. La primera es la de su libro y usa la desigualdad de Young que su vez usa el lema~\ref{Lema:DerivadaCrecienteConvexa}. La segunda no usa la desigualdad de Young pero usa que $x^p$ es convexa. La segunda es más corta pero todavía habría falta por demostrar la desigualdad de Jensen para $n$ términos ¿Cuál de las dos demostraciones prefiere?
+
+\begin{Dem}
+\textbf{(Demostración usando la desigualdad de Young)}
+
+Sean 
+$$a = \left(\sum_{i=1}^n a_i^p\right)^{\frac{1}{p}} \;\;\mbox{ y } \;\; b = \left(\sum_{i=1}^n b_i^q\right)^{\frac{1}{q}}.$$
+
+Si $a = 0$ ó $b = 0$, la desigualdad de Hölder es clara. Supongamos entonces que $a, b > 0$. Por la desigualdad de Young, para todo $i \in \nn{n}$ tenemos que $\frac{a_i}{a} \, \frac{b_i}{b} \leq \frac{1}{p} \, \frac{a_i^p}{a^p} + \frac{1}{q} \, \frac{b_i^q}{b^q}$. Luego,
+$$\sum_{i=1}^n \frac{a_i}{a} \, \frac{b_i}{b} \leq \frac{1}{p} \sum_{i=1}^n \frac{a_i^p}{a^p} + \frac{1}{q} \sum_{i=1}^n \frac{b_i^q}{b^q} = \frac{1}{p} + \frac{1}{q} = 1.$$
+
+Por lo tanto 
+$$\sum_{i=1}^n a_i b_i \leq ab = \left(\sum_{i=1}^n a_i^p\right)^{\frac{1}{p}} \left(\sum_{i=1}^n b_i^q\right)^{\frac{1}{q}}.$$
+\end{Dem}
+
+\begin{Dem}
+\textbf{(Demostración alternativa de la desigualdad de Hölder)}
+
+Definamos $b = \sum_{j=1}^n b_j^q $ y notemos que los coeficientes $\frac{b_j^q}{b}$ suman uno. Como la función $x \mapsto x^p$ es convexa y $p+q-pq=0$, resulta que 
+$$\left( \sum_{i=1}^n \frac{b_i^q}{b}\, a_i \, b_i^{1-q} \right)^p \leq \sum_{i=1}^n \frac{b_i^q}{b}\, (a_i \, b_i^{1-q})^p.$$
+De donde se sigue que
+\Ecu{
+\sum_{i=1}^N a_i \, b_i &= b \left( \sum_{i=1}^n \frac{b_i^q}{b} \, a_i \, b_i^{1-q} \right) \leq  b \left(\sum_{i=1}^n \frac{b_i^q}{b} \, a_i^p \, b_i^{p(1-q)} \right)^{\frac{1}{p}} \\
+&= b\cdot b^{-\frac{1}{p}} \left(\sum_{i=1}^n a_i^p \right)^{\frac{1}{p}} =  \left(\sum_{i=1}^n b_i^q \right)^{\frac{1}{q}} \left(\sum_{i=1}^n a_i^p \right)^{\frac{1}{p}}.
+}
+\end{Dem}
+
+\begin{Ejem}
+Mostremos que para $1 \leq p < \infty$, $(\ell_p)^* \simeq \ell_q$ y $\ell_1$ es isomorfo como espacio normado a un subespacio de $(\ell_\infty)^*$.  
 \end{Ejem}
+
+\begin{Dem}
+(Pendiente).
+\end{Dem}
 
 Los teoremas de Hahn-Banach muestran que, cuando $X$ es un espacio normado, en $X^*$ existen suficientes funcionales que permiten enriquecer la teoría de dualidad.
 
-\begin{Tma} \textbf{(Hahn-Banach)} \label{Tma:HahnBanachFuncional}
+\begin{Tma}[Hahn-Banach] \label{Tma:HahnBanachFuncional}
 Sea $X$ un espacio normado y $V \subseteq X$ un subespacio vectorial. Si $f \in V^*$ entonces existe $F \in X^*$ tal que $F = f$ en $V$ y $\Norm{f} = \Norm{F}$.
 \end{Tma}
 
@@ -1250,13 +1312,13 @@ Por lo tanto $f = \sum_{j=1}^n a_j f_j$. Esto dice que existe un conjunto finito
 
 Existen otras maneras de plantear los teoremas de Hanh-Banach con un enfoque más geométrico como lo muestra el siguiente teorema.
 
-\begin{Tma} \textbf{(Hahn-Banach)} \label{Tma:HahnBanachGeometrico}
+\begin{Tma}[Hahn-Banach] \label{Tma:HahnBanachGeometrico}
 Sea $X$ un espacio normado real. Si $A$ y $B$ son dos conjuntos convexos disjuntos, $A$ es cerrado y $B$ compacto, entonces existen $\varphi \in X^*$ y $\alpha, \beta \in \R$ tales que $\varphi(x) < \alpha < \beta < \varphi(y)   \mbox{ para todos } x \in A, y \in B.$
 \end{Tma}
 
 Como resultado de esta version del teorema de Hahn-Banach tenemos el lema de Helly, que en un futuro nos será de utilidad.
 
-\begin{Lema} \textbf{(Helly)} \label{Lema:HellyReal}
+\begin{Lema}[Helly] \label{Lema:HellyReal}
 Sean $X$ un espacio normado real, $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $a_1, \ldots, a_n \in \R$. Son equivalentes:
 \begin{itemize}
 \item \textbf{i)} Para todo $\varepsilon>0$ existe $x \in B_X$ tal que $\abs{\varphi_i(x) - a_i} < \varepsilon$ para toda $i \in \{ 1, \ldots, n\}$.
@@ -1288,7 +1350,7 @@ Finalmente, supongamos \textbf{iii)}. Sea $\varepsilon > 0$. Como $a = (a_1, \ld
 
 El lema de Helly sigue siendo válido para espacios normados complejos, como se muestra a continuación.
 
-\begin{Lema} \textbf{(Helly)} \label{Lema:HellyGeneral}
+\begin{Lema}[Helly] \label{Lema:HellyGeneral}
 Sean $X$ un espacio normado, $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $a_1, \ldots, a_n \in \K$. Son equivalentes:
 \begin{itemize}
 \item \textbf{i)} Para todo $\varepsilon>0$ existe $x \in B_X$ tal que $\abs{\varphi_i(x) - a_i} < \varepsilon$ para toda $i \in \{ 1, \ldots, n\}$.
@@ -1572,7 +1634,7 @@ entonces diremos que $(A, \leq)$ es un \textit{conjunto totalmente ordenado} y $
 
 El lema de Zorn, enunciado a continuación, garantiza la existencia de elementos maximales en algunos conjuntos parcialmente ordenados. Este lema se considera en muchas circunstancias como un axioma por su equivalencia con el axioma de elección. 
 
-\begin{Lema} \textbf{(de Zorn)}
+\begin{Lema}[Zorn]
 Sea $A$ un conjunto no vacío. Si todo subconjunto no vacío y totalmente ordenado de $A$ tiene un elemento máximo, entonces $A$ tiene un elemento maximal.
 \end{Lema}
 
@@ -1629,7 +1691,7 @@ De esto resulta que  $g_k \in \pi_{J_k, j_k}^{-1}(U_k)$ y  como $g_k$ es punto l
 o bien, $\restr{f_\alpha}{J} \in \pi_{J, j_k}^{-1}(U_k)$ para $\alpha \geq \alpha_k$. Tomando $\beta \in \Lambda$ tal que $\beta \geq \alpha_k$ para toda $k \in \nn{n}$, se obtiene que $\restr{f_\alpha}{J} \in \bigcap_{k=1}^n \pi_{J, j_k}^{-1}(U_k)$ y por lo tanto $h$ es punto límite de $(\restr{f_\alpha}{J})_{\alpha \in \Lambda}$.
 \end{Dem}
  
-\begin{Tma} \textbf{(Tychonoff)}
+\begin{Tma}[Tychonoff]
 Sean $I$ un conjunto no vacío y $X_i$ un espacio topológico para cada $i \in I$. Si cada $X_i$ es un espacio compacto, entonces el espacio $\prod_{i\in I} X_i$ es compacto.
 \end{Tma}
 
@@ -2046,7 +2108,9 @@ Sea $A$ un conjunto no vacío, $K \subseteq Y = F(A, \K)$ y $\calF = \{ \abs{\del
 \end{Ejem}
 
 \begin{Dem}
-Para cada $a \in X$, el conjunto $U_{0, \abs{\delta_a}, 1}$ es una vecindad abierta del cero. Como $K$ es acotado, existe $\lambda_a \in \K \setminus \{ 0 \}$ tal que $K \subseteq \lambda_a U_{0, \abs{\delta_a}, 1}$. Definamos el conjunto 
+Primero supongamos que $K$ es compacto. El corolario~\ref{Cor:HausdorffCompactoEsCerrado} indica que $K$ es cerrado. Para ver que $K$ es acotado tomemos una vecindad abierta el cero $U$. Consideremos las dilataciones $\{ nU \}_{n \in\N}$. Mostremos que es una cubierta de $K$. Sea $x \in K$, al ser $Y$ un espacio vectorial topológico, la función $f: \K \to Y, \lambda \mapsto \lambda x$ es continua (¿lo justifico?). Sea$x \in X$. Como $U$ es vecindad abierta del cero, $f^{-1}(U)$ es una vecindad abierta del cero en $\K$, por lo que existe $n \in \N$ tal que $\frac{1}{n} \in f^{-1}(U)$. de donde $f(\frac{1}{n}) = \frac{1}{n} \, x \in U$. Así que $x \in n U$. Así, $\{ nU \}_{n \in\N}$ es una cubierta abierta de $K$. Como $K$ es compacto, existen $n_1, \ldots, n_k \in \N$ tales que $\{ n_1 U, \ldots, n_k U \}$ cubre a $K$. Así pues si tomamos $N = \max(n_1, \ldots, n_k)$ tenemos que $K \subseteq N U$ y $K$ es acotado.
+
+Supongamos ahora que $K$ es cerrado y acotado. Para cada $a \in X$, el conjunto $U_{0, \abs{\delta_a}, 1}$ es una vecindad abierta del cero. Como $K$ es acotado, existe $\lambda_a \in \K \setminus \{ 0 \}$ tal que $K \subseteq \lambda_a U_{0, \abs{\delta_a}, 1}$. Definamos el conjunto 
 $$D_a : = \{ \lambda \in \K : \abs{\lambda} \leq \abs{\lambda_a} \}.$$
 
 Como para cada $a \in A$, $D_a$ es compacto en $\K$, entonces el teorema de Tychonoff indica que $$\mathcal{D} := \prod_{a\in A}{D_a}$$ es un espacio compacto con la topología producto. 
@@ -2294,7 +2358,7 @@ Notemos que el primer conjunto es un abierto de $X^*_{\mathrm{w}^*}$ y el segund
 Si $X$ es un espacio de dimensión infinita, la proposición~\ref{Prop:DualDimensionInfinita} muestra que $X^*$ es de dimensión infinita, por lo que resulta que $B_{X^*}$ no es compacta respecto a la topología original. El siguiente teorema muestra que bajo la topología débil* sí lo es.
 
 
-\begin{Tma} \textbf{(Banach-Alaoglu)}
+\begin{Tma}[Banach-Alaoglu]
 Sea $X$ un espacio normado. Entonces la bola unitaria cerrada de $X^*$ es compacta en la topología débil*.
 \end{Tma}
 
@@ -2363,7 +2427,7 @@ Si $X$ es un espacio normado reflexivo, entonces  $B_{X^*}$ es $\mathrm{w}$-comp
 Habíamos notado anteriormente que en espacios reflexivos $\sigma(X^*, X) = \sigma(X^*, X^{**})$. Por lo que la compacidad con la topología débil y débil* de $B_{X^*}$ coinciden. Por el teorema de Banach-Alaoglu resulta entonces que $B_{X^*}$ es $\mathrm{w}^*$-compacta y por tanto $\mathrm{w}$-compacta.
 \end{Dem}
 
-\begin{Tma} \textbf{(Goldstine)}
+\begin{Tma}[Goldstine]
 Sea $X$ un espacio normado. Entonces $\ov{J(B_X)}^{\mathrm{w}^*}= B_{X^{**}}$.
 \end{Tma}
 
@@ -2394,7 +2458,7 @@ Se sigue de aquí que $X$ es reflexivo.
 \chapter{El teorema de Orlicz-Pettis.}
 
 El teorema de Orlicz-Pettis que se pretende demostrar en este capítulo establece lo siguiente: 
-\begin{Tma} \textbf{(Orlicz-Pettis)} Sea $\sum_n x_n$ una serie en un espacio de Banach $X$. Supongamos que para cada sucesión creciente de enteros positivos $(k_n)_n$ 
+\begin{Tma}[Orlicz-Pettis] Sea $\sum_n x_n$ una serie en un espacio de Banach $X$. Supongamos que para cada sucesión creciente de enteros positivos $(k_n)_n$ 
 $$\wlim_{n\to \infty} \sum_{j=1}^n x_{k_j} \mbox{ existe.}$$
 Entones para cada sucesión creciente de enteros positivos $(k_n)_n$
 $$\lim_{n\to\infty} \sum_{j=1}^n x_{k_j} \mbox{ existe bajo la norma.}$$ \\
@@ -2459,7 +2523,7 @@ Notemos que $g_n(\omega)$ converge para todo $\omega \in G$ a la función $g : \O
 
 Recordemos que un espacio de Banach $X$ es \textit{separable} si existe un conjunto $A \subseteq X$ numerable y denso en $X$.
 
-\begin{Tma} \textbf{(Egorov)} Supongamos que $X$ es un espacio de Banach separable. Sean $f_n: \Omega \to X$ funciones medibles y supongamos que existe $A \subseteq \Omega$ con $\mu$-medida finita tal que $(f_n)_n$ converge $\mu$-c.t.p. a una función límite $f: \Omega \to X$. Entonces para cada $\varepsilon > 0$ existe $B \subseteq A$ medible con $\mu(B) < \varepsilon$ y tal que $f_n$ converge uniformemente a $f$ en $B$. 
+\begin{Tma}[Egorov] Supongamos que $X$ es un espacio de Banach separable. Sean $f_n: \Omega \to X$ funciones medibles y supongamos que existe $A \subseteq \Omega$ con $\mu$-medida finita tal que $(f_n)_n$ converge $\mu$-c.t.p. a una función límite $f: \Omega \to X$. Entonces para cada $\varepsilon > 0$ existe $B \subseteq A$ medible con $\mu(B) < \varepsilon$ y tal que $f_n$ converge uniformemente a $f$ en $B$. 
 \end{Tma}
 
 \begin{Dem}
@@ -2476,12 +2540,12 @@ Una función $f: \Omega \to \K$ es $\mu$-\textit{medible} si existe $g: \Omega \t
 Una función $f: \Omega \to X$ se dice \textit{escalarmente} $\mu$\textit{-medible} si $x^*f: \Omega \to \K$ es $\mu$-medible para cada $x^* \in X^*$.
 \end{Def}
 
-\begin{Tma}
- \textbf{(de Medibilidad de Pettis)} Una función $f: \Omega \to X$ es $\mu$-medible si, y sólo si $f$ es escalarmente $\mu$-medible y existe $E \in \Sigma$ con $\mu(E) = 0$ tal que $f(\Omega \setminus E)$ es un conjunto separable de $X$.
+\begin{Tma}[de Medibilidad de Pettis] 
+Una función $f: \Omega \to X$ es $\mu$-medible si, y sólo si $f$ es escalarmente $\mu$-medible y existe $E \in \Sigma$ con $\mu(E) = 0$ tal que $f(\Omega \setminus E)$ es un conjunto separable de $X$.
 \end{Tma}
 
 \begin{Dem}
-(Pendiente)
+(Pendiente).
 \end{Dem}
 
 \begin{Def}
