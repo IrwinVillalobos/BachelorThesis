@@ -210,36 +210,6 @@ Supongamos que $V$ es abierto y sea $x \in V$. Entonces $V$ es una vecindad de $
 Supongamos ahora que $V$ es una vecindad de $x$ para todo $x \in V$. Así, para cada $x \in V$ existe un abierto $U_x$ tal que $x \in U_x \subseteq V$. De donde $$V = \bigcup_{x \in V} U_x$$ es abierto.
 \end{Dem}
 
-\begin{Def}
-Sean $X$ y $Y$ dos espacios topológicos y $f: X \to Y$.
-\begin{itemize}
-\item \textbf{i)} La función  $f$ es \textit{continua} en $x\in X$ si para toda vecindad abierta $V$ de $f(x)$ existe una vecindad abierta $U$ de $x$ tal que $f(U) \subseteq V$.
-\item \textbf{ii)} La función $f$ es \textit{continua}, si $f$ es continua en $x$ para todo $x \in X$.
-\end{itemize}
-\end{Def}
-
-\begin{Lema} \label{Lema:CaracterizacionContinuidadPorPreimagenesDeAbiertos}
-Sean $X$ y $Y$ dos espacios topológicos y $f: X \to Y$. Entonces $f$ es continua si, y sólo si $f^{-1}(V)$ es abierto en $X$, para todo abierto $V$ en $Y$.
-\end{Lema}
-
-\begin{Dem}
-Supongamos que $f$ es continua. Sea $V$ un abierto en $Y$. Para cada $x \in f^{-1}(V)$, $V$ es vecindad abierta de $f(x)$, por lo que existe $U_x$ vecindad abierta de $x$ tal que $f(U_x) \subseteq V$ y por lo tanto $U_x \subseteq f^{-1}(V)$. De esto se puede concluir que  $$f^{-1}(V) = \bigcup_{x \in f^{-1}(V)} U_x$$ es abierto. 
-
-Ahora supongamos que $f^{-1}(V)$ es abierto en $X$ para todo abierto $V$ en $Y$ y tomemos $x \in X$. Sea $V$ una vecindad abierta de $f(x)$. Entonces $f^{-1}(V)$ es abierto en $X$. Como $f(x) \in V$, entonces $x \in f^{-1}(V)$ y por lo tanto $f^{-1}(V)$ es una vecindad abierta de $x$. Además $f(f^{-1}(V)) \subseteq V.$
-\end{Dem}
-
-\begin{Ejem}
-Sean $X, Y$ espacios topológicos y $y_0 \in Y$.
-\begin{itemize}
-\item[\textbullet] \textbf{i)} La función constante $f: X \to Y$ dada por $f(x) = y_0$ es continua, pues para todo abierto $V$ en $Y$ se tiene que 
-$$f^{-1}(V) = \begin{cases}
-X, \;\;\;\mbox{ si } f(X)\cap V \neq \emptyset; \\
-\emptyset \;\;\;\mbox{ si } f(X)\cap V = \emptyset.
-\end{cases}$$
-es abierto en $X$.
-\item[\textbullet] \textbf{ii)} Consideremos ahora la identidad $Id_X : X \to X$. Para cualquier abierto $U$ de $X$, se tiene que $Id_X^{-1}(U) = U$ es abierto. Así que $Id_X$ es continua.
-\end{itemize}
-\end{Ejem}
 
 \begin{Def}
 Sea $X$ un conjunto no vacío. Una \textit{base} $\B$ de $X$ es una familia de subconjuntos de $X$ tal que:
@@ -282,7 +252,39 @@ Ahora supongamos que para cada abierto $U$ y $x \in U$ existe $B \in \mathcal{B}
 Por definición \textbf{i)} y \textbf{ii)} indican que $\mathcal{B}$ es una base. Veamos que es una base de $X$. Sea $\tau_X$ la topología de $X$. Como $\mathcal{B} \subseteq \tau_X$, entonces las uniones arbitrarias de elementos en $\mathcal{B}$ son abiertos. Así pues $\tau(\mathcal{B}) \subseteq \tau_X$. Ahora, al tomar $U \in \tau$ para cada $x \in U$ por hipótesis existe $B_x \in \mathcal{B}$ tal que $x \in B_x \subseteq U$. De donde $$U = \bigcup_{x \in U} B_x$$ y así $U \in \tau(\mathcal{B})$. Es decir, $\tau_X = \tau(\mathcal{B})$.
 \end{Dem}
 
-Cuando sea necesario probar que una función es continua, si se cuenta con una base en el codominio, entonces basta probar que la preimagen de cualquier conjunto básico es abierto, como indica la siguiente proposición.
+
+\begin{Def}
+Sean $X$ y $Y$ dos espacios topológicos y $f: X \to Y$.
+\begin{itemize}
+\item \textbf{i)} La función  $f$ es \textit{continua} en $x\in X$ si para toda vecindad abierta $V$ de $f(x)$ existe una vecindad abierta $U$ de $x$ tal que $f(U) \subseteq V$.
+\item \textbf{ii)} La función $f$ es \textit{continua}, si $f$ es continua en $x$ para todo $x \in X$.
+\end{itemize}
+\end{Def}
+
+\begin{Lema} \label{Lema:CaracterizacionContinuidadPorPreimagenesDeAbiertos}
+Sean $X$ y $Y$ dos espacios topológicos y $f: X \to Y$. Entonces $f$ es continua si, y sólo si $f^{-1}(V)$ es abierto en $X$, para todo abierto $V$ en $Y$.
+\end{Lema}
+
+\begin{Dem}
+Supongamos que $f$ es continua. Sea $V$ un abierto en $Y$. Para cada $x \in f^{-1}(V)$, $V$ es vecindad abierta de $f(x)$, por lo que existe $U_x$ vecindad abierta de $x$ tal que $f(U_x) \subseteq V$ y por lo tanto $U_x \subseteq f^{-1}(V)$. De esto se puede concluir que  $$f^{-1}(V) = \bigcup_{x \in f^{-1}(V)} U_x$$ es abierto. 
+
+Ahora supongamos que $f^{-1}(V)$ es abierto en $X$ para todo abierto $V$ en $Y$ y tomemos $x \in X$. Sea $V$ una vecindad abierta de $f(x)$. Entonces $f^{-1}(V)$ es abierto en $X$. Como $f(x) \in V$, entonces $x \in f^{-1}(V)$ y por lo tanto $f^{-1}(V)$ es una vecindad abierta de $x$. Además $f(f^{-1}(V)) \subseteq V.$
+\end{Dem}
+
+\begin{Ejem}
+Sean $X, Y$ espacios topológicos y $y_0 \in Y$.
+\begin{itemize}
+\item[\textbullet] \textbf{i)} La función constante $f: X \to Y$ dada por $f(x) = y_0$ es continua, pues para todo abierto $V$ en $Y$ se tiene que 
+$$f^{-1}(V) = \begin{cases}
+X, \;\;\;\mbox{ si } f(X)\cap V \neq \emptyset; \\
+\emptyset \;\;\;\mbox{ si } f(X)\cap V = \emptyset.
+\end{cases}$$
+es abierto en $X$.
+\item[\textbullet] \textbf{ii)} Consideremos ahora la identidad $Id_X : X \to X$. Para cualquier abierto $U$ de $X$, se tiene que $Id_X^{-1}(U) = U$ es abierto. Así que $Id_X$ es continua.
+\end{itemize}
+\end{Ejem}
+
+Cuando sea necesario probar que una función es continua, si se cuenta con una base en el codominio, entonces basta probar que la preimagen de cualquier conjunto básico es abierto, como indica el siguiente lema.
 
 \begin{Lema} \label{Lema:ContinuidadPorBasicos}
 Sean $X, Y$ espacios topológicos y $f: X \to Y$. Si $\B$ es una base de $Y$ y $f^{-1}(B)$ es abierto en $X$ para todo $B \in \B$, entonces $f$ es continua. 
@@ -291,6 +293,16 @@ Sean $X, Y$ espacios topológicos y $f: X \to Y$. Si $\B$ es una base de $Y$ y $f
 \begin{Dem}
 Sea $V$ abierto en $Y$. Entonces existen un conjunto $\Lambda$ y algunos $B_\alpha \in \B$, $\alpha \in \Lambda$ tales que $V = \bigcup_{\alpha \in \Lambda} B_\alpha$. Por hipótesis  $f^{-1}(B_\alpha)$ es abierto en $X$ para toda $\alpha \in \Lambda$, por lo que también lo es
 $$\bigcup_{\alpha \in \Lambda} f^{-1}(B_\alpha) = f^{-1}\left( \bigcup_{\alpha \in \Lambda} B_\alpha \right) = f^{-1}(V) .$$ 
+\end{Dem}
+
+Otra manera de demostrar que una función es continua es expresarla como la composición de dos funciones que previamente sabemos que son continuas,  como indica la siguiente proposición.
+
+\begin{Prop}
+Sean $X, Y, Z$ espacios topológicos, $f: X \to Y$ y $g: Y \to Z$. Si $f$ y $g$ son continuas, entonces la composición $g \circ f: X \to Z$ es continua.
+\end{Prop}
+
+\begin{Dem}
+Sea $U$ cualquier vecindad abierta en $Z$. Como $g$ es continua, del lema~\ref{Lema:CaracterizacionContinuidadPorPreimagenesDeAbiertos} se sigue que $g^{-1}(U)$ es abierto en $Y$. Luego, como $f$ es continua, del mismo lema~\ref{Lema:CaracterizacionContinuidadPorPreimagenesDeAbiertos} se concluye que $(g \circ f)^{-1}(U) = f^{-1}(g^{-1}(U))$ es abierto en $X$ y $g \circ f$ es continua.
 \end{Dem}
 
 \begin{Def}
@@ -452,12 +464,14 @@ Sean $E, X$ y $Y$ espacios topológicos y $f: E \to X \times Y$. Entonces $f$ es 
 \begin{Dem}
 Si $f$ es continua, entonces $\pi_X \circ f$ y $\pi_Y \circ f$ también lo son, ya que $\pi_X$ y $\pi_Y$ lo son y la composición de funciones continuas es continua. 
 
-Supongamos ahora que $\pi_X \circ f$ y $\pi_Y \circ f$ son continuas. Sea $U \times V$ un abierto básico de $X \times Y$, de manera que $U$ es abierto en $X$ y $V$ es abierto en $Y$. Entonces $(\pi_X \circ f)^{-1}(U)$ y $(\pi_Y \circ f)^{-1}(V)$ son abiertos en $E$ por lo que según la proposición~\ref{Lema:ContinuidadPorBasicos} también lo es  
+Supongamos ahora que $\pi_X \circ f$ y $\pi_Y \circ f$ son continuas. Sea $U \times V$ un abierto básico de $X \times Y$, de manera que $U$ es abierto en $X$ y $V$ es abierto en $Y$. Entonces $(\pi_X \circ f)^{-1}(U)$ y $(\pi_Y \circ f)^{-1}(V)$ son abiertos en $E$ por lo que también lo es  
 $$f^{-1}(U \times V) = (\pi_X \circ f)^{-1}(U) \bigcap (\pi_Y \circ f)^{-1}(V).$$
+
+Según la proposición~\ref{Lema:ContinuidadPorBasicos} se concluye que $f$ es continua.
 \end{Dem} 
 
 \begin{Cor} \label{Cor:ContinuidadPorComponentes}
-Sean $E, X$ y $Y$ espacios topológicos, $f_X :  E \to X$ y $f_Y : E \to Y$. Entonces 
+Sean $E, X$ y $Y$ espacios topológicos, $f_X :  E \to X$ y $f_Y : E \to Y$. Entonces la función
 \Ecu{
 f_X \times f_Y : E &\to X \times Y \\
 z & \mapsto (f_X(z), f_Y(z))
@@ -491,6 +505,33 @@ Dados $A, B$ dos conjuntos, denotamos por $F(A, B)$ a la colección de funciones 
 Sea $A \neq \emptyset$. Notemos que $$F(A, B) = \prod_{a \in A} B,$$ por lo que si $B$ es un espacio topológico, en $F(A, B)$ naturalmente ponemos considerar su topología producto. Esto ocurre, por ejemplo, con el espacio de funciones $F(A, \R)$.
 \end{Ejem}
 
+En esta topología producto podemos generalizar la proposición~\ref{Prop:ContinuidadPorComponentes} y el corolario~\ref{Cor:ContinuidadPorComponentes} de la siguiente manera.
+
+\begin{Prop} \label{Prop:ContinuidadPorComponentesArbitrarios}
+Sean $I$ un conjunto no vacío, $E$ y $X_i$ espacios topológicos para $i \in  I$ y $f: E \to \prod_{i\in I} X_i$. Entonces $f$ es continua si y sólo si $\pi_j \circ f$, $j \in I$ son continuas.
+\end{Prop}
+
+\begin{Dem}
+Si $f$ es continua, entonces para $j \in I$,  $\pi_j \circ f$ también lo es, ya que la composición de funciones continuas es continua. 
+
+Supongamos ahora que $\pi_j \circ f$ es continua para toda $j \in I$. Sean   $k \in \N$,  $i_1, \ldots, i_k \in I$  y $U_j$  abierto en $X_{i_j}$  para cada $1\leq j \leq k$, de manera que $\bigcap_{j=1}^k \pi_{i_j}^{-1}(U_j)$ es  un abierto básico de $\prod_{i\in I} X_i$. Entonces $f^{-1}(\pi_{i_j}^{-1}(U_j)) = (\pi_{i_j} \circ f)^{-1}(U_j)$  es abiertos en $E$ por lo que también lo es  
+$$f^{-1}\left(\bigcap_{j=1}^k \pi_{i_j}^{-1}(U_j)\right) = \bigcap_{j=1}^k f^{-1}\left(\pi_{i_j}^{-1}(U_j)\right).$$
+
+Según la proposición~\ref{Lema:ContinuidadPorBasicos} se concluye que $f$ es continua.
+\end{Dem} 
+
+En la demostración de la proposición anterior se puede observar por qué es indispensable definir la topología producto como se definió y no simplemente como la generada por el producto de abiertos. De lo contrario tal proposición sería falsa.
+
+\begin{Cor} \label{Cor:ContinuidadPorComponentesArbitrarios}
+Sean $I$ un conjunto no vacío, $E$ y $X_i$ espacios topológicos para $i \in  I$, $f_i :  E \to X_i$ funciones. Entonces la función
+\Ecu{
+\prod_{i \in I} f_i : E &\to \prod_{i\in I} X_i \\
+z & \mapsto (f_i(z))_{i \in I}
+} es continua si y sólo si cada $f_i$, $i \in I$ lo es.
+\end{Cor}
+
+
+
 \chapter{Espacios métricos}
 El marco de espacios topológicos es muy general, por lo que estudiaremos a continuación un caso particular de estos espacios que tienen mejores propiedades y donde las sucesiones juegan un papel muy importante. 
 
@@ -518,7 +559,7 @@ Esta resulta ser una topología en $M$ y la llamamos \textit{topología original} 
 
 La siguiente proposición indica que en un espacio métrico $M$ las bolas abiertas forman una base de la topología original de $M$.
 
-\begin{Prop} \label{Prop:BaseDeEntonrnosEspaciosMetricos}
+\begin{Prop} \label{Prop:BaseDeEntornosEspaciosMetricos}
 Sea $M$ un espacio métrico. La colección $$\mathcal{B} := \{ V_r(x) : r > 0, x \in M \}$$ es una base de $M$.
 \end{Prop}
 
@@ -527,6 +568,14 @@ Tomemos $V_r(x) \in \mathcal{B}$ para algunos $r > 0$ y $x \in M$. Verifiquemos 
 
 Si $U$ es abierto de $M$ y $x \in U$, por definición existe $r > 0$ tal que $x \in V_r(x) \subseteq U$. La proposición~\ref{Prop:CaracterizacionDeBase} indica que $\mathcal{B}$ es una base de $M$. 
 \end{Dem}
+
+\begin{Def}
+Un espacio topológico $(X, \tau)$ es \textit{metrizable} si existe una métrica $d$ en $X$ que induce la topología $\tau$.
+\end{Def}
+
+\begin{Ejem}
+Notemos que los intervalos abiertos en $\R$ coinciden precisamente con las bolas abiertas bajo la métrica $d : \R \times \R \to \R$, $(x, y) \mapsto \abs{x-y}$. Por lo tanto, de la proposición~\ref{Prop:BaseDeEntornosEspaciosMetricos} resulta que la topología usual en $\R$ es metrizable, pues está inducida por la métrica $d$. 
+\end{Ejem}
 
 En un espacio métrico podemos caracterizar la convergencia de las sucesiones usando directamente la métrica, como lo expresa la siguiente proposición.
 
@@ -567,7 +616,7 @@ Ahora demostraremos la contrapositiva. Supongamos pues que $f$ no es continua en
 \end{Dem}
 
 \begin{Prop}\label{Prop:CerraduraLimiteSucesiones} 
-Sean $M$ un espacio métrico y $A \subseteq M$. Entonces $\overline{A}$ es el conjunto de los puntos en $M$ que son el límite de alguna sucesión en $A$.
+Sean $M$ un espacio métrico y $A \subseteq M$. Entonces $x \in \overline{A}$ si, y sólo si $x$ es el límite de alguna sucesión en $A$.
 \end{Prop}
 
 \begin{Dem}
@@ -607,9 +656,21 @@ d(x_{k_n}, x) < \frac{\varepsilon}{2}, \; \mbox{ si } \; n \geq M.
 Tomemos $L = \max(N, M)$ y $n \geq L$. De esta manera tenemos que $k_L \geq L \geq N$ y $n \geq L \geq N$ y por $(\ref{Eq:NormaCompleta1})$ se sigue que $d(x_{k_L}, x_n) < \frac{\varepsilon}{2}$. Además, como $L \geq M$, de $(\ref{Eq:NormaCompleta2})$ se tiene que $d(x_{k_L}, x) < \frac{\varepsilon}{2}$. Por la desigualdad del triángulo concluimos que $$d(x_n, x) \leq d(x_n, x_{k_L}) + d(x_{k_L},  x) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon, $$ y así $x_n \to x$.
 \end{Dem}
 
+\begin{Lema} \label{Lema:EspacioNormadoCompletoEntoncesCerrado}
+Sean $M$ un espacio métrico y $A \subseteq M$ un subespacio. Si $A$ es completo, entonces $A$ es cerrado en $M$.
+\end{Lema}
+
+\begin{Dem}
+Sea $x \in \ov{A}$. La proposición~\ref{Prop:CerraduraLimiteSucesiones} establece que existe una sucesión $(x_n)_{n \in \N} \subseteq A$ tal que $x_n \to x$. Como $(x_n)_{n \in \N}$ es convergente, el lema~\ref{Lema:SucesionConvergenteEsCauchy} indica que $(x_n)_{n \in \N}$ es de Cauchy y al ser $A$ completo, se sigue que la red converge en $A$. Al ser $M$ Hausdorff, se sigue que $x \in A$ y así $A$ es cerrado. 
+\end{Dem}
+
 \begin{Def}
 Sea $M$ un espacio métrico. Decimos que $A \subseteq M$ es un conjunto \textit{acotado} si existe $r > 0$ tal que $d(x, y) < r$ para todos $x, y \in A$.
 \end{Def}
+
+\begin{Ejem}
+Consideremos cualquier bola $V_r(z)$ en un espacio métrico $M$ para algunos $r > 0$ y $z \in M$. Sean $x, y \in V_r(z)$. Por la desigualdad del triángulo $d(x, y) \leq d(x, z) + d(z, y) < 2r$. Así que $V_r(z)$ es un conjunto acotado. Lo mismo sucede con las bolas cerradas.
+\end{Ejem}
 
 \begin{Prop} \label{Prop:CaracterizacionConjuntoAcotado}
 Sea $M$ un espacio métrico, $A \subseteq M$ y $x \in M$. Entonces $A$ es acotado si, y sólo si existe $K > 0$ tal que $d(x, y) < K$ para todo $y \in A$.
@@ -619,6 +680,14 @@ Sea $M$ un espacio métrico, $A \subseteq M$ y $x \in M$. Entonces $A$ es acotado
 Supongamos que $A$ es acotado. Si $A = \emptyset$ entonces con $K = 1$ se cumple que $d(x, y) < K$ para todo $y \in A$. Supongamos que $A \neq \emptyset$ y sea $z \in A$. Como $A$ es acotado, existe $r > 0$ tal que $d(y_1, y_2) < r$ para todos $y_1, y_2 \in A$. Definamos $K = d(x, z) + r > 0$ y sea $y \in A$. Entonces de la desigualdad del triángulo se sigue que $d(x, y) \leq d(x, z) + d(z, y) < K$. 
 
 Ahora supongamos que existe $K > 0$ de tal forma que $d(x, y) < K$ para todo $y \in A$. Consideremos $r = 2K  > 0$ y tomemos $y_1, y_2 \in A$. Por la desigualdad el triángulo, se sigue que $d(y_1, y_2) \leq d(y_1, x) + d(x, y_2) < 2K = r$ y así $A$ es acotado.
+\end{Dem}
+
+\begin{Lema} \label{Lema:UnionFinitaDeAcotadosEsAcotado}
+La unión finita de conjuntos acotados en un espacio métrico es acotada.
+\end{Lema}
+
+\begin{Dem}
+Sea $M$ un espacio métrico, $n \in\N$ y $A_1, \ldots, A_n$ conjuntos acotados en $M$. Sea $x \in M$ cualquiera. Luego, para cada $1 \leq i \leq n$ existe $K_i > 0$ tal que $d(x, a) < K_i$ para todo $a \in A_i$. Tomemos $K = \max(K_1, \ldots, K_n)$. Si $a \in \bigcup_{i=1}^n A_i$, entonces existe $i \in \nn{n}$ tal que $a \in A_i$ y $d(x, a) < K_i \leq K$. Por lo tanto $\bigcup_{i=1}^n A_i$ es acotado.
 \end{Dem}
 
 \begin{Lema} \label{Lema:SucesionesDeCauchySonAcotadas}
@@ -640,16 +709,18 @@ En este caso diremos que $\{ x_1, \ldots, x_n \}$ es una $\varepsilon$-\textit{r
 \begin{Obs}
 Sea $M$ un espacio métrico y $K \subseteq M$ un conjunto totalmente acotado. Entonces:
 \begin{itemize}
-\item \textbf{i)} Si $A \subseteq K$, entonces $A$ es totalmente acotado.
-\item \textbf{ii)} Si $K \neq \emptyset$, entonces para todo $\varepsilon > 0$, existe una $\varepsilon$-red de $K$ formada de puntos en $K$. 
+\item \textbf{i)} $K$ es acotado.
+\item \textbf{ii)} Si $A \subseteq K$, entonces $A$ es totalmente acotado.
+\item \textbf{iii)} Si $K \neq \emptyset$, entonces para todo $\varepsilon > 0$, existe una $\varepsilon$-red de $K$ formada de puntos en $K$. 
 \end{itemize}
 \end{Obs}
 
 \begin{Dem}
 \hfill
 \begin{itemize}
-\item[\textbf{i)}] Es claro del hecho de que toda $\varepsilon$-red de $K$ también es un $\varepsilon$-red de $A$.
-\item[\textbf{ii)}] Sea $\varepsilon > 0$. Como $K$ es totalmente acotado, existe una $\frac{\varepsilon}{2}$-red $\{x_1, \ldots, x_n\}$ de $K$ para algunos $n \in\N$,  $x_1, \ldots, x_n \in K$. Entonces tenemos que 
+\item[\textbf{i)}] Como $K$ es acotado, existe una $1$-red de $K$ de bolas abiertas que cubren a $K$. Como las bolas son acotadas, el lema~\ref{Lema:UnionFinitaDeAcotadosEsAcotado} indica que la unión de las bolas en la red es acotada. Por lo tanto $K$ también lo es.
+\item[\textbf{ii)}] Es claro del hecho de que toda $\varepsilon$-red de $K$ también es un $\varepsilon$-red de $A$.
+\item[\textbf{iii)}] Sea $\varepsilon > 0$. Como $K$ es totalmente acotado, existe una $\frac{\varepsilon}{2}$-red $\{x_1, \ldots, x_n\}$ de $K$ para algunos $n \in\N$,  $x_1, \ldots, x_n \in K$. Entonces tenemos que 
 \begin{equation}
 K \subseteq \bigcup_{i=1}^n V_{\frac{\varepsilon}{2}}(x_i).
 \end{equation} 
@@ -715,6 +786,35 @@ Sean $M$ un espacio métrico y $A \subseteq M$ un conjunto cerrado. Si $x \in M \
 \begin{Dem}
 Se demostrará por contrapositiva. Supongamos que $d(x, A) = 0$. Tomemos un abierto $U$ que incluya a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$, por lo que $U \cap A \neq \emptyset$. Así que $x \in \ov{A}$. Ya que $A$ es cerrado, entonces  $x \in A$.
 \end{Dem}
+
+\begin{Def} 
+Sean $M_1$ y $M_2$ espacios métricos. Si $f: M_1 \to M_2$ cumple que $d(f(x), f(y)) = d(x, y)$ para todos $x, y \in M_1$, entonces decimos que $f$ es una \textit{isometría}.
+\end{Def}
+
+\begin{Prop} \label{Prop:IsometriaInduceHomeomorfismo}
+Sean $M_1$ y $M_2$ espacios métricos y $f : M_1 \to M_2$ una isometría. Entonces $f$ es un homeomorfismo entre $M_1$ y $M_2$.
+\end{Prop}
+
+\begin{Dem}
+Sean $x, y \in M_1$ con $f(x) = f(y)$. Entonces $d(x, y) = d(f(x), f(y)) = 0$ y por lo tanto $x  =y$. Así que $f$ es inyectiva. Entonces podemos definir su inversa $f^{-1}$ en $f(M_1)$.
+
+Tomemos una bola abierta $V_r(x)$ en $M_2$ para algunos $x \in M_2$, $r > 0$. Observemos que 
+\Ecu{
+V_r(f^{-1}(x)) &= \{ y \in M_1 : d(y, f^{-1}(x)) < r \} \\
+&= \{ y \in M_1 : d(f(y),x) < r \} \\
+&= f^{-1}(V_r(x)).
+}
+Así que $f^{-1}(V_r(x))$ es abierto en $M_1$ y por el lema~\ref{Lema:CaracterizacionContinuidadPorPreimagenesDeAbiertos} se sigue que $f$ es continua. 
+
+Ahora tomemos una bola abierta en $V_r(x)$ en $M_1$ para algunos $x \in M_1$, $r > 0$. Observemos que 
+\Ecu{
+V_r(f(x)) \cap f(M_1) &= \{ f(y) : y \in M_2 \mbox{ y } d(f(y), f(x)) < r \} \\
+&= \{ f(y) : y \in M_2 \mbox{ y } d(y,x) < r \} \\
+&= f(V_r(x)).
+}
+Así que $f(V_r(x))$ es abierto en $f(M_1)$ y por el lema~\ref{Lema:CaracterizacionContinuidadPorPreimagenesDeAbiertos} se sigue que $f^{-1}$ es continua.
+\end{Dem}
+
 
 \chapter{Espacios normados}
 
@@ -885,17 +985,14 @@ $$\Norm{T} \geq \Norm{T\left(\frac{x}{\Norm{x}}\right)} = \frac{\Norm{Tx}}{\Norm
 \item \textbf{i)} Sean $X$ y $Y$ espacios vectoriales. Se dice que $X$ y $Y$
 son \textit{isomorfos} como espacios vectoriales si existe $T :  X \to Y$ biyectiva y lineal. En este caso a $T$ se la llama \textit{isomorfismo} de espacios vectoriales.
 \item \textbf{ii)} Sean $X$ y $Y$ espacios normado. Decimos que $X$ y $Y$ son \textit{isomorfos} como espacios normados o que son \textit{isomorficamente homeomorfos} si existe un isomorfismo de espacios vectoriales $T: X \to Y$ que también es un homeomorfismo. En este caso a $T$ se le llama \textit{isomorfismo} de espacios normados. 
-\item \textbf{iii)} Sean $X$ y $Y$ espacios normados. Si $T: X \to Y$ es lineal y cumple que $\Norm{Tx} = \Norm{x}$ para todo $x \in X$, entonces decimos que $T$ es una \textit{isometría}. 
-\end{itemize}
+ \end{itemize}
 \end{Def}
 
-\begin{Prop}
-Sean $X$ y $Y$ espacios normados y $T : X \to Y$ una isometría. Entonces $T$ es un isomorfismo de espacios normados entre $X$ y $T(X)$.
-\end{Prop}
+\begin{Obs}
+Sean $X$ y $Y$ espacios normados y $T: X \to Y$ un operador lineal. Entonces $T$ es una isometría si, y sólo si $\Norm{Tx} = \Norm{x}$ para todo $x \in X$. 
 
-\begin{Dem}
-Si $Tx = 0$, entonces $\Norm{x} = \Norm{Tx} = 0$ y por lo tanto $x = 0$. Esto indica que $T$ es inyectiva y por lo tanto $T: X \to T(X)$ es una función lineal biyectiva. Por lo tanto es un isomorfismo de espacios vectoriales. Y del hecho que $\Norm{Tx} = \Norm{x}$ se sigue que $T$ y $T^{-1}$ son continuas. Así que $T$ es un isomorfismo de espacios normados entre $X$ y $T(X)$. 
-\end{Dem}
+De la proposición~\ref{Prop:IsometriaInduceHomeomorfismo}, se sigue que si $T$ es una isometría, entonces $T$ es un isomorfismo de espacios normados entre $X$ y $T(X)$. 
+\end{Obs}
 
 \section{Ejemplos}
 
@@ -1168,15 +1265,6 @@ Sea $X$ un espacio normado de dimensión finita $n \in \N$. Dado que $\K^n$ con l
 \end{Dem}
 
 Del resultado anterior se sigue inmediatamente que los espacios $\ell^n_p$ son completos.
-
-
-\begin{Lema} \label{Lema:EspacioNormadoCompletoEntoncesCerrado}
-Sean $X$ un espacio normado y $Y \subseteq X$ un subespacio. Si $Y$ es completo, entonces $Y$ es cerrado en $X$.
-\end{Lema}
-
-\begin{Dem}
-Sea $x \in \ov{Y}$. La proposición~\ref{Prop:CerraduraLimiteSucesiones} establece que existe una sucesión $(x_n)_{n \in \N} \subseteq Y$ tal que $x_n \to x$. Como $(x_n)_{n \in \N}$ es convergente, el lema~\ref{Lema:SucesionConvergenteEsCauchy} indica que $(x_n)_{n \in \N}$ es de Cauchy y al ser $Y$ completo, se sigue que la red converge en $Y$. Al ser $X$ Hausdorff, se sigue que $x \in Y$ y así $Y$ es cerrado. 
-\end{Dem}
 
 \begin{Cor} \label{Cor:SubespacioNormadoDimensionFinitaCerrado}
 Si $Y$ es un subespacio de dimensión finita de un espacio normado $X$, entonces $Y$ es cerrado en $X$.
@@ -1519,8 +1607,6 @@ Tomemos $\widehat{\alpha} \in \Lambda$ de tal manera que $\widehat{\alpha} \geq 
 
 Concluimos de esto que $(x_{\alpha, i})_{i\in I} \to (x_i)_{i\in I}$.
 \end{Dem}
-
-En la demostración de la proposición anterior se puede observar por qué es indispensable definir la topología producto como se definió y no simplemente como la generada por el producto de abiertos. De lo contrario tal proposición sería falsa.
 
 \begin{Obs}
 Sea $X$ un espacio vectorial, entonces $F(\Lambda, X)$ es un espacio vectorial con la suma y producto por escalares definidas puntualmente. De esto podemos considerar la suma de $\Lambda$-redes $(x_\alpha)_{\alpha \in \Lambda}$ y $(y_\alpha)_{\alpha \in \Lambda}$ en $X$ como  
