@@ -839,8 +839,8 @@ FUNCTION {format.edition} % los ordinales deben escribirse según: http://buscon.
 { edition empty$
     { "" }
     { output.state mid.sentence =
-        { edition "l" change.case$ "\sptext{a} Ed." * }
-        { edition "t" change.case$ "\sptext{a} Ed." * }
+        { edition "l" change.case$ "\textsuperscript{nd}~Ed." * }
+        { edition "t" change.case$ "\textsuperscript{nd}~Ed." * }
       if$
     }
   if$

@@ -19,6 +19,7 @@
 \usepackage{thmtools}
 \usepackage[bookmarksopen=true]{hyperref}
 \usepackage{bookmark}
+\usepackage[super]{nth}
 \newcommand\Ccancel[2][black]{\renewcommand\CancelColor{\color{#1}}\cancel{#2}}
 \renewcommand{\qedsymbol}{$\blacksquare$}
 
@@ -1658,6 +1659,14 @@ n \;\;\;\mbox{ si } k = 2n-1 \mbox{ con }n \in\N.
 } 
 Al notar que $\varphi$ verifica \textbf{ii)} y \textbf{iii)} de la definición anterior, podemos deducir que la sucesión $(x_{\varphi(k)})_{k\in\N} = (1, 1, 2, 2, 3, 3, \ldots)$ es una subred, pero no una subsucesión de $(x_n)_{n\in\N}$.
 \end{Ejem}
+
+\begin{Prop}
+Sea $X$ un espacio topológico y $(x_alpha)_{\alpha \in \Lambda} \subseteq X$ una red que converge a $x \in X$. Entonces cualquier subred de $(x_alpha)_{\alpha \in \Lambda}$ converge a $x$.
+\end{Prop}
+
+\begin{Dem}
+Sea $(y_\beta)_{\beta \in \Gamma}$ una subred de $(x_\alpha)_{\alpha \in \Lambda}$ para algún conjunto dirigido $\Gamma$ y una función monótona y final $\varphi: \Gamma \to \Lambda$. Sea $U$ una vecindad abierta de $x$.  Como $x_\alpha \to x$, existe $\alpha_0\in\Lambda$ tal que $x_\alpha \in U$ si $\alpha \geq \alpha_0$. Como $\varphi$ es final, existe $\beta_0 \in \Lambda$ tal que $\varphi(\beta_0) \geq \alpha_0$. Así pues, si $\beta \geq \beta_0$, entonces $\varphi(\beta) \geq \varphi(\beta_0) \geq \alpha_0$. Por lo tanto $y_\beta = x_{\varphi(\beta)} \in U$. Así $y_\beta \to x$. 
+\end{Dem}
 
 \begin{Def}
 Sean $X$ un espacio topológico y $(x_\alpha)_{\alpha \in \Lambda}$ una red en $X$. Decimos que $x \in X$ es un \textit{punto límite} de $(x_\alpha)_{\alpha \in \Lambda}$ si para toda vecindad abierta $V$ de $x$ y para toda $\alpha \in \Lambda$ existe $\beta \geq \alpha$ tal que $x_\beta \in V$.
