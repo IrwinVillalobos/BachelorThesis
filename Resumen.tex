@@ -253,6 +253,31 @@ Ahora supongamos que para cada abierto $U$ y $x \in U$ existe $B \in \mathcal{B}
 Por definición \textbf{i)} y \textbf{ii)} indican que $\mathcal{B}$ es una base. Veamos que es una base de $X$. Sea $\tau_X$ la topología de $X$. Como $\mathcal{B} \subseteq \tau_X$, entonces las uniones arbitrarias de elementos en $\mathcal{B}$ son abiertos. Así pues $\tau(\mathcal{B}) \subseteq \tau_X$. Ahora, al tomar $U \in \tau$ para cada $x \in U$ por hipótesis existe $B_x \in \mathcal{B}$ tal que $x \in B_x \subseteq U$. De donde $$U = \bigcup_{x \in U} B_x$$ y así $U \in \tau(\mathcal{B})$. Es decir, $\tau_X = \tau(\mathcal{B})$.
 \end{Dem}
 
+\begin{Def}
+Sea $X$ un espacio topológico. Dado $A$ un subconjunto de $X$, su \textit{cerradura} es el conjunto $\ov{A} \subseteq X$ de puntos $x \in X$ que cumplen que para toda vecindad abierta $U$ de $x$ se satisface que $U \cap A \neq \emptyset$.
+\end{Def}
+
+\begin{Prop}
+Sea $X$ un espacio topológico. Entonces 
+\begin{itemize}
+\item \textbf{i)} Dado $A \subseteq X$, se tiene que $\ov{A}$ es cerrado. 
+\item \textbf{ii)} Si $A \subseteq X$, entonces $A \subseteq \ov{A}$.
+\item \textbf{iii)} $A \subseteq X$ es cerrado si y sólo si $A = \ov{A}$.
+\end{itemize}  
+\end{Prop}
+
+\begin{Dem}
+\hfill
+\begin{itemize}
+\item[\textbf{i)}] Demostremos que $\ov{A}^{\,\mathsf{c}}$ es abierto. Sea $x \in \ov{A}^{\,\mathsf{c}}$, de manera que $x \notin \ov{A}$. Así que existe $U$ vecindad abierta de $x$ tal que $U \cap A = \emptyset$. Dado $y \in U$ se tiene que $U$ es una vecindad de $y$ que no intersecta a $A$, por lo que $y \notin \ov{A}$ y así $x \in U \subseteq \ov{A}^{\,\mathsf{c}}$. Es decir, $\ov{A}^{\,\mathsf{c}}$ es una vecindad de todos sus puntos. El lema~\ref{Lema:CaracterizacionAbierto} implica que $\ov{A}^{\,\mathsf{c}}$ es abierto.
+\item[\textbf{ii)}] Dados $x \in A$ y $U$ vecindad abierta de $x$, se tiene entonces que $x \in A \cap U$, por lo que $A \cap U \neq \emptyset$ y así $x \in \ov{A}$.  
+\item[\textbf{iii)}] Sea $A$ un conjunto cerrado en $X$ y sea $x \in \ov{A}$. Supongamos que $x \notin A$, de manera que $x \in A^\mathsf{c}$. Como $A$ es cerrado entonces  $A^\mathsf{c}$ es una vecindad abierta de $x$. Dado que $x \in \ov{A}$, se tiene que $A \cap A^\mathsf{c} \neq \emptyset$, lo cual es una contradicción. Así que $x \in A$ y $\ov{A} \subseteq A$. Junto con \textbf{ii)} se concluye que $A = \ov{A}$.
+
+Si por otro lado suponemos que  $A = \ov{A}$, entonces \textbf{i)} indica que $A$ es cerrado.
+\end{itemize}
+\end{Dem}
+
+\section{Continuidad}
 
 \begin{Def}
 Sean $X$ y $Y$ dos espacios topológicos y $f: X \to Y$.
@@ -307,30 +332,6 @@ Sea $U$ cualquier vecindad abierta en $Z$. Como $g$ es continua, del lema~\ref{L
 \end{Dem}
 
 \begin{Def}
-Sea $X$ un espacio topológico. Dado $A$ un subconjunto de $X$, su \textit{cerradura} es el conjunto $\ov{A} \subseteq X$ de puntos $x \in X$ que cumplen que para toda vecindad abierta $U$ de $x$ se satisface que $U \cap A \neq \emptyset$.
-\end{Def}
-
-\begin{Prop}
-Sea $X$ un espacio topológico. Entonces 
-\begin{itemize}
-\item \textbf{i)} Dado $A \subseteq X$, se tiene que $\ov{A}$ es cerrado. 
-\item \textbf{ii)} Si $A \subseteq X$, entonces $A \subseteq \ov{A}$.
-\item \textbf{iii)} $A \subseteq X$ es cerrado si y sólo si $A = \ov{A}$.
-\end{itemize}  
-\end{Prop}
-
-\begin{Dem}
-\hfill
-\begin{itemize}
-\item[\textbf{i)}] Demostremos que $\ov{A}^{\,\mathsf{c}}$ es abierto. Sea $x \in \ov{A}^{\,\mathsf{c}}$, de manera que $x \notin \ov{A}$. Así que existe $U$ vecindad abierta de $x$ tal que $U \cap A = \emptyset$. Dado $y \in U$ se tiene que $U$ es una vecindad de $y$ que no intersecta a $A$, por lo que $y \notin \ov{A}$ y así $x \in U \subseteq \ov{A}^{\,\mathsf{c}}$. Es decir, $\ov{A}^{\,\mathsf{c}}$ es una vecindad de todos sus puntos. El lema~\ref{Lema:CaracterizacionAbierto} implica que $\ov{A}^{\,\mathsf{c}}$ es abierto.
-\item[\textbf{ii)}] Dados $x \in A$ y $U$ vecindad abierta de $x$, se tiene entonces que $x \in A \cap U$, por lo que $A \cap U \neq \emptyset$ y así $x \in \ov{A}$.  
-\item[\textbf{iii)}] Sea $A$ un conjunto cerrado en $X$ y sea $x \in \ov{A}$. Supongamos que $x \notin A$, de manera que $x \in A^\mathsf{c}$. Como $A$ es cerrado entonces  $A^\mathsf{c}$ es una vecindad abierta de $x$. Dado que $x \in \ov{A}$, se tiene que $A \cap A^\mathsf{c} \neq \emptyset$, lo cual es una contradicción. Así que $x \in A$ y $\ov{A} \subseteq A$. Junto con \textbf{ii)} se concluye que $A = \ov{A}$.
-
-Si por otro lado suponemos que  $A = \ov{A}$, entonces \textbf{i)} indica que $A$ es cerrado.
-\end{itemize}
-\end{Dem}
-
-\begin{Def}
 Sean $X$ y $Y$ espacios topológicos. Un \textit{homeomorfismo} entre $X$ y $Y$ es una función $f:X \to Y$ que es biyectiva, continua y de inversa continua.
 \end{Def}
 
@@ -343,6 +344,8 @@ El que $f$ preserve abiertos se sigue de inmediato del hecho de que $f^{-1}$ es 
 
 Sea $A$ un conjunto cerrado. Entonces $X \setminus A$ es abierto. Como $f$ preserva abiertos $f(X \setminus A)$ es abierto. Dado que $f$ es biyectiva se tiene que $Y \setminus f(A) = f(X \setminus A)$ es abierto y así $f(A)$ es cerrado. 
 \end{Dem}
+
+\section{Compacidad}
 
 \begin{Def}
 Un subconjunto $K$ de un espacio topológico $X$ es \textit{compacto} si para cualquier colección $\{ U_\alpha \}_{\alpha \in \Lambda}$ de abiertos tales que $$K \subseteq \bigcup_{\alpha \in \Lambda} U_\alpha$$ existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ tales que $$K \subseteq \bigcup_{i=1}^n U_{\alpha_i}.$$
@@ -426,6 +429,8 @@ Como $X$ es Hausdorff y cada $\{ x_i \}$ es compacto, entonces estos son cerrado
 x_i \neq x } } \{ x_i \}$$ es cerrado. De esto se sigue que $(X \setminus B) \cup \{ x \} = X \setminus (B \setminus \{ x \})$ es abierto y en consecuencia también lo es $(U \setminus B) \cup \{ x \} = U \cap((X \setminus B) \cup \{ x \})$. Como $(U \setminus B) \cup \{ x \}$ es una vecindad abierta de $x$, se cumple que $[((U \setminus B) \cup \{ x \}) \cap A] \setminus \{ x \} \neq \emptyset$. Esto equivale a que $[U \cap (A \setminus B)] \setminus \{ x \} \neq \emptyset$ y así $x$ es punto de acumulación de $A \setminus B$. 
 \end{Dem}
 
+\section{Convergencia}
+
 Una \textit{sucesión} en un conjunto $X$ es una función $s: \N \to X$. Usualmente representamos a la sucesión $s$ por $(x_n)_{n\in \N}$, donde $x_n := s(n)$ para toda $n \in \N$. 
 
 \begin{Def}
@@ -447,6 +452,8 @@ Sea $X$ un espacio topológico. Si una sucesión $(x_n)_{n\in\N} \subseteq X$ conv
 \begin{Dem}
 Supongamos que $(x_n)_{n\in\N}\subseteq X$ converge a $x \in X$ y sea $(x_{n_k})_{k \in \N}$ una subsucesión de $(x_n)_{n \in\N}$. Sea $U$ una vecindad de $x$. Luego, existe $N \in\N$ tal que $x_n \in U$ si $n\geq N$. Si $k \geq N$, entonces $n_k \geq k \geq N$, por lo que $x_{n_k} \in U$. Así que $x_{n_k} \to x$.
 \end{Dem}
+
+\section{Topología producto}
 
 Sean $X$ y $Y$ dos espacios topológicos. En $X \times Y$ trabajamos con la \textit{topología producto}, que es la generada por la base $\{ U\times V : U \mbox{ abierto  en } X \mbox{ y } V \mbox{ abierto en } Y \}$. Consideremos las \textit{proyecciones canónicas} en $X$ y $Y$
 \Ecu{
@@ -599,6 +606,9 @@ Todo espacio métrico es Hausdorff.
 \begin{Dem}
 Sea $M$ un espacio métrico y $x, y \in M$ con $x \neq y$. Entonces $r: = \frac{d(x, y)}{2} > 0$. Tomemos $U := V_r(x)$ y $V:= V_r(y)$, de forma que $x \in U$ y $y \in V$. Además, si existe $z \in U \Cap V$, entonces $$d(x, y) \leq d(x, z) + d(y, z) < r + r = d(x, y),$$ lo cual es una contradicción y así $U \cap V = \emptyset$ y $M$ es Hausdorff.
 \end{Dem}
+
+
+\section{Caracterizaciones por sucesiones}
 
 Las sucesiones tienen un papel relevante en los espacios métricos, pues a través de ellas podemos caracterizar algunos conceptos topológicos que previamente hemos presentado.
 
@@ -818,6 +828,8 @@ Así que $f(V_r(x))$ es abierto en $f(M_1)$ y por el lema~\ref{Lema:Caracterizaci
 
 
 \chapter{Espacios normados}
+
+Un caso particular de espacios métricos son los espacios normados, en los que además de contar con la topología que induce la métrica, también tenemos una estructura algebraica de espacio vectorial compatible con esta topología.  
 
 A lo largo de este trabajo denotaremos por $\K$ al campo de los números reales o de los números complejos. Todos los espacios vectoriales que consideraremos serán sobre $\K$.
 
@@ -1432,12 +1444,55 @@ Por lo tanto
 $$\sum_{i=1}^n a_i b_i \leq ab = \left(\sum_{i=1}^n a_i^p\right)^{\frac{1}{p}} \left(\sum_{i=1}^n b_i^q\right)^{\frac{1}{q}}.$$
 \end{Dem}
 
+\begin{Cor}[Desigualdad de Hölder]
+Sean $1 \leq p \leq \infty$ y $q$ su exponente conjugado. Si $x = (x_1, x_2, \ldots) \in \ell_p$ y $y = (y_1, y_2, \ldots) \in \ell_q$, entonces $$\abs{\sum_{i=1}^\infty x_i y_i} \leq \Norm{x}_p \Norm{y}_q.$$
+\end{Cor}
+
+\begin{Dem}
+Supongamos primero que $1 < p < \infty$. Si fijamos $n \in \N$ y tomamos $a_i = \abs{x_i}$ y $b_i = \abs{y_i}$ para $1 \leq i \leq n$, entonces de la desigualdad de Hölder se sigue que
+\Ecu{
+\abs{\sum_{i=1}^n x_i y_i} \leq \sum_{i=1}^n \abs{x_i} \abs{y_i} \leq \left( \sum_{i=1}^n \abs{x_i}^p \right)^{\frac{1}{p}} \left( \sum_{i=1}^n \abs{y_i}^q \right)^{\frac{1}{q}}.
+}
+
+Haciendo $n \to \infty$, de lema~\ref{Lema:LimiteElleP} se sigue que
+$$\abs{\sum_{i=1}^\infty x_i y_i} \leq \left( \sum_{i=1}^\infty \abs{x_i}^p \right)^{\frac{1}{p}} \left( \sum_{i=1}^\infty \abs{y_i}^q \right)^{\frac{1}{q}} = \Norm{x}_p \Norm{y}_q.$$
+
+Consideremos ahora $p = 1$, de manera que $q = \infty$. Entonces $\abs{y_i} \leq \Norm{y}_\infty$ para todo $i \in \N$ y
+$$\abs{\sum_{i=1}^\infty x_i y_i} \leq \sum_{i=1}^\infty \abs{x_i} \abs{y_i} \leq \sum_{i=1}^\infty \abs{x_i} \Norm{y}_\infty = \Norm{x}_1 \Norm{y}_\infty.$$
+
+El caso $p= \infty$ y $q = 1$ es análogo al anterior.
+\end{Dem}
+
+
 \begin{Ejem}
-Mostremos que para $1 \leq p < \infty$, $(\ell_p)^* \simeq \ell_q$ y $\ell_1$ es isomorfo como espacio normado a un subespacio de $(\ell_\infty)^*$.  
+Mostremos que si $1 \leq p < \infty$ y $q$ es su exponente conjugado, entonces $\ell_p^* \simeq \ell_q$ y $\ell_1$ es isomorfo como espacio normado a un subespacio de $\ell_\infty^*$.  
 \end{Ejem}
 
 \begin{Dem}
-(Pendiente).
+Tomemos $1 \leq p \leq \infty$ y fijemos $x = (x_1, x_2, \ldots) \in \ell_p$. Consideremos la función $Rx: \ell_q \to \K$ definida en $y = (y_1, y_2, \ldots) \in \ell_q$ por
+$$Rx(y) = \sum_{i=1}^\infty x_i y_i.$$
+
+Notemos que por la desigualdad de Hölder
+\begin{equation} \label{Eq:HolderRiesz}
+\abs{Rx(y)} = \abs{\sum_{i=1}^\infty x_i y_i} \leq \Norm{x}_p \Norm{y}_q < \infty.
+\end{equation}
+
+Así que $Rx$ está bien definida. 
+
+Mostremos que $Rx$ es lineal. Así, sean $y = (y_1, y_2, \ldots), z = (z_1, z_2, \ldots) \in \ell_q$ y $\lambda \in \K$. Entonces
+$$Rx(y+\lambda z) = \sum_{i=1}^\infty x_i(y_i + \lambda z_i) = \sum_{i=1}^\infty x_i y_i + \lambda \sum_{i=1}^\infty x_i z_i = Rx(y) + \lambda Rx(z).$$
+
+Ya que sabemos que $Rx$ es un operador lineal, la desigualdad (\ref{Eq:HolderRiesz}) indica que $Rx$ es acotado, por lo que es continua. Así pues, tenemos definida $Rx \in \ell_q^*$ para cada $x \in \ell_p$. Consideremos entonces la función 
+\Ecu{
+R: \ell_p & \to \ell_q^* \\
+x & \mapsto Rx.
+}
+
+Mostremos que $R$ es lineal. Así, sean $x = (x_1, x_2, \ldots), z = (z_1, z_2, \ldots) \in \ell_p$ y $\lambda \in \K$. Si $y = (y_1, y_2, \ldots) \in \ell_q$ tenemos que 
+$$R(x+ \lambda z)(y) = \sum_{i=1}^\infty (x_i + \lambda z_i)(y_i) = \sum_{i=1}^\infty x_i y_i + \lambda \sum_{i=1}^\infty z_i y_i = Rx(y) + \lambda Rz(y).$$
+
+Así que $R(x+ \lambda z) = Rx + \lambda Rz$ y $R$ es lineal. Si fijamos $x \in \ell_p$, de (\ref{Eq:HolderRiesz}) se sigue que $\Norm{Rx} \leq \Norm{x}_p$.
+
 \end{Dem}
 
 
@@ -1514,10 +1569,12 @@ Sea $(x_n)_{n\in\N}$ una sucesión en un espacio topológico. El ejemplo~\ref{Ejem
 Sean $X$ un espacio topológico, $x \in X$ y $N_x$ el conjunto dirigido de vecindades abiertas de $x$. Consideremos $x_U \in U$ para toda $U \in N_x$. Entonces la red $(x_U)_{U \in N_x}$ converge a $x$ ya que si $U_0$ es vecindad de $x$, se tiene que $U_0 \in N_x$ y para $U \in N_x$ con $U \geq U_0$ se tiene que $x_{U} \in U \subseteq U_0$.
 \end{Ejem}
 
+\section{Caracterizaciones por redes}
+
 En espacios métricos, la proposición~\ref{Prop:CerraduraLimiteSucesiones} da una caracterización de la cerradura de un conjunto a través de los límites de las sucesiones en ese conjunto. La siguiente proposición generaliza esa caracterización a espacios topológicos usando redes.
 
 \begin{Prop}\label{Prop:CerraduraLimiteRed} 
-Sea $X$ un espacio topológico y $A \subseteq X$. Entonces $\overline{A}$ es el conjunto de los puntos en $X$ que son el límite de alguna red en $A$. 
+Sean $X$ un espacio topológico, $A \subseteq X$ y $x \in X$. Entonces $x \in \overline{A}$ si y sólo sí $x$ es el límite de alguna red en $A$. 
 \end{Prop}
 
 \begin{Dem}
@@ -1792,6 +1849,8 @@ Sea $A$ un conjunto no vacío y consideremos el espacio producto $F(A,\K)$. Tomem
 \end{Ejem}
 
 \chapter{Espacios vectoriales topológicos}
+
+La relación entre la estructura algebraica y la topología de un espacio normado no es propia de estos espacios. En este capítulo introduciremos los espacios vectoriales topológicos que precisamente son la generalización de los espacios normados que se definen como aquellos que mantienen este vínculo entre álgebra y topología.
 
 Supongamos que $\tau$ es una topología de un espacio vectorial $E$ sobre $\K$ tal que:
 \begin{itemize}
