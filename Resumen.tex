@@ -1327,63 +1327,6 @@ Así pues, queda construida la sucesión $(x_n)_{n\in\N}$. Si tomamos $n, m \in \N
 
 Dado un espacio normado $X$, al espacio de operadores $\varphi : X \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $X$ y lo denotamos por $(X, \Norm{\cdot})^*$ o simplemente por $X^*$.  A los elementos de este espacio dual los llamamos \textit{funcionales lineales continuos}. Como $\K$ es completo, resulta que $X^* = \mathcal{L}(X, \K)$ es un espacio de Banach.  
 
-\begin{Def}
-Si $1 \leq p \leq \infty$, al único elemento $q \in \R$ tal que $\frac{1}{p} + \frac{1}{q} = 1$ se le llama \textit{exponente conjugado} de $p$, donde $\frac{1}{\infty} = 0$. 
-\end{Def}
-
-\begin{Lema}[Desigualdad de Young]
-Sean $1 < p < \infty$ y $q$ su exponente conjugado. Si $a, b \geq 0$, entonces $$ab \leq \frac{1}{p}a^p + \frac{1}{q}b^q.$$
-\end{Lema}
-
-\begin{Dem}
-Consideremos la función $f: [0, \infty)$ definida por $f(x) = -\ln(x)$, para toda $x \geq 0$. Notemos que $f^\prime(x) = -\frac{1}{x}$ es monótona-creciente. El lema~\ref{Lema:DerivadaCrecienteConvexa} indica que $f$ es convexa. Por lo tanto, si tomamos $\lambda = \frac{1}{p} \in (0,1)$, resulta que $1 - \lambda = \frac{1}{q}$. Así que 
-$$f(\lambda a^p + (1-\lambda) b^q ) \leq \lambda f(a^p) + (1-\lambda)f(b^q).$$
-
-De donde
-$$-\ln\left(\frac{1}{p} a^p + \frac{1}{q} b^q \right) \leq -\frac{1}{p} \ln(a^p) - \frac{1}{q} \ln(b^p) = -\ln(a) - \ln(b) = -\ln(ab).$$
-
-Dado que la función exponencial es creciente, de esta última desigualdad se sigue la desigualdad de Young.
-\end{Dem}
-
-\begin{Tma}[Desigualdad de Hölder]
-Sean $1 < p < \infty$ y $q$ su exponente conjugado. Si $n \in \N$ y $a_1, \ldots, a_n, b_1, \ldots, b_n \geq 0$, entonces $$\sum_{i=1}^n a_j b_j \leq \left( \sum_{i=1}^n a_i^p \right)^{\frac{1}{p}} \left( \sum_{i=1}^n b_i^q \right)^{\frac{1}{q}} $$
-\end{Tma}
-
-Para demostrar la desigualdad de Hölder están estas dos demostraciones. La primera es la de su libro y usa la desigualdad de Young que su vez usa el lema~\ref{Lema:DerivadaCrecienteConvexa}. La segunda no usa la desigualdad de Young pero usa que $x^p$ es convexa. La segunda es más corta pero todavía habría falta por demostrar la desigualdad de Jensen para $n$ términos ¿Cuál de las dos demostraciones prefiere?
-
-\begin{Dem}
-\textbf{(Demostración usando la desigualdad de Young)}
-
-Sean 
-$$a = \left(\sum_{i=1}^n a_i^p\right)^{\frac{1}{p}} \;\;\mbox{ y } \;\; b = \left(\sum_{i=1}^n b_i^q\right)^{\frac{1}{q}}.$$
-
-Si $a = 0$ ó $b = 0$, la desigualdad de Hölder es clara. Supongamos entonces que $a, b > 0$. Por la desigualdad de Young, para todo $i \in \nn{n}$ tenemos que $\frac{a_i}{a} \, \frac{b_i}{b} \leq \frac{1}{p} \, \frac{a_i^p}{a^p} + \frac{1}{q} \, \frac{b_i^q}{b^q}$. Luego,
-$$\sum_{i=1}^n \frac{a_i}{a} \, \frac{b_i}{b} \leq \frac{1}{p} \sum_{i=1}^n \frac{a_i^p}{a^p} + \frac{1}{q} \sum_{i=1}^n \frac{b_i^q}{b^q} = \frac{1}{p} + \frac{1}{q} = 1.$$
-
-Por lo tanto 
-$$\sum_{i=1}^n a_i b_i \leq ab = \left(\sum_{i=1}^n a_i^p\right)^{\frac{1}{p}} \left(\sum_{i=1}^n b_i^q\right)^{\frac{1}{q}}.$$
-\end{Dem}
-
-\begin{Dem}
-\textbf{(Demostración alternativa de la desigualdad de Hölder)}
-
-Definamos $b = \sum_{j=1}^n b_j^q $ y notemos que los coeficientes $\frac{b_j^q}{b}$ suman uno. Como la función $x \mapsto x^p$ es convexa y $p+q-pq=0$, resulta que 
-$$\left( \sum_{i=1}^n \frac{b_i^q}{b}\, a_i \, b_i^{1-q} \right)^p \leq \sum_{i=1}^n \frac{b_i^q}{b}\, (a_i \, b_i^{1-q})^p.$$
-De donde se sigue que
-\Ecu{
-\sum_{i=1}^N a_i \, b_i &= b \left( \sum_{i=1}^n \frac{b_i^q}{b} \, a_i \, b_i^{1-q} \right) \leq  b \left(\sum_{i=1}^n \frac{b_i^q}{b} \, a_i^p \, b_i^{p(1-q)} \right)^{\frac{1}{p}} \\
-&= b\cdot b^{-\frac{1}{p}} \left(\sum_{i=1}^n a_i^p \right)^{\frac{1}{p}} =  \left(\sum_{i=1}^n b_i^q \right)^{\frac{1}{q}} \left(\sum_{i=1}^n a_i^p \right)^{\frac{1}{p}}.
-}
-\end{Dem}
-
-\begin{Ejem}
-Mostremos que para $1 \leq p < \infty$, $(\ell_p)^* \simeq \ell_q$ y $\ell_1$ es isomorfo como espacio normado a un subespacio de $(\ell_\infty)^*$.  
-\end{Ejem}
-
-\begin{Dem}
-(Pendiente).
-\end{Dem}
-
 Los teoremas de Hahn-Banach muestran que, cuando $X$ es un espacio normado, en $X^*$ existen suficientes funcionales que permiten enriquecer la teoría de dualidad.
 
 \begin{Tma}[Hahn-Banach] \label{Tma:HahnBanachFuncional}
@@ -1456,6 +1399,80 @@ Si $\K = \R$, ya quedó demostrado en el lema anterior. Así que supongamos $\K = 
 
 (Pendiente).
 \end{Dem}
+
+\begin{Def}
+Si $1 \leq p \leq \infty$, al único elemento $q \in \R$ tal que $\frac{1}{p} + \frac{1}{q} = 1$ se le llama \textit{exponente conjugado} de $p$, donde $\frac{1}{\infty} = 0$. 
+\end{Def}
+
+\begin{Lema}[Desigualdad de Young]
+Sean $1 < p < \infty$ y $q$ su exponente conjugado. Si $a, b \geq 0$, entonces $$ab \leq \frac{1}{p}a^p + \frac{1}{q}b^q.$$
+\end{Lema}
+
+\begin{Dem}
+Consideremos la función $f: [0, \infty)$ definida por $f(x) = -\ln(x)$, para toda $x \geq 0$. Notemos que $f^\prime(x) = -\frac{1}{x}$ es monótona-creciente. El lema~\ref{Lema:DerivadaCrecienteConvexa} indica que $f$ es convexa. Por lo tanto, si tomamos $\lambda = \frac{1}{p} \in (0,1)$, resulta que $1 - \lambda = \frac{1}{q}$. Así que 
+$$f(\lambda a^p + (1-\lambda) b^q ) \leq \lambda f(a^p) + (1-\lambda)f(b^q).$$
+
+De donde
+$$-\ln\left(\frac{1}{p} a^p + \frac{1}{q} b^q \right) \leq -\frac{1}{p} \ln(a^p) - \frac{1}{q} \ln(b^p) = -\ln(a) - \ln(b) = -\ln(ab).$$
+
+Dado que la función exponencial es creciente, de esta última desigualdad se sigue la desigualdad de Young.
+\end{Dem}
+
+\begin{Tma}[Desigualdad de Hölder]
+Sean $1 < p < \infty$ y $q$ su exponente conjugado. Si $n \in \N$ y $a_1, \ldots, a_n, b_1, \ldots, b_n \geq 0$, entonces $$\sum_{i=1}^n a_j b_j \leq \left( \sum_{i=1}^n a_i^p \right)^{\frac{1}{p}} \left( \sum_{i=1}^n b_i^q \right)^{\frac{1}{q}} $$
+\end{Tma}
+
+\begin{Dem}
+\textbf{(Demostración usando la desigualdad de Young)}
+
+Sean 
+$$a = \left(\sum_{i=1}^n a_i^p\right)^{\frac{1}{p}} \;\;\mbox{ y } \;\; b = \left(\sum_{i=1}^n b_i^q\right)^{\frac{1}{q}}.$$
+
+Si $a = 0$ ó $b = 0$, la desigualdad de Hölder es clara. Supongamos entonces que $a, b > 0$. Por la desigualdad de Young, para todo $i \in \nn{n}$ tenemos que $\frac{a_i}{a} \, \frac{b_i}{b} \leq \frac{1}{p} \, \frac{a_i^p}{a^p} + \frac{1}{q} \, \frac{b_i^q}{b^q}$. Luego,
+$$\sum_{i=1}^n \frac{a_i}{a} \, \frac{b_i}{b} \leq \frac{1}{p} \sum_{i=1}^n \frac{a_i^p}{a^p} + \frac{1}{q} \sum_{i=1}^n \frac{b_i^q}{b^q} = \frac{1}{p} + \frac{1}{q} = 1.$$
+
+Por lo tanto 
+$$\sum_{i=1}^n a_i b_i \leq ab = \left(\sum_{i=1}^n a_i^p\right)^{\frac{1}{p}} \left(\sum_{i=1}^n b_i^q\right)^{\frac{1}{q}}.$$
+\end{Dem}
+
+\begin{Lema}[Desigualdad de Jensen]
+Sean $X$ un espacio vectorial, $A$ un conjunto convexo y $f: A \to \R$ una función convexa. Si $n \in \N$, $x_1, \ldots, x_n \in A$ y $\lambda_1 ,\ldots, \lambda_n \in [0, 1]$ tales que $\sum_{i=1}^n \lambda_i  =1$, entonces 
+\begin{equation} \label{Eq:Jensen}
+ f\left( \sum_{i=1}^n \lambda_i \, x_i \right) \leq \sum_{i=1}^n \lambda_i \, f(x_i).
+\end{equation}
+\end{Lema}
+
+\begin{Dem}
+Se probará por inducción. Para el caso $n = 1$ basta notar que $\lambda_1 = 1$. Supongamos que para cuales quiera $x_1, \ldots, x_n \in A$ y $\lambda_1, \ldots, \lambda_n \in [0,1]$ tales que $\sum_{i=1}^n \lambda_i = 1$ se cumple (\ref{Eq:Jensen}). Tomemos pues $\gamma_1, \ldots, \gamma_{n+1} \in [0,1]$ tales que $\sum_{i=1}^{n+1} \gamma_i = 1$. Definamos $\lambda_i = \gamma_i$ para $i \in \nn{n-1}$ y $\lambda_n = \gamma_n + \gamma_{n+1}$. Por hipótesis tenemos que
+$$f\left( \left[\sum_{i=1}^{n-1} \gamma_i \, x_i \right]+ (\gamma_n + \gamma_{n+1}) \right) \leq \left[ \sum_{i=1}^n \gamma_i \, f(x_i) \right] + \g.$$ 
+\end{Dem}
+
+
+
+\begin{Tma}[Desigualdad de Hölder]
+Sean $1 < p < \infty$ y $q$ su exponente conjugado. Si $n \in \N$ y $a_1, \ldots, a_n, b_1, \ldots, b_n \geq 0$, entonces $$\sum_{i=1}^n a_j b_j \leq \left( \sum_{i=1}^n a_i^p \right)^{\frac{1}{p}} \left( \sum_{i=1}^n b_i^q \right)^{\frac{1}{q}} $$
+\end{Tma}
+
+\begin{Dem}
+\textbf{(Demostración alternativa de la desigualdad de Hölder)}
+
+Definamos $b = \sum_{j=1}^n b_j^q $ y notemos que los coeficientes $\frac{b_j^q}{b}$ suman uno. Como la función $x \mapsto x^p$ es convexa y $p+q-pq=0$, resulta que 
+$$\left( \sum_{i=1}^n \frac{b_i^q}{b}\, a_i \, b_i^{1-q} \right)^p \leq \sum_{i=1}^n \frac{b_i^q}{b}\, (a_i \, b_i^{1-q})^p.$$
+De donde se sigue que
+\Ecu{
+\sum_{i=1}^N a_i \, b_i &= b \left( \sum_{i=1}^n \frac{b_i^q}{b} \, a_i \, b_i^{1-q} \right) \leq  b \left(\sum_{i=1}^n \frac{b_i^q}{b} \, a_i^p \, b_i^{p(1-q)} \right)^{\frac{1}{p}} \\
+&= b\cdot b^{-\frac{1}{p}} \left(\sum_{i=1}^n a_i^p \right)^{\frac{1}{p}} =  \left(\sum_{i=1}^n b_i^q \right)^{\frac{1}{q}} \left(\sum_{i=1}^n a_i^p \right)^{\frac{1}{p}}.
+}
+\end{Dem}
+
+\begin{Ejem}
+Mostremos que para $1 \leq p < \infty$, $(\ell_p)^* \simeq \ell_q$ y $\ell_1$ es isomorfo como espacio normado a un subespacio de $(\ell_\infty)^*$.  
+\end{Ejem}
+
+\begin{Dem}
+(Pendiente).
+\end{Dem}
+
 
 \chapter{Redes}
 
