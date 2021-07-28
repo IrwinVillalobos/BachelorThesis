@@ -1941,6 +1941,85 @@ Sea $(x_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $F$. Consideremos la 
 Como $E$ es completo, la red $(T^{-1}(x_\alpha))_{\alpha \in \Lambda}$ converge a algún $x \in E$. Puesto que $T$ es continua, el corolario~\ref{Cor:ContinuidadporRedes} indica que $x_\alpha \to T(x)$.
 \end{Dem}
 
+\begin{Def}
+Sea $E$ un espacio vectorial topológico. Un conjunto $B \subseteq E$ es \textit{acotado} si para toda vecindad abierta del cero $U$, existe $\lambda \in \K \setminus \{ 0 \}$ con $B \subseteq \lambda U$.
+\end{Def}
+
+\begin{Prop} \label{Prop:CompactoEsAcotadoEVT}
+Sea $E$ un espacio vectorial topológico. Si $K \subseteq E$ es compacto, entonces $K$ es acotado. 
+\end{Prop}
+
+\begin{Dem}
+Supongamos que $K \subseteq E$ es compacto. Tomemos una vecindad abierta el cero $U$. Consideremos las dilataciones $\{ nU \}_{n \in\N}$. Mostremos que es una cubierta de $K$. Sea $x \in K$, al ser $E$ un espacio vectorial topológico, la función $f: \K \to Y, \lambda \mapsto \lambda x$ es continua. Sea $x \in K$. Como $U$ es vecindad abierta del cero, $f^{-1}(U)$ es una vecindad abierta del cero en $\K$, por lo que existe $n \in \N$ tal que $\frac{1}{n} \in f^{-1}(U)$. de donde $f(\frac{1}{n}) = \frac{1}{n} \, x \in U$. Así que $x \in n U$. Así, $\{ nU \}_{n \in\N}$ es una cubierta abierta de $K$. Como $K$ es compacto, existen $n_1, \ldots, n_k \in \N$ tales que $\{ n_1 U, \ldots, n_k U \}$ cubre a $K$. Así pues si tomamos $N = \max(n_1, \ldots, n_k)$ tenemos que $K \subseteq N U$ y $K$ es acotado.
+\end{Dem}
+
+
+\section[Espacios vectoriales topológicos de dimensión finita]{Espacios vectoriales topológicos de dimensión finita \sectionmark{Espacios de dimensión finita}}
+\sectionmark{Espacios de dimensión finita}
+
+\begin{Def} 
+Sean $E$ y $F$ espacios vectoriales topológicos. Se dice que $E$ y $F$ son \textit{isomorfos} como espacios vectoriales topológicos o que son \textit{isomorficamente homeomorfos} si existe un isomorfismo de espacios vectoriales $T: E \to F$ que también es un homeomorfismo. En este caso a $T$ se le llama \textit{isomorfismo} de espacios vectoriales topológicos. 
+\end{Def}
+
+\begin{Tma} \label{Tma:IsomorfismoDimensionFinitaEVT} 
+Si $E$ es un espacio vectorial topológico y $\dim\,E = n < \infty$, entonces $E$ es isomorficamente homeomorfo a $\K^n$ con la topología euclidiana.
+\end{Tma}
+
+\begin{Dem}
+Sea $\{ x_1, \ldots, x_n \}$ una base de $E$. Definamos la función 
+\Ecu{
+T: \K^n & \to X \\
+(a_1, \ldots, a_n) & \mapsto \sum_{i=1}^n a_i x_i. 
+} 
+Si $a = (a_1, \ldots, a_n), b = (b_1, \ldots, b_n) \in \K^n$ cumplen que $T(a) = T(b)$, entonces $\sum_{i=1}^n (a_i - b_i)x_i = 0$. Como $\{x_1, \ldots, x_n \}$ es linealmente independiente, entonces $a_1 - b_1 = \ldots = a_n - b_n = 0$. Así que $a = b$ y $T$ es inyectiva. 
+
+Sea $x \in E$. Como $\{x_1, \ldots, x_n \}$ genera a $E$, existen $a_1, \ldots, a_n \in \K$ tales que $$x = \sum_{i=1}^n a_i x_i = T(a_1, \ldots, a_n)$$ y así $T$ es sobreyectiva. 
+
+Veamos que $T$ es lineal. Dados $(a_1, \ldots, a_n), (b_1, \ldots, b_n) \in \K^n$ y $\lambda \in \K$, se tiene que
+\Ecu{
+T((a_1, \ldots, a_n) + \lambda (b_1, \ldots, b_n)) &= T((a_1 + \lambda b_1, \ldots, a_n + \lambda b_n)) = \sum_{i=1}^n (a_i + \lambda b_i) x_i \\
+&= \sum_{i=1}^n a_i  x_i +  \lambda\sum_{i=1}^n  b_i x_i = T(a_1, \ldots, a_n) + \lambda T(b_1, \ldots, b_n).
+}
+
+Demostremos que $T$ es continuo. Para $1 \leq i \leq n$ consideremos las proyecciones canónicas $\pi_i : \K^n \to \K$ y las funciones constantes $f_i: \K_n \to E$, $a \mapsto x_i$. Como $\pi_i$ y $f_i$ son continuas, entonces el lema~\ref{Lema:SumaYProductoEscalarDeFuncionesContinuas} indica que $T = (\pi_1 \cdot f_1) + \ldots + (\pi_n \cdot f_n)$ es continua. 
+
+Ya sólo falta ver que $T^{-1}$ es continua. La proposición~\ref{Prop:ContinuidadEnCero} indica que basta probar que $T^{-1}$ es continua en el cero. Sea $U$ una vecindad del cero en $\K^n$. Entonces existe $r > 0$ tal que $V_r(0) \subseteq U$. Es conocido que en la topología euclidiana la esfera $S^{n-1}_2 := \{ a \in \K^n : \Norm{a}_2 = 1\}$ es un conjunto compacto. Por la proposición~\ref{Prop:FuncionContinuaPreservaCompactos} tenemos que $T(S^{n-1}_2)$ es un conjunto compacto en $E$ que no contiene al cero. 
+
+Dado que $\{ 0\}$ es compacto en $E$ y $T(S^{n-1}_2)$ también es compacto, por la proposición~\ref{Prop:AbiertosSeparanCompactosEnHausdorff} existen $U$ y $V$ abiertos disjuntos tales que $0 \in U$ y $T(S_2^{n-1}) \subseteq V$.
+
+Ahora, como el producto por escalares $\BD: \K \times E \to E$ es continuo y $V$ es una vecindad abierta del cero, existe un básico $(-\varepsilon, \varepsilon) \times \widehat{V}$ en $\K \times E$ tal que $0 \in \widehat{V}$ y $$\BD((-\varepsilon, \varepsilon) \times \widehat{V}) = \{tz : t \in (-\varepsilon, \varepsilon), z \in \widehat{V} \} \subseteq V.$$ 
+
+Probemos que $T^{-1}(\widehat{V}) \subseteq V_\frac{1}{\varepsilon}(0)$. Sea $z \in \widehat{V}$, de manera que  $T^{-1} z \in T^{-1}(\widehat{V})$. Tomemos $t \in (-\varepsilon, \varepsilon)$. Entonces $tz \in V$, de donde $tz \notin T(S^{n-1})$. Es decir, $T^{-1}(tz) \notin S^{n-1}$, o bien $\Norm{(T^{-1}(tz)} \neq 1$. Así que $\abs{t} \cdot \Norm{T^{-1} z} \neq 1$. Por lo tanto, para todo $t \in (-\varepsilon, \varepsilon) \setminus \{0\}$ se tiene que $\Norm{T^{-1}z} \neq \frac{1}{\abs{t}} $, por lo que $T^{-1}z \in V_\frac{1}{\varepsilon}(0)$. 
+ 
+Demostremos que $T^{-1}(r \varepsilon \cdot \widehat{V}) \subseteq U$. Tomemos $y \in \widehat{V}$, de manera que $T^{-1}(r \varepsilon \cdot y) \in T^{-1}(r \varepsilon \cdot\widehat{V})$. Como $T^{-1}(\widehat{V}) \subseteq V_\frac{1}{\varepsilon}(0)$, se sigue que $T^{-1}y \in V_\frac{1}{\varepsilon}(0)$. Es decir, $\Norm{T^{-1}y} < \frac{1}{\varepsilon}$. De esto se sigue que $r\varepsilon \Norm{T^{-1}y} < r$, o bien $\Norm{r\varepsilon \cdot T^{-1}y} < r$. Entonces $T^{-1}(r\varepsilon \cdot y) \in V_r(0) \subseteq U$. 
+ 
+Dado que $\widehat{V}$ es una vecindad abierta del cero, la observación~\ref{Obs:DilatacionTraslacion} indica que $r \varepsilon \cdot \widehat{V}$ también es vecindad abierta del cero. De esto y de que $T^{-1}(r\varepsilon \cdot \widehat{V}) \subseteq U$ concluimos que $T^{-1}$ es continua. 
+\end{Dem}
+
+\begin{Prop} \label{Prop:FuncionalesLinealesContinuosEspaciosFinitos}
+Sea $E$ un espacio vectorial topológico de dimensión finita. Si $\varphi : E \to \K$ es un funcional lineal, entonces $\varphi$ es continuo. 
+\end{Prop}
+
+\begin{Dem}
+Sean $\dim \, E = n \in \N$ y $\{ x_1, \ldots, x_n \} \subseteq X$ una base de $X$. Sea $T: \K^n \to E$ como en la demostración del teorema~\ref{Tma:IsomorfismoDimensionFinitaEVT}. Entonces $T^{-1}$ es continua. Definamos $S: \K^n \to \K$ como $S(a_1, \ldots, a_n) = a_1 \varphi(x_1) + \ldots + a_n \varphi(x_n)$. Para $1 \leq i \leq n$ las proyecciones $\pi_i: \K^n \to \K$ y las funciones constantes $f_i: \K^n \to \K$, $a \mapsto \varphi(x_i)$ son continuas. Como $\K$ es un espacio vectorial topológico, el lema~\ref{Lema:SumaYProductoEscalarDeFuncionesContinuas} indica que $S = (\pi_1 \BD f_1 + \ldots + \pi_n \BD f_n)$ es continua de manera que $\varphi = S \circ T^{-1}$ también es continua.
+\end{Dem}
+
+\begin{Prop} \label{Prop:DimensionFinitaEVTCompleto}
+Cualquier espacio vectorial topológico de dimensión finita es completo.
+\end{Prop}
+
+\begin{Dem}
+Sea $E$ un espacio vectorial topológico de dimensión finita $n \in \N$. Dado que $\ell^n_2$ es un espacio vectorial topológico de dimensión $n$, del teorema~\ref{Tma:IsomorfismoDimensionFinitaEVT} se sigue que $E$ es isomorfo a $\ell^n_2$ como espacio normado. Según el teorema~\ref{Tma:NormaEuclidianaCompleta}, $\ell_2^n$ es un espacio completo. Así que del lema~\ref{Lema:HomeomorfismoLinealPreservaCompletitez} resulta que $E$ también es completo.
+\end{Dem}
+
+\begin{Cor} \label{Cor:SubespacioDimensionFinitaCerrado}
+Sea $E$ un espacio vectorial topológico. Si $F$ es un subespacio de dimensión finita de $E$, entonces $F$ es cerrado en $E$.
+\end{Cor}
+
+\begin{Dem}
+La proposición~\ref{Prop:DimensionFinitaEVTCompleto} indica que $F$ es completo. Del lema~\ref{Lema:EVTCompletoEntoncesCerrado} se concluye que $F$ es cerrado en $E$.
+\end{Dem}
+
 \section[Espacio vectorial topológico generado por una familia de seminormas]{Espacio vectorial topológico generado por una familia de seminormas \sectionmark{Espacio generado por seminormas}}
 \sectionmark{Espacio generado por seminormas}
 
@@ -2181,106 +2260,34 @@ Sea $(f_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $Y$. Al tomar $a \in 
 Mostremos que $f_\alpha \to f$. Sea $U_{f, \abs{\delta_{a_1}}, \ldots, \abs{\delta_{a_k}}, \varepsilon}$ una vecindad básica de $f$ para algunos $k \in \N$, $a_1, \ldots, a_k \in A$ y $\varepsilon > 0$. Para cada $i \in \nn{k}$, se tiene que $f_\alpha(a_i) \to f(a_i)$, así que existe $\alpha_i \in \Lambda$ tal que si $\alpha \geq \alpha_i$, entonces $\abs{\delta_{a_i}}(f_{\alpha} - f) = \abs{f_{\alpha}(a_i) - f(a_i)} < \varepsilon$. Así que si tomamos $\beta \in  \Lambda$ con $\beta \geq \alpha_i$ para todo $1 \leq  i \leq k$, entonces $f_\alpha \in U_{f, \abs{\delta_{a_1}}, \ldots, \abs{\delta_{a_k}}, \varepsilon}$ siempre que $\alpha \geq \beta$. Por lo tanto $f_\alpha \to f$ y $(Y, \sigma(Y, \mathcal{F}))$ es completo.
 \end{Ejem}
 
-\begin{Def}
-Sea $E$ un espacio vectorial topológico. Un conjunto $B \subseteq E$ es \textit{acotado} si para toda vecindad abierta del cero $U$, existe $\lambda \in \K \setminus \{ 0 \}$ con $B \subseteq \lambda U$.
-\end{Def}
-
-\begin{Ejem}
-Sea $A$ un conjunto no vacío, $K \subseteq Y = F(A, \K)$ y $\calF = \{ \abs{\delta_a} : a \in A \}$. Entonces respecto a la topología $\sigma(Y, \calF )$ resulta que $K$ es compacto si y sólo si es cerrado y acotado. 
-\end{Ejem}
+\begin{Prop}
+Sea $A$ un conjunto no vacío, $Y = F(A, \K)$ y $\calF = \{ \abs{\delta_a} : a \in A \}$. Entonces la topología $\sigma(Y, \calF)$ coincide con la topología producto de $F(A, \K)$. 
+\end{Prop}
 
 \begin{Dem}
-Primero supongamos que $K$ es compacto. El corolario~\ref{Cor:HausdorffCompactoEsCerrado} indica que $K$ es cerrado. Para ver que $K$ es acotado tomemos una vecindad abierta el cero $U$. Consideremos las dilataciones $\{ nU \}_{n \in\N}$. Mostremos que es una cubierta de $K$. Sea $x \in K$, al ser $Y$ un espacio vectorial topológico, la función $f: \K \to Y, \lambda \mapsto \lambda x$ es continua. Sea $x \in X$. Como $U$ es vecindad abierta del cero, $f^{-1}(U)$ es una vecindad abierta del cero en $\K$, por lo que existe $n \in \N$ tal que $\frac{1}{n} \in f^{-1}(U)$. de donde $f(\frac{1}{n}) = \frac{1}{n} \, x \in U$. Así que $x \in n U$. Así, $\{ nU \}_{n \in\N}$ es una cubierta abierta de $K$. Como $K$ es compacto, existen $n_1, \ldots, n_k \in \N$ tales que $\{ n_1 U, \ldots, n_k U \}$ cubre a $K$. Así pues si tomamos $N = \max(n_1, \ldots, n_k)$ tenemos que $K \subseteq N U$ y $K$ es acotado.
+Basta notar que para $f \in Y$, $k \in \N$, $a_1, \ldots, a_k \in A$ y $\varepsilon > 0$ se cumple que
+\Ecu{
+U_{f, \abs{\delta_{a_1}}, \ldots, \abs{\delta_{a_k}}, \varepsilon} = \{g \in Y : \abs{f(a_i) - g(a_i)} < \varepsilon \mbox{ para } 1 \leq i \leq k  \} = \bigcap_{i=1}^n \pi_{a_i}^{-1}(V_\varepsilon(f(a_i))).
+}
+
+Por lo que los básicos de la topología $\sigma(Y, \calF)$ coinciden con los básicos de la topología producto.
+\end{Dem}
+
+\begin{Prop} \label{Prop:CaracterizacionCompacidadEnEspacioProducto}
+Sea $A$ un conjunto no vacío, $K \subseteq Y = F(A, \K)$ y $\calF = \{ \abs{\delta_a} : a \in A \}$. Entonces respecto a la topología $\sigma(Y, \calF )$ resulta que $K$ es compacto si y sólo si es cerrado y acotado. 
+\end{Prop}
+
+\begin{Dem}
+Primero supongamos que $K$ es compacto. El corolario~\ref{Cor:HausdorffCompactoEsCerrado} indica que $K$ es cerrado. De la proposición~\ref{Prop:CompactoEsAcotadoEVT} se sigue que $K$ es acotado.
 
 Supongamos ahora que $K$ es cerrado y acotado. Para cada $a \in X$, el conjunto $U_{0, \abs{\delta_a}, 1}$ es una vecindad abierta del cero. Como $K$ es acotado, existe $\lambda_a \in \K \setminus \{ 0 \}$ tal que $K \subseteq \lambda_a U_{0, \abs{\delta_a}, 1}$. Definamos el conjunto 
 $$D_a : = \{ \lambda \in \K : \abs{\lambda} \leq \abs{\lambda_a} \}.$$
 
 Como para cada $a \in A$, $D_a$ es compacto en $\K$, entonces el teorema de Tychonoff indica que $$\mathcal{D} := \prod_{a\in A}{D_a}$$ es un espacio compacto con la topología producto. 
 
-Consideremos ahora la función
-\Ecu{
-F : K &\to \mathcal{D} \\
-f & \mapsto (f(a))_{a \in A}.
-}
+Veamos que $K \subseteq \mathcal{D}$. Tomemos $f \in K$. Dada $a \in A$, tenemos que $f \in \lambda_a U_{0, \abs{\delta_a}, 1}$. Entonces, $\lambda_a^{-1} f \in U_{0, \abs{\delta_a}, 1}$. Es decir, $\abs{\lambda_a}^{-1} \abs{f(a)} =  \abs{\delta_a}(\lambda_a^{-1} f - 0) < 1$.  Así que $\abs{f(a)} < \abs{\lambda_a}$ y $ f(a) \in D_a$, por lo que $f \in \mathcal{D}$. 
 
-Veamos que está bien definida. Tomemos $f \in K$. Dada $a \in A$, tenemos que $f \in \lambda_a U_{0, \abs{\delta_a}, 1}$. Entonces, $\lambda_a^{-1} f \in U_{0, \abs{\delta_a}, 1}$. Es decir, $\abs{\lambda_a}^{-1} \abs{f(a)} =  \abs{\delta_a}(\lambda_a^{-1} f - 0) < 1$.  Así que $\abs{f(a)} < \abs{\lambda_a}$ y $ f(a) \in D_a$, por lo que $F(f) \in \mathcal{D}$. 
-
-Demostremos que $F$ es inyectiva. Dados $f, g \in K$ con $F(f) = F(g)$ se tiene que $(f(a))_{a \in A} = (g(a))_{a \in A}$. De donde $f(a) = g(a)$ para todo $a \in A$. Así que $f = g$ y $F$ es inyectiva. 
-
-Consideremos una red $(f_\alpha)_{\alpha \in \Lambda}$ en $K$ y $f \in K$. La proposición~\ref{Prop:CaracterizacionConvergenciaDebilSeminorma} indica que $\sigma(Y, \calF)$-$\lim_{\alpha\in\Lambda} f_\alpha = f$ si, y sólo si $f_\alpha(a) \to f(a)$ en $D_a$ para todo $a \in A$. La proposición~\ref{Prop:ConvergenciaPorComponentesEnProductoArbitrario} indica que esto último se da si, y sólo si $(f_\alpha(a))_{a \in A} \to (f(a))_{a \in A}$ en $\mathcal{D}$. O bien, si, y  sólo si $F(f_\alpha) \to F(f)$. Puesto que $F$ es inyectiva, el corolario~\ref{Cor:ContinuidadporRedes} indica que $F: K \to F(K)$ es un  homeomorfismo.
-
-Por último, veamos que el rango de $F$ es cerrado en $\mathcal{D}$. Tomemos entonces una red convergente $(G_\alpha)_{\alpha \in \Lambda}  \in F(K)$ y sea $(d_a)_{a \in A} \in \mathcal{D}$ su límite. De esta manera existe una red $(f_\alpha)_\alpha$ en $K$ tal que $F(f_\alpha) = G_\alpha$. Así,
-\begin{equation} \label{Eq:AlaogluGeneral}
-\lim_{\alpha\in \Lambda} F(f_\alpha) = \lim_{\alpha\in\Lambda} (f_\alpha(a))_{a\in A} = (d_a)_{a \in A}.
-\end{equation}
-
-Queremos verificar que $(d_a)_{a \in A}$ pertenece a $F(K)$. Consideremos pues la función $g: A \to \K$ dada por $g(a) = d_a$ para todo $a \in A$. De (\ref{Eq:AlaogluGeneral}) se sigue que $\lim_{\alpha\in\Lambda} f_\alpha(a) = g(a)$ para toda $a \in A$. Por la proposición~\ref{Prop:CaracterizacionConvergenciaDebilSeminorma} se sigue que $\sigma(Y, \calF)$-$\lim_{\alpha\in\Lambda} f_\alpha = g$. Como $K$ es $\sigma(Y, \calF)$-cerrado, se sigue que $g \in K$ y $F(g) = (g(a))_{a\in A} = (d_a)_{a\in A}$. Por lo tanto $(d_a)_{a\in A} \in F(K)$ y así $F(K)$ es cerrado. Como $\mathcal{D}$ es compacto y $F(K)$ es cerrado, entonces también es compacto. Además $F$ es un homeomorfismo entre $F(K)$ y $K$, por lo que $K$ es compacto con la topología débil*.
-\end{Dem}
-
-\section[Espacios vectoriales topológicos de dimensión finita]{Espacios vectoriales topológicos de dimensión finita \sectionmark{Espacios de dimensión finita}}
-\sectionmark{Espacios de dimensión finita}
-
-\begin{Def} 
-Sean $E$ y $F$ espacios vectoriales topológicos. Se dice que $E$ y $F$ son \textit{isomorfos} como espacios vectoriales topológicos o que son \textit{isomorficamente homeomorfos} si existe un isomorfismo de espacios vectoriales $T: E \to F$ que también es un homeomorfismo. En este caso a $T$ se le llama \textit{isomorfismo} de espacios vectoriales topológicos. 
-\end{Def}
-
-\begin{Tma} \label{Tma:IsomorfismoDimensionFinitaEVT} 
-Si $E$ es un espacio vectorial topológico y $\dim\,E = n < \infty$, entonces $E$ es isomorficamente homeomorfo a $\K^n$ con la topología euclidiana.
-\end{Tma}
-
-\begin{Dem}
-Sea $\{ x_1, \ldots, x_n \}$ una base de $E$. Definamos la función 
-\Ecu{
-T: \K^n & \to X \\
-(a_1, \ldots, a_n) & \mapsto \sum_{i=1}^n a_i x_i. 
-} 
-Si $a = (a_1, \ldots, a_n), b = (b_1, \ldots, b_n) \in \K^n$ cumplen que $T(a) = T(b)$, entonces $\sum_{i=1}^n (a_i - b_i)x_i = 0$. Como $\{x_1, \ldots, x_n \}$ es linealmente independiente, entonces $a_1 - b_1 = \ldots = a_n - b_n = 0$. Así que $a = b$ y $T$ es inyectiva. 
-
-Sea $x \in E$. Como $\{x_1, \ldots, x_n \}$ genera a $E$, existen $a_1, \ldots, a_n \in \K$ tales que $$x = \sum_{i=1}^n a_i x_i = T(a_1, \ldots, a_n)$$ y así $T$ es sobreyectiva. 
-
-Veamos que $T$ es lineal. Dados $(a_1, \ldots, a_n), (b_1, \ldots, b_n) \in \K^n$ y $\lambda \in \K$, se tiene que
-\Ecu{
-T((a_1, \ldots, a_n) + \lambda (b_1, \ldots, b_n)) &= T((a_1 + \lambda b_1, \ldots, a_n + \lambda b_n)) = \sum_{i=1}^n (a_i + \lambda b_i) x_i \\
-&= \sum_{i=1}^n a_i  x_i +  \lambda\sum_{i=1}^n  b_i x_i = T(a_1, \ldots, a_n) + \lambda T(b_1, \ldots, b_n).
-}
-
-Demostremos que $T$ es continuo. Para $1 \leq i \leq n$ consideremos las proyecciones canónicas $\pi_i : \K^n \to \K$ y las funciones constantes $f_i: \K_n \to E$, $a \mapsto x_i$. Como $\pi_i$ y $f_i$ son continuas, entonces el lema~\ref{Lema:SumaYProductoEscalarDeFuncionesContinuas} indica que $T = (\pi_1 \cdot f_1) + \ldots + (\pi_n \cdot f_n)$ es continua. 
-
-Ya sólo falta ver que $T^{-1}$ es continua. La proposición~\ref{Prop:ContinuidadEnCero} indica que basta probar que $T^{-1}$ es continua en el cero. Sea $U$ una vecindad del cero en $\K^n$. Entonces existe $r > 0$ tal que $V_r(0) \subseteq U$. Es conocido que en la topología euclidiana la esfera $S^{n-1}_2 := \{ a \in \K^n : \Norm{a}_2 = 1\}$ es un conjunto compacto. Por la proposición~\ref{Prop:FuncionContinuaPreservaCompactos} tenemos que $T(S^{n-1}_2)$ es un conjunto compacto en $E$ que no contiene al cero. 
-
-Dado que $\{ 0\}$ es compacto en $E$ y $T(S^{n-1}_2)$ también es compacto, por la proposición~\ref{Prop:AbiertosSeparanCompactosEnHausdorff} existen $U$ y $V$ abiertos disjuntos tales que $0 \in U$ y $T(S_2^{n-1}) \subseteq V$.
-
-Ahora, como el producto por escalares $\BD: \K \times E \to E$ es continuo y $V$ es una vecindad abierta del cero, existe un básico $(-\varepsilon, \varepsilon) \times \widehat{V}$ en $\K \times E$ tal que $0 \in \widehat{V}$ y $$\BD((-\varepsilon, \varepsilon) \times \widehat{V}) = \{tz : t \in (-\varepsilon, \varepsilon), z \in \widehat{V} \} \subseteq V.$$ 
-
-Probemos que $T^{-1}(\widehat{V}) \subseteq V_\frac{1}{\varepsilon}(0)$. Sea $z \in \widehat{V}$, de manera que  $T^{-1} z \in T^{-1}(\widehat{V})$. Tomemos $t \in (-\varepsilon, \varepsilon)$. Entonces $tz \in V$, de donde $tz \notin T(S^{n-1})$. Es decir, $T^{-1}(tz) \notin S^{n-1}$, o bien $\Norm{(T^{-1}(tz)} \neq 1$. Así que $\abs{t} \cdot \Norm{T^{-1} z} \neq 1$. Por lo tanto, para todo $t \in (-\varepsilon, \varepsilon) \setminus \{0\}$ se tiene que $\Norm{T^{-1}z} \neq \frac{1}{\abs{t}} $, por lo que $T^{-1}z \in V_\frac{1}{\varepsilon}(0)$. 
- 
-Demostremos que $T^{-1}(r \varepsilon \cdot \widehat{V}) \subseteq U$. Tomemos $y \in \widehat{V}$, de manera que $T^{-1}(r \varepsilon \cdot y) \in T^{-1}(r \varepsilon \cdot\widehat{V})$. Como $T^{-1}(\widehat{V}) \subseteq V_\frac{1}{\varepsilon}(0)$, se sigue que $T^{-1}y \in V_\frac{1}{\varepsilon}(0)$. Es decir, $\Norm{T^{-1}y} < \frac{1}{\varepsilon}$. De esto se sigue que $r\varepsilon \Norm{T^{-1}y} < r$, o bien $\Norm{r\varepsilon \cdot T^{-1}y} < r$. Entonces $T^{-1}(r\varepsilon \cdot y) \in V_r(0) \subseteq U$. 
- 
-Dado que $\widehat{V}$ es una vecindad abierta del cero, la observación~\ref{Obs:DilatacionTraslacion} indica que $r \varepsilon \cdot \widehat{V}$ también es vecindad abierta del cero. De esto y de que $T^{-1}(r\varepsilon \cdot \widehat{V}) \subseteq U$ concluimos que $T^{-1}$ es continua. 
-\end{Dem}
-
-\begin{Prop} \label{Prop:FuncionalesLinealesContinuosEspaciosFinitos}
-Sea $E$ un espacio vectorial topológico de dimensión finita. Si $\varphi : E \to \K$ es un funcional lineal, entonces $\varphi$ es continuo. 
-\end{Prop}
-
-\begin{Dem}
-Sean $\dim \, E = n \in \N$ y $\{ x_1, \ldots, x_n \} \subseteq X$ una base de $X$. Sea $T: \K^n \to E$ como en la demostración del teorema~\ref{Tma:IsomorfismoDimensionFinitaEVT}. Entonces $T^{-1}$ es continua. Definamos $S: \K^n \to \K$ como $S(a_1, \ldots, a_n) = a_1 \varphi(x_1) + \ldots + a_n \varphi(x_n)$. Para $1 \leq i \leq n$ las proyecciones $\pi_i: \K^n \to \K$ y las funciones constantes $f_i: \K^n \to \K$, $a \mapsto \varphi(x_i)$ son continuas. Como $\K$ es un espacio vectorial topológico, el lema~\ref{Lema:SumaYProductoEscalarDeFuncionesContinuas} indica que $S = (\pi_1 \BD f_1 + \ldots + \pi_n \BD f_n)$ es continua de manera que $\varphi = S \circ T^{-1}$ también es continua.
-\end{Dem}
-
-\begin{Prop} \label{Prop:DimensionFinitaEVTCompleto}
-Cualquier espacio vectorial topológico de dimensión finita es completo.
-\end{Prop}
-
-\begin{Dem}
-Sea $E$ un espacio vectorial topológico de dimensión finita $n \in \N$. Dado que $\ell^n_2$ es un espacio vectorial topológico de dimensión $n$, del teorema~\ref{Tma:IsomorfismoDimensionFinitaEVT} se sigue que $E$ es isomorfo a $\ell^n_2$ como espacio normado. Según el teorema~\ref{Tma:NormaEuclidianaCompleta}, $\ell_2^n$ es un espacio completo. Así que del lema~\ref{Lema:HomeomorfismoLinealPreservaCompletitez} resulta que $E$ también es completo.
-\end{Dem}
-
-\begin{Cor} \label{Cor:SubespacioDimensionFinitaCerrado}
-Sea $E$ un espacio vectorial topológico. Si $F$ es un subespacio de dimensión finita de $E$, entonces $F$ es cerrado en $E$.
-\end{Cor}
-
-\begin{Dem}
-La proposición~\ref{Prop:DimensionFinitaEVTCompleto} indica que $F$ es completo. Del lema~\ref{Lema:EVTCompletoEntoncesCerrado} se concluye que $F$ es cerrado en $E$.
+Ahora, como $\mathcal{D}$ es compacto en la topología producto, también lo es en la topología $\sigma (Y, \calF)$ y como $K$ es $\sigma (Y, \calF)$-cerrado se sigue de la proposición~\ref{Prop:CerradoEnCompactoEsCompacto} que $K$ es $\sigma (Y, \calF)$-compacto.
 \end{Dem}
 
 \chapter{Topologías débil y débil*}
