@@ -1491,7 +1491,7 @@ x & \mapsto Rx.
 Mostremos que $R$ es lineal. Así, sean $x = (x_1, x_2, \ldots), z = (z_1, z_2, \ldots) \in \ell_p$ y $\lambda \in \K$. Si $y = (y_1, y_2, \ldots) \in \ell_q$ tenemos que 
 $$R(x+ \lambda z)(y) = \sum_{i=1}^\infty (x_i + \lambda z_i)(y_i) = \sum_{i=1}^\infty x_i y_i + \lambda \sum_{i=1}^\infty z_i y_i = Rx(y) + \lambda Rz(y).$$
 
-Así que $R(x+ \lambda z) = Rx + \lambda Rz$ y $R$ es lineal. Si fijamos $x \in \ell_p$, de (\ref{Eq:HolderRiesz}) se sigue que $\Norm{Rx} \leq \Norm{x}_p$.
+Así que $R(x+ \lambda z) = Rx + \lambda Rz$ y $R$ es lineal. Si fijamos $x \in \ell_p$, de (\ref{Eq:HolderRiesz}) se sigue que $\Norm{Rx} \leq \Norm{x}_p$. (Pendiente).
 
 \end{Dem}
 
@@ -2511,38 +2511,19 @@ Sea $X$ un espacio normado. Entonces la bola unitaria cerrada de $X^*$ es compac
 \end{Tma}
 
 \begin{Dem}
-Para cada $x \in X$ definamos el conjunto 
-$$D_x : = \{ \lambda \in \K : \abs{\lambda} \leq \Norm{x} \}.$$
+Consideremos a $Y = F(X, \K)$ y a la familia de seminormas $\calF = \{ \abs{\delta_x} : x \in X \}$ en $Y$. Mostremos que $B_{X^*}$ es cerrado y acotado respecto a la topología subespacio $\sigma(Y, \calF)$.
 
-Como para cada $x \in X$, $D_x$ es compacto en $\K$, entonces el teorema de Tychonoff indica que $$\mathcal{D} := \prod_{x\in X}{D_x}$$ es un espacio compacto con la topología producto. 
+Tomemos cualquier vecindad básica del cero $U_{0, x_1, \ldots, x_n, \varepsilon}$ para algunos $n \in \N$, $x_1, \ldots, x_n \in X$ y $\varepsilon > 0$. Sea $\lambda = \frac{1}{\varepsilon}\max(1, \Norm{x_1}, \ldots, \Norm{x_n}) > 0$. Si $\varphi \in B_{X^*}$, entonces $\abs{\varphi(x_i)} \leq \Norm{x_i} \leq \lambda \varepsilon$ para toda $i \in \nn{n}$. Así que $\abs{\lambda^{-1} \varphi(x_i)} < \varepsilon$ y así $\lambda^{-1} \varphi \in U_{0, x_1, \ldots, x_n, \varepsilon}$, por lo que $\varphi \in \lambda U_{0, x_1, \ldots, x_n, \varepsilon}$ y $B_{X^*}$ es acotado.
 
-Consideremos ahora la función
-\Ecu{
-F : B_{X^*} &\to \mathcal{D} \\
-\varphi & \mapsto (\varphi(x))_{x \in X}.
-}
+Ahora sea tomemos $(\varphi_\alpha)_{\alpha \in \Lambda}$ una red en $B_{X^*}$ que converge a alguna $\varphi$ en $Y$ respecto a la topología $\sigma(Y, \calF)$. Entonces $\varphi_\alpha(x) \to \varphi(x)$ para toda $x \in X$. 
 
-Veamos que está bien definida. Tomemos $\varphi \in B_{X^*}$ de manera que $\Norm{\varphi} \leq 1$. Dado $x \in X$, cada $\abs{\varphi(x)} \leq \Norm{x} \cdot \Norm{x} \leq \Norm{x}$. Así que $\abs{\varphi(x)} \in D_x$ y por lo tanto $F(\varphi) \in \mathcal{D}$. 
-
-Demostremos que $F$ es inyectiva. Dados $\varphi, \psi \in B_{X^*}$ con $F(\varphi) = F(\psi)$ se tiene que $(\varphi(x))_{x \in X} = (\psi(x))_{x \in X}$. De donde $\varphi(x) = \psi(x)$ para todo $x \in X$. Así que $\varphi = \psi$ y $F$ es inyectiva. 
-
-Consideremos una red $(\varphi_\alpha)_{\alpha \in \Lambda}$ en $B_{X^*}$ y $\varphi \in B_{X^*}$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebilEstrella} indica que $\varphi_\alpha \stackrel{\mathrm{w_*}}{\longrightarrow} \varphi$ si, y sólo si $\varphi_\alpha(x) \to \varphi(x)$ en $D_x$ para todo $x \in X$. La proposición~\ref{Prop:ConvergenciaPorComponentesEnProductoArbitrario} indica que esto último se da si, y sólo si $(\varphi_\alpha(x))_{x \in X} \to (\varphi(x))_{x \in X}$ en $\mathcal{D}$. O bien, si, y  sólo si $F(\varphi_\alpha) \to F(\varphi)$. Puesto que $F$ es inyectiva, el corolario~\ref{Cor:ContinuidadporRedes} indica que $F: B_{X^*} \to F(B_{X^*})$ es un  homeomorfismo.
-
-Por último, veamos que el rango de $F$ es cerrado en $\mathcal{D}$. Tomemos entonces una red convergente $(G_\alpha)_{\alpha \in \Lambda}  \in F(B_{X^*})$ y sea $(d_x)_{x \in X} \in \mathcal{D}$ su límite. De esta manera existe una red $(f_\alpha)_\alpha$ en $B_{X^*}$ tal que $F(f_\alpha) = G_\alpha$. Así,
-$$\lim_{\alpha\in \Lambda} F(f_\alpha) = \lim_{\alpha\in\Lambda} (f_\alpha(x))_{x\in X} = (d_x)_{x \in X}.$$ 
-
-Queremos verificar que $(d_x)_{x \in X}$ pertenece a $F(B_{X^*})$. Consideremos pues la función $g: X \to \K$ dada por $g(x) = d_x$ para todo $x \in X$. Notemos que $g$ es lineal, pues dados $x, y \in X$, $\lambda \in \K$ resulta
-\Ecu{
-g(x + \lambda y) &= d_{x+\lambda y} = \lim_{\alpha\in\Lambda} f_\alpha(x+ \lambda y) = \lim_{\alpha\in\Lambda} f_\alpha(x) + \lambda \lim_{\alpha\in\Lambda} f_\alpha(y) = d_x + \lambda d_y = g(x) + \lambda g(y). 
-}
+Veamos que $\varphi$ es lineal. Tomemos pues $x, y \in X$ y $\lambda \in \K$  y notemos que
+$$\varphi(x+ \lambda y) = \lim_{\alpha_\Lambda} \varphi_\alpha(x+ \lambda y) = \lim_{\alpha_\Lambda} \varphi_\alpha(x)+ \lambda \varphi_\alpha(y) = \lim_{\alpha_\Lambda} \varphi_\alpha(x)+ \lambda  \lim_{\alpha_\Lambda} \varphi_\alpha(y) = \varphi(x) + \lambda \varphi(y). $$
 
 
-Además, si $x \in X$ es tal que $\Norm{x} \leq 1$, dado que $\lambda_x \in D_x$ se tiene que 
-$$\abs{g(x)} \leq \abs{d_x} \leq \Norm{x} \leq 1.$$
+Al fijar $x \in X$ notemos que $\abs{\varphi_\alpha(x)} \leq \Norm{x}$. Como el valor absoluto es continuo, se sigue que  $$\abs{ \varphi(x) } = \abs{ \lim_{\alpha \in \Lambda} \varphi_\alpha(x) } = \lim_{\alpha \in \Lambda} \abs{\varphi_\alpha(x)} \leq \Norm{x}.$$
 
-Esto indica que $\Norm{g} \leq 1$, por lo que $g \in B_{X^*}$ y $$F(g) = (g(x))_{x\in X} = (d_x)_{x\in X}.$$
-
-Por lo tanto $(d_x)_{x\in X} \in F(B_{X^*})$ y así $F(B_{X^*})$ es cerrado. Como $\mathcal{D}$ es compacto y $F(B_{X^*})$ es cerrado, entonces también es compacto. Además $F$ es un homeomorfismo entre $F(B_{X^*})$ y $B_{X^*}$, por lo que $B_{X^*}$ es compacto con la topología débil*.
+Así que $\varphi \in B_{X^*}$ y $B_{X^*}$ es $\sigma(Y, \calF)$-cerrada. Por la proposición~\ref{Prop:CaracterizacionCompacidadEnEspacioProducto} se sigue que $B_{X^*}$ es $\sigma(Y, \calF)$-compacta. Así que también es $\mathrm{w}^*$-compacta.
 \end{Dem}
 
 \begin{Def}
