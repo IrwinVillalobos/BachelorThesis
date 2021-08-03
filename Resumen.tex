@@ -57,6 +57,7 @@
 \newcommand{\calI}{\mathcal{I}}
 \newcommand{\calF}{\mathcal{F}}
 
+
 \newcommand\restr[2]{{
   \left.\kern-\nulldelimiterspace #1 \vphantom{\big|} \right|_{#2} 
 }}
@@ -167,11 +168,66 @@
 
 \AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{front}}} 
 
+
+
 \begin{document}
 
-\frontmatter
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+                        
+        \Large
+        Departamento de Matemáticas\\
+		\large        
+        de la \\
+		\LARGE        
+        Universidad de Guanajuato\\        
+
+		\vspace*{0.5cm}
+
+		\includegraphics[width=0.2\textwidth]{logoUG.png}
+        
+		\vspace*{0.5cm}        
+        
+        \rule[0.2cm]{13cm}{0.1cm} \\
+		{ \huge \bfseries Título de la tesis}\\[0.4cm] 
+		{\Large \slshape Subtítulo de la tesis}\\[0.3cm]
+		\rule[0.2cm]{13cm}{0.1cm}\\[2cm]
+            
+           
+		\Large
+		Una tesis presentada para obtener el grado de \\
+		Licenciatura en Matemáticas.           
+        
+            
+        \vfill
+            
+        
+        \Large 
+        \textbf{Alumno: } Irwin Enrique Villalobos López \\
+        \textbf{Asesor: } Dr. Fernando Galaz Fontes \hspace*{0.35cm}  
+            
+        \vspace{0.8cm}
+            
+        
+		    
+    \end{center}
+    \begin{flushright}
+    \Large        
+    Guanajuato, México\\
+    Agosto del 2021
+    \end{flushright}
+    
+    \afterpage{
+		\null
+		\thispagestyle{empty}
+		\newpage
+	}
+\end{titlepage}
 
 \pagenumbering{roman}
+
+\frontmatter
 
 \pagestyle{front}
 
@@ -2022,6 +2078,14 @@ Sea $(x_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $F$. Al ser la funció
 Sea $E$ un espacio vectorial topológico. Un conjunto $B \subseteq E$ es \textit{acotado} si para toda vecindad abierta del cero $U$, existe $\lambda \in \K \setminus \{ 0 \}$ tal que $B \subseteq \lambda U$.
 \end{Def}
 
+\begin{Lema}
+Sean $X$ un espacio normado y $B \subseteq X$. Entonces $B$ es acotado como espacio normado si, y sólo si $B$ es acotado como espacio vectorial topológico.
+\end{Lema}
+
+\begin{Dem}
+(Pendiente).
+\end{Dem}
+
 \begin{Prop} \label{Prop:CompactoEsAcotadoEVT}
 Sea $E$ un espacio vectorial topológico. Si $K \subseteq E$ es compacto, entonces $K$ es acotado. 
 \end{Prop}
@@ -2260,7 +2324,18 @@ Definamos $\beta = \alpha_{2M}$. Por (\ref{Eq:RedesCauchy1}) y (\ref{Eq:RedesCau
 Por la desigualdad del triángulo $\Norm{x_\gamma - x} < \frac{1}{N}$ y así $x_\gamma - x \in U$. Es decir, $x_\alpha \to x$.
 \end{Dem}
 
-Como resultado de lo anterior, el espacio $\K^n$ como espacio vectorial topológico es completo.
+Como resultado de lo anterior, el espacio $\K^n$ como espacio vectorial topológico es completo. \\
+
+
+Sean $X$ un espacio vectorial y $Y$ un subespacio. Si $p: X \to \R$ es una seminormas en $X$, entonces sus restricción $\restr{p}{Y}: Y \to \R$ es una seminorma en $Y$. Esto motiva la siguiente proposición.
+
+\begin{Prop}
+Sean $X$ un espacio vectorial y $Y$ un subespacio. Si $calF$ es una familia de seminormas en $X$ y $\calG$ sus restricciones a $Y$, entonces $\sigma(Y, \calG)$ y la topología subespacio $\sigma(X, \calF)$ en $Y$ coinciden.
+\end{Prop}
+
+\begin{Dem}
+(Pendiente).
+\end{Dem}
 
 \begin{Ejem}[El espacio vectorial topológico $F(A, \K)$]
 Sean $A$ un conjunto no-vacío y $Y = F(A, \K)$, como en el ejemplo~\ref{Ejem:EVTFamiliaFuncionales}. Se verificó ahí que  $\mathcal{F} = \{ \abs{\delta_a}: a \in A \}$ es una familia de seminormas en $Y$ que separa puntos, por lo que $Y$ con la topología $\sigma(Y, \mathcal{F})$ es un espacio vectorial topológico. En adelante, cuando trabajemos con el espacio $F(A, \K)$ será con esta topología.
@@ -2425,6 +2500,14 @@ Si $X$ es un espacio normado, entonces $X^* = {X_\mathrm{w}}^*$.
 Tomemos $\varphi \in X^*$. Por definición la seminorma $\abs{\varphi} : X_\mathrm{w} \to \K$ es continua, en particular es continua en el cero. Sea $V$ un entorno del cero en $\K$ y escojamos una bola abierta $V_r(0)$ con $r>0$ tal que $V_r(0) \subseteq V$. Como $\abs{\varphi}$ es continua, existe un  abierto $W$ en $\tau_\mathrm{w}$ del cero en $X$ tal que $\abs{\varphi}(W) \subseteq [0, r)$. Pero esto implica que $\varphi(W) \subseteq V_r(0) \subseteq V$. Así que $\varphi$ es continua en el cero y como también es lineal por la proposición~\ref{Prop:ContinuidadEnCero} podemos concluir que es continua. Esto muestra que $X^* \subseteq {X_\mathrm{w}}^*$. 
 
 Por otro lado, la proposición~\ref{Prop:ContencionPropiaTopologiaDebil} indica que $\tau_\mathrm{w} \subseteq \tau$. Por lo que todo funcional lineal y continuo con la topología $\tau_\mathrm{w}$ también será continuo con la topología $\tau$. Es decir, ${X_\mathrm{w}}^* \subseteq X^*$.
+\end{Dem}
+
+\begin{Prop}
+Sea $E$ un espacio vectorial topológico, $X$ un espacio normado y $T: E \to X_\mathrm{w}$ lineal. Entonces $T$ es continuo si, y sólo si $ T \circ \varphi \in E^*$ para todo $\varphi \in X^*$.
+\end{Prop}
+
+\begin{Dem}
+(Pendiente).
 \end{Dem}
 
 %/////////////////////////////////////////////////////////////////////////
