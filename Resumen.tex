@@ -203,17 +203,17 @@
         \vfill
             
         
-        \Large 
+        \large 
         \textbf{Alumno: } Irwin Enrique Villalobos López \\
         \textbf{Asesor: } Dr. Fernando Galaz Fontes \hspace*{0.36cm}  
             
-        \vspace{0.8cm}
+        \vspace{1cm}
             
         
 		    
     \end{center}
     \begin{flushright}
-    \large        
+    \normalsize       
     Guanajuato, México\\
     Agosto del 2021
     \end{flushright}
@@ -311,7 +311,7 @@ Por definición \textbf{i)} y \textbf{ii)} indican que $\mathcal{B}$ es una base.
 \end{Dem}
 
 \begin{Def}
-Sean $X$ un espacio topológico y $Y \subseteq X$. La topología en $X$ induce la topología $$\tau_Y = \{ U \cap Y : U \mbox{ es abierto en } X \}.$$
+Sean $X$ un espacio topológico y $Y \subseteq X$. La topología $\tau$ en $X$ induce la topología $$\tau_Y = \{ U \cap Y : U \in \tau \}.$$
 Esta topología recibe el nombre de \textit{topología subespacio} en $Y$ respecto a $X$.
 \end{Def}
 
@@ -515,7 +515,7 @@ Sea $X$ un espacio topológico. Si una sucesión $(x_n)_{n\in\N} \subseteq X$ conv
 Supongamos que $(x_n)_{n\in\N}\subseteq X$ converge a $x \in X$ y sea $(x_{n_k})_{k \in \N}$ una subsucesión de $(x_n)_{n \in\N}$. Sea $U$ una vecindad de $x$. Luego, existe $N \in\N$ tal que $x_n \in U$ si $n\geq N$. Si $k \geq N$, entonces $n_k \geq k \geq N$, por lo que $x_{n_k} \in U$. Así que $x_{n_k} \to x$.
 \end{Dem}
 
-\begin{Prop} \label{Prop:ConvergenciaEnSubespacio}
+\begin{Prop} \label{Prop:ConvergenciaSucesionesEnSubespacio}
 Sean $X$ un espacio topológico, $Y \subseteq X$, $(y_n)_{n \in \N} \subseteq Y$ y $y \in Y$. Entonces $(y_n)_{n \in \N}$ converge a $y$ en $Y$ si y sólo si $(y_n)_{n \in \N}$ converge a $y$ en $X$.
 \end{Prop}
 
@@ -880,7 +880,7 @@ Sean $M_1$ y $M_2$ espacios métricos y $f : M_1 \to M_2$ una isometría. Entonces
 \begin{Dem}
 Sean $x, y \in M_1$ tal que $f(x) = f(y)$. Entonces $d(x, y) = d(f(x), f(y)) = 0$ y por lo tanto $x  =y$. Así que $f$ es inyectiva y tiene inversa $f^{-1}$ en $f(M_1)$.
 
-Tomemos una sucesión $(x_n)_{n \in\N}\subseteq M_1$ y $x \in M_1$. Tenemos que $x_n \to x$ si, y sólo si $d(x_n, x) \to 0$. Como $f$ es una isometría, lo anterior equivale a que $d(f(x_n), f(x)) \to 0$ y por la proposición~\ref{Prop:ConvergenciaEnSubespacio}, a su vez es equivalente a que $f(x_n)\to f(x)$ en $f(M_1)$. De la proposición~\ref{Prop:ContinuidadPorSucesiones} se sigue que $f$ y $f^{-1}$ son continuas.
+Tomemos una sucesión $(x_n)_{n \in\N}\subseteq M_1$ y $x \in M_1$. Tenemos que $x_n \to x$ si, y sólo si $d(x_n, x) \to 0$. Como $f$ es una isometría, lo anterior equivale a que $d(f(x_n), f(x)) \to 0$ y por la proposición~\ref{Prop:ConvergenciaSucesionesEnSubespacio}, a su vez es equivalente a que $f(x_n)\to f(x)$ en $f(M_1)$. De la proposición~\ref{Prop:ContinuidadPorSucesiones} se sigue que $f$ y $f^{-1}$ son continuas.
 \end{Dem}
 
 
@@ -1560,6 +1560,9 @@ Así que $R(x+ \lambda z) = Rx + \lambda Rz$ y $R$ es lineal. Si fijamos $x \in \
 \end{Dem}
 
 
+
+
+
 \chapter{Redes}
 
 Hemos visto que el estudio de continuidad y compacidad en espacios métricos se puede realizar a través de sucesiones. Sin embargo, el concepto de red, que generaliza el de sucesión, resulta ser más adecuado en espacios con una topología que no proviene de una métrica. Por tanto, desarrollaremos un poco de teoría de redes antes de seguir adelante. \\
@@ -1633,6 +1636,16 @@ Sea $(x_n)_{n\in\N}$ una sucesión en un espacio topológico. El ejemplo~\ref{Ejem
 Sean $X$ un espacio topológico, $x \in X$ y $N_x$ el conjunto dirigido de vecindades abiertas de $x$. Consideremos $x_U \in U$ para toda $U \in N_x$. Entonces la red $(x_U)_{U \in N_x}$ converge a $x$ ya que si $U_0$ es vecindad de $x$, se tiene que $U_0 \in N_x$ y para $U \in N_x$ con $U \geq U_0$ se tiene que $x_{U} \in U \subseteq U_0$.
 \end{Ejem}
 
+\begin{Prop} \label{Prop:ConvergenciaRedesEnSubespacio}
+Sean $X$ un espacio topológico, $Y \subseteq X$, $(y_\alpha)_{\alpha \in \Lambda} \subseteq Y$ y $y \in Y$. Entonces $(y_\alpha)_{\alpha \in \Lambda}$ converge a $y$ en $Y$ si y sólo si $(y_\alpha)_{\alpha \in \Lambda}$ converge a $y$ en $X$.
+\end{Prop}
+
+\begin{Dem}
+Supongamos primero que $(y_\alpha)_{\alpha \in \Lambda}$ converge a $y$ en $Y$. Sea $U$ una vecindad abierta de $y$ en $X$. Entonces $U \cap Y$ es una vecindad abierta de $y$ en $Y$. Por lo tanto, existe $\alpha_0 \in\Lambda$ tal que $y_\alpha \in U\cap Y \subseteq U$ si $\alpha \geq \alpha_0$. Por lo tanto $(y_\alpha)_{\alpha \in \N}$ converge a $y$ en $X$. 
+
+Ahora supongamos que $(y_\alpha)_{\alpha \in \Lambda}$ converge a $y$ en $X$. Sea $U \cap Y$ una vecindad abierta de $y$ en $Y$ para alguna vecindad abierta $U$ de $y$ en $X$. Entonces existe $\alpha_0 \in\Lambda$ tal que $y_\alpha \in U$ si $\alpha \geq \alpha_0$. Como $y_\alpha \in Y$ para toda $\alpha \in\Lambda$, se sigue que $y_\alpha \in U\cap Y$ si $\alpha \geq \alpha_0$. Por lo tanto $(y_\alpha)_{\alpha \in \Lambda}$ converge a $y$ en $X$.
+\end{Dem}
+
 \section{Caracterizaciones por redes}
 
 En espacios métricos, la proposición~\ref{Prop:CerraduraLimiteSucesiones} da una caracterización de la cerradura de un conjunto a través de los límites de las sucesiones en ese conjunto. La siguiente proposición generaliza esa caracterización a espacios topológicos usando redes.
@@ -1685,6 +1698,23 @@ Sean $X, Y$ espacios topológicos, $f : X \to Y$. Son equivalentes:
 \item \textbf{ii)} Para toda red $(x_\alpha)_{\alpha \in  \Lambda}$ y $x \in X$ tal que $x_\alpha \to x$ se cumple que $f(x_\alpha) \to f(x)$. 
 \end{itemize}
 \end{Cor}
+
+La siguiente proposición indica que la convergencia de redes en un espacio topológico es suficiente para determinar la topología en sí. 
+
+\begin{Prop} \label{Prop:ConvergenciaDeterminaTopologia}
+Sean $\tau_1$ y $\tau_2$ dos topologías en un conjunto $X$. Si la convergencia de redes en $(X, \tau_1)$ y en $(X, \tau_2)$ coinciden, entonces $\tau_1 = \tau_2$. 
+\end{Prop}
+
+\begin{Dem}
+Consideremos la función 
+\Ecu{
+\mbox{Id} : (X, \tau_1) &\to  (X, \tau_2) \\
+x \mapsto x,
+}
+
+Claramente $\mbox{Id}$ es una biyección. Mostremos que es un homeomorfismo. Sea $(x_\alpha)_{\alpha \in \Lambda}$ es una red en $X$ y $x \in X$. Por hipótesis, tenemos que $x_\alpha \to x$ en $(X, \tau_1)$ si y sólo si $\mbox{Id}(x_\alpha) \to \mbox{Id}(x)$ en $(X, \tau_2)$. Del corolario~\ref{Cor:ContinuidadPorRedes} se concluye que $\mbox{Id}$ es un homeomorfismo y $\tau_1 = \tau_2$.
+\end{Dem}
+
 
 \begin{Prop} \label{Prop:ConvergenciaPorComponentes}
 Sean $X$ y $Y$ espacios topológicos y consideremos en $X \times Y$ la topología producto. Sean $(x_\alpha, y_\alpha)_{\alpha\in \Lambda}$ una red en $X \times Y$ y $(x, y) \in X \times Y$, entonces $(x_\alpha, y_\alpha)\to (x, y)$ si, y sólo si $x_\alpha \to x$ y $y_\alpha\to y$.
@@ -2330,11 +2360,11 @@ Como resultado de lo anterior, el espacio $\K^n$ como espacio vectorial topológi
 Sean $X$ un espacio vectorial y $Y$ un subespacio. Si $p: X \to \R$ es una seminormas en $X$, entonces sus restricción $\restr{p}{Y}: Y \to \R$ es una seminorma en $Y$. Esto motiva la siguiente proposición.
 
 \begin{Prop}
-Sean $X$ un espacio vectorial y $Y$ un subespacio. Si $calF$ es una familia de seminormas en $X$ y $\calG$ sus restricciones a $Y$, entonces $\sigma(Y, \calG)$ y la topología subespacio $\sigma(X, \calF)$ en $Y$ coinciden.
+Sean $X$ un espacio vectorial y $Y$ un subespacio. Si $\calF$ es una familia no vacía de seminormas en $X$ y $\calG$ sus restricciones a $Y$, entonces $\sigma(Y, \calG)$ y la topología subespacio $\sigma(X, \calF)$ en $Y$ coinciden.
 \end{Prop}
 
 \begin{Dem}
-(Pendiente).
+Consideremos $(y_\alpha)_{\alpha \in \Lambda}$ una red en $Y$ y $y \in Y$. Tenemos que $y_\alpha \to y$ en $\sigma(Y, \calG)$ si, y sólo si $\restr{p}{Y} (y_\alpha - y) \to 0$ para toda $\restr{p}{Y} \in \calG$, que es lo mismo que $p(y_\alpha - y) \to 0$ para toda $p \in \calF$. Esto es equivalente a que $y_\alpha \to y$ en $\sigma(X, \calF)$. De la proposición~\ref{Prop:ConvergenciaRedesEnSubespacio} se sigue que esto último equivale a que $y_\alpha \to y$ en $\sigma(X, \calF)_Y$. Por la proposición~\ref{Prop:ConvergenciaDeterminaTopologia} se concluye que $\sigma(Y, \calG) = \sigma(X, \calF)_Y$. 
 \end{Dem}
 
 \begin{Ejem}[El espacio vectorial topológico $F(A, \K)$]
@@ -2503,11 +2533,11 @@ Por otro lado, la proposición~\ref{Prop:ContencionPropiaTopologiaDebil} indica q
 \end{Dem}
 
 \begin{Prop}
-Sea $E$ un espacio vectorial topológico, $X$ un espacio normado y $T: E \to X_\mathrm{w}$ lineal. Entonces $T$ es continuo si, y sólo si $ T \circ \varphi \in E^*$ para todo $\varphi \in X^*$.
+Sea $E$ un espacio vectorial topológico, $X$ un espacio normado y $T: E \to X_\mathrm{w}$ lineal. Entonces $T$ es continua si, y sólo si $  \varphi \circ T \in E^*$ para todo $\varphi \in X^*$.
 \end{Prop}
 
 \begin{Dem}
-(Pendiente).
+Sea $(x_\alpha)_{\alpha \in \Lambda}$ una red en $E$ que converge a $x \in E$. Tenemos que $T$ es continua si, y sólo si $Tx_\alpha \to Tx$ en $X_\mathrm{w}$. Por el corolario~\ref{Cor:CaracterizacionConvergenciaDebil}, esto último es equivalente a que $\varphi(Tx_\alpha) \to \varphi(Tx)$ para toda $\varphi \in X^*$. Esto es $(\varphi \circ T)x_\alpha \to (\varphi \circ T) x$ para toda $\varphi \in X^*$. Dado que $\varphi \circ T$ es lineal para todo $\varphi \in X^*$, se sigue que lo anterior equivale a que $\varphi \circ T \in E^*$ para todo $\varphi \in X^*$.
 \end{Dem}
 
 %/////////////////////////////////////////////////////////////////////////
