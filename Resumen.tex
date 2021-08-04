@@ -522,8 +522,10 @@ Sean $X$ un espacio topológico, $Y \subseteq X$, $(y_n)_{n \in \N} \subseteq Y$ 
 \begin{Dem}
 Supongamos primero que $(y_n)_{n \in \N}$ converge a $y$ en $Y$. Sea $U$ una vecindad abierta de $y$ en $X$. Entonces $U \cap Y$ es una vecindad abierta de $y$ en $Y$. Por lo tanto, existe $N \in\N$ tal que $y_n \in U\cap Y \subseteq U$ si $n \geq N$. Por lo tanto $(y_n)_{n \in \N}$ converge a $y$ en $X$. 
 
-Ahora supongamos que $(y_n)_{n \in \N}$ converge a $y$ en $X$. Sea $U \cap Y$ una vecindad abierta de $y$ en $Y$ para alguna vecindad abierta $U$ de $y$ en $X$. Entonces existe $N \in\N$ tal que $y_n \subseteq U$ si $n \geq N$. Como $y_n \in Y$ para toda $n \in\N$, se sigue que $y_n \in U\cap Y$ si $n \geq N$. Por lo tanto $(y_n)_{n \in \N}$ converge a $y$ en $X$.
+Ahora supongamos que $(y_n)_{n \in \N}$ converge a $y$ en $X$. Sea $U \cap Y$ una vecindad abierta de $y$ en $Y$ para alguna vecindad abierta $U$ de $y$ en $X$. Entonces existe $N \in\N$ tal que $y_n \in U$ si $n \geq N$. Como $y_n \in Y$ para toda $n \in\N$, se sigue que $y_n \in U\cap Y$ si $n \geq N$. Por lo tanto $(y_n)_{n \in \N}$ converge a $y$ en $X$.
 \end{Dem}
+
+
 
 \section{Topología producto}
 
@@ -679,33 +681,8 @@ Sea $M$ un espacio métrico y $x, y \in M$ con $x \neq y$. Entonces $r: = \frac{d
 \end{Dem}
 
 
-\section{Caracterizaciones por sucesiones}
 
-Las sucesiones tienen un papel relevante en los espacios métricos, pues a través de ellas podemos caracterizar algunos de los conceptos topológicos que previamente hemos presentado.
-
-\begin{Prop} \label{Prop:ContinuidadPorSucesiones}
-Sean $M$ un espacio métrico, $E$ un espacios topológico, $x \in M$ y $f :  M \to E$. Son equivalentes: 
-\begin{itemize}
-\item \textbf{i)} $f$ es continua en $x$.
-\item \textbf{ii)} Para toda sucesión $(x_n)_{n\in\N} \subseteq M$ tal que $x_n \to x$ se cumple que $f(x_n) \to f(x)$. 
-\end{itemize} 
-\end{Prop}
-
-\begin{Dem}
-Primero supongamos que $f$ es continua. Consideremos una sucesión $(x_n)_{n \in \N} \subseteq M$ tal que $x_n \to x$. Sea $V$ una vecindad abierta de $f(x)$ en $Y$. Como $f$ es continua, el conjunto $f^{-1}(V)$ es una vecindad abierta de $x$ en $M$. Dado que $x_n \to x$, existe $N \in \N$ tal que $x_n \in f^{-1}(V)$ para $n \geq \N$. Así pues, si $n \geq \N$ tenemos que $f(x_n) \in f(f^{-1}(V)) \subseteq V$. Por tanto $f(x_n) \to f(x)$. 
-
-Ahora demostraremos la contrapositiva. Supongamos pues que $f$ no es continua en $x$, de manera que existe una vecindad abierta $V$ de $f(x)$ tal que para toda $n \in \N$ se tiene que $f(V_{\frac{1}{n}}(x)) \subsetneq V$. Así pues, para cada $n \in \N$ podemos tomar $x_n \in V_{\frac{1}{n}}(x)$ de tal manera que $f(x_n) \notin V$. Consideremos la sucesión $(x_n)_{n\in \N}$. Resulta que  $x_n \rightarrow x$. Sin embargo, para todo $n \in \N$ se tiene que $f(x_n) \notin V$, por lo que $f(x_n) \centernot\rightarrow f(x)$.
-\end{Dem}
-
-\begin{Prop}\label{Prop:CerraduraLimiteSucesiones} 
-Sean $M$ un espacio métrico y $A \subseteq M$. Entonces $x \in \overline{A}$ si, y sólo si $x$ es el límite de alguna sucesión en $A$.
-\end{Prop}
-
-\begin{Dem}
-Tomemos $x \in \overline{A}$. Para cada $n \in \N$, tenemos que $V_{\frac{1}{n}}(x)$ es una vecindad abierta de $x$ y por lo tanto $V_{\frac{1}{n}}(x) \cap A \neq \emptyset$. Así que existe algún $x_n \in V_{\frac{1}{n}}(x) \cap A$. Claramente, $(x_n)_{n\in \N}$ es una sucesión en $A$ tal que $x_n \to x$. 
-
-Ahora tomemos $x \in M$ tal que existe $(x_n)_{n\in\N} \subseteq A$ con $x_n \to x$. Sea $U$ una vecindad abierta de $x$. Entonces existe $N \in \N$ tal que $x_n \in U$ si $n \geq N$. En particular, $x_N \in U \cap A \neq \emptyset$ y de esta manera $x \in \ov{A}$. 
-\end{Dem}
+\section{Completez}
 
 \begin{Def}
 Sea $M$ un espacio métrico. Una sucesión $(x_n)_{n\in\N} \subseteq M$ es de \textit{Cauchy} si para todo $\varepsilon > 0$ existe $N \in\N$ tal que $d(x_n, x_m) < \varepsilon$ para $n, m \geq N$. Decimos que $M$ es \textit{completo} si toda sucesión de Cauchy converge.  
@@ -780,6 +757,35 @@ Sean $M$ un espacio métrico y $(x_n)_{n \in\N}$ una sucesión en $M$. Si $(x_n)_{
 Tomemos $\varepsilon = 1$. Así, existe $N \in \N$ tal que si $n, m \geq N$, entonces $\Norm{x_n - x_m} < 1$. Esto indica que para $n \geq N$ se cumple que $d(x_n, x_N) < 1$.
 
 Definamos $M = \max(1, d(x_1, x_N), d(x_2, x_N), \ldots, d(x_{N-1}, x_N)) > 0$. De esta manera es claro que $d(x_n, x_N) \leq M$ para toda $n \in\N$ y de la proposición~\ref{Prop:CaracterizacionConjuntoAcotado} se sigue que $\{ x_n : n \in \N \}$ es acotado.
+\end{Dem}
+
+
+\section{Caracterizaciones por sucesiones}
+
+Las sucesiones tienen un papel relevante en los espacios métricos, pues a través de ellas podemos caracterizar algunos de los conceptos topológicos que previamente hemos presentado.
+
+\begin{Prop} \label{Prop:ContinuidadPorSucesiones}
+Sean $M$ un espacio métrico, $E$ un espacios topológico, $x \in M$ y $f :  M \to E$. Son equivalentes: 
+\begin{itemize}
+\item \textbf{i)} $f$ es continua en $x$.
+\item \textbf{ii)} Para toda sucesión $(x_n)_{n\in\N} \subseteq M$ tal que $x_n \to x$ se cumple que $f(x_n) \to f(x)$. 
+\end{itemize} 
+\end{Prop}
+
+\begin{Dem}
+Primero supongamos que $f$ es continua. Consideremos una sucesión $(x_n)_{n \in \N} \subseteq M$ tal que $x_n \to x$. Sea $V$ una vecindad abierta de $f(x)$ en $Y$. Como $f$ es continua, el conjunto $f^{-1}(V)$ es una vecindad abierta de $x$ en $M$. Dado que $x_n \to x$, existe $N \in \N$ tal que $x_n \in f^{-1}(V)$ para $n \geq \N$. Así pues, si $n \geq \N$ tenemos que $f(x_n) \in f(f^{-1}(V)) \subseteq V$. Por tanto $f(x_n) \to f(x)$. 
+
+Ahora demostraremos la contrapositiva. Supongamos pues que $f$ no es continua en $x$, de manera que existe una vecindad abierta $V$ de $f(x)$ tal que para toda $n \in \N$ se tiene que $f(V_{\frac{1}{n}}(x)) \subsetneq V$. Así pues, para cada $n \in \N$ podemos tomar $x_n \in V_{\frac{1}{n}}(x)$ de tal manera que $f(x_n) \notin V$. Consideremos la sucesión $(x_n)_{n\in \N}$. Resulta que  $x_n \rightarrow x$. Sin embargo, para todo $n \in \N$ se tiene que $f(x_n) \notin V$, por lo que $f(x_n) \centernot\rightarrow f(x)$.
+\end{Dem}
+
+\begin{Prop}\label{Prop:CerraduraLimiteSucesiones} 
+Sean $M$ un espacio métrico y $A \subseteq M$. Entonces $x \in \overline{A}$ si, y sólo si $x$ es el límite de alguna sucesión en $A$.
+\end{Prop}
+
+\begin{Dem}
+Tomemos $x \in \overline{A}$. Para cada $n \in \N$, tenemos que $V_{\frac{1}{n}}(x)$ es una vecindad abierta de $x$ y por lo tanto $V_{\frac{1}{n}}(x) \cap A \neq \emptyset$. Así que existe algún $x_n \in V_{\frac{1}{n}}(x) \cap A$. Claramente, $(x_n)_{n\in \N}$ es una sucesión en $A$ tal que $x_n \to x$. 
+
+Ahora tomemos $x \in M$ tal que existe $(x_n)_{n\in\N} \subseteq A$ con $x_n \to x$. Sea $U$ una vecindad abierta de $x$. Entonces existe $N \in \N$ tal que $x_n \in U$ si $n \geq N$. En particular, $x_N \in U \cap A \neq \emptyset$ y de esta manera $x \in \ov{A}$. 
 \end{Dem}
 
 \begin{Def}
@@ -1529,33 +1535,33 @@ El caso $p= \infty$ y $q = 1$ es análogo al anterior.
 
 
 \begin{Prop} \label{Prop:DualDeEllePEsElleQ}
-Mostremos que si $1 \leq p < \infty$ y $q$ es su exponente conjugado, entonces $\ell_p$ y $\ell_q^*$ son isométricamente isomorfos y $\ell_1$ es isométricamente isomorfo como espacio normado a un subespacio de $\ell_\infty^*$.  
+Mostremos que si $1 \leq p < \infty$ y $q$ es su exponente conjugado, entonces $\ell_p^*$ y $\ell_q$ son isométricamente isomorfos y $\ell_1$ es isométricamente isomorfo como espacio normado a un subespacio propio de $\ell_\infty^*$.  
 \end{Prop}
 
 \begin{Dem}
-Tomemos $1 \leq p \leq \infty$ y fijemos $x = (x_1, x_2, \ldots) \in \ell_p$. Consideremos la función $Rx: \ell_q \to \K$ definida en $y = (y_1, y_2, \ldots) \in \ell_q$ por
-$$Rx(y) = \sum_{i=1}^\infty x_i y_i.$$
+Tomemos $1 \leq p \leq \infty$ y fijemos $y = (y_1, y_2, \ldots) \in \ell_q$. Consideremos la función $Ry: \ell_p \to \K$ definida en $x = (x_1, x_2, \ldots) \in \ell_p$ por
+$$Ry(x) = \sum_{i=1}^\infty x_i y_i.$$
 
-Notemos que por la desigualdad de Hölder $Rx(y)$ converge y
+Notemos que por la desigualdad de Hölder $Ry(x)$ converge y
 \begin{equation} \label{Eq:HolderRiesz}
-\abs{Rx(y)} = \abs{\sum_{i=1}^\infty x_i y_i} \leq \Norm{x}_p \Norm{y}_q < \infty.
+\abs{Ry(x)} = \abs{\sum_{i=1}^\infty x_i y_i} \leq \Norm{x}_p \Norm{y}_q < \infty.
 \end{equation}
 
-Así que $Rx$ está bien definida. 
+Así que $Ry$ está bien definida. 
 
-Mostremos que $Rx$ es lineal. Así, sean $y = (y_1, y_2, \ldots), z = (z_1, z_2, \ldots) \in \ell_q$ y $\lambda \in \K$. Entonces
-$$Rx(y+\lambda z) = \sum_{i=1}^\infty x_i(y_i + \lambda z_i) = \sum_{i=1}^\infty x_i y_i + \lambda \sum_{i=1}^\infty x_i z_i = Rx(y) + \lambda Rx(z).$$
+Mostremos que $Ry$ es lineal. Así, sean $x = (x_1, x_2, \ldots), z = (z_1, z_2, \ldots) \in \ell_q$ y $\lambda \in \K$. Entonces
+$$Ry(x+\lambda z) = \sum_{i=1}^\infty (x_i + \lambda z_i)y_i = \sum_{i=1}^\infty x_i y_i + \lambda \sum_{i=1}^\infty  z_i y_i = Ry(x) + \lambda Ry(z).$$
 
-Ya que sabemos que $Rx$ es un operador lineal, la desigualdad (\ref{Eq:HolderRiesz}) indica que $Rx$ es acotado, por lo que es continua. Así pues, tenemos definida $Rx \in \ell_q^*$ para cada $x \in \ell_p$. Consideremos entonces la función 
+Ya que sabemos que $Ry$ es un operador lineal, la desigualdad (\ref{Eq:HolderRiesz}) indica que $Ry$ es acotado, por lo que es continua. Así pues, tenemos definida $Ry \in \ell_p^*$ para cada $y \in \ell_q$. Consideremos entonces la función 
 \Ecu{
-R: \ell_p & \to \ell_q^* \\
-x & \mapsto Rx.
+R: \ell_q & \to \ell_p^* \\
+y & \mapsto Ry.
 }
 
-Mostremos que $R$ es lineal. Así, sean $x = (x_1, x_2, \ldots), z = (z_1, z_2, \ldots) \in \ell_p$ y $\lambda \in \K$. Si $y = (y_1, y_2, \ldots) \in \ell_q$ tenemos que 
-$$R(x+ \lambda z)(y) = \sum_{i=1}^\infty (x_i + \lambda z_i)(y_i) = \sum_{i=1}^\infty x_i y_i + \lambda \sum_{i=1}^\infty z_i y_i = Rx(y) + \lambda Rz(y).$$
+Mostremos que $R$ es lineal. Así, sean $y = (y_1, y_2, \ldots), z = (z_1, z_2, \ldots) \in \ell_q$ y $\lambda \in \K$. Si $x = (x_1, x_2, \ldots) \in \ell_p$ tenemos que 
+$$R(y+ \lambda z)(x) = \sum_{i=1}^\infty x_i(y_i + \lambda z_i) = \sum_{i=1}^\infty x_i y_i + \lambda \sum_{i=1}^\infty x_i z_i = Ry(x) + \lambda Rz(x).$$
 
-Así que $R(x+ \lambda z) = Rx + \lambda Rz$ y $R$ es lineal. Si fijamos $x \in \ell_p$, de (\ref{Eq:HolderRiesz}) se sigue que $\Norm{Rx} \leq \Norm{x}_p$. (Pendiente).
+Así que $R(y+ \lambda z) = Ry + \lambda Rz$ y $R$ es lineal. Si fijamos $y \in \ell_q$, de (\ref{Eq:HolderRiesz}) se sigue que $\Norm{Ry} \leq \Norm{y}_q$. (Pendiente).
 
 \end{Dem}
 
@@ -2113,7 +2119,9 @@ Sean $X$ un espacio normado y $B \subseteq X$. Entonces $B$ es acotado como espa
 \end{Lema}
 
 \begin{Dem}
-(Pendiente).
+Supongamos primero que $B$ es acotado como espacio normado. Entonces existe $K > 0$ tal que $\Norm{x} < K$ para todo $x \in B$, es decir, $B \subseteq V_K(0)$. Sea $U$ una vecindad abierta del cero. Entonces existe $r > 0$ tal que $V_r(0) \subseteq U$, de donde $B \subseteq V_K(0) \subseteq \frac{K}{r} U$ y así $B$ es acotado como espacio vectorial topológico.
+
+Ahora supongamos que $B$ es acotado como espacio vectorial topológico. Como $V_1(0)$ es una vecindad abierta del cero, existe $\lambda \neq 0$ tal que $B \subseteq \lambda V_1(0) = V_{\abs{\lambda}}(0)$. Así pues $\Norm{x} < \abs{\lambda}$ para todo $x \in B$ y $B$ es acotado como espacio normado. 
 \end{Dem}
 
 \begin{Prop} \label{Prop:CompactoEsAcotadoEVT}
@@ -2359,7 +2367,7 @@ Como resultado de lo anterior, el espacio $\K^n$ como espacio vectorial topológi
 
 Sean $X$ un espacio vectorial y $Y$ un subespacio. Si $p: X \to \R$ es una seminormas en $X$, entonces sus restricción $\restr{p}{Y}: Y \to \R$ es una seminorma en $Y$. Esto motiva la siguiente proposición.
 
-\begin{Prop}
+\begin{Prop} \label{Prop:SubespacioDeTopologiaGeneradaPorSeminormas}
 Sean $X$ un espacio vectorial y $Y$ un subespacio. Si $\calF$ es una familia no vacía de seminormas en $X$ y $\calG$ sus restricciones a $Y$, entonces $\sigma(Y, \calG)$ y la topología subespacio $\sigma(X, \calF)$ en $Y$ coinciden.
 \end{Prop}
 
@@ -2631,6 +2639,8 @@ Notemos que el primer conjunto es un abierto de $X^*_{\mathrm{w}^*}$ y el segund
 \sigma(X^*, X) \subseteq \sigma(X^*, X^{**}) \subseteq \tau_{\Norm{\cdot}_{X^*}}.
 \end{equation}
 
+Observemos que $X^*$ es un subespacio vectorial de $Y = F(X, \K)$. Además las evaluaciones $\delta^{X^*}_x : X^* \to \K$ son restricciones de las evaluaciones $\delta^Y_x : Y \to \K$. En $Y$ nosotros trabajamos anteriormente con la topología generada por las seminormas $ \calF = \{ \abs{\delta^Y_x} : x \in X \}$. En cuanto a $X^*$ la topología débil* está generada por la familia $\calG = \{ \abs{\delta^{X^*}_x} : x \in X \}$ de seminormas en $Y$ restringidas a $X^*$. Así pues, la proposición~\ref{Prop:SubespacioDeTopologiaGeneradaPorSeminormas} dice que la topología débil* en $X^*$ es precisamente la topología subespacio de $Y$.\\
+
 Si $X$ es un espacio de dimensión infinita, la proposición~\ref{Prop:DualDimensionInfinita} muestra que $X^*$ es de dimensión infinita, por lo que resulta que $B_{X^*}$ no es compacta respecto a la topología original. El siguiente teorema muestra que bajo la topología débil* sí lo es.
 
 
@@ -2647,7 +2657,6 @@ Ahora sea tomemos $(\varphi_\alpha)_{\alpha \in \Lambda}$ una red en $B_{X^*}$ q
 
 Veamos que $\varphi$ es lineal. Tomemos pues $x, y \in X$ y $\lambda \in \K$  y notemos que
 $$\varphi(x+ \lambda y) = \lim_{\alpha_\Lambda} \varphi_\alpha(x+ \lambda y) = \lim_{\alpha_\Lambda} \varphi_\alpha(x)+ \lambda \varphi_\alpha(y) = \lim_{\alpha_\Lambda} \varphi_\alpha(x)+ \lambda  \lim_{\alpha_\Lambda} \varphi_\alpha(y) = \varphi(x) + \lambda \varphi(y). $$
-
 
 Al fijar $x \in X$ notemos que $\abs{\varphi_\alpha(x)} \leq \Norm{x}$. Como el valor absoluto es continuo, se sigue que  $$\abs{ \varphi(x) } = \abs{ \lim_{\alpha \in \Lambda} \varphi_\alpha(x) } = \lim_{\alpha \in \Lambda} \abs{\varphi_\alpha(x)} \leq \Norm{x}.$$
 
@@ -2804,6 +2813,8 @@ Una función $f: \Omega \to X$ es $\mu$-medible si, y sólo si $f$ es escalarmente
 \begin{Dem}
 (Pendiente).
 \end{Dem}
+
+\section{Integral de Bochner}
 
 \begin{Def}
 Sea $f: \Omega \to X$ una función simple de manera que $f(\omega) = \sum_{i=1}^n \chi_{E_i} (\omega) x_i$ para algunos $n \in\N$, $E_1, \ldots, E_n \in \Sigma$ disjuntos y $x_1,\ldots, x_n \in X$. Entonces definimos la \textit{integral de Bochner} de $f$ en $E \in \Sigma$ como 
