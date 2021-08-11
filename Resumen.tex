@@ -776,7 +776,7 @@ Sean $M$ un espacio métrico y $A \subseteq M$ un subespacio. Se cumple que:
 \begin{itemize} \hfill
 \item[\textbf{i)}] Sea $x \in \ov{A}$. La proposición~\ref{Prop:CerraduraLimiteSucesiones} establece que existe una sucesión $(x_n)_{n \in \N} \subseteq A$ tal que $x_n \to x$. Como $(x_n)_{n \in \N}$ es convergente, el lema~\ref{Lema:SucesionConvergenteEsCauchy} indica que $(x_n)_{n \in \N}$ es de Cauchy y al ser $A$ completo, se sigue que la sucesión converge en $A$. Dado que $M$ es Hausdorff, se sigue que $x \in A$ y así $A$ es cerrado. 
 
-\item[\textbf{ii)}] (Pendiente).
+\item[\textbf{ii)}] Sea $(x_n)_{n\in\N}$ un a sucesión de Cauchy en $A$. Como $M$ es completo, $x_n \to x$ para algún $x \in M$. Como $A$ es cerrado, $x \in A$ y entonces $A$ es completo.
 \end{itemize}
 \end{Dem}
 
@@ -789,13 +789,13 @@ Consideremos cualquier bola $V_r(z)$ en un espacio métrico $M$, para algunos $r 
 \end{Ejem}
 
 \begin{Lema} \label{Lema:CaracterizacionConjuntoAcotado}
-Sea $M$ un espacio métrico, $A \subseteq M$ y $x \in M$. Entonces $A$ es acotado si, y sólo si existe $K > 0$ tal que $d(x, y) < K$ para todo $y \in A$.
+Sea $M$ un espacio métrico, $A \subseteq M$ y $x \in M$. Entonces $A$ es acotado si, y sólo si existe $L > 0$ tal que $d(x, y) < L$ para todo $y \in A$.
 \end{Lema}
 
 \begin{Dem}
-Supongamos que $A$ es acotado. Si $A = \emptyset$ entonces con $K = 1$ se cumple que $d(x, y) < K$ para todo $y \in A$. Supongamos que $A \neq \emptyset$ y sea $z \in A$. Como $A$ es acotado, existe $r > 0$ tal que $d(y_1, y_2) < r$ para todos $y_1, y_2 \in A$. Definamos $K = d(x, z) + r > 0$ y sea $y \in A$. Entonces de la desigualdad del triángulo se sigue que $d(x, y) \leq d(x, z) + d(z, y) < K$. 
+Supongamos que $A$ es acotado. Si $A = \emptyset$ entonces con $L = 1$ se cumple que $d(x, y) < L$ para todo $y \in A$. Supongamos que $A \neq \emptyset$ y sea $z \in A$. Como $A$ es acotado, existe $r > 0$ tal que $d(y_1, y_2) < r$ para todos $y_1, y_2 \in A$. Definamos $L = d(x, z) + r > 0$ y sea $y \in A$. Entonces de la desigualdad del triángulo se sigue que $d(x, y) \leq d(x, z) + d(z, y) < L$. 
 
-Ahora supongamos que existe $K > 0$ de tal forma que $d(x, y) < K$ para todo $y \in A$. Consideremos $r = 2K  > 0$ y tomemos $y_1, y_2 \in A$. Por la desigualdad el triángulo, se sigue que $d(y_1, y_2) \leq d(y_1, x) + d(x, y_2) < 2K = r$ y así $A$ es acotado.
+Ahora supongamos que existe $L > 0$ de tal forma que $d(x, y) < L$ para todo $y \in A$. Consideremos $r = 2L  > 0$ y tomemos $y_1, y_2 \in A$. Por la desigualdad el triángulo, se sigue que $d(y_1, y_2) \leq d(y_1, x) + d(x, y_2) < 2L = r$ y así $A$ es acotado.
 \end{Dem}
 
 \begin{Lema} \label{Lema:UnionFinitaDeAcotadosEsAcotado}
@@ -803,7 +803,7 @@ La unión finita de conjuntos acotados en un espacio métrico es acotada.
 \end{Lema}
 
 \begin{Dem}
-Sean $M$ un espacio métrico, $n \in\N$ y $A_1, \ldots, A_n$ conjuntos acotados en $M$. Sea $x \in M$ cualquiera. Luego, para cada $1 \leq i \leq n$ existe $K_i > 0$ tal que $d(x, a) < K_i$ para todo $a \in A_i$. Tomemos $K = \max(K_1, \ldots, K_n)$. Si $a \in \bigcup_{i=1}^n A_i$, entonces existe $i \in \nn{n}$ tal que $a \in A_i$ y $d(x, a) < K_i \leq K$. Por lo tanto $\bigcup_{i=1}^n A_i$ es acotado.
+Sean $M$ un espacio métrico, $n \in\N$ y $A_1, \ldots, A_n$ conjuntos acotados en $M$. Sea $x \in M$ cualquiera. Luego, para cada $1 \leq i \leq n$ existe $L_i > 0$ tal que $d(x, a) < L_i$ para todo $a \in A_i$. Tomemos $L = \max(L_1, \ldots, L_n)$. Si $a \in \bigcup_{i=1}^n A_i$, entonces existe $i \in \nn{n}$ tal que $a \in A_i$ y $d(x, a) < L_i \leq L$. Por lo tanto $\bigcup_{i=1}^n A_i$ es acotado.
 \end{Dem}
 
 Consideremos la colección de intervalos $([n, n+1])_{n \in\N}$. Cada intervalo es acotado y su unión es $[1, \infty)$ el cual no es acotado. Así que si en lugar de una colección finita, tenemos una colección infinita de conjuntos acotados, resulta que la unión de estos no necesariamente es acotada, ni aún siendo contable la colección. 
@@ -2191,7 +2191,7 @@ Sea $(x_\alpha)_{\alpha \in \Lambda}$ una red de Cauchy en $F$. Al ser la funció
 \end{Dem}
 
 \begin{Def}
-Sea $E$ un espacio vectorial topológico. Un conjunto $B \subseteq E$ es \textit{acotado} si para toda vecindad abierta del cero $U$, existe $\lambda \in \K \setminus \{ 0 \}$ tal que $B \subseteq \lambda U$.
+Sea $E$ un espacio vectorial topológico. Un conjunto $B \subseteq E$ es \textit{acotado} si para toda vecindad abierta del cero $U$, existe $\lambda \in \K \setminus \{ 0 \}$ tal que $B \subseteq s U$ para todo $s \geq \lambda$.
 \end{Def}
 
 \begin{Lema}
@@ -2199,7 +2199,7 @@ Sean $X$ un espacio normado y $B \subseteq X$. Entonces $B$ es acotado como espa
 \end{Lema}
 
 \begin{Dem}
-Supongamos primero que $B$ es acotado como espacio normado. Entonces existe $K > 0$ tal que $\Norm{x} < K$ para todo $x \in B$, es decir, $B \subseteq V_K(0)$. Sea $U$ una vecindad abierta del cero. Entonces existe $r > 0$ tal que $V_r(0) \subseteq U$, de donde $B \subseteq V_K(0) \subseteq \frac{K}{r} U$ y así $B$ es acotado como espacio vectorial topológico.
+Supongamos primero que $B$ es acotado como espacio normado. Entonces existe $L > 0$ tal que $\Norm{x} < L$ para todo $x \in B$, es decir, $B \subseteq V_L(0)$. Sea $U$ una vecindad abierta del cero. Entonces existe $r > 0$ tal que $V_r(0) \subseteq U$. Tomemos $\lambda = \frac{L}{r}$ y sea $s \geq \lambda$, de manera que $L \leq rs$ y $B \subseteq V_L(0) \subseteq V_{sr}(0) = sV_r(0) \subseteq sB$. Luego $B$ es acotado como espacio vectorial topológico.
 
 Ahora supongamos que $B$ es acotado como espacio vectorial topológico. Puesto que $V_1(0)$ es una vecindad abierta del cero, existe $\lambda \neq 0$ tal que $B \subseteq \lambda V_1(0) = V_{\abs{\lambda}}(0)$. Así pues $\Norm{x} < \abs{\lambda}$ para todo $x \in B$ y $B$ es acotado como espacio normado. 
 \end{Dem}
@@ -2209,7 +2209,12 @@ Sea $E$ un espacio vectorial topológico. Si $K \subseteq E$ es compacto, entonce
 \end{Prop}
 
 \begin{Dem}
-Supongamos que $K \subseteq E$ es compacto. El corolario~\ref{Cor:HausdorffCompactoEsCerrado} indica que $K$ es cerrado. Tomemos una vecindad abierta del cero $U$. Consideremos las dilataciones $\{ nU \}_{n \in\N}$. Mostremos que es una cubierta de $K$. Sea $x \in K$, al ser $E$ un espacio vectorial topológico, la función $f: \K \to Y, \lambda \mapsto \lambda x$ es continua.  Como $U$ es vecindad abierta del cero, $f^{-1}(U)$ es una vecindad abierta del cero en $\K$. Luego, existe $n \in \N$ tal que $\frac{1}{n} \in f^{-1}(U)$, de donde $f(\frac{1}{n}) = \frac{1}{n} \, x \in U$. Así que $x \in n U$. Así, $\{ nU \}_{n \in\N}$ es una cubierta abierta de $K$. Dado que $K$ es compacto, existen $n_1, \ldots, n_k \in \N$ tales que $\{ n_1 U, \ldots, n_k U \}$ cubre a $K$. Así pues si tomamos $N = \max(n_1, \ldots, n_k)$ tenemos que $K \subseteq N U$ y $K$ es acotado.
+Supongamos que $K \subseteq E$ es compacto. El corolario~\ref{Cor:HausdorffCompactoEsCerrado} indica que $K$ es cerrado. Tomemos una vecindad abierta del cero $U$. Consideremos las dilataciones $\{ nU \}_{n \in\N}$. Mostremos que es una cubierta de $K$. Sea $x \in K$, al ser $E$ un espacio vectorial topológico, la función $f: \K \to Y, \lambda \mapsto \lambda x$ es continua.  Como $U$ es vecindad abierta del cero, $f^{-1}(U)$ es una vecindad abierta del cero en $\K$. Luego, existe $n \in \N$ tal que $\frac{1}{m} \in f^{-1}(U)$ para todo $m \geq n$, de donde $f(\frac{1}{m}) = \frac{1}{m} \, x \in U$. Así que 
+\begin{equation} \label{Eq:CerradoYAcotadoEVT}
+x \in m U \mbox{ si } m \geq n.
+\end{equation}  
+
+Así, $\{ nU \}_{n \in\N}$ es una cubierta abierta de $K$. Dado que $K$ es compacto, existen $n_1, \ldots, n_k \in \N$ tales que $\{ n_1 U, \ldots, n_k U \}$ cubre a $K$. Así pues tomemos $N = \max(n_1, \ldots, n_k)$. Probemos que $K \subseteq N U$. Sea $x \in K$, existe $1 \leq i \leq k$ tal que $x \in n_i U$ y como $n_i \leq N$, de (\ref{Eq:CerradoYAcotadoEVT}) se sigue que $x \in N U$. Luego $K \subseteq NU$ y $K$ es acotado. 
 \end{Dem}
 
 \section[Espacio vectorial topológico generado por una familia de seminormas]{Espacio vectorial topológico generado por una familia de seminormas \sectionmark{Espacio generado por seminormas}}
@@ -2816,7 +2821,7 @@ $$\abs{\sum_{i=1}^n \delta(\varphi_i) b_i } = \abs{\delta\left(\sum_{i=1}^n  b_i
 El lema~\ref{Lema:HellyGeneral} de Helly indica que existe $x \in B_X$ tal que para toda $1 \leq i \leq n$ se cumple que  $\abs{\varphi_i(x) - \delta(\varphi_i)} < \varepsilon$, o bien $\abs{(Jx - \delta)(\varphi_i)} < \varepsilon$. Es decir, $Jx \in J(B_X) \cap U_{\delta, \varphi_1, \ldots, \varphi_n, \varepsilon} \subseteq J(B_X) \cap U$. 
 \end{Dem}
 
-\begin{Tma}
+\begin{Tma} \label{Tma:EquivalenciaReflexivoBolaDebilmenteCompacta}
 Sea $X$  un espacio normado. Entonces  $X$ es reflexivo si y sólo si $B_X$ 
 es $\mathrm{w}$-compacta. 
 \end{Tma}
@@ -2830,11 +2835,11 @@ Se sigue de aquí que $X$ es reflexivo.
 \end{Dem}
 
 \begin{Cor}
-Sea $X$ un espacio normado. Entonces $X$ es reflexivo si, y sólo si $\sigma(X^*, X) = \sigma(X^*, X^{**})$.
+Sea $X$ un espacio normado. Entonces $X$ es reflexivo si, y sólo si $\tau_\mathrm{w} = \tau_{\mathrm{w}^*}$.
 \end{Cor}
 
 \begin{Dem}
-(Pendiente).
+Si $X$ es reflexivo, ya se comentó anteriormente que $\tau_\mathrm{w} = \tau_{\mathrm{w}^*}$. Supongamos entonces que $\tau_\mathrm{w} = \tau_{\mathrm{w}^*}$. El teorema de Banach-Alaoglu indica que $B_{X^*}$ es $\mathrm{w}^*$-compacta y entonces es $\mathrm{w}$-compacta. Por el teorema~\ref{Tma:EquivalenciaReflexivoBolaDebilmenteCompacta} se concluye que $X$ es reflexivo. 
 \end{Dem}
 
 
