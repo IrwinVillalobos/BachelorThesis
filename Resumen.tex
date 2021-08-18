@@ -244,7 +244,15 @@
 
 
 \normalsize
-Aquí va la introducción...
+Opciones para agregar en la introducción:
+
+\begin{itemize}
+\item Hablar sobre la importancia de las topologías débil y débil*.
+\item Hablar sobre la importancia del análisis funcional.
+\item Hacer un resumen capítulo por capítulo enlistando los principales resultados y posiblemente agregar las citas de las fuentes. Aunque creo que esto pertenece más bien a un prefacio en lugar de introducción.
+\end{itemize}
+
+
 
 \mainmatter
 
@@ -326,6 +334,12 @@ Por lo tanto $\mathcal{I}$ es una base de $\R$. La topología que genera $\mathca
 \begin{Def}
 Sea $X$ un espacio topológico. Dado $A$ un subconjunto de $X$, su \textit{cerradura} es el conjunto $\ov{A} \subseteq X$ de puntos $x \in X$ que cumplen que para toda vecindad abierta $U$ de $x$ se satisface que $U \cap A \neq \emptyset$.
 \end{Def}
+
+\begin{Ejem} \label{Ejem:SupremoEnCerradura}
+Consideremos $A \subseteq \R$ no vacío y acotado. El axioma del supremo indica que existe una mínima cota superior $ \alpha  := \sup A$ de $A$. Demostremos que $\sup A \in \ov{A}$. 
+
+Sea $U$ una vecindad abierta de $\alpha$. Entonces existe $\varepsilon > 0$ tal que $(\alpha - \varepsilon, \alpha] \subseteq U$. Por propiedades del supremos existe $a \in A \cap (\alpha - \varepsilon, \alpha] \subseteq A \cap U$. Así que $A \cap U \neq \emptyset$ y $\alpha \in \ov{A}$.
+\end{Ejem}
 
 \begin{Prop}
 Sean $X$ un espacio topológico y $A \subseteq X$. Entonces: 
@@ -517,7 +531,14 @@ Sean $X$ un espacio topológico y $K \subseteq X$. Entonces $K$ es compacto respe
 \end{Prop}
 
 \begin{Dem}
-(Pendiente).
+Supongamos primero que $K$ es compacto respecto a $X$. Sea $\{ U_\alpha \cap K\}_{\alpha \in \Lambda}$ una cubierta abierta de $K$ en la topologia subespacio, de manera que $U_\alpha$ es un abierto en $X$ para toda $\alpha \in \Lambda$. Entonces 
+$$K \subseteq \bigcup_{\alpha \in \Lambda} (U_\alpha \cap K) = K \cap \left( \bigcup_{\alpha \in \Lambda} U_\alpha \right) \subseteq \bigcup_{\alpha \in \Lambda} U_\alpha. $$
+
+Así que $\{ U_\alpha \}_{\alpha \in \Lambda}$ es una cubierta abierta de $K$ en $X$. Como $K$ es compacto, existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ tales que $K \subseteq \bigcup_{i=1}^n U_{\alpha_i}$, de donde
+$$K \subseteq K \cap \left( \bigcup_{i=1}^n U_{\alpha_i} \right) = \bigcup_{i=1}^n (U_{\alpha_i} \cap K).$$
+Por lo tanto $K$ es compacto con la topología subespacio en $K$.
+
+Ahora supongamos que $K$ es compacto con la topología subespacio en $K$. Dado que la inclusión $i: K \to X$ es continua si consideramos en $K$ la topología subespacio, entonces $i$ preserva compactos, por lo que $K = i(K)$ es compacto en $X$. 
 \end{Dem}
 
 \begin{Lema} \label{Lema:PuntoAcumulacionDeComplementoFinito}
@@ -712,8 +733,18 @@ Sean $(M, d)$ un espacio métrico, $\emptyset \neq A \subseteq M$ y $d_A$ la métr
 \end{Prop}
 
 \begin{Dem}
-(Pendiente).
+Sean $\tau_{d_A}$ la topología inducida por $d_A$ y $\tau_A$ la topología subespacio de $A$ en $M$.
+
+Tomemos $r > 0$ y $x \in A$. Entonces la bola abierta en $A$ de radio $r$ y centro $x$ es 
+$$V^A_r(x) = \{ y \in A : d_A(x, y) < r \} = \{ y \in A : d(x, y) < r \} = A \cap V_r(x).$$
+Así que todo básico en $\tau_{d_A}$ es abierto en $\tau_A$, por lo que $\tau_{d_A} \subseteq \tau_A$.
+
+Tomemos ahora $V_r(x) \cap A$ un básico de $\tau_A$ para algunos $r > 0$ y $x \in M$. Sea $y \in V_r(x) \cap A$. Por ser $V_r(x)$ abierto en $M$ entonces existe $r_y > 0$ tal que $V_{r_y}(y) \subseteq V_r(x)$, de forma que $V_{r_y}(y) \cap A \subseteq V_r(x) \cap A$ y 
+$$V_r(x) \cap A = \bigcup_{y \in V_r(x) \cap A} V^A_{r_y}(y).$$
+
+Luego, $V_r(x)\cap A$ es unión de abiertos en $\tau_{d_A}$ y por tanto es abierto en $\tau_{d_A}$.      
 \end{Dem}
+
 
 En un espacio métrico podemos caracterizar la convergencia de las sucesiones usando directamente la métrica, como lo expresa la siguiente proposición.
 
@@ -739,8 +770,6 @@ Todo espacio métrico es Hausdorff.
 Sea $M$ un espacio métrico y $x, y \in M$ con $x \neq y$. Entonces $r: = \frac{d(x, y)}{2} > 0$. Tomemos $U := V_r(x)$ y $V:= V_r(y)$, de forma que $x \in U$ y $y \in V$. Además, si existe $z \in U \Cap V$, entonces $$d(x, y) \leq d(x, z) + d(y, z) < r + r = d(x, y),$$ lo cual es una contradicción y así $U \cap V = \emptyset$ y $M$ es Hausdorff.
 \end{Dem}
 
-
-
 \section{Completez}
 
 \begin{Def}
@@ -754,7 +783,6 @@ Sea $M$ un espacio métrico. Si una sucesión en $M$ es convergente, entonces es d
 \begin{Dem}
 Consideremos una sucesión $(x_n)_{n\in\N}$ en $M$ tal que converge a $x \in M$.  Sea $\varepsilon > 0$. Como $x_n \to x$, existe $N \in\N$ tal que $d(x, x_n)  < \frac{\varepsilon}{2}$ si $n \geq N$. Luego, si $n, m \geq N$, entonces $d(x_n, x_m) \leq d(x_n, x) + d(x, x_m) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$. 
 \end{Dem}
-
 
 \begin{Lema} \label{Lema:SucesionCauchyConSubsucesionConvergenteConverge}
 Sea $M$ un espacio métrico. Si $(x_n)_{n \in\N}$ es una sucesión de Cauchy en $M$ y tiene una subsucesión que converge a $x \in M$, entonces $(x_n)_{n\in\N}$ converge a $x$.
@@ -962,11 +990,13 @@ Es decir, $V_{2^{-N}}(x_N) \subseteq V_r(x) \subseteq U_{\alpha_0}$. De donde $V
 A la propiedad \textbf{ii)} en el teorema anterior se le denomina \textit{compacidad por sucesiones}.
 
 \begin{Prop} \label{Prop:CaracterizacionFuncionContinuaEnCompacto}
-Sea $M$ un espacio métrico y $K \subseteq M$. Entonces $K$ es compacto si, y sólo si toda función $f: K \to \R$ tiene un valor máximo.  
+Sea $M$ un espacio métrico y $\emptyset \neq K \subseteq M$. Entonces $K$ es compacto si, y sólo si toda función continua $f: K \to \R$ tiene un valor máximo.  
 \end{Prop}
 
 \begin{Dem}
-(Pendiente).
+Supongamos primero que $K$ es compacto y sea $f: K \to \R$ una función continua. Por la proposición~\ref{Prop:FuncionContinuaPreservaCompactos} se sigue que $f(K)$ es compacto. Luego, el teorema~\ref{Tma:HeineBorelGeneral} afirma que $f(K)$ es cerrado y acotado en $\R$. Como $f(K)$ es acotado y no vacío, el axioma del supremo indica que existe $\sup f(K) \in \R$. El ejemplo~\ref{Ejem:SupremoEnCerradura} indica que $\sup f(K) \in \ov{f(K)}$, pero como $f(K)$ es cerrado, se sigue que $\sup f(K) \in f(K)$. Así que existe $x \in K$ tal que $f(x) = \sup f(K)$. Entonces $f(x)$ es un valor máximo de $f$.
+
+Ahora supongamos que toda función continua $f: K \to \R$ tiene una valor máximo. (Pendiente)   
 \end{Dem}
 
 
@@ -1562,7 +1592,7 @@ Si $\K = \R$, ya quedó demostrado en el lema anterior. Así que supongamos $\K = 
 (Pendiente).
 \end{Dem}
 
-\subsection{$(\ell_p^n)^*$ y $\ell_p^*$ , $1 \leq p \leq \infty$}
+\section{Ejemplos: $(\ell_p^n)^*$ y $\ell_p^*$ , $1 \leq p \leq \infty$}
 
 \begin{Def}
 Si $1 \leq p \leq \infty$, al único elemento $1 \leq q \leq \infty$ tal que $\frac{1}{p} + \frac{1}{q} = 1$, donde $\frac{1}{\infty} = 0$, se le llama \textit{exponente conjugado} de $p$. 
@@ -2478,7 +2508,10 @@ Sea $X$ un espacio vectorial y $\calF$ una familia no vacía de seminormas que se
 \end{Lema}
 
 \begin{Dem}
-(Pendiente).
+Supongamos primero que $B$ es acotado y sea $p \in \calF$. Entonces $U := U_{0, p, 1} = \{ x \in X : p(x) < 1 \}$ es una vecindad abierta del $0$. Entonces existe $\lambda > 0$ tal que $B \subseteq s U$ para todo $s \geq \lambda$. Así pues, en particular $B \subseteq \lambda U$. Luego
+$$p(B) \subseteq p(\lambda U) = \lambda p(U) \subseteq \lambda [0, 1) = [0 , \lambda).$$
+
+Ahora supongamos que $p(B)$ es un conjunto acotado para toda $p \ in \calF$. Sea $U := U_{0, p_1, \ldots, p_k, \varepsilon}$ una vecindad abierta del cero, para algunos $k \in \N$, $p_1, \ldots, p_k \in \calF$ y $\varepsilon > 0$. Para cada $1 \leq i \leq k$ se tiene que $p_i(B)$ es acotado y por lo tanto $B$ existe $L_i > 0$ tal que $p_i(B)$ está acotado por $L_i$. Al tomar $\lambda = \frac{1}{\varepsilon}\max (L_1, \ldots, L_k) > 0$ se sigue que si $s \geq \lambda$, entonces para $x \in B$, $ p_i(x) \leq L_i \leq s\varepsilon $ para toda $i \in \nn{k}$. Así que $p(s^{-1}x) = s^{-1} p_i(x) < \varepsilon$. Luego, $s^{-1} x \in U$ y $x \in sU$. Entonces $B \subseteq sU.$ y $B$ es acotado.
 \end{Dem}
 
 \section[El espacio vectorial topológico $F(A, \K)$]{El espacio vectorial topológico $F(A, \K)$ \sectionmark{El espacio $F(A, \K)$}}
@@ -2747,16 +2780,18 @@ Notemos que el primer conjunto es un abierto de $X^*_{\mathrm{w}^*}$ y el segund
 \end{equation}
 
 \begin{Prop}
-Sea $X$ un espacio normado, entonces $(X^*_{\mathrm{w}^*})^*$ y $X$ son isomorfos como espacios vectoriales. (¿Mejor decir que $(X^*_{\mathrm{w}^*})^* = X^{**}$ ?)
+Sea $X$ un espacio normado, entonces $X^{**} = (X^*_{\mathrm{w}^*})^* $.
 \end{Prop}
 
 \begin{Dem}
-(Pendiente).
+La contención~\ref{Eq:RelacionTopologias} indica que $\sigma(X^*, X) \subseteq \tau_{\Norm{\cdot}_{X^*}}$. Por lo que todo funcional lineal y continuo con la topología $\sigma(X^*, X)$ también será continuo con la topología $\tau_{\Norm{\cdot}_{X^*}}$. Es decir, ${X_\mathrm{w}}^* \subseteq X^*$.
+
+¿Para la otra contención no se ocupa que $X$ sea reflexivo?
 \end{Dem}
 
 Observemos que $X^*$ es un subespacio vectorial de $F(X, \K)$. Además las evaluaciones $\delta^{X^*}_x : X^* \to \K$ son restricciones de las evaluaciones $\delta_x : F(X, \K) \to \K$. Por otra parte, la topología en $F(X, \K)$ es la generada por las seminormas $ \calF = \{ \abs{\delta_x} : x \in X \}$. En cuanto a $X^*$, su topología débil* está generada por la familia $\calG = \{ \abs{\delta^{X^*}_x} : x \in X \}$ de seminormas en $F(X, \K)$ restringidas a $X^*$. Entonces la proposición~\ref{Prop:SubespacioDeTopologiaGeneradaPorSeminormas} dice que la topología débil* en $X^*$ es precisamente la topología subespacio de $F(X, \K)$.
 
-Como la inclusión de un subespacio con la topología subespacio en el espacio original es continua, se sigue que la inclusión de $X^*$ en $F(X, \K)$ es continua.\\
+Como la inclusión de un subespacio con la topología subespacio en el espacio original es continua, se sigue que la inclusión de $X_{\mathrm{w}^*}^*$ en $F(X, \K)$ es continua. Por la contención~(\ref{Eq:RelacionTopologias}) la identificación $Id: X^* \to X_{\mathrm{w}^*}^*$ es continua y por lo tanto la inclusión de $X^*$ con la norma en $F(X, \K)$ también es continua. \\
 
 Si $X$ es un espacio de dimensión infinita, la proposición~\ref{Prop:DualDimensionInfinita} muestra que $X^*$ es de dimensión infinita, por lo que resulta que $B_{X^*}$ no es compacta respecto a la topología original. El siguiente teorema muestra que bajo la topología débil* sí lo es.
 
@@ -2803,6 +2838,14 @@ Sea $X$ un espacio normado de dimensión finita. Al final de la demostración de l
 \end{Dem}
 
 Si $X$ es un espacio reflexivo, entonces la ecuación~(\ref{Eq:IgualdadBasicos}) indica que las bases de la topología débil* y la topología débil de $X^*$ coinciden, por lo que se cumple la igualdad en~(\ref{Eq:RelacionTopologias}).
+
+\begin{Prop} \label{Prop:EquivalenciaEspacioDualReflexivo}
+Sea $X$ un espacio de Banach. Entonces $X$ es reflexivo si y sólo si $X^*$ es reflexivo.
+\end{Prop}
+
+\begin{Dem}
+(Pendiente).
+\end{Dem}
 
 \begin{Ejem}
 El espacio $\ell_p$ es reflexivo para $1 < p < \infty$ y no es reflexivo para  $p = 1$ ó $p = \infty$.
@@ -2861,7 +2904,7 @@ Sea $X$ un espacio normado. Entonces $X$ es reflexivo si, y sólo si $\sigma(X^*,
 \end{Cor}
 
 \begin{Dem}
-Si $X$ es reflexivo, ya se comentó que $\sigma(X^*, X) = \sigma(X^*, X^{**})$. Supongamos ahora que $\sigma(X^*, X) = \sigma(X^*, X^{**})$. El teorema de Banach-Alaoglu indica que $B_{X^*}$ es $\mathrm{w}^*$-compacta y entonces es $\mathrm{w}$-compacta. Por el teorema~\ref{Tma:EquivalenciaReflexivoBolaDebilmenteCompacta} se concluye que $X$ es reflexivo.  ????
+Si $X$ es reflexivo, ya se comentó que $\sigma(X^*, X) = \sigma(X^*, X^{**})$. Supongamos ahora que $\sigma(X^*, X) = \sigma(X^*, X^{**})$. El teorema de Banach-Alaoglu indica que $B_{X^*}$ es $\mathrm{w}^*$-compacta y entonces es $\mathrm{w}$-compacta. Por el teorema~\ref{Tma:EquivalenciaReflexivoBolaDebilmenteCompacta} se sigue que $X^*$ es reflexivo y por lo tanto, de la proposición~\ref{Prop:EquivalenciaEspacioDualReflexivo} se concluye que $X$ es reflexivo.
 \end{Dem}
 
 
