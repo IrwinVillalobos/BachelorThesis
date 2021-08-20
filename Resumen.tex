@@ -336,9 +336,9 @@ Sea $X$ un espacio topológico. Dado $A$ un subconjunto de $X$, su \textit{cerrad
 \end{Def}
 
 \begin{Ejem} \label{Ejem:SupremoEnCerradura}
-Consideremos $A \subseteq \R$ no vacío y acotado. El axioma del supremo indica que existe una mínima cota superior $ \alpha  := \sup A$ de $A$. Demostremos que $\sup A \in \ov{A}$. 
+Consideremos $A \subseteq \R$ no vacío y acotado. El axioma del supremo indica que existe una mínima cota superior $ a  := \sup A$ de $A$. Demostremos que $\sup A \in \ov{A}$. 
 
-Sea $U$ una vecindad abierta de $\alpha$. Entonces existe $\varepsilon > 0$ tal que $(\alpha - \varepsilon, \alpha] \subseteq U$. Por propiedades del supremos existe $a \in A \cap (\alpha - \varepsilon, \alpha] \subseteq A \cap U$. Así que $A \cap U \neq \emptyset$ y $\alpha \in \ov{A}$.
+Sea $U$ una vecindad abierta de $a$. Entonces existe $\varepsilon > 0$ tal que $(a - \varepsilon, a] \subseteq U$. Por propiedades del supremo existe $x \in A \cap (a - \varepsilon, a] \subseteq A \cap U$. Así que $A \cap U \neq \emptyset$ y se sigue que $a \in \ov{A}$.
 \end{Ejem}
 
 \begin{Prop}
@@ -463,14 +463,14 @@ Además, la inclusión $i: Y \to X, y \mapsto y$ es continua, pues dado $U \in \ta
 Sea $X$ un espacio topológico. Consideremos un conjunto no-vacío $Y \subseteq X$ y en $Y$ tomemos la topología subespacio. Fijemos $A \subseteq Y$.  Entonces, dada cualquier propiedad topológica, podemos preguntarnos si el tenerla respecto de $Y$ implica que la tiene respecto de $X$ o viceversa. El siguiente ejemplo muestra que puede no ser así.
 
 \begin{Ejem}
-Tomemos el espacio topológico $X = \R$. En este consideremos $Y = [0,1]$. Observemos que el intervalo $A = (\frac{1}{2}, 1]$ es abierto en $Y$, mientras que no lo es en $X$. 
+Tomemos el espacio topológico $X = \R$ y en este consideremos $Y = [0,1] \subseteq \R$. Observemos que el intervalo $A = (\frac{1}{2}, 1] = (\frac{1}{2}, \frac{3}{2}) \cap [0, 1]$ es abierto en $Y$, mientras que no lo es en $X$. 
 
 Este es un ejemplo de una propiedad topológica que $A$ cumple respecto a $Y$ pero que no cumple respecto a $X$. ¿Quiere que además agregue un ejemplo de una propiedad topológica que $A$ cumpla respecto a $X$ pero no respecto a $Y$?
 \end{Ejem}
 
 \section{Compacidad}
 
-La compacidad es una propiedad muy importante que puede tener un subconjunto de un espacio topológico. Por ejemplo, una función continua cuyo dominio es un conjunto compacto tiene propiedades relevantes, como se puede apreciar en la proposición~\ref{Prop:FuncionContinuaPreservaCompactos} y más adelante en la proposición~\ref{Prop:CaracterizacionFuncionContinuaEnCompacto} del capítulo siguiente.
+La compacidad es una propiedad muy importante que puede tener un subconjunto de un espacio topológico. Por ejemplo, una función continua cuyo dominio es un conjunto compacto tiene propiedades relevantes, como se puede apreciar en la proposición~\ref{Prop:FuncionContinuaPreservaCompactos} y en la proposición~\ref{Prop:CaracterizacionFuncionContinuaEnCompacto} del capítulo siguiente.
 
 \begin{Def}
 Un subconjunto $K$ de un espacio topológico $X$ es \textit{compacto} si para cualquier colección $\{ U_\alpha \}_{\alpha \in \Lambda}$ de abiertos tales que $$K \subseteq \bigcup_{\alpha \in \Lambda} U_\alpha$$ existen $n \in \N$ y $\alpha_1, \ldots, \alpha_n \in \Lambda$ tales que $$K \subseteq \bigcup_{i=1}^n U_{\alpha_i}.$$
@@ -538,7 +538,7 @@ Así que $\{ U_\alpha \}_{\alpha \in \Lambda}$ es una cubierta abierta de $K$ en 
 $$K \subseteq K \cap \left( \bigcup_{i=1}^n U_{\alpha_i} \right) = \bigcup_{i=1}^n (U_{\alpha_i} \cap K).$$
 Por lo tanto $K$ es compacto con la topología subespacio en $K$.
 
-Ahora supongamos que $K$ es compacto con la topología subespacio en $K$. Dado que la inclusión $i: K \to X$ es continua si consideramos en $K$ la topología subespacio, entonces $i$ preserva compactos, por lo que $K = i(K)$ es compacto en $X$. 
+Ahora supongamos que $K$ es compacto con la topología subespacio en $K$. Puesto que la inclusión $i: K \to X$ es continua, preserva compactos, por lo que $K = i(K)$ es compacto en $X$. 
 \end{Dem}
 
 \begin{Lema} \label{Lema:PuntoAcumulacionDeComplementoFinito}
@@ -729,7 +729,7 @@ d_A : A \times A &\to [0, \infty)\\
 De esta forma $d_A$ resulta ser una métrica en $A$ y se le denomina la métrica \textit{inducida} por $d$ en $A$. La siguiente proposición indica que la topología que induce $d_A$ en $A$ coincide con la topología subespacio de $A$ en $M$.
 
 \begin{Prop}
-Sean $(M, d)$ un espacio métrico, $\emptyset \neq A \subseteq M$ y $d_A$ la métrica inducida por $d$ en $A$. Entonces la topología inducida por $d_A$ y la topología subespacio de $A$ coinciden.  
+Sean $(M, d)$ un espacio métrico y $\emptyset \neq A \subseteq M$. Entonces la topología inducida por $d_A$ y la topología subespacio de $A$ coinciden.  
 \end{Prop}
 
 \begin{Dem}
@@ -768,6 +768,18 @@ Todo espacio métrico es Hausdorff.
 
 \begin{Dem}
 Sea $M$ un espacio métrico y $x, y \in M$ con $x \neq y$. Entonces $r: = \frac{d(x, y)}{2} > 0$. Tomemos $U := V_r(x)$ y $V:= V_r(y)$, de forma que $x \in U$ y $y \in V$. Además, si existe $z \in U \Cap V$, entonces $$d(x, y) \leq d(x, z) + d(y, z) < r + r = d(x, y),$$ lo cual es una contradicción y así $U \cap V = \emptyset$ y $M$ es Hausdorff.
+\end{Dem}
+
+\begin{Def}
+Sea $M$ un espacio métrico. La \textit{distancia} de $x \in M$ a $A \subseteq M$ es $$d(x, A) := \inf \{ d(x,y) : y \in A \},$$ donde $\inf  \emptyset = \infty.$
+\end{Def}
+
+\begin{Lema} \label{Lema:DistanciaPositivaEnCerrados} 
+Sean $M$ un espacio métrico y $A \subseteq M$ un conjunto cerrado. Si $x \in M \setminus A$, entonces $d(x, A) > 0$. 
+\end{Lema}
+
+\begin{Dem}
+Se demostrará por contrapositiva. Supongamos que $d(x, A) = 0$. Tomemos un abierto $U$ que incluya a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$, por lo que $U \cap A \neq \emptyset$. Así que $x \in \ov{A}$. Ya que $A$ es cerrado, entonces  $x \in A$.
 \end{Dem}
 
 \section{Completez}
@@ -844,7 +856,7 @@ La unión finita de conjuntos acotados en un espacio métrico es acotada.
 Sean $M$ un espacio métrico, $n \in\N$ y $A_1, \ldots, A_n$ conjuntos acotados en $M$. Sea $x \in M$ cualquiera. Luego, para cada $1 \leq i \leq n$ existe $L_i > 0$ tal que $d(x, a) < L_i$ para todo $a \in A_i$. Tomemos $L = \max(L_1, \ldots, L_n)$. Si $a \in \bigcup_{i=1}^n A_i$, entonces existe $i \in \nn{n}$ tal que $a \in A_i$ y $d(x, a) < L_i \leq L$. Por lo tanto $\bigcup_{i=1}^n A_i$ es acotado.
 \end{Dem}
 
-Consideremos la colección de intervalos $([n, n+1])_{n \in\N}$. Cada intervalo es acotado y su unión es $[1, \infty)$, el cual no es acotado. Así que si en lugar de una colección contable, tenemos una colección infinita de conjuntos acotados, resulta que su unión no necesariamente es acotada.
+Consideremos la colección de intervalos $([n, n+1])_{n \in\N}$. Cada intervalo es acotado y su unión es $[1, \infty)$, el cual no es acotado. Así que si en lugar de una colección finita, tenemos una colección contable de conjuntos acotados, su unión no necesariamente es acotada.
 
 \begin{Lema} \label{Lema:SucesionesDeCauchySonAcotadas}
 Sean $M$ un espacio métrico y $(x_n)_{n \in\N}$ una sucesión en $M$. Si $(x_n)_{n\in\N}$ es de Cauchy, entonces $\{ x_n : n \in \N \}$ es un conjunto acotado.
@@ -856,17 +868,6 @@ Tomemos $\varepsilon = 1$. Así, existe $N \in \N$ tal que si $n, m \geq N$, ento
 Definamos $L = \max(1, d(x_1, x_N), d(x_2, x_N), \ldots, d(x_{N-1}, x_N)) > 0$. De esta manera es claro que $d(x_n, x_N) \leq L$ para toda $n \in\N$ y del lema~\ref{Lema:CaracterizacionConjuntoAcotado} se sigue que $\{ x_n : n \in \N \}$ es acotado.
 \end{Dem}
 
-\begin{Def}
-Sea $M$ un espacio métrico. La \textit{distancia} de $x \in M$ a $A \subseteq M$ es $$d(x, A) := \inf \{ d(x,y) : y \in A \},$$ donde $\inf  \emptyset = \infty.$
-\end{Def}
-
-\begin{Lema} \label{Lema:DistanciaPositivaEnCerrados} 
-Sean $M$ un espacio métrico y $A \subseteq M$ un conjunto cerrado. Si $x \in M \setminus A$, entonces $d(x, A) > 0$. 
-\end{Lema}
-
-\begin{Dem}
-Se demostrará por contrapositiva. Supongamos que $d(x, A) = 0$. Tomemos un abierto $U$ que incluya a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$, por lo que $U \cap A \neq \emptyset$. Así que $x \in \ov{A}$. Ya que $A$ es cerrado, entonces  $x \in A$.
-\end{Dem}
 
 \section{Continuidad por sucesiones}
 
@@ -990,7 +991,7 @@ Es decir, $V_{2^{-N}}(x_N) \subseteq V_r(x) \subseteq U_{\alpha_0}$. De donde $V
 A la propiedad \textbf{ii)} en el teorema anterior se le denomina \textit{compacidad por sucesiones}.
 
 \begin{Prop} \label{Prop:CaracterizacionFuncionContinuaEnCompacto}
-Sea $M$ un espacio métrico y $\emptyset \neq K \subseteq M$. Entonces $K$ es compacto si, y sólo si toda función continua $f: K \to \R$ tiene un valor máximo.  
+Sean $M$ un espacio métrico y $\emptyset \neq K \subseteq M$. Entonces $K$ es compacto si, y sólo si toda función continua $f: K \to \R$ tiene un valor máximo.  
 \end{Prop}
 
 \begin{Dem}
@@ -998,6 +999,9 @@ Supongamos primero que $K$ es compacto y sea $f: K \to \R$ una función continua.
 
 Ahora supongamos que toda función continua $f: K \to \R$ tiene una valor máximo. (Pendiente)   
 \end{Dem}
+
+
+
 
 
 \chapter{Espacios normados}
@@ -2073,6 +2077,8 @@ Sea $A$ un conjunto no vacío y consideremos el espacio producto $F(A,\K)$. Tomem
 
 
 
+
+
 \chapter{Espacios vectoriales topológicos}
 
 La relación entre la estructura algebraica y la topología de un espacio normado no es propia de estos espacios. En este capítulo introduciremos los espacios vectoriales topológicos que son los que mantienen este vínculo entre álgebra y topología y que precisamente son la generalización de los espacios normados.
@@ -2178,13 +2184,13 @@ Como $f$ y $g$ son continuas, el corolario~\ref{Cor:ContinuidadPorComponentes} i
 Ahora, al ser $h$ y $f$ funciones continuas, tenemos que $h \times f: X \to \K \times E$ es continua. Como el producto por escalares $\BD: \K \times E \to E$ es una función continua, se sigue entonces que $h \BD f = \BD \circ (h \times f): X \to E$ es continua. 
 \end{Dem}
 
-En espacios topológicos, no existe un concepto similar al de una sucesión de Cauchy. Sin embargo, en un espacio vectorial topológico se puede definir un concepto análogo al de sucesión de Cauchy, y se puede generalizar incluso a redes como lo muestra la siguiente definición.
+En espacios topológicos no existe un concepto similar al de una sucesión de Cauchy en espacios métricos. Sin embargo, en un espacio vectorial topológico sí se puede definir y se puede generalizar incluso a redes como se muestra en la siguiente definición.
 
 \begin{Def}
 Sea $E$ un espacio vectorial topológico. Una \textit{red de Cauchy} en $E$ es una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq E$ tal que para toda vecindad abierta $U$ del cero existe $\alpha \in \Lambda$ tal que $x_{\alpha_1} - x_{\alpha_2} \in U$ siempre que $\alpha_1, \alpha_2 \geq \alpha$. 
 \end{Def}
 
-Entonces resulta de interés saber si esta definición satisface algunas propiedades que las sucesiones de Cauchy en espacios métricos sí cumplen.  Así lo muestran los siguientes resultados.
+Resulta ahora de interés saber si esta definición satisface algunas propiedades que las sucesiones de Cauchy en espacios métricos sí cumplen.  Así lo muestran los siguientes resultados.
 
 \begin{Lema} \label{Lema:RedConvergenteEsCauchy}
 Sea $E$ un espacio vectorial topológico. Si una red en $E$ es convergente, entonces es de Cauchy.
@@ -2205,7 +2211,7 @@ Al tomar $\alpha \in \Lambda$ con $\alpha \geq \beta_1$ y $\alpha \geq \beta_2$,
 $$x_{\alpha_1} - x_{\alpha_2} = (x_{\alpha_1} - x)+ (x -x_{\alpha_2}) \in V + V \subseteq U.$$
 \end{Dem}
 
-Por otro lado, en cualquier espacio vectorial topológico no se cumple que toda red de Cauchy sea convergente. Es por esto que tenemos la siguiente definición.
+Por otro lado, en cualquier espacio vectorial topológico no se cumple que toda red de Cauchy sea convergente. Es por esto que, en correspondencia con lo que conocemos en espacios métricos, tenemos la siguiente definición.
 
 \begin{Def}
 Un espacio vectorial topológico $E$ es \textit{completo} si toda red de Cauchy en $E$ converge.
@@ -2316,7 +2322,7 @@ Sea $\mathcal{T}$ la colección de topologías de un espacio vectorial $X$ en las 
 \begin{Def} Sea $\mathcal{F}$ una familia no vacía de seminormas en $X$. La \textit{topología} inducida por $\mathcal{F}$ en $X$ es $$\displaystyle\sigma(X, \mathcal{F}) : = \bigcap_{\tau \in \mathcal{T}} \tau.$$
 \end{Def}
 
-La siguiente proposición propone una base de la topología $\sigma(X, \mathcal{F})$. 
+La siguiente proposición proporciona una base de la topología $\sigma(X, \mathcal{F})$. 
 
 \begin{Prop} \label{Prop:BaseTopologiaDebilSeminormas}
 Sea $\mathcal{F}$ una familia no vacía de seminormas en un espacio vectorial $X$. La familia de conjuntos
@@ -2504,14 +2510,14 @@ Por la desigualdad del triángulo $\Norm{x_\gamma - x} < \frac{1}{N}$ y así $x_\g
 Como resultado de lo anterior, el espacio $\K^n$ como espacio vectorial topológico es completo. 
 
 \begin{Lema}
-Sea $X$ un espacio vectorial y $\calF$ una familia no vacía de seminormas que separa puntos en $X$. Entonces $B \subseteq X$ es acotado como espacio vectorial topológico si, y sólo si $p(B)$ es un conjunto acotado en $\R$ para toda $p \in \calF$.
+Sea $X$ un espacio vectorial con la topología generada por una familia no vacía de seminormas $\calF$ que separa puntos en $X$. Entonces $B \subseteq X$ es acotado si, y sólo si $p(B)$ es un conjunto acotado en $\R$ para toda $p \in \calF$.
 \end{Lema}
 
 \begin{Dem}
-Supongamos primero que $B$ es acotado y sea $p \in \calF$. Entonces $U := U_{0, p, 1} = \{ x \in X : p(x) < 1 \}$ es una vecindad abierta del $0$. Entonces existe $\lambda > 0$ tal que $B \subseteq s U$ para todo $s \geq \lambda$. Así pues, en particular $B \subseteq \lambda U$. Luego
+Supongamos primero que $B$ es acotado y sea $p \in \calF$. Entonces $U := U_{0, p, 1} = \{ x \in X : p(x) < 1 \}$ es una vecindad abierta del $0$. Entonces existe $\lambda > 0$ tal que $B \subseteq \lambda U$. Luego
 $$p(B) \subseteq p(\lambda U) = \lambda p(U) \subseteq \lambda [0, 1) = [0 , \lambda).$$
 
-Ahora supongamos que $p(B)$ es un conjunto acotado para toda $p \ in \calF$. Sea $U := U_{0, p_1, \ldots, p_k, \varepsilon}$ una vecindad abierta del cero, para algunos $k \in \N$, $p_1, \ldots, p_k \in \calF$ y $\varepsilon > 0$. Para cada $1 \leq i \leq k$ se tiene que $p_i(B)$ es acotado y por lo tanto $B$ existe $L_i > 0$ tal que $p_i(B)$ está acotado por $L_i$. Al tomar $\lambda = \frac{1}{\varepsilon}\max (L_1, \ldots, L_k) > 0$ se sigue que si $s \geq \lambda$, entonces para $x \in B$, $ p_i(x) \leq L_i \leq s\varepsilon $ para toda $i \in \nn{k}$. Así que $p(s^{-1}x) = s^{-1} p_i(x) < \varepsilon$. Luego, $s^{-1} x \in U$ y $x \in sU$. Entonces $B \subseteq sU.$ y $B$ es acotado.
+Ahora supongamos que $p(B)$ es un conjunto acotado para toda $p \in \calF$. Sea $U := U_{0, p_1, \ldots, p_k, \varepsilon}$ una vecindad abierta del cero, para algunos $k \in \N$, $p_1, \ldots, p_k \in \calF$ y $\varepsilon > 0$. Para cada $1 \leq i \leq k$ se tiene que $p_i(B)$ es acotado y por lo tanto $B$ existe $L_i > 0$ tal que $p_i(B)$ está acotado por $L_i$. Al tomar $\lambda = \frac{1}{\varepsilon}\max (L_1, \ldots, L_k) > 0$ se sigue que si $s \geq \lambda$, entonces para $x \in B$, $ p_i(x) \leq L_i \leq s\varepsilon $ para toda $i \in \nn{k}$. Así que $p(s^{-1}x) = s^{-1} p_i(x) < \varepsilon$. Luego, $s^{-1} x \in U$. Entonces $B \subseteq sU.$ y $B$ es acotado.
 \end{Dem}
 
 \section[El espacio vectorial topológico $F(A, \K)$]{El espacio vectorial topológico $F(A, \K)$ \sectionmark{El espacio $F(A, \K)$}}
@@ -2600,7 +2606,7 @@ Demostremos que $T^{-1}(r \varepsilon \cdot \widehat{V}) \subseteq U$. Tomemos $
 Dado que $\widehat{V}$ es una vecindad abierta del cero, la observación~\ref{Obs:DilatacionTraslacion} indica que $r \varepsilon \cdot \widehat{V}$ también es vecindad abierta del cero. De esto y de que $T^{-1}(r\varepsilon \cdot \widehat{V}) \subseteq U$ concluimos que $T^{-1}$ es continua. 
 \end{Dem}
 
-Como consecuencia del resultado anterior, la topología usual en $\K^n$ es la única topología bajo la cual $\K^n$ es un espacio vectorial topológico.
+Como consecuencia del resultado anterior, observemos que la topología usual en $\K^n$ es la única topología bajo la cual $\K^n$ es un espacio vectorial topológico.
 
 \begin{Prop} \label{Prop:FuncionalesLinealesContinuosEspaciosFinitos}
 Sea $E$ un espacio vectorial topológico de dimensión finita. Si $\varphi : E \to \K$ es un funcional lineal, entonces $\varphi$ es continuo. 
@@ -2690,7 +2696,7 @@ Sean $E$ un espacio vectorial topológico, $X$ un espacio normado y $T: E \to X_\
 \end{Prop}
 
 \begin{Dem}
-Sea $(x_\alpha)_{\alpha \in \Lambda}$ una red en $E$ que converge a $x \in E$. Tenemos que $T$ es continua si, y sólo si $Tx_\alpha \to Tx$ en $X_\mathrm{w}$. Por el corolario~\ref{Cor:CaracterizacionConvergenciaDebil}, esto último es equivalente a que $\varphi(Tx_\alpha) \to \varphi(Tx)$ para todo $\varphi \in X^*$. Esto es $(\varphi \circ T)x_\alpha \to (\varphi \circ T) x$ para toda $\varphi \in X^*$. Dado que $\varphi \circ T$ es lineal para todo $\varphi \in X^*$, se sigue que lo anterior equivale a que $\varphi \circ T \in E^*$ para todo $\varphi \in X^*$.
+Sea $(x_\alpha)_{\alpha \in \Lambda}$ una red en $E$ que converge a $x \in E$. Tenemos que $T$ es continua si, y sólo si $Tx_\alpha \to Tx$ en $X_\mathrm{w}$. Por el corolario~\ref{Cor:CaracterizacionConvergenciaDebil}, esto último es equivalente a que $\varphi(Tx_\alpha) \to \varphi(Tx)$ para todo $\varphi \in X^*$. Esto es $(\varphi \circ T)x_\alpha \to (\varphi \circ T) x$ para todo $\varphi \in X^*$. Dado que $\varphi \circ T$ es lineal para todo $\varphi \in X^*$, se sigue que lo anterior equivale a que $\varphi \circ T \in E^*$ para todo $\varphi \in X^*$.
 \end{Dem}
 
 %/////////////////////////////////////////////////////////////////////////
@@ -2789,9 +2795,7 @@ La contención~\ref{Eq:RelacionTopologias} indica que $\sigma(X^*, X) \subseteq \
 ¿Para la otra contención no se ocupa que $X$ sea reflexivo?
 \end{Dem}
 
-Observemos que $X^*$ es un subespacio vectorial de $F(X, \K)$. Además las evaluaciones $\delta^{X^*}_x : X^* \to \K$ son restricciones de las evaluaciones $\delta_x : F(X, \K) \to \K$. Por otra parte, la topología en $F(X, \K)$ es la generada por las seminormas $ \calF = \{ \abs{\delta_x} : x \in X \}$. En cuanto a $X^*$, su topología débil* está generada por la familia $\calG = \{ \abs{\delta^{X^*}_x} : x \in X \}$ de seminormas en $F(X, \K)$ restringidas a $X^*$. Entonces la proposición~\ref{Prop:SubespacioDeTopologiaGeneradaPorSeminormas} dice que la topología débil* en $X^*$ es precisamente la topología subespacio de $F(X, \K)$.
-
-Como la inclusión de un subespacio con la topología subespacio en el espacio original es continua, se sigue que la inclusión de $X_{\mathrm{w}^*}^*$ en $F(X, \K)$ es continua. Por la contención~(\ref{Eq:RelacionTopologias}) la identificación $Id: X^* \to X_{\mathrm{w}^*}^*$ es continua y por lo tanto la inclusión de $X^*$ con la norma en $F(X, \K)$ también es continua. \\
+Observemos que $X^*$ es un subespacio vectorial de $F(X, \K)$. Además las evaluaciones $\delta^{X^*}_x : X^* \to \K$ son restricciones de las evaluaciones $\delta_x : F(X, \K) \to \K$. Por otra parte, la topología en $F(X, \K)$ es la generada por las seminormas $ \calF = \{ \abs{\delta_x} : x \in X \}$. En cuanto a $X^*$, su topología débil* está generada por la familia $\calG = \{ \abs{\delta^{X^*}_x} : x \in X \}$ de seminormas en $F(X, \K)$ restringidas a $X^*$. Entonces la proposición~\ref{Prop:SubespacioDeTopologiaGeneradaPorSeminormas} dice que la topología débil* en $X^*$ es precisamente la topología subespacio de $F(X, \K)$. Como la inclusión de un subespacio con la topología subespacio en el espacio original es continua, se sigue que la inclusión de $X_{\mathrm{w}^*}^*$ en $F(X, \K)$ es continua. Por la contención~(\ref{Eq:RelacionTopologias}) la inclusión $Id: X^* \to X_{\mathrm{w}^*}^*$ es continua y por lo tanto la inclusión del espacio normado $X^*$ en $F(X, \K)$ también es continua. \\
 
 Si $X$ es un espacio de dimensión infinita, la proposición~\ref{Prop:DualDimensionInfinita} muestra que $X^*$ es de dimensión infinita, por lo que resulta que $B_{X^*}$ no es compacta respecto a la topología original. El siguiente teorema muestra que bajo la topología débil* sí lo es.
 
@@ -2906,7 +2910,6 @@ Sea $X$ un espacio normado. Entonces $X$ es reflexivo si, y sólo si $\sigma(X^*,
 \begin{Dem}
 Si $X$ es reflexivo, ya se comentó que $\sigma(X^*, X) = \sigma(X^*, X^{**})$. Supongamos ahora que $\sigma(X^*, X) = \sigma(X^*, X^{**})$. El teorema de Banach-Alaoglu indica que $B_{X^*}$ es $\mathrm{w}^*$-compacta y entonces es $\mathrm{w}$-compacta. Por el teorema~\ref{Tma:EquivalenciaReflexivoBolaDebilmenteCompacta} se sigue que $X^*$ es reflexivo y por lo tanto, de la proposición~\ref{Prop:EquivalenciaEspacioDualReflexivo} se concluye que $X$ es reflexivo.
 \end{Dem}
-
 
 
 
