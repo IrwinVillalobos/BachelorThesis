@@ -821,6 +821,21 @@ Sean $M$ un espacio métrico y $A \subseteq M$ un conjunto cerrado. Si $x \in M \
 Se demostrará por contrapositiva. Supongamos que $d(x, A) = 0$. Tomemos un abierto $U$ que incluya a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$, por lo que $U \cap A \neq \emptyset$. Así que $x \in \ov{A}$. Ya que $A$ es cerrado, entonces  $x \in A$.
 \end{Dem}
 
+\begin{Def}
+Un espacio topológico $X$ es \textit{normal} si para cualesquiera $A, B$ cerrados disjuntos existen $U, V$ abiertos disjuntos en $X$ tales que $A \subseteq U$ y $B \subseteq V$.
+\end{Def}
+
+\begin{Prop}
+Todo espacio métrico es normal.
+\end{Prop}
+
+\begin{Dem}
+Sea $M$ un espacio métrico. Consideremos $A, B$ cerrados disjuntos en $M$. Para cada $a \in A$ se tiene $a \notin B$, por lo que debido al lema~\ref{Lema:DistanciaPositivaEnCerrados} se tiene que $d(a, B) > 0$. De manera análoga $d(b, A) > 0$ para todo $b \in B$. Consideremos los conjuntos abiertos
+$$U := \bigcup_{a \in A} V_{\frac{d(a, B)}{2}}(a) \;\;\mbox{ y }\;\; V := \bigcup_{b \in B} V_{\frac{d(b, A)}{2}}(b).$$
+Claramente $A \subseteq U$ y $B \subseteq V$. Mostremos que $U$ y $V$ son disjuntos. Supongamos entonces que no y consideremos $x \in U \cap V$. Entonces $x \in V_{\frac{d(a, B)}{2}}(a)$ para algún $a \in A$ y   $x \in V_{\frac{d(b, A)}{2}}(b)$ para algún $b \in B$. Esto es $d(x, a) < \frac{d(a, B)}{2}$ y $d(x, b) < \frac{d(b, A)}{2}$. Por la desigualdad del triángulo
+$$d(a, b) \leq d(x, a) + d(x, b) < \frac{d(a, B)}{2} + \frac{d(b, A)}{2} \leq \frac{d(a, b)}{2} + \frac{d(a, b)}{2} = d(a, b).$$
+Esto es una contradicción, así que $U \cap V = \emptyset$.
+\end{Dem}
 
 
 \section{Continuidad por sucesiones}
@@ -1007,13 +1022,23 @@ Es decir, $V_{2^{-N}}(x_N) \subseteq V_r(x) \subseteq U_{\alpha_0}$. De donde $V
 
 A la propiedad \textbf{ii)} en el teorema anterior se le denomina \textit{compacidad por sucesiones}.
 
-\begin{Prop}
+El teorema de Heine-Borel nos permite demostrar el siguiente resultado.
+
+\begin{Prop} \label{Prop:HeineBorelParticular}
 Sea $A \subseteq \R$. Entonces $A$ es compacto si, y sólo si $A$ es cerrado y acotado.
 \end{Prop}
 
 \begin{Dem}
-(Pendiente).
+Supongamos primero que $A$ es compacto. El corolario~\ref{Cor:HausdorffCompactoEsCerrado} indica que $A$ es cerrado. Ahora, como $A$ es compacto y $\{(-n, n)\}_{n \in\N}$ es una cubierta abierta de $A$, existen $k \in \N$ y $n_1, \ldots, n_k \in \N$ tales que $\{ (-n_i, n_i)\}_{i=1}^k $ cubre a $A$. Entonces $A$ está acotado por $N = \max(n_1, \ldots, n_k)$.
+
+Ahora supongamos que $K$ es cerrado y acotado. Como $K$ es acotado, existe $n \in \N$, tal que $K \subseteq [-a, a]$. Como $K$ es cerrado, del lema~\ref{Lema:CerradoEnCompactoEsCompacto} se concluye que $K$ es compacto. 
 \end{Dem}
+
+El teorema de extensión de Tietze, permite extender de manera continua funciones continuas definidas en conjuntos cerrados en un espacio topológico normal.
+
+\begin{Tma}[de extensión de Tietze] \label{Tma:Tietze}
+Sean $X$ un espacio topológico normal y $A \subseteq X$ cerrado. Si $f: A \to \R$ es continua, entonces existe $F:X \to \R$ continua tal que $\restr{F}{A}  =f$. 
+\end{Tma}
 
 \begin{Prop} \label{Prop:CaracterizacionFuncionContinuaEnCompacto}
 Sean $M$ un espacio métrico y $\emptyset \neq K \subseteq M$. Entonces $K$ es compacto si, y sólo si toda función continua $f: K \to \R$ tiene un valor máximo.  
@@ -1022,8 +1047,16 @@ Sean $M$ un espacio métrico y $\emptyset \neq K \subseteq M$. Entonces $K$ es co
 \begin{Dem}
 Supongamos primero que $K$ es compacto y sea $f: K \to \R$ una función continua. Por la proposición~\ref{Prop:FuncionContinuaPreservaCompactos} se sigue que $f(K)$ es compacto. Luego, el teorema~\ref{Tma:HeineBorelGeneral} afirma que $f(K)$ es cerrado y acotado en $\R$. Como $f(K)$ es acotado y no vacío, el axioma del supremo indica que existe $\sup f(K) \in \R$. El ejemplo~\ref{Ejem:SupremoEnCerradura} indica que $\sup f(K) \in \ov{f(K)}$, pero como $f(K)$ es cerrado, se sigue que $\sup f(K) \in f(K)$. Así que existe $x \in K$ tal que $f(x) = \sup f(K)$. Entonces $f(x)$ es un valor máximo de $f$.
 
-Ahora supongamos que toda función continua $f: K \to \R$ tiene una valor máximo. (Pendiente)   
+Para el regreso demostremos la contrapositiva. Esto es, supongamos que $K$ no es compacto y encontremos una función continua en $K$ que no alcance su valor máximo. Como $K$ no es compacto, del teorema~\ref{Tma:CaracterizacionCompacidadSucesiones} se sigue que existe  una sucesión $(x_n)_{n \in \N}$ en $K$ sin subsucesiones convergentes. Sea $A := \{ x_n : n \in \N \}$. Claramente $A$ es contable, pues si fuera finito, existiría un elemento en $A$ que se repetiría infinitas veces en $(x_n)_{n\in\N}$, por lo que podemos expresar $A = \{ z_n \in K : n \in \N \}$ tal que $z_n \neq z_m$ si $n \neq m$.
+
+Demostremos que todo $B \subseteq A$ es cerrado. Si  $B = \emptyset$, entonces es claramente cerrado. Tomemos entonces $B \neq \emptyset$. Sea $x \in \ov{B}$. Por la proposición~\ref{Prop:CerraduraLimiteSucesiones}, existe una sucesión $(y_n)_{n \in \N}$ en $B$ que converge a $x$. Supongamos que $(y_n)_{n\in\N}$ toma infinitos valores de $B$. Es decir, para cada $k \in \N$ existen infinitos valores en $\{ x_m : m\geq k\} \cap \{ y_n : n \in \N \}$. Luego, podemos considerar una subsucesión $(y_{n_i})_{i\in\N}$ de forma que $y_{n_i} = x_{m_i}$ con $m_i \geq i$. Por el lema~\ref{Lema:SubsucesionDeSucesionConvergenteConverge}, se sigue que $y_{n_i} \to x$, por lo que $x_{m_i} \to x$. Esto es una contradicción puesto que $(x_{m_i})_{i\in\N}$ es una subsucesión de $(x_n)_{n\in\N}$ que converge. Luego, $(y_n)_{n\in\N}$ toma finitos valores de $B$, de donde existe $z \in B$ que aparece infinitas veces en $(y_n)_{n\in\N}$. Como la sucesión $(z)_{n\in\N}$ es una subsucesión de $(y_n)_{n\in\N}$ que converge a $z$, el lema~\ref{Lema:SubsucesionDeSucesionConvergenteConverge} indica que $y_n \to z$. Como $M$ es Haussdorf, $x = z$ y entonces $x \in B$. Esto prueba que $\ov{B} \subseteq B$ y así $B$ es cerrado. En particular $A$ es cerrado. 
+
+Probemos que la topología en $A$ es la topología discreta. Sea $B\subseteq A$, entonces $B$ y $A \setminus B$ son cerrados en $M$. Como $M$ es normal, existen abiertos $U$ y $V$ disjuntos con $B \subseteq U$ y $A \setminus B \subseteq V$. Entonces $U \cap (A\setminus B) = \emptyset$ y $B = A \cap U$ es abierto en $A$. 
+ 
+Esto muestra que cualquier función definida en $A$ es continua, por lo que al definir $f: A \to \R$ por $f(z_n) = n$ para toda $n \in \N$ resulta que $f$ es continua. El teorema de extensión de Tietze muestra que existe $F: K \to \R$ tal que $F(z_n) = n$. Puesto que $F$ no es acotada, no alcanza su máximo.   
 \end{Dem}
+
+La vez pasada le pregunté si quería que demostrara este mismo teorema pero para espacios topológicos generales en lugar de espacios métricos. Resulta que en general es falso. Existe un contraejemplo usando la topología del complemento contable en $\R$, ¿quiere que lo agregue? 
 
 
 
@@ -1293,7 +1326,7 @@ De la desigualdad del triángulo se sigue que $$\Norm{z - y}_2 \leq \Norm{z - x}_
 Por lo tanto $V_r(z)$ es abierto en la topología producto.
 \end{Dem}
 
-El teorema de Heine-Borel nos permite demostrar el siguiente resultado.
+El siguiente teorema generaliza a la proposición~\ref{Prop:HeineBorelParticular}.
 
 \begin{Tma} \label{Tma:HeineBorelGeneral} 
 Sea $A \subseteq \K^n$. Son equivalentes:
@@ -2212,7 +2245,7 @@ Ahora, al ser $h$ y $f$ funciones continuas, tenemos que $h \times f: X \to \K \
 Dado un espacio vectorial topológico $E$, al espacio de operadores $\varphi : E \to \K$ lineales y continuos lo llamamos \textit{espacio dual} de $E$ y lo denotamos por $(E, \tau)^*$ o simplemente por $E^*$. A tales operadores se les denomina \textit{funcionales lineales}.
 
 \begin{Cor}
-Sea $E$ un espacio vectorial topológico, entonces $E^*$ es un espacio vectorial sobre $\K$.
+Sea $E$ un espacio vectorial topológico, entonces $E^*$ es un espacio vectorial.
 \end{Cor}
 
 \begin{Dem}
