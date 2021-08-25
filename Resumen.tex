@@ -49,10 +49,13 @@
 \newcommand{\Norm}[1]{\left\Vert #1 \right\Vert}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\C}{\mathbb{C}}
+\newcommand{\rmt}{\mathrm{t}}
+\newcommand{\Sft}{\mathsf{t}}
 \newcommand{\calC}{\mathcal{C}}
 \newcommand{\calP}{\mathcal{P}}
 \newcommand{\calQ}{\mathcal{Q}}
 \newcommand{\calG}{\mathcal{G}}
+\newcommand{\calL}{\mathcal{L}}
 \newcommand{\calI}{\mathcal{I}}
 \newcommand{\calF}{\mathcal{F}}
 \newcommand{\calB}{\mathcal{B}}
@@ -1657,6 +1660,27 @@ Si $\K = \R$, ya quedó demostrado en el lema anterior. Así que supongamos $\K = 
 (Pendiente).
 \end{Dem}
 
+Sean $X$ y $Y$ espacios normados. El \textit{operador traspuesto} del operador lineal continuo $T: X \to Y$ es $T^\Sft : Y^* \to X^*$ definido por $T^\Sft\varphi = \varphi \circ T$ para $\varphi \in Y^*$. Como $T^\Sft\varphi$ es  composición de operadores lineales continuos, entonces es lineal y continuo. Así que $T^\Sft$ está bien definido.
+
+Dados $\varphi, \psi \in Y^*$ y $\lambda \in \K$, se tiene que
+$$T^\Sft(\varphi + \lambda \psi) = (\varphi + \lambda \psi)\circ T = \varphi \circ T + \lambda \psi \circ T = T^\Sft\varphi + \lambda T^\Sft\psi.$$
+
+Así que $T^\mathsf{t}$ es lineal. Además, si tomamos $x \in X$, se sigue que 
+$$\Norm{(T^\Sft\varphi) x} = \Norm{\varphi(Tx)} \leq \Norm{\varphi} \Norm(Tx) \leq \Norm{\varphi} \Norm{T} \Norm{x}.$$
+
+Esto indica que $\Norm{T^\Sft\varphi} \leq \Norm{T} \Norm{\varphi}$ y entonces $T^\Sft$ es acotado y $\Norm{T^\Sft} \leq \Norm{T}$.
+
+\begin{Prop} \label{Prop:TraspuestoDeIsomorfismoEsIsomorfismo}
+Sean $X$ y $Y$ espacios normados. Entonces $T: X \to Y$ es un isomorfismo de espacios normados si, y sólo si su transpuesto $T^\Sft$ es un isomorfismo de espacios normados. 
+\end{Prop}
+
+\begin{Dem}
+(Pendiente).
+\end{Dem}
+
+
+
+
 \section{Ejemplos: $(\ell_p^n)^*$ y $\ell_p^*$ , $1 \leq p \leq \infty$}
 
 \begin{Def}
@@ -2918,7 +2942,7 @@ Sea $X$ un espacio normado y $A \subseteq X_{\mathrm{w}^*}^*$. Entonces $A$ es c
 \end{Cor}
 
 \begin{Dem}
-Como la topología en $X_{\mathrm{w}^*}^*$ es la topología subespacio de $F(A, \K)$ .... 
+(Pendiente) 
 \end{Dem}
 
 \section{Espacios reflexivos}
@@ -2944,7 +2968,16 @@ El espacio $\ell_p$ es reflexivo para $1 < p < \infty$ y no es reflexivo para  $
 \end{Ejem}
 
 \begin{Dem}
-(Pendiente).
+Sean $1 < p \leq \infty$ y $1 \leq q < \infty$ su exponente conjugado. Consideremos $R_q: \ell_q \to \ell_p^*$ definida como $R$ en la proposición~\ref{Prop:DualDeEllePEsElleQ} y sea $R_p: \ell_p \to \ell_q^*$ definida de manera análoga a $R$ pero intercambiando los papeles de $p$ y $q$. En la proposición~\ref{Prop:DualDeEllePEsElleQ} se demostró que $R_q$ era un isomorfismo de espacios normados. Así que de la proposición~~\ref{Prop:TraspuestoDeIsomorfismoEsIsomorfismo} se sigue que $R_q^\Sft : \ell_p^{**} \to \ell_q^*$ es un isomorfismo de espacios normados.
+
+Demostremos que $R_q^\Sft \circ J = R_p$. Dados $x = (x_1, x_2, \ldots )\in \ell_p$ y $y = (y_1, y_2, \ldots) \in \ell_q$ tenemos que
+\Ecu{
+((R_q^\Sft \circ J)x)y = (R_q^\Sft(Jx))y = (Jx \circ R_q)y = Jx(R_q y) = R_q y(x) = \sum_{i=1}^\infty x_i y_i  = R_p x(y). 
+}
+
+De donde $(R_q^\Sft \circ J)x = R_p x$ y por tanto $R_q^\Sft \circ J = R_p$. Luego $J = (R_q^\Sft)^{-1} \circ R_p$. En el caso  $1 < p < \infty$, $R_p$ es isomorfismo de espacios normados, así que $J$ también lo es, por lo que $X$ es reflexivo. Cuando $p = \infty$, se mostró en la proposición~\ref{Prop:DualDeEllePEsElleQ} que $R_p$ no es sobreyectiva, por lo que $J$ tampoco y así $\ell_\infty$ no es reflexivo.
+
+Falta ver que $\ell_1$ no es reflexivo. (Pendiente).
 \end{Dem}
 
 \begin{Prop} \label{Prop:ReflexivoIdentifiacionCanonicaDebilContinua}
@@ -2995,7 +3028,9 @@ Sea $X$ un espacio de Banach. Entonces $X$ es reflexivo si y sólo si $X^*$ es re
 \end{Prop}
 
 \begin{Dem}
-(Pendiente).
+Para probar que si $X$ es reflexivo entonces $X^*$ hay dos opciones: La primera es con los teoremas de topología débil* y la otra es con el operador traspuesto. ¿Cuál prefiere?
+
+Sobre el regreso, dijo que había que valorar si valía la pena. Además de demostrar el siguiente corolario, también serviría para probar que $\ell_1$ no es reflexivo. 
 \end{Dem}
 
 \begin{Cor}
