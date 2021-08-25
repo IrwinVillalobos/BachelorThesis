@@ -41,7 +41,6 @@
 \newcommand{\sol}{\subparagraph{Solución}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\nn}[1]{\{ 1, \ldots, #1 \}}
-\newcommand{\Ker}{\mbox{Ker}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\weakarrow}{\stackrel{\mathrm{w}}{\longrightarrow}}
 \newcommand{\weakstararrow}{\stackrel{\mathrm{w}_*}{\longrightarrow}}
@@ -64,6 +63,8 @@
 }}
 
 \def\Dom{\qopname\relax m{Dom}}
+\def\Ker{\qopname\relax m{Ker}}
+\def\Span{\qopname\relax m{span}}
 
 \hypersetup{
     colorlinks=true,
@@ -351,11 +352,13 @@ Tomemos el espacio topológico $X = \R$ y en este consideremos $Y = [0,1] \subset
 \end{Ejem}
 
 \begin{Prop}
-Sea $(X, \tau)$ un espacio topológico y $Y \subseteq X$. Si $\calB$ es una base de $\tau$, entonces $\{B \cap Y : B \calB \}$ es base de $\tau_Y$.
+Sean $(X, \tau)$ un espacio topológico y $\emptyset \neq Y \subseteq X$. Si $\calB$ es una base de $\tau$, entonces $\calB_Y := \{B \cap Y : B \in \calB \}$ es una base de $\tau_Y$.
 \end{Prop}
 
 \begin{Dem}
-(Pendiente).
+Sea $B \cap Y \in \calB_Y$ para algún $B \in \calB$. Entonces $B$ es abierto en $X$ por lo que $B \cap Y$ es un abierto en $Y$. Esto es, $\calB_Y$ es una familia de abiertos en $Y$.
+
+Ahora, tomemos $U \cap Y \in \tau_Y$ para algún abierto $U$ de $X$ y $x \in U\cap Y$. Entonces $x \in U$ y como $\calB$ es una base de $X$, por la proposición~\ref{Prop:CaracterizacionDeBase} se sigue que existe $B \in\calB$ con $x \in B \subseteq U$. De esta manera $x \in B \cap Y \subseteq U \cap Y$, donde $B \cap Y \in \calB_Y$. Luego, de la proposición~\ref{Prop:CaracterizacionDeBase} se concluye que $\calB_Y$ es base de $\tau_Y$.
 \end{Dem}
 
 \begin{Def}
@@ -2856,16 +2859,37 @@ Notemos que el primer conjunto es un abierto de $X^*_{\mathrm{w}^*}$ y el segund
 \sigma(X^*, X) \subseteq \sigma(X^*, X^{**}) \subseteq \tau_{\Norm{\cdot}_{X^*}}.
 \end{equation}
 
+\begin{Prop} \label{Prop:ContencionKernelsImplicaCombinacionLineal}  
+Sean $X$ un espacio vectorial, $n \in \N$ y $f, g_1, \ldots, g_n$ funcionales lineales en $X$. Si $\bigcap_{i=1}^n \Ker g_i \subseteq \Ker f$, entonces $f \in \Span \,\{ g_1, \ldots, g_n \}$.
+\end{Prop}
+
+\begin{Dem}
+Definamos $F: X \to \K^n$ definida por $F(x) = (g_1(x), \ldots, g_n(x))$ para $x \in X$ y $h: F(X) \to \K$ por $h(F(x)) = f(x)$ para $F(x) \in F(X)$. Mostremos que $h$ está bien definida. Supongamos que $F(x) = F(y)$ para algunos $x, y \in X$. Luego $F(x-y) = 0$ y por tanto $$x-y \in \Ker F = \bigcap_{i=1}^n \Ker g_i \subseteq \Ker f,$$ por lo que $h(F(x)) = f(x) = f(y) = h(F(y))$.
+
+Sea $\ov{h}: \K^n \to \K$ una extensión lineal de $h$ a $\K^n$. Entonces dado $x \in X$, tenemos que
+$$f(x) = h(F(x)) = \ov{h}(g_1(x), \ldots, g_n(x)) = \ov{h}\left(\sum_{i=1}^n g_i(x) e_i\right) = \sum_{i=1}^n \ov{h}(e_i) g_i(x).$$
+
+Esto indica que $f = \sum_{i=1}^n \ov{h}(e_i) g_i$ y entonces $f \in \Span \{ g_1, \ldots, g_n \}$.
+\end{Dem}
+
+La siguiente proposición me da la sensación de que $X$ siempre es ``reflexivo en la topología debil*'' porque en general no se cumple que $J(X) = (X^*)^*$ pero si consideramos la topología débil* se sigue que $J(X) = (X^*_{\mathrm{w}^*})^*$. ¿Escribo algo al respecto?
+
 \begin{Prop}
 Sea $X$ un espacio normado, entonces $J(X) = (X^*_{\mathrm{w}^*})^* $.
 \end{Prop}
 
 \begin{Dem}
-La contención~\ref{Eq:RelacionTopologias} indica que $\sigma(X^*, X) \subseteq \tau_{\Norm{\cdot}_{X^*}}$. Por lo que todo funcional lineal y continuo con la topología $\sigma(X^*, X)$ también será continuo con la topología $\tau_{\Norm{\cdot}_{X^*}}$. Es decir, ${X_\mathrm{w}}^* \subseteq X^*$.
+Tomemos $Jx \in J(X)$ para algún $x \in X$. Por definición la seminorma $\abs{\delta_x} : X^*_{\mathrm{w}^*} \to \K$ es continua, en particular es continua en el cero. Sea $V$ un entorno del cero en $\K$ y escojamos una bola abierta $V_r(0)$ con $r>0$ tal que $V_r(0) \subseteq V$. Como $\abs{\delta_x}$ es continua, existe una vecindad abierta $W$ en $X^*_{\mathrm{w}^*}$ del cero tal que $\abs{\delta_x}(W) \subseteq [0, r)$. Pero esto implica que $\delta_x(W) \subseteq V_r(0) \subseteq V$. Así que $\delta_x = Jx$ es continua en el cero y como también es lineal por la proposición~\ref{Prop:ContinuidadEnCero} podemos concluir que es continua. Esto muestra que $J(X) \subseteq (X^*_{\mathrm{w}^*})^*$.
 
+Ahora tomemos $\delta \in (X^*_{\mathrm{w}^*})^*$ de manera que $\delta: X^*_{\mathrm{w}^*} \to \K$ es continua. Como $V_1(0)$ es abierto en $\K$, se sigue que $\delta^{-1}(V_1(0))$ es abierto en $X^*_{\mathrm{w}^*}$. Así que existen $k \in \N$, $x_1, \ldots, x_k \in X$ y $\varepsilon > 0$ tales que el básico $U_{0, x_1, \ldots, x_k, \varepsilon} \subseteq \delta^{-1}(V_1(0))$. Por la linealidad de $\delta$ y $\delta_{x_1}, \ldots, \delta_{x_k}$ se sigue que para todo $n \in \N$
+\begin{equation} \label{Eq:RelexividadEnTopologiaDebilEstrella}
+U_{0, x_1, \ldots, x_k, \frac{\varepsilon}{n}} \subseteq \delta^{-1}\left(V_\frac{1}{n}(0)\right).
+\end{equation} 
+
+Consideremos $\varphi \in \bigcap_{i=1}^k \Ker \delta_{x_i}$. Entonces $\varphi \in U_{0, x_1, \ldots, x_k, \frac{\varepsilon}{n}}$ para toda $n \in \N$. Luego, por (\ref{Eq:RelexividadEnTopologiaDebilEstrella}) se sigue que $\abs{\delta(\varphi)} < \frac{1}{n}$ para toda $n \in \N$, así que $\delta(\varphi) = 0$ y por tanto $\varphi \in \Ker \delta$. Esto indica que $\bigcap_{i=1}^k \Ker \delta_{x_i}$, por lo que la proposición~\ref{Prop:ContencionKernelsImplicaCombinacionLineal} asegura que $\delta \in \Span \{ \delta_{x_1}, \ldots, \delta_{x_k} \} \subseteq J(X)$ y así se concluye que $(X^*_{\mathrm{w}^*})^* \subseteq J(X)$.
 \end{Dem}
 
-Observemos que $X^*$ es un subespacio vectorial de $F(X, \K)$. Además las evaluaciones $\delta^{X^*}_x : X^* \to \K$ son restricciones de las evaluaciones $\delta_x : F(X, \K) \to \K$. Por otra parte, la topología en $F(X, \K)$ es la generada por las seminormas $ \calF = \{ \abs{\delta_x} : x \in X \}$. En cuanto a $X^*$, su topología débil* está generada por la familia $\calG = \{ \abs{\delta^{X^*}_x} : x \in X \}$ de seminormas en $F(X, \K)$ restringidas a $X^*$. Entonces la proposición~\ref{Prop:SubespacioDeTopologiaGeneradaPorSeminormas} dice que la topología débil* en $X^*$ es precisamente la topología subespacio de $F(X, \K)$. Como la inclusión de un subespacio con la topología subespacio en el espacio original es continua, se sigue que la inclusión de $X_{\mathrm{w}^*}^*$ en $F(X, \K)$ es continua. Por la contención~(\ref{Eq:RelacionTopologias}) la inclusión $Id: X^* \to X_{\mathrm{w}^*}^*$ es continua y por lo tanto la inclusión del espacio normado $X^*$ en $F(X, \K)$ también es continua. \\
+Observemos que $X^*$ es un subespacio vectorial de $F(X, \K)$ y las evaluaciones $\delta^{X^*}_x : X^* \to \K$ son restricciones de las evaluaciones $\delta_x : F(X, \K) \to \K$. Por otra parte, la topología en $F(X, \K)$ es la generada por las seminormas $ \calF = \{ \abs{\delta_x} : x \in X \}$. En cuanto a $X^*$, su topología débil* está generada por la familia $\calG = \{ \abs{\delta^{X^*}_x} : x \in X \}$ de seminormas en $F(X, \K)$ restringidas a $X^*$. Entonces la proposición~\ref{Prop:SubespacioDeTopologiaGeneradaPorSeminormas} dice que la topología débil* en $X^*$ es precisamente la topología subespacio de $F(X, \K)$. Como la inclusión de un subespacio con la topología subespacio en el espacio original es continua, se sigue que la inclusión de $X_{\mathrm{w}^*}^*$ en $F(X, \K)$ es continua. Por la contención~(\ref{Eq:RelacionTopologias}) la inclusión $Id: X^* \to X_{\mathrm{w}^*}^*$ es continua y por lo tanto la inclusión del espacio normado $X^*$ en $F(X, \K)$ también es continua. \\
 
 Si $X$ es un espacio de dimensión infinita, la proposición~\ref{Prop:DualDimensionInfinita} muestra que $X^*$ es de dimensión infinita, por lo que resulta que $B_{X^*}$ no es compacta respecto a la topología original. El siguiente teorema muestra que bajo la topología débil* sí lo es, lo cual representa un punto culminante en el desarrollo de este trabajo.
 
@@ -2894,7 +2918,7 @@ Sea $X$ un espacio normado y $A \subseteq X_{\mathrm{w}^*}^*$. Entonces $A$ es c
 \end{Cor}
 
 \begin{Dem}
-(Pendiente).
+Como la topología en $X_{\mathrm{w}^*}^*$ es la topología subespacio de $F(A, \K)$ .... 
 \end{Dem}
 
 \section{Espacios reflexivos}
@@ -2955,8 +2979,7 @@ El lema~\ref{Lema:HellyGeneral} de Helly indica que existe $x \in B_X$ tal que p
 \end{Dem}
 
 \begin{Tma} \label{Tma:EquivalenciaReflexivoBolaDebilmenteCompacta}
-Sea $X$  un espacio normado. Entonces  $X$ es reflexivo si y sólo si $B_X$ 
-es $\mathrm{w}$-compacta. 
+Sea $X$  un espacio normado. Entonces  $X$ es reflexivo si y sólo si $B_X$  es $\mathrm{w}$-compacta. 
 \end{Tma}
 
 \begin{Dem}
@@ -2982,6 +3005,7 @@ Sea $X$ un espacio normado. Entonces $X$ es reflexivo si, y sólo si $\sigma(X^*,
 \begin{Dem}
 Si $X$ es reflexivo, ya se comentó en la observación~\ref{Obs:ReflexivoImplicaTopologiasDebilesCoinciden} que $\sigma(X^*, X) = \sigma(X^*, X^{**})$. Supongamos ahora que $\sigma(X^*, X) = \sigma(X^*, X^{**})$. El teorema de Banach-Alaoglu indica que $B_{X^*}$ es $\mathrm{w}^*$-compacta y entonces es $\mathrm{w}$-compacta. Por el teorema~\ref{Tma:EquivalenciaReflexivoBolaDebilmenteCompacta} se sigue que $X^*$ es reflexivo y por lo tanto, de la proposición~\ref{Prop:EquivalenciaEspacioDualReflexivo} se concluye que $X$ es reflexivo.
 \end{Dem}
+
 
 
 
