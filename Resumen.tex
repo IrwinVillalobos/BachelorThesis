@@ -923,6 +923,22 @@ Supongamos primero que $A$ es compacto. La proposición~\ref{Prop:EspacioMetricoC
 Ahora supongamos que $K$ es cerrado y acotado. Como $K$ es acotado, existe $n \in \N$, tal que $K \subseteq [-a, a]$. Como $K$ es cerrado, del lema~\ref{Lema:CerradoEnCompactoEsCompacto} se concluye que $K$ es compacto. 
 \end{Dem}
 
+La proposición anterior no se cumple en general en todos los espacios métricos como lo muestra el siguiente ejemplo.
+
+\begin{Ejem} \label{Ejem:CerradoYAcotadoNoEsCompacto}
+Consideremos la función $d: \R \times \R \to \R$ definida en $(x, y) \in \R\times \R$ por
+\begin{equation*}
+d(x, y) = \begin{cases}
+1, \mbox{ si } x \neq y \\
+0, \mbox{ si } x = y.
+\end{cases}
+\end{equation*}
+
+Resulta que $d$ es una métrica en $\R$ a la cual denominamos \textit{métrica discreta}. Esto debido a que tal métrica induce la topología discreta (¿lo demuestro?), en la cual todos los subconjuntos de $\R$ son abiertos. 
+
+Tomemos $\N \subseteq \R$. Con la topología discreta, $\N$ es cerrado y acotado pues $\R \setminus \N$ es abierto y $d(n, m) \leq 1$ para todos $n, m \in \N$. Dado que $\{ \{ n \} \}_{n \in \N}$ es una cubierta abierta de $\N$ sin subcubiertas propias, se sigue que $\N$ no es compacto. 
+\end{Ejem}
+
 \section{Completez}
 
 \begin{Def}
@@ -984,6 +1000,8 @@ Definamos $t = \max(1, d(x_1, x_N), d(x_2, x_N), \ldots, d(x_{N-1}, x_N)) > 0$. 
 
 
 \section{Compacidad por sucesiones}
+
+El ejemplo~\ref{Ejem:CerradoYAcotadoNoEsCompacto} muestra que el ser cerrado y acotado en un espacio métrico no es suficiente para ser compacto. Esto motiva a definir conceptos análogos a cerrado y acotado más fuertes de tal manera que sí sea suficiente. Además estableceremos una equivalencia entre estos dos nuevos conceptos, el ser compacto y el ser compacto por sucesiones. 
 
 \begin{Def}
 Sea $M$ un espacio métrico. Un conjunto $K \subseteq M$ es \textit{totalmente acotado} si para cada $\varepsilon > 0$ existen $n \in\N, x_1, \ldots, x_n \in M$ tales que 
@@ -1066,6 +1084,8 @@ El teorema de extensión de Tietze, permite extender de manera continua funciones
 Sean $X$ un espacio topológico normal y $A \subseteq X$ cerrado. Si $f: A \to \R$ es continua, entonces existe $F:X \to \R$ continua tal que $\restr{F}{A}  =f$. 
 \end{Tma}
 
+La proposición~\ref{Prop:FuncionContinuaPreservaCompactos} indica que una función continua preserva compactos. Dado que en $\R$ los conjuntos compactos son precisamente aquellos cerrados y acotados, se sigue la imagen de una función continua definida en un compacto es cerrada y acotada y motiva el siguiente resultado.
+
 \begin{Prop} \label{Prop:CaracterizacionFuncionContinuaEnCompacto}
 Sean $M$ un espacio métrico y $\emptyset \neq K \subseteq M$. Entonces $K$ es compacto si, y sólo si toda función continua $f: K \to \R$ tiene un valor máximo.  
 \end{Prop}
@@ -1079,10 +1099,8 @@ Demostremos que todo $B \subseteq A$ es cerrado. Si  $B = \emptyset$, entonces e
 
 Probemos que la topología en $A$ es la topología discreta. Sea $B\subseteq A$, entonces $B$ y $A \setminus B$ son cerrados en $M$. Como $M$ es normal, existen abiertos $U$ y $V$ disjuntos con $B \subseteq U$ y $A \setminus B \subseteq V$. Entonces $U \cap (A\setminus B) = \emptyset$ y $B = A \cap U$ es abierto en $A$. 
  
-Esto muestra que cualquier función definida en $A$ es continua, por lo que al definir $f: A \to \R$ por $f(z_n) = n$ para toda $n \in \N$ resulta que $f$ es continua. El teorema de extensión de Tietze muestra que existe $F: K \to \R$ tal que $F(z_n) = n$. Puesto que $F$ no es acotada, no alcanza su máximo.   
+Se sigue que cualquier función definida en $A$ es continua, por lo que al definir $f: A \to \R$ por $f(z_n) = n$ para toda $n \in \N$ resulta que $f$ es continua. El teorema de extensión de Tietze muestra que existe $F: K \to \R$ tal que $F(z_n) = n$. Puesto que $F$ no es acotada, no alcanza su máximo.   
 \end{Dem}
-
-La vez pasada le pregunté si quería que demostrara este mismo teorema pero para espacios topológicos generales en lugar de espacios métricos. Resulta que en general es falso. Existe un contraejemplo usando la topología del complemento contable en $\R$, ¿quiere que lo agregue? 
 
 
 
@@ -2925,9 +2943,7 @@ $$f(x) = h(F(x)) = \ov{h}(g_1(x), \ldots, g_n(x)) = \ov{h}\left(\sum_{i=1}^n g_i
 
 Esto indica que $f = \sum_{i=1}^n \ov{h}(e_i) g_i$ y entonces $f \in \Span \{ g_1, \ldots, g_n \}$.
 \end{Dem}
-
-La siguiente proposición me da la sensación de que $X$ siempre es ``reflexivo en la topología debil*'' porque en general no se cumple que $J(X) = (X^*)^*$ pero si consideramos la topología débil* se sigue que $J(X) = (X^*_{\mathrm{w}^*})^*$. ¿Escribo algo al respecto?
-
+ 
 \begin{Prop}
 Sea $X$ un espacio normado, entonces $J(X) = (X^*_{\mathrm{w}^*})^* $.
 \end{Prop}
@@ -2940,10 +2956,13 @@ Ahora tomemos $\delta \in (X^*_{\mathrm{w}^*})^*$ de manera que $\delta: X^*_{\m
 U_{0, x_1, \ldots, x_k, \frac{\varepsilon}{n}} \subseteq \delta^{-1}\left(V_\frac{1}{n}(0)\right).
 \end{equation} 
 
-Consideremos $\varphi \in \bigcap_{i=1}^k \Ker \delta_{x_i}$. Entonces $\varphi \in U_{0, x_1, \ldots, x_k, \frac{\varepsilon}{n}}$ para toda $n \in \N$. Luego, por (\ref{Eq:RelexividadEnTopologiaDebilEstrella}) se sigue que $\abs{\delta(\varphi)} < \frac{1}{n}$ para toda $n \in \N$, así que $\delta(\varphi) = 0$ y por tanto $\varphi \in \Ker \delta$. Esto indica que $\bigcap_{i=1}^k \Ker \delta_{x_i}$, por lo que la proposición~\ref{Prop:ContencionKernelsImplicaCombinacionLineal} asegura que $\delta \in \Span \{ \delta_{x_1}, \ldots, \delta_{x_k} \} \subseteq J(X)$ y así se concluye que $(X^*_{\mathrm{w}^*})^* \subseteq J(X)$.
+Consideremos $\varphi \in \bigcap_{i=1}^k \Ker \delta_{x_i}$. Entonces $\varphi \in U_{0, x_1, \ldots, x_k, \frac{\varepsilon}{n}}$ para toda $n \in \N$. Luego, por (\ref{Eq:RelexividadEnTopologiaDebilEstrella}) se sigue que $\abs{\delta(\varphi)} < \frac{1}{n}$ para toda $n \in \N$, así que $\delta(\varphi) = 0$ y p
+or tanto $\varphi \in \Ker \delta$. Esto indica que $\bigcap_{i=1}^k \Ker \delta_{x_i}$, por lo que la proposición~\ref{Prop:ContencionKernelsImplicaCombinacionLineal} asegura que $\delta \in \Span \{ \delta_{x_1}, \ldots, \delta_{x_k} \} \subseteq J(X)$ y así se concluye que $(X^*_{\mathrm{w}^*})^* \subseteq J(X)$.
 \end{Dem}
 
-Observemos que $X^*$ es un subespacio vectorial de $F(X, \K)$ y las evaluaciones $\delta^{X^*}_x : X^* \to \K$ son restricciones de las evaluaciones $\delta_x : F(X, \K) \to \K$. Por otra parte, la topología en $F(X, \K)$ es la generada por las seminormas $ \calF = \{ \abs{\delta_x} : x \in X \}$. En cuanto a $X^*$, su topología débil* está generada por la familia $\calG = \{ \abs{\delta^{X^*}_x} : x \in X \}$ de seminormas en $F(X, \K)$ restringidas a $X^*$. Entonces la proposición~\ref{Prop:SubespacioDeTopologiaGeneradaPorSeminormas} dice que la topología débil* en $X^*$ es precisamente la topología subespacio de $F(X, \K)$. Como la inclusión de un subespacio con la topología subespacio en el espacio original es continua, se sigue que la inclusión de $X_{\mathrm{w}^*}^*$ en $F(X, \K)$ es continua. Por la contención~(\ref{Eq:RelacionTopologias}) la inclusión $Id: X^* \to X_{\mathrm{w}^*}^*$ es continua y por lo tanto la inclusión del espacio normado $X^*$ en $F(X, \K)$ también es continua. \\
+En general no se cumple que $J(X) = (X^*)^*$, pero si en $X^*$ consideramos la topología débil*, entonces por la proposición anterior $J(X) = (X_{\mathrm{w}^*}^*)^*$. Así que podemos identificar a $(X^*_{\mathrm{w}})^*$ con $X$. \\
+
+Observemos que $X^*$ es un subespacio vectorial de $F(X, \K)$ y las evaluaciones $\delta^{X^*}_x : X^* \to \K$ son restricciones de las evaluaciones $\delta_x : F(X, \K) \to \K$. Por otra parte, la topología en $F(X, \K)$ es la generada por las seminormas $ \calF = \{ \abs{\delta_x} : x \in X \}$. En cuanto a $X^*$, su topología débil* está generada por la familia $\calG = \{ \abs{\delta^{X^*}_x} : x \in X \}$ de seminormas en $F(X, \K)$ restringidas a $X^*$. Entonces la proposición~\ref{Prop:SubespacioDeTopologiaGeneradaPorSeminormas} dice que la topología débil* en $X^*$ es precisamente la topología subespacio de $F(X, \K)$. Como la inclusión de un subespacio con la topología subespacio en el espacio original es continua, se sigue que la inclusión de $X_{\mathrm{w}^*}^*$ en $F(X, \K)$ es continua. Por la contención~(\ref{Eq:RelacionTopologias}) la inclusión $Id: X^* \to X_{\mathrm{w}^*}^*$ es continua y por lo tanto la inclusión del espacio normado $X^*$ en $F(X, \K)$ también es continua. 
 
 Si $X$ es un espacio de dimensión infinita, la proposición~\ref{Prop:DualDimensionInfinita} muestra que $X^*$ es de dimensión infinita, por lo que resulta que $B_{X^*}$ no es compacta respecto a la topología original. El siguiente teorema muestra que bajo la topología débil* sí lo es, lo cual representa un punto culminante en el desarrollo de este trabajo.
 
