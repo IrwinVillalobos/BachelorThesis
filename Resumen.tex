@@ -800,7 +800,7 @@ Sea $M$ un espacio métrico y $x, y \in M$ con $x \neq y$. Entonces $r: = \frac{d
 Sea $M$ un espacio métrico. La \textit{distancia} de $x \in M$ a $A \subseteq M$ es $$d(x, A) := \inf \{ d(x,y) : y \in A \},$$ donde $\inf  \emptyset = \infty.$
 \end{Def}
 
-\begin{Lema} \label{Lema:DistanciaPositivaEnCerrados} 
+\begin{Lema} \label{Lema:DistanciaPositivaACerrados} 
 Sean $M$ un espacio métrico, $A \subseteq M$ un conjunto cerrado y $x \in M$. Entonces $d(x, A) > 0$ si, y sólo si $x \notin A$. 
 \end{Lema}
 
@@ -819,12 +819,14 @@ Todo espacio métrico es normal.
 \end{Prop}
 
 \begin{Dem}
-Sea $M$ un espacio métrico. Consideremos $A$ y  $B$ conjuntos cerrados disjuntos en $M$. Para cada $a \in A$ se tiene $a \notin B$, por lo que debido al lema~\ref{Lema:DistanciaPositivaEnCerrados} se  sigue que $d(a, B) > 0$. De manera análoga $d(b, A) > 0$ para todo $b \in B$. Consideremos los conjuntos abiertos
+Sea $M$ un espacio métrico. Consideremos $A$ y  $B$ conjuntos cerrados disjuntos en $M$. Para cada $a \in A$ se tiene $a \notin B$, por lo que debido al lema~\ref{Lema:DistanciaPositivaACerrados} se  sigue que $d(a, B) > 0$. De manera análoga $d(b, A) > 0$ para todo $b \in B$. Consideremos los conjuntos abiertos
 $$U := \bigcup_{a \in A} V_{\frac{d(a, B)}{2}}(a) \;\;\mbox{ y }\;\; V := \bigcup_{b \in B} V_{\frac{d(b, A)}{2}}(b).$$
 Claramente $A \subseteq U$ y $B \subseteq V$. Mostremos que $U$ y $V$ son disjuntos. Supongamos entonces que no y consideremos $x \in U \cap V$. Entonces $x \in V_{\frac{d(a, B)}{2}}(a)$ para algún $a \in A$ y   $x \in V_{\frac{d(b, A)}{2}}(b)$ para algún $b \in B$. Esto es $d(x, a) < \frac{d(a, B)}{2}$ y $d(x, b) < \frac{d(b, A)}{2}$. Por la desigualdad del triángulo
 $$d(a, b) \leq d(x, a) + d(x, b) < \frac{d(a, B)}{2} + \frac{d(b, A)}{2} \leq \frac{d(a, b)}{2} + \frac{d(a, b)}{2} = d(a, b).$$
 Esto es una contradicción, así que $U \cap V = \emptyset$.
 \end{Dem}
+
+
 
 
 \section{Continuidad por sucesiones}
@@ -853,6 +855,22 @@ Sean $M$ un espacio métrico, $E$ un espacios topológico, $x \in M$ y $f :  M \to
 Primero supongamos que $f$ es continua. Consideremos una sucesión $(x_n)_{n \in \N} \subseteq M$ tal que $x_n \to x$. Sea $V$ una vecindad abierta de $f(x)$ en $Y$. Como $f$ es continua, el conjunto $f^{-1}(V)$ es una vecindad abierta de $x$ en $M$. Dado que $x_n \to x$, existe $N \in \N$ tal que $x_n \in f^{-1}(V)$ para $n \geq \N$. Así pues, si $n \geq \N$ tenemos que $f(x_n) \in f(f^{-1}(V)) \subseteq V$. Por tanto $f(x_n) \to f(x)$. 
 
 Ahora demostraremos la contrapositiva. Supongamos pues que $f$ no es continua en $x$, de manera que existe una vecindad abierta $V$ de $f(x)$ tal que para toda $n \in \N$ se tiene que $f(V_{\frac{1}{n}}(x)) \subsetneq V$. Así pues, para cada $n \in \N$ podemos tomar $x_n \in V_{\frac{1}{n}}(x)$ de tal manera que $f(x_n) \notin V$. Consideremos la sucesión $(x_n)_{n\in \N}$. Resulta que  $x_n \rightarrow x$. Sin embargo, para todo $n \in \N$ se tiene que $f(x_n) \notin V$, por lo que $f(x_n) \centernot\rightarrow f(x)$.
+\end{Dem}
+
+\begin{Lema} \label{Lema:DistanciaAConjuntoEsContinua}
+Sean $M$ un espacio métrico y $0 \neq A \subseteq M$. Entonces $f: M \to \R$ definida por $f(x) = d(x, A)$ es continua.  
+\end{Lema}
+
+\begin{Dem}
+Sea $(x_n)_{n \in\N}$ una sucesión en $M$ que converge a $x \in M$. Entonces $d(x_n, x) \to 0$. Fijemos $n \in \N$ Dado $a \in A$ se cumple que $d(x_n, a) \leq d(x_n, x) + d(x, a)$, por lo que
+\Ecu{
+d(x_n, A) &= \inf_{a \in A} \{ d(x_n, a) \} \leq \inf_{a\in A} \{d(x_n, x) + d(x, a) \} \\
+&= d(x_n, x) + \inf_{a\in A} \{d(x, a) \} = d(x_n, x) + d(x, A).
+}
+
+Luego, $d(x_n, A) - d(x, A) \leq d(x_n, x)$. Análogamente $d(x, A) - d(x_n, A) \leq d(x_n, x)$. Por lo tanto $$\abs{d(x_n, A) - d(x, A)} \leq d(x_n, x).$$ 
+
+Dado que $d(x_n, x) \to 0$, se sigue que $f(x_n) = d(x_n, A) \to d(x, A) = f(x)$ y así $f$ es continua.
 \end{Dem}
 
 \begin{Def} 
@@ -1084,6 +1102,19 @@ El teorema de extensión de Tietze, permite extender de manera continua funciones
 Sean $X$ un espacio topológico normal y $A \subseteq X$ cerrado. Si $f: A \to \R$ es continua, entonces existe $F:X \to \R$ continua tal que $\restr{F}{A}  =f$. 
 \end{Tma}
 
+\begin{Lema} \label{Lema:FuncionConstanteEnCerradoConSoporteEnAbierto}
+Sean $M$ un espacio métrico, $A \subseteq M$ cerrado y $A \subseteq U \subseteq M$ abierto. Entonces existe una función continua $f:M \to \R$ tal que $\restr{f}{A} = 1$ y $\restr{f}{U^\mathsf{c}} = 0$.
+\end{Lema}
+
+\begin{Dem}
+Si $A = \emptyset$, entonces la función constante $f = 0$ es continua y cumple lo indicado. En el caso $U = M$ la función $f = 1$ satisface las propiedades señaladas. Así pues, supongamos que $A \neq \emptyset$ y $U \neq M$. Consideremos las funciones $h: M \to \R$ y $g: M \to \R$ definidas por 
+$$h(x) = d(x, A) \mbox{ y } g(x) = d(x, U^\mathsf{c}) \mbox{ para } x \in M.$$
+
+Tomemos $f = \frac{h}{h+g}$ y veamos que está bien definida. Si $x \in A$, entonces $x \notin U^\mathsf{c}$, por lo que $(h+g)(x) \geq g(x) = d(x, U^\mathsf{c}) > 0$ debido a que $U^\mathsf{c}$ es cerrado y al lema~\ref{Lema:DistanciaPositivaACerrados}. De la misma forma, si $x \notin A$, entonces $(h+g)(x) \geq h(x) = d(x, A) > 0$, puesto que $A$ es cerrado. Luego, $f$ está bien definida.
+
+El lema~\ref{Lema:DistanciaAConjuntoEsContinua} indica que $g$ y $h$ son continuas, por lo que $f$ también lo es. Además, si $x \in A$, entonces $f(x) = \frac{h(x)}{h(x) + g(x)} = \frac{h(x)}{h(x)} = 1$; y si $x \in U^\mathsf{c}$, entonces $f(x) =\frac{h(x)}{h(x) + g(x)} = \frac{0}{g(x)} = 0$.
+\end{Dem}
+
 La proposición~\ref{Prop:FuncionContinuaPreservaCompactos} indica que una función continua preserva compactos. Dado que en $\R$ los conjuntos compactos son precisamente aquellos cerrados y acotados, se sigue la imagen de una función continua definida en un compacto es cerrada y acotada y motiva el siguiente resultado.
 
 \begin{Prop} \label{Prop:CaracterizacionFuncionContinuaEnCompacto}
@@ -1193,7 +1224,7 @@ Primero veamos que es convexa. Si $x, y \in X$ y $\lambda \in [0, 1]$ se tiene q
 $$\Norm{\lambda x + (1-\lambda y)} \leq \abs{\lambda} \Norm{x} + \abs{1-\lambda} \Norm{y}  = \lambda \Norm{x} + (1-\lambda) \Norm{y},$$ y por lo tanto $\Norm{\cdot}$ es convexa.
 
 
-Ahora probemos que $\Norm{\cdot}$ es continua. Sea $(x_n)_{n\in\N}$ una sucesión en $X$ que converge a $x \in X$. Por definición esto indica que para todo $\varepsilon > 0$ existe $N \in \N$ tal que si $n \geq N$ entonces $\Norm{x_n - x} \leq \varepsilon$. Por la desigualdad del triángulo que $\abs{\Norm{x_n} - \Norm{x}} < \Norm{x_n - x}$. Esto implica que $\Norm{x_n}$ converge a $\Norm{x}$ y así $\Norm{\cdot}$ es continua.
+Del lema~\ref{Lema:DistanciaAConjuntoEsContinua} se sigue de inmediato que $\Norm{\cdot} = d(\cdot, \{ 0\})$ es continua. 
 \end{Dem}
 
 \begin{Ejem}
@@ -1580,7 +1611,7 @@ Sean $Y$ un subespacio propio y cerrado de un espacio normado $X$ y $\theta \in 
 \end{Lema}
 
 \begin{Dem}
-Tomemos $x \in X \setminus Y$. Como $Y$ es cerrado, el lema~\ref{Lema:DistanciaPositivaEnCerrados} indica que la distancia $d(x, Y)$ es positiva. Dado que $0 < \theta <1$, tenemos que 
+Tomemos $x \in X \setminus Y$. Como $Y$ es cerrado, el lema~\ref{Lema:DistanciaPositivaACerrados} indica que la distancia $d(x, Y)$ es positiva. Dado que $0 < \theta <1$, tenemos que 
 $$0 < d(x, Y) = \inf \{ \Norm{x-z} : z \in Y \} < \frac{d(x, Y)}{\theta}.$$
 Así que existe $z \in Y$ tal que $0 < \Norm{x - z} < \dfrac{d(x, Y)}{\theta}$. Definamos $x_\theta = \dfrac{x-z}{\Norm{x-z}}$. Claramente $\Norm{x_\theta} = 1$. Además, para $y \in Y$ se tiene que $z+ \Norm{x-z} y \in Y$. Por lo que
 \Ecu{
@@ -1630,6 +1661,10 @@ Los teoremas de Hahn-Banach muestran que, cuando $X$ es un espacio normado, en $
 \begin{Tma}[Hahn-Banach] \label{Tma:HahnBanachFuncional}
 Sea $X$ un espacio normado y $V \subseteq X$ un subespacio vectorial. Si $f \in V^*$ entonces existe $F \in X^*$ tal que $F = f$ en $V$ y $\Norm{f} = \Norm{F}$.
 \end{Tma}
+
+\begin{Cor}[Hahn-Banach] \label{Cor:HahnBanachFuncional}
+Sean $X$ un espacio normado y $Y \subseteq X$ un subespacio vectorial cerrado. Si $x \notin Y$, entonces existe $\varphi \in X^*$ tal que $\varphi(x) \neq 0$ y $\restr{\varphi}{Y} = 0$.
+\end{Cor}
 
 \begin{Prop} \label{Prop:DualDimensionInfinita}
 Sea $X$ un espacio normado. Entonces $X$ es de dimensión infinita si y sólo si $X^*$ también lo es. 
@@ -1698,9 +1733,54 @@ Si $\K = \R$, ya quedó demostrado en el lema anterior. Así que supongamos $\K = 
 (Pendiente).
 \end{Dem}
 
+Sea $X$ un espacio normado. Para cada $x \in X$ la  evaluación $\delta_x : X^* \to \K$ es un funcional lineal continuo en $X^*$ de acuerdo a la siguiente proposición.
+
+\begin{Lema} \label{Lema:DeltaContinua}
+Sean $X$ un espacio normado y $x \in X$. Entonces $\delta_x$ es un funcional lineal continuo tal que $\Norm{\delta_x} \leq \Norm{x}$. 
+\end{Lema}
+
+\begin{Dem}
+Sean $\varphi, \psi \in X^*$ y $\lambda \in \K$, entonces
+$$\delta_x(\varphi + \lambda \psi) = (\varphi + \lambda \psi)(x) = \varphi(x) + \lambda \psi(x) = \delta_x(\varphi) + \lambda \delta_x(\psi).$$
+
+Para todo $\varphi \in X^*$ se tiene que 
+\begin{equation*} 
+\abs{\delta_x(\varphi)} = \abs{\varphi(x)} \leq \Norm{\varphi} \Norm{x}.
+\end{equation*}
+
+Por lo que $\delta_x$ es continuo y además $$\Norm{\delta_x} \leq \Norm{x}.$$
+\end{Dem}
+
+Al ser $\delta_x$ un funcional lineal continuo en $X^*$, este pertenece al espacio dual de $X^*$, el cual denotamos por $X^{**}$. Al espacio $X^{**}$ lo llamaremos \textit{bidual} de $X$. \\
+
+Definimos la \textit{identificación canónica} del espacio normado $X$ en $X^{**}$ como
+\Ecu{
+J : X & \mapsto X^{**} \\
+x &\mapsto \delta_x 
+}
+
+Estableceremos en seguida que la identificación canónica es una isometría entre $X$ y $X^{**}$. Esto nos indica que podemos pensar a $X$ como un subespacio de $X^{**}$.
+
+\begin{Prop}
+Sea $X$ un espacio normado. Entonces la identificación canónica $J$ es una isometría.
+\end{Prop}
+
+\begin{Dem}
+Veamos que $J$ es lineal. Tomemos entonces $x, y \in X$ y $\lambda \in \K$. Para $\varphi \in X^*$ se tiene que 
+$$J(x+\lambda y)(\varphi) = \varphi(x+\lambda y) = \varphi(x) + \lambda \varphi(y) = Jx(\varphi) + \lambda Jy(\varphi).$$
+De donde $J(x+ \lambda y) = Jx + \lambda Jy$. 
+
+Si $x = 0$ entonces $\Norm{Jx} = 0 = \Norm{x}$. Si en cambio $x \neq 0$, el teorema de Hahn-Banach nos permite tomar $\varphi \in S_{X^*}$  tal que $\varphi(\frac{x}{\Norm{x}}) = 1$. De esto que 
+$$\abs{Jx(\varphi)} = \abs{\varphi(x)} = \Norm{x}.$$
+Así pues $\Norm{Jx} \geq \Norm{x}$. El lema~\ref{Lema:DeltaContinua} indica que $\Norm{Jx} = \Norm{\delta_x} \leq \Norm{x}$ y así se sigue que $\Norm{Jx} = \Norm{x}$ y $J$ es isometría.
+\end{Dem}
+
 Sean $X$ y $Y$ espacios normados. El \textit{operador traspuesto} del operador lineal continuo $T: X \to Y$ es $T^\Sft : Y^* \to X^*$ definido por $$T^\Sft\varphi := \varphi \circ T \mbox{ para }\varphi \in Y^*.$$ 
 
 Como $T^\Sft\varphi$ es  composición de operadores lineales continuos, entonces es lineal y continuo. Así que $T^\Sft$ está bien definido.
+
+El operador traspuesto $T^\Sft$ se caracteriza por cumplir que
+$$\ang{Tx, \varphi} = \ang{x, T^\Sft\varphi} \;\; \mbox{ para todos } x \in X \mbox{ y }  \varphi \in X^*.$$
 
 Dados $\varphi, \psi \in Y^*$ y $\lambda \in \K$, se tiene que
 $$T^\Sft(\varphi + \lambda \psi) = (\varphi + \lambda \psi)\circ T = \varphi \circ T + \lambda \psi \circ T = T^\Sft\varphi + \lambda T^\Sft\psi.$$
@@ -2848,48 +2928,6 @@ Sea $(x_\alpha)_{\alpha \in \Lambda}$ una red en $E$ que converge a $x \in E$. T
 
 Dado cualquier espacio normado $X$,  hemos construido entonces su topología débil. Usando esta construcción con $X^*$  y a partir de $X^{**}$ obtenemos la correspondiente topología débil  en $X^*$. Sin embargo, en $X^{**}$ aparece otro espacio de funcionales que permite construir otra topología en $X^*$ que, en muchos casos, es todavía más débil que la topología débil de $X^{*}$.  Lo describiremos a continuación. \\
 
-Sea $X$ un espacio normado. Para cada $x \in X$ la  evaluación $\delta_x : X^* \to \K$ es un funcional lineal continuo en $X^*$ de acuerdo a la siguiente proposición.
-
-\begin{Lema} \label{Lema:DeltaContinua}
-Sean $X$ un espacio normado y $x \in X$. Entonces $\delta_x$ es un funcional lineal continuo tal que $\Norm{\delta_x} \leq \Norm{x}$. 
-\end{Lema}
-
-\begin{Dem}
-Sean $\varphi, \psi \in X^*$ y $\lambda \in \K$, entonces
-$$\delta_x(\varphi + \lambda \psi) = (\varphi + \lambda \psi)(x) = \varphi(x) + \lambda \psi(x) = \delta_x(\varphi) + \lambda \delta_x(\psi).$$
-
-Para todo $\varphi \in X^*$ se tiene que 
-\begin{equation*} 
-\abs{\delta_x(\varphi)} = \abs{\varphi(x)} \leq \Norm{\varphi} \Norm{x}.
-\end{equation*}
-
-Por lo que $\delta_x$ es continuo y además $$\Norm{\delta_x} \leq \Norm{x}.$$
-\end{Dem}
-
-Al ser $\delta_x$ un funcional lineal continuo en $X^*$, este pertenece al espacio dual de $X^*$, el cual denotamos por $X^{**}$. Al espacio $X^{**}$ lo llamaremos \textit{bidual} de $X$. \\
-
-Definimos la \textit{identificación canónica} del espacio normado $X$ en $X^{**}$ como
-\Ecu{
-J : X & \mapsto X^{**} \\
-x &\mapsto \delta_x 
-}
-
-Estableceremos en seguida que la identificación canónica es una isometría entre $X$ y $X^{**}$. Esto nos indica que podemos pensar a $X$ como un subespacio de $X^{**}$.
-
-\begin{Prop}
-Sea $X$ un espacio normado. Entonces la identificación canónica $J$ es una isometría.
-\end{Prop}
-
-\begin{Dem}
-Veamos que $J$ es lineal. Tomemos entonces $x, y \in X$ y $\lambda \in \K$. Para $\varphi \in X^*$ se tiene que 
-$$J(x+\lambda y)(\varphi) = \varphi(x+\lambda y) = \varphi(x) + \lambda \varphi(y) = Jx(\varphi) + \lambda Jy(\varphi).$$
-De donde $J(x+ \lambda y) = Jx + \lambda Jy$. 
-
-Si $x = 0$ entonces $\Norm{Jx} = 0 = \Norm{x}$. Si en cambio $x \neq 0$, el teorema de Hahn-Banach nos permite tomar $\varphi \in S_{X^*}$  tal que $\varphi(\frac{x}{\Norm{x}}) = 1$. De esto que 
-$$\abs{Jx(\varphi)} = \abs{\varphi(x)} = \Norm{x}.$$
-Así pues $\Norm{Jx} \geq \Norm{x}$. El lema~\ref{Lema:DeltaContinua} indica que $\Norm{Jx} = \Norm{\delta_x} \leq \Norm{x}$ y así se sigue que $\Norm{Jx} = \Norm{x}$ y $J$ es isometría.
-\end{Dem}
-
 Para cada $x \in X$ resulta que $\abs{\delta_x}$ es una seminorma. Dado $\varphi \in X^*$ distinto de cero, existe $x \neq 0$ con $\varphi(x) \neq 0$. Así que $\delta_x(\varphi) \neq 0$. Es decir, $$\F_{X^*} := \{ \abs{\delta_x} : x\in X\}$$ es una familia de seminormas en $X^*$ que separa puntos de $X$. 
 
 \begin{Def}
@@ -2991,7 +3029,7 @@ Sea $X$ un espacio normado y $A \subseteq X_{\mathrm{w}^*}^*$. Entonces $A$ es c
 \end{Cor}
 
 \begin{Dem}
-(Pendiente) 
+(Pendiente).
 \end{Dem}
 
 \section{Reflexividad}
@@ -3008,29 +3046,20 @@ Todo espacio normado de dimensión finita es reflexivo.
 Sea $X$ un espacio normado de dimensión finita. Al final de la demostración de la proposición~\ref{Prop:DualDimensionInfinita} se estableció entonces $\dim X \geq \dim X^*$. Luego $\dim X \geq \dim X^* \geq \dim X^{**}$. Por otro lado $J: X \to X^{**}$ es inyectiva, por lo que $\dim X \leq \dim X^{**}$. Así que $X$ y $X^{**}$ son de la misma dimensión. Como $J$ es lineal, inyectiva y está definida entre espacios de la misma dimensión, resulta que es sobreyectiva y $X$ es reflexivo.  
 \end{Dem}
 
+\begin{Prop} \label{Prop:IsomorfismoDeEspaciosNormadosPreservaReflexividad}
+Sean $X$ y $Y$ dos espacios normados isomorfos. Si $X$ es reflexivo, entonces $Y$ también lo es. 
+\end{Prop}
+
+\begin{Dem}
+(Pendiente).
+\end{Dem}
+
 \begin{Obs} \label{Obs:ReflexivoImplicaTopologiasDebilesCoinciden}
 Si $X$ es un espacio reflexivo, entonces la ecuación~(\ref{Eq:IgualdadBasicos}) indica que las bases de la topología débil* y la topología débil de $X^*$ coinciden, por lo que se cumple la igualdad 
 \begin{equation} \label{Eq:ReflexividadImplicaDebilYDebilEstrellaCoinciden}
 (X^*, X) = \sigma(X^*, X^{**}).
 \end{equation}
 \end{Obs}
-
-\begin{Ejem}
-El espacio $\ell_p$ es reflexivo para $1 < p < \infty$ y no es reflexivo para  $p = 1$ ó $p = \infty$.
-\end{Ejem}
-
-\begin{Dem}
-Sean $1 < p \leq \infty$ y $1 \leq q < \infty$ su exponente conjugado. Consideremos $R_q: \ell_q \to \ell_p^*$ definida como $R$ en la proposición~\ref{Prop:DualDeEllePEsElleQ} y sea $R_p: \ell_p \to \ell_q^*$ definida de manera análoga a $R$ pero intercambiando los papeles de $p$ y $q$. En la proposición~\ref{Prop:DualDeEllePEsElleQ} se demostró que $R_q$ era un isomorfismo de espacios normados. Así que de la proposición~~\ref{Prop:TraspuestoDeIsomorfismoEsIsomorfismo} se sigue que $R_q^\Sft : \ell_p^{**} \to \ell_q^*$ es un isomorfismo de espacios normados.
-
-Demostremos que $R_q^\Sft \circ J = R_p$. Dados $x = (x_1, x_2, \ldots )\in \ell_p$ y $y = (y_1, y_2, \ldots) \in \ell_q$ tenemos que
-\Ecu{
-((R_q^\Sft \circ J)x)y = (R_q^\Sft(Jx))y = (Jx \circ R_q)y = Jx(R_q y) = R_q y(x) = \sum_{i=1}^\infty x_i y_i  = R_p x(y). 
-}
-
-De donde $(R_q^\Sft \circ J)x = R_p x$ y por tanto $R_q^\Sft \circ J = R_p$. Luego $J = (R_q^\Sft)^{-1} \circ R_p$. En el caso  $1 < p < \infty$, $R_p$ es isomorfismo de espacios normados, así que $J$ también lo es, por lo que $X$ es reflexivo. Cuando $p = \infty$, se mostró en la proposición~\ref{Prop:DualDeEllePEsElleQ} que $R_p$ no es sobreyectiva, por lo que $J$ tampoco y así $\ell_\infty$ no es reflexivo.
-
-Falta ver que $\ell_1$ no es reflexivo. (Pendiente).
-\end{Dem}
 
 \begin{Prop} \label{Prop:ReflexivoIdentifiacionCanonicaDebilContinua}
 Sea $X$ un espacio normado. Entonces $J :  X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es continua. Si además $X$ es reflexivo, entonces $J :  X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es un homeomorfismo.
@@ -3081,6 +3110,23 @@ Sea $X$ un espacio de Banach. Entonces $X$ es reflexivo si y sólo si $X^*$ es re
 
 \begin{Dem}
 (Pendiente).
+\end{Dem}
+
+\begin{Ejem}
+El espacio $\ell_p$ es reflexivo para $1 < p < \infty$ y no es reflexivo para  $p = 1$ ó $p = \infty$.
+\end{Ejem}
+
+\begin{Dem}
+Sean $1 \leq p < \infty$ y $1 < q \leq \infty$ su exponente conjugado. Consideremos $R_q: \ell_q \to \ell_p^*$ definida como $R$ en la proposición~\ref{Prop:DualDeEllePEsElleQ} y sea $R_p: \ell_p \to \ell_q^*$ definida de manera análoga a $R$ pero intercambiando los papeles de $p$ y $q$. En la proposición~\ref{Prop:DualDeEllePEsElleQ} se demostró que $R_q$ era un isomorfismo de espacios normados. Así que de la proposición~~\ref{Prop:TraspuestoDeIsomorfismoEsIsomorfismo} se sigue que $R_q^\Sft : \ell_p^{**} \to \ell_q^*$ es un isomorfismo de espacios normados.
+
+Demostremos que $R_q^\Sft \circ J = R_p$. Dados $x = (x_1, x_2, \ldots )\in \ell_p$ y $y = (y_1, y_2, \ldots) \in \ell_q$ tenemos que
+\Ecu{
+((R_q^\Sft \circ J)x)y = (R_q^\Sft(Jx))y = (Jx \circ R_q)y = Jx(R_q y) = R_q y(x) = \sum_{i=1}^\infty x_i y_i  = R_p x(y). 
+}
+
+De donde $(R_q^\Sft \circ J)x = R_p x$ y por tanto $R_q^\Sft \circ J = R_p$. Luego $J = (R_q^\Sft)^{-1} \circ R_p$. En el caso  $1 < p < \infty$, $R_p$ es isomorfismo de espacios normados, así que $J$ también lo es, por lo que $X$ es reflexivo. Cuando $p = 1$, se mostró en la proposición~\ref{Prop:DualDeEllePEsElleQ} que $R_p$ no es sobreyectiva, por lo que $J$ tampoco y así $\ell_1$ no es reflexivo.
+
+Falta ver que $\ell_\infty$ no es reflexivo. (Pendiente).
 \end{Dem}
 
 \begin{Cor}
