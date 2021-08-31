@@ -35,6 +35,7 @@
 \newcommand{\ang}[1]{\left\langle #1 \right\rangle}
 \newcommand{\BD}{\boldsymbol\cdot}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\myfrac}[2]{{#1 / #2}}
 \newcommand{\F}{\mathcal{F}}
 \newcommand{\B}{\mathcal{B}}
 \newcommand{\med}[1]{\frac{#1}{2}}
@@ -205,7 +206,7 @@
         
         \rule[0.2cm]{13cm}{0.1cm} \\
 		{ \huge \bfseries Las topologías débil y débil*}\\[0.4cm] 
-		{\Large \slshape Motivación, conceptos y resultados }\\[0.3cm]
+		{\Large \slshape Un enfoque desde la compacidad }\\[0.3cm]
 		\rule[0.2cm]{13cm}{0.1cm}\\[2cm]
             
            
@@ -480,6 +481,23 @@ Sean $X, Y, Z$ espacios topológicos, $f: X \to Y$ y $g: Y \to Z$. Si $f$ y $g$ s
 Sea $U$ cualquier vecindad abierta en $Z$. Como $g$ es continua, del lema~\ref{Lema:CaracterizacionContinuidadPorPreimagenesDeAbiertos} se sigue que $g^{-1}(U)$ es abierto en $Y$. Luego, como $f$ es continua, del mismo lema~\ref{Lema:CaracterizacionContinuidadPorPreimagenesDeAbiertos} se concluye que $(g \circ f)^{-1}(U) = f^{-1}(g^{-1}(U))$ es abierto en $X$ y $g \circ f$ es continua.
 \end{Dem}
 
+\begin{Prop} \label{Prop:RestriccionDeFuncionContinuaEsContinua}
+Sean $X$ y $Y$ espacios topológicos y $f: X \to Y$ una función. Entonces:
+\begin{itemize}
+\item \textbf{\Ti} Si $f$ es continua, entonces para toda $A \subseteq X$, $\restr{f}{A}$ es continua.
+\item \textbf{\Tii} Si $\restr{f}{U}$ es continua para una vecindad abierta $U$ de $x \in X$, entonces $f$ es continua en $x$. 
+\end{itemize} 
+\end{Prop}
+
+\begin{Dem}
+\hfill
+\begin{itemize}
+\item[\textbf{i)}] Tomemos un abierto $V$ en $Y$. Como $f$ es continua, entonces $f^{-1}(V)$ es abierto en $X$ y por lo tanto $\restr{f}{A}^{-1}(V) = f^{-1}(V) \cap A$ es abierto en $A$. Por el lema~\ref{Lema:CaracterizacionContinuidadPorPreimagenesDeAbiertos}, $\restr{f}{A}$ es continua.
+
+\item[\textbf{ii)}] Sea $V$ una vecindad abierta de $f(x)$ en $Y$. Como $\restr{f}{U}$ es continua y $x \in U$, entonces $\restr{f}{U}$ es continua en $x$. Por lo tanto existe una vecindad abierta $W$ de $x$ en $X$ tal que $f(W \cap U) = \restr{f}{U} (W \cap U) \subseteq V$. Como $U$ y $W$ son vecindades abiertas de $x$, también $W \cap U$ lo es. Luego $f$ es continua en $x$. 
+\end{itemize}
+\end{Dem}
+
 \begin{Def}
 Sean $X$ y $Y$ espacios topológicos. Un \textit{homeomorfismo} entre $X$ y $Y$ es una función $f:X \to Y$ que es biyectiva, continua y de inversa continua.
 \end{Def}
@@ -584,6 +602,10 @@ Una \textit{sucesión} en un conjunto $X$ es una función $s: \N \to X$. Usualment
 \begin{Def}
 Sea $X$ un espacio topológico y $(x_n)_{n\in\N}$ una sucesión. Si existe $x \in X$ tal que para cada vecindad abierta $U$ de $x$ existe $N \in \N$ tal que $x_n \in U$ para $n \geq n$, entonces decimos que $(x_n)_{n\in\N}$ \textit{converge} a $x$, que $x$ es el \textit{límite} de $(x_n)_{n\in\N}$ y lo denotamos por $x_n \to x$.
 \end{Def}
+
+\begin{Ejem}
+Sean $X$ un espacio topológico y $x \in X$. Entonces la sucesión constante $(x_n)_{n \in \N}$ tal que $x_n  = x$ converge a $x$, pues dada $U$ una vecindad abierta de $x \in X$, podemos tomar $N = 1$ y se va a cumplir que $x_n = x \in U $ para toda $n \geq N$.
+\end{Ejem}
 
 \begin{Prop}
 Sean $X$ es un espacio topológico y $(x_n)_{n \in \N}$ una sucesión en $X$ convergente. Si $X$ es Hausdorff, entonces el límite de $(x_n)_{n\in\N}$ es único.
@@ -786,6 +808,20 @@ Supongamos ahora que para todo $\varepsilon > 0$ existe $N \in \N$ tal que $d(x_
 
 Observemos que la proposición anterior indica que $x_n \to x$ si y sólo sí $d(x_n, x) \to 0$.
 
+\begin{Prop} \label{Prop:LimiteDeSumaSucesionDeReales}
+Sean $(x_n)_{n \in \N}$ y $(y_n)_{n \in\N}$ sucesiones en $\R$. Si $x_n \to x$ y $y_n \to y$ para algunos $x, y \in \R$ entonces $x_n + y_n \to x+y$. 
+\end{Prop}
+
+\begin{Dem}
+Tomemos $\varepsilon > 0$, de manera que existen $N_1, N_2 \in \N$ tales que 
+\Ecu{
+\abs{x_n -  x} < \frac{\varepsilon}{2}, \mbox{ si } n \geq N_1 \;\;\mbox{ y } \;\; \abs{y_n - y} < \frac{\varepsilon}{2}, \mbox{ si } n \geq N_2.
+}
+
+Luego, si $n \geq \max(N_1, N_2)$, entonces $$\abs{(x_n + y_n) - (x + y)} \leq \abs{x_n - x} + \abs{y_n - y} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.$$
+\end{Dem}
+
+
 La siguiente proposición indica que los espacios métricos son Hausdorff y por lo tanto las sucesiones convergentes en espacios métricos tienen límite único.
 
 \begin{Prop} \label{Prop:EspacioMetricoHausdorff}
@@ -841,7 +877,7 @@ Sean $M$ un espacio métrico y $A \subseteq M$. Entonces $x \in \overline{A}$ si,
 Tomemos $x \in \overline{A}$. Para cada $n \in \N$, tenemos que $V_{\frac{1}{n}}(x)$ es una vecindad abierta de $x$ y por lo tanto $V_{\frac{1}{n}}(x) \cap A \neq \emptyset$. Así que existe algún $x_n \in V_{\frac{1}{n}}(x) \cap A$. Claramente, $(x_n)_{n\in \N}$ es una sucesión en $A$ tal que $x_n \to x$. 
 
 Ahora tomemos $x \in M$ tal que existe $(x_n)_{n\in\N} \subseteq A$ con $x_n \to x$. Sea $U$ una vecindad abierta de $x$. Entonces existe $N \in \N$ tal que $x_n \in U$ si $n \geq N$. En particular, $x_N \in U \cap A \neq \emptyset$ y de esta manera $x \in \ov{A}$. 
-\end{Dem}
+\end{Dem} 
 
 \begin{Prop} \label{Prop:ContinuidadPorSucesiones}
 Sean $M$ un espacio métrico, $E$ un espacios topológico, $x \in M$ y $f :  M \to E$. Son equivalentes: 
@@ -873,6 +909,15 @@ Luego, $d(x_n, A) - d(x, A) \leq d(x_n, x)$. Análogamente $d(x, A) - d(x_n, A) \
 Dado que $d(x_n, x) \to 0$, se sigue que $f(x_n) = d(x_n, A) \to d(x, A) = f(x)$ y así $f$ es continua.
 \end{Dem}
 
+
+\begin{Prop} \label{Prop:SumaDeFuncionesRealesContinuasEsContinua}
+Sea $M$ un espacios métrico. Si $g: M \to \R$ y $f: M \to \R$ son funciones continuas, entonces $f + g$ es continua.
+\end{Prop}
+
+\begin{Dem}
+Sea $(x_n)_{n \in \N}$ una sucesión en $M$ que converge a $x \in M$. Puesto que $f$ y $g$ son continuas, de la proposición~\ref{Prop:ContinuidadPorSucesiones} se sigue que $f(x_n) \to f(x)$ y $g(x_n) \to g(x)$. Luego, la proposición~\ref{Prop:LimiteDeSumaSucesionDeReales} se sigue que $(f+g)(x_n) = f(x_n)+ g(x_n) \to f(x) + g(x) = (f+g)(x)$. Así que por la proposición~\ref{Prop:ContinuidadPorSucesiones} concluimos que $f+g$ es continua.
+\end{Dem}
+
 \begin{Def} 
 Sean $M_1$ y $M_2$ espacios métricos. Si $f: M_1 \to M_2$ cumple que $d(f(x), f(y)) = d(x, y)$ para todos $x, y \in M_1$, entonces decimos que $f$ es una \textit{isometría}.
 \end{Def}
@@ -888,6 +933,7 @@ Tomemos una sucesión $(x_n)_{n \in\N}\subseteq M_1$ y $x \in M_1$. Tenemos que $
 
 Ahora supongamos que $M_1$ es completo (Pendiente).
 \end{Dem}
+
 
 
 
@@ -1125,6 +1171,27 @@ Sean $M$ un espacio métrico y $\emptyset \neq K \subseteq M$. Entonces $K$ es co
 Supongamos primero que $K$ es compacto y sea $f: K \to \R$ una función continua. Por la proposición~\ref{Prop:FuncionContinuaPreservaCompactos} se sigue que $f(K)$ es compacto. Luego, el teorema~\ref{Tma:HeineBorelGeneral} afirma que $f(K)$ es cerrado y acotado en $\R$. Como $f(K)$ es acotado y no vacío, el axioma del supremo indica que existe $\sup f(K) \in \R$. El ejemplo~\ref{Ejem:SupremoEnCerradura} indica que $\sup f(K) \in \ov{f(K)}$, pero como $f(K)$ es cerrado, se sigue que $\sup f(K) \in f(K)$. Así que existe $x \in K$ tal que $f(x) = \sup f(K)$. Entonces $f(x)$ es un valor máximo de $f$.
 
 Para establecer el recíproco demostremos su contrapositiva. Esto es, supongamos que $K$ no es compacto y encontremos una función continua en $K$ que no alcance su valor máximo. Como $K$ no es compacto, del teorema~\ref{Tma:CaracterizacionCompacidadSucesiones} se sigue que existe  una sucesión $(x_n)_{n \in \N}$ en $K$ sin subsucesiones convergentes. Sea $A := \{ x_n : n \in \N \}$. Si $A$ fuera finito, existiría un elemento en $A$ que se repetiría infinitas veces en $(x_n)_{n\in\N}$ y este formaría una subsucesión en $(x_n)_{n\in \N}$ que converge, por lo que $A$ es contable y lo podemos expresar como $A = \{ z_n \in K : n \in \N \}$ de tal forma que $z_n \neq z_m$ si $n \neq m$.
+
+Fijemos $x \in K$ por un momento y mostremos que existe $\varepsilon > 0$ tal que $V_{\varepsilon}(x) \cap A \subseteq \{ x \}$. Supongamos que para toda $m \in\N$, el conjunto $V_\frac{1}{m}(x) \cap A$ es infinito. Es decir, para cada $m \in \N$ existen infinitos valores en $\{ x_n : n\geq m\} \cap V_\frac{1}{m}(x)$. Luego, podemos considerar una subsucesión $(x_{n_i})_{i\in\N}$ de forma que $x_{n_i} \in V_i(x)$ y $n_i \geq i$. Luego, $x_{n_i} \to x$, que contradice que $(x_n)_{n \in \N}$ no tiene subsucesiones convergentes. Así que existe $m \in \N$ tal que $V_\frac{1}{m}(x) \cap A$ contiene finitos términos $z_1, \ldots, z_k \in A$ distintos de $x$. Luego $\varepsilon = \min(d(z, z_1), \dots, d(z, z_k))$ cumple lo que buscamos. 
+
+Tenemos pues que para todo $z_n \in A$, existe $\varepsilon_n > 0$ tal que $V_{\varepsilon_n}(z_n) \cap A = \{ z_n \}$. Definamos $r_1 =  \varepsilon_1$ y tomemos $r_2 > 0$ tal que $r_2 \leq \varepsilon_2$, $r_2 <\frac{1}{2}$ y $r_2 \leq d(z_1, z_2) - r_1$. De esta forma $V_{r_1}(z_1) \cap V_{r_2}(z_2) = \emptyset$. Luego, consideremos $r_3 > 0$ tal que $r_3 \leq \varepsilon_2$, $r_3 \leq \frac{1}{3}$ y $r_3 \leq \min(d(z_1, z_3) - r_1, d(z_2, z_3) - r_2)$. De esto que $V_{r_1}(z_1) \cap V_{r_3}(z_3) = V_{r_2}(z_2) \cap V_{r_3}(z_3) = \emptyset$. Sucesivamente podemos construir $r_n > 0$ para cada $n \in \N$ de tal manera que $V_{r_n}(z_n) \cap V_{r_m}(z_m) = \emptyset$ si $n \neq m$ y $r_n \to 0$.
+
+Dado $z_n \in A$, el conjunto $\{z_n\}$ es cerrado y $ V_{r_n}(z_n)$ es abierto. Por el lema~\ref{Lema:FuncionConstanteEnCerradoConSoporteEnAbierto}, existe una función  continua $f_n : K \to \R$ tal que $f_n(V_{r_n}(z_n)^\mathsf{c}) = 0$ y $f_n(z_n) = n$. Definamos entonces 
+$$f := \sum_{n=1}^\infty f_n.$$
+
+Notemos que está bien definida, pues para todo $x \in K$ se tiene que 
+$f(x) = f_n(x)$ si $x \in V_{r_n}(z_n)$ para algún $n \in \N$ y $f(x) = 0$ si $x \notin V_{r_n}(z_n)$ para toda $n \in \N$.
+
+Veamos que $f$ es continua en todo $x \in K$. Supongamos primero que $x = z_n$ para algún $n \in \N$. Como $f_n$ es continua, de \textbf{i)} de la proposición~\ref{Prop:RestriccionDeFuncionContinuaEsContinua} se sigue que $\restr{f}{V_{r_n}(x)} = \restr{f_n}{V_{r_n}(x)}$ es continua y por \textbf{ii)} de la misma proposición se sigue que $f$ es continua en $x$. 
+
+Tomemos ahora $x \notin A$. Anteriormente probamos que existe $\varepsilon > 0$ tal que $V_\varepsilon(x) \cap A = \emptyset$. Demostremos que existe $N \in \N$ tal que $V_{\med{\varepsilon}}(x) \cap V_{r_n}(z_n) = \emptyset$ si $n \geq N$. Supongamos que no existe tal $N \in \N$. Como $r_n \to 0$, podemos tomar $m \in \N$ tal que $r_n < \frac{\varepsilon}{2}$ si $n \geq m$. Luego, existe algún $n \geq m$ tal que $V_{\med{\varepsilon}}(x) \cap V_{r_n}(z_n) \neq \emptyset$. Sea $y \in V_{\med{\varepsilon}}(x) \cap V_{r_n}(z_n)$. Entonces $d(x, y)< \med{\varepsilon}$ y $d(y, z_n) < r_n < \med{\varepsilon}$. Por la desigualdad del triángulo $d(x, z_n) < d(x, y) + d(y, z_n) < \med{\varepsilon} + \med{\varepsilon} = \varepsilon$. Esto indica que $z_n \in V_{\varepsilon}(x)$ y contradice que $V_\varepsilon(x) \cap A = \emptyset$. Por lo tanto sí existe $N \in \N$ que cumple lo establecido. Notemos entonces que 
+\begin{equation} \label{Eq:DominioCompactoDeFuncionesContinuasQueAlcanzaMaximo}
+\restr{f}{V_{\myfrac{\varepsilon}{2}}(x)} = \sum_{i=1}^N \restr{f_n}{V_\myfrac{\varepsilon}{2}(x)}.
+\end{equation}
+
+Como cada $f_n$ es continua, por \textbf{i)} de la proposición~\ref{Prop:RestriccionDeFuncionContinuaEsContinua} se sigue que $f_n$ es continua en $V_{\frac{\varepsilon}{2}}(x)$. Por la proposición~\ref{Prop:SumaDeFuncionesRealesContinuasEsContinua}, de (\ref{Eq:DominioCompactoDeFuncionesContinuasQueAlcanzaMaximo}) se sigue que $f$ es continua en $V_{\frac{\varepsilon}{2}}(x)$. Por \textbf{ii)} de la proposición~\ref{Prop:RestriccionDeFuncionContinuaEsContinua}, $f$ es continua en $x$.
+
+Como $f(z_n) = n$ para todo $n \in \N$, resulta que $f$ no es acotada. Por lo tanto $f$ es una función continua en $K$ que no alcanza su máximo. 
 
 Demostremos que todo $B \subseteq A$ es cerrado. Si  $B = \emptyset$, entonces es claramente cerrado. Tomemos entonces $B \neq \emptyset$. Sea $x \in \ov{B}$. Por la proposición~\ref{Prop:CerraduraLimiteSucesiones}, existe una sucesión $(y_n)_{n \in \N}$ en $B$ que converge a $x$. Supongamos que $(y_n)_{n\in\N}$ toma infinitos valores de $B$. Es decir, para cada $k \in \N$ existen infinitos valores en $\{ x_m : m\geq k\} \cap \{ y_n : n \in \N \}$. Luego, podemos considerar una subsucesión $(y_{n_i})_{i\in\N}$ de forma que $y_{n_i} = x_{m_i}$ con $m_i \geq i$. Por el lema~\ref{Lema:SubsucesionDeSucesionConvergenteConverge}, se sigue que $y_{n_i} \to x$, por lo que $x_{m_i} \to x$. Esto es una contradicción puesto que $(x_{m_i})_{i\in\N}$ es una subsucesión de $(x_n)_{n\in\N}$ que converge. Luego, $(y_n)_{n\in\N}$ toma finitos valores de $B$, de donde existe $z \in B$ que aparece infinitas veces en $(y_n)_{n\in\N}$. Como la sucesión $(z)_{n\in\N}$ es una subsucesión de $(y_n)_{n\in\N}$ que converge a $z$, el lema~\ref{Lema:SubsucesionDeSucesionConvergenteConverge} indica que $y_n \to z$. Como $M$ es Haussdorf, $x = z$ y entonces $x \in B$. Esto prueba que $\ov{B} \subseteq B$ y así $B$ es cerrado. En particular $A$ es cerrado. 
 
