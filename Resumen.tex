@@ -846,21 +846,6 @@ Si $x \in A$, entonces $d(x, A) \leq d(x, x) = 0$ y así $d(x, A) = 0$. Esto prue
 Para establecer el recíproco demostraremos su contrapositiva. Supongamos que $d(x, A) = 0$. Tomemos un abierto $U$ que incluya a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$, por lo que $U \cap A \neq \emptyset$. Así que $x \in \ov{A}$. Ya que $A$ es cerrado, entonces  $x \in A$.
 \end{Dem}
 
-\begin{Def}
-Un espacio topológico $X$ es \textit{normal} si para cualesquiera $A, B$ cerrados disjuntos, existen $U, V \subseteq X$ abiertos disjuntos tales que $A \subseteq U$ y $B \subseteq V$.
-\end{Def}
-
-\begin{Prop}
-Todo espacio métrico es normal.
-\end{Prop}
-
-\begin{Dem}
-Sea $M$ un espacio métrico. Consideremos $A$ y  $B$ conjuntos cerrados disjuntos en $M$. Para cada $a \in A$ se tiene $a \notin B$, por lo que debido al lema~\ref{Lema:DistanciaPositivaACerrados} se  sigue que $d(a, B) > 0$. De manera análoga $d(b, A) > 0$ para todo $b \in B$. Consideremos los conjuntos abiertos
-$$U := \bigcup_{a \in A} V_{\frac{d(a, B)}{2}}(a) \;\;\mbox{ y }\;\; V := \bigcup_{b \in B} V_{\frac{d(b, A)}{2}}(b).$$
-Claramente $A \subseteq U$ y $B \subseteq V$. Mostremos que $U$ y $V$ son disjuntos. Supongamos entonces que no y consideremos $x \in U \cap V$. Entonces $x \in V_{\frac{d(a, B)}{2}}(a)$ para algún $a \in A$ y   $x \in V_{\frac{d(b, A)}{2}}(b)$ para algún $b \in B$. Esto es $d(x, a) < \frac{d(a, B)}{2}$ y $d(x, b) < \frac{d(b, A)}{2}$. Por la desigualdad del triángulo
-$$d(a, b) \leq d(x, a) + d(x, b) < \frac{d(a, B)}{2} + \frac{d(b, A)}{2} \leq \frac{d(a, b)}{2} + \frac{d(a, b)}{2} = d(a, b).$$
-Esto es una contradicción, así que $U \cap V = \emptyset$.
-\end{Dem}
 
 
 
@@ -1142,11 +1127,6 @@ Es decir, $V_{2^{-N}}(x_N) \subseteq V_r(x) \subseteq U_{\alpha_0}$. De donde $V
 
 A la propiedad \textbf{ii)} en el teorema anterior se le denomina \textit{compacidad por sucesiones}.
 
-El teorema de extensión de Tietze, permite extender de manera continua funciones continuas definidas en conjuntos cerrados en un espacio topológico normal.
-
-\begin{Tma}[de extensión de Tietze] \label{Tma:Tietze}
-Sean $X$ un espacio topológico normal y $A \subseteq X$ cerrado. Si $f: A \to \R$ es continua, entonces existe $F:X \to \R$ continua tal que $\restr{F}{A}  =f$. 
-\end{Tma}
 
 \begin{Lema} \label{Lema:FuncionConstanteEnCerradoConSoporteEnAbierto}
 Sean $M$ un espacio métrico, $A \subseteq M$ cerrado y $A \subseteq U \subseteq M$ abierto. Entonces existe una función continua $f:M \to \R$ tal que $\restr{f}{A} = 1$ y $\restr{f}{U^\mathsf{c}} = 0$.
@@ -1193,11 +1173,6 @@ Como cada $f_n$ es continua, por \textbf{i)} de la proposición~\ref{Prop:Restric
 
 Como $f(z_n) = n$ para todo $n \in \N$, resulta que $f$ no es acotada. Por lo tanto $f$ es una función continua en $K$ que no alcanza su máximo. 
 
-Demostremos que todo $B \subseteq A$ es cerrado. Si  $B = \emptyset$, entonces es claramente cerrado. Tomemos entonces $B \neq \emptyset$. Sea $x \in \ov{B}$. Por la proposición~\ref{Prop:CerraduraLimiteSucesiones}, existe una sucesión $(y_n)_{n \in \N}$ en $B$ que converge a $x$. Supongamos que $(y_n)_{n\in\N}$ toma infinitos valores de $B$. Es decir, para cada $k \in \N$ existen infinitos valores en $\{ x_m : m\geq k\} \cap \{ y_n : n \in \N \}$. Luego, podemos considerar una subsucesión $(y_{n_i})_{i\in\N}$ de forma que $y_{n_i} = x_{m_i}$ con $m_i \geq i$. Por el lema~\ref{Lema:SubsucesionDeSucesionConvergenteConverge}, se sigue que $y_{n_i} \to x$, por lo que $x_{m_i} \to x$. Esto es una contradicción puesto que $(x_{m_i})_{i\in\N}$ es una subsucesión de $(x_n)_{n\in\N}$ que converge. Luego, $(y_n)_{n\in\N}$ toma finitos valores de $B$, de donde existe $z \in B$ que aparece infinitas veces en $(y_n)_{n\in\N}$. Como la sucesión $(z)_{n\in\N}$ es una subsucesión de $(y_n)_{n\in\N}$ que converge a $z$, el lema~\ref{Lema:SubsucesionDeSucesionConvergenteConverge} indica que $y_n \to z$. Como $M$ es Haussdorf, $x = z$ y entonces $x \in B$. Esto prueba que $\ov{B} \subseteq B$ y así $B$ es cerrado. En particular $A$ es cerrado. 
-
-Probemos que la topología en $A$ es la topología discreta. Sea $B\subseteq A$, entonces $B$ y $A \setminus B$ son cerrados en $M$. Como $M$ es normal, existen abiertos $U$ y $V$ disjuntos con $B \subseteq U$ y $A \setminus B \subseteq V$. Entonces $U \cap (A\setminus B) = \emptyset$ y $B = A \cap U$ es abierto en $A$. 
- 
-Se sigue que cualquier función definida en $A$ es continua, por lo que al definir $f: A \to \R$ por $f(z_n) = n$ para toda $n \in \N$ resulta que $f$ es continua. El teorema de extensión de Tietze muestra que existe $F: K \to \R$ tal que $F(z_n) = n$. Puesto que $F$ no es acotada, no alcanza su máximo.   
 \end{Dem}
 
 
