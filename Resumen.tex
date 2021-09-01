@@ -7,6 +7,7 @@
 \usepackage{amsfonts}
 \usepackage[thicklines]{cancel}
 \usepackage{amssymb}
+\usepackage{amsbsy}
 \usepackage{pdflscape}
 \usepackage{graphicx}
 \usepackage{centernot}
@@ -20,6 +21,7 @@
 \usepackage[bookmarksopen=true]{hyperref}
 \usepackage{bookmark}
 \usepackage[super]{nth}
+\usepackage{bm}
 \newcommand\Ccancel[2][black]{\renewcommand\CancelColor{\color{#1}}\cancel{#2}}
 %\usepackage{etoolbox}
 \renewcommand{\qedsymbol}{$\blacksquare$}
@@ -262,16 +264,23 @@
 Opciones para agregar en la introducción:
 
 \begin{itemize}
+\item Partir del conocimiento de un estudiante de licenciatura.
+\item Descripción libre del tema.
+\item Hablar de la compacidad.
 \item Hablar sobre la importancia de las topologías débil y débil*.
 \item Hablar sobre la importancia del análisis funcional.
-\item Hacer un resumen capítulo por capítulo enlistando los principales resultados y posiblemente agregar las citas de las fuentes. Aunque creo que esto pertenece más bien a un prefacio en lugar de introducción.
-\item Descripción libre del tema.
-\item Partir del conocimiento de un estudiante de licenciatura.
+\item Descripción del trabajo y objetivo.
+\item Hacer un resumen capítulo por capítulo enlistando los principales resultados y posiblemente agregar las citas de las fuentes.
 \item Mencionar  matemáticos involucrados y datos históricos.
-\item Descripción del trabajo.
 \end{itemize}
 
+\vspace*{1cm}
 
+En los primeros cursos de análisis que se imparten en la licenciatura en matemáticas se tiene un primer encuentro con la compacidad desde el enfoque de espacios métricos. Se demuestra que en el caso particular de $\R^n$, podemos identificar a los conjuntos compactos por aquellos que son cerrados y acotados. En cursos más avanzados de análisis se prueba que en los espacios normados de dimensión infinita esto ya no sucede, más aún la bola cerrada unitaria ya no es compacta en estos espacios. La escasez de conjuntos compactos dificulta en gran medida su estudio, puesto que la compacidad es una propiedad que permite ``unir información local y extenderla globalmente en todo el espacio'' (esta cita viene de Wikipedia, pero no me queda claro a que clase de información se refiere) y tratar estos conjuntos como conjuntos finitos (he escuchado esto varias veces, pero tampoco me queda muy claro en que sentido se parece la definición de compacidad a un conjunto finito).
+
+Una forma de lidiar con este problema es introducir otras topologías diferentes en estos espacios de tal forma que sigan conservando la estructura algebraica, que mantengan una relación con la topología original y que tengan menos cantidad de conjuntos abiertos. Ahí es donde entran las topologías débiles. Como se prometía, resulta que en el caso de la topología débil* la bola unitaria ahora sí es compacta.   
+
+A lo largo de este trabajo hacemos un recorrido de los conceptos y resultados necesarios, empezando desde espacios topológicos y concluyendo con el desarrollo de las topologías débil y débil*. Una vez que tengamos con conceptos topológicos de continuidad y compacidad nos adentraremos en el marco más particular de los espacios métricos, donde estos se pueden caracterizar por medio de la convergencia de sucesiones. Luego, reduciendo una vez más nuestro campo de estudio, nos enfocamos a espacios normados, donde además de contar con una distancia y la topología que esta induce, también tenemos una estructura algebraica. Debido a que las topologías débiles no son metrizables, el estudio de espacios métricos y normados no nos provee resultados válidos para estas topologías. Sin embargo, estas aun conservan el vínculo entre la topología y la estructura algebraica, lo que las convierte en espacios vectoriales topológicos. Pero antes de empezar el estudio de estos, desarrollamos el concepto de red, que sustituye y generaliza el papel que  las sucesiones tienen en los espacios métricos. En este punto estaremos listos para definir las topologías débiles y caracterizar en estas la convergencia, compacidad y reflexividad. 
 
 \mainmatter
 
@@ -1343,7 +1352,13 @@ Veamos que $$\Norm{Tx} \leq \Norm{T} \Norm{x}, \mbox{ para todo } x \in X.$$
 Empecemos tomando $x \in X$. Si $x = 0$, entonces $$\Norm{Tx} = \Norm{0} = 0 \leq  \Norm{T} \Norm{x}.$$ 
 
 Si por otro lado $x \neq 0$, entonces $y = \frac{x}{\Norm{x}} \in B_X$. Por lo que $\Norm{T} \geq \Norm{Ty}$. Esto es
-$$\Norm{T} \geq \Norm{T\left(\frac{x}{\Norm{x}}\right)} = \frac{\Norm{Tx}}{\Norm{x}}$$ y así $\Norm{Tx} \leq \Norm{T} \Norm{x}$. 
+$$\Norm{T} \geq \Norm{T\left(\frac{x}{\Norm{x}}\right)} = \frac{\Norm{Tx}}{\Norm{x}}$$ y así $\Norm{Tx} \leq \Norm{T} \Norm{x}$. \\
+
+El principio de acotamiento uniforme es un resultado fundamental del análisis funcional. Este indica una condición suficiente para que una familia de operadores lineales continuos sea acotada es que sea puntualmente acotada como se enuncia a continuación.
+
+\begin{Tma}[Principio de acotamiento uniforme]
+Sean $X$ un espacio de Banach, $Y$ un espacio normado y $\{ T_\alpha \}_{\alpha \in \Lambda} \subseteq \mathcal{L}(X, Y)$ una colección de operadores lineales continuos de $X$ a $Y$. Si $\{ T_\alpha(x) : \alpha \in \Lambda \}$ es un conjunto acotado en $Y$, entonces $\{ T_\alpha \}_{\alpha \in \Lambda}$ es acotado en $\calL(X, Y)$.
+\end{Tma}
 
 \begin{Def} \hfill
 \begin{itemize}
@@ -1801,6 +1816,9 @@ J : X & \mapsto X^{**} \\
 x &\mapsto \delta_x 
 }
 
+Entonces la identificación canónica se caracteriza por cumplir que
+$$\ang{x, \varphi} = \ang{\varphi, Jx} \;\; \mbox{ para todos } x \in X \mbox{ y }  \varphi \in X^*.$$
+
 Estableceremos en seguida que la identificación canónica es una isometría entre $X$ y $X^{**}$. Esto nos indica que podemos pensar a $X$ como un subespacio de $X^{**}$.
 
 \begin{Prop}
@@ -1832,12 +1850,52 @@ $$\Norm{(T^\Sft\varphi) x} = \Norm{\varphi(Tx)} \leq \Norm{\varphi} \Norm(Tx) \l
 
 Esto indica que $\Norm{T^\Sft\varphi} \leq \Norm{T} \Norm{\varphi}$ y entonces $T^\Sft$ es acotado y $\Norm{T^\Sft} \leq \Norm{T}$.
 
-\begin{Prop} \label{Prop:TraspuestoDeIsomorfismoEsIsomorfismo}
-Sean $X$ y $Y$ espacios normados. Entonces $T: X \to Y$ es un isomorfismo de espacios normados si, y sólo si su transpuesto $T^\Sft$ es un isomorfismo de espacios normados. 
+\begin{Prop} \label{Prop:InversoDeOperadorTraspuesto}
+Sean $X$ y $Y$ espacios normados y $T \in \calL(X, Y)$ biyectiva. Entonces $T^\Sft$ es biyectiva y $(T^{\Sft})^{-1} = (T^{-1})^\Sft$.
 \end{Prop}
 
 \begin{Dem}
-(Pendiente).
+Para todo $\varphi \in X^*$ se cumple que
+\Ecu{
+(T^\Sft \circ (T^{-1})^\Sft)\varphi &= T^\Sft((T^{-1})^\Sft(\varphi)) = T^\Sft(\varphi \circ T^{-1}) = (\varphi \circ T^{-1}) \circ T = \varphi.   
+}
+
+De donde $T^\Sft \circ (T^{-1})^\Sft = \mbox{Id}_{X^*}$. Además, para todo $\varphi \in Y^*$ se cumple que
+\Ecu{
+( (T^{-1})^\Sft \circ T^\Sft )\varphi &= (T^\Sft(\varphi)) = (T^{-1})^\Sft(\varphi \circ T) = (\varphi \circ T) \circ T^{-1} = \varphi. 
+}  
+
+De donde $(T^{-1})^\Sft \circ T^\Sft = \mbox{Id}_{Y^*}$. Por lo tanto $T^\Sft$ es invertible y $(T^{-1})^\Sft$ es su inversa.
+\end{Dem}
+
+\begin{Prop} \label{Prop:IdentificacionesCanonicasYDobleTranspuesto}
+Sean $X$ y $Y$ espacios normados y $T \in \calL(X, Y)$. Si $J_X : X \to X^{**}$ y $J_Y:Y \to Y^{**}$ son las identificaciones canónicas en $X$ y $Y$, entonces el diagrama
+
+\[
+\xymatrix{
+X \ar[r]^T \ar[d]^{J_X} & Y \ar[d]^{J_Y} \\
+X^{**} \ar[r]^{T^{\Sft\,\Sft}} & Y^{**}
+}
+\] conmuta. Es decir, $J_Y \circ T = T^{\Sft\,\Sft} \circ J_X$.
+\end{Prop}
+
+\begin{Dem}
+Sean $x \in X$ y $\varphi \in Y^*$. Se tiene que
+\Ecu{
+((J_Y \circ T)x)\varphi &= \ang{\varphi, J_Y(Tx)} = \ang{Tx, \varphi} \\
+& = \ang{x, T^\Sft \varphi} = \ang{T^\Sft \varphi, J_X(x)} \\
+&= \ang{\varphi, T^{\Sft \Sft}(J_X(x))} = ((T^{\Sft \Sft} \circ J_X)x)\varphi.
+}
+
+Esto indica que $(J_Y \circ T)x = (T^{\Sft \Sft} \circ J_X)x$ para toda $x \in X$ y por lo tanto $J_Y \circ T = T^{\Sft\,\Sft} \circ J_X$.
+\end{Dem}
+
+\begin{Lema} \label{Lema:TraspuestoDeIsomorfismoEsIsomorfismo}
+Sean $X$ y $Y$ espacios normados. Si $T: X \to Y$ es un isomorfismo de espacios normados entonces su transpuesto $T^\Sft$ también lo es. 
+\end{Lema}
+
+\begin{Dem}
+Dado que $T$ es un isomorfismo se tiene que $T$ es biyectiva. Por la proposición\ref{Prop:InversoDeOperadorTraspuesto} se sigue que $T^{\Sft}$ también es biyectiva. Como $T \in \calL(X, Y)$, entonces $T^\Sft \in \calL(Y^*, X^*)$. Como $T^{-1} \in \calL(Y, X)$, entonces $(T^\Sft)^{-1} = (T^{-1})^\Sft \in \calL(X^*, Y^*)$. Por lo tanto $T^{\Sft}$ es un isomorfismo de espacios normados.
 \end{Dem}
 
 
@@ -3024,7 +3082,7 @@ $$f(x) = h(F(x)) = \ov{h}(g_1(x), \ldots, g_n(x)) = \ov{h}\left(\sum_{i=1}^n g_i
 Esto indica que $f = \sum_{i=1}^n \ov{h}(e_i) g_i$ y entonces $f \in \Span \{ g_1, \ldots, g_n \}$.
 \end{Dem}
  
-\begin{Prop}
+\begin{Prop} \label{Prop:ReflexividadEnTopologiaDebilEstrella}
 Sea $X$ un espacio normado, entonces $J(X) = (X^*_{\mathrm{w}^*})^* $.
 \end{Prop}
 
@@ -3067,11 +3125,13 @@ Así que $\varphi \in B_{X^*}$. Esto prueba que $B_{X^*}$ es cerrada en $F(X, \K)
 \end{Dem}
 
 \begin{Cor}
-Sea $X$ un espacio normado y $A \subseteq X_{\mathrm{w}^*}^*$. Entonces $A$ es compacto si, y sólo si es cerrado y acotado. 
+Sea $X$ un espacio de Banach y $A \subseteq X_{\mathrm{w}^*}^*$. Entonces $A$ es $\mathrm{w}^*$-compacto si, y sólo si es $\mathrm{w}^*$-cerrado y $\Norm{\cdot}$-acotado. 
 \end{Cor}
 
 \begin{Dem}
-(Pendiente).
+Supongamos que $A$ es $\mathrm{w}^*$-compacto. Como $X_{\mathrm{w}^*}^*$ es Hausdorff, entonces $A$ es $\mathrm{w}^*$-cerrado. Para probar que $A$ es $\Norm{\cdot}$-acotado tomemos $x \in X$. La proposición~\ref{Prop:ReflexividadEnTopologiaDebilEstrella} indica que la función evaluación $\delta_x : X_{\mathrm{w}^*}^* \to \K$ es continua. Puesto que $A$ es compacto, de la proposición~\ref{Prop:FuncionContinuaPreservaCompactos} se sigue que $\delta_x(A) = \{ \varphi(x) : \varphi \in A \}$ es compacto en $\K$ y entonces del teorema~\ref{Tma:DimensionFinitaCerradoAcotadoCompacto} se tiene que es acotado. Por lo tanto, dado que $X$ es un espacio de Banach, del principio de acotamiento uniforme concluimos que $A$ es acotado en $\calL(X,\K) = X^*$.
+
+Ahora supongamos que $A$ es $\mathrm{w}^*$-cerrado y $\Norm{\cdot}$-acotado. Entonces existe $r > 0$ tal que $A \subseteq r B_{X^*}$. Por el teorema de Banach-Alaoglu, $r B_{X^*}$ es $\mathrm{w}^*$-compacto. Como $A$ es $\mathrm{w}^*$-cerrado y $A \subseteq r B_{X^*}$, por el lema~\ref{Lema:CerradoEnCompactoEsCompacto} se concluye que $A$ es $\mathrm{w}^*$-compacto. 
 \end{Dem}
 
 \section{Reflexividad}
@@ -3093,13 +3153,33 @@ Sean $X$ y $Y$ dos espacios normados isomorfos. Si $X$ es reflexivo, entonces $Y
 \end{Prop}
 
 \begin{Dem}
-(Pendiente).
+Sea $T: Y \to X$ un isomorfismo de espacios normados. Por el lema~\ref{Lema:TraspuestoDeIsomorfismoEsIsomorfismo} se sigue que $T^{\Sft \Sft} : X^{**} \to Y^{**}$ es también un isomorfismo de espacios normados. Como $X$ es reflexivo, se tiene que la identificación canónica $J_X : X \to X^{**}$ es sobreyectiva, por lo que es invertible. De la proposición~\ref{Prop:IdentificacionesCanonicasYDobleTranspuesto} se sigue que $T^{\Sft\Sft} \circ J_X = J_Y \circ T$, de donde $J_Y = T^{\Sft\Sft} \circ J_X \circ T^{-1}$. Como $J_Y$ es composición de funciones sobreyectivas, resulta que $J_Y$ también lo es. Así que $Y$ es reflexivo.  
+\end{Dem}
+
+\begin{Prop} \label{Prop:SubespacioCerradoDeEspacioReflexivoEsReflexivo}
+Sea $X$ un espacio normado reflexivo. Si $Y \subseteq X$ es un subespacio vectorial cerrado, entonces $Y$ es reflexivo.
+\end{Prop}
+
+\begin{Dem}
+Sea $\delta \in Y^{**}$. Definamos $\widehat{\delta} : X^* \to \K$ por $\widehat{\delta}(\varphi) := \delta(\restr{\varphi}{Y})$ para toda $\varphi \in X^*$. Veamos que $\widehat{\delta}$ es lineal. Para todos $\varphi, \psi \in X^*$ y $\lambda \in \K$ se tiene que
+$$\widehat{\delta}(\varphi + \lambda \psi) = \delta\left(\restr{(\varphi+\lambda\psi)}{Y}\right) = \delta\left(\restr{\varphi}{Y} + \lambda \restr{\psi}{Y}\right) = \delta\left(\restr{\varphi}{Y}\right) + \lambda \delta\left(\restr{\psi}{Y}\right) = \widehat{\delta}(\varphi) + \lambda \widehat{\delta}(\psi).$$
+
+Probemos ahora que $\ov{\delta}$ es continua. Tomemos entonces $\varphi \in X^*$. Luego $$\left\{\Norm{\restr{\varphi}{Y}(y)} : y \in B_Y \right\} \subseteq \{ \Norm{\varphi(x)} : x \in B_X \}.$$
+
+De donde
+$$\Norm{\restr{\varphi}{Y}} = \sup \left\{\Norm{\restr{\varphi}{Y}(y)} : y \in B_Y \right\} \leq \sup \{ \Norm{\varphi(x)} : x \in B_X \} = \Norm{\varphi}.$$
+
+Así que $$\Norm{\widehat{\delta}(\varphi)} = \Norm{\delta(\restr{\varphi}{Y})} \leq \Norm{\delta} \Norm{\restr{\varphi}{Y}} \leq \Norm{\delta} \Norm{\varphi}$$ y por lo tanto $\widehat{\delta}$ es continua. Entonces $\widehat{\delta} \in X^{**}$. Como $X$ es reflexivo, existe $x \in X$ con $J_X(x) = \widehat{\delta}$. Supongamos que $x \notin Y$. Como $Y$ es cerrado, del corolario~\ref{Cor:HahnBanachFuncional} de Hanh-Banach se sigue que existe $\varphi \in X^*$ con $\varphi(x) \neq 0$ y $\restr{\varphi}{Y} = 0$. Pero esto implica que $0 = \delta(\restr{\varphi}{Y}) = \widehat{\delta}(\varphi) = J_X(x)(\varphi) = \varphi(x) \neq 0$, lo cual es una contradicción. Así que $x \in Y$.
+
+Probemos que $\delta = J_Y(x)$. Sea $\varphi \in Y^*$, por el teorema~\ref{Tma:HahnBanachFuncional} de Hahn-Banach existe $\widehat{\varphi} \in X^*$ tal que $\restr{\widehat{\varphi}}{Y} = \varphi$. Luego, $$(J_Y(x))(\varphi) = \varphi(x) = \widehat{\varphi}(x) = (J_X(x))(\widehat{\varphi}) = \widehat{\delta}(\widehat{\varphi}) = \delta\left(\restr{\widehat{\varphi}}{Y}\right) = \delta(\varphi).$$ 
+
+Por lo tanto  $\delta = J_Y(x)$ y así $Y$ es reflexivo.
 \end{Dem}
 
 \begin{Obs} \label{Obs:ReflexivoImplicaTopologiasDebilesCoinciden}
 Si $X$ es un espacio reflexivo, entonces la ecuación~(\ref{Eq:IgualdadBasicos}) indica que las bases de la topología débil* y la topología débil de $X^*$ coinciden, por lo que se cumple la igualdad 
 \begin{equation} \label{Eq:ReflexividadImplicaDebilYDebilEstrellaCoinciden}
-(X^*, X) = \sigma(X^*, X^{**}).
+\sigma(X^*, X) = \sigma(X^*, X^{**}).
 \end{equation}
 \end{Obs}
 
@@ -3111,7 +3191,7 @@ Sea $X$ un espacio normado. Entonces $J :  X_\mathrm{w} \to X^{**}_{\mathrm{w}^*
 Supongamos que $X$ es reflexivo y mostremos que $J$ es homeomorfismo. Sólo notemos que en la parte donde se demuestra que $J$ es continua, no se requiere que $X$ sea reflexivo. Así pues, dado que $J$ es un isomorfismo de espacios vectoriales, ya sólo falta verificar que $J$ y $J^{-1}$ son continuas. Para eso tomemos una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq X_\mathrm{w}$ y $x \in X_\mathrm{w}$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebil} dice que que $x_\alpha \weakarrow x$ si, y sólo si $\varphi(x_\alpha) \to \varphi(x)$ para toda $\varphi \in X^*$. Esto último equivale a que $\delta_{x_\alpha}(\varphi) \to \delta_{x}(\varphi)$ para toda $\varphi \in X^*$. El corolario~\ref{Cor:CaracterizacionConvergenciaDebilEstrella} indica que esto es lo mismo que $\delta_{x_\alpha} \weakstararrow \delta_x$, o bien, $J(x_\alpha) \weakstararrow J(x)$. Por lo que $J$ es continua al igual que $J^{-1}$.
 \end{Dem}
 
-\begin{Cor} 
+\begin{Cor} \label{Cor:BolaEnDualEsDebilCompactaEnEspaciosReflexivos}
 Si $X$ es un espacio normado reflexivo, entonces  $B_{X^*}$ es $\mathrm{w}$-compacta.
 \end{Cor}
 
@@ -3141,7 +3221,7 @@ Sea $X$  un espacio normado. Entonces  $X$ es reflexivo si y sólo si $B_X$  es $
 \begin{Dem}
 Supongamos primero que $X$ es reflexivo. El teorema de Banach-Alaoglu indica que $B_{X^{**}}$ es $\sigma(X^{**}, X^{*})$-compacto. Por otra parte, la proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es un homeomorfismo y como $J$ es reflexivo entonces $B_X = J^{-1}(B_{X^{**}})$ es $\sigma(X, X^*)$-compacto.
 
-Ahora supongamos que $B_X$ es $\mathrm{w}$-compacta. La proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es continua. Así $J(B_X)$ es $\mathrm{w}^*$-compacto, por lo que al ser $X^{**}$ Hausdorff resulta del corolario~\ref{Cor:HausdorffCompactoEsCerrado} que $J(B_X)$ también es $\mathrm{w}^*$-cerrado. Entonces, por el teorema de Goldstine se cumple que $$B_{X^{**}} = \ov{J(B_X)}^{\mathrm{w}^*} = J(B_X)$$
+Ahora supongamos que $B_X$ es $\mathrm{w}$-compacta. La proposición~\ref{Prop:ReflexivoIdentifiacionCanonicaDebilContinua} indica que $J: X_\mathrm{w} \to X^{**}_{\mathrm{w}^*}$ es continua. Así $J(B_X)$ es $\mathrm{w}^*$-compacto, por lo que al ser $X^{**}$ Hausdorff resulta del corolario~\ref{Cor:HausdorffCompactoEsCerrado} que $J(B_X)$ también es $\mathrm{w}^*$-cerrado. Entonces, por el teorema de Goldstine se cumple que $$B_{X^{**}} = \ov{J(B_X)}^{\mathrm{w}^*} = J(B_X).$$
 
 Se sigue de aquí que $X$ es reflexivo. 
 \end{Dem}
@@ -3151,7 +3231,9 @@ Sea $X$ un espacio de Banach. Entonces $X$ es reflexivo si y sólo si $X^*$ es re
 \end{Tma}
 
 \begin{Dem}
-(Pendiente).
+Supongamos primero que $X$ es reflexivo. Por el corolario~\ref{Cor:BolaEnDualEsDebilCompactaEnEspaciosReflexivos} $B_{X^*}$ es $\mathrm{w}$-compacta. Del teorema~\ref{Tma:EquivalenciaReflexivoBolaDebilmenteCompacta} se sigue que $X^*$ es reflexivo.
+
+Ahora supongamos que $X^*$ es reflexivo. De lo anterior se sigue que $X^{**}$ es reflexivo. Como $X$ es completo, entonces $J(X)$ es completo en $X^{**}$ y por lo tanto es cerrado. De la proposición~\ref{Prop:SubespacioCerradoDeEspacioReflexivoEsReflexivo} se sigue que $J(X)$ es reflexivo. Como $X$ y $J(X)$ son isomorfos como espacios normados, de la proposición~\ref{Prop:IsomorfismoDeEspaciosNormadosPreservaReflexividad} se sigue que $X$ es reflexivo.
 \end{Dem}
 
 \begin{Ejem}
@@ -3159,7 +3241,7 @@ El espacio $\ell_p$ es reflexivo para $1 < p < \infty$ y no es reflexivo para  $
 \end{Ejem}
 
 \begin{Dem}
-Sean $1 \leq p < \infty$ y $1 < q \leq \infty$ su exponente conjugado. Consideremos $R_q: \ell_q \to \ell_p^*$ definida como $R$ en la proposición~\ref{Prop:DualDeEllePEsElleQ} y sea $R_p: \ell_p \to \ell_q^*$ definida de manera análoga a $R$ pero intercambiando los papeles de $p$ y $q$. En la proposición~\ref{Prop:DualDeEllePEsElleQ} se demostró que $R_q$ era un isomorfismo de espacios normados. Así que de la proposición~~\ref{Prop:TraspuestoDeIsomorfismoEsIsomorfismo} se sigue que $R_q^\Sft : \ell_p^{**} \to \ell_q^*$ es un isomorfismo de espacios normados.
+Sean $1 \leq p < \infty$ y $1 < q \leq \infty$ su exponente conjugado. Consideremos $R_q: \ell_q \to \ell_p^*$ definida como $R$ en la proposición~\ref{Prop:DualDeEllePEsElleQ} y sea $R_p: \ell_p \to \ell_q^*$ definida de manera análoga a $R$ pero intercambiando los papeles de $p$ y $q$. En la proposición~\ref{Prop:DualDeEllePEsElleQ} se demostró que $R_q$ era un isomorfismo de espacios normados. Así que del lema~\ref{Lema:TraspuestoDeIsomorfismoEsIsomorfismo} se sigue que $R_q^\Sft : \ell_p^{**} \to \ell_q^*$ es un isomorfismo de espacios normados.
 
 Demostremos que $R_q^\Sft \circ J = R_p$. Dados $x = (x_1, x_2, \ldots )\in \ell_p$ y $y = (y_1, y_2, \ldots) \in \ell_q$ tenemos que
 \Ecu{
@@ -3168,7 +3250,7 @@ Demostremos que $R_q^\Sft \circ J = R_p$. Dados $x = (x_1, x_2, \ldots )\in \ell
 
 De donde $(R_q^\Sft \circ J)x = R_p x$ y por tanto $R_q^\Sft \circ J = R_p$. Luego $J = (R_q^\Sft)^{-1} \circ R_p$. En el caso  $1 < p < \infty$, $R_p$ es isomorfismo de espacios normados, así que $J$ también lo es, por lo que $X$ es reflexivo. Cuando $p = 1$, se mostró en la proposición~\ref{Prop:DualDeEllePEsElleQ} que $R_p$ no es sobreyectiva, por lo que $J$ tampoco y así $\ell_1$ no es reflexivo.
 
-Falta ver que $\ell_\infty$ no es reflexivo. (Pendiente).
+Como $\ell_1$ no es reflexivo, el teorema~\ref{Tma:EquivalenciaEspacioDualReflexivo} indica que $\ell_1^*$ no es reflexivo. Según la proposición~\ref{Prop:DualDeEllePEsElleQ}, $\ell_1$ y $\ell_\infty$ son isomorfos como espacios normados, por lo que de la proposición~\ref{Prop:IsomorfismoDeEspaciosNormadosPreservaReflexividad} se concluye que $\ell_\infty$ no es reflexivo. 
 \end{Dem}
 
 \begin{Cor}
