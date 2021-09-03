@@ -22,6 +22,7 @@
 \usepackage{bookmark}
 \usepackage[super]{nth}
 \usepackage{bm}
+\usepackage{ulem}
 \newcommand\Ccancel[2][black]{\renewcommand\CancelColor{\color{#1}}\cancel{#2}}
 %\usepackage{etoolbox}
 \renewcommand{\qedsymbol}{$\blacksquare$}
@@ -261,10 +262,19 @@
 \addcontentsline{toc}{chapter}{Introducción}
 
 \normalsize
-Opciones para agregar en la introducción:
+
+En los primeros cursos de análisis que se imparten en la licenciatura en matemáticas se tiene un primer encuentro con la compacidad desde el enfoque de espacios métricos. Se demuestra que en el caso particular de $\R^n$, podemos identificar a los conjuntos compactos como aquellos que son cerrados y acotados. En cursos más avanzados de análisis se prueba que en los espacios normados de dimensión infinita esto ya no sucede, más aún la bola cerrada unitaria ya no es compacta en estos espacios. La escasez de conjuntos compactos en un espacio normado de dimensión infinita dificulta en gran medida el estudio de funciones ahí definidas, puesto que la compacidad es una propiedad que permite ``unir información local y extenderla globalmente en todo el espacio'' (esta cita viene de Wikipedia, pero no me queda claro a que clase de información se refiere) y tratar estos conjuntos como conjuntos finitos (he escuchado esto varias veces, pero tampoco me queda muy claro en que sentido se parece la definición de compacidad a un conjunto finito).
+
+Una forma de lidiar con este problema es introducir otras topologías en estos espacios de tal forma que sigan conservando la estructura algebraica, que mantengan una relación con la topología original y que tengan menos cantidad de conjuntos abiertos. Ahí es donde entran las topologías débiles. Como se prometía, resulta que en el caso de la topología débil* la bola unitaria ahora sí es compacta.   
+
+A lo largo de este trabajo hacemos un recorrido de los conceptos y resultados necesarios, empezando desde espacios topológicos y concluyendo con el desarrollo de las topologías débil y débil*. Una vez que se cuente con conceptos topológicos de continuidad y compacidad nos adentraremos en el marco más particular de los espacios métricos, donde dichos conceptos se pueden caracterizar por medio de la convergencia de sucesiones. Luego, reduciendo una vez más nuestro campo de estudio, nos enfocamos a espacios normados, donde además de contar con una distancia y la topología que esta induce, también tenemos una estructura algebraica. Debido a que las topologías débiles en general no son metrizables, el estudio de espacios métricos y normados no nos provee resultados válidos para estas topologías. Sin embargo, estas aun conservan el vínculo entre la topología y la estructura algebraica, lo que las convierte en espacios vectoriales topológicos. Pero antes de empezar su estudio, desarrollamos el concepto de red, que sustituye y generaliza el papel que  las sucesiones tienen en los espacios métricos. En este punto estaremos listos para definir las topologías débiles y caracterizar en estas la convergencia, compacidad y reflexividad. 
+
+\vspace*{1cm}
+
+\textbf{Opciones para agregar en la introducción: }
 
 \begin{itemize}
-\item Partir del conocimiento de un estudiante de licenciatura.
+\item \sout{Partir del conocimiento de un estudiante de licenciatura.}
 \item Descripción libre del tema.
 \item Hablar de la compacidad.
 \item Hablar sobre la importancia de las topologías débil y débil*.
@@ -274,13 +284,8 @@ Opciones para agregar en la introducción:
 \item Mencionar  matemáticos involucrados y datos históricos.
 \end{itemize}
 
-\vspace*{1cm}
 
-En los primeros cursos de análisis que se imparten en la licenciatura en matemáticas se tiene un primer encuentro con la compacidad desde el enfoque de espacios métricos. Se demuestra que en el caso particular de $\R^n$, podemos identificar a los conjuntos compactos por aquellos que son cerrados y acotados. En cursos más avanzados de análisis se prueba que en los espacios normados de dimensión infinita esto ya no sucede, más aún la bola cerrada unitaria ya no es compacta en estos espacios. La escasez de conjuntos compactos dificulta en gran medida su estudio, puesto que la compacidad es una propiedad que permite ``unir información local y extenderla globalmente en todo el espacio'' (esta cita viene de Wikipedia, pero no me queda claro a que clase de información se refiere) y tratar estos conjuntos como conjuntos finitos (he escuchado esto varias veces, pero tampoco me queda muy claro en que sentido se parece la definición de compacidad a un conjunto finito).
 
-Una forma de lidiar con este problema es introducir otras topologías diferentes en estos espacios de tal forma que sigan conservando la estructura algebraica, que mantengan una relación con la topología original y que tengan menos cantidad de conjuntos abiertos. Ahí es donde entran las topologías débiles. Como se prometía, resulta que en el caso de la topología débil* la bola unitaria ahora sí es compacta.   
-
-A lo largo de este trabajo hacemos un recorrido de los conceptos y resultados necesarios, empezando desde espacios topológicos y concluyendo con el desarrollo de las topologías débil y débil*. Una vez que tengamos con conceptos topológicos de continuidad y compacidad nos adentraremos en el marco más particular de los espacios métricos, donde estos se pueden caracterizar por medio de la convergencia de sucesiones. Luego, reduciendo una vez más nuestro campo de estudio, nos enfocamos a espacios normados, donde además de contar con una distancia y la topología que esta induce, también tenemos una estructura algebraica. Debido a que las topologías débiles no son metrizables, el estudio de espacios métricos y normados no nos provee resultados válidos para estas topologías. Sin embargo, estas aun conservan el vínculo entre la topología y la estructura algebraica, lo que las convierte en espacios vectoriales topológicos. Pero antes de empezar el estudio de estos, desarrollamos el concepto de red, que sustituye y generaliza el papel que  las sucesiones tienen en los espacios métricos. En este punto estaremos listos para definir las topologías débiles y caracterizar en estas la convergencia, compacidad y reflexividad. 
 
 \mainmatter
 
@@ -288,7 +293,7 @@ A lo largo de este trabajo hacemos un recorrido de los conceptos y resultados ne
 
 \chapter{Espacios topológicos}
 
-Un aspecto muy importante de los espacios normados, sobre los cuales estaremos enfocándonos, es su topología, así que empezaremos este trabajo recordando algunos de sus conceptos principales. \\
+Un aspecto muy importante de los espacios normados, sobre los cuales estaremos enfocándonos, es su topología, así que empezaremos este trabajo recordando algunos de los principales conceptos topológicos. \\
 
 Sea $X$ un conjunto no vacío. Una \textit{topología} $\tau$ de $X$ es una familia de subconjuntos de $X$ que cumple las siguientes propiedades:
 \begin{itemize}
@@ -359,6 +364,9 @@ Consideremos en $\R$ la familia de intervalos abiertos $\mathcal{I} = \{(a, b) :
 Por lo tanto $\mathcal{I}$ es una base de $\R$. La topología que genera $\mathcal{I}$ se denomina \textit{topología usual} de $\R$ y es la que consideraremos al trabajar en $\R$ como espacio topológico.
 \end{Ejem}
 
+\begin{Ejem}
+Sea $X$ un conjunto no vacío. La familia $\tau$ de todos los subconjuntos de $X$ resulta ser una topología en $X$, puesto que la unión arbitraria e intersección de subconjuntos de $X$ vuelve a ser un subconjunto de $X$. A esta topología se le denomina \textit{topología discreta} de $X$.
+\end{Ejem}
 
 \begin{Def}
 Sean $(X, \tau)$ un espacio topológico y $\emptyset \neq Y \subseteq X$. Consideremos la familia de subconjuntos de $Y$ $$\tau_Y := \{ U \cap Y : U \in \tau \}.$$
@@ -490,13 +498,15 @@ Sean $X, Y, Z$ espacios topológicos, $f: X \to Y$ y $g: Y \to Z$. Si $f$ y $g$ s
 Sea $U$ cualquier vecindad abierta en $Z$. Como $g$ es continua, del lema~\ref{Lema:CaracterizacionContinuidadPorPreimagenesDeAbiertos} se sigue que $g^{-1}(U)$ es abierto en $Y$. Luego, como $f$ es continua, del mismo lema~\ref{Lema:CaracterizacionContinuidadPorPreimagenesDeAbiertos} se concluye que $(g \circ f)^{-1}(U) = f^{-1}(g^{-1}(U))$ es abierto en $X$ y $g \circ f$ es continua.
 \end{Dem}
 
-\begin{Prop} \label{Prop:RestriccionDeFuncionContinuaEsContinua}
-Sean $X$ y $Y$ espacios topológicos y $f: X \to Y$ una función. Entonces:
+Sea $f: A\to B$ una función de $A$ en $B$. Para $D \subseteq A$ denotamos por $\restr{f}{D}$ a la función \textit{restricción} de $D$ en $B$ definida por $\restr{f}{D}(x) = f(x)$ para toda $x \in D$.
+
+\begin{Lema} \label{Lema:RestriccionDeFuncionContinuaEsContinua}
+Sean $X$ y $Y$ espacios topológicos y $f: X \to Y$ una función.
 \begin{itemize}
-\item \textbf{\Ti} Si $f$ es continua, entonces para toda $A \subseteq X$, $\restr{f}{A}$ es continua.
+\item \textbf{\Ti} Si $f$ es continua, entonces para toda $\emptyset \neq A \subseteq X$, $\restr{f}{A}$ es continua.
 \item \textbf{\Tii} Si $\restr{f}{U}$ es continua para una vecindad abierta $U$ de $x \in X$, entonces $f$ es continua en $x$. 
 \end{itemize} 
-\end{Prop}
+\end{Lema}
 
 \begin{Dem}
 \hfill
@@ -530,6 +540,10 @@ Un subconjunto $K$ de un espacio topológico $X$ es \textit{compacto} si para cua
 
 A la colección $\{ U_\alpha \}_{\alpha \in \Lambda}$ se le denomina \textit{cubierta abierta} de $K$ y a la subcolección $\{ U_{\alpha_1}, \ldots, U_{\alpha_n} \}$ se le llama \textit{subcubierta finita} de $\{ U_\alpha \}_{\alpha \in \Lambda}$.
 \end{Def}
+
+\begin{Ejem}
+Sea $X$ un espacio topológico. Cualquier conjunto finito $K \subseteq X$ es compacto. En efecto, si expresamos $K = \{ x_1, \ldots, x_n \}$ y $\{ U_\alpha \}_{\alpha \in \Lambda}$ es una cubierta abierta de $K$, al tomar $\alpha_i \in \Lambda$ tal que $x_i \in U_{\alpha_i}$ para cada $i \in \nn{n}$ resulta que $\{ U_{\alpha_i} \}_{i=1}^n$ es una subcubierta finita de $K$.
+\end{Ejem}
 
 El teorema de Heine-Borel constituye una propiedad fundamental de los números reales y es una consecuencia del axioma del supremo.
 
@@ -570,7 +584,7 @@ Como $\{ U_x \}_{x \in A}$ es una cubierta abierta de $A$ y $A$ es compacto, exi
 \end{Dem}
 
 \begin{Cor} \label{Cor:HausdorffCompactoEsCerrado}
-Sea $X$ un espacio topológico Hausdorff. Si $K$ es un subconjunto compacto de $X$, entonces $K$ es cerrado. 
+Sea $X$ un espacio topológico Hausdorff. Si $K$ es un subconjunto compacto de $X$, entonces $K$ es cerrado. En particular, si $K \subseteq X$ es finito, entonces $K$ es cerrado.
 \end{Cor}
 
 \begin{Dem}
@@ -604,7 +618,7 @@ Como $X$ es Hausdorff y cada $\{ x_i \}$ es compacto, entonces estos son cerrado
 x_i \neq x } } \{ x_i \}$$ es cerrado. De esto se sigue que $(X \setminus B) \cup \{ x \} = X \setminus (B \setminus \{ x \})$ es abierto y en consecuencia también lo es $(U \setminus B) \cup \{ x \} = U \cap((X \setminus B) \cup \{ x \})$. Como $(U \setminus B) \cup \{ x \}$ es una vecindad abierta de $x$, se cumple que $[((U \setminus B) \cup \{ x \}) \cap A] \setminus \{ x \} \neq \emptyset$. Esto equivale a que $[U \cap (A \setminus B)] \setminus \{ x \} \neq \emptyset$ y así $x$ es punto de acumulación de $A \setminus B$. 
 \end{Dem}
 
-\section{Convergencia}
+\section{Convergencia de sucesiones}
 
 Una \textit{sucesión} en un conjunto $X$ es una función $s: \N \to X$. Usualmente representamos a la sucesión $s$ por $(x_n)_{n\in \N}$, donde $x_n := s(n)$ para toda $n \in \N$. 
 
@@ -613,10 +627,10 @@ Sea $X$ un espacio topológico y $(x_n)_{n\in\N}$ una sucesión. Si existe $x \in 
 \end{Def}
 
 \begin{Ejem}
-Sean $X$ un espacio topológico y $x \in X$. Entonces la sucesión constante $(x_n)_{n \in \N}$ tal que $x_n  = x$ converge a $x$, pues dada $U$ una vecindad abierta de $x \in X$, podemos tomar $N = 1$ y se va a cumplir que $x_n = x \in U $ para toda $n \geq N$.
+Sean $X$ un espacio topológico y $x \in X$. Entonces la sucesión constante $(x_n)_{n \in \N}$ tal que $x_n  = x$ para toda $n \in \N$, converge a $x$. En efecto, dada una vecindad abierta $U$ de $x \in X$, podemos tomar $N = 1$ y se va a cumplir que $x_n = x \in U $ para toda $n \geq N$.
 \end{Ejem}
 
-\begin{Prop}
+\begin{Prop} \label{Prop:UnicidadLimiteHausdorff}
 Sean $X$ es un espacio topológico y $(x_n)_{n \in \N}$ una sucesión en $X$ convergente. Si $X$ es Hausdorff, entonces el límite de $(x_n)_{n\in\N}$ es único.
 \end{Prop}
 
@@ -831,7 +845,7 @@ Luego, si $n \geq \max(N_1, N_2)$, entonces $$\abs{(x_n + y_n) - (x + y)} \leq \
 \end{Dem}
 
 
-La siguiente proposición indica que los espacios métricos son Hausdorff y por lo tanto las sucesiones convergentes en espacios métricos tienen límite único.
+La siguiente proposición indica que los espacios métricos son Hausdorff y por lo tanto, de acuerdo a la proposición~\ref{Prop:UnicidadLimiteHausdorff} las sucesiones convergentes en espacios métricos tienen límite único. 
 
 \begin{Prop} \label{Prop:EspacioMetricoHausdorff}
 Todo espacio métrico es Hausdorff. 
@@ -888,7 +902,7 @@ Ahora demostraremos la contrapositiva. Supongamos pues que $f$ no es continua en
 \end{Dem}
 
 \begin{Lema} \label{Lema:DistanciaAConjuntoEsContinua}
-Sean $M$ un espacio métrico y $0 \neq A \subseteq M$. Entonces $f: M \to \R$ definida por $f(x) = d(x, A)$ es continua.  
+Sean $M$ un espacio métrico y $\emptyset \neq A \subseteq M$. Entonces $f: M \to \R$ definida por $f(x) = d(x, A)$ es continua.  
 \end{Lema}
 
 \begin{Dem}
@@ -904,9 +918,9 @@ Dado que $d(x_n, x) \to 0$, se sigue que $f(x_n) = d(x_n, A) \to d(x, A) = f(x)$
 \end{Dem}
 
 
-\begin{Prop} \label{Prop:SumaDeFuncionesRealesContinuasEsContinua}
+\begin{Tma} \label{Tma:SumaDeFuncionesRealesContinuasEsContinua}
 Sea $M$ un espacios métrico. Si $g: M \to \R$ y $f: M \to \R$ son funciones continuas, entonces $f + g$ es continua.
-\end{Prop}
+\end{Tma}
 
 \begin{Dem}
 Sea $(x_n)_{n \in \N}$ una sucesión en $M$ que converge a $x \in M$. Puesto que $f$ y $g$ son continuas, de la proposición~\ref{Prop:ContinuidadPorSucesiones} se sigue que $f(x_n) \to f(x)$ y $g(x_n) \to g(x)$. Luego, la proposición~\ref{Prop:LimiteDeSumaSucesionDeReales} se sigue que $(f+g)(x_n) = f(x_n)+ g(x_n) \to f(x) + g(x) = (f+g)(x)$. Así que por la proposición~\ref{Prop:ContinuidadPorSucesiones} concluimos que $f+g$ es continua.
@@ -948,7 +962,15 @@ Sea $M$ un espacio métrico, $A \subseteq M$ y $x \in M$. Entonces $A$ es acotado
 \begin{Dem}
 Supongamos que $A$ es acotado. Si $A = \emptyset$ entonces con $t = 1$ se cumple que $d(x, y) < t$ para todo $y \in A$. Supongamos que $A \neq \emptyset$ y sea $z \in A$. Como $A$ es acotado, existe $r > 0$ tal que $d(y_1, y_2) < r$ para todos $y_1, y_2 \in A$. Definamos $t = d(x, z) + r > 0$ y sea $y \in A$. Entonces de la desigualdad del triángulo se sigue que $d(x, y) \leq d(x, z) + d(z, y) < t$. 
 
-Ahora supongamos que existe $t > 0$ de tal forma que $d(x, y) < t$ para todo $y \in A$. Consideremos $r = 2t  > 0$ y tomemos $y_1, y_2 \in A$. Por la desigualdad el triángulo, se sigue que $d(y_1, y_2) \leq d(y_1, x) + d(x, y_2) < 2t = r$ y así $A$ es acotado.
+Ahora supongamos que existe $t > 0$ de tal forma que $d(x, y) < t$ para todo $y \in A$. Consideremos $r = 2t  > 0$ y tomemos cualesquiera $y_1, y_2 \in A$. Por la desigualdad el triángulo, se sigue que $d(y_1, y_2) \leq d(y_1, x) + d(x, y_2) < 2t = r$ y así $A$ es acotado.
+\end{Dem}
+
+\begin{Prop}
+Sea $M$ un espacio métrico. Si $A \subseteq M$ es un conjunto acotado, entonces todo conjunto $B \subseteq A$ es acotado. 
+\end{Prop}
+
+\begin{Dem}
+Puesto que $A$ es acotado, existe $r > 0$ tal que $d(x, y)  < r$ para todos $x, y \in A$. En particular, esto se cumple si $x$ y  $y$ están en $B$. Luego, $B$ es acotado.
 \end{Dem}
 
 \begin{Lema} \label{Lema:UnionFinitaDeAcotadosEsAcotado}
@@ -962,23 +984,23 @@ Sean $M$ un espacio métrico, $n \in\N$ y $A_1, \ldots, A_n$ conjuntos acotados e
 Consideremos la colección de intervalos $([n, n+1])_{n \in\N}$. Cada intervalo es acotado y su unión es $[1, \infty)$, el cual no es acotado. Así que si en lugar de una colección finita, tenemos una colección contable de conjuntos acotados, su unión no necesariamente es acotada.
 
 \begin{Prop} \label{Prop:EspacioMetricoCompactoImplicaCerradoYAcotado} 
-Sea $M$ un espacio métrico y $A \subseteq M$. Si $A$ es compacto, entonces es cerrado y acotado. 
+Sea $M$ un espacio métrico y $K \subseteq M$. Si $K$ es compacto, entonces es cerrado y acotado. 
 \end{Prop}
 
 \begin{Dem}
-Supongamos que $A$ es compacto. Puesto que $M$ es Hausdorff, el corolario~\ref{Cor:HausdorffCompactoEsCerrado} indica que $A$ es cerrado. Ahora, como $A$ es compacto y $\{V_n(0)\}_{n \in\N}$ es una cubierta abierta de $A$, existen $k \in \N$ y $n_1, \ldots, n_k \in \N$ tales que $\{ V_{n_i}(0)\}_{i=1}^k $ cubre a $A$. Entonces $A$ está acotado por $N = \max(n_1, \ldots, n_k)$.
+Supongamos que $K$ es compacto. Puesto que $M$ es Hausdorff, el corolario~\ref{Cor:HausdorffCompactoEsCerrado} indica que $K$ es cerrado. Ahora, fijemos $x_0\in M$. Como $A$ es compacto y $\{V_n(x_0)\}_{n \in\N}$ es una cubierta abierta de $K$, existen $k \in \N$ y $n_1, \ldots, n_k \in \N$ tales que $K \subseteq \bigcup_{i=1}^k V_{n_i}(x_0) $. Como cada bola $V_{n_i}(x_0)$ es acotado, entonces por el lema~\ref{Lema:UnionFinitaDeAcotadosEsAcotado} $\bigcup_{i=1}^k V_{n_i}(x_0)$ es acotado y por el mismo lema, resulta que $K$ también lo es.
 \end{Dem}
 
-El teorema de Heine-Borel nos permite demostrar que en $\R$ el recíproco del resultado anterior es válido como se muestra a continuación.
+El teorema de Heine-Borel nos permite demostrar que en $\R$ el recíproco del resultado anterior es válido, como se muestra a continuación.
 
-\begin{Prop} \label{Prop:HeineBorelParticular}
-Sea $A \subseteq \R$. Entonces $A$ es compacto si, y sólo si $A$ es cerrado y acotado.
-\end{Prop}
+\begin{Cor} \label{Cor:HeineBorelParticular}
+Sea $K \subseteq \R$. Entonces $K$ es compacto si, y sólo si $K$ es cerrado y acotado.
+\end{Cor}
 
 \begin{Dem}
-Supongamos primero que $A$ es compacto. La proposición~\ref{Prop:EspacioMetricoCompactoImplicaCerradoYAcotado} indica que $A$ es cerrado y acotado.
+Supongamos primero que $K$ es compacto. La proposición~\ref{Prop:EspacioMetricoCompactoImplicaCerradoYAcotado} indica que $K$ es cerrado y acotado.
 
-Ahora supongamos que $K$ es cerrado y acotado. Como $K$ es acotado, existe $n \in \N$, tal que $K \subseteq [-a, a]$. Como $K$ es cerrado, del lema~\ref{Lema:CerradoEnCompactoEsCompacto} se concluye que $K$ es compacto. 
+Ahora supongamos que $K$ es cerrado y acotado. Como $K$ es acotado, existe $n \in \N$, tal que $K \subseteq [-a, a]$. Puesto que $K$ es cerrado, del lema~\ref{Lema:CerradoEnCompactoEsCompacto} se concluye que $K$ es compacto. 
 \end{Dem}
 
 La proposición anterior no se cumple en general en todos los espacios métricos como lo muestra el siguiente ejemplo.
@@ -992,7 +1014,7 @@ d(x, y) = \begin{cases}
 \end{cases}
 \end{equation*}
 
-Resulta que $d$ es una métrica en $\R$ a la cual denominamos \textit{métrica discreta}. Esto debido a que tal métrica induce la topología discreta (¿lo demuestro?), en la cual todos los subconjuntos de $\R$ son abiertos. 
+Resulta que $d$ es una métrica en $\R$, a la cual denominamos \textit{métrica discreta}. Observemos que tal métrica induce la topología discreta, en la cual todos los subconjuntos de $\R$ son abiertos. 
 
 Tomemos $\N \subseteq \R$. Con la topología discreta, $\N$ es cerrado y acotado pues $\R \setminus \N$ es abierto y $d(n, m) \leq 1$ para todos $n, m \in \N$. Dado que $\{ \{ n \} \}_{n \in \N}$ es una cubierta abierta de $\N$ sin subcubiertas propias, se sigue que $\N$ no es compacto. 
 \end{Ejem}
@@ -1138,7 +1160,7 @@ A la propiedad \textbf{ii)} en el teorema anterior se le denomina \textit{compac
 
 
 \begin{Lema} \label{Lema:FuncionConstanteEnCerradoConSoporteEnAbierto}
-Sean $M$ un espacio métrico, $A \subseteq M$ cerrado y $A \subseteq U \subseteq M$ abierto. Entonces existe una función continua $f:M \to \R$ tal que $\restr{f}{A} = 1$ y $\restr{f}{U^\mathsf{c}} = 0$.
+Sean $M$ un espacio métrico, $A \subseteq M$ un cerrado y $U \subseteq M$ un abierto tales que $A \subseteq U$. Entonces existe una función continua $f:M \to \R$ tal que $\restr{f}{A} = 1$ y $\restr{f}{U^\mathsf{c}} = 0$.
 \end{Lema}
 
 \begin{Dem}
@@ -1153,15 +1175,15 @@ El lema~\ref{Lema:DistanciaAConjuntoEsContinua} indica que $g$ y $h$ son continu
 La proposición~\ref{Prop:FuncionContinuaPreservaCompactos} indica que una función continua preserva compactos. Dado que en $\R$ los conjuntos compactos son precisamente aquellos cerrados y acotados, se sigue la imagen de una función continua definida en un compacto es cerrada y acotada y motiva el siguiente resultado.
 
 \begin{Prop} \label{Prop:CaracterizacionFuncionContinuaEnCompacto}
-Sean $M$ un espacio métrico y $\emptyset \neq K \subseteq M$. Entonces $K$ es compacto si, y sólo si toda función continua $f: K \to \R$ tiene un valor máximo.  
+Sea $K$ un espacio métrico. Entonces $K$ es compacto si, y sólo si toda función continua $f: K \to \R$ tiene un valor máximo.  
 \end{Prop}
 
 \begin{Dem}
-Supongamos primero que $K$ es compacto y sea $f: K \to \R$ una función continua. Por la proposición~\ref{Prop:FuncionContinuaPreservaCompactos} se sigue que $f(K)$ es compacto. Luego, el teorema~\ref{Tma:HeineBorelGeneral} afirma que $f(K)$ es cerrado y acotado en $\R$. Como $f(K)$ es acotado y no vacío, el axioma del supremo indica que existe $\sup f(K) \in \R$. El ejemplo~\ref{Ejem:SupremoEnCerradura} indica que $\sup f(K) \in \ov{f(K)}$, pero como $f(K)$ es cerrado, se sigue que $\sup f(K) \in f(K)$. Así que existe $x \in K$ tal que $f(x) = \sup f(K)$. Entonces $f(x)$ es un valor máximo de $f$.
+Supongamos primero que $K$ es compacto y sea $f: K \to \R$ una función continua. Por la proposición~\ref{Prop:FuncionContinuaPreservaCompactos} se sigue que $f(K)$ es compacto. Luego, el teorema~\ref{Tma:HeineBorelGeneral} afirma que $f(K)$ es cerrado y acotado en $\R$. Como $f(K)$ es acotado y no vacío, el axioma del supremo indica que existe $\sup f(K) \in \R$. El ejemplo~\ref{Ejem:SupremoEnCerradura} indica que $\sup f(K) \in \ov{f(K)}$, pero como $f(K)$ es cerrado, se sigue que $\sup f(K) \in f(K)$. Así que existe $x \in K$ tal que $f(x) = \sup f(K)$. Entonces $f(x)$ es el valor máximo de $f$.
 
-Para establecer el recíproco demostremos su contrapositiva. Esto es, supongamos que $K$ no es compacto y encontremos una función continua en $K$ que no alcance su valor máximo. Como $K$ no es compacto, del teorema~\ref{Tma:CaracterizacionCompacidadSucesiones} se sigue que existe  una sucesión $(x_n)_{n \in \N}$ en $K$ sin subsucesiones convergentes. Sea $A := \{ x_n : n \in \N \}$. Si $A$ fuera finito, existiría un elemento en $A$ que se repetiría infinitas veces en $(x_n)_{n\in\N}$ y este formaría una subsucesión en $(x_n)_{n\in \N}$ que converge, por lo que $A$ es contable y lo podemos expresar como $A = \{ z_n \in K : n \in \N \}$ de tal forma que $z_n \neq z_m$ si $n \neq m$.
+Para establecer el recíproco demostremos su contrapositiva. Esto es, supongamos que $K$ no es compacto y encontremos una función continua en $K$ que $f(K)$ no tenga máximo. Como $K$ no es compacto, del teorema~\ref{Tma:CaracterizacionCompacidadSucesiones} se sigue que existe  una sucesión $(x_n)_{n \in \N}$ en $K$ sin subsucesiones convergentes. Sea $A := \{ x_n : n \in \N \}$. Si $A$ fuera finito, existiría un elemento en $A$ que se repetiría infinitas veces en $(x_n)_{n\in\N}$ y este formaría una subsucesión en $(x_n)_{n\in \N}$ que converge, por lo que $A$ es contable y lo podemos expresar como $A = \{ z_n \in K : n \in \N \}$ de tal forma que $z_n \neq z_m$ si $n \neq m$.
 
-Fijemos $x \in K$ por un momento y mostremos que existe $\varepsilon > 0$ tal que $V_{\varepsilon}(x) \cap A \subseteq \{ x \}$. Supongamos que para toda $m \in\N$, el conjunto $V_\frac{1}{m}(x) \cap A$ es infinito. Es decir, para cada $m \in \N$ existen infinitos valores en $\{ x_n : n\geq m\} \cap V_\frac{1}{m}(x)$. Luego, podemos considerar una subsucesión $(x_{n_i})_{i\in\N}$ de forma que $x_{n_i} \in V_i(x)$ y $n_i \geq i$. Luego, $x_{n_i} \to x$, que contradice que $(x_n)_{n \in \N}$ no tiene subsucesiones convergentes. Así que existe $m \in \N$ tal que $V_\frac{1}{m}(x) \cap A$ contiene finitos términos $z_1, \ldots, z_k \in A$ distintos de $x$. Luego $\varepsilon = \min(d(z, z_1), \dots, d(z, z_k))$ cumple lo que buscamos. 
+Fijemos $x \in K$ por un momento y mostremos que existe $\varepsilon > 0$ tal que $V_{\varepsilon}(x) \cap A \subseteq \{ x \}$. Supongamos que para toda $m \in\N$, el conjunto $V_\frac{1}{m}(x) \cap A$ es infinito. Es decir, para cada $m \in \N$ existen infinitos valores en $\{ x_n : n\geq m\} \cap V_\frac{1}{m}(x)$. Luego, podemos considerar una subsucesión $(x_{n_i})_{i\in\N}$ de forma que $x_{n_i} \in V_i(x)$ y $n_i \geq i$. Luego, $x_{n_i} \to x$, lo cual contradice que $(x_n)_{n \in \N}$ no tiene subsucesiones convergentes. Así que existe $m \in \N$ tal que $V_\frac{1}{m}(x) \cap A$ contiene un número finito de términos $z_1, \ldots, z_k \in A$ distintos de $x$. Luego $\varepsilon = \min(d(z, z_1), \dots, d(z, z_k))$ cumple lo que buscamos. 
 
 Tenemos pues que para todo $z_n \in A$, existe $\varepsilon_n > 0$ tal que $V_{\varepsilon_n}(z_n) \cap A = \{ z_n \}$. Definamos $r_1 =  \varepsilon_1$ y tomemos $r_2 > 0$ tal que $r_2 \leq \varepsilon_2$, $r_2 <\frac{1}{2}$ y $r_2 \leq d(z_1, z_2) - r_1$. De esta forma $V_{r_1}(z_1) \cap V_{r_2}(z_2) = \emptyset$. Luego, consideremos $r_3 > 0$ tal que $r_3 \leq \varepsilon_2$, $r_3 \leq \frac{1}{3}$ y $r_3 \leq \min(d(z_1, z_3) - r_1, d(z_2, z_3) - r_2)$. De esto que $V_{r_1}(z_1) \cap V_{r_3}(z_3) = V_{r_2}(z_2) \cap V_{r_3}(z_3) = \emptyset$. Sucesivamente podemos construir $r_n > 0$ para cada $n \in \N$ de tal manera que $V_{r_n}(z_n) \cap V_{r_m}(z_m) = \emptyset$ si $n \neq m$ y $r_n \to 0$.
 
@@ -1171,14 +1193,14 @@ $$f := \sum_{n=1}^\infty f_n.$$
 Notemos que está bien definida, pues para todo $x \in K$ se tiene que 
 $f(x) = f_n(x)$ si $x \in V_{r_n}(z_n)$ para algún $n \in \N$ y $f(x) = 0$ si $x \notin V_{r_n}(z_n)$ para toda $n \in \N$.
 
-Veamos que $f$ es continua en todo $x \in K$. Supongamos primero que $x = z_n$ para algún $n \in \N$. Como $f_n$ es continua, de \textbf{i)} de la proposición~\ref{Prop:RestriccionDeFuncionContinuaEsContinua} se sigue que $\restr{f}{V_{r_n}(x)} = \restr{f_n}{V_{r_n}(x)}$ es continua y por \textbf{ii)} de la misma proposición se sigue que $f$ es continua en $x$. 
+Veamos que $f$ es continua en todo $x \in K$. Supongamos primero que $x = z_n$ para algún $n \in \N$. Como $f_n$ es continua, de \textbf{i)} del lema~\ref{Lema:RestriccionDeFuncionContinuaEsContinua} se sigue que $\restr{f}{V_{r_n}(x)} = \restr{f_n}{V_{r_n}(x)}$ es continua y por \textbf{ii)} de la misma proposición se sigue que $f$ es continua en $x$. 
 
 Tomemos ahora $x \notin A$. Anteriormente probamos que existe $\varepsilon > 0$ tal que $V_\varepsilon(x) \cap A = \emptyset$. Demostremos que existe $N \in \N$ tal que $V_{\med{\varepsilon}}(x) \cap V_{r_n}(z_n) = \emptyset$ si $n \geq N$. Supongamos que no existe tal $N \in \N$. Como $r_n \to 0$, podemos tomar $m \in \N$ tal que $r_n < \frac{\varepsilon}{2}$ si $n \geq m$. Luego, existe algún $n \geq m$ tal que $V_{\med{\varepsilon}}(x) \cap V_{r_n}(z_n) \neq \emptyset$. Sea $y \in V_{\med{\varepsilon}}(x) \cap V_{r_n}(z_n)$. Entonces $d(x, y)< \med{\varepsilon}$ y $d(y, z_n) < r_n < \med{\varepsilon}$. Por la desigualdad del triángulo $d(x, z_n) < d(x, y) + d(y, z_n) < \med{\varepsilon} + \med{\varepsilon} = \varepsilon$. Esto indica que $z_n \in V_{\varepsilon}(x)$ y contradice que $V_\varepsilon(x) \cap A = \emptyset$. Por lo tanto sí existe $N \in \N$ que cumple lo establecido. Notemos entonces que 
 \begin{equation} \label{Eq:DominioCompactoDeFuncionesContinuasQueAlcanzaMaximo}
 \restr{f}{V_{\myfrac{\varepsilon}{2}}(x)} = \sum_{i=1}^N \restr{f_n}{V_\myfrac{\varepsilon}{2}(x)}.
 \end{equation}
 
-Como cada $f_n$ es continua, por \textbf{i)} de la proposición~\ref{Prop:RestriccionDeFuncionContinuaEsContinua} se sigue que $f_n$ es continua en $V_{\frac{\varepsilon}{2}}(x)$. Por la proposición~\ref{Prop:SumaDeFuncionesRealesContinuasEsContinua}, de (\ref{Eq:DominioCompactoDeFuncionesContinuasQueAlcanzaMaximo}) se sigue que $f$ es continua en $V_{\frac{\varepsilon}{2}}(x)$. Por \textbf{ii)} de la proposición~\ref{Prop:RestriccionDeFuncionContinuaEsContinua}, $f$ es continua en $x$.
+Como cada $f_n$ es continua, de \textbf{i)} del lema~\ref{Lema:RestriccionDeFuncionContinuaEsContinua} se sigue que $f_n$ es continua en $V_{\frac{\varepsilon}{2}}(x)$. Luego, de (\ref{Eq:DominioCompactoDeFuncionesContinuasQueAlcanzaMaximo}) y del teorema~\ref{Tma:SumaDeFuncionesRealesContinuasEsContinua},  se sigue que $f$ es continua en $V_{\frac{\varepsilon}{2}}(x)$. Por \textbf{ii)} del lema~\ref{Lema:RestriccionDeFuncionContinuaEsContinua}, $f$ es continua en $x$.
 
 Como $f(z_n) = n$ para todo $n \in \N$, resulta que $f$ no es acotada. Por lo tanto $f$ es una función continua en $K$ que no alcanza su máximo. 
 
@@ -1330,7 +1352,7 @@ Sea $X$ un espacio normado. Entonces $A \subseteq X$ es un conjunto acotado si, 
 El lema~\ref{Lema:CaracterizacionConjuntoAcotado} indica que $A$ es acotado si y sólo si existe $M > 0$ tal que $\Norm{x} = d(x, 0) < M$ para todo $x \in A$.
 \end{Dem}
 
-No todo operador lineal $T:X\to Y$ entre los espacios normados $X$ e $Y$ resulta ser continuo. Los de mayor interés son los que sí son continuos. Una caracterización de un operador lineal continuo es que sea un \textit{operador lineal acotado}, esto es, que exista $t > 0$ tal que $$\Norm{Tx} \leq t \Norm{x} \mbox{ para todo } x \in X.$$ 
+No todo operador lineal $T:X\to Y$ entre los espacios normados $X$ e $Y$ resulta ser continuo. Los de mayor interés son los que sí lo son. Una caracterización de un operador lineal continuo es que sea un \textit{operador lineal acotado}, esto es, que exista $t > 0$ tal que $$\Norm{Tx} \leq t \Norm{x} \mbox{ para todo } x \in X.$$ 
 
 \begin{Prop} \label{Prop:IsomorfismoPreservaConjuntosAcotados}
 Sean $X$ y $Y$ espacios normados y  $T:X \to Y$ un operador lineal. Entonces $T$ es acotado si, y sólo si $T$ preserva conjuntos acotados.
@@ -1354,7 +1376,7 @@ Empecemos tomando $x \in X$. Si $x = 0$, entonces $$\Norm{Tx} = \Norm{0} = 0 \le
 Si por otro lado $x \neq 0$, entonces $y = \frac{x}{\Norm{x}} \in B_X$. Por lo que $\Norm{T} \geq \Norm{Ty}$. Esto es
 $$\Norm{T} \geq \Norm{T\left(\frac{x}{\Norm{x}}\right)} = \frac{\Norm{Tx}}{\Norm{x}}$$ y así $\Norm{Tx} \leq \Norm{T} \Norm{x}$. \\
 
-El principio de acotamiento uniforme es un resultado fundamental del análisis funcional. Este indica una condición suficiente para que una familia de operadores lineales continuos sea acotada es que sea puntualmente acotada como se enuncia a continuación.
+El principio de acotamiento uniforme es un resultado fundamental del análisis funcional. Este indica que una condición suficiente para que una familia de operadores lineales continuos sea acotada, es que sea puntualmente acotada, como se enuncia a continuación.
 
 \begin{Tma}[Principio de acotamiento uniforme]
 Sean $X$ un espacio de Banach, $Y$ un espacio normado y $\{ T_\alpha \}_{\alpha \in \Lambda} \subseteq \mathcal{L}(X, Y)$ una colección de operadores lineales continuos de $X$ a $Y$. Si $\{ T_\alpha(x) : \alpha \in \Lambda \}$ es un conjunto acotado en $Y$, entonces $\{ T_\alpha \}_{\alpha \in \Lambda}$ es acotado en $\calL(X, Y)$.
@@ -1458,7 +1480,7 @@ De la desigualdad del triángulo se sigue que $$\Norm{z - y}_2 \leq \Norm{z - x}_
 Por lo tanto $V_r(z)$ es abierto en la topología producto.
 \end{Dem}
 
-El siguiente teorema generaliza a la proposición~\ref{Prop:HeineBorelParticular}.
+El siguiente teorema generaliza al corolario~\ref{Cor:HeineBorelParticular}.
 
 \begin{Tma} \label{Tma:HeineBorelGeneral} 
 Sea $A \subseteq \K^n$. Son equivalentes:
@@ -1816,7 +1838,7 @@ J : X & \mapsto X^{**} \\
 x &\mapsto \delta_x 
 }
 
-Entonces la identificación canónica se caracteriza por cumplir que
+Usando la notación de apareamiento dual, la identificación canónica se caracteriza por cumplir que
 $$\ang{x, \varphi} = \ang{\varphi, Jx} \;\; \mbox{ para todos } x \in X \mbox{ y }  \varphi \in X^*.$$
 
 Estableceremos en seguida que la identificación canónica es una isometría entre $X$ y $X^{**}$. Esto nos indica que podemos pensar a $X$ como un subespacio de $X^{**}$.
@@ -1835,11 +1857,11 @@ $$\abs{Jx(\varphi)} = \abs{\varphi(x)} = \Norm{x}.$$
 Así pues $\Norm{Jx} \geq \Norm{x}$. El lema~\ref{Lema:DeltaContinua} indica que $\Norm{Jx} = \Norm{\delta_x} \leq \Norm{x}$ y así se sigue que $\Norm{Jx} = \Norm{x}$ y $J$ es isometría.
 \end{Dem}
 
-Sean $X$ y $Y$ espacios normados. El \textit{operador traspuesto} del operador lineal continuo $T: X \to Y$ es $T^\Sft : Y^* \to X^*$ definido por $$T^\Sft\varphi := \varphi \circ T \mbox{ para }\varphi \in Y^*.$$ 
+Sean $X$ y $Y$ espacios normados. El \textit{operador transpuesto} del operador lineal continuo $T: X \to Y$ es $T^\Sft : Y^* \to X^*$ definido por $$T^\Sft\varphi := \varphi \circ T \mbox{ para }\varphi \in Y^*.$$ 
 
 Como $T^\Sft\varphi$ es  composición de operadores lineales continuos, entonces es lineal y continuo. Así que $T^\Sft$ está bien definido.
 
-El operador traspuesto $T^\Sft$ se caracteriza por cumplir que
+El operador transpuesto $T^\Sft$ se caracteriza por cumplir que
 $$\ang{Tx, \varphi} = \ang{x, T^\Sft\varphi} \;\; \mbox{ para todos } x \in X \mbox{ y }  \varphi \in X^*.$$
 
 Dados $\varphi, \psi \in Y^*$ y $\lambda \in \K$, se tiene que
@@ -1850,9 +1872,9 @@ $$\Norm{(T^\Sft\varphi) x} = \Norm{\varphi(Tx)} \leq \Norm{\varphi} \Norm(Tx) \l
 
 Esto indica que $\Norm{T^\Sft\varphi} \leq \Norm{T} \Norm{\varphi}$ y entonces $T^\Sft$ es acotado y $\Norm{T^\Sft} \leq \Norm{T}$.
 
-\begin{Prop} \label{Prop:InversoDeOperadorTraspuesto}
+\begin{Lema} \label{Lema:InversoDeOperadorTraspuesto}
 Sean $X$ y $Y$ espacios normados y $T \in \calL(X, Y)$ biyectiva. Entonces $T^\Sft$ es biyectiva y $(T^{\Sft})^{-1} = (T^{-1})^\Sft$.
-\end{Prop}
+\end{Lema}
 
 \begin{Dem}
 Para todo $\varphi \in X^*$ se cumple que
@@ -1895,7 +1917,7 @@ Sean $X$ y $Y$ espacios normados. Si $T: X \to Y$ es un isomorfismo de espacios 
 \end{Lema}
 
 \begin{Dem}
-Dado que $T$ es un isomorfismo se tiene que $T$ es biyectiva. Por la proposición\ref{Prop:InversoDeOperadorTraspuesto} se sigue que $T^{\Sft}$ también es biyectiva. Como $T \in \calL(X, Y)$, entonces $T^\Sft \in \calL(Y^*, X^*)$. Como $T^{-1} \in \calL(Y, X)$, entonces $(T^\Sft)^{-1} = (T^{-1})^\Sft \in \calL(X^*, Y^*)$. Por lo tanto $T^{\Sft}$ es un isomorfismo de espacios normados.
+Dado que $T$ es un isomorfismo se tiene que $T$ es biyectiva. Por el lema~\ref{Lema:InversoDeOperadorTraspuesto} se sigue que $T^{\Sft}$ también es biyectiva. Como $T \in \calL(X, Y)$, entonces $T^\Sft \in \calL(Y^*, X^*)$. Puesto que $T^{-1} \in \calL(Y, X)$, entonces $(T^\Sft)^{-1} = (T^{-1})^\Sft \in \calL(X^*, Y^*)$. Por lo tanto $T^{\Sft}$ es un isomorfismo de espacios normados.
 \end{Dem}
 
 
@@ -1960,9 +1982,9 @@ El caso $p= \infty$ y $q = 1$ es análogo al anterior.
 \end{Dem}
 
 
-\begin{Prop} \label{Prop:DualDeEllePEsElleQ}
+\begin{Tma} \label{Tma:DualDeEllePEsElleQ}
 Sean $1 \leq p < \infty$ y $q$ su exponente conjugado. Entonces $\ell_p^*$ y $\ell_q$ son isométricamente isomorfos y $\ell_1$ es isométricamente isomorfo como espacio normado a un subespacio propio de $\ell_\infty^*$.  
-\end{Prop}
+\end{Tma}
 
 \begin{Dem}
 Tomemos $1 \leq p \leq \infty$ y fijemos $y = (y_1, y_2, \ldots) \in \ell_q$. Consideremos la función $Ry: \ell_p \to \K$ definida en $x = (x_1, x_2, \ldots) \in \ell_p$ por
@@ -2499,7 +2521,7 @@ Sea $E$ un espacio vectorial topológico, entonces $E^*$ es un espacio vectorial.
 Como $E^* \subseteq F(E, \K)$ y $F(E, \K)$ es un espacio vectorial sobre $\K$, basta probar que $E^*$ es un subespacio de $F(E, \K)$. Así pues, consideremos $\varphi, \psi \in E^*$ y $\lambda \in \K$, de manera que $\varphi$ y $\psi$ son lineales y continuas. Por el lema~\ref{Lema:SumaYProductoEscalarDeFuncionesContinuas} se sigue que $\varphi - \lambda \psi$ es lineal y continua. Así $\varphi - \lambda \psi \in E^*$ y $E^*$ es un espacio vectorial.
 \end{Dem}
 
-En espacios topológicos no existe un concepto similar al de una sucesión de Cauchy en espacios métricos. Sin embargo, en un espacio vectorial topológico sí se puede definir y se puede generalizar incluso a redes como se muestra en seguida.
+En espacios topológicos no existe un concepto similar al de una sucesión de Cauchy en espacios métricos. Sin embargo, en un espacio vectorial topológico sí se puede definir y se puede generalizar incluso a redes, como se muestra en seguida.
 
 \begin{Def}
 Sea $E$ un espacio vectorial topológico. Una \textit{red de Cauchy} en $E$ es una red $(x_\alpha)_{\alpha \in \Lambda} \subseteq E$ tal que para toda vecindad abierta $U$ del cero existe $\alpha \in \Lambda$ tal que $x_{\alpha_1} - x_{\alpha_2} \in U$ siempre que $\alpha_1, \alpha_2 \geq \alpha$. 
@@ -2827,7 +2849,7 @@ Por la desigualdad del triángulo $\Norm{x_\gamma - x} < \frac{1}{N}$ y así $x_\g
 Como resultado de lo anterior, el espacio $\K^n$ como espacio vectorial topológico es completo. 
 
 \begin{Lema} \label{Lema:CaracterizacionAcotadoEnTopologiaSeminormas}
-Sea $X$ un espacio vectorial con la topología generada por una familia no vacía de seminormas $\calF$ que separa puntos en $X$. Entonces $B \subseteq X$ es acotado si, y sólo si $p(B)\subseteq$ es acotado para toda $p \in \calF$.
+Sea $X$ un espacio vectorial con la topología generada por una familia no vacía de seminormas $\calF$ que separa puntos en $X$. Entonces $B \subseteq X$ es acotado si, y sólo si $p(B)\subseteq \R$ es acotado para toda $p \in \calF$.
 \end{Lema}
 
 \begin{Dem}
@@ -2965,7 +2987,7 @@ Sean $X$ un espacio normado y $X^*$ su espacio dual. Notemos que para cada $\var
 Sea $X$ un espacio normado. La \textit{topología débil} de $X$ es $\sigma(X, \F_X)$ y la denotaremos por $\sigma(X, X^*)$ o simplemente por $\tau_{\mathrm{w}}$ si no hace falta especificar el espacio $X$. Cuando trabajemos con la topología débil de $X$, el espacio vectorial topológico correspondiente se denotará por $X_{\mathrm{w}}$.
 \end{Def}
 
-Según la proposición~\ref{Prop:BaseTopologiaDebilSeminormas}, la familia de conjuntos 
+Observemos que según la proposición~\ref{Prop:BaseTopologiaDebilSeminormas}, la familia de conjuntos 
 $$U_{x, \varphi_1, \ldots, \varphi_k, \varepsilon} := U_{x, \abs{\varphi_1}, \ldots, \abs{\varphi_k}, \varepsilon}, x \in X, k \in \N, \varphi_1, \ldots, \varphi_k \in X^*, \varepsilon > 0;$$
 forman una base de la topología débil.
 
@@ -3069,9 +3091,9 @@ Notemos que el primer conjunto es un abierto de $X^*_{\mathrm{w}^*}$ y el segund
 \sigma(X^*, X) \subseteq \sigma(X^*, X^{**}) \subseteq \tau_{\Norm{\cdot}_{X^*}}.
 \end{equation}
 
-\begin{Prop} \label{Prop:ContencionKernelsImplicaCombinacionLineal}  
+\begin{Lema} \label{Lema:ContencionKernelsImplicaCombinacionLineal}  
 Sean $X$ un espacio vectorial, $n \in \N$ y $f, g_1, \ldots, g_n$ funcionales lineales en $X$. Si $\bigcap_{i=1}^n \Ker g_i \subseteq \Ker f$, entonces $f \in \Span \,\{ g_1, \ldots, g_n \}$.
-\end{Prop}
+\end{Lema}
 
 \begin{Dem}
 Definamos $F: X \to \K^n$ definida por $F(x) = (g_1(x), \ldots, g_n(x))$ para $x \in X$ y $h: F(X) \to \K$ por $h(F(x)) = f(x)$ para $F(x) \in F(X)$. Mostremos que $h$ está bien definida. Supongamos que $F(x) = F(y)$ para algunos $x, y \in X$. Luego $F(x-y) = 0$ y por tanto $$x-y \in \Ker F = \bigcap_{i=1}^n \Ker g_i \subseteq \Ker f,$$ por lo que $h(F(x)) = f(x) = f(y) = h(F(y))$.
@@ -3095,7 +3117,7 @@ U_{0, x_1, \ldots, x_k, \frac{\varepsilon}{n}} \subseteq \delta^{-1}\left(V_\fra
 \end{equation} 
 
 Consideremos $\varphi \in \bigcap_{i=1}^k \Ker \delta_{x_i}$. Entonces $\varphi \in U_{0, x_1, \ldots, x_k, \frac{\varepsilon}{n}}$ para toda $n \in \N$. Luego, por (\ref{Eq:RelexividadEnTopologiaDebilEstrella}) se sigue que $\abs{\delta(\varphi)} < \frac{1}{n}$ para toda $n \in \N$, así que $\delta(\varphi) = 0$ y p
-or tanto $\varphi \in \Ker \delta$. Esto indica que $\bigcap_{i=1}^k \Ker \delta_{x_i}$, por lo que la proposición~\ref{Prop:ContencionKernelsImplicaCombinacionLineal} asegura que $\delta \in \Span \{ \delta_{x_1}, \ldots, \delta_{x_k} \} \subseteq J(X)$ y así se concluye que $(X^*_{\mathrm{w}^*})^* \subseteq J(X)$.
+or tanto $\varphi \in \Ker \delta$. Esto indica que $\bigcap_{i=1}^k \Ker \delta_{x_i}$, por lo que el lema~\ref{Lema:ContencionKernelsImplicaCombinacionLineal} asegura que $\delta \in \Span \{ \delta_{x_1}, \ldots, \delta_{x_k} \} \subseteq J(X)$ y así se concluye que $(X^*_{\mathrm{w}^*})^* \subseteq J(X)$.
 \end{Dem}
 
 En general no se cumple que $J(X) = (X^*)^*$, pero si en $X^*$ consideramos la topología débil*, entonces por la proposición anterior $J(X) = (X_{\mathrm{w}^*}^*)^*$. Así que podemos identificar a $(X^*_{\mathrm{w}})^*$ con $X$. \\
@@ -3112,7 +3134,7 @@ Sea $X$ un espacio normado. Entonces la bola unitaria cerrada de $X^*$ es compac
 \begin{Dem}
 Consideremos $Y = F(X, \K)$. Por el teorema~\ref{Tma:CaracterizacionCompacidadEnEspacioProducto} basta establecer que $B_{X^*}$ es cerrado y acotado en $Y$.   
 
-Sea $\abs{\delta_x} \in \calF$ para alguna $x \in X$. Para $\varphi \in B_{X^*}$ se tiene que $$\abs{\delta_x}(\varphi) = \abs{\varphi(x)} \leq \Norm{\varphi} \Norm{x} \leq \Norm{x}.$$
+Sea $x$, de manera que $\abs{\delta_x} \in \calF$. Para $\varphi \in B_{X^*}$ se tiene que $$\abs{\delta_x}(\varphi) = \abs{\varphi(x)} \leq \Norm{\varphi} \Norm{x} \leq \Norm{x}.$$
 
 Luego $\abs{\delta_x}(B_{X^*})$ está acotado por $\Norm{x}$ y del lema~\ref{Lema:CaracterizacionAcotadoEnTopologiaSeminormas} se sigue que $B_{X^*}$ es acotado.
 
@@ -3148,9 +3170,9 @@ Todo espacio normado de dimensión finita es reflexivo.
 Sea $X$ un espacio normado de dimensión finita. Al final de la demostración de la proposición~\ref{Prop:DualDimensionInfinita} se estableció entonces $\dim X \geq \dim X^*$. Luego $\dim X \geq \dim X^* \geq \dim X^{**}$. Por otro lado $J: X \to X^{**}$ es inyectiva, por lo que $\dim X \leq \dim X^{**}$. Así que $X$ y $X^{**}$ son de la misma dimensión. Como $J$ es lineal, inyectiva y está definida entre espacios de la misma dimensión, resulta que es sobreyectiva y $X$ es reflexivo.  
 \end{Dem}
 
-\begin{Prop} \label{Prop:IsomorfismoDeEspaciosNormadosPreservaReflexividad}
+\begin{Lema} \label{Lema:IsomorfismoDeEspaciosNormadosPreservaReflexividad}
 Sean $X$ y $Y$ dos espacios normados isomorfos. Si $X$ es reflexivo, entonces $Y$ también lo es. 
-\end{Prop}
+\end{Lema}
 
 \begin{Dem}
 Sea $T: Y \to X$ un isomorfismo de espacios normados. Por el lema~\ref{Lema:TraspuestoDeIsomorfismoEsIsomorfismo} se sigue que $T^{\Sft \Sft} : X^{**} \to Y^{**}$ es también un isomorfismo de espacios normados. Como $X$ es reflexivo, se tiene que la identificación canónica $J_X : X \to X^{**}$ es sobreyectiva, por lo que es invertible. De la proposición~\ref{Prop:IdentificacionesCanonicasYDobleTranspuesto} se sigue que $T^{\Sft\Sft} \circ J_X = J_Y \circ T$, de donde $J_Y = T^{\Sft\Sft} \circ J_X \circ T^{-1}$. Como $J_Y$ es composición de funciones sobreyectivas, resulta que $J_Y$ también lo es. Así que $Y$ es reflexivo.  
@@ -3169,7 +3191,7 @@ Probemos ahora que $\ov{\delta}$ es continua. Tomemos entonces $\varphi \in X^*$
 De donde
 $$\Norm{\restr{\varphi}{Y}} = \sup \left\{\Norm{\restr{\varphi}{Y}(y)} : y \in B_Y \right\} \leq \sup \{ \Norm{\varphi(x)} : x \in B_X \} = \Norm{\varphi}.$$
 
-Así que $$\Norm{\widehat{\delta}(\varphi)} = \Norm{\delta(\restr{\varphi}{Y})} \leq \Norm{\delta} \Norm{\restr{\varphi}{Y}} \leq \Norm{\delta} \Norm{\varphi}$$ y por lo tanto $\widehat{\delta}$ es continua. Entonces $\widehat{\delta} \in X^{**}$. Como $X$ es reflexivo, existe $x \in X$ con $J_X(x) = \widehat{\delta}$. Supongamos que $x \notin Y$. Como $Y$ es cerrado, del corolario~\ref{Cor:HahnBanachFuncional} de Hanh-Banach se sigue que existe $\varphi \in X^*$ con $\varphi(x) \neq 0$ y $\restr{\varphi}{Y} = 0$. Pero esto implica que $0 = \delta(\restr{\varphi}{Y}) = \widehat{\delta}(\varphi) = J_X(x)(\varphi) = \varphi(x) \neq 0$, lo cual es una contradicción. Así que $x \in Y$.
+Así que $$\Norm{\widehat{\delta}(\varphi)} = \Norm{\delta(\restr{\varphi}{Y})} \leq \Norm{\delta} \Norm{\restr{\varphi}{Y}} \leq \Norm{\delta} \Norm{\varphi}$$ y por lo tanto $\widehat{\delta}$ es continua. Entonces $\widehat{\delta} \in X^{**}$. Puesto que $X$ es reflexivo, existe $x \in X$ con $J_X(x) = \widehat{\delta}$. Supongamos que $x \notin Y$. Como $Y$ es cerrado, del corolario~\ref{Cor:HahnBanachFuncional} de Hanh-Banach se sigue que existe $\varphi \in X^*$ con $\varphi(x) \neq 0$ y $\restr{\varphi}{Y} = 0$. Pero esto implica que $$0 = \delta(\restr{\varphi}{Y}) = \widehat{\delta}(\varphi) = J_X(x)(\varphi) = \varphi(x) \neq 0,$$ lo cual es una contradicción. Así que $x \in Y$.
 
 Probemos que $\delta = J_Y(x)$. Sea $\varphi \in Y^*$, por el teorema~\ref{Tma:HahnBanachFuncional} de Hahn-Banach existe $\widehat{\varphi} \in X^*$ tal que $\restr{\widehat{\varphi}}{Y} = \varphi$. Luego, $$(J_Y(x))(\varphi) = \varphi(x) = \widehat{\varphi}(x) = (J_X(x))(\widehat{\varphi}) = \widehat{\delta}(\widehat{\varphi}) = \delta\left(\restr{\widehat{\varphi}}{Y}\right) = \delta(\varphi).$$ 
 
@@ -3233,7 +3255,7 @@ Sea $X$ un espacio de Banach. Entonces $X$ es reflexivo si y sólo si $X^*$ es re
 \begin{Dem}
 Supongamos primero que $X$ es reflexivo. Por el corolario~\ref{Cor:BolaEnDualEsDebilCompactaEnEspaciosReflexivos} $B_{X^*}$ es $\mathrm{w}$-compacta. Del teorema~\ref{Tma:EquivalenciaReflexivoBolaDebilmenteCompacta} se sigue que $X^*$ es reflexivo.
 
-Ahora supongamos que $X^*$ es reflexivo. De lo anterior se sigue que $X^{**}$ es reflexivo. Como $X$ es completo, entonces $J(X)$ es completo en $X^{**}$ y por lo tanto es cerrado. De la proposición~\ref{Prop:SubespacioCerradoDeEspacioReflexivoEsReflexivo} se sigue que $J(X)$ es reflexivo. Como $X$ y $J(X)$ son isomorfos como espacios normados, de la proposición~\ref{Prop:IsomorfismoDeEspaciosNormadosPreservaReflexividad} se sigue que $X$ es reflexivo.
+Ahora supongamos que $X^*$ es reflexivo. De lo anterior se sigue que $X^{**}$ es reflexivo. Como $X$ es completo, entonces $J(X)$ es completo en $X^{**}$ y por lo tanto es cerrado. De la proposición~\ref{Prop:SubespacioCerradoDeEspacioReflexivoEsReflexivo} se sigue que $J(X)$ es reflexivo. Como $X$ y $J(X)$ son isomorfos como espacios normados, del lema~\ref{Lema:IsomorfismoDeEspaciosNormadosPreservaReflexividad} se sigue que $X$ es reflexivo.
 \end{Dem}
 
 \begin{Ejem}
@@ -3241,16 +3263,16 @@ El espacio $\ell_p$ es reflexivo para $1 < p < \infty$ y no es reflexivo para  $
 \end{Ejem}
 
 \begin{Dem}
-Sean $1 \leq p < \infty$ y $1 < q \leq \infty$ su exponente conjugado. Consideremos $R_q: \ell_q \to \ell_p^*$ definida como $R$ en la proposición~\ref{Prop:DualDeEllePEsElleQ} y sea $R_p: \ell_p \to \ell_q^*$ definida de manera análoga a $R$ pero intercambiando los papeles de $p$ y $q$. En la proposición~\ref{Prop:DualDeEllePEsElleQ} se demostró que $R_q$ era un isomorfismo de espacios normados. Así que del lema~\ref{Lema:TraspuestoDeIsomorfismoEsIsomorfismo} se sigue que $R_q^\Sft : \ell_p^{**} \to \ell_q^*$ es un isomorfismo de espacios normados.
+Sean $1 \leq p < \infty$ y $1 < q \leq \infty$ su exponente conjugado. Consideremos $R_q: \ell_q \to \ell_p^*$ definida como $R$ en el teorema~\ref{Tma:DualDeEllePEsElleQ} y sea $R_p: \ell_p \to \ell_q^*$ definida de manera análoga a $R$ pero intercambiando los papeles de $p$ y $q$. En el teorema~\ref{Tma:DualDeEllePEsElleQ} se demostró que $R_q$ era un isomorfismo de espacios normados. Así que del lema~\ref{Lema:TraspuestoDeIsomorfismoEsIsomorfismo} se sigue que $R_q^\Sft : \ell_p^{**} \to \ell_q^*$ es un isomorfismo de espacios normados.
 
 Demostremos que $R_q^\Sft \circ J = R_p$. Dados $x = (x_1, x_2, \ldots )\in \ell_p$ y $y = (y_1, y_2, \ldots) \in \ell_q$ tenemos que
 \Ecu{
 ((R_q^\Sft \circ J)x)y = (R_q^\Sft(Jx))y = (Jx \circ R_q)y = Jx(R_q y) = R_q y(x) = \sum_{i=1}^\infty x_i y_i  = R_p x(y). 
 }
 
-De donde $(R_q^\Sft \circ J)x = R_p x$ y por tanto $R_q^\Sft \circ J = R_p$. Luego $J = (R_q^\Sft)^{-1} \circ R_p$. En el caso  $1 < p < \infty$, $R_p$ es isomorfismo de espacios normados, así que $J$ también lo es, por lo que $X$ es reflexivo. Cuando $p = 1$, se mostró en la proposición~\ref{Prop:DualDeEllePEsElleQ} que $R_p$ no es sobreyectiva, por lo que $J$ tampoco y así $\ell_1$ no es reflexivo.
+De donde $(R_q^\Sft \circ J)x = R_p x$ y por tanto $R_q^\Sft \circ J = R_p$. Luego $J = (R_q^\Sft)^{-1} \circ R_p$. En el caso  $1 < p < \infty$, $R_p$ es isomorfismo de espacios normados, así que $J$ también lo es, por lo que $X$ es reflexivo. Cuando $p = 1$, se mostró en el teorema~\ref{Tma:DualDeEllePEsElleQ} que $R_p$ no es sobreyectiva, por lo que $J$ tampoco y así $\ell_1$ no es reflexivo.
 
-Como $\ell_1$ no es reflexivo, el teorema~\ref{Tma:EquivalenciaEspacioDualReflexivo} indica que $\ell_1^*$ no es reflexivo. Según la proposición~\ref{Prop:DualDeEllePEsElleQ}, $\ell_1$ y $\ell_\infty$ son isomorfos como espacios normados, por lo que de la proposición~\ref{Prop:IsomorfismoDeEspaciosNormadosPreservaReflexividad} se concluye que $\ell_\infty$ no es reflexivo. 
+Dado que $\ell_1$ no es reflexivo, el teorema~\ref{Tma:EquivalenciaEspacioDualReflexivo} indica que $\ell_1^*$ tampoco es reflexivo. Según el teorema~\ref{Tma:DualDeEllePEsElleQ}, los espacios normados $\ell_1^*$ y $\ell_\infty$ son isomorfos. Por lo tanto del lema~\ref{Lema:IsomorfismoDeEspaciosNormadosPreservaReflexividad} se concluye que $\ell_\infty$ no es reflexivo. 
 \end{Dem}
 
 \begin{Cor}
