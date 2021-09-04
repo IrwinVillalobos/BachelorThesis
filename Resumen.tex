@@ -263,11 +263,11 @@
 
 \normalsize
 
-En los primeros cursos de análisis que se imparten en la licenciatura en matemáticas se tiene un primer encuentro con la compacidad desde el enfoque de espacios métricos. Se demuestra que en el caso particular de $\R^n$, podemos identificar a los conjuntos compactos como aquellos que son cerrados y acotados. En cursos más avanzados de análisis se prueba que en los espacios normados de dimensión infinita esto ya no sucede, más aún la bola cerrada unitaria ya no es compacta en estos espacios. La escasez de conjuntos compactos en un espacio normado de dimensión infinita dificulta en gran medida el estudio de funciones ahí definidas, puesto que la compacidad es una propiedad que permite ``unir información local y extenderla globalmente en todo el espacio'' (esta cita viene de Wikipedia, pero no me queda claro a que clase de información se refiere) y tratar estos conjuntos como conjuntos finitos (he escuchado esto varias veces, pero tampoco me queda muy claro en que sentido se parece la definición de compacidad a un conjunto finito).
+En los primeros cursos de análisis que se imparten en la licenciatura en matemáticas se tiene un primer encuentro con la compacidad desde el enfoque de espacios métricos. Se demuestra que en el caso particular de $\R^n$, podemos identificar a los conjuntos compactos como aquellos que son cerrados y acotados. En cursos más avanzados de análisis se prueba que en los espacios normados de dimensión infinita esto ya no sucede, más aún la bola cerrada unitaria ya no es compacta en estos espacios. La escasez de conjuntos compactos en un espacio normado de dimensión infinita dificulta en gran medida el estudio de funciones ahí definidas, puesto que la compacidad es una propiedad que permite trabajar funciones continuas ...
 
-Una forma de lidiar con este problema es introducir otras topologías en estos espacios de tal forma que sigan conservando la estructura algebraica, que mantengan una relación con la topología original y que tengan menos cantidad de conjuntos abiertos. Ahí es donde entran las topologías débiles. Como se prometía, resulta que en el caso de la topología débil* la bola unitaria ahora sí es compacta.   
+Una forma de lidiar con este problema es introducir otras topologías en estos espacios de tal forma que sigan conservando la estructura algebraica, que mantengan una relación con la topología original y que tengan menos cantidad de conjuntos abiertos. Ahí es donde entran las topologías débiles. La primera de estas, la topología débil, se define como la topología más pequeña sobre el espacio normado en la cual los funcionales lineales continuos siguen siendo continuos. Por otro lado, la topología débil* se define sobre el espacio dual como aquella topología más pequeña en la cual se satisface las todas las funciones de evaluación son continuas. Como se prometía, resulta que en el caso de la topología débil* la bola unitaria ahora siempre es compacta.   
 
-A lo largo de este trabajo hacemos un recorrido de los conceptos y resultados necesarios, empezando desde espacios topológicos y concluyendo con el desarrollo de las topologías débil y débil*. Una vez que se cuente con conceptos topológicos de continuidad y compacidad nos adentraremos en el marco más particular de los espacios métricos, donde dichos conceptos se pueden caracterizar por medio de la convergencia de sucesiones. Luego, reduciendo una vez más nuestro campo de estudio, nos enfocamos a espacios normados, donde además de contar con una distancia y la topología que esta induce, también tenemos una estructura algebraica. Debido a que las topologías débiles en general no son metrizables, el estudio de espacios métricos y normados no nos provee resultados válidos para estas topologías. Sin embargo, estas aun conservan el vínculo entre la topología y la estructura algebraica, lo que las convierte en espacios vectoriales topológicos. Pero antes de empezar su estudio, desarrollamos el concepto de red, que sustituye y generaliza el papel que  las sucesiones tienen en los espacios métricos. En este punto estaremos listos para definir las topologías débiles y caracterizar en estas la convergencia, compacidad y reflexividad. 
+A lo largo de este trabajo hacemos un recorrido de los conceptos y resultados necesarios para establecer esta conclusión, empezando desde espacios topológicos y culminando con el desarrollo de las topologías débil y débil*. Una vez que se cuente con conceptos topológicos de continuidad y compacidad nos adentraremos en el marco más particular de los espacios métricos, donde dichos conceptos se pueden caracterizar por medio de la convergencia de sucesiones. Luego, reduciendo una vez más nuestro campo de estudio, nos enfocamos a espacios normados, donde además de contar con una distancia y la topología que esta induce, también tenemos una estructura de espacio vectorial. Debido a que las topologías débiles en general no son metrizables, el estudio de espacios métricos y normados no nos provee resultados válidos para estas topologías. Sin embargo, estas aun conservan el vínculo entre la topología y la estructura algebraica, lo que las convierte en espacios vectoriales topológicos. Pero antes de empezar su estudio, desarrollamos el concepto de red, que sustituye y generaliza el papel que  las sucesiones tienen en los espacios métricos. En este punto estaremos listos para definir las topologías débiles y caracterizar en estas la convergencia, compacidad y reflexividad. 
 
 \vspace*{1cm}
 
@@ -487,6 +487,12 @@ Sean $X, Y$ espacios topológicos y $f: X \to Y$. Si $\B$ es una base de $Y$ y $f
 Sea $V$ abierto en $Y$. Entonces existen un conjunto $\Lambda$ y algunos $B_\alpha \in \B$, $\alpha \in \Lambda$ tales que $V = \bigcup_{\alpha \in \Lambda} B_\alpha$. Por hipótesis  $f^{-1}(B_\alpha)$ es abierto en $X$ para toda $\alpha \in \Lambda$, por lo que también lo es
 $$\bigcup_{\alpha \in \Lambda} f^{-1}(B_\alpha) = f^{-1}\left( \bigcup_{\alpha \in \Lambda} B_\alpha \right) = f^{-1}(V) .$$ 
 \end{Dem}
+
+\begin{Ejem}
+Consideremos la función $f: \R \setminus \{ 0 \} \to \R$ definida por $f(x) = \frac{1}{x}$ para todo $x \neq 0$. Probemos que $f$ es continua. Sean pues $a, b \in \R$ con $a < b$. De esta forma que $(a, b)$ es un básico de $\R$. Tenemos tres casos. Si $a > 0$, entonces $b > 0$ y $f^{-1}((a, b)) = (\frac{1}{b}, \frac{1}{a})$ que es abierto en $\R \setminus \{ 0 \}$. Si $  < 0$, entonces $a < 0$ y $f^{-1}((a, b)) = (\frac{1}{b}, \frac{1}{a})$ que es abierto en $\R \setminus \{ 0 \}$. En el último caso, si $a \leq 0$ y $b \geq 0$, tenemos que ...
+
+De esta manera  $f^{-1}((a, b))$ es abierto en $\R \setminus \{ 0 \}$ y por el lema~\ref{Lema:ContinuidadPorBasicos} se sigue que $f$ es continua. 
+\end{Ejem}
 
 Otra manera de demostrar que una función es continua es expresarla como la composición de dos funciones que previamente sabemos que son continuas,  como indica la siguiente proposición.
 
@@ -791,6 +797,19 @@ Por otro lado tomemos una bola abierta $V_r(x)$ para algunos $x \in \R$, $r > 0$
 Luego, la topología usual en $\R$ y la topología inducida por la métrica $d$ tienen una misma base, por lo que ambas topologías coinciden. 
 \end{Ejem}
 
+\begin{Ejem}
+Sea $X$ un conjunto no vacío y consideremos la función $d: X \times X \to \R$ definida en $(x, y) \in X\times X$ por
+\begin{equation*}
+d(x, y) = \begin{cases}
+1, \mbox{ si } x \neq y \\
+0, \mbox{ si } x = y.
+\end{cases}
+\end{equation*}
+
+Resulta que $d$ es una métrica en $X$, a la cual denominamos \textit{métrica discreta} en $X$. Observemos que tal métrica induce la topología discreta en $X$. En efecto una base de esta topología viene dada por $ \{ V_1(x) = \{ x \} : x \in X \}$, así que todo subconjunto de $X$ se puede expresar como unión de básicos y por lo tanto es abierto. Por lo tanto la topología discreta es metrizable.
+\end{Ejem}
+
+
 Dado un espacio métrico $(M, d)$ y $\emptyset \neq A \subseteq M$, al restringir la métrica $d$ a $A$, obtenemos la función
 \Ecu{
 d_A : A \times A &\to [0, \infty)\\
@@ -901,30 +920,40 @@ Primero supongamos que $f$ es continua. Consideremos una sucesión $(x_n)_{n \in 
 Ahora demostraremos la contrapositiva. Supongamos pues que $f$ no es continua en $x$, de manera que existe una vecindad abierta $V$ de $f(x)$ tal que para toda $n \in \N$ se tiene que $f(V_{\frac{1}{n}}(x)) \subsetneq V$. Así pues, para cada $n \in \N$ podemos tomar $x_n \in V_{\frac{1}{n}}(x)$ de tal manera que $f(x_n) \notin V$. Consideremos la sucesión $(x_n)_{n\in \N}$. Resulta que  $x_n \rightarrow x$. Sin embargo, para todo $n \in \N$ se tiene que $f(x_n) \notin V$, por lo que $f(x_n) \centernot\rightarrow f(x)$.
 \end{Dem}
 
+\begin{Tma} \label{Tma:SumaDeFuncionesRealesContinuasEsContinua}
+Sea $M$ un espacios métrico. Si $f: M \to \R$ y $g: M \to \R$ son funciones continuas, entonces $f + g$  y $f \cdot g$ son continuas. Además, si $0 \notin f(M)$, entonces $\frac{1}{f}$ también es continua.
+\end{Tma}
+
+\begin{Dem}
+Sea $(x_n)_{n \in \N}$ una sucesión en $M$ que converge a $x \in M$. Puesto que $f$ y $g$ son continuas, de la proposición~\ref{Prop:ContinuidadPorSucesiones} se sigue que $f(x_n) \to f(x)$ y $g(x_n) \to g(x)$. Luego, la proposición~\ref{Prop:LimiteDeSumaSucesionDeReales} se sigue que $(f+g)(x_n) = f(x_n)+ g(x_n) \to f(x) + g(x) = (f+g)(x)$. Así que por la proposición~\ref{Prop:ContinuidadPorSucesiones} concluimos que $f+g$ es continua.
+
+Mostremos ahora que $f \cdot g$ es continua... (Pendiente).
+\end{Dem}
+
+\begin{Obs} \label{Obs:CaracterizacionContinuidadEpsilonDelta}
+En el caso de una función $f: M_1 \to M_2$, donde $M_1$ y $M_2$ son espacios métricos, la continuidad en $x \in M_1$ además se caracteriza por la siguiente condición: 
+$$\mbox{Para todo } \varepsilon > 0, \mbox{ existe } \delta > 0 \mbox{ tal que si } d(x, y) < \delta, \mbox{ entonces } d(f(x), f(y)) < \varepsilon. $$
+\end{Obs}
+
 \begin{Lema} \label{Lema:DistanciaAConjuntoEsContinua}
 Sean $M$ un espacio métrico y $\emptyset \neq A \subseteq M$. Entonces $f: M \to \R$ definida por $f(x) = d(x, A)$ es continua.  
 \end{Lema}
 
 \begin{Dem}
-Sea $(x_n)_{n \in\N}$ una sucesión en $M$ que converge a $x \in M$. Entonces $d(x_n, x) \to 0$. Fijemos $n \in \N$ Dado $a \in A$ se cumple que $d(x_n, a) \leq d(x_n, x) + d(x, a)$, por lo que
+Fijemos $x \in M$ y probemos que $f$ es continua en $x$. Sea $y \in M$ cualquiera. Dado $a \in A$ se cumple que $d(y, a) \leq d(y, x) + d(x, a)$, por lo que
 \Ecu{
-d(x_n, A) &= \inf_{a \in A} \{ d(x_n, a) \} \leq \inf_{a\in A} \{d(x_n, x) + d(x, a) \} \\
-&= d(x_n, x) + \inf_{a\in A} \{d(x, a) \} = d(x_n, x) + d(x, A).
+d(y, A) &= \inf_{a \in A} \{ d(y, a) \} \leq \inf_{a\in A} \{d(y, x) + d(x, a) \} \\
+&= d(y, x) + \inf_{a\in A} \{d(x, a) \} = d(y, x) + d(x, A).
 }
 
-Luego, $d(x_n, A) - d(x, A) \leq d(x_n, x)$. Análogamente $d(x, A) - d(x_n, A) \leq d(x_n, x)$. Por lo tanto $$\abs{d(x_n, A) - d(x, A)} \leq d(x_n, x).$$ 
+Luego, $d(y, A) - d(x, A) \leq d(y, x)$. Análogamente $d(x, A) - d(y, A) \leq d(y, x)$. Por lo tanto 
+\begin{equation} \label{Eq:DistanciaAConjuntoLipschitz}
+\abs{f(y) - f(x)} = \abs{d(y, A) - d(x, A)} \leq d(y, x).
+\end{equation}
 
-Dado que $d(x_n, x) \to 0$, se sigue que $f(x_n) = d(x_n, A) \to d(x, A) = f(x)$ y así $f$ es continua.
+Luego, tomando $\delta = \varepsilon$ en la observación~\ref{Obs:CaracterizacionContinuidadEpsilonDelta}, de (\ref{Eq:DistanciaAConjuntoLipschitz}) se concluye que $f$ es continua en $x$. 
 \end{Dem}
 
-
-\begin{Tma} \label{Tma:SumaDeFuncionesRealesContinuasEsContinua}
-Sea $M$ un espacios métrico. Si $g: M \to \R$ y $f: M \to \R$ son funciones continuas, entonces $f + g$ es continua.
-\end{Tma}
-
-\begin{Dem}
-Sea $(x_n)_{n \in \N}$ una sucesión en $M$ que converge a $x \in M$. Puesto que $f$ y $g$ son continuas, de la proposición~\ref{Prop:ContinuidadPorSucesiones} se sigue que $f(x_n) \to f(x)$ y $g(x_n) \to g(x)$. Luego, la proposición~\ref{Prop:LimiteDeSumaSucesionDeReales} se sigue que $(f+g)(x_n) = f(x_n)+ g(x_n) \to f(x) + g(x) = (f+g)(x)$. Así que por la proposición~\ref{Prop:ContinuidadPorSucesiones} concluimos que $f+g$ es continua.
-\end{Dem}
 
 \begin{Def} 
 Sean $M_1$ y $M_2$ espacios métricos. Si $f: M_1 \to M_2$ cumple que $d(f(x), f(y)) = d(x, y)$ para todos $x, y \in M_1$, entonces decimos que $f$ es una \textit{isometría}.
@@ -946,6 +975,8 @@ Ahora supongamos que $M_1$ es completo (Pendiente).
 
 
 \section{Conjuntos acotados}
+
+En espacios topológicos Hausdorff, los conjuntos compactos necesariamente son cerrados. En el marco de espacios métricos, introducimos el concepto de conjunto acotado que no existe en un espacio topológico general, con el propósito de caracterizar los conjuntos compactos, puesto que más adelante probamos que otra propiedad necesaria para que un conjunto sea compacto es que sea acotado. 
 
 \begin{Def}
 Sea $M$ un espacio métrico. Decimos que $A \subseteq M$ es un conjunto \textit{acotado} si existe $r > 0$ tal que $d(x, y) < r$ para todos $x, y \in A$.
@@ -981,7 +1012,9 @@ La unión finita de conjuntos acotados en un espacio métrico es acotada.
 Sean $M$ un espacio métrico, $n \in\N$ y $A_1, \ldots, A_n$ conjuntos acotados en $M$. Sea $x \in M$ cualquiera. Luego, para cada $1 \leq i \leq n$ existe $t_i > 0$ tal que $d(x, a) < t_i$ para todo $a \in A_i$. Tomemos $t = \max(t_1, \ldots, t_n)$. Si $a \in \bigcup_{i=1}^n A_i$, entonces existe $i \in \nn{n}$ tal que $a \in A_i$ y $d(x, a) < t_i \leq t$. Por lo tanto $\bigcup_{i=1}^n A_i$ es acotado.
 \end{Dem}
 
-Consideremos la colección de intervalos $([n, n+1])_{n \in\N}$. Cada intervalo es acotado y su unión es $[1, \infty)$, el cual no es acotado. Así que si en lugar de una colección finita, tenemos una colección contable de conjuntos acotados, su unión no necesariamente es acotada.
+Consideremos la colección de intervalos $([n, n+1])_{n \in\N}$. Cada intervalo es acotado y su unión es $[1, \infty)$, el cual no es acotado. Así que si en lugar de una colección finita, tenemos una colección contable de conjuntos acotados, su unión no necesariamente es acotada.\\
+
+Ahora, encaminados en el propósito de este capítulo, mostraremos que el ser cerrado y acotado es una condición necesaria para ser compacto.
 
 \begin{Prop} \label{Prop:EspacioMetricoCompactoImplicaCerradoYAcotado} 
 Sea $M$ un espacio métrico y $K \subseteq M$. Si $K$ es compacto, entonces es cerrado y acotado. 
@@ -991,7 +1024,7 @@ Sea $M$ un espacio métrico y $K \subseteq M$. Si $K$ es compacto, entonces es ce
 Supongamos que $K$ es compacto. Puesto que $M$ es Hausdorff, el corolario~\ref{Cor:HausdorffCompactoEsCerrado} indica que $K$ es cerrado. Ahora, fijemos $x_0\in M$. Como $A$ es compacto y $\{V_n(x_0)\}_{n \in\N}$ es una cubierta abierta de $K$, existen $k \in \N$ y $n_1, \ldots, n_k \in \N$ tales que $K \subseteq \bigcup_{i=1}^k V_{n_i}(x_0) $. Como cada bola $V_{n_i}(x_0)$ es acotado, entonces por el lema~\ref{Lema:UnionFinitaDeAcotadosEsAcotado} $\bigcup_{i=1}^k V_{n_i}(x_0)$ es acotado y por el mismo lema, resulta que $K$ también lo es.
 \end{Dem}
 
-El teorema de Heine-Borel nos permite demostrar que en $\R$ el recíproco del resultado anterior es válido, como se muestra a continuación.
+El teorema de Heine-Borel nos permite demostrar que al menos en $\R$ el recíproco del resultado anterior es válido, como se muestra a continuación.
 
 \begin{Cor} \label{Cor:HeineBorelParticular}
 Sea $K \subseteq \R$. Entonces $K$ es compacto si, y sólo si $K$ es cerrado y acotado.
@@ -1003,23 +1036,49 @@ Supongamos primero que $K$ es compacto. La proposición~\ref{Prop:EspacioMetricoC
 Ahora supongamos que $K$ es cerrado y acotado. Como $K$ es acotado, existe $n \in \N$, tal que $K \subseteq [-a, a]$. Puesto que $K$ es cerrado, del lema~\ref{Lema:CerradoEnCompactoEsCompacto} se concluye que $K$ es compacto. 
 \end{Dem}
 
-La proposición anterior no se cumple en general en todos los espacios métricos como lo muestra el siguiente ejemplo.
+\begin{Obs} \label{Obs:FuncionContinuaEnCompactoAlcanzaSuMaximo}
+En la proposición~\ref{Prop:FuncionContinuaPreservaCompactos} se estableció que las funciones continuas preservan conjuntos compactos. Así que si consideramos una función $f: K \to \R$, donde $K$ es compacto, entonces resultará que $f(K)$ también lo es. Luego, el teorema~\ref{Tma:HeineBorelGeneral} afirma que $f(K)$ es cerrado y acotado en $\R$. Como $f(K)$ es acotado y no vacío, el axioma del supremo indica que existe $\sup f(K) \in \R$. El ejemplo~\ref{Ejem:SupremoEnCerradura} indica que $\sup f(K) \in \ov{f(K)}$, pero como $f(K)$ es cerrado, se sigue que $\sup f(K) \in f(K)$. Así que existe $x \in K$ tal que $f(x) = \sup f(K)$. Entonces $f(x)$ es el valor máximo de $f$.
+\end{Obs}
+
+EL corolario~\ref{Cor:HeineBorelParticular} no se cumple en general en todos los espacios métricos como lo muestra el siguiente ejemplo.
 
 \begin{Ejem} \label{Ejem:CerradoYAcotadoNoEsCompacto}
-Consideremos la función $d: \R \times \R \to \R$ definida en $(x, y) \in \R\times \R$ por
-\begin{equation*}
-d(x, y) = \begin{cases}
-1, \mbox{ si } x \neq y \\
-0, \mbox{ si } x = y.
-\end{cases}
-\end{equation*}
-
-Resulta que $d$ es una métrica en $\R$, a la cual denominamos \textit{métrica discreta}. Observemos que tal métrica induce la topología discreta, en la cual todos los subconjuntos de $\R$ son abiertos. 
-
 Tomemos $\N \subseteq \R$. Con la topología discreta, $\N$ es cerrado y acotado pues $\R \setminus \N$ es abierto y $d(n, m) \leq 1$ para todos $n, m \in \N$. Dado que $\{ \{ n \} \}_{n \in \N}$ es una cubierta abierta de $\N$ sin subcubiertas propias, se sigue que $\N$ no es compacto. 
 \end{Ejem}
 
+Puesto que el ejemplo anterior muestra que ser cerrado y acotado no es suficiente para ser compacto, procederemos a definir conceptos análogos pero más fuertes que esta vez sí garanticen ser suficientes para caracterizar a los conjuntos compactos. El primero de estos conceptos es el de totalmente acotado.
+
+\begin{Def}
+Sea $M$ un espacio métrico. Un conjunto $K \subseteq M$ es \textit{totalmente acotado} si para cada $\varepsilon > 0$ existen $n \in\N, x_1, \ldots, x_n \in M$ tales que 
+$$K \subseteq \bigcup_{i=1}^n V_\varepsilon(x_i).$$
+En este caso diremos que $\{ x_1, \ldots, x_n \}$ es una $\varepsilon$-\textit{red} de $\K$
+\end{Def}
+
+\begin{Obs}
+Sea $M$ un espacio métrico y $K \subseteq M$ un conjunto totalmente acotado. Entonces:
+\begin{itemize}
+\item \textbf{i)} $K$ es acotado.
+\item \textbf{ii)} Si $A \subseteq K$, entonces $A$ es totalmente acotado.
+\item \textbf{iii)} Si $K \neq \emptyset$, entonces para todo $\varepsilon > 0$, existe una $\varepsilon$-red de $K$ formada de puntos en $K$. 
+\end{itemize}
+\end{Obs}
+
+\begin{Dem}
+\hfill
+\begin{itemize}
+\item[\textbf{i)}] Puesto que $K$ es acotado, existe una $1$-red de $K$ de bolas abiertas que cubren a $K$. Como las bolas son acotadas, el lema~\ref{Lema:UnionFinitaDeAcotadosEsAcotado} indica que la unión de las bolas en la red es acotada. Por lo tanto $K$ también lo es.
+\item[\textbf{ii)}] Es claro del hecho de que toda $\varepsilon$-red de $K$ también es un $\varepsilon$-red de $A$.
+\item[\textbf{iii)}] Sea $\varepsilon > 0$. Como $K$ es totalmente acotado, existe una $\frac{\varepsilon}{2}$-red $\{x_1, \ldots, x_n\}$ de $K$ para algunos $n \in\N$,  $x_1, \ldots, x_n \in K$. Entonces tenemos que 
+\begin{equation}
+K \subseteq \bigcup_{i=1}^n V_{\frac{\varepsilon}{2}}(x_i).
+\end{equation} 
+Sean $\{ x_{n_1}, \ldots, x_{n_k} \}$ los puntos en la  $\frac{\varepsilon}{2}$-red tales que $K \cap V_{\frac{\varepsilon}{2}}(x_{n_i}) \neq \emptyset$. Hay al menos uno de estos pues, $K \neq \emptyset$. Además, se sigue cumpliendo que $\{ x_{n_1}, \ldots, x_{n_k} \}$ es una $\frac{\varepsilon}{2}$-red de $K$. Para cada $1 \leq i \leq k$ tomemos $y_i \in K \cap V_{\frac{\varepsilon}{2}}(x_{n_i})$. Sea $x \in K$, entonces $x \in V_{\frac{\varepsilon}{2}}(x_{n_i})$ para algún $i \in \nn{k}$. Se sigue de esto que $d(x, y_i) \leq d(x, x_{n_i}) + d(x_{n_i}, y_i) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$. Así que $\{ y_1, \ldots, y_k \}$ es una $\varepsilon$-red de $K$ con puntos en $K$.   
+\end{itemize}
+\end{Dem}
+
 \section{Completez}
+
+Ahora introduciremos el concepto análogo al de ser cerrado que nos permitirá complementar al de ser totalmente acotado para caracterizar la compacidad. 
 
 \begin{Def}
 Sea $M$ un espacio métrico. Una sucesión $(x_n)_{n\in\N} \subseteq M$ es de \textit{Cauchy} si para todo $\varepsilon > 0$ existe $N \in\N$ tal que $d(x_n, x_m) < \varepsilon$ para $n, m \geq N$. Decimos que $M$ es \textit{completo} si toda sucesión de Cauchy converge.  
@@ -1081,35 +1140,7 @@ Definamos $t = \max(1, d(x_1, x_N), d(x_2, x_N), \ldots, d(x_{N-1}, x_N)) > 0$. 
 
 \section{Compacidad por sucesiones}
 
-El ejemplo~\ref{Ejem:CerradoYAcotadoNoEsCompacto} muestra que el ser cerrado y acotado en un espacio métrico no es suficiente para ser compacto. Esto motiva a definir conceptos análogos a cerrado y acotado más fuertes de tal manera que sí sea suficiente. Además estableceremos una equivalencia entre estos dos nuevos conceptos, el ser compacto y el ser compacto por sucesiones. 
-
-\begin{Def}
-Sea $M$ un espacio métrico. Un conjunto $K \subseteq M$ es \textit{totalmente acotado} si para cada $\varepsilon > 0$ existen $n \in\N, x_1, \ldots, x_n \in M$ tales que 
-$$K \subseteq \bigcup_{i=1}^n V_\varepsilon(x_i).$$
-En este caso diremos que $\{ x_1, \ldots, x_n \}$ es una $\varepsilon$-\textit{red} de $\K$
-\end{Def}
-
-\begin{Obs}
-Sea $M$ un espacio métrico y $K \subseteq M$ un conjunto totalmente acotado. Entonces:
-\begin{itemize}
-\item \textbf{i)} $K$ es acotado.
-\item \textbf{ii)} Si $A \subseteq K$, entonces $A$ es totalmente acotado.
-\item \textbf{iii)} Si $K \neq \emptyset$, entonces para todo $\varepsilon > 0$, existe una $\varepsilon$-red de $K$ formada de puntos en $K$. 
-\end{itemize}
-\end{Obs}
-
-\begin{Dem}
-\hfill
-\begin{itemize}
-\item[\textbf{i)}] Puesto que $K$ es acotado, existe una $1$-red de $K$ de bolas abiertas que cubren a $K$. Como las bolas son acotadas, el lema~\ref{Lema:UnionFinitaDeAcotadosEsAcotado} indica que la unión de las bolas en la red es acotada. Por lo tanto $K$ también lo es.
-\item[\textbf{ii)}] Es claro del hecho de que toda $\varepsilon$-red de $K$ también es un $\varepsilon$-red de $A$.
-\item[\textbf{iii)}] Sea $\varepsilon > 0$. Como $K$ es totalmente acotado, existe una $\frac{\varepsilon}{2}$-red $\{x_1, \ldots, x_n\}$ de $K$ para algunos $n \in\N$,  $x_1, \ldots, x_n \in K$. Entonces tenemos que 
-\begin{equation}
-K \subseteq \bigcup_{i=1}^n V_{\frac{\varepsilon}{2}}(x_i).
-\end{equation} 
-Sean $\{ x_{n_1}, \ldots, x_{n_k} \}$ los puntos en la  $\frac{\varepsilon}{2}$-red tales que $K \cap V_{\frac{\varepsilon}{2}}(x_{n_i}) \neq \emptyset$. Hay al menos uno de estos pues, $K \neq \emptyset$. Además, se sigue cumpliendo que $\{ x_{n_1}, \ldots, x_{n_k} \}$ es una $\frac{\varepsilon}{2}$-red de $K$. Para cada $1 \leq i \leq k$ tomemos $y_i \in K \cap V_{\frac{\varepsilon}{2}}(x_{n_i})$. Sea $x \in K$, entonces $x \in V_{\frac{\varepsilon}{2}}(x_{n_i})$ para algún $i \in \nn{k}$. Se sigue de esto que $d(x, y_i) \leq d(x, x_{n_i}) + d(x_{n_i}, y_i) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$. Así que $\{ y_1, \ldots, y_k \}$ es una $\varepsilon$-red de $K$ con puntos en $K$.   
-\end{itemize}
-\end{Dem}
+Ahora que ya contamos con los conceptos de acotamiento total y completez, procederemos a demostrar la equivalencia entre ser un conjunto compacto y ser uno completo y totalmente acotado. Además, a su vez estableceremos una equivalencia entre estos el ser compacto por sucesiones. 
 
 \begin{Tma} \label{Tma:CaracterizacionCompacidadSucesiones}
 Sean $M$ un espacio métrico y $K \subseteq M$. Son equivalentes:
@@ -1169,7 +1200,7 @@ $$h(x) = d(x, A) \mbox{ y } g(x) = d(x, U^\mathsf{c}) \mbox{ para } x \in M.$$
 
 Tomemos $f = \frac{h}{h+g}$ y veamos que está bien definida. Si $x \in A$, entonces $x \notin U^\mathsf{c}$, por lo que $(h+g)(x) \geq g(x) = d(x, U^\mathsf{c}) > 0$ debido a que $U^\mathsf{c}$ es cerrado y al lema~\ref{Lema:DistanciaPositivaACerrados}. De la misma forma, si $x \notin A$, entonces $(h+g)(x) \geq h(x) = d(x, A) > 0$, puesto que $A$ es cerrado. Luego, $f$ está bien definida.
 
-El lema~\ref{Lema:DistanciaAConjuntoEsContinua} indica que $g$ y $h$ son continuas, por lo que $f$ también lo es. Además, si $x \in A$, entonces $f(x) = \frac{h(x)}{h(x) + g(x)} = \frac{h(x)}{h(x)} = 1$; y si $x \in U^\mathsf{c}$, entonces $f(x) =\frac{h(x)}{h(x) + g(x)} = \frac{0}{g(x)} = 0$.
+El lema~\ref{Lema:DistanciaAConjuntoEsContinua} indica que $g$ y $h$ son continuas y por el teorema~\ref{Tma:SumaDeFuncionesRealesContinuasEsContinua} se sigue que $h+g$ también lo es. Puesto que $h+g$ no se anula el mismo teorema indica que $f = \frac{h}{h+g}$ también es continua. Además, si $x \in A$, entonces $$f(x) = \frac{h(x)}{h(x) + g(x)} = \frac{h(x)}{h(x)} = 1;$$ y si $x \in U^\mathsf{c}$, entonces $$f(x) =\frac{h(x)}{h(x) + g(x)} = \frac{0}{g(x)} = 0.$$
 \end{Dem}
 
 La proposición~\ref{Prop:FuncionContinuaPreservaCompactos} indica que una función continua preserva compactos. Dado que en $\R$ los conjuntos compactos son precisamente aquellos cerrados y acotados, se sigue la imagen de una función continua definida en un compacto es cerrada y acotada y motiva el siguiente resultado.
@@ -1179,7 +1210,7 @@ Sea $K$ un espacio métrico. Entonces $K$ es compacto si, y sólo si toda función 
 \end{Prop}
 
 \begin{Dem}
-Supongamos primero que $K$ es compacto y sea $f: K \to \R$ una función continua. Por la proposición~\ref{Prop:FuncionContinuaPreservaCompactos} se sigue que $f(K)$ es compacto. Luego, el teorema~\ref{Tma:HeineBorelGeneral} afirma que $f(K)$ es cerrado y acotado en $\R$. Como $f(K)$ es acotado y no vacío, el axioma del supremo indica que existe $\sup f(K) \in \R$. El ejemplo~\ref{Ejem:SupremoEnCerradura} indica que $\sup f(K) \in \ov{f(K)}$, pero como $f(K)$ es cerrado, se sigue que $\sup f(K) \in f(K)$. Así que existe $x \in K$ tal que $f(x) = \sup f(K)$. Entonces $f(x)$ es el valor máximo de $f$.
+Si $K$ es compacto, se estableció en la observación~\ref{Obs:FuncionContinuaEnCompactoAlcanzaSuMaximo} que $f$ tiene un valor máximo.
 
 Para establecer el recíproco demostremos su contrapositiva. Esto es, supongamos que $K$ no es compacto y encontremos una función continua en $K$ que $f(K)$ no tenga máximo. Como $K$ no es compacto, del teorema~\ref{Tma:CaracterizacionCompacidadSucesiones} se sigue que existe  una sucesión $(x_n)_{n \in \N}$ en $K$ sin subsucesiones convergentes. Sea $A := \{ x_n : n \in \N \}$. Si $A$ fuera finito, existiría un elemento en $A$ que se repetiría infinitas veces en $(x_n)_{n\in\N}$ y este formaría una subsucesión en $(x_n)_{n\in \N}$ que converge, por lo que $A$ es contable y lo podemos expresar como $A = \{ z_n \in K : n \in \N \}$ de tal forma que $z_n \neq z_m$ si $n \neq m$.
 
@@ -2885,7 +2916,7 @@ Demostremos ahora que $Y$ es completo. tomemos entonces una red de Cauchy $(f_\a
 
 Mostremos que $f_\alpha \to f$. Como $f_\alpha(a) \to x_a = f(a)$ para toda $a \in A$, se sigue de la proposición~\ref{Prop:ContinuidadPorRedes} que $f_\alpha \to f$. Esto prueba que $(Y, \sigma(Y, \mathcal{F}))$ es completo.
 
-En el teorema~\ref{Tma:DimensionFinitaCerradoAcotadoCompacto} se demostró que, entre los espacios normados, solamente en los de dimensión finita se cumple que ser cerrado y acotado es suficiente para ser compacto. El siguiente teorema muestra que en un espacio vectorial topológico de dimensión infinita puede también cumplirlo.
+En el teorema~\ref{Tma:DimensionFinitaCerradoAcotadoCompacto} se demostró que, entre los espacios normados, solamente en los de dimensión finita se cumple que ser cerrado y acotado es suficiente para ser compacto. El siguiente teorema muestra que, a diferencia de lo que sucede con espacios normados, en un espacio vectorial topológico de dimensión infinita esta caracterización también se puede dar.
 
 \begin{Tma} \label{Tma:CaracterizacionCompacidadEnEspacioProducto}
 Sean $A$ un conjunto no vacío y $K \subseteq F(A, \K)$. Entonces $K$ es compacto si y sólo si es cerrado y acotado. 
