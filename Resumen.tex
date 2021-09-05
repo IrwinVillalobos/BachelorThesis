@@ -335,7 +335,6 @@ $$\tau(\B) := \left\{ \bigcup_{\alpha \in \Lambda} B_\alpha : B_\alpha \in \B \m
 
 Si $X$ es un espacio topológico, $\mathcal{B}$ es una base y $\tau (\mathcal{B})$ es la topología de $X$, diremos simplemente que $\mathcal{B}$ es una base de $X$. 
 
-
 \begin{Prop} \label{Prop:CaracterizacionDeBase}
 Sea $\mathcal{B}$ una familia de abiertos de un espacio topológico $X$. Entonces $\mathcal{B}$ es una base de $X$ si, y sólo si para todo abierto $U$ en $X$ y $x \in U$ existe $B \in \mathcal{B}$ tal que $x \in B \subseteq U$.
 \end{Prop}
@@ -488,15 +487,9 @@ Sea $V$ abierto en $Y$. Entonces existen un conjunto $\Lambda$ y algunos $B_\alp
 $$\bigcup_{\alpha \in \Lambda} f^{-1}(B_\alpha) = f^{-1}\left( \bigcup_{\alpha \in \Lambda} B_\alpha \right) = f^{-1}(V) .$$ 
 \end{Dem}
 
-\begin{Ejem}
-Consideremos la función $f: \R \setminus \{ 0 \} \to \R$ definida por $f(x) = \frac{1}{x}$ para todo $x \neq 0$. Probemos que $f$ es continua. Sean pues $a, b \in \R$ con $a < b$. De esta forma que $(a, b)$ es un básico de $\R$. Tenemos tres casos. Si $a > 0$, entonces $b > 0$ y $f^{-1}((a, b)) = (\frac{1}{b}, \frac{1}{a})$ que es abierto en $\R \setminus \{ 0 \}$. Si $  < 0$, entonces $a < 0$ y $f^{-1}((a, b)) = (\frac{1}{b}, \frac{1}{a})$ que es abierto en $\R \setminus \{ 0 \}$. En el último caso, si $a \leq 0$ y $b \geq 0$, tenemos que ...
-
-De esta manera  $f^{-1}((a, b))$ es abierto en $\R \setminus \{ 0 \}$ y por el lema~\ref{Lema:ContinuidadPorBasicos} se sigue que $f$ es continua. 
-\end{Ejem}
-
 Otra manera de demostrar que una función es continua es expresarla como la composición de dos funciones que previamente sabemos que son continuas,  como indica la siguiente proposición.
 
-\begin{Prop}
+\begin{Prop} \label{Prop:ComposicionDeFuncionesContinuasEsContinua}
 Sean $X, Y, Z$ espacios topológicos, $f: X \to Y$ y $g: Y \to Z$. Si $f$ y $g$ son continuas, entonces la composición $g \circ f: X \to Z$ es continua.
 \end{Prop}
 
@@ -511,6 +504,7 @@ Sean $X$ y $Y$ espacios topológicos y $f: X \to Y$ una función.
 \begin{itemize}
 \item \textbf{\Ti} Si $f$ es continua, entonces para toda $\emptyset \neq A \subseteq X$, $\restr{f}{A}$ es continua.
 \item \textbf{\Tii} Si $\restr{f}{U}$ es continua para una vecindad abierta $U$ de $x \in X$, entonces $f$ es continua en $x$. 
+\item \textbf{\Tiii} \textbf{(Lema del Pegado)}  Si existen $A, B \subseteq$ abiertos tales que $A \cup B = X$ y $\restr{f}{A}$ y $\restr{f}{B}$ son continuas, entonces $f$ es continua.  
 \end{itemize} 
 \end{Lema}
 
@@ -519,7 +513,9 @@ Sean $X$ y $Y$ espacios topológicos y $f: X \to Y$ una función.
 \begin{itemize}
 \item[\textbf{i)}] Tomemos un abierto $V$ en $Y$. Como $f$ es continua, entonces $f^{-1}(V)$ es abierto en $X$ y por lo tanto $\restr{f}{A}^{-1}(V) = f^{-1}(V) \cap A$ es abierto en $A$. Por el lema~\ref{Lema:CaracterizacionContinuidadPorPreimagenesDeAbiertos}, $\restr{f}{A}$ es continua.
 
-\item[\textbf{ii)}] Sea $V$ una vecindad abierta de $f(x)$ en $Y$. Como $\restr{f}{U}$ es continua y $x \in U$, entonces $\restr{f}{U}$ es continua en $x$. Por lo tanto existe una vecindad abierta $W$ de $x$ en $X$ tal que $f(W \cap U) = \restr{f}{U} (W \cap U) \subseteq V$. Como $U$ y $W$ son vecindades abiertas de $x$, también $W \cap U$ lo es. Luego $f$ es continua en $x$. 
+\item[\textbf{ii)}] Sea $V$ una vecindad abierta de $f(x)$ en $Y$. Como $\restr{f}{U}$ es continua y $x \in U$, entonces en particular  $\restr{f}{U}$ es continua en $x$. Por lo tanto existe una vecindad abierta $W$ de $x$ en $X$ tal que $f(W \cap U) = \restr{f}{U} (W \cap U) \subseteq V$. Como $U$ y $W$ son vecindades abiertas de $x$, también $W \cap U$ lo es. Luego $f$ es continua en $x$. 
+
+\item[\textbf{iii)}] Sea $x \in X$. Entonces $x \in A \cup B$. Si $x \in A$, puesto que $\restr{f}{A}$ es continua y $A$ es abierto, de \textbf{ii)} se sigue que $f$ es continua en $x$. Análogamente, $f$ también es continua en $x$ si $x \in B$. Por lo tanto $f$ es continua.
 \end{itemize}
 \end{Dem}
 
@@ -536,6 +532,17 @@ El que $f$ preserve abiertos se sigue de inmediato del hecho de que $f^{-1}$ es 
 
 Sea $A$ un conjunto cerrado. Entonces $X \setminus A$ es abierto. Como $f$ preserva abiertos $f(X \setminus A)$ es abierto. Dado que $f$ es biyectiva se tiene que $Y \setminus f(A) = f(X \setminus A)$ es abierto y así $f(A)$ es cerrado. 
 \end{Dem}
+
+\begin{Ejem} \label{Ejem:UnoEntreEquisContinua}
+Consideremos las funciones $f_1: (0, \infty) \to \R$ y $f_2 : (-\infty, 0) \to \R$ definidas por $f_1(x) = \frac{1}{x}$ para toda $x > 0$ y $f_2(x) = \frac{1}{x}$ para toda $x < 0$. Probemos que $f_1$ es continua. Sean $a, b$ con $a < b$, de manera que $(a, b)$ es un básico en $\R$. Tenemos tres casos. Si $a > 0$, entonces $f_1^{-1}((a, b)) = (\frac{1}{b}, \frac{1}{a})$. En el segundo caso, si $b \leq 0$, entonces $f^{-1}((a, b)) = \emptyset$. Por último, si $a \leq 0$ y $b > 0$ entonces $f^{-1}((a, b)) = (\frac{1}{b}, \infty)$.  De esta manera  $f_1^{-1}((a, b))$ es abierto en $(0, \infty)$ y por el lema~\ref{Lema:ContinuidadPorBasicos} se sigue que $f$ es continua.
+
+Dado que la función $g: (0, \infty) \to (-\infty, 0)$ definida por $g(x) = -x$ es un homeomorfismo entre $(0, \infty)$ y $(-\infty, 0)$ se sigue de la proposición~\ref{Prop:ComposicionDeFuncionesContinuasEsContinua} que $f_2 = g^{-1} \circ f_1 \circ g$ es continua.
+
+Finalmente, por el lema del pegado podemos concluir que $f: \R \setminus \{0  \} \to \R$ definida por $f(x) = \frac{1}{x}$ para toda $x \in X$ es continua. En efecto, $(0, \infty)$ y $(-\infty, 0)$ son abiertos en $\R \setminus \{ 0 \}$ que lo cubren y $\restr{f}{(0, \infty)} = f_1$ y $\restr{f}{(-\infty, 0)} = f_2$ son continuas. 
+\end{Ejem}
+
+
+
 
 \section{Compacidad}
 
@@ -851,7 +858,7 @@ Supongamos ahora que para todo $\varepsilon > 0$ existe $N \in \N$ tal que $d(x_
 Observemos que la proposición anterior indica que $x_n \to x$ si y sólo sí $d(x_n, x) \to 0$.
 
 \begin{Prop} \label{Prop:LimiteDeSumaSucesionDeReales}
-Sean $(x_n)_{n \in \N}$ y $(y_n)_{n \in\N}$ sucesiones en $\R$. Si $x_n \to x$ y $y_n \to y$ para algunos $x, y \in \R$ entonces $x_n + y_n \to x+y$. 
+Sean $(x_n)_{n \in \N}$ y $(y_n)_{n \in\N}$ sucesiones en $\R$. Si $x_n \to x$ y $y_n \to y$ para algunos $x, y \in \R$ entonces $x_n + y_n \to x+y$.  y $x_n y_n \to xy$.
 \end{Prop}
 
 \begin{Dem}
@@ -861,6 +868,22 @@ Tomemos $\varepsilon > 0$, de manera que existen $N_1, N_2 \in \N$ tales que
 }
 
 Luego, si $n \geq \max(N_1, N_2)$, entonces $$\abs{(x_n + y_n) - (x + y)} \leq \abs{x_n - x} + \abs{y_n - y} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.$$
+
+Veamos ahora que $x_n y_n \to xy$ y tomemos $\varepsilon > 0$. Entonces existen $M_1, M_2$ y $M_3 \in \N$ tales que
+\begin{alignat}{2}
+\abs{y_n - y} < \frac{\varepsilon}{2(\abs{x}+1)},&& \mbox{ si }&  n \geq M_1; \label{Eq:LimProdReal1}\\
+\abs{x_n-x} < \frac{\varepsilon}{2(\abs{y}+1)},\;\,&& \mbox{ si }&  n \geq M_2 \mbox{ y }\label{Eq:LimProdReal2}\\
+\abs{x_n-x}<1,\;\;\;\;\;\;\,&&\mbox{ si }&n\geq M_3.\label{Eq:LimProdReal3}
+\end{alignat}
+ 
+Por la desigualdad del triángulo, (\ref{Eq:LimProdReal3}) equivale a que $\abs{x_n} < \Norm{x}+1$ si $n \geq M_3$. Así pues, tomando $n \geq \max(M_1, M_2, M_3)$ se sigue que
+\Ecu{
+\abs{ x_n y_n -  x y} & = \abs{ x_n y_n -  x_n y + x_n y - xy} \\
+& \leq  \abs{x_n y_n -  x_n y} + \abs{x_n y  - x y} \\
+& =  \abs{x_n}\abs{y_n - y} + \abs{x_n - x}\abs{y} \\
+& \leq (\abs{x}+1)\abs{y_n - y} + \abs{x_n - x}(\abs{y}+1) \\
+& < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+}
 \end{Dem}
 
 
@@ -887,7 +910,6 @@ Si $x \in A$, entonces $d(x, A) \leq d(x, x) = 0$ y así $d(x, A) = 0$. Esto prue
 
 Para establecer el recíproco demostraremos su contrapositiva. Supongamos que $d(x, A) = 0$. Tomemos un abierto $U$ que incluya a $x$. Existe entonces $r > 0$ tal que $V_r(x) \subseteq U$. Por propiedades del ínfimo y puesto que $\inf \{ \Norm{y - x } : y \in A\} = 0$, existe $y \in A$ con $\Norm{y - x} < r$. Esto significa que $y \in V_r(x) \subseteq U$, por lo que $U \cap A \neq \emptyset$. Así que $x \in \ov{A}$. Ya que $A$ es cerrado, entonces  $x \in A$.
 \end{Dem}
-
 
 
 
@@ -925,9 +947,15 @@ Sea $M$ un espacios métrico. Si $f: M \to \R$ y $g: M \to \R$ son funciones cont
 \end{Tma}
 
 \begin{Dem}
-Sea $(x_n)_{n \in \N}$ una sucesión en $M$ que converge a $x \in M$. Puesto que $f$ y $g$ son continuas, de la proposición~\ref{Prop:ContinuidadPorSucesiones} se sigue que $f(x_n) \to f(x)$ y $g(x_n) \to g(x)$. Luego, la proposición~\ref{Prop:LimiteDeSumaSucesionDeReales} se sigue que $(f+g)(x_n) = f(x_n)+ g(x_n) \to f(x) + g(x) = (f+g)(x)$. Así que por la proposición~\ref{Prop:ContinuidadPorSucesiones} concluimos que $f+g$ es continua.
+Sea $(x_n)_{n \in \N}$ una sucesión en $M$ que converge a $x \in M$. Puesto que $f$ y $g$ son continuas, de la proposición~\ref{Prop:ContinuidadPorSucesiones} se sigue que $f(x_n) \to f(x)$ y $g(x_n) \to g(x)$. 
 
-Mostremos ahora que $f \cdot g$ es continua... (Pendiente).
+Luego, la proposición~\ref{Prop:LimiteDeSumaSucesionDeReales} se sigue que $$(f+g)(x_n) = f(x_n)+ g(x_n) \to f(x) + g(x) = (f+g)(x).$$ 
+
+Así que de la proposición~\ref{Prop:ContinuidadPorSucesiones} se obtiene que $f+g$ es continua. De la misma manera, la proposición~\ref{Prop:LimiteDeSumaSucesionDeReales} se tiene que $$(f \cdot g)(x_n) = f(x_n) g(x_n) \to f(x) g(x) = (f \cdot g)(x).$$ 
+
+Por lo que de la proposición~\ref{Prop:ContinuidadPorSucesiones} se concluye que $f \cdot g$ es continua.
+
+Finalmente, en el ejemplo~\ref{Ejem:UnoEntreEquisContinua} se demostró que la función $h: \R \setminus \{ 0 \} \to \R$ definida por $h(x) = \frac{1}{x}$ es continua. Luego, la función $\frac{1}{f} = h \circ f$ es continua.
 \end{Dem}
 
 \begin{Obs} \label{Obs:CaracterizacionContinuidadEpsilonDelta}
@@ -953,7 +981,6 @@ Luego, $d(y, A) - d(x, A) \leq d(y, x)$. Análogamente $d(x, A) - d(y, A) \leq d(
 
 Luego, tomando $\delta = \varepsilon$ en la observación~\ref{Obs:CaracterizacionContinuidadEpsilonDelta}, de (\ref{Eq:DistanciaAConjuntoLipschitz}) se concluye que $f$ es continua en $x$. 
 \end{Dem}
-
 
 \begin{Def} 
 Sean $M_1$ y $M_2$ espacios métricos. Si $f: M_1 \to M_2$ cumple que $d(f(x), f(y)) = d(x, y)$ para todos $x, y \in M_1$, entonces decimos que $f$ es una \textit{isometría}.
@@ -1200,7 +1227,7 @@ $$h(x) = d(x, A) \mbox{ y } g(x) = d(x, U^\mathsf{c}) \mbox{ para } x \in M.$$
 
 Tomemos $f = \frac{h}{h+g}$ y veamos que está bien definida. Si $x \in A$, entonces $x \notin U^\mathsf{c}$, por lo que $(h+g)(x) \geq g(x) = d(x, U^\mathsf{c}) > 0$ debido a que $U^\mathsf{c}$ es cerrado y al lema~\ref{Lema:DistanciaPositivaACerrados}. De la misma forma, si $x \notin A$, entonces $(h+g)(x) \geq h(x) = d(x, A) > 0$, puesto que $A$ es cerrado. Luego, $f$ está bien definida.
 
-El lema~\ref{Lema:DistanciaAConjuntoEsContinua} indica que $g$ y $h$ son continuas y por el teorema~\ref{Tma:SumaDeFuncionesRealesContinuasEsContinua} se sigue que $h+g$ también lo es. Puesto que $h+g$ no se anula el mismo teorema indica que $f = \frac{h}{h+g}$ también es continua. Además, si $x \in A$, entonces $$f(x) = \frac{h(x)}{h(x) + g(x)} = \frac{h(x)}{h(x)} = 1;$$ y si $x \in U^\mathsf{c}$, entonces $$f(x) =\frac{h(x)}{h(x) + g(x)} = \frac{0}{g(x)} = 0.$$
+El lema~\ref{Lema:DistanciaAConjuntoEsContinua} indica que $g$ y $h$ son continuas y por el teorema~\ref{Tma:SumaDeFuncionesRealesContinuasEsContinua} se sigue que $h+g$ también lo es. Puesto que $h+g$ no se anula el mismo teorema indica que $f = h \cdot \frac{1}{h+g}$ también es continua. Además, si $x \in A$, entonces $$f(x) = \frac{h(x)}{h(x) + g(x)} = \frac{h(x)}{h(x)} = 1;$$ y si $x \in U^\mathsf{c}$, entonces $$f(x) =\frac{h(x)}{h(x) + g(x)} = \frac{0}{g(x)} = 0.$$
 \end{Dem}
 
 La proposición~\ref{Prop:FuncionContinuaPreservaCompactos} indica que una función continua preserva compactos. Dado que en $\R$ los conjuntos compactos son precisamente aquellos cerrados y acotados, se sigue la imagen de una función continua definida en un compacto es cerrada y acotada y motiva el siguiente resultado.
@@ -1231,7 +1258,7 @@ Tomemos ahora $x \notin A$. Anteriormente probamos que existe $\varepsilon > 0$ 
 \restr{f}{V_{\myfrac{\varepsilon}{2}}(x)} = \sum_{i=1}^N \restr{f_n}{V_\myfrac{\varepsilon}{2}(x)}.
 \end{equation}
 
-Como cada $f_n$ es continua, de \textbf{i)} del lema~\ref{Lema:RestriccionDeFuncionContinuaEsContinua} se sigue que $f_n$ es continua en $V_{\frac{\varepsilon}{2}}(x)$. Luego, de (\ref{Eq:DominioCompactoDeFuncionesContinuasQueAlcanzaMaximo}) y del teorema~\ref{Tma:SumaDeFuncionesRealesContinuasEsContinua},  se sigue que $f$ es continua en $V_{\frac{\varepsilon}{2}}(x)$. Por \textbf{ii)} del lema~\ref{Lema:RestriccionDeFuncionContinuaEsContinua}, $f$ es continua en $x$.
+Como cada $f_n$ es continua, de \textbf{i)} del lema~\ref{Lema:RestriccionDeFuncionContinuaEsContinua} se sigue que $f_n$ es continua en $V_{\frac{\varepsilon}{2}}(x)$. Luego, de (\ref{Eq:DominioCompactoDeFuncionesContinuasQueAlcanzaMaximo}) y del teorema~\ref{Tma:SumaDeFuncionesRealesContinuasEsContinua},  se tiene que $f$ es continua en $V_{\frac{\varepsilon}{2}}(x)$. Por \textbf{ii)} del lema~\ref{Lema:RestriccionDeFuncionContinuaEsContinua} resulta que $f$ es continua en $x$.
 
 Como $f(z_n) = n$ para todo $n \in \N$, resulta que $f$ no es acotada. Por lo tanto $f$ es una función continua en $K$ que no alcanza su máximo. 
 
@@ -1335,15 +1362,7 @@ Del lema~\ref{Lema:DistanciaAConjuntoEsContinua} se sigue de inmediato que $\Nor
 Si $X$ es un espacio normado y tomamos $x, y \in B_X$ y $\lambda \in [0, 1]$, entonces $$\Norm{\lambda x + (1-\lambda)y} \leq \lambda \Norm{x} + (1- \lambda)\Norm{y} \leq \lambda + (1-\lambda) = 1.$$ Así que $\lambda x + (1-\lambda)y \in B_X$. Por lo tanto $B_X$ es convexa.
 \end{Ejem}
 
-\begin{Prop} \label{Prop:CerraduraDeConvexoEsConvexa}
-Sea $X$ un espacio normado. Si $A \subseteq X$ es convexo, entonces $\ov{A}$ es convexa. 
-\end{Prop}
-
-\begin{Dem}
-Sean $x, y \in \ov{A}$ y $\lambda \in [0, 1]$. Como $x, y \in \ov{A}$, la proposición~\ref{Prop:CerraduraLimiteSucesiones} indica que existen sucesiones $(x_n)_{n \in \N}$, $(y_n)_{n\in\N}$ en $A$ tales que $x_n \to x$ y $y_n \to y$. Dado que $A$ es convexo se cumple que $\lambda x_n + (1-\lambda) y_n \in A$. Además, la proposición~\ref{Prop:LimiteDeSumaSucesion}  indica que $$\lim_{n \to \infty } [\lambda x_n + (1-\lambda) y_n] = \lambda \lim_{n \to \infty } x_n + (1-\lambda) \lim_{n\to \infty} y_n = \lambda x + (1-\lambda) y.$$ 
-
-Por lo tanto $\lambda x + (1-\lambda y) \in \ov{A}$.  
-\end{Dem}
+La siguiente proposición generaliza de $\R$ a un espacio normado la proposición~\ref{Prop:LimiteDeSumaSucesionDeReales} y su demostración es análoga.
 
 \begin{Prop} \label{Prop:LimiteDeSumaSucesion}
 Sean $X$ un espacio normado, $(\lambda_n)_{n\in\N}$ una sucesión convergente en $\K$; y $(x_n)_{n \in \N}$ y $(y_n)_{n \in \N}$ sucesiones que convergen en $E$. Entonces $(\lambda_n x_n + y_n)_{n\in\N}$ converge y 
@@ -1373,6 +1392,16 @@ Por la desigualdad del triángulo, (\ref{Eq:LimProd3}) equivale a que $\Norm{x_n}
 & \leq \abs{\lambda_n - \lambda}(\Norm{x}+1) + (\abs{\lambda}+1)\Norm{x_n - x} \\
 & < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
 }
+\end{Dem}
+
+\begin{Prop} \label{Prop:CerraduraDeConvexoEsConvexa}
+Sea $X$ un espacio normado. Si $A \subseteq X$ es convexo, entonces $\ov{A}$ es convexa. 
+\end{Prop}
+
+\begin{Dem}
+Sean $x, y \in \ov{A}$ y $\lambda \in [0, 1]$. Como $x, y \in \ov{A}$, la proposición~\ref{Prop:CerraduraLimiteSucesiones} indica que existen sucesiones $(x_n)_{n \in \N}$, $(y_n)_{n\in\N}$ en $A$ tales que $x_n \to x$ y $y_n \to y$. Dado que $A$ es convexo se cumple que $\lambda x_n + (1-\lambda) y_n \in A$. Además, la proposición~\ref{Prop:LimiteDeSumaSucesion}  indica que $$\lim_{n \to \infty } [\lambda x_n + (1-\lambda) y_n] = \lambda \lim_{n \to \infty } x_n + (1-\lambda) \lim_{n\to \infty} y_n = \lambda x + (1-\lambda) y.$$ 
+
+Por lo tanto $\lambda x + (1-\lambda y) \in \ov{A}$.  
 \end{Dem}
 
 \begin{Cor}
@@ -3227,6 +3256,12 @@ Así que $$\Norm{\widehat{\delta}(\varphi)} = \Norm{\delta(\restr{\varphi}{Y})} \
 Probemos que $\delta = J_Y(x)$. Sea $\varphi \in Y^*$, por el teorema~\ref{Tma:HahnBanachFuncional} de Hahn-Banach existe $\widehat{\varphi} \in X^*$ tal que $\restr{\widehat{\varphi}}{Y} = \varphi$. Luego, $$(J_Y(x))(\varphi) = \varphi(x) = \widehat{\varphi}(x) = (J_X(x))(\widehat{\varphi}) = \widehat{\delta}(\widehat{\varphi}) = \delta\left(\restr{\widehat{\varphi}}{Y}\right) = \delta(\varphi).$$ 
 
 Por lo tanto  $\delta = J_Y(x)$ y así $Y$ es reflexivo.
+
+\textbf{Demostración alternativa.}
+
+Mostremos que $Y$ es cerrado en la topología débil. Sea $x \notin Y$, por el corolario~\ref{Cor:HahnBanachFuncional} de Hahn-Banach existe $\varphi \in X^*$ tal que $\varphi(x) = 1$ y $\varphi(Y) = 0$. Luego $U_{x, \varphi, 1} \cap Y = \emptyset$. En efecto, si $y \in U_{x, \varphi, 1} \cap Y$, entonces $\abs{\varphi(x)} = \abs{\varphi(x)-\varphi(y)} < 1$, lo que contradice que $\varphi(x) = 1$. 
+
+Como $U_{x, \varphi, 1} \subseteq Y^\mathsf{c}$, entonces $Y^\mathsf{c}$ es $\mathrm{w}$-abierto y por lo tanto $Y$ es $\mathrm{w}$-cerrado. Puesto que $B_X$ es $\mathrm{w}$-cerrada, entonces $B_Y = B_X \cap Y$ también lo es. Por el teorema~\ref{Tma:EquivalenciaReflexivoBolaDebilmenteCompacta} $B_X$ es $\mathrm{w}$-compacta. Además, dado que $B_Y \subseteq B_X$ y $B_Y$ es $\mathrm{w}$-cerrada, del lema~\ref{Lema:CerradoEnCompactoEsCompacto} se sigue  que $B_Y$ es $\mathrm{w}$-compacta. Por el teorema~\ref{Tma:EquivalenciaReflexivoBolaDebilmenteCompacta} se concluye que $Y$ es reflexivo.
 \end{Dem}
 
 \begin{Obs} \label{Obs:ReflexivoImplicaTopologiasDebilesCoinciden}
