@@ -995,7 +995,10 @@ Sean $x, y \in M_1$ tales que $f(x) = f(y)$. Entonces $d(x, y) = d(f(x), f(y)) =
 
 Tomemos una sucesión $(x_n)_{n \in\N}\subseteq M_1$ y $x \in M_1$. Tenemos que $x_n \to x$ si, y sólo si $d(x_n, x) \to 0$. Como $f$ es una isometría, lo anterior equivale a que $d(f(x_n), f(x)) \to 0$ y por el lema~\ref{Lema:ConvergenciaSucesionesEnSubespacio}, a su vez es equivalente a que $f(x_n)\to f(x)$ en $f(M_1)$. De la proposición~\ref{Prop:ContinuidadPorSucesiones} se sigue que $f$ y $f^{-1}$ son continuas.
 
-Ahora supongamos que $M_1$ es completo (Pendiente).
+Ahora supongamos que $M_1$ es completo. Sea $(x_n)_{n \in \N}$ una sucesión de tal manera que la sucesión $(f(x_n))_{n \in \N}$ es de Cauchy. Como $f$ es una isometría, se tiene que
+$$d(x_n, x_m) = d(f(x_n), f(x_m)) , \mbox{ para todas } n ,m \in \N.$$
+
+De esto que $(x_n)_{n \in \N}$ es de Cauchy y como $M_1$ es completo, resulta que $(x_n)_{n \in\N}$ converge a algún $x \in M_1$. Como $f: M_1 \to f(M_1)$ es continua, entonces $f(x_n) \to f(x)$ en $f(M_1)$.  
 \end{Dem}
 
 
@@ -1672,10 +1675,14 @@ Para cada $1 \leq p \leq \infty$ y $n \in \N$ el espacio $\ell_p^n$ es completo.
 Procediendo como en la demostración del ejemplo anterior, sustituyendo las sucesiones en $\ell_p$ por tuplas en $\ell_p^n$ y las series por sumas, se llega a que $\ell_p^n$ es completo. 
 \end{Dem}
 
+\begin{Ejem} \label{Ejem:EspacioDeSucesionesConvergentes}
+Consideremos el conjunto $c$ de sucesiones en $\K$ convergentes. Dada $x = (x_n)_{n \in \N} \in c$, como es convergente es de Cauchy y por el lema~\ref{Lema:SucesionesDeCauchySonAcotadas} se sigue que $\{ x_n : n \in \N \}$ es un conjunto acotado. Así pues $\Norm{x}_\infty < \infty$ y $(x_n)_{n \in \N} \in \ell_\infty$.  Veamos que $c$ es un subespacio vectorial de $\ell_\infty$. Tomemos entonces $x, y \in c$ y $\lambda \in \K$. Por la proposición~\ref{Prop:LimiteDeSumaSucesion} se tiene que $x+y$ y $\lambda x \in c$. 
+\end{Ejem}
+
+
 \section{Compacidad de la bola cerrada}
 
 El objetivo de esta sección es demostrar que la compacidad de la bola unitaria en un espacio normado depende simplemente de si este es de dimensión finita o no.
-
 
 \begin{Tma} \label{Tma:EspaciosNormadosFinitosIsomorfos}
 Si $X$ y $Y$ son espacios normados de dimensión finita y de la misma dimensión, entonces son isomorfos como espacios normados.
@@ -2069,8 +2076,52 @@ y & \mapsto Ry.
 Ahora probemos que $R$ es lineal. Así, sean $y = (y_1, y_2, \ldots), z = (z_1, z_2, \ldots) \in \ell_q$ y $\lambda \in \K$. Si $x = (x_1, x_2, \ldots) \in \ell_p$ tenemos que 
 $$R(y+ \lambda z)(x) = \sum_{i=1}^\infty x_i(y_i + \lambda z_i) = \sum_{i=1}^\infty x_i y_i + \lambda \sum_{i=1}^\infty x_i z_i = Ry(x) + \lambda Rz(x).$$
 
-Así que $R(y+ \lambda z) = Ry + \lambda Rz$ y $R$ es lineal. Fijemos $y \in \ell_q$. De (\ref{Eq:HolderRiesz}) se sigue que $\Norm{Ry} \leq \Norm{y}_q$. (Pendiente).
+Así que $R(y+ \lambda z) = Ry + \lambda Rz$ y $R$ es lineal. De (\ref{Eq:HolderRiesz}) se sigue que 
+\begin{equation} \label{Eq:RepresentacionDeElleQEsContinua1}
+{Ry} \leq \Norm{y}_q, \mbox{ para toda } y \in \ell_q.
+\end{equation}
 
+Demostremos que $R$ es sobreyectiva para $1 \leq p < \infty$. Tomemos entonces $\varphi \in \ell_p^*$. Nuestro candidato $y$ en $\ell_q$ tal que $Ry = \varphi$ es $y = (y_n)_{n \in\N}$ definido por $y_n = \varphi(e_n)$ para toda $n \in \N$. Veamos que $y$ pertenece a $\ell_q$. Supongamos que $p \neq 1$ de manera que $q \neq \infty$ y fijemos $N \in \N$. Sean $1 \leq n_1  < \ldots <   n_k \leq N$ los índices de $y_n$ que son distintos de cero. Entonces
+\Ecu{
+\sum_{n=1}^N \abs{y_n}^q &= \sum_{i=1}^k \abs{y_{n_i}}^q = \sum_{i=1}^k \frac{\abs{y_{n_i}}^q}{y_{n_i}} y_{n_i} = \sum_{i=1}^k \frac{\abs{y_{n_i}}^q}{y_{n_i}} \varphi(e_{n_i}) = \varphi \left(\sum_{i=1}^k \frac{\abs{y_{n_i}}^q}{y_{n_i}} e_{n_i} \right) \\
+& \leq \Norm{\varphi} \Norm{\sum_{i=1}^k \frac{\abs{y_{n_i}}^q}{y_{n_i}} e_{n_i} }_p = \Norm{\varphi} \left(\sum_{i=1}^k \abs{y_{n_i}}^{(q-1)p} \right)^{\frac{1}{p}} = \Norm{\varphi} \left(\sum_{n=1}^N \abs{y_n}^q \right)^{\frac{1}{p}}.
+}
+
+De esto se sigue que 
+$$\left(\sum_{n=1}^N \abs{y_n}^q \right)^{\frac{1}{q}} = \left(\sum_{n=1}^N \abs{y_n}^q \right)^{1-\frac{1}{p}} \leq \Norm{\varphi}.$$
+Haciendo $N \to \infty$ obtenemos que $\Norm{y}_q \leq \Norm{\varphi}$.
+
+Ahora, para $p = 1$, se tiene que $\abs{y_n} = \abs{\varphi(e_n)} \leq \Norm{\varphi} \Norm{e_n} = \Norm{\varphi}$ para toda $n \in \N$. Entonces obtenemos que $\Norm{y}_\infty \leq \Norm{\varphi}$.
+
+Así pues, tenemos que para $1 \leq p < \infty$ se cumple que 
+\begin{equation} \label{Eq:RepresentacionDeElleQEsContinua2}
+\Norm{y}_q \leq \Norm{\varphi}.
+\end{equation}
+
+Falta ver que $Ry = \varphi$. Tomemos entonces $x = (x_n)_{n \in \N} \in \ell_p$. Mostremos que $$x = \lim_{N \to \infty} \sum_{n = 1}^N x_n e_n.$$ 
+
+Observemos que para todo $N \in \N$ se cumple que
+$$\Norm{x - \sum_{n=1}^N x_n e_n}_p = \left(\sum_{n=N+1}^\infty \abs{x_n}^p  \right)^{\frac{1}{p}}.$$
+
+Pero como $\Norm{x}_p^p = \sum_{n=1}^\infty \abs{x_n}^p < \infty$, se sigue que $\sum_{n = N+1}^\infty \abs{x_n}^p \to 0$ y entonces $$\Norm{x - \sum_{n=1}^N x_n e_n}_p \to 0.$$
+
+Ahora, notemos que como $\varphi$ es continua
+\Ecu{
+\varphi(x) &= \varphi\left( \lim_{N \to \infty} \sum_{n=1}^N x_n e_n \right) = \lim_{N \to \infty} \varphi\left(\sum_{n=1}^N x_n e_n \right) \\ 
+&=  \lim_{N \to \infty} \sum_{n=1}^N x_n \varphi(e_n)  = \sum_{n=1}^\infty x_n y_n = Ry(x).
+}
+
+Luego $Ry = \varphi$ y $R$ es sobreyectiva. Además, dado $y \in \ell_q$, se tiene de (\ref{Eq:RepresentacionDeElleQEsContinua2}) que $\Norm{y}_q \leq \Norm{Ry}$ y junto con (\ref{Eq:RepresentacionDeElleQEsContinua1}) se concluye que $\Norm{Ry} = \Norm{y}_q$ y $R$ es una isometría. 
+
+Ahora consideremos el caso $p = \infty$ y $q = 1$. Mostremos que $R$ es una isometría. Sea $y \in \ell_q$. Definamos $x = (x_n)_{n \in \N}$ por $x_n = \frac{\abs{y_n}}{y_n}$ si $y_n \neq 0$ y $x_n = 0$ si $y_n = 0$ para todo $n \in \N$. De esta manera $\abs{x_n} \leq 1$ y por lo tanto $\Norm{x}_\infty \leq 1$. Además, notemos que
+$$Ry(x) = \sum_{n=1}^\infty x_n y_n \sum_{n=1}^\infty \frac{\abs{y_n}}{y_n} y_n = \sum_{n=1}^\infty \abs{y_n} = \Norm{y}_1.$$ 
+
+Como $x \in B_{\ell_\infty}$ y $Ry(x) = \Norm{y}_1$, se sigue que $\Norm{Ry} \geq \Norm{y}_1$. Junto con (\ref{Eq:RepresentacionDeElleQEsContinua1}) se concluye que $\Norm{Ry} = \Norm{y}_1$ y $R$ es una isometría. 
+
+Supongamos que $R$ es sobreyectiva. Consideremos $c$ como en el ejemplo~\ref{Ejem:EspacioDeSucesionesConvergentes}. Definamos la función $f: c \to \K$ por $f\left((x_n)_{n \in \N}\right) = \lim_{n \to \infty} x_n$ para toda $(x_n)_{n \in\N} \in c$. De la proposición~\ref{Prop:LimiteDeSumaSucesion} se sigue que $f$ es lineal y dado que $\abs{f\left((x_n)_{n \in \N}\right)} = \abs{\lim_{n \in \N} x_n} \leq \sup_{n \in \N} \abs{x_n} = \Norm{(x_n)_{n \in \N}}_\infty$ para toda $(x_n)_{n \in\N} \in c$ se tiene que $f$ es continua. Así pues $f \in c^*$. Como $c$ es un subespacio de $\ell_\infty$, por el teorema~\ref{Tma:HahnBanachFuncional} de Hahn-Banach existe $\varphi \in \ell_\infty^*$ tal que $\restr{\varphi}{c} = f$. Dado que $R$ es sobreyectiva, existe $y \in \ell_1$ tal que $Ry = \varphi$. Como para todo $n \in \N$, el elemento $e_n \in c$ converge a cero $0$, se sigue que
+$$y_n = Ry(e_n) = \varphi(e_n) = f(e_n) = 0.$$
+
+Esto es, $y = 0$ y por lo tanto $f = 0$. Esto es falso pues $(1)_{n \in\N} \in c$ y  $f((1)_{n \in\N}) = 1$. Concluimos que $R$ no es sobreyectiva.
 \end{Dem}
 
 
