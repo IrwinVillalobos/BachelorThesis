@@ -209,7 +209,7 @@
         
         \rule[0.2cm]{13cm}{0.1cm} \\
 		{ \huge \bfseries Las topologías débil y débil*}\\[0.4cm] 
-		{\Large \slshape Un enfoque desde la compacidad }\\[0.3cm]
+		{\Large \slshape Algo que mencione a la compacidad }\\[0.3cm]
 		\rule[0.2cm]{13cm}{0.1cm}\\[2cm]
             
            
@@ -1809,7 +1809,7 @@ Sea $X$ un espacio normado y $V \subseteq X$ un subespacio vectorial. Si $f \in 
 \end{Tma}
 
 \begin{Cor}[Hahn-Banach] \label{Cor:HahnBanachFuncional}
-Sean $X$ un espacio normado y $Y \subseteq X$ un subespacio vectorial cerrado. Si $x \notin Y$, entonces existe $\varphi \in X^*$ tal que $\varphi(x) \neq 0$ y $\restr{\varphi}{Y} = 0$.
+Sean $X$ un espacio normado y $Y \subseteq X$ un subespacio vectorial cerrado. Si $x \notin Y$, entonces existe $\varphi \in X^*$ tal que $\varphi(x) \neq 0$ y $\restr{\varphi}{Y} = 0$. Si además, $\abs{\varphi(x)} \leq \Norm{x}$, entonces $\Norm{\varphi} \leq 1$.
 \end{Cor}
 
 \begin{Prop} \label{Prop:DualDimensionInfinita}
@@ -1822,6 +1822,22 @@ Supongamos que $X$ es de dimensión infinita. Entonces para todo $n \in \N$ exist
 Supongamos ahora que $X$ es de dimensión finita $n \in \N$. Existe entonces una base $\{x_1, \ldots, x_n \}$ de $X$. Para $1 \leq i \leq n$ definimos $f_i :X \to \K $ linealmente y de tal manera que $f_i(x_j) = \delta_{ij}$. Como $X$ es de dimensión finita la proposición~\ref{Prop:FuncionalesLinealesContinuosEspaciosFinitos} indica que cada $f_i$ es continuo. Veamos que $\{ f_1, \ldots, f_n \}$ generan a $X^*$. Tomamos entonces $f \in X^*$ y supongamos que $f(x_i) = a_i \in \K$ para cada $i \in \{1, \ldots, n\}$. Así, para cada $1 \leq i \leq n$
 $$\left( \sum_{j=1}^n a_j f_j \right)(x_i) = a_i = f(x_i).$$
 Por lo tanto $f = \sum_{j=1}^n a_j f_j$. Esto dice que existe un conjunto finito generador en $X^*$, por lo que $X^*$ es de dimensión finita y además $\dim X^* \leq \dim X$.
+\end{Dem}
+
+\begin{Lema} \label{Lema:ContencionKernelsImplicaCombinacionLineal}  
+Sean $X$ un espacio vectorial, $n \in \N$ y $f, g_1, \ldots, g_n$ funcionales lineales en $X$. Si $\bigcap_{i=1}^n \Ker g_i \subseteq \Ker f$, entonces $f \in \Span \,\{ g_1, \ldots, g_n \}$.
+\end{Lema}
+
+\begin{Dem}
+Definamos $F: X \to \K^n$  por $F(x) = (g_1(x), \ldots, g_n(x))$ para toda  $x \in X$. Mostremos que $F$ es lineal. Tomemos entonces $x, y \in X$ y $\lambda \in \K$ y observemos que
+$$F(x+\lambda y) = (g_1(x+\lambda y), \ldots, g_n(x + \lambda y)) = (g_1(x) + \lambda g_1(y), \ldots, g_n(x) + \lambda g_n(y)) = (g_1(x), \ldots, g_n(x)) + \lambda (g_1(y), \ldots, g_n(y)) = F(x) + \lambda F(y).$$  
+
+Consideremos $h: F(X) \to \K$ definida por $h(F(x)) = f(x)$ para $F(x) \in F(X)$. Mostremos que $h$ está bien definida. Supongamos que $F(x) = F(y)$ para algunos $x, y \in X$. Luego $F(x-y) = 0$ y por tanto $$x-y \in \Ker F = \bigcap_{i=1}^n \Ker g_i \subseteq \Ker f,$$ por lo que $h(F(x)) = f(x) = f(y) = h(F(y))$.
+
+Sea $\ov{h}: \K^n \to \K$ una extensión lineal de $h$ a $\K^n$. Entonces dado $x \in X$, tenemos que
+$$f(x) = h(F(x)) = \ov{h}(g_1(x), \ldots, g_n(x)) = \ov{h}\left(\sum_{i=1}^n g_i(x) e_i\right) = \sum_{i=1}^n \ov{h}(e_i) g_i(x).$$
+
+Esto indica que $f = \sum_{i=1}^n \ov{h}(e_i) g_i$ y entonces $f \in \Span \{ g_1, \ldots, g_n \}$.
 \end{Dem}
 
 Existen maneras de plantear los teoremas de Hanh-Banach con un enfoque más geométrico, como lo muestra el siguiente teorema.
@@ -1869,14 +1885,42 @@ Sean $X$ un espacio normado, $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ 
 \begin{itemize}
 \item \textbf{\Ti} Para todo $\varepsilon>0$ existe $x \in B_X$ tal que $\abs{\varphi_i(x) - a_i} < \varepsilon$ para toda $i \in \{ 1, \ldots, n\}$.
 \item \textbf{\Tii} Para cualesquiera $b_1, \ldots, b_n \in \K$ se cumple que $\displaystyle\abs{\sum_{i=1}^n a_i b_i} \leq \Norm{\sum_{i=1}^n b_i \varphi_i}.$
-\item \textbf{\Tiii} $(a_1, \ldots, a_n) \in \ov{T(B_X)}$, donde  $T: X \to \ell_1^n(\K)$ está definida por $Tx =(\varphi_1(x), \ldots, \varphi_n(x))$. 
 \end{itemize}
 \end{Lema}
 
 \begin{Dem}
-Si $\K = \R$, ya quedó demostrado en el lema anterior. Así que supongamos $\K = \C$. Las implicaciones de \textbf{i)} a \textbf{ii)} y de \textbf{iii)} a \textbf{i)} son totalmente análogas al caso real. Así que sólo falta verificar que \textbf{ii)} implica \textbf{iii)}.
 
-(Pendiente).
+Supongamos \textbf{i)}. Tomemos $b_1, \ldots, b_n \in \K$ cualesquiera. Sea $\varepsilon > 0$. Entonces existe $x \in B_X$ tal que $\abs{\varphi_i(x) - a_i} < \varepsilon$ para toda $i \in \nn{n}$. Observemos que 
+\Ecu{
+\abs{\sum_{i=1}^n a_i b_i} &= \abs{\sum_{i=1}^n (a_i - \varphi_i(x) + \varphi_i(x)) b_i} \leq \abs{\sum_{i=1}^n (a_i - \varphi_i(x)) b_i} + \abs{\left(\sum_{i=1}^n b_i \varphi_i \right)(x) } \\
+& \leq \sum_{i=1}^n \abs{a_i - \varphi_i(x)} b_i + \Norm{\sum_{i=1}^n b_i \varphi_i } \Norm{x} < \varepsilon  \sum_{i=1}^n\abs{b_i} + \Norm{\sum_{i=1}^n b_i \varphi_i }  
+}
+Como esto es para todo $\varepsilon >0$, se sigue que $\displaystyle\abs{\sum_{i=1}^n a_i b_i} \leq \Norm{\sum_{i=1}^n b_i \varphi_i}$. 
+
+Ahora supongamos \textbf{ii)} y tomemos $\varepsilon > 0$. En el caso que $\varphi_i = 0$ para toda $1 \leq i \leq n$, para todos $b_1, \ldots, b_n \in \K$ se tiene que 
+$$\abs{\sum_{i=1}^n a_i b_i} \leq \Norm{\sum_{i=1}^n b_i \varphi_i} = \Norm{0} = 0.$$
+
+Es decir, $\sum_{i=1}^n a_i b_i = 0$ para todos $b_1, \ldots, b_n \in \K$. Si fijamos $k \in \nn{n}$ y tomamos $b_k = 1$ y $b_i = 0$ para $i \neq k$, entonces se tiene que $a_k = 0$. Por lo que al tomar $x = 0$ se satisface que $\abs{\varphi_i(x) - a_i} = 0 < \varepsilon$ para todo $i \in \nn{n}$.
+
+Consideremos ahora el caso en el que no todos los funcionales $\varphi_1, \ldots, \varphi_n$ son cero. Entonces reordenemos $\varphi_1, \ldots, \varphi_n$ de tal manera que exista $1 \leq k \leq n$ tal que $\varphi_1, \ldots, \varphi_k$ sean linealmente independientes y $\Span \{ \varphi_1, \ldots, \varphi_k \} = \Span \{ \varphi_1, \ldots, \varphi_n \}$. (¿Demuestro que se pueden reordenar de esta manera?) 
+
+Definamos $F: X \to \K^k$ por $F(x) = (\varphi_1(x), \ldots, \varphi_k(x))$ para toda $x \in X$. En el lema~\ref{Lema:ContencionKernelsImplicaCombinacionLineal} se probo que $F$ es lineal. Demostremos que $T$ es sobreyectiva. Supongamos que no lo es. Entonces $T(X)$ es un subespacio propio de $\K^k$, por lo tanto existe $c = (c_1, \ldots, c_k) \in \K^k \setminus \{ 0 \}$ tal que $$\sum_{i=1}^k c_i y_i = 0 \mbox{ para todo } y = (y_1, \ldots, y_k) \in T(X).$$ 
+
+(¿Demuestro esto? Es decir, que el complemento ortogonal de un subespacio propio de $\K^n$ es no trivial.) Esto nos indica que para todo $x \in X$ se tiene que $\sum_{i=1}^k c_i \varphi_i(x) = 0$ y por lo tanto $c_1\varphi_1 + \ldots + c_k \varphi_k = 0$, lo que contradice que $\varphi_1, \ldots, \varphi_k$ son independientes. Luego $F$ es sobreyectiva.
+
+Sea $y \in F^{-1}(a_1, \ldots, a_k)$. Probemos que $\varphi_i(y) = a_i$ para toda $i \in \nn{n}$. Si $k = n$ no hay nada que probar. Supongamos entonces que $k < n$. Claramente $\varphi_i(y) = a_i$ para $1 \leq i \leq k$. Fijemos $k+1 \leq i \leq n$. Como $\varphi_i$ está en $\Span \{ varphi_1, \ldots, \varphi_k \}$, existen $b_1, \ldots, b_k \in\K $ tales que $\varphi_i = \sum_{j=1}^k b_j \varphi_j$. Al definir $b_i = -1$ y $b_j = 0$ para $j \in \{ k+1, \ldots, n \} \setminus \{ i \}$ resulta de \textbf{ii)} que $$\abs{\varphi_i(y) - a_i} = \abs{\sum_{j=1}^k b_j \varphi_j(y) - a_i} = \abs{\sum_{j=1}^n a_j b_j} \leq \Norm{\sum_{j=1}^n  b_j \varphi_j } = \Norm{\sum_{j=1}^k  b_j \varphi_j - \varphi_i} = \Norm{0} = 0. $$ y entonces $\varphi_i(y) = a_i$.
+
+Si $y = 0$, entonces $y \in B_X$ y cumple lo requerido. Supongamos pues que $y \neq 0$ y consideremos $K = \bigcap_{i=1}^n \Ker \, \varphi_i$. Puesto que $K$ es intersección de conjuntos cerrados, es cerrado en $X$ y por lo tanto también es cerrado en $\Span \{ K \cup \{y\} \}$. Además, $d(y, K) \leq d(y, 0) = \Norm{y}$. Por lo que del corolario~\ref{Cor:HahnBanachFuncional} de Hahn-Banach existe un funcional lineal continuo $\psi: \Span \{ K \cup \{y\} \} \to \K$ tal que $\psi(y) = d(y, K) > 0$ y $\psi(K) = 0$. Como $\abs{\psi(y)} \leq \Norm{y}$, entonces $\Norm{\psi} \leq 1$. Por el teorema~\ref{Tma:HahnBanachFuncional} existe $\widehat{\psi} \in X^*$ que extiende de $\psi$ y tal que $\Vert\widehat{\psi}\Vert = \Norm{\psi} \leq 1$. Dado que $K \subseteq \Ker \widehat{\psi}$, del lema~\ref{Lema:ContencionKernelsImplicaCombinacionLineal} se sigue que $\widehat{\psi} \in \Span \{ \varphi_1, \ldots, \varphi_n \}$. Luego, existen $b_1, \ldots, b_n \in \K$ tales que $$\widehat{\psi} = \sum_{i=1}^n b_i \varphi_i.$$ 
+
+Al aplicar \textbf{ii)} resulta que
+$$d(y, K) = \widehat{\psi}(y) = \sum_{i=1}^n b_i \varphi_i(y) = \sum_{i=1}^n a_i b_i \leq \Norm{\sum_{i=1}^n b_i \varphi_i} = \Norm{\widehat{\psi}} \leq 1. $$
+
+Sea $\delta > 0$ tal que $\abs{a_i}\delta < \varepsilon$ para todo $1 \leq i \leq n$. Puesto que $d(y, K) \leq 1$, existe $z \in K$ tal que $\Norm{y- z} = d(y, z) \leq \delta + 1$. Notemos que $\varphi_i(y - z) = \varphi_i(y) = a_i$ para todo $i \in \nn{n}$. Definamos $x = \frac{y- z}{1+\delta}$ y observemos que $\Norm{x} \leq 1$ y para cada $1 \leq i \leq n$ se tiene que
+$$\abs{\varphi_i(x) - a_i} = \abs{\frac{\varphi_i(y)}{1+\delta} - a_i} = \abs{a_i} \abs{\frac{1}{1+\delta} - 1} = \abs{a_i}\delta  < \varepsilon.$$
+
+
+
+
 \end{Dem}
 
 Sea $X$ un espacio normado. Para cada $x \in X$ la  evaluación $\delta_x : X^* \to \K$ es un funcional lineal continuo en $X^*$ de acuerdo a la siguiente proposición.
@@ -3201,19 +3245,6 @@ Notemos que el primer conjunto es un abierto de $X^*_{\mathrm{w}^*}$ y el segund
 \begin{equation} \label{Eq:RelacionTopologias}
 \sigma(X^*, X) \subseteq \sigma(X^*, X^{**}) \subseteq \tau_{\Norm{\cdot}_{X^*}}.
 \end{equation}
-
-\begin{Lema} \label{Lema:ContencionKernelsImplicaCombinacionLineal}  
-Sean $X$ un espacio vectorial, $n \in \N$ y $f, g_1, \ldots, g_n$ funcionales lineales en $X$. Si $\bigcap_{i=1}^n \Ker g_i \subseteq \Ker f$, entonces $f \in \Span \,\{ g_1, \ldots, g_n \}$.
-\end{Lema}
-
-\begin{Dem}
-Definamos $F: X \to \K^n$ definida por $F(x) = (g_1(x), \ldots, g_n(x))$ para $x \in X$ y $h: F(X) \to \K$ por $h(F(x)) = f(x)$ para $F(x) \in F(X)$. Mostremos que $h$ está bien definida. Supongamos que $F(x) = F(y)$ para algunos $x, y \in X$. Luego $F(x-y) = 0$ y por tanto $$x-y \in \Ker F = \bigcap_{i=1}^n \Ker g_i \subseteq \Ker f,$$ por lo que $h(F(x)) = f(x) = f(y) = h(F(y))$.
-
-Sea $\ov{h}: \K^n \to \K$ una extensión lineal de $h$ a $\K^n$. Entonces dado $x \in X$, tenemos que
-$$f(x) = h(F(x)) = \ov{h}(g_1(x), \ldots, g_n(x)) = \ov{h}\left(\sum_{i=1}^n g_i(x) e_i\right) = \sum_{i=1}^n \ov{h}(e_i) g_i(x).$$
-
-Esto indica que $f = \sum_{i=1}^n \ov{h}(e_i) g_i$ y entonces $f \in \Span \{ g_1, \ldots, g_n \}$.
-\end{Dem}
  
 \begin{Prop} \label{Prop:ReflexividadEnTopologiaDebilEstrella}
 Sea $X$ un espacio normado, entonces $J(X) = (X^*_{\mathrm{w}^*})^* $.
