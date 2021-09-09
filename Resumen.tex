@@ -1264,10 +1264,17 @@ Tomemos ahora $x \notin A$. Anteriormente probamos que existe $\varepsilon > 0$ 
 Como cada $f_n$ es continua, de \textbf{i)} del lema~\ref{Lema:RestriccionDeFuncionContinuaEsContinua} se sigue que $f_n$ es continua en $V_{\frac{\varepsilon}{2}}(x)$. Luego, de (\ref{Eq:DominioCompactoDeFuncionesContinuasQueAlcanzaMaximo}) y del teorema~\ref{Tma:SumaDeFuncionesRealesContinuasEsContinua},  se tiene que $f$ es continua en $V_{\frac{\varepsilon}{2}}(x)$. Por \textbf{ii)} del lema~\ref{Lema:RestriccionDeFuncionContinuaEsContinua} resulta que $f$ es continua en $x$.
 
 Como $f(z_n) = n$ para todo $n \in \N$, resulta que $f$ no es acotada. Por lo tanto $f$ es una función continua en $K$ que no alcanza su máximo. 
-
 \end{Dem}
 
+El resultado anterior en general es falso cuando el dominio es un espacio topológico en lugar de un espacio métrico como lo muestra el siguiente ejemplo.
 
+\begin{Ejem}
+En $\R$ consideremos la familia de subconjuntos de $\R$
+$$\tau_{c} = \{ A \subseteq \R : A^\mathsf{c}  \mbox{ es contable}\}.$$
+Esta familia resulta ser una topología en $\R$ a la cual denominamos \textit{topología de complemento contable} y denotamos por $\R_c$ a $\R$ dotado de esta topología. Demostremos que $\R_c$ no es compacto. Sea $S = \N^\mathsf{c}$ y observemos que $\{ S \cup \{ n \}\}_{n \in \N}$ es una cubierta abierta de $\R_c$. Para cuales quiera $k \in \N$ y $n_1, \ldots, n_k \in \N$ se tiene que existe $m \in \N \setminus \{ n_1, \ldots, n_k \}$ de forma que $m \notin \{ S \cup \{ n_i \} \}_{i=1}^k$ y por lo tanto $\{ S \cup \{ n \}\}_{n \in \N}$ no tiene subcubiertas finitas.
+
+Sea $f: \R_c \to \R$ una función continua. Mostremos que $f$ es constante. Supongamos entonces que no es constante y tomemos $x, y \in \R_c$ tales que $f(x) \neq f(y)$. Dado que $\R$ es Hausdorff, existen vecindades abiertas $U$ y $V$ de $f(x)$ y $f(y)$ que son disjuntas. Puesto que $f$ es continua se sigue que $f^{-1}(U)$ y $f^{-1}(V)$ son vecindades abiertas y entonces $[f^{-1}(U)]^\mathsf{c}$ y $[f^{-1}(V)]^\mathsf{c}$ son contables y por lo tanto su unión también. Como $\R_c$ no es contable, entonces $[f^{-1}(U)]^\mathsf{c} \cup [f^{-1}(V)]^\mathsf{c} \neq \R_c$ y así $f^{-1}(U) \cap f^{-1}(V) \neq \emptyset$. Tomemos $z \in f^{-1}(U) \cap f^{-1}(V) $ y entonces $f(z) \in U \cap V$ que contradice que $U \cap V = \emptyset$. Luego, $f$ es constante y por lo tanto alcanza su máximo.
+\end{Ejem}
 
 
 
