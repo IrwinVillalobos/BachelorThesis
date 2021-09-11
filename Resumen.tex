@@ -1863,45 +1863,7 @@ $$f(x) = h(F(x)) = \ov{h}(g_1(x), \ldots, g_n(x)) = \ov{h}\left(\sum_{i=1}^n g_i
 Esto indica que $f = \sum_{i=1}^n \ov{h}(e_i) g_i$ y entonces $f \in \Span \{ g_1, \ldots, g_n \}$.
 \end{Dem}
 
-Existen maneras de plantear los teoremas de Hanh-Banach con un enfoque más geométrico, como lo muestra el siguiente teorema.
-
-\begin{Tma}[Hahn-Banach] \label{Tma:HahnBanachGeometrico}
-Sea $X$ un espacio normado real. Si $A$ y $B$ son dos conjuntos convexos disjuntos, $A$ es cerrado y $B$ compacto, entonces existen $\varphi \in X^*$ y $\alpha, \beta \in \R$ tales que $\varphi(x) < \alpha < \beta < \varphi(y)   \mbox{ para todos } x \in A, y \in B.$
-\end{Tma}
-
-Como resultado de esta version del teorema de Hahn-Banach tenemos el lema de Helly, que más adelante nos será de utilidad.
-
-\begin{Lema}[Helly] \label{Lema:HellyReal}
-Sean $X$ un espacio normado real, $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $a_1, \ldots, a_n \in \R$. Son equivalentes:
-\begin{itemize}
-\item \textbf{\Ti} Para todo $\varepsilon>0$ existe $x \in B_X$ tal que $\abs{\varphi_i(x) - a_i} < \varepsilon$ para toda $i \in \{ 1, \ldots, n\}$.
-\item \textbf{\Tii} Para cualesquiera $b_1, \ldots, b_n \in \R$ se cumple que $\displaystyle\abs{\sum_{i=1}^n a_i b_i} \leq \Norm{\sum_{i=1}^n b_i \varphi_i}.$
-\item \textbf{\Tiii} $(a_1, \ldots, a_n) \in \ov{T(B_X)}$, donde  $T: X \to \ell_1^n(\R)$ está definida por $Tx =(\varphi_1(x), \ldots, \varphi_n(x))$. 
-\end{itemize}
-\end{Lema}
-
-\begin{Dem}
-Se demostrará que \textbf{i)} implica \textbf{ii)}, que \textbf{ii)} implica \textbf{iii)} y que \textbf{iii)} implica \textbf{i)}.
-
-Supongamos \textbf{i)}. Tomemos $b_1, \ldots, b_n \in \R$ cualesquiera. Sea $\varepsilon > 0$. Entonces existe $x \in B_X$ tal que $\abs{\varphi_i(x) - a_i} < \varepsilon$ para toda $i \in \nn{n}$. Observemos que 
-\Ecu{
-\abs{\sum_{i=1}^n a_i b_i} &= \abs{\sum_{i=1}^n (a_i - \varphi_i(x) + \varphi_i(x)) b_i} \leq \abs{\sum_{i=1}^n (a_i - \varphi_i(x)) b_i} + \abs{\left(\sum_{i=1}^n b_i \varphi_i \right)(x) } \\
-& \leq \sum_{i=1}^n \abs{a_i - \varphi_i(x)} b_i + \Norm{\sum_{i=1}^n b_i \varphi_i } \Norm{x} < \varepsilon  \sum_{i=1}^n\abs{b_i} + \Norm{\sum_{i=1}^n b_i \varphi_i }  
-}
-Como esto es para todo $\varepsilon >0$, se sigue que $\displaystyle\abs{\sum_{i=1}^n a_i b_i} \leq \Norm{\sum_{i=1}^n b_i \varphi_i}$. 
-
-Para mostrar que \textbf{ii)} implica \textbf{iii)} procederemos por contrapositiva. Así pues, supongamos que $a = (a_1, \ldots, a_n) \notin \ov{T(B_X)}$, de manera que $\{a \}$ y $\ov{T(B_X)}$ son disjuntos. Como $B_X$ es convexo, la proposición~\ref{Prop:FuncionLinealPreservaConvexos} indica que $T(B_X)$ es convexo y por el lema~\ref{Lema:CerraduraDeConvexoEsConvexa} se tiene que $\ov{T(B_X)}$ también es convexo.  Además, $\ov{T(B_X)}$ es cerrado. Claramente, $\{ a \}$ es compacto y convexo. El teorema~\ref{Tma:HahnBanachGeometrico} de Hahn-Banach dice que existe $\psi \in \ell_1^{n}(\R)^*$ y $\alpha \in \R$ tales que $\psi(y) < \alpha < \psi(a)$ para todo $y \in \ov{T(B_X)}$. Consideremos  la base canónica $\{ e_1, \ldots, e_n \}$ de $\R^n$. Para $1\leq i \leq n$ definamos $b_i := \psi(e_i)$, de tal manera que para $(z_1, \ldots z_n) \in \R^n$ tenemos que $$\psi(z_1, \ldots, z_n) = \sum_{i=1}^n b_i z_i.$$
-
-Tomemos $x \in B_X$. Entonces $Tx \in T(B_X) \subseteq \ov{T(B_x)}$, por lo que $$\sum_{i=1}^n b_i \varphi_i(x) = \psi(\varphi_1(x), \ldots, \varphi_n(x)) = \psi(T(x))  < \alpha < \psi(a) = \sum_{i=1}^n a_i b_i \leq \abs{\sum_{i=1}^n a_i b_i }.$$  
-
-Como $-x \in B_X$, se tiene que $$-\sum_{i=1}^n b_i \varphi_i(x) =  \sum_{i=1}^n b_i \varphi_i(-x ) < \alpha < \abs{\sum_{i=1}^n a_i b_i},$$ de donde $$\displaystyle \abs{\sum_{i=1}^n b_i \varphi_i(x)} < \alpha < \abs{\sum_{i=1}^n a_i b_i}.$$
-
-Concluimos de aquí la negación de \textbf{ii)}, es decir, $$\Norm{\sum_{i=1}^n b_i \varphi_i} = \sup_{x \in B_X} \abs{\left(\sum_{i=1}^n b_i \varphi_i \right)(x)} \leq \alpha < \abs{\sum_{i=1}^n a_i b_i}.$$
-
-Finalmente, supongamos \textbf{iii)}. Sea $\varepsilon > 0$. Como $a = (a_1, \ldots, a_n) \in \ov{T(B_X)}$, se sigue que $V_\varepsilon(a) \cap T(B_X) \neq \emptyset$. Así que existe $y \in V_\varepsilon(a) \cap T(B_X)$. Tomemos $x \in B_X$ con $T(x) = y$. Así que $T(x) \in V_\varepsilon(a)$. Para $i \in \nn{n}$ se tiene que $$\abs{\varphi_i(x) - a_i} \leq \sum_{j=1}^{n} \abs{\varphi_j(x) - a_j} = \Norm{Tx - a}_1 < \varepsilon.$$
-\end{Dem}
-
-El lema de Helly sigue siendo válido para espacios normados complejos, como se muestra a continuación.
+Otro resultado del teorema de Hahn-Banach es el lema de Helly, que más adelante nos será de utilidad.
 
 \begin{Lema}[Helly] \label{Lema:HellyGeneral}
 Sean $X$ un espacio normado, $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $a_1, \ldots, a_n \in \K$. Son equivalentes:
@@ -3345,32 +3307,6 @@ Sean $X$ y $Y$ dos espacios normados isomorfos. Si $X$ es reflexivo, entonces $Y
 Sea $T: Y \to X$ un isomorfismo de espacios normados. Por el lema~\ref{Lema:TraspuestoDeIsomorfismoEsIsomorfismo} se sigue que $T^{\Sft \Sft} : X^{**} \to Y^{**}$ es también un isomorfismo de espacios normados. Como $X$ es reflexivo, se tiene que la identificación canónica $J_X : X \to X^{**}$ es sobreyectiva, por lo que es invertible. De la proposición~\ref{Prop:IdentificacionesCanonicasYDobleTranspuesto} se sigue que $T^{\Sft\Sft} \circ J_X = J_Y \circ T$, de donde $J_Y = T^{\Sft\Sft} \circ J_X \circ T^{-1}$. Como $J_Y$ es composición de funciones sobreyectivas, resulta que $J_Y$ también lo es. Así que $Y$ es reflexivo.  
 \end{Dem}
 
-\begin{Prop} \label{Prop:SubespacioCerradoDeEspacioReflexivoEsReflexivo}
-Sea $X$ un espacio normado reflexivo. Si $Y \subseteq X$ es un subespacio vectorial cerrado, entonces $Y$ es reflexivo.
-\end{Prop}
-
-\begin{Dem}
-Sea $\delta \in Y^{**}$. Definamos $\widehat{\delta} : X^* \to \K$ por $\widehat{\delta}(\varphi) := \delta(\restr{\varphi}{Y})$ para toda $\varphi \in X^*$. Veamos que $\widehat{\delta}$ es lineal. Para todos $\varphi, \psi \in X^*$ y $\lambda \in \K$ se tiene que
-$$\widehat{\delta}(\varphi + \lambda \psi) = \delta\left(\restr{(\varphi+\lambda\psi)}{Y}\right) = \delta\left(\restr{\varphi}{Y} + \lambda \restr{\psi}{Y}\right) = \delta\left(\restr{\varphi}{Y}\right) + \lambda \delta\left(\restr{\psi}{Y}\right) = \widehat{\delta}(\varphi) + \lambda \widehat{\delta}(\psi).$$
-
-Probemos ahora que $\ov{\delta}$ es continua. Tomemos entonces $\varphi \in X^*$. Luego $$\left\{\Norm{\restr{\varphi}{Y}(y)} : y \in B_Y \right\} \subseteq \{ \Norm{\varphi(x)} : x \in B_X \}.$$
-
-De donde
-$$\Norm{\restr{\varphi}{Y}} = \sup \left\{\Norm{\restr{\varphi}{Y}(y)} : y \in B_Y \right\} \leq \sup \{ \Norm{\varphi(x)} : x \in B_X \} = \Norm{\varphi}.$$
-
-Así que $$\Norm{\widehat{\delta}(\varphi)} = \Norm{\delta(\restr{\varphi}{Y})} \leq \Norm{\delta} \Norm{\restr{\varphi}{Y}} \leq \Norm{\delta} \Norm{\varphi}$$ y por lo tanto $\widehat{\delta}$ es continua. Entonces $\widehat{\delta} \in X^{**}$. Puesto que $X$ es reflexivo, existe $x \in X$ con $J_X(x) = \widehat{\delta}$. Supongamos que $x \notin Y$. Como $Y$ es cerrado, del corolario~\ref{Cor:HahnBanachFuncional} de Hanh-Banach se sigue que existe $\varphi \in X^*$ con $\varphi(x) \neq 0$ y $\restr{\varphi}{Y} = 0$. Pero esto implica que $$0 = \delta(\restr{\varphi}{Y}) = \widehat{\delta}(\varphi) = J_X(x)(\varphi) = \varphi(x) \neq 0,$$ lo cual es una contradicción. Así que $x \in Y$.
-
-Probemos que $\delta = J_Y(x)$. Sea $\varphi \in Y^*$, por el teorema~\ref{Tma:HahnBanachFuncional} de Hahn-Banach existe $\widehat{\varphi} \in X^*$ tal que $\restr{\widehat{\varphi}}{Y} = \varphi$. Luego, $$(J_Y(x))(\varphi) = \varphi(x) = \widehat{\varphi}(x) = (J_X(x))(\widehat{\varphi}) = \widehat{\delta}(\widehat{\varphi}) = \delta\left(\restr{\widehat{\varphi}}{Y}\right) = \delta(\varphi).$$ 
-
-Por lo tanto  $\delta = J_Y(x)$ y así $Y$ es reflexivo.
-
-\textbf{Demostración alternativa.}
-
-Mostremos que $Y$ es cerrado en la topología débil. Sea $x \notin Y$, por el corolario~\ref{Cor:HahnBanachFuncional} de Hahn-Banach existe $\varphi \in X^*$ tal que $\varphi(x) = 1$ y $\varphi(Y) = 0$. Luego $U_{x, \varphi, 1} \cap Y = \emptyset$. En efecto, si $y \in U_{x, \varphi, 1} \cap Y$, entonces $\abs{\varphi(x)} = \abs{\varphi(x)-\varphi(y)} < 1$, lo que contradice que $\varphi(x) = 1$. 
-
-Como $U_{x, \varphi, 1} \subseteq Y^\mathsf{c}$, entonces $Y^\mathsf{c}$ es $\mathrm{w}$-abierto y por lo tanto $Y$ es $\mathrm{w}$-cerrado. Puesto que $B_X$ es $\mathrm{w}$-cerrada, entonces $B_Y = B_X \cap Y$ también lo es. Por el teorema~\ref{Tma:EquivalenciaReflexivoBolaDebilmenteCompacta} $B_X$ es $\mathrm{w}$-compacta. Además, dado que $B_Y \subseteq B_X$ y $B_Y$ es $\mathrm{w}$-cerrada, del lema~\ref{Lema:CerradoEnCompactoEsCompacto} se sigue  que $B_Y$ es $\mathrm{w}$-compacta. Por el teorema~\ref{Tma:EquivalenciaReflexivoBolaDebilmenteCompacta} se concluye que $Y$ es reflexivo.
-\end{Dem}
-
 \begin{Obs} \label{Obs:ReflexivoImplicaTopologiasDebilesCoinciden}
 Si $X$ es un espacio reflexivo, entonces la ecuación~(\ref{Eq:IgualdadBasicos}) indica que las bases de la topología débil* y la topología débil de $X^*$ coinciden, por lo que se cumple la igualdad 
 \begin{equation} \label{Eq:ReflexividadImplicaDebilYDebilEstrellaCoinciden}
@@ -3421,6 +3357,16 @@ Ahora supongamos que $B_X$ es $\mathrm{w}$-compacta. La proposición~\ref{Prop:Re
 Se sigue de aquí que $X$ es reflexivo. 
 \end{Dem}
 
+\begin{Lema} \label{Lema:SubespacioCerradoDeEspacioReflexivoEsReflexivo}
+Sea $X$ un espacio normado reflexivo. Si $Y \subseteq X$ es un subespacio vectorial cerrado, entonces $Y$ es reflexivo.
+\end{Lema}
+
+\begin{Dem}
+Mostremos que $Y$ es cerrado en la topología débil. Sea $x \notin Y$, por el corolario~\ref{Cor:HahnBanachFuncional} de Hahn-Banach existe $\varphi \in X^*$ tal que $\varphi(x) = 1$ y $\varphi(Y) = 0$. Luego $U_{x, \varphi, 1} \cap Y = \emptyset$. En efecto, si $y \in U_{x, \varphi, 1} \cap Y$, entonces $\abs{\varphi(x)} = \abs{\varphi(x)-\varphi(y)} < 1$, lo que contradice que $\varphi(x) = 1$. 
+
+Como $U_{x, \varphi, 1} \subseteq Y^\mathsf{c}$, entonces $Y^\mathsf{c}$ es $\mathrm{w}$-abierto y por lo tanto $Y$ es $\mathrm{w}$-cerrado. Puesto que $B_X$ es $\mathrm{w}$-cerrada, entonces $B_Y = B_X \cap Y$ también lo es. Por el teorema~\ref{Tma:EquivalenciaReflexivoBolaDebilmenteCompacta} $B_X$ es $\mathrm{w}$-compacta. Además, dado que $B_Y \subseteq B_X$ y $B_Y$ es $\mathrm{w}$-cerrada, del lema~\ref{Lema:CerradoEnCompactoEsCompacto} se sigue  que $B_Y$ es $\mathrm{w}$-compacta. Por el teorema~\ref{Tma:EquivalenciaReflexivoBolaDebilmenteCompacta} se concluye que $Y$ es reflexivo.
+\end{Dem}
+
 \begin{Tma} \label{Tma:EquivalenciaEspacioDualReflexivo}
 Sea $X$ un espacio de Banach. Entonces $X$ es reflexivo si y sólo si $X^*$ es reflexivo.
 \end{Tma}
@@ -3428,7 +3374,7 @@ Sea $X$ un espacio de Banach. Entonces $X$ es reflexivo si y sólo si $X^*$ es re
 \begin{Dem}
 Supongamos primero que $X$ es reflexivo. Por el corolario~\ref{Cor:BolaEnDualEsDebilCompactaEnEspaciosReflexivos} $B_{X^*}$ es $\mathrm{w}$-compacta. Del teorema~\ref{Tma:EquivalenciaReflexivoBolaDebilmenteCompacta} se sigue que $X^*$ es reflexivo.
 
-Ahora supongamos que $X^*$ es reflexivo. De lo anterior se sigue que $X^{**}$ es reflexivo. Como $X$ es completo, entonces $J(X)$ es completo en $X^{**}$ y por lo tanto es cerrado. De la proposición~\ref{Prop:SubespacioCerradoDeEspacioReflexivoEsReflexivo} se sigue que $J(X)$ es reflexivo. Como $X$ y $J(X)$ son isomorfos como espacios normados, del lema~\ref{Lema:IsomorfismoDeEspaciosNormadosPreservaReflexividad} se sigue que $X$ es reflexivo.
+Ahora supongamos que $X^*$ es reflexivo. De lo anterior se sigue que $X^{**}$ es reflexivo. Como $X$ es completo, entonces $J(X)$ es completo en $X^{**}$ y por lo tanto es cerrado. Del lema~\ref{Lema:SubespacioCerradoDeEspacioReflexivoEsReflexivo} se sigue que $J(X)$ es reflexivo. Como $X$ y $J(X)$ son isomorfos como espacios normados, del lema~\ref{Lema:IsomorfismoDeEspaciosNormadosPreservaReflexividad} se sigue que $X$ es reflexivo.
 \end{Dem}
 
 \begin{Ejem}
