@@ -534,7 +534,7 @@ Sea $A$ un conjunto cerrado. Entonces $X \setminus A$ es abierto. Como $f$ prese
 \end{Dem}
 
 \begin{Ejem} \label{Ejem:UnoEntreEquisContinua}
-Consideremos las funciones $f_1: (0, \infty) \to \R$ y $f_2 : (-\infty, 0) \to \R$ definidas por $f_1(x) = \frac{1}{x}$ para toda $x > 0$ y $f_2(x) = \frac{1}{x}$ para toda $x < 0$. Probemos que $f_1$ es continua. Sea $(a,b), a < b$, un básico general en $\R$. Tenemos tres casos. Si $a > 0$, entonces $f_1^{-1}((a, b)) = (\frac{1}{b}, \frac{1}{a})$. En el segundo caso tomemos $b \leq 0$. Entonces $f^{-1}((a, b)) = \emptyset$. En el último caso resulta que $a \leq 0$ y $b > 0$, por lo que $f^{-1}((a, b)) = (\frac{1}{b}, \infty)$.  De esta manera  $f_1^{-1}((a, b))$ es abierto en $(0, \infty)$ y por el lema~\ref{Lema:ContinuidadPorBasicos} se sigue que $f$ es continua.
+Consideremos las funciones $f_1: (0, \infty) \to \R$ y $f_2 : (-\infty, 0) \to \R$ definidas por $f_1(x) = \frac{1}{x}$ para toda $x > 0$ y $f_2(x) = \frac{1}{x}$ para toda $x < 0$. Probemos que $f_1$ es continua. Sea $(a,b), a < b$, un  abierto básico en $\R$. Tenemos tres casos. Si $a > 0$, entonces $f_1^{-1}((a, b)) = (\frac{1}{b}, \frac{1}{a})$. En el segundo caso tomemos $b \leq 0$. Entonces $f^{-1}((a, b)) = \emptyset$. En el último caso resulta que $a \leq 0$ y $b > 0$, por lo que $f^{-1}((a, b)) = (\frac{1}{b}, \infty)$.  De esta manera  $f_1^{-1}((a, b))$ es abierto en $(0, \infty)$ y por el lema~\ref{Lema:ContinuidadPorBasicos} se sigue que $f$ es continua.
 
 Dado que la función $g: (0, \infty) \to (-\infty, 0)$, definida por $g(x) = -x$, es un homeomorfismo entre $(0, \infty)$ y $(-\infty, 0)$, se sigue de la proposición~\ref{Prop:ComposicionDeFuncionesContinuasEsContinua} que $f_2 = g^{-1} \circ f_1 \circ g$ es continua.
 
@@ -1847,13 +1847,25 @@ $$\left( \sum_{j=1}^n a_j f_j \right)(x_i) = a_i = f(x_i).$$
 Por lo tanto $f = \sum_{j=1}^n a_j f_j$. Esto dice que existe un conjunto finito generador en $X^*$, por lo que $X^*$ es de dimensión finita y además $\dim X^* \leq \dim X$.
 \end{Dem}
 
+\begin{Prop} \label{Prop:ComplementoOrtogonalNoTrivial}
+Sea $V$ un subespacio propio de $\K^n$. Entonces existen $c_1, \ldots, c_n \in K$ no todos cero tales que $\sum_{i=1}^n c_i x_i = 0$ para todo $(x_1, \ldots, x_n) \in V$.
+\end{Prop}
+
+\begin{Dem}
+El corolario~\ref{Cor:SubespacioDimensionFinitaCerrado} indica que $V$ es cerrado en $\K^n$. Dado que $V$ es un subespacio propio de $\K^n$, se tiene que algún vector canónico $e_j$ no pertenece a $V$ para algún $1 \leq j \leq n$. Luego, del corolario~\ref{Cor:HahnBanachFuncional} de Hahn-Banach se sigue que existe un funcional lineal continuo $\varphi: K^n \to \K$ tal que $\varphi \neq 0$ y $\varphi(e_j) \neq 0$. Consideremos $c_i = \varphi(e_i)$ para toda $i \in \nn{n}$. Para $x = (x_1, \ldots, x_n) \in V$ resulta que
+$$\sum_{i=1}^n c_i x_i = \sum_{i=1}^n x_i \varphi(e_i) = \varphi \left( \sum_{i=1}^n x_i e_i \right) = \varphi(x) = 0.$$
+\end{Dem}
+
 \begin{Lema} \label{Lema:ContencionKernelsImplicaCombinacionLineal}  
 Sean $X$ un espacio vectorial, $n \in \N$ y $f, g_1, \ldots, g_n$ funcionales lineales en $X$. Si $\bigcap_{i=1}^n \Ker g_i \subseteq \Ker f$, entonces $f \in \Span \,\{ g_1, \ldots, g_n \}$.
 \end{Lema}
 
 \begin{Dem}
 Definamos $F: X \to \K^n$  por $F(x) = (g_1(x), \ldots, g_n(x))$ para toda  $x \in X$. Mostremos que $F$ es lineal. Tomemos entonces $x, y \in X$ y $\lambda \in \K$ y observemos que
-$$F(x+\lambda y) = (g_1(x+\lambda y), \ldots, g_n(x + \lambda y)) = (g_1(x) + \lambda g_1(y), \ldots, g_n(x) + \lambda g_n(y)) = (g_1(x), \ldots, g_n(x)) + \lambda (g_1(y), \ldots, g_n(y)) = F(x) + \lambda F(y).$$  
+\Ecu{
+F(x+\lambda y) &= (g_1(x+\lambda y), \ldots, g_n(x + \lambda y)) = (g_1(x) + \lambda g_1(y), \ldots, g_n(x) + \lambda g_n(y)) \\
+&= (g_1(x), \ldots, g_n(x)) + \lambda (g_1(y), \ldots, g_n(y)) = F(x) + \lambda F(y).
+}  
 
 Consideremos $h: F(X) \to \K$ definida por $h(F(x)) = f(x)$ para $F(x) \in F(X)$. Mostremos que $h$ está bien definida. Supongamos que $F(x) = F(y)$ para algunos $x, y \in X$. Luego $F(x-y) = 0$ y por tanto $$x-y \in \Ker F = \bigcap_{i=1}^n \Ker g_i \subseteq \Ker f,$$ por lo que $h(F(x)) = f(x) = f(y) = h(F(y))$.
 
@@ -1863,7 +1875,15 @@ $$f(x) = h(F(x)) = \ov{h}(g_1(x), \ldots, g_n(x)) = \ov{h}\left(\sum_{i=1}^n g_i
 Esto indica que $f = \sum_{i=1}^n \ov{h}(e_i) g_i$ y entonces $f \in \Span \{ g_1, \ldots, g_n \}$.
 \end{Dem}
 
-Otro resultado del teorema de Hahn-Banach es el lema de Helly, que más adelante nos será de utilidad.
+\begin{Prop} \label{Prop:DistanciaDeMultiploASubespacio}
+Sean $X$ un espacio normado, $Y \subseteq X$ un subespacio de $X$ y $x \in X$. Entonces para todo $\lambda \in \K$, se cumple que $ \abs{\lambda} d(x, Y) \leq d(\lambda x, Y).$ 
+\end{Prop}
+
+\begin{Dem}
+Si $\lambda = 0$, entonces $\abs{\lambda} d(x, Y) = 0 = d(\lambda x , Y)$ y se cumple lo requerido. Así  que consideremos ahora el caso $\lambda \neq 0$ y procedamos por contradicción, es decir, supongamos que $\abs{\lambda} d(x, Y) > d(\lambda x, Y)$. Al definir $\varepsilon := \abs{\lambda} d(x, Y) - d(\lambda x, Y) > 0$, resulta de una propiedad del ínfimo que existe $y \in Y$ tal que $$\Norm{\lambda x - y} < d(\lambda x, Y) + \varepsilon = \abs{\lambda} d(x, Y) \leq \abs{\lambda} \Norm{x- \frac{y}{\lambda}} = \Norm{\lambda x - y},$$ lo cual es una contradicción.  
+\end{Dem}
+
+Otra consecuencia del teorema de Hahn-Banach es el lema de Helly, que más adelante nos será de utilidad.
 
 \begin{Lema}[Helly] \label{Lema:HellyGeneral}
 Sean $X$ un espacio normado, $n \in \N$, $\varphi_1, \ldots, \varphi_n \in X^*$ y $a_1, \ldots, a_n \in \K$. Son equivalentes:
@@ -1891,11 +1911,15 @@ Consideremos ahora el caso en el que no todos los funcionales $\varphi_1, \ldots
 
 Definamos $F: X \to \K^m$ por $F(x) = (\varphi_1(x), \ldots, \varphi_m(x))$ para toda $x \in X$. En el lema~\ref{Lema:ContencionKernelsImplicaCombinacionLineal} se probo que $F$ es lineal. Demostremos que $T$ es sobreyectiva. Supongamos que no lo es. Entonces $T(X)$ es un subespacio propio de $\K^m$, por lo tanto existe $c = (c_1, \ldots, c_m) \in \K^m \setminus \{ 0 \}$ tal que $$\sum_{i=1}^m c_i y_i = 0 \mbox{ para todo } y = (y_1, \ldots, y_m) \in T(X).$$ 
 
-Esto nos indica que para todo $x \in X$ se tiene que $\sum_{i=1}^m c_i \varphi_i(x) = 0$ y por lo tanto $c_1\varphi_1 + \ldots + c_m \varphi_m = 0$, lo que contradice que $\varphi_1, \ldots, \varphi_m$ son independientes. Luego $F$ es sobreyectiva.
+Esto nos indica que para todo $x \in X$ se tiene que $\sum_{i=1}^m c_i \varphi_i(x) = 0$ y por lo tanto $\sum_{i=1}^m c_i\varphi_i = 0$, lo que contradice que $\varphi_1, \ldots, \varphi_m$ son independientes. Luego $F$ es sobreyectiva.
 
-Sea $y \in F^{-1}(a_1, \ldots, a_m)$. Probemos que $\varphi_i(y) = a_i$ para toda $i \in \nn{n}$. Si $m = n$ no hay nada que probar. Supongamos entonces que $m < n$. Claramente $\varphi_i(y) = a_i$ para $1 \leq i \leq m$. Fijemos $m+1 \leq i \leq n$. Como $\varphi_i$ está en $\Span \{ varphi_1, \ldots, \varphi_m \}$, existen $b_1, \ldots, b_m \in\K $ tales que $\varphi_i = \sum_{j=1}^m b_j \varphi_j$. Al definir $b_i = -1$ y $b_j = 0$ para $j \in \{ m+1, \ldots, n \} \setminus \{ i \}$ resulta de \textbf{ii)} que $$\abs{\varphi_i(y) - a_i} = \abs{\sum_{j=1}^m b_j \varphi_j(y) - a_i} = \abs{\sum_{j=1}^n a_j b_j} \leq \Norm{\sum_{j=1}^n  b_j \varphi_j } = \Norm{\sum_{j=1}^m  b_j \varphi_j - \varphi_i} = \Norm{0} = 0. $$ y entonces $\varphi_i(y) = a_i$.
+Sea $y \in F^{-1}(a_1, \ldots, a_m)$. Probemos que $\varphi_i(y) = a_i$ para toda $i \in \nn{n}$. Si $m = n$ no hay nada que probar. Supongamos entonces que $m < n$. Claramente $\varphi_i(y) = a_i$ para $1 \leq i \leq m$. Así que fijemos $m+1 \leq i \leq n$. Puesto que $\varphi_i \in \Span \{ \varphi_1, \ldots, \varphi_m \}$, de la proposición~\ref{Prop:ComplementoOrtogonalNoTrivial} existen $b_1, \ldots, b_m \in\K $ tales que $\varphi_i = \sum_{j=1}^m b_j \varphi_j$. Al definir $b_i = -1$ y $b_j = 0$ para $j \in \{ m+1, \ldots, n \} \setminus \{ i \}$ resulta de \textbf{ii)} que $$\abs{\varphi_i(y) - a_i} = \abs{\sum_{j=1}^m b_j \varphi_j(y) - a_i} = \abs{\sum_{j=1}^n a_j b_j} \leq \Norm{\sum_{j=1}^n  b_j \varphi_j } = \Norm{\sum_{j=1}^m  b_j \varphi_j - \varphi_i} = \Norm{0} = 0. $$ y entonces $\varphi_i(y) = a_i$.
 
-Si $y = 0$, entonces $y \in B_X$ y cumple lo requerido. Supongamos pues que $y \neq 0$ y consideremos $K = \bigcap_{i=1}^n \Ker \, \varphi_i$. Puesto que $K$ es intersección de conjuntos cerrados, es cerrado en $X$ y por lo tanto también es cerrado en $\Span \{ K \cup \{y\} \}$. Además, $d(y, K) \leq d(y, 0) = \Norm{y}$. Por lo que del corolario~\ref{Cor:HahnBanachFuncional} de Hahn-Banach existe un funcional lineal continuo $\psi: \Span \{ K \cup \{y\} \} \to \K$ tal que $\psi(y) = d(y, K) > 0$ y $\psi(K) = 0$. Como $\abs{\psi(y)} \leq \Norm{y}$, entonces $\Norm{\psi} \leq 1$. Por el teorema~\ref{Tma:HahnBanachFuncional} existe $\widehat{\psi} \in X^*$ que extiende de $\psi$ y tal que $\Vert\widehat{\psi}\Vert = \Norm{\psi} \leq 1$. Dado que $K \subseteq \Ker \widehat{\psi}$, del lema~\ref{Lema:ContencionKernelsImplicaCombinacionLineal} se sigue que $\widehat{\psi} \in \Span \{ \varphi_1, \ldots, \varphi_n \}$. Luego, existen $b_1, \ldots, b_n \in \K$ tales que $$\widehat{\psi} = \sum_{i=1}^n b_i \varphi_i.$$ 
+Consideremos el subespacio $K = \bigcap_{i=1}^n \Ker \, \varphi_i$ de $X$ y definamos en $\Span \{ K \cup \{y\} \}$ linealmente la función $\psi$ de tal manera que $\psi(y) = d(y, K)$ y $\psi(K) = 0$. Esta está bien definida, pues si $y \in K$, entonces $\psi(y) = d(y, K) = 0$. Demostremos que $\psi$ es continua. Al tomar $z + \lambda y \in \Span \{ K \cup \{y\} \}$, $z \in K$, $\lambda \in \K$ resulta de la proposición~\ref{Prop:DistanciaDeMultiploASubespacio} que 
+\Ecu{
+\abs{\psi(z+ \lambda)} &=  \abs{\psi(z) + \lambda \psi(y)} = \abs{\lambda} \abs{\psi(y)} = \abs{\lambda} d(y, K) \\
+&\leq d(\lambda y, K) \leq \Norm{\lambda y - (-z)} = \Norm{z + \lambda  y},
+} por lo que $\psi$ es continua y $\Norm{\psi} \leq 1$. Por el teorema~\ref{Tma:HahnBanachFuncional} de Hahn-Banach existe $\widehat{\psi} \in X^*$ que extiende de $\psi$ y tal que $\Vert\widehat{\psi}\Vert = \Norm{\psi} \leq 1$. Dado que $K \subseteq \Ker \widehat{\psi}$, del lema~\ref{Lema:ContencionKernelsImplicaCombinacionLineal} se sigue que $\widehat{\psi} \in \Span \{ \varphi_1, \ldots, \varphi_n \}$. Luego, existen $b_1, \ldots, b_n \in \K$ tales que $$\widehat{\psi} = \sum_{i=1}^n b_i \varphi_i.$$
 
 Al aplicar \textbf{ii)} resulta que
 $$d(y, K) = \widehat{\psi}(y) = \sum_{i=1}^n b_i \varphi_i(y) = \sum_{i=1}^n a_i b_i \leq \Norm{\sum_{i=1}^n b_i \varphi_i} = \Norm{\widehat{\psi}} \leq 1. $$
