@@ -85,7 +85,8 @@
 \hypersetup{
     colorlinks=true,
     linkcolor=black,
-    filecolor=magenta,      
+    filecolor=magenta,  
+    citecolor=black,    
     urlcolor=cyan,
     bookmarksopen=true,
 }
@@ -268,6 +269,10 @@ En los primeros cursos de análisis que se imparten en la licenciatura en matemát
 Una forma de lidiar con este problema es introducir otras topologías en estos espacios de tal forma que sigan conservando la estructura algebraica, que mantengan una relación con la topología original y que tengan menos cantidad de conjuntos abiertos. Ahí es donde entran las topologías débiles. La primera de estas, la topología débil, se define como la topología más pequeña sobre el espacio normado en la cual los funcionales lineales continuos siguen siendo continuos. Por otro lado, la topología débil* se define sobre el espacio dual como aquella topología más pequeña en la cual se satisface que todas las funciones de evaluación son continuas. Como se prometía, resulta que en el caso de la topología débil* la bola unitaria en el espacio dual ahora siempre es compacta.   
 
 A lo largo de este trabajo hacemos un recorrido de los conceptos y resultados necesarios para establecer la conclusión anterior, empezando desde espacios topológicos y culminando con el desarrollo de las topologías débil y débil*. Una vez que se cuente con conceptos topológicos de continuidad y compacidad nos adentraremos en el marco más particular de los espacios métricos, donde dichos conceptos se pueden caracterizar por medio de la convergencia de sucesiones. Luego, reduciendo una vez más nuestro campo de estudio, nos enfocamos a espacios normados, donde además de contar con una distancia y la topología que esta induce, también tenemos una estructura de espacio vectorial. Debido a que las topologías débiles en general no son metrizables, el estudio de espacios métricos y normados no nos provee resultados válidos para estas topologías. Sin embargo, estas aun conservan el vínculo entre la topología y la estructura algebraica, lo que las convierte en espacios vectoriales topológicos. Pero antes de empezar el estudio de estos espacios, desarrollamos el concepto de red, que sustituye y generaliza el papel que  las sucesiones tienen en los espacios métricos. En este punto estaremos listos para definir las topologías débiles y estudiar en ellas la convergencia y compacidad. 
+
+El tema que tratamos en el primer capítulo es la topología, concepto que se introdujo para generalizar las propiedades de los espacios euclideos a través del comportamiento que tienen los conjuntos abiertos. Así como en los primeros cursos de cálculo se definen las funciones continuas como aquellas en las cuales cambios pequeños en el dominio producen valores cercanos, en los espacios topológicos definimos las funciones continuas  de manera similar a partir de los conjuntos abiertos. (Hablar de compacidad, teorema de Heine Borel y convergencia). Algunas de las definiciones con las que trabajamos en este capítulo se basaron en \cite{diaz_curso_2005}.
+
+
 
 \vspace*{1cm}
 
@@ -666,7 +671,13 @@ Supongamos primero que $(y_n)_{n \in \N}$ converge a $y$ en $Y$. Sea $U$ una vec
 Ahora supongamos que $(y_n)_{n \in \N}$ converge a $y$ en $X$. Sea $U \cap Y$ una vecindad abierta de $y$ en $Y$ para alguna vecindad abierta $U$ de $y$ en $X$. Entonces existe $N \in\N$ tal que $y_n \in U$ si $n \geq N$. Como $y_n \in Y$ para toda $n \in\N$, se sigue que $y_n \in U\cap Y$ si $n \geq N$. Por lo tanto $(y_n)_{n \in \N}$ converge a $y$ en $X$.
 \end{Dem}
 
+\begin{Prop} \label{Prop:SucesionConvergenteCompacta}
+Sean $X$ un espacio topológico y $(x_n)_{n \in\N} \subseteq$ una sucesión que converge a $x \in X$. Entonces $\{x_n : n \in\N \} \cup \{ x \}$ es compacto.
+\end{Prop}
 
+\begin{Dem}
+Sea $\{ U_\alpha \}_{\alpha\in \Lambda}$ una cubierta abierta de $\{x_n : n \in\N \} \cup \{ x \}$. Existe entonces $\alpha_0 \in \Lambda$ tal que $x \in U_{\alpha_0}$. Como $x_n \to x$, existe $N \in \N$ tal que $x_n \in U_{\alpha_0}$ si $n \geq N$. Tomemos $\alpha_i \in \Lambda$ tal que $x_i \in U_{\alpha_i}$ para toda $1 \leq i < N$. De esta manera $\{ U_{\alpha_i} \}_{i=0}^{N-1}$ es una subcubierta finita.
+\end{Dem}
 
 \section{Topología producto}
 
@@ -1450,7 +1461,7 @@ Empecemos tomando $x \in X$. Si $x = 0$, entonces $$\Norm{Tx} = \Norm{0} = 0 \le
 Si por otro lado $x \neq 0$, entonces $y = \frac{x}{\Norm{x}} \in B_X$. Por lo que $\Norm{T} \geq \Norm{Ty}$. Esto es
 $$\Norm{T} \geq \Norm{T\left(\frac{x}{\Norm{x}}\right)} = \frac{\Norm{Tx}}{\Norm{x}}$$ y así $\Norm{Tx} \leq \Norm{T} \Norm{x}$. \\
 
-El principio de acotamiento uniforme es un resultado fundamental del análisis funcional. Este indica que una condición suficiente para que una familia de operadores lineales continuos sea acotada, es que sea puntualmente acotada, como se enuncia a continuación.
+El principio de acotamiento uniforme es un resultado fundamental del análisis funcional. Este principio indica que una condición suficiente para que una familia de operadores lineales continuos sea acotada, es que sea puntualmente acotada, como se enuncia en el siguiente teorema y se demuestra en \cite{galaz_fontes_elementos_2006}.
 
 \begin{Tma}[Principio de acotamiento uniforme]
 Sean $X$ un espacio de Banach, $Y$ un espacio normado y $\{ T_\alpha \}_{\alpha \in \Lambda} \subseteq \mathcal{L}(X, Y)$ una colección de operadores lineales continuos de $X$ a $Y$. Si $\{ T_\alpha(x) : \alpha \in \Lambda \}$ es un conjunto acotado en $Y$, entonces $\{ T_\alpha \}_{\alpha \in \Lambda}$ es acotado en $\calL(X, Y)$.
@@ -1483,7 +1494,7 @@ $$\pi(x+\lambda y) = [x+\lambda y] = [x] + \lambda [y] = \pi(x) + \lambda \pi(y)
 Además, dado $x \in X$ se tiene que $\Norm{\pi(x)} = \Norm{[x]} = d(x, Y) \leq d(x, 0) = \Norm{x}$. Por lo que $\pi$ es continua y $\Norm{\pi} \leq 1$.
 \end{Ejem}
 
-\section{Ejemplos: $\ell_p^n$ y $\ell_p$, $1 \leq p \leq \infty$}
+\section{Ejemplos: $\ell_p^n$ y $\ell_p$, $1 \leq p \leq \infty$, $c$  y $c_0$}
 
 En $\K^n $ la norma euclidiana resulta ser el caso $p=2$ de una familia de normas en $\K^n$ llamadas $p$-normas. En esta subsección introduciremos estas funciones y verificaremos que en efecto son normas en $\K^n$. Además, agregaremos ejemplos de espacios normados de dimensión infinita.      
 
@@ -1708,12 +1719,12 @@ Los espacios normados $c$ y $c_0$ son completos.
 \end{Prop}
 
 \begin{Dem}
-Dado que $\ell_\infty$ es completo, por el lema~\ref{Lema:EspacioMetricoCompletoEntoncesCerrado} basta demostrar que $c$ y $c_0$ son cerrados en $\ell_\infty$.
+Puesto que $\ell_\infty$ es completo, por el lema~\ref{Lema:EspacioMetricoCompletoEntoncesCerrado} se tiene que es suficiente demostrar que $c$ y $c_0$ son cerrados en $\ell_\infty$.
 
 Veamos primero que $c_0$ es cerrado. Sea $(f_n)_{n \in \N} \subseteq c_0$ una sucesión que converge a $f \in \ell_\infty$. Para que $c_0$ sea cerrado hay que demostrar que $f \in c_0$. Tomemos entonces $\varepsilon > 0$. Como $f_n \to f$ en $\ell_\infty$, existe $N \in \N$ tal que $\Norm{f - f_n}_{\infty} < \med{\varepsilon}$ si $n \geq N$. Luego, $\abs{f(k) - f_N(k)} < \med{\varepsilon}$ para toda $k \in \N$. Dado que $f_N \in c_0$, existe $M \in \N$ tal que $\abs{f_N(k)} < \med{\varepsilon}$ si $k \geq M$. De esto se siga que si $k \geq M$ entonces
 $$\abs{f(k)} \leq \abs{f(k) - f_N(k)} + \abs{f_N(k)} < \med{\varepsilon} + \med{\varepsilon} = \varepsilon.$$  
 
-Ahora demostremos que $c$ es cerrado. Sea $(f_n)_{n \in \N} \subseteq c$ una sucesión que converge a $f \in \ell_\infty$. Esta vez hay que demostrar que $f \in c$. Tomemos entonces $\varepsilon > 0$.
+Ahora demostremos que $c$ es cerrado. Consideremos el espacio cociente $\ell_\infty / c_0$ y $\pi : \ell_\infty \to \ell_\infty / c_0$ la función proyección. Observemos que la sucesión $y = (1)_{n \in \N}$ converge a $1$ por lo tanto está en $c$. Dado que $\pi(\Span (c_0 \cup \{ y \}) ) = \Span \{ [y] \}$ es de dimensión uno, resulta que es cerrado en $\ell_\infty / c_0$ y como $\pi$ es continua, se concluye que $c = \Span (c_0 \cup \{y \}) = \pi^{-1}(\Span \{ [y] \})$ es cerrado en $\ell_\infty$.
 \end{Dem}
 
 
@@ -1841,7 +1852,7 @@ La evaluación de un funcional $x^* \in X^*$ en un vector $x \in X$ se denota por
 
 Esto induce un mapeo $\ang{\cdot, \cdot}: X \times X^* \to \K$, llamado \textit{apareamiento dual}. 
 
-Los teoremas de Hahn-Banach muestran que, cuando $X$ es un espacio normado, en $X^*$ existen suficientes funcionales que permiten enriquecer la teoría de dualidad.
+Los teoremas de Hahn-Banach muestran que, cuando $X$ es un espacio normado, en $X^*$ existen suficientes funcionales que permiten enriquecer la teoría de dualidad. Las demostraciones de tales teoremas se pueden encontrar en \cite{galaz_fontes_elementos_2006}.
 
 \begin{Tma}[Hahn-Banach] \label{Tma:HahnBanachFuncional}
 Sea $X$ un espacio normado y $V \subseteq X$ un subespacio vectorial. Si $f \in V^*$ entonces existe $F \in X^*$ tal que $F = f$ en $V$ y $\Norm{f} = \Norm{F}$.
@@ -2047,7 +2058,7 @@ Dado que $T$ es un isomorfismo se tiene que $T$ es biyectiva. Por el lema~\ref{L
 
 
 
-\section{Ejemplos: $(\ell_p^n)^*$ y $\ell_p^*$ , $1 \leq p \leq \infty$}
+\section{Ejemplos: $(\ell_p^n)^*$ y $\ell_p^*$ , $1 \leq p \leq \infty$ y $c_0^*$}
 
 \begin{Def}
 Si $1 \leq p \leq \infty$, al único elemento $1 \leq q \leq \infty$ tal que $\frac{1}{p} + \frac{1}{q} = 1$, donde $\frac{1}{\infty} = 0$, se le llama \textit{exponente conjugado} de $p$. 
@@ -2135,7 +2146,7 @@ $$R(y+ \lambda z)(x) = \sum_{i=1}^\infty x_i(y_i + \lambda z_i) = \sum_{i=1}^\in
 
 Así que $R(y+ \lambda z) = Ry + \lambda Rz$ y $R$ es lineal. De (\ref{Eq:HolderRiesz}) se sigue que 
 \begin{equation} \label{Eq:RepresentacionDeElleQEsContinua1}
-{Ry} \leq \Norm{y}_q, \mbox{ para toda } y \in \ell_q.
+\Norm{Ry} \leq \Norm{y}_q, \mbox{ para toda } y \in \ell_q.
 \end{equation}
 
 Demostremos que $R$ es sobreyectiva para $1 \leq p < \infty$. Tomemos entonces $\varphi \in \ell_p^*$. Nuestro candidato $y$ en $\ell_q$ tal que $Ry = \varphi$ es $y = (y_n)_{n \in\N}$ definido por $y_n = \varphi(e_n)$ para toda $n \in \N$. Veamos que $y$ pertenece a $\ell_q$. Supongamos que $p \neq 1$ de manera que $q \neq \infty$ y fijemos $N \in \N$. Sean $1 \leq n_1  < \ldots <   n_k \leq N$ los índices de $y_n$ que son distintos de cero. Entonces
@@ -2179,6 +2190,38 @@ Supongamos que $R$ es sobreyectiva. Consideremos $c$ como en el ejemplo~\ref{Eje
 $$y_n = Ry(e_n) = \varphi(e_n) = f(e_n) = 0.$$
 
 Esto es, $y = 0$ y por lo tanto $f = 0$. Esto es falso pues $(1)_{n \in\N} \in c$ y  $f((1)_{n \in\N}) = 1$. Concluimos que $R$ no es sobreyectiva.
+\end{Dem}
+
+\begin{Prop}
+Los espacios $c_0^*$ y $\ell_1$ son isométricamente isomorfos.
+\end{Prop}
+
+\begin{Dem}
+Sea $R: \ell_1 \to \ell_\infty^*$ como en la demostración del teorema anterior. Ahora, definamos $\widehat{R}: \ell_1 \to c_0^*$ por $\widehat{R}y = \restr{Ry}{c_0}$ para toda $y \in \ell_1$. Además, como $Ry$ es lineal y continua, resulta que $\restr{Ry}{c_0}$ también lo es y así $\widehat{R}$ está bien definida. 
+
+Dado que $R$ es lineal, se sigue que $\widehat{R}$ también lo es. Además, para $x \in c_0$ y $y \in \ell_1$ se tiene que
+$$\abs{\widehat{R}y(x)} = \abs{\restr{Ry}{c_0}(x)} = \abs{Ry(x)} \leq \Norm{Ry} \Norm{x}_\infty,$$ lo que indica que $\Vert\widehat{Ry}\Vert \leq \Norm{Ry} \leq \Norm{R} \Norm{y}_1 \leq \Norm{y}_1$.
+
+Mostremos que $\widehat{R}$ es sobreyectiva de manera similar a la que demostramos que $R$ era sobreyectiva en el teorema anterior. Tomemos entonces $\varphi \in c_0^*$ y sea $y = (y_n)_{n \in\N}$ definido por $y_n = \varphi(e_n)$ para toda $n \in \N$. Veamos que $y$ pertenece a $\ell_1$. Fijemos entonces $N \in \N$ y sean $1 \leq n_1  < \ldots <   n_k \leq N$ los índices de $y_n$ que son distintos de cero. Entonces
+\Ecu{
+ \sum_{n=1}^N \abs{y_n} &= \sum_{i=1}^k \abs{y_{n_i}} = \sum_{i=1}^k \frac{\abs{y_{n_i}}}{y_{n_i}} \varphi(e_{n_i}) = \varphi \left(\sum_{i=1}^k \frac{\abs{y_{n_i}}}{y_{n_i}} e_{n_i} \right) \\
+& \leq \Norm{\varphi} \Norm{\sum_{i=1}^k \frac{\abs{y_{n_i}}}{y_{n_i}} e_{n_i} }_\infty = \Norm{\varphi} \left( \max_{1 \leq i \leq k} \abs{\tfrac{\abs{y_{n_i}}}{y_{n_i}}} \right)  = \Norm{\varphi}.
+}
+
+Haciendo $N \to \infty$ obtenemos que $\Norm{y}_1 \leq \Norm{\varphi}$. Falta ver que $Ry = \varphi$. Tomemos entonces $x = (x_n)_{n \in \N} \in c_0$. Mostremos que $$x = \lim_{N \to \infty} \sum_{n = 1}^N x_n e_n.$$ 
+
+Observemos que para todo $N \in \N$ se cumple que
+$$\Norm{x - \sum_{n=1}^N x_n e_n}_\infty = \sup_{ N < i < \infty} \abs{x_n}.$$
+
+Pero como $x \in c_0$, se sigue que $x_n \to 0$ y entonces $\Norm{x - \sum_{n=1}^N x_n e_n}_\infty \to 0.$
+
+Ahora, notemos que como $\varphi$ es continua
+\Ecu{
+\varphi(x) &= \varphi\left( \lim_{N \to \infty} \sum_{n=1}^N x_n e_n \right) = \lim_{N \to \infty} \varphi\left(\sum_{n=1}^N x_n e_n \right) \\ 
+&=  \lim_{N \to \infty} \sum_{n=1}^N x_n \varphi(e_n)  = \sum_{n=1}^\infty x_n y_n = \widehat{R}y(x).
+}
+
+Luego $\widehat{R}y = \varphi$ y $\widehat{R}$ es sobreyectiva. Además, dado $y \in \ell_1$, se tiene que $\Norm{y}_1 \leq \Norm{\varphi} = \Norm{\widehat{R}y}$ y se concluye que $\Norm{\widehat{R}y} = \Norm{y}_1$ y  así $\widehat{R}$ es una isometría.  
 \end{Dem}
 
 
@@ -2270,11 +2313,20 @@ Supongamos primero que $(y_\alpha)_{\alpha \in \Lambda}$ converge a $y$ en $Y$. 
 Ahora supongamos que $(y_\alpha)_{\alpha \in \Lambda}$ converge a $y$ en $X$. Sea $U \cap Y$ una vecindad abierta de $y$ en $Y$ para alguna vecindad abierta $U$ de $y$ en $X$. Entonces existe $\alpha_0 \in\Lambda$ tal que $y_\alpha \in U$ si $\alpha \geq \alpha_0$. Como $y_\alpha \in Y$ para toda $\alpha \in\Lambda$, se sigue que $y_\alpha \in U\cap Y$ si $\alpha \geq \alpha_0$. Por lo tanto $(y_\alpha)_{\alpha \in \Lambda}$ converge a $y$ en $X$.
 \end{Dem}
 
-Las redes no conservan todas las propiedades de las sucesiones. Por ejemplo, si $X$ es un espacio topológico y $(x_n)_{n \in \N}$ es una sucesión convergente, entonces $\{x_n : n \in \N \}$ es un conjunto compacto. (¿lo demuestro?). Sin embargo, el siguiente ejemplo muestra que esto mismo no sucede con las redes. 
+Las redes no conservan todas las propiedades de las sucesiones. Por ejemplo, si $X$ es un espacio topológico y $(x_n)_{n \in \N}$ es una sucesión convergente, entonces $\{x_n : n \in \N \} \cup \{ x \}$ es un conjunto compacto. Sin embargo, el siguiente ejemplo muestra que esto mismo no sucede con las redes. 
 
 \begin{Ejem}
-(Pendiente).
+Observemos que $\Z$ es un conjunto dirigido y definamos la red $(x_n)_{n \in \Z} \subseteq \R$ por 
+$$x_n = \begin{cases}
+\frac{1}{n}, \mbox{ si } n > 0, \\
+n, \mbox{ si } n \leq 0.
+\end{cases}$$
+
+Claramente $x_n \to 0$  y sin embargo $\{ x_n : n \in \Z \}$ no es acotado y por lo tanto tampoco es compacto.
 \end{Ejem}
+
+
+
 
 \section{Continuidad por redes}
 
@@ -3322,6 +3374,8 @@ El comportamiento de la identificación canónica $J$ permite distinguir una clase
 \begin{Def}
 Si $X$ es un espacio normado tal que $J(X) = X^{**}$ se dice que $X$ es \textit{reflexivo}. 
 \end{Def}
+
+Observemos que todo espacio reflexivo es isométricamente isomorfo a su doble dual. Podríamos pensar entonces que esta es una caracterización de los espacios reflexivos, pero no es así. En \cite{james_non-reflexive_1951} se puede encontrar un ejemplo de un espacio no reflexivo que es isométricamente isomorfo a su doble dual. 
 
 \begin{Prop}
 Todo espacio normado de dimensión finita es reflexivo.
