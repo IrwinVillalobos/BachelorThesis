@@ -1891,14 +1891,6 @@ $$f(x) = h(F(x)) = \ov{h}(g_1(x), \ldots, g_n(x)) = \ov{h}\left(\sum_{i=1}^n g_i
 Esto indica que $f = \sum_{i=1}^n \ov{h}(e_i) g_i$ y entonces $f \in \Span \{ g_1, \ldots, g_n \}$.
 \end{Dem}
 
-\begin{Prop} \label{Prop:DistanciaDeMultiploASubespacio}
-Sean $X$ un espacio normado, $Y \subseteq X$ un subespacio de $X$ y $x \in X$. Entonces para todo $\lambda \in \K$, se cumple que $ \abs{\lambda} d(x, Y) \leq d(\lambda x, Y).$ 
-\end{Prop}
-
-\begin{Dem}
-Si $\lambda = 0$, entonces $\abs{\lambda} d(x, Y) = 0 = d(\lambda x , Y)$ y se cumple lo requerido. Así  que consideremos ahora el caso $\lambda \neq 0$ y procedamos por contradicción, es decir, supongamos que $\abs{\lambda} d(x, Y) > d(\lambda x, Y)$. Al definir $\varepsilon := \abs{\lambda} d(x, Y) - d(\lambda x, Y) > 0$, resulta de una propiedad del ínfimo que existe $y \in Y$ tal que $$\Norm{\lambda x - y} < d(\lambda x, Y) + \varepsilon = \abs{\lambda} d(x, Y) \leq \abs{\lambda} \Norm{x- \frac{y}{\lambda}} = \Norm{\lambda x - y},$$ lo cual es una contradicción.  
-\end{Dem}
-
 Otra consecuencia del teorema de Hahn-Banach es el lema de Helly, que más adelante nos será de utilidad.
 
 \begin{Lema}[Helly] \label{Lema:HellyGeneral}
@@ -1931,10 +1923,10 @@ Esto nos indica que para todo $x \in X$ se tiene que $\sum_{i=1}^m c_i \varphi_i
 
 Sea $y \in F^{-1}(a_1, \ldots, a_m)$. Probemos que $\varphi_i(y) = a_i$ para toda $i \in \nn{n}$. Si $m = n$ no hay nada que probar. Supongamos entonces que $m < n$. Claramente $\varphi_i(y) = a_i$ para $1 \leq i \leq m$. Así que fijemos $m+1 \leq i \leq n$. Puesto que $\varphi_i \in \Span \{ \varphi_1, \ldots, \varphi_m \}$, de la proposición~\ref{Prop:ComplementoOrtogonalNoTrivial} existen $b_1, \ldots, b_m \in\K $ tales que $\varphi_i = \sum_{j=1}^m b_j \varphi_j$. Al definir $b_i = -1$ y $b_j = 0$ para $j \in \{ m+1, \ldots, n \} \setminus \{ i \}$ resulta de \textbf{ii)} que $$\abs{\varphi_i(y) - a_i} = \abs{\sum_{j=1}^m b_j \varphi_j(y) - a_i} = \abs{\sum_{j=1}^n a_j b_j} \leq \Norm{\sum_{j=1}^n  b_j \varphi_j } = \Norm{\sum_{j=1}^m  b_j \varphi_j - \varphi_i} = \Norm{0} = 0. $$ y entonces $\varphi_i(y) = a_i$.
 
-Consideremos el subespacio $K = \bigcap_{i=1}^n \Ker \, \varphi_i$ de $X$ y definamos en $\Span \{ K \cup \{y\} \}$ linealmente la función $\psi$ de tal manera que $\psi(y) = d(y, K)$ y $\psi(K) = 0$. Esta está bien definida, pues si $y \in K$, entonces $\psi(y) = d(y, K) = 0$. Demostremos que $\psi$ es continua. Al tomar $z + \lambda y \in \Span \{ K \cup \{y\} \}$, $z \in K$, $\lambda \in \K$ resulta de la proposición~\ref{Prop:DistanciaDeMultiploASubespacio} que 
+Consideremos el subespacio $K = \bigcap_{i=1}^n \Ker \, \varphi_i$ de $X$ y definamos en $\Span \{ K \cup \{y\} \}$ linealmente la función $\psi$ de tal manera que $\psi(y) = d(y, K)$ y $\psi(K) = 0$. Esta está bien definida, pues si $y \in K$, entonces $\psi(y) = d(y, K) = 0$. Como cada $\varphi_i$ es continua y $\{ 0 \}$ es cerrado en $\K$, se tiene que $K = \bigcap_{i=1}^n \varphi_i^{-1}(\{0\})$ es cerrado en $X$. Demostremos que $\psi$ es continua. Al tomar $z + \lambda y \in \Span \{ K \cup \{y\} \}$, $z \in K$, $\lambda \in \K$ resulta de la proposición~\ref{Prop:DistanciaDeMultiploASubespacio} que 
 \Ecu{
-\abs{\psi(z+ \lambda)} &=  \abs{\psi(z) + \lambda \psi(y)} = \abs{\lambda} \abs{\psi(y)} = \abs{\lambda} d(y, K) \\
-&\leq d(\lambda y, K) \leq \Norm{\lambda y - (-z)} = \Norm{z + \lambda  y},
+\abs{\psi(z+ \lambda)} &=  \abs{\psi(z) + \lambda \psi(y)} = \abs{\lambda} \abs{\psi(y)} = \abs{\lambda} d(y, K) = \abs{\lambda} \Norm{[y]}_{X/K} \\
+& = \Norm{[\lambda y]}_{X/K} = d(\lambda y, K) \leq \Norm{\lambda y - (-z)} = \Norm{z + \lambda  y},
 } por lo que $\psi$ es continua y $\Norm{\psi} \leq 1$. Por el teorema~\ref{Tma:HahnBanachFuncional} de Hahn-Banach existe $\widehat{\psi} \in X^*$ que extiende de $\psi$ y tal que $\Vert\widehat{\psi}\Vert = \Norm{\psi} \leq 1$. Dado que $K \subseteq \Ker \widehat{\psi}$, del lema~\ref{Lema:ContencionKernelsImplicaCombinacionLineal} se sigue que $\widehat{\psi} \in \Span \{ \varphi_1, \ldots, \varphi_n \}$. Luego, existen $b_1, \ldots, b_n \in \K$ tales que $$\widehat{\psi} = \sum_{i=1}^n b_i \varphi_i.$$
 
 Al aplicar \textbf{ii)} resulta que
