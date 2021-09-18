@@ -1299,25 +1299,25 @@ Un caso fundamental de espacios métricos son los espacios normados, en los que a
 
 A lo largo de este trabajo denotaremos por $\K$ al campo de los números reales o de los números complejos. Todos los espacios vectoriales que consideraremos serán sobre $\K$.
 
-Sea $X$ un espacio vectorial  y $x_1, \ldots, x_n \in X$, $n \in \N$. El espacio generado por un conjunto $A \subseteq X$ se denotará por $\mbox{span}\, A$ y está definido como  $$\mbox{span} \, A  : = \left\{ \sum_{i=1}^n a_i x_i : n\in \N,  a_1, \ldots, a_n  \in \K, x_1, \ldots, x_n \in A \right\}.$$
+Sea $V$ un espacio vectorial  y $x_1, \ldots, x_n \in V$, $n \in \N$. El espacio generado por un conjunto $A \subseteq V$ se denotará por $\mbox{span}\, A$ y está definido como  $$\mbox{span} \, A  : = \left\{ \sum_{i=1}^n a_i x_i : n\in \N,  a_1, \ldots, a_n  \in \K, x_1, \ldots, x_n \in A \right\}.$$
 
 \begin{Def}
-Sea $X$ un espacio vectorial. Un subconjunto $A$ de $X$ es \textit{convexo} si para todos $x, y \in A$ y $\lambda \in [0,1]$ se cumple que $\lambda x + (1-\lambda) y \in A$. 
+Sea $V$ un espacio vectorial. Un subconjunto $A$ de $V$ es \textit{convexo} si para todos $x, y \in A$ y $\lambda \in [0,1]$ se cumple que $\lambda x + (1-\lambda) y \in A$. 
 \end{Def} 
 
 \begin{Ejem}
-Sea $X$ un espacio vectorial y $x \in X$. Claramente $X$ y $\{x\}$ son convexos.
+Sea $V$ un espacio vectorial y $x \in V$. Claramente $V$ y $\{x\}$ son convexos.
 \end{Ejem}
 
 \begin{Prop} \label{Prop:FuncionLinealPreservaConvexos}
-Sean $X, Y$ espacios vectoriales y $T: X \to Y$ un operador lineal. Si $A \subseteq X$ es convexo, entonces $T(A)$ es convexo.
+Sean $V, W$ espacios vectoriales y $T: V \to W$ un operador lineal. Si $A \subseteq V$ es convexo, entonces $T(A)$ es convexo.
 \end{Prop}
 
 \begin{Dem}
 Sean $x, y \in A$, de tal manera que $Tx, Ty \in T(A)$, y $\lambda \in [0,1]$. Como $A$ es convexo, se tiene que $\lambda x + (1- \lambda) y \in A$, de donde $\lambda Tx + (1-\lambda) Ty = T(\lambda x + (1-\lambda)y) \in T(A)$.
 \end{Dem}
 
-\begin{Def} Sean $X$ un espacio vectorial y $A \subseteq X$ convexo. Una función $f : A \to \R$ es \textit{convexa} si para todos $x, y \in A$ y $\lambda \in [0, 1]$ se tiene que $$f(\lambda x + (1-\lambda y))\leq \lambda f(x) + (1-\lambda) f(y).$$
+\begin{Def} Sean $V$ un espacio vectorial y $A \subseteq X$ convexo. Una función $f : A \to \R$ es \textit{convexa} si para todos $x, y \in A$ y $\lambda \in [0, 1]$ se tiene que $$f(\lambda x + (1-\lambda y))\leq \lambda f(x) + (1-\lambda) f(y).$$
 \end{Def}
 
 \begin{Lema} \label{Lema:DerivadaCrecienteConvexa}
@@ -1469,8 +1469,8 @@ Sean $X$ un espacio de Banach, $Y$ un espacio normado y $\{ T_\alpha \}_{\alpha 
 
 \begin{Def} \hfill
 \begin{itemize}
-\item \textbf{i)} Sean $X$ y $Y$ espacios vectoriales. Se dice que $X$ y $Y$
-son \textit{isomorfos} como espacios vectoriales si existe $T :  X \to Y$ biyectiva y lineal. En este caso a $T$ se la llama \textit{isomorfismo} de espacios vectoriales.
+\item \textbf{i)} Sean $V$ y $W$ espacios vectoriales. Se dice que $V$ y $W$
+son \textit{isomorfos} como espacios vectoriales si existe $T :  V \to W$ biyectiva y lineal. En este caso a $T$ se la llama \textit{isomorfismo} de espacios vectoriales.
 \item \textbf{ii)} Sean $X$ y $Y$ espacios normado. Decimos que $X$ y $Y$ son \textit{isomorfos} como espacios normados, o que son \textit{isomorficamente homeomorfos}, si existe un isomorfismo de espacios vectoriales $T: X \to Y$ que también es un homeomorfismo. En este caso a $T$ se le llama \textit{isomorfismo} de espacios normados. 
  \end{itemize}
 \end{Def}
@@ -1855,7 +1855,7 @@ Esto induce un mapeo $\ang{\cdot, \cdot}: X \times X^* \to \K$, llamado \textit{
 Los teoremas de Hahn-Banach muestran que, cuando $X$ es un espacio normado, en $X^*$ existen suficientes funcionales que permiten enriquecer la teoría de dualidad. Las demostraciones de tales teoremas se pueden encontrar en \cite{galaz_fontes_elementos_2006}.
 
 \begin{Tma}[Hahn-Banach] \label{Tma:HahnBanachFuncional}
-Sea $X$ un espacio normado y $V \subseteq X$ un subespacio vectorial. Si $f \in V^*$ entonces existe $F \in X^*$ tal que $F = f$ en $V$ y $\Norm{f} = \Norm{F}$.
+Sea $X$ un espacio normado y $Y \subseteq X$ un subespacio vectorial. Si $f \in Y^*$ entonces existe $F \in X^*$ tal que $F = f$ en $V$ y $\Norm{f} = \Norm{F}$.
 \end{Tma}
 
 \begin{Cor}[Hahn-Banach] \label{Cor:HahnBanachFuncional}
@@ -1884,19 +1884,19 @@ $$\sum_{i=1}^n c_i x_i = \sum_{i=1}^n x_i \varphi(e_i) = \varphi \left( \sum_{i=
 \end{Dem}
 
 \begin{Lema} \label{Lema:ContencionKernelsImplicaCombinacionLineal}  
-Sean $X$ un espacio vectorial, $n \in \N$ y $f, g_1, \ldots, g_n$ funcionales lineales en $X$. Si $\bigcap_{i=1}^n \Ker g_i \subseteq \Ker f$, entonces $f \in \Span \,\{ g_1, \ldots, g_n \}$.
+Sean $V$ un espacio vectorial, $n \in \N$ y $f, g_1, \ldots, g_n$ funcionales lineales en $V$. Si $\bigcap_{i=1}^n \Ker g_i \subseteq \Ker f$, entonces $f \in \Span \,\{ g_1, \ldots, g_n \}$.
 \end{Lema}
 
 \begin{Dem}
-Definamos $F: X \to \K^n$  por $F(x) = (g_1(x), \ldots, g_n(x))$ para toda  $x \in X$. Mostremos que $F$ es lineal. Tomemos entonces $x, y \in X$ y $\lambda \in \K$ y observemos que
+Definamos $F: V \to \K^n$  por $F(x) = (g_1(x), \ldots, g_n(x))$ para toda  $x \in V$. Mostremos que $F$ es lineal. Tomemos entonces $x, y \in V$ y $\lambda \in \K$ y observemos que
 \Ecu{
 F(x+\lambda y) &= (g_1(x+\lambda y), \ldots, g_n(x + \lambda y)) = (g_1(x) + \lambda g_1(y), \ldots, g_n(x) + \lambda g_n(y)) \\
 &= (g_1(x), \ldots, g_n(x)) + \lambda (g_1(y), \ldots, g_n(y)) = F(x) + \lambda F(y).
 }  
 
-Consideremos $h: F(X) \to \K$ definida por $h(F(x)) = f(x)$ para $F(x) \in F(X)$. Mostremos que $h$ está bien definida. Supongamos que $F(x) = F(y)$ para algunos $x, y \in X$. Luego $F(x-y) = 0$ y por tanto $$x-y \in \Ker F = \bigcap_{i=1}^n \Ker g_i \subseteq \Ker f,$$ por lo que $h(F(x)) = f(x) = f(y) = h(F(y))$.
+Consideremos $h: F(V) \to \K$ definida por $h(F(x)) = f(x)$ para $F(x) \in F(V)$. Mostremos que $h$ está bien definida. Supongamos que $F(x) = F(y)$ para algunos $x, y \in V$. Luego $F(x-y) = 0$ y por tanto $$x-y \in \Ker F = \bigcap_{i=1}^n \Ker g_i \subseteq \Ker f,$$ por lo que $h(F(x)) = f(x) = f(y) = h(F(y))$.
 
-Sea $\ov{h}: \K^n \to \K$ una extensión lineal de $h$ a $\K^n$. Entonces dado $x \in X$, tenemos que
+Sea $\ov{h}: \K^n \to \K$ una extensión lineal de $h$ a $\K^n$. Entonces dado $x \in V$, tenemos que
 $$f(x) = h(F(x)) = \ov{h}(g_1(x), \ldots, g_n(x)) = \ov{h}\left(\sum_{i=1}^n g_i(x) e_i\right) = \sum_{i=1}^n \ov{h}(e_i) g_i(x).$$
 
 Esto indica que $f = \sum_{i=1}^n \ov{h}(e_i) g_i$ y entonces $f \in \Span \{ g_1, \ldots, g_n \}$.
@@ -2427,14 +2427,14 @@ Concluimos de esto que $(x_{\alpha, i})_{i\in I} \to (x_i)_{i\in I}$.
 \end{Dem}
 
 \begin{Obs}
-Sea $X$ un espacio vectorial, entonces $F(\Lambda, X)$ es un espacio vectorial con la suma y producto por escalares definidas puntualmente. De esto podemos considerar la suma de $\Lambda$-redes $(x_\alpha)_{\alpha \in \Lambda}$ y $(y_\alpha)_{\alpha \in \Lambda}$ en $X$ como  
+Sea $V$ un espacio vectorial, entonces $F(\Lambda, V)$ es un espacio vectorial con la suma y producto por escalares definidas puntualmente. De esto podemos considerar la suma de $\Lambda$-redes $(x_\alpha)_{\alpha \in \Lambda}$ y $(y_\alpha)_{\alpha \in \Lambda}$ en $V$ como  
 $$(x_\alpha)_{\alpha \in \Lambda} + (y_\alpha)_{\alpha \in \Lambda} = (x_\alpha + y_\alpha)_{\alpha \in \Lambda}.$$
 
 Además el producto por el escalar $\lambda \in \K$ de la $\Lambda$-red $(x_\alpha)_{\alpha \in \Lambda}$ es
 $$\lambda (x_\alpha)_{\alpha \in \Lambda}  = ( \lambda x_\alpha )_{\alpha \in \Lambda}.$$
 \end{Obs}
 
-Con esta suma y producto resulta que el espacio de $\Lambda$-redes en el espacio vectorial $X$ vuelve a ser un espacio vectorial. \\
+Con esta suma y producto resulta que el espacio de $\Lambda$-redes en el espacio vectorial $V$ vuelve a ser un espacio vectorial. \\
 
 \begin{Lema}
 \textbf{(del sándwich)} Sean $X$ un espacio topológico y $f, g $ y $h$ funciones reales definidas en $X$ tales que $g(x) \leq f(x) \leq h(x)$ para todo $x \in X$. Si para una red $(x_\alpha)_{\alpha \in \Lambda}$ en $X$ se satisface que $$\displaystyle\lim_{\alpha \in \Lambda} g(x_\alpha) = \lim_{\alpha \in \Lambda} h(x_\alpha) = L,$$ entonces $\displaystyle  \lim_{\alpha \in \Lambda} f(x_\alpha) = L$.
@@ -2659,16 +2659,16 @@ Sea $U$ una vecindad abierta del 0. Como $E$ es un espacio vectorial topológico,
 \end{Dem}
 
 \begin{Def}
-Sea $X$ un espacio vectorial. 
+Sea $V$ un espacio vectorial. 
 \begin{itemize}
-\item \textbf{i)} Dado $x \in X$, la \textit{traslación} por $x$ es la transformación
+\item \textbf{i)} Dado $x \in V$, la \textit{traslación} por $x$ es la transformación
 \Ecu{
-T_x :  X & \to X \\
+T_x :  V & \to V \\
 y & \mapsto x+y.
 }
 \item \textbf{ii)} Dado $\lambda \in \K$, la \textit{dilatación} por $\lambda$ es la transformación
 \Ecu{
-D_\lambda :  X & \to X \\
+D_\lambda :  V & \to V \\
 y & \mapsto \lambda y.
 }
 \end{itemize} 
