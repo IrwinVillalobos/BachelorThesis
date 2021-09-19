@@ -1724,7 +1724,33 @@ Puesto que $\ell_\infty$ es completo, por el lema~\ref{Lema:EspacioMetricoComple
 Veamos primero que $c_0$ es cerrado. Sea $(f_n)_{n \in \N} \subseteq c_0$ una sucesión que converge a $f \in \ell_\infty$. Para que $c_0$ sea cerrado hay que demostrar que $f \in c_0$. Tomemos entonces $\varepsilon > 0$. Como $f_n \to f$ en $\ell_\infty$, existe $N \in \N$ tal que $\Norm{f - f_n}_{\infty} < \med{\varepsilon}$ si $n \geq N$. Luego, $\abs{f(k) - f_N(k)} < \med{\varepsilon}$ para toda $k \in \N$. Dado que $f_N \in c_0$, existe $M \in \N$ tal que $\abs{f_N(k)} < \med{\varepsilon}$ si $k \geq M$. De esto se siga que si $k \geq M$ entonces
 $$\abs{f(k)} \leq \abs{f(k) - f_N(k)} + \abs{f_N(k)} < \med{\varepsilon} + \med{\varepsilon} = \varepsilon.$$  
 
-Ahora demostremos que $c$ es cerrado. Consideremos el espacio cociente $\ell_\infty / c_0$ y $\pi : \ell_\infty \to \ell_\infty / c_0$ el operador proyección. Observemos que la sucesión $y = (1)_{n \in \N}$ converge a $1$ por lo tanto está en $c$. Dado que $\pi(\Span (c_0 \cup \{ y \}) ) = \Span \{ [y] \}$ es de dimensión uno, resulta que es cerrado en $\ell_\infty / c_0$ y como $\pi$ es continua, se concluye que $c = \Span (c_0 \cup \{y \}) = \pi^{-1}(\Span \{ [y] \})$ es cerrado en $\ell_\infty$.
+Ahora veamos que $c$ es cerrado. Sea $(f_n)_{n \in \N} \subseteq c$ una sucesión que converge a $f \in \ell_\infty$. Para que $c$ sea cerrado hay que demostrar que $f \in c$, es decir, que $f(k)_{k \in\N}$ converge. Puesto que cada $f_n \in c$, existe $x_n \in \K$ tal que $\lim_{k \to \infty} f_n(k) = x_n$. Demostremos que $(x_n)_{n \in\N}$ es de Cauchy. Tomemos $\varepsilon > 0$. Dado que $(f_n)_{n \in \N}$ converge, es de Cauchy. Así que existe $N_1 \in \N$ tal que 
+\begin{equation} \label{Eq:cEsCompleto1}
+\abs{f_n(k) - f_m(k)} \leq \Norm{f_n - f_m}_\infty  < \frac{\varepsilon}{3}, \mbox{ para todas } k \in \N \mbox{ y } n, m \geq N_1.
+\end{equation} 
+
+Además, como $\lim_{k \to \infty} f_n(k) = x_n$ para cada $n \in\N$, podemos tomar $M_n \in \N$ de forma que 
+\begin{equation} \label{Eq:cEsCompleto2}
+\abs{f_n(k) - x_n} < \frac{\varepsilon}{3} \mbox{ siempre que } k \geq M_n.
+\end{equation}  
+
+Tomemos $n, m \geq N_1$ y notemos que con $k \geq \max(M_n, M_m)$ de (\ref{Eq:cEsCompleto1}) y (\ref{Eq:cEsCompleto2}) resulta que
+$$\abs{x_n - x_m} \leq \abs{x_n - f_n(k)} + \abs{f_n(k) - f_m(k)} + \abs{f_m(k) - x_m} < \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3} = \varepsilon.$$
+
+Entonces $(x_n)_{n \in \N}$ es de Cauchy y como $\K$ es completo, existe $x \in \K$ tal que $x_n \to \K$. Demostremos que $ \lim_{k \to \infty} f(k) \to x$. Sea $\varepsilon > 0$. Para toda $n \in N$, tomemos $M_n$ como en (\ref{Eq:cEsCompleto2}). Puesto que $x_n \to x$ existe $N_2 \in \N$ de manera que
+\begin{equation} \label{Eq:cEsCompleto3}
+\abs{x_n - x} < \frac{\varepsilon}{3} \mbox{ cuando } n \geq N_2.
+\end{equation} 
+
+Por último, dado que $f_n \to f$ en $\ell_\infty$, existe $N_3 \in \N$ tal que
+\begin{equation} \label{Eq:cEsCompleto4}
+\abs{f(k) - f_n(k)} \leq \Norm{f - f_n}_\infty < \varepsilon \mbox{ para } n \geq N_3 \mbox{ y } k \in \N.
+\end{equation}
+
+Sea $n \geq \max(N_2, N_3)$. Entonces para toda $k \geq M_n$, por (\ref{Eq:cEsCompleto2}), (\ref{Eq:cEsCompleto3}) y (\ref{Eq:cEsCompleto4}) se cumple que
+$$\abs{f(k) - x} \leq  \abs{f(k) - f_n(k)} + \abs{f_n(k) - x_n} + \abs{x_n - x} < \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3} = \varepsilon.$$
+
+Por lo tanto $f$ converge a  $x$ y así $c$ es cerrado.
 \end{Dem}
 
 
