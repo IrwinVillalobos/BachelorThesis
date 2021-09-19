@@ -1697,7 +1697,6 @@ Es decir,
 \end{equation} 
 
 Tomando $\varepsilon = 1$ en (\ref{Eq:ElleEsBanach3}) existe $N \in \N$ tal que $\Norm{f - f_N}_\infty \leq 1$. Así que $f -f_N \in \ell_p$, y entonces $f = (f- f_N) + f_N \in \ell_\infty$. Además, lo establecido en (\ref{Eq:ElleEsBanach3}) indica precisamente que $f_n \to f$.
-
 \end{Dem}
 
 \begin{Cor}
@@ -1901,11 +1900,11 @@ Por lo tanto $f = \sum_{j=1}^n a_j f_j$. Esto dice que existe un conjunto finito
 \end{Dem}
 
 \begin{Lema} \label{Lema:ComplementoOrtogonalNoTrivial}
-Sea $V$ un subespacio propio de $\K^n$. Entonces existen $c_1, \ldots, c_n \in K$ no todos cero tales que $\sum_{i=1}^n c_i x_i = 0$ para todo $(x_1, \ldots, x_n) \in V$.
+Sea $V$ un subespacio propio de $\K^n$. Entonces existen $c_1, \ldots, c_n \in \K$ no todos cero tales que $\sum_{i=1}^n c_i x_i = 0$ para todo $(x_1, \ldots, x_n) \in V$.
 \end{Lema}
 
 \begin{Dem}
-El corolario~\ref{Cor:SubespacioDimensionFinitaCerrado} indica que $V$ es cerrado en $\K^n$. Dado que $V$ es un subespacio propio de $\K^n$, se tiene que algún vector canónico $e_j$ no pertenece a $V$ para algún $1 \leq j \leq n$. Luego, del corolario~\ref{Cor:HahnBanachFuncional} de Hahn-Banach se sigue que existe un funcional lineal continuo $\varphi: K^n \to \K$ tal que $\varphi \neq 0$ y $\varphi(e_j) \neq 0$. Consideremos $c_i = \varphi(e_i)$ para toda $i \in \nn{n}$. Para $x = (x_1, \ldots, x_n) \in V$ resulta que
+Sea $\{ v_1, \ldots, v_k \}$ una base de $V$ para algún $0 \leq k < n$ y algunos $v_1, \ldots, v_k \in V$. Podemos tomar entonces $v_{k+1}, \ldots, v_n \in \K^n$ tales que $\{v_1, \ldots, v_n\}$ es una base de $\K^n$. Definamos $\varphi: \K^n \to \K$ linealmente tal que $\varphi(v_1) = \ldots \varphi(v_k) = 0$ y $\varphi(v_{k+1}) = \ldots = \varphi(v_n) = 1$. Entonces $\varphi(V) = \{ 0 \}$ y $\varphi \neq 0$. Consideremos $c_i = \varphi(e_i)$ para toda $i \in \nn{n}$. Como $\varphi \neq 0$, entonces algún $c_i$ es distinto de cero. Para $x = (x_1, \ldots, x_n) \in V$ resulta que
 $$\sum_{i=1}^n c_i x_i = \sum_{i=1}^n x_i \varphi(e_i) = \varphi \left( \sum_{i=1}^n x_i e_i \right) = \varphi(x) = 0.$$
 \end{Dem}
 
@@ -2233,7 +2232,7 @@ Mostremos que $\widehat{R}$ es sobreyectiva de manera similar a la que demostram
 & \leq \Norm{\varphi} \Norm{\sum_{i=1}^k \frac{\abs{y_{n_i}}}{y_{n_i}} e_{n_i} }_\infty = \Norm{\varphi} \left( \max_{1 \leq i \leq k} \abs{\tfrac{\abs{y_{n_i}}}{y_{n_i}}} \right)  = \Norm{\varphi}.
 }
 
-Haciendo $N \to \infty$ obtenemos que $\Norm{y}_1 \leq \Norm{\varphi}$. Falta ver que $Ry = \varphi$. Tomemos entonces $x = (x_n)_{n \in \N} \in c_0$. Mostremos que $$x = \lim_{N \to \infty} \sum_{n = 1}^N x_n e_n.$$ 
+Haciendo $N \to \infty$ obtenemos que $\Norm{y}_1 \leq \Norm{\varphi}$. Falta ver que $Ry = \varphi$. Tomemos entonces $x = (x_n)_{n \in \N} \in c_0$ y mostremos que $$x = \lim_{N \to \infty} \sum_{n = 1}^N x_n e_n.$$ 
 
 Observemos que para todo $N \in \N$ se cumple que
 $$\Norm{x - \sum_{n=1}^N x_n e_n}_\infty = \sup_{ N < i < \infty} \abs{x_n}.$$
@@ -2242,11 +2241,10 @@ Pero como $x \in c_0$, se sigue que $x_n \to 0$ y entonces $\Norm{x - \sum_{n=1}
 
 Ahora, notemos que como $\varphi$ es continua
 \Ecu{
-\varphi(x) &= \varphi\left( \lim_{N \to \infty} \sum_{n=1}^N x_n e_n \right) = \lim_{N \to \infty} \varphi\left(\sum_{n=1}^N x_n e_n \right) \\ 
-&=  \lim_{N \to \infty} \sum_{n=1}^N x_n \varphi(e_n)  = \sum_{n=1}^\infty x_n y_n = \widehat{R}y(x).
+\varphi(x) = \varphi\left( \lim_{N \to \infty} \sum_{n=1}^N x_n e_n \right) = \lim_{N \to \infty} \varphi\left(\sum_{n=1}^N x_n e_n \right) =  \lim_{N \to \infty} \sum_{n=1}^N x_n \varphi(e_n)  = \widehat{R}y(x).
 }
 
-Luego $\widehat{R}y = \varphi$ y $\widehat{R}$ es sobreyectiva. Además, dado $y \in \ell_1$, se tiene que $\Norm{y}_1 \leq \Norm{\varphi} = \Norm{\widehat{R}y}$ y se concluye que $\Norm{\widehat{R}y} = \Norm{y}_1$ y  así $\widehat{R}$ es una isometría.  
+Luego $\widehat{R}y = \varphi$ y $\widehat{R}$ es sobreyectiva. Además, dado $y \in \ell_1$, se tiene que $\Norm{y}_1 \leq \Norm{\varphi} = \bigr\Vert\widehat{R}y \bigr\Vert$ y se concluye que $\bigr\Vert\widehat{R}y \bigl\Vert = \Norm{y}_1$ y  así $\widehat{R}$ es una isometría.  
 \end{Dem}
 
 
@@ -3227,7 +3225,6 @@ Hemos visto que la bola unitaria de un espacio normado de dimensión infinita no 
 
 
 
-
 \section{Topología débil}
 
 Sean $X$ un espacio normado y $X^*$ su espacio dual. Notemos que para cada $\varphi \in X^*$ la función $\abs{\varphi}$ es una seminorma. Además por el teorema de Hahn-Banach, para cada $x \neq 0$ existe un funcional lineal $\varphi \in X^*$ tal que $\varphi(x) \neq 0$. De manera que $\abs{\varphi(x)} \neq 0$. Por tanto $$\F_X := \{ \abs{\varphi} : \varphi \in X^* \}$$ es una familia de seminormas en $X$ que separa puntos en $X$. 
@@ -3291,7 +3288,6 @@ Sean $E$ un espacio vectorial topológico, $X$ un espacio normado y $T: E \to X_\
 \begin{Dem}
 Sea $(x_\alpha)_{\alpha \in \Lambda}$ una red en $E$ que converge a $x \in E$. Tenemos que $T$ es continua si, y sólo si $Tx_\alpha \to Tx$ en $X_\mathrm{w}$. Por el corolario~\ref{Cor:CaracterizacionConvergenciaDebil}, esto último es equivalente a que $\varphi(Tx_\alpha) \to \varphi(Tx)$ para todo $\varphi \in X^*$. Esto es $(\varphi \circ T)x_\alpha \to (\varphi \circ T) x$ para todo $\varphi \in X^*$. Dado que $\varphi \circ T$ es lineal para todo $\varphi \in X^*$, se sigue que lo anterior equivale a que $\varphi \circ T \in E^*$ para todo $\varphi \in X^*$.
 \end{Dem}
-
 
 
 
@@ -3382,14 +3378,24 @@ Al fijar $x \in X$ notemos que $\abs{\varphi_\alpha(x)} \leq \Norm{x}$ para toda
 Así que $\varphi \in B_{X^*}$. Esto prueba que $B_{X^*}$ es cerrada en $F(X, \K)$. 
 \end{Dem}
 
+\begin{Prop} \label{Prop:DebilEstrellaAcotadoEsAcotado}
+Sea $X$ un espacio normado. Si $A \subseteq X^*$ es $\Norm{\cdot}$-acotado, entonces $A$ es $\mathrm{w}^*$-acotado. Cuando $X$ es un espacio de Banach,  el recíproco también es cierto.
+\end{Prop}
+
+\begin{Dem}
+Supongamos primero que $A$ es $\Norm{\cdot}$-acotado. Entonces existe $t > 0$ tal que $\Norm{\varphi} \leq t$ para toda $\varphi \in A$. Para $x \in X$, se tiene que $\abs{\delta_x}(A) = \{ \abs{\delta_x}(\varphi) : \varphi \in A \} = \{ \abs{\varphi(x)}  : \varphi \in A\}$. Luego, $\abs{\delta_x}(A)$ está acotado por $t \Norm{x}$ y por el lema~\ref{Lema:CaracterizacionAcotadoEnTopologiaSeminormas} se sigue que $A$ es $\mathrm{w}^*$-acotado.
+
+Ahora supongamos que $X$ es un espacio de Banach y que $A$ es $\mathrm{w}^*$-acotado. Por el lema~\ref{Lema:CaracterizacionAcotadoEnTopologiaSeminormas} para todo $x \in X$, el conjunto $\abs{\delta_x}(A) = \{ \abs{\varphi(x)}  : \varphi \in A\}$ es acotado. Por lo que $\{\varphi(x) : \varphi \in A \}$, $x \in X$, también es acotado. Dado que $X$ es un espacio de Banach, por el principio del acotamiento uniforme resulta que $A$ es $\Norm{\cdot}$-acotado  en $X^* = \calL(X, \K)$.
+\end{Dem}
+
 \begin{Cor}
-Sea $X$ un espacio de Banach y $A \subseteq X_{\mathrm{w}^*}^*$. Entonces $A$ es $\mathrm{w}^*$-compacto si, y sólo si es $\mathrm{w}^*$-cerrado y $\Norm{\cdot}$-acotado. 
+Sea $X$ un espacio de Banach y $A \subseteq X_{\mathrm{w}^*}^*$. Entonces $A$ es compacto si, y sólo si es cerrado y acotado. 
 \end{Cor}
 
 \begin{Dem}
-Supongamos que $A$ es $\mathrm{w}^*$-compacto. Como $X_{\mathrm{w}^*}^*$ es Hausdorff, entonces $A$ es $\mathrm{w}^*$-cerrado. Para probar que $A$ es $\Norm{\cdot}$-acotado tomemos $x \in X$. La proposición~\ref{Prop:ReflexividadEnTopologiaDebilEstrella} indica que la función evaluación $\delta_x : X_{\mathrm{w}^*}^* \to \K$ es continua. Puesto que $A$ es compacto, de la proposición~\ref{Prop:FuncionContinuaPreservaCompactos} se sigue que $\delta_x(A) = \{ \varphi(x) : \varphi \in A \}$ es compacto en $\K$ y entonces del teorema~\ref{Tma:DimensionFinitaCerradoAcotadoCompacto} se tiene que es acotado. Por lo tanto, dado que $X$ es un espacio de Banach, del principio de acotamiento uniforme concluimos que $A$ es acotado en $\calL(X,\K) = X^*$.
+Si $A$ es compacto, de la proposición~\ref{Prop:CompactoEsAcotadoEVT} se sigue que $A$ es cerrado y acotado. 
 
-Ahora supongamos que $A$ es $\mathrm{w}^*$-cerrado y $\Norm{\cdot}$-acotado. Entonces existe $r > 0$ tal que $A \subseteq r B_{X^*}$. Por el teorema de Banach-Alaoglu, $r B_{X^*}$ es $\mathrm{w}^*$-compacto. Como $A$ es $\mathrm{w}^*$-cerrado y $A \subseteq r B_{X^*}$, por el lema~\ref{Lema:CerradoEnCompactoEsCompacto} se concluye que $A$ es $\mathrm{w}^*$-compacto. 
+Ahora supongamos que $A$ es cerrado y acotado. Por la proposición~\ref{Prop:DebilEstrellaAcotadoEsAcotado} $A$ es $\Norm{\cdot}$-acotado. Entonces existe $r > 0$ tal que $A \subseteq r B_{X^*}$. Por el teorema de Banach-Alaoglu, $r B_{X^*}$ es $\mathrm{w}^*$-compacto. Como $A$ es $\mathrm{w}^*$-cerrado y $A \subseteq r B_{X^*}$, por el lema~\ref{Lema:CerradoEnCompactoEsCompacto} se concluye que $A$ es $\mathrm{w}^*$-compacto. 
 \end{Dem}
 
 \section{Reflexividad}
