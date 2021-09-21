@@ -3219,6 +3219,35 @@ Sea $E$ un espacio vectorial topológico. Si $F$ es un subespacio de dimensión fi
 La proposición~\ref{Prop:DimensionFinitaEVTCompleto} indica que $F$ es completo. Del lema~\ref{Lema:EVTCompletoEntoncesCerrado} se concluye que $F$ es cerrado en $E$.
 \end{Dem}
 
+A pesar de que uno de nuestros principales objetivos es encontrar una topología vectorial de los espacios normados donde la bola unitaria sea compacta, el siguiente teorema nos indica que en tal topología perdemos el que la bola unitaria sea una vecindad del cero.
+
+\begin{Tma} \label{Tma:CaracterizacionDimensionFinitaEVT}
+Sea $E$ un espacio vectorial topológico. Entonces $E$ es de dimensión finita si y sólo si existe una vecindad compacta del cero. 
+\end{Tma}
+
+\begin{Dem}
+Supongamos primero que $E$ es de dimensión finita de dimensión finita $n \in \N$. Del teorema~\ref{Tma:IsomorfismoDimensionFinitaEVT} se sigue que existe un isomorfismo de espacios vectoriales topológicos $T: \K^n \to E$. Por el teorema~\ref{Tma:DimensionFinitaCerradoAcotadoCompacto}  la bola $B_{\K^n}$ es una vecindad compacta del cero en $\K^n$, por lo que $T(B_{\K^n})$ es una vecindad compacta del cero en $E$.
+
+Ahora supongamos que existe una vecindad compacta $K$ del cero. Tomemos entonces un abierto $V$ tal que $0 \in V \subseteq K$. Luego, de la observación~\ref{Obs:DilatacionTraslacion} se sigue que $\frac{1}{2} V$ también es una vecindad abierta del cero. De la misma observación se sigue que $\{ x+\frac{1}{2}V \}_{x \in E}$ es una cubierta abierta de $K$. Como $K$ es compacto, existen $x_1, \ldots, x_m \in E$, $m \in \N$ tales que $\{ x_i + \frac{1}{2}V \}_{i=1}^m$ cubre a $K$. Sean $S = \{ x_1, \ldots, x_m \}$ y $W$ el espacio vectorial de dimensión finita generado por $S$. Entonces $$K \subseteq S + \frac{1}{2} V \subseteq S + \frac{1}{2} K \subseteq W + \frac{1}{2}K.$$
+
+Observemos entonces que $$K \subseteq W + \frac{1}{2} K \subseteq W + \frac{1}{2}\left(W + \frac{1}{2}K\right) = W + \frac{1}{2}W + \frac{1}{4} K = W + \frac{1}{4}K.$$
+
+Procediendo sucesivamente de esta manera se tiene que $K \subseteq W + 2^{-n} K$ para toda $n \in \N$. Como $K$ es compacto, por el lema~\ref{Prop:CompactoEsAcotadoEVT} se sigue que $K$ es acotado. Entonces al tomar un vecindad abierta $U$ del cero existe $r > 0$ tal que $K \subseteq sU $ para $s > r$. Luego, para $n \in \N$ suficientemente grande se tiene que $2^n > r$, por lo que $K \subseteq 2^n U$ y por lo tanto 
+\begin{equation} \label{Eq:DimFinitaEVT}
+ K \subseteq W + 2^{-n}K  \subseteq W + U. 
+\end{equation}
+
+Demostremos que $K \subseteq W$. Sea $x \in K$ y supongamos que $x \notin W$. Por el corolario~\ref{Cor:SubespacioDimensionFinitaCerrado} se tiene que $W$ es cerrado y por lo tanto $x \notin \ov{W}$. Entonces existe una vecindad abierta $U$ de $x$ tal que $U \cap W = \emptyset$. Por la observación~\ref{Obs:DilatacionTraslacion} $U-x$ es una vecindad abierta del cero al igual que $x-U$. De (\ref{Eq:DimFinitaEVT}) se tiene que $x \in W+(x-U)$. Luego, existen $y \in W$ y $z \in U$ tal que $x = y+x-z$, de donde $y = z$. Esto contradice que $U \cap W = \emptyset$. Así que $K \subseteq W$.
+
+Sea $x \in E$, como $V$ es una vecindad abierta del cero, según la demostración de la proposición\ref{Prop:CompactoEsAcotadoEVT}, podemos tomar $n \in \N$ tal que $2^{-n} x \in V \subseteq K$. Por lo tanto $x \in 2^n K \subseteq 2^n W = W$. Así que $E = W$ es un espacio de dimensión finita. 
+
+\end{Dem}
+
+
+
+
+
+
 \chapter{Topologías débil y débil*}
 
 Hemos visto que la bola unitaria de un espacio normado de dimensión infinita no es compacta. Podemos interpretar esto en el sentido de  que la topología usual de tal espacio normado $X$ tiene demasiados abiertos. Esto motiva el propósito de construir en $X$ topologías más débiles que su topología original, esto es, con menos abiertos. Una de estas es la topología débil, la cual se construye a partir de los funcionales lineales continuos de $X$. De manera similar definiremos la topología débil* en $X^*$. 
@@ -3269,6 +3298,14 @@ Sean $X$ un espacio normado y $(x_\alpha)_{\alpha \in \Lambda} \subseteq X$ una 
 
 En particular, si $(x_n)_{n \in \N} \subseteq X$ es una sucesión en $X$ y $x \in X$, entonces $\displaystyle\wlim_{n \to \infty} x_n = x$ si, y sólo si $\displaystyle\lim_{n \to \infty} \varphi(x_n) = \varphi(x)$  para cualquier $\varphi \in X^*$.
 \end{Cor}
+
+\begin{Ejem}
+Consideremos la sucesión de vectores canónicos $(e_n)_{n \in\N}$ en el espacio $\ell_p$, $1 \leq p \leq \infty$. Dados $n, m \in \N$ distintos se tiene que $\Norm{e_n - e_m}_p = \sqrt[p]{2}$ para $1 \leq p \leq \infty$ y $\Norm{e_n - e_m}_\infty = 1$, lo cual indica que $(e_n)_{n \in\N}$ no es de Cauchy y por tanto no converge en ninguno de estos espacios.
+
+Sin embargo, $(e_n)_{n \in\N}$ si converge débilmente a cero en $\ell_p$ para $1 < p \leq \infty$. En efecto, si $\varphi \in \ell_p^*$, por el teorema~\ref{Tma:DualDeEllePEsElleQ} existe $y = (y_1, y_2, \ldots) \in \ell_q$ con $Ry = \varphi$, donde $q$ es el exponente conjugado de $p$. Luego $\varphi(e_n) = Ry(e_n) = y_n \to 0 = \varphi(0)$, pues $y \in \ell_q$. 
+
+En cambio, si $p = 1$,  entonces $q = \infty$. Tomando $y = (1)_{n\in\N} \in \ell_\infty$, se tiene que $Ry(e_n) = y_n = 1$ y por lo tanto $(e_n)_{n \in\N}$ no converge débilmente a cero.
+\end{Ejem}
 
 
 \begin{Prop}
@@ -3377,6 +3414,8 @@ Al fijar $x \in X$ notemos que $\abs{\varphi_\alpha(x)} \leq \Norm{x}$ para toda
 
 Así que $\varphi \in B_{X^*}$. Esto prueba que $B_{X^*}$ es cerrada en $F(X, \K)$. 
 \end{Dem}
+
+Como consecuencia del teorema de Banach-Alaoglu y del teorema~\ref{Tma:CaracterizacionDimensionFinitaEVT} se tiene que en espacios normados de dimensión infinita la bola unitaria $B_{X^*}$ no es una $\mathrm{w}^*$-vecindad del cero.
 
 \begin{Prop} \label{Prop:DebilEstrellaAcotadoEsAcotado}
 Sea $X$ un espacio normado. Si $A \subseteq X^*$ es $\Norm{\cdot}$-acotado, entonces $A$ es $\mathrm{w}^*$-acotado. Cuando $X$ es un espacio de Banach,  el recíproco también es cierto.
