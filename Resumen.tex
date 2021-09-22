@@ -264,29 +264,88 @@
 
 \normalsize
 
-En los primeros cursos de análisis que se imparten en la licenciatura en matemáticas se tiene un primer encuentro con la compacidad desde el enfoque de espacios métricos. Se demuestra que en el caso particular de $\R^n$, podemos identificar a los conjuntos compactos como aquellos que son cerrados y acotados. En cursos más avanzados de análisis se prueba que en los espacios normados de dimensión infinita esto ya no sucede, más aún la bola cerrada unitaria ya no es compacta en estos espacios. La escasez de conjuntos compactos en un espacio normado de dimensión infinita dificulta en gran medida el estudio de las funciones ahí definidas, puesto que la compacidad del dominio de una función continua hace que ésta tenga propiedades importantes.
+
+
+Desde el primer curso de cálculo que se imparten en la licenciatura en matemáticas se tiene un encuentro indirecto con la compacidad por medio de las propiedades que tienen los intervalos cerrados. Ya en los cursos de análisis se trabaja con la compacidad desde en el marco de espacios métricos y se demuestra que en el caso particular de $\R^n$, podemos identificar a los conjuntos compactos como aquellos que son cerrados y acotados. En cursos más avanzados de análisis se prueba que en los espacios normados de dimensión infinita esto ya no sucede, más aún la bola cerrada unitaria ya no es compacta en estos espacios. La escasez de conjuntos compactos en un espacio normado de dimensión infinita dificulta en gran medida el estudio de las funciones ahí definidas, puesto que la compacidad del dominio de una función continua hace que ésta tenga cualidades importantes.
 
 Una forma de lidiar con este problema es introducir otras topologías en estos espacios de tal forma que, conservando la estructura algebraica, mantengan una relación con la topología original y tengan menos cantidad de conjuntos abiertos. Ahí es donde entran las topologías débiles. La primera de estas, la topología débil, se define como la topología más pequeña sobre un espacio normado en la cual los funcionales lineales continuos siguen siendo continuos. Por otro lado, la topología débil* se define sobre un espacio dual como aquella topología más pequeña en la cual se satisface que todas las funciones de evaluación son continuas. Como se buscaba, resulta que en el caso de la topología débil* la bola unitaria en el espacio dual ahora siempre es compacta.   
 
 A lo largo de este trabajo hacemos un recorrido de los conceptos y resultados necesarios para establecer la conclusión anterior, empezando desde espacios topológicos y culminando con la construcción y desarrollo de las topologías débil y débil*. Una vez que se cuente con conceptos topológicos de continuidad y compacidad nos adentraremos en el marco más particular de los espacios métricos, donde dichos conceptos se pueden caracterizar por medio de la convergencia de sucesiones. Luego, especificando una vez más nuestro campo de estudio, nos enfocamos a espacios normados, donde además de contar con una distancia y la topología que esta induce, también tenemos una estructura de espacio vectorial. Debido a que las topologías débiles en general no son metrizables, el estudio de espacios métricos y normados no nos provee resultados válidos para trabajar con estas topologías. Sin embargo, estas aun conservan el vínculo entre la topología y la estructura algebraica, lo que las convierte en espacios vectoriales topológicos. Pero antes de empezar el estudio de estos espacios, desarrollamos el concepto de red, que sustituye y generaliza el papel que  las sucesiones tienen en los espacios métricos. En este punto estaremos listos para definir las topologías débiles y estudiar en ellas la convergencia y compacidad. 
 
-El tema que tratamos en el primer capítulo es la topología, concepto que se introdujo para generalizar las propiedades de los espacios euclideanos, que permiten un estudio adecuado de funciones a través del comportamiento que tienen los conjuntos abiertos. Así como en los primeros cursos de cálculo se definen las funciones continuas como aquellas en las cuales cambios pequeños en el dominio producen valores cercanos, en los espacios topológicos definimos las funciones continuas  de manera similar a partir de los conjuntos abiertos. (Hablar de compacidad, teorema de Heine Borel y convergencia). Algunas de las definiciones con las que trabajamos en este capítulo se basaron en \cite{diaz_curso_2005}.
+El tema que tratamos en el primer capítulo es la topología, concepto que se introdujo para generalizar las propiedades de los espacios euclideanos, que permiten un estudio adecuado de funciones a través del comportamiento que tienen los conjuntos abiertos. Así como en los primeros cursos de cálculo se definen las funciones continuas como aquellas en las cuales cambios pequeños en el dominio producen valores cercanos, en los espacios topológicos definimos las funciones continuas  de manera similar a partir de los conjuntos abiertos. Algunas de las definiciones con las que trabajamos en este capítulo se basaron en \cite{diaz_curso_2005}.
 
 
 
 \vspace*{1cm}
 
-\textbf{Opciones para agregar en la introducción: }
+\paragraph{General}
 
 \begin{itemize}
 \item \sout{Partir del conocimiento de un estudiante de licenciatura.}
-\item Descripción libre del tema.
-\item Hablar de la compacidad.
+\item \sout{Hablar de la compacidad.}
 \item Hablar sobre la importancia de las topologías débil y débil*.
 \item Hablar sobre la importancia del análisis funcional.
 \item Descripción del trabajo y objetivo.
 \item Hacer un resumen capítulo por capítulo enlistando los principales resultados y posiblemente agregar las citas de las fuentes.
 \item Mencionar matemáticos involucrados y datos históricos.
+\item ¿Menciono que nos basamos mayormente en los primeros dos capítulos del Diestel?
+\end{itemize}
+
+\paragraph{Capitulo 1: Espacios topológicos}
+
+\begin{itemize}
+\item \sout{Hablar de topología y continuidad .}
+\item Hablar de compacidad y teorema de Heine Borel.
+\item Hablar de convergencia.
+\item \sout{Agregar referencias: \cite{diaz_curso_2005}.}
+\end{itemize}
+
+\paragraph{Capitulo 2: Espacios métricos}
+
+\begin{itemize}
+\item Mencionar métrica y metrizabilidad. 
+\item Hablar del camino para encontrar una caracterización de la compacidad.
+\item Referencia a \cite{galaz_fontes_elementos_2006} en la prueba de la caracterización de compacidad por sucesiones. 
+\end{itemize}
+
+\paragraph{Capitulo 3: Espacios normados}
+
+\begin{itemize}
+\item Mencionar que los espacios normados de dimension finita son isomorfos.
+\item Lema de Riesz y atribuir el teorema~\ref{Tma:DimensionFinitaCerradoAcotadoCompacto} a Riesz (1918). 
+\item Primer capitulo de \cite{diestel_sequences_1984} para la prueba del teorema anterior. 
+\item Referencia a \cite{galaz_fontes_elementos_2006} en las demostraciones de los espacios $\ell_p$.
+\item Lema de Helly y teoremas de Hanh-Banach atribuidos a Banach.
+\item Hablar del espacio dual.
+\end{itemize}
+
+\paragraph{Capitulo 4: Redes}
+
+\begin{itemize}
+\item Introducir el concepto de red.
+\item Hablar del teorema de Tychonoff y su demostración por medio de redes.
+\item Referecia \cite{chernoff_simple_1992} en la demostración de Tychonoff. 
+\item Referencia a \cite{megginson_introduction_1998} en algunas pruebas de redes.
+\end{itemize}
+
+\paragraph{Capitulo 5: Espacios vectoriales topológicos}
+
+\begin{itemize}
+\item Mencionar que Tychonoff fue quien demostró el teorema~\ref{Tma:IsomorfismoDimensionFinitaEVT}. 
+\item Referencia a \cite{tao_locally_2011} en la sección de e.v.t. de dimensión finita.
+\item Hablar de la topologia generada por familia de seminormas.
+\item Referencia a \cite{rudin_functional_1991} del punto anterior.
+\item Destacar el espacio $F(A, \K)$.
+\end{itemize}
+
+\paragraph{Capitulo 6: Topologías débil y débil*}
+
+\begin{itemize}
+\item Hilbert y Riesz fueron quienes usaron convergencia debil en $L_2[0, 1]$ y $L_p[0, 1]$ respectivamente.
+\item Von Neumman vio que precisamente lo anterior provenia de una topología.
+\item ¿Agregar la no metrizibilidad de la topologia debil por Weheusen?
+\item Teorema de Banach-Alaoglu probado por Banach en espacios de Banach separables. Alaoglu (1940) demostró la versión para espacios normados.
+\item Teorema de Goldstine.
 \end{itemize}
 
 \mainmatter
@@ -470,7 +529,7 @@ Sean $X, Y$ espacios topológicos y $y_0 \in Y$.
 \item[\textbullet] \textbf{i)} Cualquier función constante $f: X \to Y$, dada por $f(x) = y_0$, es continua, pues para todo abierto $V$ en $Y$ se tiene que 
 $$f^{-1}(V) = \begin{cases}
 X, \;\;\;\mbox{ si } y_0 \in V; \\
-\emptyset \;\;\;\;\mbox{ si } y_0 \notin V.
+\emptyset, \;\;\;\mbox{ si } y_0 \notin V.
 \end{cases}$$
 es abierto en $X$.
 \item[\textbullet] \textbf{ii)} Consideremos ahora la identidad $Id_X : X \to X$. Para cualquier abierto $U$ de $X$, se tiene que $Id_X^{-1}(U) = U$ es abierto. Así que $Id_X$ es continua.
@@ -635,7 +694,11 @@ x_i \neq x } } \{ x_i \}$$ es cerrado. De esto se sigue que $(X \setminus B) \cu
 
 \section{Convergencia de sucesiones}
 
-Una \textit{sucesión} en un conjunto $X$ es una función $s: \N \to X$. Usualmente representamos a la sucesión $s$ por $(x_n)_{n\in \N}$, donde $x_n := s(n)$ para toda $n \in \N$. 
+Una sucesión es una colección de objetos, que diferencia de un conjunto, el orden de los elementos importa, estos pueden repetirse y se pueden indexar por los números naturales.
+
+Formalmente una \textit{sucesión} en un conjunto $X$ es una función $s: \N \to X$. Usualmente representamos a la sucesión $s$ por $(x_n)_{n\in \N}$, donde $x_n := s(n)$ para toda $n \in \N$. 
+
+Una propiedad importante que una sucesión puede tener es que esta sea convergente. Intuitivamente, esto significa que los términos de la sucesión se vayan acercando a un punto conforme avanzamos en la sucesión, y no sólo eso, sino que se llegue a estar y mantener arbitrariamente cerca del punto. Esta idea se define de manera abstracta cuando se cuenta con cuna topología a continuación.
 
 \begin{Def}
 Sea $X$ un espacio topológico y $(x_n)_{n\in\N}$ una sucesión. Si existe $x \in X$ tal que para cada vecindad abierta $U$ de $x$ existe $N \in \N$ tal que $x_n \in U$ para $n \geq n$, entonces decimos que $(x_n)_{n\in\N}$ \textit{converge} a $x$, que $x$ es el \textit{límite} de $(x_n)_{n\in\N}$ y lo denotamos por $x_n \to x$.
@@ -3094,6 +3157,30 @@ Por la desigualdad del triángulo $\Norm{x_\gamma - x} < \frac{1}{N}$ y así $x_\g
 \end{Dem}
 
 Como resultado de lo anterior, el espacio $\K^n$ como espacio vectorial topológico es completo. 
+
+Dado que la desigualdad del triángulo tiene una estrecha relación con la convexidad, se motiva las siguiente definición.  
+
+\begin{Def}
+Sea $X$ un espacio topológico. Si existe una base de $X$ que consiste de conjuntos convexos, entonces decimos que $X$ es \textit{localmente convexo}.
+\end{Def}
+
+\begin{Prop}
+Sea $X$ un espacio vectorial y $\calF$ una familia de seminormas en $X$. Entonces $X$ con la topología inducida por $X$ es localmente convexo.
+\end{Prop}
+
+\begin{Dem}
+Basta notar que cada abierto básico $U  = U_{x, p_1, \ldots, p_n, \varepsilon}, x \in X, p_1, \ldots, p_n \in \calF, \varepsilon >0,$ es convexo. Sean pues $y, z \in U$ y $\lambda \in [0, 1]$. Se cumple entonces que $p_i(x - y) < \varepsilon$ y $p_i(x - z) < \varepsilon$ para toda $i \in \nn{n}$. Por la desigualdad del triángulo, se tiene que para $1 \leq i \leq n$
+\Ecu{
+p_i(x - [\lambda y + (1-\lambda) z])  &\leq p_i(\lambda(x- y)) + p_i((1-\lambda)(x-z)) \\
+&\leq \lambda p_i(x-y) + (1-\lambda) p_i(x-z) z \lambda \\
+& < \varepsilon + (1- \lambda) \varepsilon = \varepsilon.
+}
+Por lo tanto $\lambda y + (1-\lambda) z \in U$ y así $U$ es convexo.
+\end{Dem}
+
+Existen algunas versiones del teorema de Hahn-Banach que se enuncian en espacios vectoriales topológicos localmente convexos en lugar de espacios normados.  ¿Mencionar algo sobre estas versiones de Hahn-Banach?
+
+Además se cumple que la topología de todo espacio vectorial topológico localmente convexo está generada por una familia de seminormas. Solo que es necesario introducir conjuntos absorbentes y al funcional de Minkowski. ¿Lo demuestro?
 
 \begin{Lema} \label{Lema:CaracterizacionAcotadoEnTopologiaSeminormas}
 Sea $X$ un espacio vectorial con la topología generada por una familia no vacía de seminormas $\calF$ que separa puntos en $X$. Entonces $B \subseteq X$ es acotado si, y sólo si $p(B)\subseteq \R$ es acotado para toda $p \in \calF$.
