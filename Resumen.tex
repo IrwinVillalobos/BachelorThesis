@@ -64,6 +64,8 @@
 \newcommand{\calI}{\mathcal{I}}
 \newcommand{\calF}{\mathcal{F}}
 \newcommand{\calB}{\mathcal{B}}
+%\newcommand{\Re}{?}
+%\newcommand{\Im}{?}
 
 \newcommand{\Ti}{\textup{i)}}
 \newcommand{\Tii}{\textup{ii)}}
@@ -1943,7 +1945,7 @@ Sean $X$ un espacio normado y $Y \subseteq X$ un subespacio vectorial cerrado. S
 \end{Cor}
 
 \begin{Tma}[Hahn-Banach] \label{Tma:HahnBanachGeometrico}
-Sea $X$ un espacio normado real. Si $A$ y $B$ son dos conjuntos convexos disjuntos, $A$ es cerrado y $B$ compacto, entonces existen $\varphi \in X^*$ y $\alpha, \beta \in \R$ tales que $\varphi(x) < \alpha < \beta < \varphi(y)   \mbox{ para todos } x \in A, y \in B.$
+Sea $X$ un espacio normado. Si $A$ y $B$ son dos subconjuntos convexos y disjuntos en $X$ tales que $A$ es cerrado y $B$ compacto, entonces existen $\varphi \in X^*$ y $\alpha, \beta \in \R$ tales que $\Re(\varphi(x)) < \alpha < \beta < \Re(\varphi(y))   \mbox{ para todos } x \in A, y \in B.$
 \end{Tma}
 
 \begin{Prop} \label{Prop:DualDimensionInfinita}
@@ -3430,20 +3432,53 @@ Sea $(x_\alpha)_{\alpha \in \Lambda}$ una red en $E$ que converge a $x \in E$. T
 
 La cerradura respecto a la topología débil de un subconjunto $A$ de un espacio normado $X$ se denotará por $\ov{A}^{\mathrm{w}}$. Para hacer más notoria la diferenciación respecto a la cerradura respecto a la topología original, denotaremos a esta última por $\ov{A}^{\Norm{\cdot}}$.
 
-\begin{Prop}
+\begin{Prop} \label{Prop:CerraduraDebilyOriginalDeConvexoCoinciden}
 Sea $X$ un espacio normado. Si $A \subseteq X$ es convexo, entonces $\ov{A}^{\Norm{\cdot}} = \ov{A}^{\mathrm{w}}$.
 \end{Prop}
 
 \begin{Dem}
-(Pendiente).
+Mostremos primero que $\ov{A}^{\Norm{\cdot}} \subseteq \ov{A}^{\mathrm{w}}$. Sean $x \in \ov{A}^{\Norm{\cdot}}$ y $U$ una vecindad abierta de $x$ en $\tau_\mathrm{w}$. Puesto que $\tau_\mathrm{w} \subseteq \tau$, entonces $U$ es vecindad abierta de $x$ en $\tau$. Por lo tanto $A \cap U \neq \emptyset$ y por lo tanto $x \in \ov{A}^{\mathrm{w}}$.
+
+Para mostrar la otra contención demostremos que $X \setminus \ov{A}^{\Norm{\cdot}}\subseteq  X \setminus \ov{A}^\mathrm{w}$. Así pues, tomemos $x_0 \in X \setminus \ov{A}^{\Norm{\cdot}}$. Entonces $\{x_0 \}$ y  $\ov{A}^{\Norm{\cdot}}$ son conjuntos disjuntos. Como $A$ es convexo, por el lema~\ref{Lema:CerraduraDeConvexoEsConvexa}, se tiene que $ \ov{A}^{\Norm{\cdot}}$ también es convexo y además es $\Norm{\cdot}$-cerrado. Por otro lado, $\{x_0\}$ es convexo y compacto. Por el teorema~\ref{Tma:HahnBanachGeometrico} de Hahn-Banach, existen $\varphi \in X^*$ y $\alpha \in \R$ tales que 
+\begin{equation} \label{Eq:CerradurasIguales}
+\Re(\varphi(x_0)) < \alpha < \Re(\varphi(x)), \mbox{ para todo } x \in \ov{A}^{\Norm{\cdot}}.
+\end{equation} 
+
+Sea $\varepsilon = \alpha- \Re(\varphi(x_0)) > 0$ y consideremos la vecindad abierta $U_{x_0, \varphi, \varepsilon}$ de $x_0$ en $\tau_\mathrm{w}$. Al tomar cualquier $x \in U_{x_0, \varphi, \varepsilon}$ se tiene que
+\Ecu{
+\Re(\varphi(x)) - \Re(\varphi(x_0)) &\leq \abs{\Re(\varphi(x)) - \Re(\varphi(x_0)) } = \abs{\Re(\varphi(x) - \varphi(x_0)) } \\
+& \leq \abs{\varphi(x) - \varphi(x_0)} < \varepsilon = \alpha - \Re{\varphi(x_0)}.
+}
+
+De donde $\Re(\varphi(x)) < \alpha$. Luego, por (\ref{Eq:CerradurasIguales}) se tiene que $x \notin \ov{A}^{\Norm{\cdot}}$, por lo que $x \notin A$. Esto indica que $U_{x_0, \varphi, \varepsilon} \cap A = \emptyset$. Por lo tanto $x \notin \ov{A}^{\mathrm{w}}$.
 \end{Dem}
 
-\begin{Cor}
+\begin{Def}
+Sea $X$ un espacio normado y $A \subseteq X$. Decimos que $x \in X$ es una \textit{combinación convexa} de $A$ si existen $n \in \N$, $\lambda_1, \ldots, \lambda_n \in [0, 1]$ y $x_1, \ldots, x_n \in A$ tales que $$x = \sum_{i=1}^n \lambda_i x_i.$$
+Al conjunto de todas las combinaciones convexas de $A$ se le llama \textit{envolvente convexa} de $A$.  
+\end{Def}
+
+\begin{Prop} \label{Prop:EnvolventeConvexaEsConvexa}
+Sea $X$ un espacio normado y $A \subseteq X$. La envolvente convexa de $A$ es convexa.
+\end{Prop}
+
+\begin{Dem}
+Tomemos $x, y$ combinaciones convexas de $A$ y $0 \leq \mu \leq 1$. Entonces existen $n, m \in \N$, $\lambda_1, \ldots, \lambda_n, \gamma_1, \ldots, \gamma_m \in [0, 1] $ y $x_1, \ldots, x_n, y_1, \ldots, y_m \in A$ tales que $$x = \sum_{i=1}^n \lambda_i x_i \;\; \mbox{ y } \;\; y = \sum_{j=1}^m \gamma y_j.$$
+
+Observemos que de esto se sigue que 
+$$\mu x + (1-\mu) y = \mu \left( \sum_{i=1}^n \lambda_i x_i \right) + (1- \mu ) \left( \sum_{j=1}^m \gamma_j y_j \right) = \sum_{i=1}^n \mu\lambda_i x_i + \sum_{j=1}^m (1- \mu)\gamma_j y_j.$$
+Además cada $\mu\lambda_i \in [0, 1]$ y $(1- \mu) \gamma_j \in [0,1]$ y
+$$\sum_{i=1}^n \mu\lambda_i + \sum_{j=1}^{m}(1-\mu)\gamma_j = \mu \left( \sum_{i=1}^n \lambda_i\right) + (1- \mu ) \left( \sum_{j=1}^m \gamma_j \right) = \mu + (1- \mu) =1.$$
+
+Así pues $\mu x + (1-\mu) y$ es una combinación convexa de $A$.
+\end{Dem}
+
+\begin{Cor} \label{Cor:CombinacionConvexaDeSucesionDebilmenteConvergente}
 Sean $X$ un espacio normado y $(x_n)_{n \in \N}$ una sucesión en $X$. Si $x_n \stackrel{\mathrm{w}}{\longrightarrow} 0$, entonces existe una sucesión $(y_n)_{n \in \N}$ de combinaciones convexas de $\{ x_n: n \in \N \}$ tal que $\Norm{y_n} \to 0$.
 \end{Cor}
 
 \begin{Dem}
-(Pendiente).
+Supongamos que $x_n \stackrel{\mathrm{w}}{\longrightarrow} 0$ y sea $A$ la envolvente convexa de $\{x_n : n \in \N \}$. Claramente, cada $x_n \in A$, para toda $n \in \N$. De la proposición~\ref{Prop:EnvolventeConvexaEsConvexa} se tiene que $A$ es convexo. Luego, por la proposición~\ref{Prop:CerraduraDebilyOriginalDeConvexoCoinciden} se tiene que $\ov{A}^{\Norm{\cdot}} = \ov{A}^{\mathrm{w}}$. Dado que $x_n \stackrel{\mathrm{w}}{\longrightarrow} 0$ y $(x_n)_{n \in \N} \subseteq A$, por la proposición~\ref{Prop:CerraduraLimiteRed} se tiene que $0 \in \ov{A}^{\mathrm{w}}$, por lo que $0 \in \ov{A}^{\Norm{\cdot}}$. Por la proposición~\ref{Prop:CerraduraLimiteSucesiones} existe una sucesión $(y_n)_{n \in\N} \subseteq A$ tal que $y_n \to 0$. Puesto que $\Norm{\cdot}$ es continua, se concluye que $\Norm{y_n} \to 0$.
 \end{Dem}
 
 En la proposición~\ref{Prop:CerraduraLimiteSucesiones}, se caracteriza la cerradura de un conjunto en un espacio métrico con los límites de sus sucesiones. El siguiente ejemplo muestra que esto en general es falso cuando el espacio topológico no es metrizable.
@@ -3453,7 +3488,35 @@ Consideremos el conjunto $A := \{ e_n + n e_m : n, m \in \N, n < m \} \subseteq 
 \end{Ejem}
 
 \begin{Dem}
-(Pendiente).
+Demostremos primero que $0 \in \ov{A}^{\mathrm{w}}$. Consideremos $k \in \N$, $\varepsilon > 0$ y $\varphi_1, \ldots, \varphi_k \in \ell_2^*$. Entonces queremos ver que $U_{0, \varphi_1, \ldots, \varphi_k, \varepsilon} \cap A \neq \emptyset$. 
+
+Por el teorema~\ref{Tma:DualDeEllePEsElleQ} para cada $i \in \{1, \ldots,k\}$ existe $f_i \in \ell_2$ tal que $\varphi_i = R f_i$. Dado que $f_i \in \ell_2$, se tiene que $\lim_{k \to \infty} f_i(k) = 0$. Luego, existe $N_i \in \N$ tal que 
+\begin{equation} \label{Eq:CeroEnCerraduraDebil1}
+\abs{f_i(k)} < \frac{\varepsilon}{2} \; \mbox{ si } \; k \geq N_i. 
+\end{equation}
+
+Tomemos $N = \max (N_1, \ldots, N_k)$ y entonces $\abs{f_i(N)} < \frac{\varepsilon}{2}$ para toda $1 \leq i \leq k$.
+
+Puesto que $\lim_{k \to \infty} f_i(k) = 0$, para cada $i \in \{1, \ldots, k\}$ existe $M_i \in \N$ tal que $N < M_i$ y 
+\begin{equation} \label{Eq:CeroEnCerraduraDebil2}
+\abs{f_i(k)} < \frac{\varepsilon}{2N} \mbox{ si } k \geq M_i.
+\end{equation}
+
+Observemos que al tomar $M = \max (M_1, \ldots, M_k)$, de (\ref{Eq:CeroEnCerraduraDebil1}) y (\ref{Eq:CeroEnCerraduraDebil2}) se sigue que 
+\Ecu{
+\abs{\varphi_i(e_N + Ne_M)} &= \abs{Rf_i(e_N + N e_M)} = \abs{f_i(N) + n f_i(M)} \\
+& \leq \abs{f_i(N)} + N\abs{f_i(M)} < \frac{\varepsilon}{2} +  N \frac{\varepsilon}{2 N} = \varepsilon.
+} 
+
+Lo anterior indica que $e_N + Ne_M \in A\cap U_{0, \varphi_1, \ldots, \varphi_k, \varepsilon}$.
+
+Demostremos agora que no existe ninguna sucesión en $A$ que converja débilmente a cero. Supongamos entonces que sí existe una sucesión $(x_n)_{n \in \N} \subseteq A$ tal que $x_n \stackrel{\mathrm{w}}{\longrightarrow} 0$. Del corolario~\ref{Cor:CombinacionConvexaDeSucesionDebilmenteConvergente} se sigue que existe una sucesión $(y_n)_{n \in\N} \subseteq X$ en la envolvente convexa de $\{ x_n : n \in \N \}$ tal que $\Norm{y_n}_2 \to 0$.
+
+Fijemos cualquier $n \in \N$. Entonces existen $k \in \N, \lambda_1, \ldots, \lambda_k \in [0, 1]$ y $z_1, \ldots, z_k \in A$ tales que 
+$$\sum_{i=1}^k \lambda_i=1 \quad \mbox{ y } \quad y_n = \sum_{i=1}^n \lambda_i z_i.$$ 
+
+Como cada $z_i = e_{a_i} + a_i e_{b_i}$ para algunos $a_i, b_i \in \N$, $a_i < b_i$, entonces tenemos que 
+
 \end{Dem}
 
 \section{Topología débil*}
