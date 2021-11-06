@@ -268,13 +268,13 @@
 
 
 
-Desde el primer curso de cálculo que se imparte en la licenciatura en matemáticas se tiene un encuentro indirecto con la compacidad por medio de las propiedades que tienen los intervalos cerrados y acotados. Ya en los cursos de análisis se trabaja con la compacidad desde en el marco de espacios métricos y se demuestra que en el caso particular de $\R^n$, podemos identificar a los conjuntos compactos como aquellos que son cerrados y acotados. En cursos más avanzados de análisis se prueba que en los espacios normados de dimensión infinita esto ya no sucede, más aún la bola cerrada unitaria ya no es compacta en estos espacios. La escasez de conjuntos compactos en un espacio normado de dimensión infinita dificulta en gran medida el estudio de las funciones ahí definidas, puesto que la compacidad del dominio de una función continua hace que ésta tenga cualidades importantes.
+Desde el primer curso de cálculo que se imparte en la licenciatura en matemáticas se tiene un encuentro indirecto con la compacidad por medio de las propiedades que tienen los intervalos cerrados y acotados. Ya en los cursos de análisis se trabaja con la compacidad en el marco de espacios métricos y se demuestra que en el caso particular de $\R^n$, podemos identificar a los conjuntos compactos como aquellos que son cerrados y acotados. En cursos más avanzados de análisis se prueba que en los espacios normados de dimensión infinita esto ya no sucede, más aún la bola cerrada unitaria ya no es compacta en estos espacios. La escasez de conjuntos compactos en un espacio normado de dimensión infinita dificulta en gran medida el estudio de las funciones ahí definidas, puesto que la compacidad del dominio de una función continua hace que ésta tenga cualidades importantes.
 
-Una forma de lidiar con el problema anterior es introducir otras topologías en estos espacios de tal forma que, conservando la estructura algebraica, mantengan una relación con la topología original y tengan menos cantidad de conjuntos abiertos. Es por esto que se les llama topologías débiles. La primera de estas, la topología débil, se define como la topología más pequeña sobre un espacio normado en la cual los funcionales lineales continuos bajo la norma siguen siendo continuos. Por otro lado, la topología débil* (débil estrella) se define sobre un espacio dual como la topología más pequeña en la cual se satisface que todas las funciones de evaluación son continuas. Como se buscaba, resulta que en el caso de la topología débil* la bola unitaria en el espacio dual ahora siempre es compacta.   
+Una forma de lidiar con el problema anterior es introducir otras topologías en los espacios normados de tal forma que, respetando la estructura algebraica, mantengan una relación con la topología original y tengan menos cantidad de conjuntos abiertos. Es por esto que se les llama topologías débiles. La primera de estas, la topología débil, se define como la topología más pequeña sobre un espacio normado en la cual los funcionales lineales continuos bajo la norma siguen siendo continuos. Por otro lado, la topología débil* (débil estrella) se define sobre un espacio dual como la topología más pequeña en la cual se satisface que todas las funciones de evaluación son continuas. Como fruto de todo este desarrollo, resulta que en el caso de la topología débil* la bola unitaria en el espacio dual ahora siempre es compacta.   
 
-A lo largo de este trabajo hacemos un recorrido de los conceptos y resultados necesarios para establecer la conclusión anterior, empezando desde espacios topológicos y culminando con la construcción y desarrollo de las topologías débil y débil*. Una vez introducidos los conceptos topológicos de continuidad y compacidad nos adentraremos en el marco más particular de los espacios métricos, donde dichos conceptos se pueden caracterizar por medio de la convergencia de sucesiones. Luego, especificando una vez más nuestro campo de estudio, nos enfocamos a espacios normados, donde además de contar con una distancia y su topología inducida, también tenemos una estructura de espacio vectorial. Debido a que las topologías débiles en general no son metrizables, el estudio de espacios métricos y normados no nos provee de resultados válidos para trabajar con estas topologías. Sin embargo, estas aun conservan el vínculo entre la topología y la estructura algebraica, lo que da lugar a los espacios vectoriales topológicos. Pero antes de empezar el estudio de estos espacios, desarrollamos el concepto de red, que sustituye y generaliza el papel que  las sucesiones tienen en los espacios métricos. En este punto estaremos listos para definir las topologías débiles y estudiar en ellas la convergencia y compacidad. 
+A lo largo de este trabajo hacemos un recorrido de los conceptos y resultados necesarios para establecer la conclusión anterior, empezando desde espacios topológicos y culminando con la construcción y desarrollo de las topologías débil y débil*. Una vez introducidos los conceptos topológicos de continuidad y compacidad nos adentraremos en el marco más particular de los espacios métricos, donde dichos conceptos se pueden caracterizar por medio de la convergencia de sucesiones. Luego, especificando una vez más nuestro campo de estudio, nos enfocamos a espacios normados, donde además de contar con una distancia y su topología inducida, también tenemos una estructura de espacio vectorial. Debido a que las topologías débiles en general no son metrizables, el estudio de espacios métricos y normados no nos provee de resultados válidos para trabajar con dichas topologías. Sin embargo, estas aun conservan el vínculo entre la topología y la estructura algebraica, lo que da lugar a los espacios vectoriales topológicos. Pero antes de empezar el estudio de estos espacios, desarrollamos el concepto de red, que sustituye y generaliza el papel que  las sucesiones tienen en los espacios métricos. En este punto estaremos listos para definir las topologías débiles y estudiar en ellas la compacidad. 
 
-Hemos dividido nuestra exposición en seis capítulos. El tema que tratamos en el primer capítulo es la topología, concepto que se introdujo Kazimierz Kuratowski en 1922 para generalizar las propiedades de los espacios euclidianos, que permiten un estudio adecuado de funciones a través del comportamiento que tienen en los conjuntos abiertos. A partir de ahí se introducen la noción de continuidad que extiende a la definición éspilon-delta que expuso Bernard Bolzano en 1817. Además de esto, en este capítulo también tratamos el concepto de compacidad exhibido por Pavel Alexandrov y Pavel Urysohn en 1929, el cual es central en este trabajo. Algunas de las definiciones con las que trabajamos en este capítulo se basaron en \cite{diaz_curso_2005}.
+Hemos dividido nuestra exposición en seis capítulos. El tema que tratamos en el primer capítulo es la topología, concepto que formalizo Kazimierz Kuratowski en 1922 para generalizar las propiedades de los espacios euclidianos, que permiten un estudio adecuado de funciones a través del comportamiento que tienen en los conjuntos abiertos. A partir de ahí se introduce la noción de continuidad que extiende a la definición épsilon-delta que expuso Bernard Bolzano en 1817. Además de esto, en este capítulo también tratamos el concepto actual de compacidad exhibido por Pavel Alexandrov y Pavel Urysohn en 1929, el cual es central en este trabajo. Algunas de las definiciones con las que trabajamos en este capítulo se basaron en \cite{diaz_curso_2005}.
 
 
 
@@ -297,7 +297,7 @@ Hemos dividido nuestra exposición en seis capítulos. El tema que tratamos en el 
 
 \begin{itemize}
 \item \sout{Hablar de topología y continuidad.}
-\item \sout{Kazimierz Kuratowski en 1922 introdujo la generalización de un espacio de Haussdorff. Referencia: Crom, Principles of Topology p. 129.}
+\item \sout{Kazimierz Kuratowski en 1922 introdujo la generalización de un espacio de Hausdorff. Referencia: Crom, Principles of Topology p. 129.}
 \item \sout{Compacidad definida por Pavel Alexandrov y Pavel Urysohn en 1929.}
 \item Hablar teorema de Heine Borel.
 \item Hablar de convergencia.
@@ -653,7 +653,7 @@ Sea $X$ un espacio topológico. Diremos que $X$ es \textit{Hausdorff} si para tod
 \end{Def}
 
 \begin{Prop} \label{Prop:AbiertosSeparanCompactosEnHausdorff}
-Sea $X$ un espacio topológico Hausdorff. Si $A$ y $B$ son dos conjuntos compactos disjuntos en $X$ entonces existen abiertos disjuntos $U$ y $V$ tales que $A \subseteq U$ y $B \subseteq V$.
+Sea $X$ un espacio topológico Hausdorff. Si $A$ y $B$ son dos conjuntos compactos disjuntos en $X$, entonces existen abiertos disjuntos $U$ y $V$ tales que $A \subseteq U$ y $B \subseteq V$.
 \end{Prop}
 
 \begin{Dem}
@@ -706,7 +706,7 @@ Formalmente una \textit{sucesión} en un conjunto $X$ es una función $s: \N \to X
 Una propiedad fundamental que una sucesión puede tener es que sea convergente. Intuitivamente, esto significa que los términos de la sucesión se van acercando a un punto conforme avanzamos en la sucesión. Esta idea se precisa de manera abstracta cuando se cuenta con una topología, como lo hacemos a continuación.
 
 \begin{Def}
-Sea $X$ un espacio topológico y $(x_n)_{n\in\N}$ una sucesión. Si existe $x \in X$ tal que para cada vecindad abierta $U$ de $x$ existe $N \in \N$ tal que $x_n \in U$ para $n \geq n$, entonces decimos que $(x_n)_{n\in\N}$ \textit{converge} a $x$, que $x$ es el \textit{límite} de $(x_n)_{n\in\N}$ y lo denotamos por $x_n \to x$.
+Sean $X$ un espacio topológico y $(x_n)_{n\in\N} \subseteq X$ una sucesión. Si existe $x \in X$ tal que para cada vecindad abierta $U$ de $x$ existe $N \in \N$ tal que $x_n \in U$ para $n \geq n$, entonces decimos que $(x_n)_{n\in\N}$ \textit{converge} a $x$, que $x$ es el \textit{límite} de $(x_n)_{n\in\N}$ y lo denotamos por $x_n \to x$.
 \end{Def}
 
 \begin{Ejem}
@@ -714,7 +714,7 @@ Sean $X$ un espacio topológico y $x \in X$. Entonces la sucesión constante $(x_n
 \end{Ejem}
 
 \begin{Prop} \label{Prop:UnicidadLimiteHausdorff}
-Sean $X$ es un espacio topológico y $(x_n)_{n \in \N}$ una sucesión en $X$ convergente. Si $X$ es Hausdorff, entonces el límite de $(x_n)_{n\in\N}$ es único.
+Sean $X$ un espacio topológico y $(x_n)_{n \in \N}$ una sucesión convergente en $X$. Si $X$ es Hausdorff, entonces el límite de $(x_n)_{n\in\N}$ es único.
 \end{Prop}
 
 \begin{Dem}
@@ -1365,7 +1365,7 @@ Sea $f: \R_c \to \R$ una función continua. Mostremos que $f$ es constante. Supon
 
 Un caso fundamental de espacios métricos son los espacios normados, en los que además de contar con la topología que induce la métrica, también tenemos una estructura algebraica de espacio vectorial compatible con esta topología.  
 
-A lo largo de este trabajo denotaremos por $\K$ al campo de los números reales o de los números complejos. Todos los espacios vectoriales que consideraremos serán sobre $\K$.
+A lo largo de este trabajo denotaremos por $\K$ al campo de los números reales o de los números complejos. Todos los espacios vectoriales que consideraremos serán sobre $\K$. Para $z \in \C$, denotaremos por $\Re(z)$ a la parte real de $z$ y por $\Im(z)$ a su parte imaginaria.
 
 Sea $V$ un espacio vectorial  y $x_1, \ldots, x_n \in V$, $n \in \N$. El espacio generado por un conjunto $A \subseteq V$ se denotará por $\mbox{span}\, A$ y está definido como  $$\mbox{span} \, A  : = \left\{ \sum_{i=1}^n a_i x_i : n\in \N,  a_1, \ldots, a_n  \in \K, x_1, \ldots, x_n \in A \right\}.$$
 
@@ -1775,37 +1775,26 @@ Los espacios normados $c$ y $c_0$ son completos.
 \end{Tma}
 
 \begin{Dem}
-Puesto que $\ell_\infty$ es completo, por el lema~\ref{Lema:EspacioMetricoCompletoEntoncesCerrado} se tiene que es suficiente demostrar que $c$ y $c_0$ son cerrados en $\ell_\infty$.
+Puesto que $\ell_\infty$ es completo, por el lema~\ref{Lema:EspacioMetricoCompletoEntoncesCerrado} es suficiente demostrar que $c$ y $c_0$ son cerrados en $\ell_\infty$.
 
-Veamos primero que $c$ es cerrado. Sea $(f_n)_{n \in \N} \subseteq c$ una sucesión que converge a $f \in \ell_\infty$. Para que $c$ sea cerrado hay que demostrar que $f \in c$, es decir, que $(f(k))_{k \in\N}$ converge. Puesto que cada $f_n \in c$, existe $x_n \in \K$ tal que $\lim_{k \to \infty} f_n(k) = x_n$. Demostremos que $(x_n)_{n \in\N}$ es de Cauchy. Tomemos $\varepsilon > 0$. Dado que $(f_n)_{n \in \N}$ converge, es de Cauchy. Así que existe $N_1 \in \N$ tal que 
+Veamos primero que $c$ es cerrado. Sea $(f_n)_{n \in \N} \subseteq c$ una sucesión que converge a $f \in \ell_\infty$. Para que $c$ sea cerrado hay que demostrar que $(f(k))_{k \in\N}$ converge. 
+
+Puesto que $f_n \to f$ en $\ell_\infty$, existe $N \in \N$ tal que
 \begin{equation} \label{Eq:cEsCompleto1}
-\abs{f_n(k) - f_m(k)} \leq \Norm{f_n - f_m}_\infty  < \frac{\varepsilon}{3}, \mbox{ para todas } k \in \N \mbox{ y } n, m \geq N_1.
-\end{equation} 
-
-Además, como $\lim_{k \to \infty} f_n(k) = x_n$ para cada $n \in\N$, podemos tomar $M_n \in \N$ de forma que 
-\begin{equation} \label{Eq:cEsCompleto2}
-\abs{f_n(k) - x_n} < \frac{\varepsilon}{3} \mbox{ siempre que } k \geq M_n.
-\end{equation}  
-
-Tomemos $n, m \geq N_1$ y notemos que con $k \geq \max(M_n, M_m)$ de (\ref{Eq:cEsCompleto1}) y (\ref{Eq:cEsCompleto2}) resulta que
-$$\abs{x_n - x_m} \leq \abs{x_n - f_n(k)} + \abs{f_n(k) - f_m(k)} + \abs{f_m(k) - x_m} < \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3} = \varepsilon.$$
-
-Entonces $(x_n)_{n \in \N}$ es de Cauchy y como $\K$ es completo, existe $x \in \K$ tal que $x_n \to \K$. Demostremos que $ \lim_{k \to \infty} f(k) \to x$. Sea $\varepsilon > 0$. Para toda $n \in N$, tomemos $M_n$ como en (\ref{Eq:cEsCompleto2}). Puesto que $x_n \to x$ existe $N_2 \in \N$ de manera que
-\begin{equation} \label{Eq:cEsCompleto3}
-\abs{x_n - x} < \frac{\varepsilon}{3} \mbox{ cuando } n \geq N_2.
-\end{equation} 
-
-Por último, dado que $f_n \to f$ en $\ell_\infty$, existe $N_3 \in \N$ tal que
-\begin{equation} \label{Eq:cEsCompleto4}
-\abs{f(k) - f_n(k)} \leq \Norm{f - f_n}_\infty < \frac{\varepsilon}{3} \mbox{ para } n \geq N_3 \mbox{ y } k \in \N.
+\abs{f(k) - f_n(k)} \leq \Norm{f - f_n}_\infty < \frac{\varepsilon}{3} \mbox{ para } n \geq N \mbox{ y } k \in \N.
 \end{equation}
 
-Sea $n \geq \max(N_2, N_3)$. Entonces para toda $k \geq M_n$, por (\ref{Eq:cEsCompleto2}), (\ref{Eq:cEsCompleto3}) y (\ref{Eq:cEsCompleto4}) se cumple que
-$$\abs{f(k) - x} \leq  \abs{f(k) - f_n(k)} + \abs{f_n(k) - x_n} + \abs{x_n - x} < \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3} = \varepsilon.$$
+Dado que $f_N$ converge, es de Cauchy. Así que existe $K \in \N$ tal que 
+\begin{equation} \label{Eq:cEsCompleto2}
+\abs{f_N(n) - f_N(m)}  < \frac{\varepsilon}{3}, \mbox{ para todas } n, m \geq K.
+\end{equation} 
 
-Por lo tanto $f$ converge a  $x$ y así $c$ es cerrado.
+De esta manera, al tomar $n, m \geq K$ de (\ref{Eq:cEsCompleto1}) y (\ref{Eq:cEsCompleto2}) se sigue que
+$$\abs{f(n) - f(m)} \leq \abs{f(n) - f_N(n)} + \abs{f_N(n) - f_N(m)} + \abs{f_N(m) - f(m)} < \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3} = \varepsilon.$$
 
-Ahora veamos que $c_0$ es cerrado. Sea $(f_n)_{n \in \N} \subseteq c_0$ una sucesión que converge a $f \in \ell_\infty$. Para que $c_0$ sea cerrado hay que demostrar que $f \in c_0$. Tomemos entonces $\varepsilon > 0$. Como $f_n \to f$ en $\ell_\infty$, existe $N \in \N$ tal que $\Norm{f - f_n}_{\infty} < \med{\varepsilon}$ si $n \geq N$. Luego, $\abs{f(k) - f_N(k)} < \med{\varepsilon}$ para toda $k \in \N$. Dado que $f_N \in c_0$, existe $M \in \N$ tal que $\abs{f_N(k)} < \med{\varepsilon}$ si $k \geq M$. De esto se siga que si $k \geq M$ entonces
+Por lo tanto $(f(k))_{k \in\N} \subseteq \K$ es de Cauchy y al ser $\K$ completo, se sigue que $f$ converge.
+
+Ahora veamos que $c_0$ es cerrado. Sea $(f_n)_{n \in \N} \subseteq c_0$ una sucesión que converge a $f \in \ell_\infty$. Para que $c_0$ sea cerrado hay que demostrar que $f \in c_0$. Tomemos entonces $\varepsilon > 0$. Como $f_n \to f$ en $\ell_\infty$, existe $N \in \N$ tal que $\Norm{f - f_n}_{\infty} < \med{\varepsilon}$ si $n \geq N$. Luego, $\abs{f(k) - f_N(k)} < \med{\varepsilon}$ para toda $k \in \N$. Dado que $f_N \in c_0$, existe $M \in \N$ tal que $\abs{f_N(k)} < \med{\varepsilon}$ si $k \geq M$. De esto se sigue que si $k \geq M$ entonces
 $$\abs{f(k)} \leq \abs{f(k) - f_N(k)} + \abs{f_N(k)} < \med{\varepsilon} + \med{\varepsilon} = \varepsilon.$$
 \end{Dem}
 
@@ -1826,15 +1815,15 @@ T: \K^n & \to X \\
 (a_1, \ldots, a_n) & \mapsto \sum_{i=1}^n a_i x_i.
 } 
 
-Si $a = (a_1, \ldots, a_n), b = (b_1, \ldots, b_n) \in \K^n$ cumplen que $T(a) = T(b)$, entonces $\sum_{i=1}^n (a_i - b_i)x_i = 0$. Como $\{x_1, \ldots, x_n \}$ es linealmente independiente, entonces $a_1 - b_1 = \ldots = a_n - b_n = 0$. Así que $a = b$ y $T$ es inyectiva. 
-
-Sea $x \in X$. Como $\{x_1, \ldots, x_n \}$ genera a $X$, existen $a_1, \ldots, a_n \in \K$ tales que $x = \sum_{i=1}^n a_i x_i = T(a_1, \ldots, a_n)$ y así $T$ es sobreyectiva. 
-
 Veamos que $T$ es lineal. Dados $(a_1, \ldots, a_n), (b_1, \ldots, b_n) \in \K^n$ y $\lambda \in \K$, se tiene que
 \Ecu{
 T((a_1, \ldots, a_n) + \lambda (b_1, \ldots, b_n)) &= T((a_1 + \lambda b_1, \ldots, a_n + \lambda b_n)) = \sum_{i=1}^n (a_i + \lambda b_i) x_i \\
 &= \sum_{i=1}^n a_i  x_i +  \lambda\sum_{i=1}^n  b_i x_i = T(a_1, \ldots, a_n) + \lambda T(b_1, \ldots, b_n).
 }
+
+Si $a = (a_1, \ldots, a_n) \in \K^n$ cumple que $T(a) = 0$, entonces $\sum_{i=1}^n a_i x_i = 0$. Como $\{x_1, \ldots, x_n \}$ es linealmente independiente, entonces $a_1 = \ldots = a_n = 0$. Así que $a = 0$ y $T$ es inyectiva. 
+
+Para probar que $T$ es sobreyectiva tomemos $x \in X$. Como $\{x_1, \ldots, x_n \}$ genera a $X$, entonces existen $a_1, \ldots, a_n \in \K$ tales que $x = \sum_{i=1}^n a_i x_i = T(a_1, \ldots, a_n)$ como se quería. 
 
 Ahora, tomemos $(a_1, \ldots, a_n) \in \K^n$. Por la desigualdad del triángulo y la desigualdad de Schwarz 
 \Ecu{
@@ -1852,7 +1841,7 @@ $$\frac{\Norm{x}}{\Norm{T^{-1}(x)}} = \Norm{T\left(\frac{T^{-1}(x)}{\Norm{T^{-1}
 
 De donde $\Norm{T^{-1}(x)} \leq \frac{1}{m} \Norm{x}$. Por lo cual $T^{-1}$ es continua y $T$ es un isomorfismo de espacios normados. 
 
-Análogamente, como $\dim \, Y =  \dim \,  X  = n$, entonces existe un  isomorfismo de espacios normados  $S: \K^n \to Y$. Resulta pues que $S\circ T^{-1} : X \to Y$ es un isomorfismo de espacios normados entre $X$ y $Y$.
+Análogamente, como $\dim \, Y =  \dim \,  X  = n$, entonces existe un  isomorfismo de espacios normados  $S: \K^n \to Y$. Resulta pues de esto que $S\circ T^{-1} : X \to Y$ es un isomorfismo de espacios normados entre $X$ y $Y$.
 \end{Dem}
 
 \begin{Lema} \label{Lema:IsomorfimoDeEspaciosNormadosPreservaCompletez}
@@ -1990,9 +1979,9 @@ $$f(x) = h(F(x)) = \ov{h}(g_1(x), \ldots, g_n(x)) = \ov{h}\left(\sum_{i=1}^n g_i
 Esto indica que $f = \sum_{i=1}^n \ov{h}(e_i) g_i$ y entonces $f \in \Span \{ g_1, \ldots, g_n \}$.
 \end{Dem}
 
-\begin{Prop} \label{Prop:DistanciaDeMultiploASubespacio}
+\begin{Lema} \label{Lema:DistanciaDeMultiploASubespacio}
 Sean $X$ un espacio normado, $Y \subseteq X$ un subespacio de $X$ y $x \in X$. Entonces para todo $\lambda \in \K$, se cumple que $ \abs{\lambda} d(x, Y) \leq d(\lambda x, Y).$ 
-\end{Prop}
+\end{Lema}
 
 \begin{Dem}
 Si $\lambda = 0$, entonces $\abs{\lambda} d(x, Y) = 0 = d(\lambda x , Y)$ y se cumple lo requerido. Así  que consideremos ahora el caso $\lambda \neq 0$ y procedamos por contradicción, es decir, supongamos que $\abs{\lambda} d(x, Y) > d(\lambda x, Y)$. Al definir $\varepsilon := \abs{\lambda} d(x, Y) - d(\lambda x, Y) > 0$, resulta de una propiedad del ínfimo que existe $y \in Y$ tal que $$\Norm{\lambda x - y} < d(\lambda x, Y) + \varepsilon = \abs{\lambda} d(x, Y) \leq \abs{\lambda} \Norm{x- \frac{y}{\lambda}} = \Norm{\lambda x - y},$$ lo cual es una contradicción.  
@@ -2025,13 +2014,13 @@ Es decir, $\sum_{i=1}^n a_i b_i = 0$ para todos $b_1, \ldots, b_n \in \K$. Si fi
 
 Consideremos ahora el caso en el que no todos los funcionales $\varphi_1, \ldots, \varphi_n$ son cero. Entonces reordenemos $\varphi_1, \ldots, \varphi_n$ de tal manera que exista $1 \leq m \leq n$ tal que $\varphi_1, \ldots, \varphi_m$ sean linealmente independientes y $\Span \{ \varphi_1, \ldots, \varphi_m \} = \Span \{ \varphi_1, \ldots, \varphi_n \}$. 
 
-Definamos $F: X \to \K^m$ por $F(x) = (\varphi_1(x), \ldots, \varphi_m(x))$ para toda $x \in X$. En (\ref{Eq:LinealF}) se probo que $F$ es lineal. Demostremos que $F$ es sobreyectiva. Supongamos que no lo es. Entonces $F(X)$ es un subespacio propio de $\K^m$, por lo que del lema~\ref{Lema:ComplementoOrtogonalNoTrivial} existe $c = (c_1, \ldots, c_m) \in \K^m \setminus \{ 0 \}$ tal que $$\sum_{i=1}^m c_i y_i = 0 \mbox{ para todo } y = (y_1, \ldots, y_m) \in T(X).$$ 
+Definamos $F: X \to \K^m$ por $F(x) = (\varphi_1(x), \ldots, \varphi_m(x))$ para toda $x \in X$. En (\ref{Eq:LinealF}) se probó que $F$ es lineal. Demostremos que $F$ es sobreyectiva. Supongamos que no lo es. Entonces $F(X)$ es un subespacio propio de $\K^m$, por lo que del lema~\ref{Lema:ComplementoOrtogonalNoTrivial} existe $c = (c_1, \ldots, c_m) \in \K^m \setminus \{ 0 \}$ tal que $$\sum_{i=1}^m c_i y_i = 0 \mbox{ para todo } y = (y_1, \ldots, y_m) \in T(X).$$ 
 
 Esto nos indica que para todo $x \in X$ se tiene que $\sum_{i=1}^m c_i \varphi_i(x) = 0$ y por lo tanto $\sum_{i=1}^m c_i\varphi_i = 0$, lo que contradice que $\varphi_1, \ldots, \varphi_m$ son independientes. Luego $F$ es sobreyectiva.
 
 Sea $y \in F^{-1}(a_1, \ldots, a_m)$. Probemos que $\varphi_i(y) = a_i$ para toda $i \in \nn{n}$. Si $m = n$ no hay nada que probar. Supongamos entonces que $m < n$. Claramente $\varphi_i(y) = a_i$ para $1 \leq i \leq m$. Así que fijemos $m+1 \leq i \leq n$. Puesto que $\varphi_i \in \Span \{ \varphi_1, \ldots, \varphi_m \}$, del lema~\ref{Lema:ComplementoOrtogonalNoTrivial} existen $b_1, \ldots, b_m \in\K $ tales que $\varphi_i = \sum_{j=1}^m b_j \varphi_j$. Al definir $b_i = -1$ y $b_j = 0$ para $j \in \{ m+1, \ldots, n \} \setminus \{ i \}$ resulta de \textbf{ii)} que $$\abs{\varphi_i(y) - a_i} = \abs{\sum_{j=1}^m b_j \varphi_j(y) - a_i} = \abs{\sum_{j=1}^n a_j b_j} \leq \Norm{\sum_{j=1}^n  b_j \varphi_j } = \Norm{\sum_{j=1}^m  b_j \varphi_j - \varphi_i} = \Norm{0} = 0. $$ y entonces $\varphi_i(y) = a_i$.
 
-Consideremos el subespacio $K = \bigcap_{i=1}^n \Ker \, \varphi_i$ de $X$. Si $y \in \K$, entonces $a_i = \varphi_i(y) = 0$ para toda $i \in \nn{n}$, por lo que $x = 0$ cumple lo requerido. Supongamos entonces que $y \notin K $ y definamos en $\Span \{ K \cup \{y\} \} = \{ z + \lambda y: z \in K, \lambda \in \K \}$ linealmente la función $\psi$ de tal manera que $\psi(y) = d(y, K)$ y $\psi(K) = 0$. Demostremos que $\psi$ es continua. Al tomar $z + \lambda y \in \Span \{ K \cup \{y\} \}$, $z \in K$, $\lambda \in \K$ de la proposición~\ref{Prop:DistanciaDeMultiploASubespacio}  resulta que 
+Consideremos el subespacio $K = \bigcap_{i=1}^n \Ker \, \varphi_i$ de $X$. Si $y \in \K$, entonces $a_i = \varphi_i(y) = 0$ para toda $i \in \nn{n}$, por lo que $x = 0$ cumple lo requerido. Supongamos entonces que $y \notin K $ y definamos en $\Span \{ K \cup \{y\} \} = \{ z + \lambda y: z \in K, \lambda \in \K \}$ linealmente la función $\psi$ de tal manera que $\psi(y) = d(y, K)$ y $\psi(K) = 0$. Demostremos que $\psi$ es continua. Al tomar $z + \lambda y \in \Span \{ K \cup \{y\} \}$, $z \in K$, $\lambda \in \K$ del lema~\ref{Lema:DistanciaDeMultiploASubespacio}  resulta que 
 \Ecu{
 \abs{\psi(z+ \lambda y)} &=  \abs{\psi(z) + \lambda \psi(y)} = \abs{\lambda} \abs{\psi(y)} = \abs{\lambda} d(y, K) \\
 & = d(\lambda y, K) \leq \Norm{\lambda y - (-z)} = \Norm{z + \lambda  y},
@@ -2086,7 +2075,7 @@ Así pues $\Norm{Jx} \geq \Norm{x}$. El lema~\ref{Lema:DeltaContinua} indica que 
 
 Dado que $J$ es una isometría lineal, resulta que $J$ es inyectiva. Más adelante mostraremos que $J$ no siempre es sobreyectiva. Los conceptos que introduciremos a continuación tienen el propósito de estudiar cuándo $J$ es sobreyectiva.
 
-Sean $X$ y $Y$ espacios normados. El \textit{operador transpuesto} de un operador lineal continuo $T: X \to Y$ es la función $T^\Sft : Y^* \to X^*$ definido por $$T^\Sft\varphi := \varphi \circ T \mbox{ para }\varphi \in Y^*.$$ 
+Sean $X$ y $Y$ espacios normados. El \textit{operador transpuesto} de un operador lineal continuo $T: X \to Y$ es la función $T^\Sft : Y^* \to X^*$ definida por $$T^\Sft\varphi := \varphi \circ T \mbox{ para }\varphi \in Y^*.$$ 
 
 Como $T^\Sft\varphi$ es  composición de operadores lineales continuos, entonces es lineal y continuo. Así que $T^\Sft$ está bien definido.
 
@@ -3187,15 +3176,14 @@ p_i(x - [\lambda y + (1-\lambda) z])  &\leq p_i(\lambda(x- y)) + p_i((1-\lambda)
 Por lo tanto $\lambda y + (1-\lambda) z \in U$ y así $U$ es convexo.
 \end{Dem}
 
-Existen algunas versiones de los teoremas de Hahn-Banach que se enuncian sobre espacios vectoriales topológicos localmente convexos en lugar de espacios normados como se puede encontrar en \cite[cap. 7]{narici_topological_2010}. Además se cumple que la topología de todo espacio vectorial topológico localmente convexo está generada por una familia de seminormas. Esto se demuestra en \cite[cap. 5]{narici_topological_2010}.
+Cabe observar que existen algunas versiones de los teoremas de Hahn-Banach que se extienden a espacios vectoriales topológicos localmente convexos en lugar de espacios normados, como se puede encontrar en \cite[cap. 7]{narici_topological_2010}. Además se cumple que la topología de todo espacio vectorial topológico localmente convexo está generada por una familia de seminormas. Esto se demuestra en \cite[cap. 5]{narici_topological_2010}.
 
 \begin{Lema} \label{Lema:CaracterizacionAcotadoEnTopologiaSeminormas}
 Sea $X$ un espacio vectorial con la topología generada por una familia no vacía de seminormas $\calF$ que separa puntos en $X$. Entonces $B \subseteq X$ es acotado si, y sólo si $p(B)\subseteq \R$ es acotado para toda $p \in \calF$.
 \end{Lema}
 
 \begin{Dem}
-Supongamos primero que $B$ es acotado y sea $p \in \calF$. Entonces $U := U_{0, p, 1} = \{ x \in X : p(x) < 1 \}$ es una vecindad abierta del $0$. Entonces existe $r > 0$ tal que $B \subseteq r U$. Luego
-$$p(B) \subseteq p(r U) = r p(U) \subseteq r [0, 1) = [0 , r).$$
+Supongamos primero que $B$ es acotado y tomemos alguna $p \in \calF$. Entonces el conjunto $U := U_{0, p, 1} = \{ x \in X : p(x) < 1 \}$ es una vecindad abierta del $0$. Entonces existe $r > 0$ tal que $B \subseteq r U$. Así que $p(B) \subseteq p(r U) = r p(U) \subseteq r [0, 1) = [0 , r).$
 
 Ahora supongamos que $p(B)$ es un conjunto acotado para toda $p \in \calF$. Sea $U := U_{0, p_1, \ldots, p_k, \varepsilon}$ una vecindad abierta del cero, para algunos $k \in \N$, $p_1, \ldots, p_k \in \calF$ y $\varepsilon > 0$. Para cada $1 \leq i \leq k$ se tiene que $p_i(B)$ es acotado y por lo tanto $B$ existe $m_i > 0$ tal que $p_i(B)$ está acotado por $m_i$. Al tomar $r = \frac{1}{\varepsilon}\max (m_1, \ldots, m_k) > 0$ se sigue que si $s \geq r$, entonces para $x \in B$, $ p_i(x) \leq m_i \leq s\varepsilon $ para toda $i \in \nn{k}$. Así que $p(s^{-1}x) = s^{-1} p_i(x) < \varepsilon$. Luego, $s^{-1} x \in U$. Entonces $B \subseteq sU.$ y $B$ es acotado.
 \end{Dem}
@@ -3310,7 +3298,7 @@ Sea $E$ un espacio vectorial topológico. Si $F$ es un subespacio de dimensión fi
 \end{Cor}
 
 \begin{Dem}
-La proposición~\ref{Prop:DimensionFinitaEVTCompleto} indica que $F$ es completo. Del lema~\ref{Lema:EVTCompletoEntoncesCerrado} se concluye que $F$ es cerrado en $E$.
+La proposición~\ref{Prop:DimensionFinitaEVTCompleto} indica que $F$ es completo. Luego, del lema~\ref{Lema:EVTCompletoEntoncesCerrado} se concluye que $F$ es cerrado en $E$.
 \end{Dem}
 
 A pesar de que uno de nuestros principales objetivos es encontrar una topología vectorial de un espacio normado $X$ donde la bola unitaria sea compacta, el siguiente teorema nos indica que cuando $\dim \, X = \infty$ en tal topología la bola unitaria no es una vecindad del cero.
@@ -3403,6 +3391,14 @@ Supongamos primero que $A$ es $\Norm{\cdot}$-acotado. Entonces existe $t > 0$ ta
 Ahora supongamos que $A$ es $\Norm{\cdot}$-acotado. Del lema~\ref{Lema:CaracterizacionAcotadoEnTopologiaSeminormas} se sigue que para toda   $\varphi \in X^*$, se cumple que $\abs{\varphi}(A) = \{ \abs{Jx}(\varphi) : x \in A \}$ es acotado. Como $X^*$ es un espacio de Banach, por el principio de acotamiento uniforme se cumple que $\{ Jx : x \in A\}$ es acotado en $X^{**} = \calL(X^*, \K)$. Por lo tanto existe $t > 0$ tal que $\Norm{x} = \Norm{Jx} < t$ para toda $x \in A$ y así $A$ es acotado.  
 \end{Dem}
 
+\begin{Cor} \label{Cor:SucesionDebilmenteConvergenteEsAcotado}
+Sean $X$ un espacio normado y $(x_n)_{n \in \N} \subseteq$ una sucesión. Si $x_n \stackrel{\mathrm{w}}{\longrightarrow} x$ para algún $x \in X$, entonces $\{ x_n : n \in \N \}$ es un conjunto $\Norm{\cdot}$-acotado.
+\end{Cor}
+
+\begin{Dem}
+Por la proposición~\ref{Prop:SucesionConvergenteCompacta} tenemos que $\{x_n : n \in \N \} \cup \{ x \}$ es un conjunto $\mathrm{w}$-compacto. Luego, de la proposición~\ref{Prop:CompactoEsAcotadoEVT} resulta que $\{x_n : n \in \N \} \cup \{ x \}$ es $\mathrm{w}$-acotado y de esta manera la proposición~\ref{Prop:CaracterizacionAcotadoTopologiaDebil} indica que también es $\Norm{\cdot}$-acotado. Finalmente, por el lema~\ref{Lema:UnionFinitaDeAcotadosEsAcotado} se concluye que $\{x_n : n \in \N \}$ es $\Norm{\cdot}$-acotado.
+\end{Dem}
+
 \begin{Ejem}
 Consideremos la sucesión de vectores canónicos $(e_n)_{n \in\N}$ en el espacio $\ell_p$, $1 \leq p \leq \infty$. Dados $n, m \in \N$ distintos se tiene que $\Norm{e_n - e_m}_p = \sqrt[p]{2}$ para $1 \leq p < \infty$ y $\Norm{e_n - e_m}_\infty = 1$, lo cual indica que $(e_n)_{n \in\N}$ no es de Cauchy y por tanto no converge en ninguno de estos espacios.
 
@@ -3430,7 +3426,7 @@ Sean $E$ un espacio vectorial topológico, $X$ un espacio normado y $T: E \to X_\
 Sea $(x_\alpha)_{\alpha \in \Lambda}$ una red en $E$ que converge a $x \in E$. Tenemos que $T$ es continua si, y sólo si $Tx_\alpha \to Tx$ en $X_\mathrm{w}$. Por el corolario~\ref{Cor:CaracterizacionConvergenciaDebil}, esto último es equivalente a que $\varphi(Tx_\alpha) \to \varphi(Tx)$ para todo $\varphi \in X^*$. Esto es $(\varphi \circ T)x_\alpha \to (\varphi \circ T) x$ para todo $\varphi \in X^*$. Dado que $\varphi \circ T$ es lineal para todo $\varphi \in X^*$, se sigue que lo anterior equivale a que $\varphi \circ T \in E^*$ para todo $\varphi \in X^*$.
 \end{Dem}
 
-La cerradura respecto a la topología débil de un subconjunto $A$ de un espacio normado $X$ se denotará por $\ov{A}^{\mathrm{w}}$. Para hacer más notoria la diferenciación respecto a la cerradura respecto a la topología original, denotaremos a esta última por $\ov{A}^{\Norm{\cdot}}$.
+La cerradura respecto a la topología débil de un subconjunto $A$ de un espacio normado $X$ se denotará por $\ov{A}^{\mathrm{w}}$. Para hacer más notoria la cerradura respecto a la topología original, denotaremos a esta última por $\ov{A}^{\Norm{\cdot}}$.
 
 \begin{Prop} \label{Prop:CerraduraDebilyOriginalDeConvexoCoinciden}
 Sea $X$ un espacio normado. Si $A \subseteq X$ es convexo, entonces $\ov{A}^{\Norm{\cdot}} = \ov{A}^{\mathrm{w}}$.
@@ -3447,10 +3443,9 @@ Para mostrar la otra contención demostremos que $X \setminus \ov{A}^{\Norm{\cdot
 Sea $\varepsilon = \alpha- \Re(\varphi(x_0)) > 0$ y consideremos la vecindad abierta $U_{x_0, \varphi, \varepsilon}$ de $x_0$ en $\tau_\mathrm{w}$. Al tomar cualquier $x \in U_{x_0, \varphi, \varepsilon}$ se tiene que
 \Ecu{
 \Re(\varphi(x)) - \Re(\varphi(x_0)) &\leq \abs{\Re(\varphi(x)) - \Re(\varphi(x_0)) } = \abs{\Re(\varphi(x) - \varphi(x_0)) } \\
-& \leq \abs{\varphi(x) - \varphi(x_0)} < \varepsilon = \alpha - \Re{\varphi(x_0)}.
+& \leq \abs{\varphi(x) - \varphi(x_0)} < \varepsilon = \alpha - \Re{\varphi(x_0)},
 }
-
-De donde $\Re(\varphi(x)) < \alpha$. Luego, por (\ref{Eq:CerradurasIguales}) se tiene que $x \notin \ov{A}^{\Norm{\cdot}}$, por lo que $x \notin A$. Esto indica que $U_{x_0, \varphi, \varepsilon} \cap A = \emptyset$. Por lo tanto $x \notin \ov{A}^{\mathrm{w}}$.
+de donde $\Re(\varphi(x)) < \alpha$. Luego, por (\ref{Eq:CerradurasIguales}) se sigue que $x \notin \ov{A}^{\Norm{\cdot}}$, por lo que $x \notin A$. Esto indica que $U_{x_0, \varphi, \varepsilon} \cap A = \emptyset$. Por lo tanto $x_0 \notin \ov{A}^{\mathrm{w}}$.
 \end{Dem}
 
 \begin{Def}
@@ -3478,39 +3473,38 @@ Sean $X$ un espacio normado y $(x_n)_{n \in \N}$ una sucesión en $X$. Si $x_n \s
 \end{Cor}
 
 \begin{Dem}
-Supongamos que $x_n \stackrel{\mathrm{w}}{\longrightarrow} 0$ y sea $A$ la envolvente convexa de $\{x_n : n \in \N \}$. Claramente, cada $x_n \in A$, para toda $n \in \N$. De la proposición~\ref{Prop:EnvolventeConvexaEsConvexa} se tiene que $A$ es convexo. Luego, por la proposición~\ref{Prop:CerraduraDebilyOriginalDeConvexoCoinciden} se tiene que $\ov{A}^{\Norm{\cdot}} = \ov{A}^{\mathrm{w}}$. Dado que $x_n \stackrel{\mathrm{w}}{\longrightarrow} 0$ y $(x_n)_{n \in \N} \subseteq A$, por la proposición~\ref{Prop:CerraduraLimiteRed} se tiene que $0 \in \ov{A}^{\mathrm{w}}$, por lo que $0 \in \ov{A}^{\Norm{\cdot}}$. Por la proposición~\ref{Prop:CerraduraLimiteSucesiones} existe una sucesión $(y_n)_{n \in\N} \subseteq A$ tal que $y_n \to 0$. Puesto que $\Norm{\cdot}$ es continua, se concluye que $\Norm{y_n} \to 0$.
+Supongamos que $x_n \stackrel{\mathrm{w}}{\longrightarrow} 0$ y sea $A$ la envolvente convexa de $\{x_n : n \in \N \}$. Claramente, cada $x_n \in A$, para toda $n \in \N$. De la proposición~\ref{Prop:EnvolventeConvexaEsConvexa} se tiene que $A$ es convexo. Luego, por la proposición~\ref{Prop:CerraduraDebilyOriginalDeConvexoCoinciden} se tiene que $\ov{A}^{\Norm{\cdot}} = \ov{A}^{\mathrm{w}}$. Dado que $x_n \stackrel{\mathrm{w}}{\longrightarrow} 0$ y $(x_n)_{n \in \N} \subseteq A$, por la proposición~\ref{Prop:CerraduraLimiteRed} se tiene que $0 \in \ov{A}^{\mathrm{w}}$, por lo que $0 \in \ov{A}^{\Norm{\cdot}}$. Por la proposición~\ref{Prop:CerraduraLimiteSucesiones} existe una sucesión $(y_n)_{n \in\N} \subseteq A$ tal que $y_n \to 0$, esto es $\Norm{y_n} \to 0$.
 \end{Dem}
 
 En la proposición~\ref{Prop:CerraduraLimiteSucesiones}, se caracteriza la cerradura de un conjunto en un espacio métrico con los límites de sus sucesiones. El siguiente ejemplo muestra que esto en general es falso cuando el espacio topológico no es metrizable.
 
 \begin{Ejem}
-Consideremos el conjunto $A := \{ e_n + n e_m : n, m \in \N, n < m \} \subseteq \ell_2$, donde $e_n$ es el $n$-ésimo vector canónico. Probemos que $0 \in \ov{A}^{\mathrm{w}}$ y que, sin embargo, no existe ninguna sucesión en $A$ que converja débilmente a $0$. 
+Consideremos el conjunto $A := \{ e_n + n e_m : n, m \in \N, n < m \} \subseteq \ell_2$, donde $e_k$ es el $k$-ésimo vector canónico en $\ell_2$. Probemos que $0 \in \ov{A}^{\mathrm{w}}$ y que, sin embargo, no existe ninguna sucesión en $A$ que converja débilmente a $0$. 
 \end{Ejem}
 
 \begin{Dem}
-Demostremos primero que $0 \in \ov{A}^{\mathrm{w}}$. Consideremos $k \in \N$, $\varepsilon > 0$ y $\varphi_1, \ldots, \varphi_k \in \ell_2^*$. Entonces queremos ver que $U_{0, \varphi_1, \ldots, \varphi_k, \varepsilon} \cap A \neq \emptyset$. 
+Veamos primero que $0 \in \ov{A}^{\mathrm{w}}$. Consideremos $k \in \N$, $\varepsilon > 0$ y $\varphi_1, \ldots, \varphi_k \in \ell_2^*$ y probemos entonces que $U_{0, \varphi_1, \ldots, \varphi_k, \varepsilon} \cap A \neq \emptyset$. 
 
-Por el teorema~\ref{Tma:DualDeEllePEsElleQ} para cada $i \in \{1, \ldots,k\}$ existe $f_i \in \ell_2$ tal que $\varphi_i = R f_i$. Dado que $f_i \in \ell_2$, se tiene que $\lim_{k \to \infty} f_i(k) = 0$. Luego, existe $N_i \in \N$ tal que 
+Por el teorema~\ref{Tma:DualDeEllePEsElleQ} para cada $i \in \{1, \ldots,k\}$ existe $f_i \in \ell_2$ tal que $\varphi_i = R f_i$, esto es $$\varphi_i(x) = \sum_{j=1}^\infty x_j \cdot f_i(j), \mbox{ para } x = (x_n)_{n \in \N} \in \ell_2. $$
+
+Dado que cada $f_i \in \ell_2$, se tiene que $\lim_{k \to \infty} f_i(k) = 0$. Luego, existe $N_i \in \N$ tal que 
 \begin{equation} \label{Eq:CeroEnCerraduraDebil1}
 \abs{f_i(k)} < \frac{\varepsilon}{2} \; \mbox{ si } \; k \geq N_i. 
 \end{equation}
 
-Tomemos $N = \max (N_1, \ldots, N_k)$ y entonces $\abs{f_i(N)} < \frac{\varepsilon}{2}$ para toda $1 \leq i \leq k$.
-
-Puesto que $\lim_{k \to \infty} f_i(k) = 0$, para cada $i \in \{1, \ldots, k\}$ existe $M_i \in \N$ tal que $N < M_i$ y 
+Al tomar $N = \max (N_1, \ldots, N_k)$, se cumple que $\abs{f_i(N)} < \frac{\varepsilon}{2}$ para toda $1 \leq i \leq k$. Además, puesto que $\lim_{k \to \infty} f_i(k) = 0$ para cada $i \in \{1, \ldots, k\}$, existe $M_i \in \N$ tal que $N < M_i$ y 
 \begin{equation} \label{Eq:CeroEnCerraduraDebil2}
 \abs{f_i(k)} < \frac{\varepsilon}{2N} \mbox{ si } k \geq M_i.
 \end{equation}
 
 Observemos que al tomar $M = \max (M_1, \ldots, M_k)$, de (\ref{Eq:CeroEnCerraduraDebil1}) y (\ref{Eq:CeroEnCerraduraDebil2}) se sigue que 
 \Ecu{
-\abs{\varphi_i(e_N + Ne_M)} &= \abs{Rf_i(e_N + N e_M)} = \abs{f_i(N) + n f_i(M)} \\
-& \leq \abs{f_i(N)} + N\abs{f_i(M)} < \frac{\varepsilon}{2} +  N \frac{\varepsilon}{2 N} = \varepsilon.
+\abs{\varphi_i(e_N + Ne_M)}  = \abs{f_i(N) + N f_i(M)} \leq \abs{f_i(N)} + N\abs{f_i(M)} < \frac{\varepsilon}{2} +  N \frac{\varepsilon}{2 N} = \varepsilon.
 } 
 
 Lo anterior indica que $e_N + Ne_M \in A\cap U_{0, \varphi_1, \ldots, \varphi_k, \varepsilon}$.
 
-Demostremos agora que no existe ninguna sucesión en $A$ que converja débilmente a cero. Supongamos entonces que sí existe una sucesión $(x_n)_{n \in \N} \subseteq A$ tal que $x_n \stackrel{\mathrm{w}}{\longrightarrow} 0$. Del corolario~\ref{Cor:CombinacionConvexaDeSucesionDebilmenteConvergente} se sigue que existe una sucesión $(y_n)_{n \in\N} \subseteq X$ en la envolvente convexa de $\{ x_n : n \in \N \}$ tal que $\Norm{y_n}_2 \to 0$.
+Demostremos ahora que no existe ninguna sucesión en $A$ que converja débilmente a cero. Supongamos entonces que sí existe una sucesión $(x_n)_{n \in \N} \subseteq A$ tal que $x_n \stackrel{\mathrm{w}}{\longrightarrow} 0$. Del corolario~\ref{Cor:CombinacionConvexaDeSucesionDebilmenteConvergente} se sigue que existe una sucesión $(y_n)_{n \in\N} \subseteq X$ en la envolvente convexa de $\{ x_n : n \in \N \}$ tal que $\Norm{y_n}_2 \to 0$.
 
 Fijemos cualquier $n \in \N$. Entonces existen $k \in \N, \lambda_1, \ldots, \lambda_k \in [0, 1]$ y $z_1, \ldots, z_k \in A$ tales que 
 $$\sum_{i=1}^k \lambda_i=1 \quad \mbox{ y } \quad y_n = \sum_{i=1}^n \lambda_i z_i.$$ 
