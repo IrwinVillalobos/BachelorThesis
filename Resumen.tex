@@ -236,7 +236,7 @@
     \begin{flushright}
     \normalsize       
     Guanajuato, México\\
-    Septiembre del 2021
+    Noviembre del 2021
     \end{flushright}
     
     \afterpage{
@@ -272,9 +272,9 @@ Desde el primer curso de cálculo que se imparte en la licenciatura en matemática
 
 Una forma de lidiar con el problema anterior es introducir otras topologías en los espacios normados de tal forma que, respetando la estructura algebraica, mantengan una relación con la topología original y tengan menos cantidad de conjuntos abiertos. Es por esto que se les llama topologías débiles. La primera de estas, la topología débil, se define como la topología más pequeña sobre un espacio normado en la cual los funcionales lineales continuos bajo la norma siguen siendo continuos. Por otro lado, la topología débil* (débil estrella) se define sobre un espacio dual como la topología más pequeña en la cual se satisface que todas las funciones de evaluación son continuas. Como fruto de todo este desarrollo, resulta que en el caso de la topología débil* la bola unitaria en el espacio dual ahora siempre es compacta.   
 
-A lo largo de este trabajo hacemos un recorrido de los conceptos y resultados necesarios para establecer la conclusión anterior, empezando desde espacios topológicos y culminando con la construcción y desarrollo de las topologías débil y débil*. Una vez introducidos los conceptos topológicos de continuidad y compacidad nos adentraremos en el marco más particular de los espacios métricos, donde dichos conceptos se pueden caracterizar por medio de la convergencia de sucesiones. Luego, especificando una vez más nuestro campo de estudio, nos enfocamos a espacios normados, donde además de contar con una distancia y su topología inducida, también tenemos una estructura de espacio vectorial. Debido a que las topologías débiles en general no son metrizables, el estudio de espacios métricos y normados no nos provee de resultados válidos para trabajar con dichas topologías. Sin embargo, estas aun conservan el vínculo entre la topología y la estructura algebraica, lo que da lugar a los espacios vectoriales topológicos. Pero antes de empezar el estudio de estos espacios, desarrollamos el concepto de red, que sustituye y generaliza el papel que  las sucesiones tienen en los espacios métricos. En este punto estaremos listos para definir las topologías débiles y estudiar en ellas la compacidad. 
+A lo largo de este trabajo hacemos un recorrido de los conceptos y resultados necesarios para establecer la conclusión anterior, empezando desde espacios topológicos y culminando con la construcción y desarrollo de las topologías débil y débil*. Una vez introducidos los conceptos topológicos de continuidad y compacidad nos adentraremos en el marco más particular de los espacios métricos, donde dichos conceptos se pueden caracterizar por medio de la convergencia de sucesiones. Luego, especificando una vez más nuestro campo de estudio, nos enfocamos a espacios normados, donde además de contar con una distancia y su topología inducida, también tenemos una estructura de espacio vectorial. Debido a que las topologías débiles en general no son metrizables, el estudio de espacios métricos y normados no nos provee de resultados válidos para trabajar con dichas topologías. Sin embargo, estas aun conservan el vínculo entre la topología y la estructura algebraica, lo que da lugar a los espacios vectoriales topológicos. Pero antes de empezar el estudio de estos espacios, desarrollamos el concepto de red, que sustituye y generaliza el papel que  las sucesiones tienen en los espacios métricos. En este punto estaremos listos para definir las topologías débiles y estudiar en ellas la compacidad. \\
 
-Hemos dividido nuestra exposición en seis capítulos. El tema que tratamos en el primer capítulo es la topología, concepto que formalizo Kazimierz Kuratowski en 1922 para generalizar las propiedades de los espacios euclidianos, que permiten un estudio adecuado de funciones a través del comportamiento que tienen en los conjuntos abiertos. A partir de ahí se introduce la noción de continuidad que extiende a la definición épsilon-delta que expuso Bernard Bolzano en 1817. Además de esto, en este capítulo también tratamos el concepto actual de compacidad exhibido por Pavel Alexandrov y Pavel Urysohn en 1929, el cual es central en este trabajo. Algunas de las definiciones con las que trabajamos en este capítulo se basaron en \cite{diaz_curso_2005}.
+Hemos dividido nuestra exposición en seis capítulos. El tema que tratamos en el primer capítulo es la topología, concepto que formalizo Kazimierz Kuratowski en 1922 para generalizar las propiedades de los espacios euclidianos, que permiten un estudio adecuado de funciones a través del comportamiento que tienen en los conjuntos abiertos \cite{croom_principles_2002}. A partir de ahí se introduce la noción de continuidad que extiende a la definición épsilon-delta que expuso Bernard Bolzano en 1817. Además de esto, en este capítulo también tratamos el concepto actual de compacidad exhibido por Pavel Alexandrov y Pavel Urysohn en 1929, el cual es central en este trabajo. Algunas de las definiciones con las que trabajamos en este capítulo se basaron en \cite{diaz_curso_2005}.
 
 
 
@@ -3504,14 +3504,16 @@ Observemos que al tomar $M = \max (M_1, \ldots, M_k)$, de (\ref{Eq:CeroEnCerradu
 
 Lo anterior indica que $e_N + Ne_M \in A\cap U_{0, \varphi_1, \ldots, \varphi_k, \varepsilon}$.
 
-Demostremos ahora que no existe ninguna sucesión en $A$ que converja débilmente a cero. Supongamos entonces que sí existe una sucesión $(x_n)_{n \in \N} \subseteq A$ tal que $x_n \stackrel{\mathrm{w}}{\longrightarrow} 0$. Del corolario~\ref{Cor:CombinacionConvexaDeSucesionDebilmenteConvergente} se sigue que existe una sucesión $(y_n)_{n \in\N} \subseteq X$ en la envolvente convexa de $\{ x_n : n \in \N \}$ tal que $\Norm{y_n}_2 \to 0$.
+Demostremos ahora que no existe ninguna sucesión en $A$ que converja débilmente a cero. Supongamos entonces que sí existe una sucesión $(x_k)_{k \in \N} \subseteq A$ tal que $x_k \stackrel{\mathrm{w}}{\longrightarrow} 0$. Entonces existen sucesiones $(a_k)_{k\in\N}$ y $(b_k)_{k\in \N}$ en $\N$ tales que $x_k = e_{a_k} + a_k e_{b_k}$ y $a_k < b_k$ para toda $k \in \N$.  Del corolario~\ref{Cor:SucesionDebilmenteConvergenteEsAcotado} se tiene que $\{ x_k : k \in \N \}$ es un conjunto acotado. Así que existe $K \in \N$ tal que $$a_k = \Norm{a_k e_{b_k}}_2 \leq \Norm{ e_{a_k} + a_k e_{b_k} }_2 = \Norm{x_2}_2 \leq K.$$
 
-Fijemos cualquier $n \in \N$. Entonces existen $k \in \N, \lambda_1, \ldots, \lambda_k \in [0, 1]$ y $z_1, \ldots, z_k \in A$ tales que 
-$$\sum_{i=1}^k \lambda_i=1 \quad \mbox{ y } \quad y_n = \sum_{i=1}^n \lambda_i z_i.$$ 
+Consideremos $f \in \ell_2$ definida en $k \in \N$ por 
+$$f(k) = \begin{cases} 1, \mbox{ si } 1 \leq k  \leq K; \\
+0, \mbox{ si } K < k.
+\end{cases}$$
 
-Como cada $z_i = e_{a_i} + a_i e_{b_i}$ para algunos $a_i, b_i \in \N$, $a_i < b_i$, entonces tenemos que 
-
+Del teorema~\ref{Tma:DualDeEllePEsElleQ} se tiene que $Rf \in \ell_2^*$. Por un lado como $x_k \stackrel{\mathrm{w}}{\longrightarrow} 0$ del corolario~\ref{Cor:CaracterizacionConvergenciaDebil} resulta que $Rf(x_k) \to 0$, mientras que por otro lado para cada $k \in \N$, se tiene que $Rf(x_k) = 1 + a_k \chi_{ \{ 1, \ldots, K \} }(b_k) \geq 1$, donde $\chi$ es la función característica. Esto es una contradicción y así no existe $(x_n)_{n\in \N}\subseteq A$ con $x_k \stackrel{\mathrm{w}}{\longrightarrow} 0$.
 \end{Dem}
+
 
 \section{Topología débil*}
 
