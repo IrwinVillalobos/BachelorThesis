@@ -270,13 +270,45 @@
 
 Desde el primer curso de cálculo que se imparte en la licenciatura en matemáticas se tiene un encuentro indirecto con la compacidad por medio de las propiedades que tienen los intervalos cerrados y acotados. Ya en los cursos de análisis se trabaja con la compacidad en el marco de espacios métricos y se demuestra que en el caso particular de $\R^n$, podemos identificar a los conjuntos compactos como aquellos que son cerrados y acotados. En cursos más avanzados de análisis se prueba que en los espacios normados de dimensión infinita esto ya no sucede, más aún la bola cerrada unitaria ya no es compacta en estos espacios. La escasez de conjuntos compactos en un espacio normado de dimensión infinita dificulta en gran medida el estudio de las funciones ahí definidas, puesto que la compacidad del dominio de una función continua hace que ésta tenga cualidades importantes.
 
-Una forma de lidiar con el problema anterior es introducir otras topologías en los espacios normados de tal forma que, respetando la estructura algebraica, mantengan una relación con la topología original y tengan menos cantidad de conjuntos abiertos. Es por esto que se les llama topologías débiles. La primera de estas, la topología débil, se define como la topología más pequeña sobre un espacio normado en la cual los funcionales lineales continuos bajo la norma siguen siendo continuos. Por otro lado, la topología débil* (débil estrella) se define sobre un espacio dual como la topología más pequeña en la cual se satisface que todas las funciones de evaluación son continuas. Como fruto de todo este desarrollo, resulta que en el caso de la topología débil* la bola unitaria en el espacio dual ahora siempre es compacta.   
+Una forma de lidiar con el problema anterior es introducir otras topologías en los espacios normados de tal forma que, respetando la estructura algebraica, mantengan una relación con la topología original y tengan menos cantidad de conjuntos abiertos. Es por esto que se les llama topologías débiles. La primera de estas, la topología débil, se define como la topología más pequeña sobre un espacio normado en la cual los funcionales lineales continuos bajo la norma siguen siendo continuos. Por otro lado, la topología débil* (débil estrella) se define sobre un espacio dual como la topología más pequeña en la cual se satisface que todas las funciones de evaluación son continuas. Desde principios del siglo XX, David Hilbert y Frigyes Riesz ya habían trabajado con la convergencia débil en $L_2[0, 1]$ y $L_p[0, 1]$ respectivamente, pero fue Von Neumman quien vio que precisamente lo anterior provenía de una topología. Como fruto de todo este desarrollo, resulta que en el caso de la topología débil* la bola unitaria en el espacio dual ahora siempre es compacta. 
 
-A lo largo de este trabajo hacemos un recorrido de los conceptos y resultados necesarios para establecer la conclusión anterior, empezando desde espacios topológicos y culminando con la construcción y desarrollo de las topologías débil y débil*. Una vez introducidos los conceptos topológicos de continuidad y compacidad nos adentraremos en el marco más particular de los espacios métricos, donde dichos conceptos se pueden caracterizar por medio de la convergencia de sucesiones. Luego, especificando una vez más nuestro campo de estudio, nos enfocamos a espacios normados, donde además de contar con una distancia y su topología inducida, también tenemos una estructura de espacio vectorial. Debido a que las topologías débiles en general no son metrizables, el estudio de espacios métricos y normados no nos provee de resultados válidos para trabajar con dichas topologías. Sin embargo, estas aun conservan el vínculo entre la topología y la estructura algebraica, lo que da lugar a los espacios vectoriales topológicos. Pero antes de empezar el estudio de estos espacios, desarrollamos el concepto de red, que sustituye y generaliza el papel que  las sucesiones tienen en los espacios métricos. En este punto estaremos listos para definir las topologías débiles y estudiar en ellas la compacidad. \\
+A lo largo de este trabajo hacemos un recorrido de los conceptos y resultados necesarios para establecer la conclusión anterior, empezando desde espacios topológicos y culminando con la construcción y desarrollo de las topologías débil y débil*. Una vez introducidos los conceptos topológicos de continuidad y compacidad nos adentraremos en el marco más particular de los espacios métricos, donde dichos conceptos se pueden caracterizar por medio de la convergencia de sucesiones. Luego, especificando una vez más nuestro campo de estudio, nos enfocamos a espacios normados, donde además de contar con una distancia y su topología inducida, también tenemos una estructura de espacio vectorial. Debido a que las topologías débiles en general no son metrizables, el estudio de espacios métricos y normados no nos provee de resultados válidos para trabajar con dichas topologías. Sin embargo, estas aun conservan el vínculo entre la topología y la estructura algebraica, lo que da lugar a los espacios vectoriales topológicos. Pero antes de empezar el estudio de estos espacios, desarrollamos el concepto de red, que sustituye y generaliza el papel que  las sucesiones tienen en los espacios métricos. En este punto estaremos listos para definir las topologías débiles y estudiar en ellas la compacidad.
 
-Hemos dividido nuestra exposición en seis capítulos. El tema que tratamos en el primer capítulo es la topología, concepto que formalizo Kazimierz Kuratowski en 1922 para generalizar las propiedades de los espacios euclidianos, que permiten un estudio adecuado de funciones a través del comportamiento que tienen en los conjuntos abiertos \cite{croom_principles_2002}. A partir de ahí se introduce la noción de continuidad que extiende a la definición épsilon-delta que expuso Bernard Bolzano en 1817. Además de esto, en este capítulo también tratamos el concepto actual de compacidad exhibido por Pavel Alexandrov y Pavel Urysohn en 1929, el cual es central en este trabajo. Algunas de las definiciones con las que trabajamos en este capítulo se basaron en \cite{diaz_curso_2005}.
+%############################################################################
+%################################## 1.- #####################################
+%############################################################################
 
+Hemos dividido nuestra exposición en seis capítulos. El tema que tratamos en el primer capítulo es la topología, concepto que formalizo Kazimierz Kuratowski en 1922 para generalizar las propiedades de los espacios euclidianos, que permiten un estudio adecuado de funciones a través del comportamiento que tienen en los conjuntos abiertos \cite[p. 129]{croom_principles_2002}. A partir de ahí se introduce la noción de continuidad que extiende a la definición épsilon-delta que expuso Bernard Bolzano en 1817. Además de esto, en este capítulo también tratamos el concepto actual de compacidad exhibido por Pavel Alexandrov y Pavel Urysohn en 1929 \cite[p. 193]{croom_principles_2002}, el cual es central en este trabajo. Algunas de las definiciones con las que trabajamos en este capítulo se basaron en \cite{diaz_curso_2005}.
 
+%############################################################################
+%################################## 2.- #####################################
+%############################################################################
+
+En el segundo capítulo nos adentramos en el estudio de los espacios métricos, concepto que introdujo Maurice Frechet en 1906 \cite[p. 97]{croom_principles_2002} y que se basa en la noción de distancia. Estos espacios resultan cumplir los axiomas de contabilidad así que las sucesiones juegan un papel muy importante dentro de estos. Tanto así que caracterizamos algunos conceptos como la compacidad \cite{galaz_fontes_elementos_2006}, la cerradura y la continuidad por medio de estas. Nuestro principal propósito en este capítulo es determinar condiciones necesarias y suficientes bajo las cuales un conjunto es compacto en un espacio métrico. En el camino nos encontramos con la necesidad de abordar las concepciones de completez y de acotamiento. 
+
+%############################################################################
+%################################## 3.- #####################################
+%############################################################################
+
+Para terminar de delimitar nuestro marco de trabajo, en el tercer capítulo tratamos con la teoría de espacios normados, la cual fue desarrollada principalmente por Stefan Banach, Hans Hahn, Eduard Helly y Norbert Wiener a principios del siglo XX y fue el mismo Banach quien en 1923 definió a los espacios de Banach \cite[p. 97]{croom_principles_2002}. Comenzamos proveyendo algunos ejemplos de espacios normados como lo son los espacios de sucesiones $\ell_p$ y al igual que en \cite{galaz_fontes_elementos_2006} demostramos que estos espacios son completos. En seguida nuestro objetivo se convierte en mostrar una caracterización de los espacios normados de dimensión finita mediante la compacidad de su bola unitaria al igual que se muestra en \cite{diestel_sequences_1984} y se le atribuye a Frigyes Riesz en 1918. En el proceso demostramos que todos los espacios normados de la misma dimensión finita son linealmente isomorfos así como ya sabían los polacos en los años veinte. Para finalizar el capítulo nos ocupamos de estudiar el espacio dual de un espacio normado, así como algunos resultados al respecto, entre los que destacan los teoremas de Hahn Banach y el lema de Helly, atribuidos ambos a Banach. 
+
+%############################################################################
+%################################## 4.- #####################################
+%############################################################################
+
+Debido a que en algunos casos las topologías débiles resultaran ser no metrizables, no es posible aplicar los resultados antes vistos que requieren del uso de sucesiones. Es por esto que en el cuarto capítulo desarrollamos una generalización de las sucesiones que al igual que en el capítulo dos permite caracterizar a la cerradura, continuidad y compacidad, pero esta vez en cualquier espacio topológico. Esta generalización de la que hablamos son las redes. En este capítulo hacemos especial incapié en el teorema de Tychonoff, que aunque fue probado por Andrey Tychonoff en 1937, exhibimos una prueba que dio Paul Chernoff en su artículo \cite{chernoff_simple_1992} utilizando redes. Tal teorema exhibe que el producto arbitrario de espacios compactos es compacto. En cuanto al resto del capítulo, algunas de las demostraciones están basadas en \cite{megginson_introduction_1998}.
+
+%############################################################################
+%################################## 5.- #####################################
+%############################################################################
+
+Como se mencionó anteriormente, las topologías débiles resultan ser espacios vectoriales topológicos. Así es como en el quinto capítulo nos interesamos en el análisis de estos espacios. Resaltamos que los espacios normados resultan ser un caso específico de espacios vectoriales topológicos y que al igual que todos los espacios normados de dimensión finita son linealmente isomorfos, Tychonoff demostró el mismo resultado para espacios vectoriales topológicos. Para probarlo nosotros nos basamos en la demostración que Terrence Tao da en \cite{tao_locally_2011}. Más adelante definimos las topologías débiles como un caso específico de espacios vectoriales topológicos, los cuales están generados por una familia de seminormas al igual que se hace en \cite{rudin_functional_1991}. En particular, para la topología débil* desarrollamos la teoría detrás del espacio de funciones de un conjunto $A$ sobre $\K$.
+
+%############################################################################
+%################################## 6.- #####################################
+%############################################################################
+
+Por último, ya habiendo llegado a este punto, ya contamos con las herramientas necesarias para manejar la teoría tras las topologías débiles.  Empezamos el sexto capítulo definiendo pues estas topologías y enunciando las propiedades básicas sobre convergencia de funciones y acotamiento de conjuntos. Además mostramos un ejemplo que exhibió Von Neumman que muestra que la topología débil puede ser no metrizable, pero fue John V. Wehausen quien demostró que la topología débil de todo espacio de dimensión infinita no es metrizable. Como punto culminante de este trabajo, demostramos el teorema de Banach-Alaoglu, el cual tiene como consecuencia que bajo las topologías débiles no es necesario que un espacio sea de dimensión finita para que la bola unitaria sea compacta. Este fue demostrado por Banach para el caso particular de espacios separables y más tarde en 1940 Alaoglu lo probo en el caso general. Finalizamos este trabajo hablando un poco sobre la reflexividad de los espacios normados, concepto que en un principio es independiente de las topologías débiles, pero que a través del teorema de Goldstine lo podemos caracterizar mediante la compacidad de la bola unitaria en la topología débil. Vínculo que se hace más estrecho cuando demostramos que un subespacio cerrado de un espacio reflexivo también es reflexivo mediante el manejo de las topologías débiles.  
 
 \vspace*{1cm}
 
@@ -307,49 +339,51 @@ Hemos dividido nuestra exposición en seis capítulos. El tema que tratamos en el 
 \paragraph{Capitulo 2: Espacios métricos}
 
 \begin{itemize}
-\item Mencionar métrica y metrizabilidad. 
-\item Maurice Fréchet introdujo el término de espacio métrico en 1906. Referencia: Sur quelques points du calcul fonctionnel. PhD dissertation. 
-\item Hablar del camino para encontrar una caracterización de la compacidad.
-\item Referencia a \cite{galaz_fontes_elementos_2006} en la prueba de la caracterización de compacidad por sucesiones. 
+\item \sout{Mencionar métrica.} 
+\item Hablar de metrizabilidad. 
+\item \sout{Maurice Fréchet introdujo el término de espacio métrico en 1906. Referencia: Sur quelques points du calcul fonctionnel. PhD dissertation.} 
+\item \sout{Hablar del camino para encontrar una caracterización de la compacidad.}
+\item \sout{Referencia a \cite{galaz_fontes_elementos_2006} en la prueba de la caracterización de compacidad por sucesiones.} 
 \end{itemize}
 
 \paragraph{Capitulo 3: Espacios normados}
 
 \begin{itemize}
-\item Mencionar que los espacios normados de dimension finita son isomorfos.
-\item Lema de Riesz y atribuir el teorema~\ref{Tma:DimensionFinitaCerradoAcotadoCompacto} a Riesz (1918). 
-\item Primer capitulo de \cite{diestel_sequences_1984} para la prueba del teorema anterior. 
-\item Referencia a \cite{galaz_fontes_elementos_2006} en las demostraciones de los espacios $\ell_p$.
-\item Lema de Helly y teoremas de Hanh-Banach atribuidos a Banach.
-\item Hablar del espacio dual.
+\item  \sout{Atribuir a Stefan Banach, Hans Hahn, Eduard Helly, Norbert Wiener el desarrollo de los espacios normados a principios del siglo XX.  Y los espacios de Banach a Banach en 1923.}
+\item \sout{Mencionar que los espacios normados de dimension finita son isomorfos.}
+\item \sout{Lema de Riesz y atribuir el teorema~\ref{Tma:DimensionFinitaCerradoAcotadoCompacto} a Riesz (1918).} 
+\item \sout{Primer capitulo de \cite{diestel_sequences_1984} para la prueba del teorema anterior. }
+\item \sout{ Referencia a \cite{galaz_fontes_elementos_2006} en las demostraciones de los espacios $\ell_p$.}
+\item \sout{ Lema de Helly y teoremas de Hanh-Banach atribuidos a Banach. }
+\item \sout{ Hablar del espacio dual. }
 \end{itemize}
 
 \paragraph{Capitulo 4: Redes}
 
 \begin{itemize}
-\item Introducir el concepto de red.
-\item Hablar del teorema de Tychonoff y su demostración por medio de redes.
-\item Referecia \cite{chernoff_simple_1992} en la demostración de Tychonoff. 
-\item Referencia a \cite{megginson_introduction_1998} en algunas pruebas de redes.
+\item \sout{ Introducir el concepto de red. }
+\item \sout{ Hablar del teorema de Tychonoff y su demostración por medio de redes. }
+\item \sout{ Referecia \cite{chernoff_simple_1992} en la demostración de Tychonoff. }
+\item \sout{ Referencia a \cite{megginson_introduction_1998} en algunas pruebas de redes. }
 \end{itemize}
 
 \paragraph{Capitulo 5: Espacios vectoriales topológicos}
 
 \begin{itemize}
-\item Mencionar que Tychonoff fue quien demostró el teorema~\ref{Tma:IsomorfismoDimensionFinitaEVT}. 
-\item Referencia a \cite{tao_locally_2011} en la sección de e.v.t. de dimensión finita.
-\item Hablar de la topologia generada por familia de seminormas.
-\item Referencia a \cite{rudin_functional_1991} del punto anterior.
-\item Destacar el espacio $F(A, \K)$.
+\item \sout{ Mencionar que Tychonoff fue quien demostró el teorema~\ref{Tma:IsomorfismoDimensionFinitaEVT}. }
+\item \sout{ Referencia a \cite{tao_locally_2011} en la sección de e.v.t. de dimensión finita. }
+\item \sout{ Hablar de la topología generada por familia de seminormas. }
+\item \sout{ Referencia a \cite{rudin_functional_1991} del punto anterior. }
+\item \sout{ Destacar el espacio $F(A, \K)$. }
 \end{itemize}
 
 \paragraph{Capitulo 6: Topologías débil y débil*}
 
 \begin{itemize}
-\item Hilbert y Riesz fueron quienes usaron convergencia debil en $L_2[0, 1]$ y $L_p[0, 1]$ respectivamente.
-\item Von Neumman vio que precisamente lo anterior provenia de una topología.
-\item Agregar la no metrizibilidad de la topologia debil por Weheusen.
-\item Teorema de Banach-Alaoglu probado por Banach en espacios de Banach separables. Alaoglu (1940) demostró la versión para espacios normados.
+\item \sout{ Hilbert y Riesz fueron quienes usaron convergencia debil en $L_2[0, 1]$ y $L_p[0, 1]$ respectivamente. }
+\item \sout{ Von Neumman vio que precisamente lo anterior provenia de una topología. }
+\item \sout{ Agregar la no metrizibilidad de la topologia debil por Weheusen. }
+\item \sout{ Teorema de Banach-Alaoglu probado por Banach en espacios de Banach separables. Alaoglu (1940) demostró la versión para espacios normados. }
 \item Teorema de Goldstine.
 \end{itemize}
 
