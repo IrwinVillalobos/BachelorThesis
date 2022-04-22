@@ -2512,9 +2512,8 @@ En espacios métricos, el teorema~\ref{Tma:CaracterizacionCompacidadSucesiones} d
 Una red $(y_\beta)_{\beta \in \Gamma}$ en $X$ es \textit{subred} de la red $(x_\alpha)_{\alpha \in \Lambda}$ en $X$ si existe una función $\varphi : \Gamma \to \Lambda$ tal que
 \begin{itemize}
 \item \textbf{i)} Para todo $\beta \in \Gamma$, se tiene $y_\beta = x_{\varphi(\beta)}$.
-\item \textbf{ii)} Es \textit{monótona}, es decir, para cada $\beta_1, \beta_2 \in \Gamma$ con $\beta_1 \leq \beta_2$ se cumple que $\varphi(\beta_1) \leq \varphi(\beta_2)$.
+\item \textbf{ii)} Es \textit{monótona}, es decir, para cada $\beta_1, \beta_2 \in \Gamma$ tales que $\beta_1 \leq \beta_2$ se cumple que $\varphi(\beta_1) \leq \varphi(\beta_2)$.
 \item \textbf{iii)} Es \textit{final}, es decir, si $\alpha \in \Lambda$, entonces existe $\beta \in \Gamma$ tal que $\varphi(\beta) \geq \alpha$. 
-
 \end{itemize}
 \end{Def}
 
@@ -2688,11 +2687,13 @@ Sea $A$ un conjunto no vacío y consideremos el espacio producto $F(A,\K)$. Tomem
 
 La relación entre la estructura algebraica y la topología de un espacio normado no es propia de estos espacios. En este capítulo introduciremos los espacios vectoriales topológicos que son los que mantienen este vínculo entre álgebra y topología y que precisamente son la generalización de los espacios normados.
 
+\begin{Def}
 Supongamos que $\tau$ es una topología de un espacio vectorial $E$ sobre $\K$ tal que:
 \begin{itemize}
 \item \textbf{i)} $E$ es Hausdorff.
 \item \textbf{ii)} Las operaciones de espacio vectorial $+ : E\times E \to E$ y $\BD: \K \times E \to E$ son continuas. Naturalmente, en $E\times E$ y en $\K \times E$ consideramos las correspondientes topologías producto. 
 \end{itemize}
+\end{Def}
 
 En este caso decimos que $\tau$ es una \textit{topología vectorial} y que $E$ es un \textit{espacio vectorial topológico}. 
 
@@ -2751,7 +2752,7 @@ Como consecuencia de la proposición anterior, si $U$ es un abierto en un espacio
 $$x + U := \{ x + y : y \in U \} = T_x(U)$$ 
 también es abierto. Resulta así que $V$ es vecindad abierta de $x$ si, y sólo si, $V = x + U$, donde $U$ es vecindad abierta de $0$.
 
-Si ademas consideramos $\lambda \in \K$, entonces
+Si además consideramos $\lambda \in \K$, entonces
 $$\lambda \cdot U := \{ \lambda \cdot y : y \in U \} = D_\lambda(U)$$ 
 también es abierto. Resulta así que $U$ es vecindad abierta de $x$ si y sólo si,  $\lambda U$ es vecindad abierta de $\lambda x$.
 \end{Obs}
@@ -2897,7 +2898,7 @@ Supongamos que $x_n \to x$ para algún $x \in E$. Por la proposición~\ref{Prop:Su
 Un método para construir espacios vectoriales topológicos, el cual utilizaremos después para obtener la topología débil de un espacio de normado $X$ y la topología débil* en $X^*$, es utilizar el concepto de la topología generada por una familia de seminormas en un espacio vectorial. 
 
 \begin{Def}
-Sea $X$ un espacio vectorial. Una \textit{seminorma} es una función $p: X \to [0, \infty)$ tal que es subaditiva y es homogénea.
+Sea $X$ un espacio vectorial. Una \textit{seminorma} es una función $p: X \to [0, \infty)$ tal que es subaditiva y para todos $x \in X$, $\lambda\in \K$ se cumple que $p(\lambda x) = \abs{\lambda} p(x)$.
 \end{Def}
 
 \begin{Ejem} \label{Ejem:SeminormaParaTopologiaDebil}
@@ -3280,7 +3281,7 @@ La proposición~\ref{Prop:DimensionFinitaEVTCompleto} indica que $F$ es completo.
 A pesar de que uno de nuestros principales objetivos es encontrar una topología vectorial de un espacio normado $X$ donde la bola unitaria sea compacta, el siguiente teorema nos indica que cuando $\dim \, X = \infty$ en tal topología la bola unitaria no es una vecindad del cero.
 
 \begin{Tma} \label{Tma:CaracterizacionDimensionFinitaEVT}
-Sea $E$ un espacio vectorial topológico. Entonces $E$ es de dimensión finita si y sólo si existe una vecindad compacta del cero. 
+Sea $E$ un espacio vectorial topológico. Entonces $E$ es de dimensión finita si, y sólo si existe una vecindad compacta del cero en $E$. 
 \end{Tma}
 
 \begin{Dem}
@@ -3438,6 +3439,7 @@ Tomemos $x, y$ combinaciones convexas de $A$ y $0 \leq \mu \leq 1$. Entonces exi
 
 Observemos que de esto se sigue que 
 $$\mu x + (1-\mu) y = \mu \left( \sum_{i=1}^n \lambda_i x_i \right) + (1- \mu ) \left( \sum_{j=1}^m \gamma_j y_j \right) = \sum_{i=1}^n \mu\lambda_i x_i + \sum_{j=1}^m (1- \mu)\gamma_j y_j.$$
+
 Además cada $\mu\lambda_i \in [0, 1]$ y $(1- \mu) \gamma_j \in [0,1]$ y
 $$\sum_{i=1}^n \mu\lambda_i + \sum_{j=1}^{m}(1-\mu)\gamma_j = \mu \left( \sum_{i=1}^n \lambda_i\right) + (1- \mu ) \left( \sum_{j=1}^m \gamma_j \right) = \mu + (1- \mu) =1.$$
 
@@ -3495,7 +3497,7 @@ Del teorema~\ref{Tma:DualDeEllePEsElleQ} se tiene que $Rf \in \ell_2^*$. Por un 
 
 Dado cualquier espacio normado $X$,  hemos construido entonces su topología débil. Usando esta construcción con $X^*$  y a partir de $X^{**}$ obtenemos la correspondiente topología débil  en $X^*$. Sin embargo, en $X^{**}$ aparece otro espacio de funcionales que permite construir otra topología en $X^*$ que, en muchos casos, es todavía más débil que la topología débil de $X^{*}$.  Lo describiremos a continuación. \\
 
-Para cada $x \in X$ resulta que $\abs{\delta_x}$ es una seminorma. Dado $\varphi \in X^*$ distinto de cero, existe $x \neq 0$ con $\varphi(x) \neq 0$. Así que $\delta_x(\varphi) \neq 0$. Es decir, $$\F_{X^*} := \{ \abs{\delta_x} : x\in X\}$$ es una familia de seminormas en $X^*$ que separa puntos de $X$. 
+Para cada $x \in X$ resulta que $\abs{\delta_x}$ es una seminorma. Dado $\varphi \in X^*$ distinto de cero, existe $x \neq 0$ con $\varphi(x) \neq 0$. Así que $\delta_x(\varphi) \neq 0$. Es decir, $$\F_{X^*} := \{ \abs{\delta_x} : x\in X\}$$ es una familia de seminormas en $X^*$ que separa puntos de $X^*$. 
 
 \begin{Def}
 Sea $X$ un espacio normado. La \textit{topología débil*} de $X^*$ es $\sigma(X^*, \F_{X^*})$ y se denotará por $\sigma(X^*, X)$ o simplemente por $\tau_{\mathrm{w}^*}$. Cuando trabajemos con la topología débil* de $X^*$, al espacio vectorial topológico correspondiente lo denotaremos por $X^*_{\mathrm{w}^*}$.
